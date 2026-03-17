@@ -65,20 +65,43 @@ header .wrap { display: flex; align-items: center; justify-content: space-betwee
   text-decoration: none;
 }
 .logo-icon {
-  width: 36px; height: 36px; position: relative;
+  width: 34px; height: 34px; position: relative;
+  display: flex; align-items: center; justify-content: center;
 }
-.logo-icon svg { width: 100%; height: 100%; }
+.logo-icon svg { width: 100%; height: 100%; display: block; }
 .logo-text {
   display: flex; flex-direction: column;
 }
 .logo-text .wordmark {
   font-family: var(--serif); font-size: 18px; color: var(--text);
-  letter-spacing: .18em; line-height: 1;
+  letter-spacing: .2em; line-height: 1;
+  display: flex; align-items: baseline; gap: 0;
 }
+.logo-text .wordmark .wm-letter {
+  display: inline-block; transition: color .3s;
+}
+.logo-text .wordmark .wm-v {
+  color: var(--accent); position: relative; display: inline-flex; flex-direction: column; align-items: center;
+}
+.logo-text .wordmark .wm-v::before {
+  content: '';
+  position: absolute; top: -5px; left: 50%; transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 3.5px solid transparent;
+  border-right: 3.5px solid transparent;
+  border-bottom: 4px solid var(--accent);
+  opacity: .8;
+}
+.logo-mark:hover .wm-v { color: #60A5FA; }
+.logo-mark:hover .wm-v::before { border-bottom-color: #60A5FA; }
 .logo-text .tagline {
   font-family: var(--sans); font-size: 10px; color: var(--text-dim);
-  letter-spacing: .06em; margin-top: 2px; font-weight: 500;
+  letter-spacing: .06em; margin-top: 3px; font-weight: 500;
 }
+/* Footer logo smaller */
+.footer-logo .wordmark { font-size: 15px !important; }
+.footer-logo .wm-v::before { top: -4px; border-left-width: 3px; border-right-width: 3px; border-bottom-width: 3.5px; }
+.footer-logo .logo-icon { width: 26px; height: 26px; }
 
 nav { display: flex; align-items: center; gap: 32px; }
 nav a { color: var(--text-muted); font-size: 13.5px; font-weight: 500; letter-spacing: .02em; transition: color .2s; }
@@ -506,18 +529,21 @@ footer {
   <div class="wrap">
     <a href="#" class="logo-mark">
       <div class="logo-icon">
-        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Ascending bars / signal mark -->
-          <rect x="2" y="24" width="5" height="10" rx="2" fill="rgba(59,130,246,.3)"/>
-          <rect x="10" y="17" width="5" height="17" rx="2" fill="rgba(59,130,246,.55)"/>
-          <rect x="18" y="10" width="5" height="24" rx="2" fill="rgba(59,130,246,.8)"/>
-          <rect x="26" y="2" width="5" height="32" rx="2" fill="#3B82F6"/>
-          <!-- Subtle upward arrow accent -->
-          <path d="M30 2 L28.5 5.5 L31.5 5.5 Z" fill="#fff" opacity=".6"/>
+        <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Outer ring -->
+          <circle cx="17" cy="17" r="16" stroke="rgba(59,130,246,.2)" stroke-width="1.2" fill="none"/>
+          <!-- Ascending chevron / elevation mark -->
+          <path d="M17 8 L24.5 18.5" stroke="#3B82F6" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M17 8 L9.5 18.5" stroke="#3B82F6" stroke-width="2.2" stroke-linecap="round"/>
+          <!-- Second chevron layer (depth) -->
+          <path d="M17 14 L22 21" stroke="rgba(59,130,246,.35)" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M17 14 L12 21" stroke="rgba(59,130,246,.35)" stroke-width="1.6" stroke-linecap="round"/>
+          <!-- Base line -->
+          <line x1="10" y1="25" x2="24" y2="25" stroke="rgba(59,130,246,.2)" stroke-width="1.2" stroke-linecap="round"/>
         </svg>
       </div>
       <div class="logo-text">
-        <span class="wordmark">E L E V O</span>
+        <span class="wordmark"><span class="wm-letter">E</span> <span class="wm-letter">L</span> <span class="wm-letter">E</span> <span class="wm-v">V</span> <span class="wm-letter">O</span></span>
         <span class="tagline">Digital · Strategie · Umsetzung</span>
       </div>
     </a>
@@ -897,18 +923,19 @@ footer {
 <footer>
   <div class="wrap">
     <div class="footer-inner">
-      <a href="#" class="logo-mark" style="gap:10px">
-        <div class="logo-icon" style="width:28px;height:28px">
-          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="24" width="5" height="10" rx="2" fill="rgba(59,130,246,.3)"/>
-            <rect x="10" y="17" width="5" height="17" rx="2" fill="rgba(59,130,246,.55)"/>
-            <rect x="18" y="10" width="5" height="24" rx="2" fill="rgba(59,130,246,.8)"/>
-            <rect x="26" y="2" width="5" height="32" rx="2" fill="#3B82F6"/>
-            <path d="M30 2 L28.5 5.5 L31.5 5.5 Z" fill="#fff" opacity=".6"/>
+      <a href="#" class="logo-mark footer-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="17" cy="17" r="16" stroke="rgba(59,130,246,.2)" stroke-width="1.2" fill="none"/>
+            <path d="M17 8 L24.5 18.5" stroke="#3B82F6" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M17 8 L9.5 18.5" stroke="#3B82F6" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M17 14 L22 21" stroke="rgba(59,130,246,.35)" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M17 14 L12 21" stroke="rgba(59,130,246,.35)" stroke-width="1.6" stroke-linecap="round"/>
+            <line x1="10" y1="25" x2="24" y2="25" stroke="rgba(59,130,246,.2)" stroke-width="1.2" stroke-linecap="round"/>
           </svg>
         </div>
         <div class="logo-text">
-          <span class="wordmark" style="font-size:15px">E L E V O</span>
+          <span class="wordmark"><span class="wm-letter">E</span> <span class="wm-letter">L</span> <span class="wm-letter">E</span> <span class="wm-v">V</span> <span class="wm-letter">O</span></span>
           <span class="tagline">Digital · Strategie · Umsetzung</span>
         </div>
       </a>
