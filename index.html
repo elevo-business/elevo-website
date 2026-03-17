@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ELEVO — Digitale Umsetzung für KMU | Websites & Prozesse | Region Aachen</title>
-<meta name="description" content="Professionelle Websites und Prozessdigitalisierung für KMU in der Region Aachen. Festpreis, persönlich, messbare Ergebnisse. Erstgespräch kostenlos.">
+<title>ELEVO — Digitale Umsetzung für KMU | Websites & Prozesse</title>
+<meta name="description" content="Professionelle Websites und Prozessdigitalisierung für KMU. Festpreis, persönlich, messbare Ergebnisse. Erstgespräch kostenlos.">
 <meta property="og:title" content="ELEVO — Digitale Umsetzung für KMU">
 <meta property="og:description" content="Websites die Kunden bringen. Prozesse die Zeit sparen. Ein Partner der umsetzt.">
 <meta property="og:type" content="website">
@@ -138,27 +138,59 @@ nav a:hover { color: var(--text); }
   pointer-events: none;
 }
 .hero .wrap { position: relative; }
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 16px; border-radius: 100px;
-  background: var(--accent-soft); border: 1px solid rgba(59,130,246,.15);
-  font-size: 12.5px; font-weight: 500; color: var(--accent);
-  margin-bottom: 28px; letter-spacing: .03em;
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px;
 }
-.hero-badge i { width: 14px; height: 14px; }
+.hero-eyebrow .line {
+  width: 32px; height: 2px;
+  background: linear-gradient(90deg, var(--accent), rgba(59,130,246,.2));
+}
+.hero-eyebrow span {
+  font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--accent);
+}
 .hero h1 {
-  font-family: var(--serif); font-size: clamp(32px, 5vw, 52px);
-  line-height: 1.15; color: #fff; max-width: 720px; margin-bottom: 20px;
+  font-family: var(--serif); font-size: clamp(34px, 5.5vw, 54px);
+  line-height: 1.12; color: #fff; max-width: 720px; margin-bottom: 22px;
 }
 .hero h1 em { font-style: normal; color: var(--accent); }
 .hero-sub {
   font-size: 17px; line-height: 1.7; color: var(--text-muted);
   max-width: 540px; margin-bottom: 36px;
 }
-.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
-.hero-trust { display: flex; gap: 32px; flex-wrap: wrap; }
-.trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-dim); }
-.trust-item .num { font-family: var(--serif); font-size: 22px; color: var(--text); }
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 56px; }
+
+/* ═══ HERO VALUE STRIP ═══ */
+.hero-values {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+}
+.hero-value {
+  padding: 20px; border-radius: 14px;
+  background: var(--surface); border: 1px solid var(--border);
+  transition: border-color .3s, transform .3s;
+}
+.hero-value:hover { border-color: rgba(59,130,246,.3); transform: translateY(-2px); }
+.hero-value-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 12px;
+}
+.hero-value-icon i { width: 18px; height: 18px; }
+.hero-value-icon.blue { background: var(--accent-soft); }
+.hero-value-icon.blue i { color: var(--accent); }
+.hero-value-icon.green { background: var(--green-soft); }
+.hero-value-icon.green i { color: var(--green); }
+.hero-value-icon.orange { background: rgba(245,158,11,.08); }
+.hero-value-icon.orange i { color: var(--orange); }
+.hero-value-icon.violet { background: rgba(99,102,241,.08); }
+.hero-value-icon.violet i { color: #818CF8; }
+.hero-value h4 {
+  font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 3px;
+}
+.hero-value p {
+  font-size: 12.5px; color: var(--text-dim); line-height: 1.5;
+}
 
 /* ═══ ATMOSPHERE BAND ═══ */
 .atmo-band {
@@ -492,9 +524,10 @@ footer {
   background-size: 40px 40px;
 }
 
-/* ═══ RESPONSIVE ═══ */
+/* ═══ RESPONSIVE — TABLET ═══ */
 @media (max-width: 900px) {
   nav a:not(.btn) { display: none; }
+  .hero-values { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .problem-grid { grid-template-columns: 1fr; }
   .stufen-grid { grid-template-columns: 1fr; }
   .ref-grid { grid-template-columns: 1fr; }
@@ -509,16 +542,129 @@ footer {
   .atmo-band-inner img:nth-child(2),
   .atmo-band-inner img:nth-child(3) { display: none; }
 }
-@media (max-width: 500px) {
-  :root { --px: 18px; }
-  section { padding: 64px 0; }
-  .hero { padding: 130px 0 48px; }
-  .hero-trust { gap: 20px; }
-  .prozess-steps { grid-template-columns: 1fr; }
-  .ueber-values { grid-template-columns: 1fr; }
+
+/* ═══ RESPONSIVE — MOBILE EXPERIENCE ═══ */
+@media (max-width: 600px) {
+  :root { --px: 20px; }
+
+  /* Global mobile rhythm */
+  section { padding: 56px 0; }
+  .section-label { font-size: 10.5px; letter-spacing: .14em; margin-bottom: 10px; }
+  .section-title { font-size: clamp(24px, 7vw, 32px); margin-bottom: 14px; }
+  .section-desc { font-size: 14.5px; }
+
+  /* Header mobile — tighter, breathable */
+  header { padding: 12px 0; }
+  header .wrap { gap: 8px; }
+  .logo-icon { width: 28px; height: 28px; }
+  .logo-text .wordmark { font-size: 15px; letter-spacing: .14em; }
+  .logo-text .tagline { font-size: 9px; }
+  .wm-v::before { top: -4px; border-left-width: 2.5px; border-right-width: 2.5px; border-bottom-width: 3px; }
+  nav .btn { padding: 9px 18px; font-size: 12.5px; }
+
+  /* Hero mobile — full-screen feeling */
+  .hero {
+    padding: 120px 0 40px;
+    min-height: calc(100svh - 56px);
+    display: flex; align-items: center;
+  }
+  .hero .wrap {
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .hero-eyebrow { margin-bottom: 20px; }
+  .hero-eyebrow .line { width: 24px; }
+  .hero-eyebrow span { font-size: 10.5px; }
+  .hero h1 {
+    font-size: clamp(28px, 8vw, 38px);
+    line-height: 1.15; margin-bottom: 16px;
+  }
+  .hero h1 br { display: none; }
+  .hero-sub { font-size: 15px; margin-bottom: 28px; }
+  .hero-ctas { margin-bottom: 36px; }
+  .hero-ctas .btn {
+    width: 100%; justify-content: center; padding: 14px 20px; font-size: 14.5px;
+  }
+  .hero-values {
+    grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  .hero-value { padding: 14px; border-radius: 12px; }
+  .hero-value-icon { width: 34px; height: 34px; border-radius: 8px; margin-bottom: 8px; }
+  .hero-value-icon i { width: 16px; height: 16px; }
+  .hero-value h4 { font-size: 13px; }
+  .hero-value p { font-size: 11.5px; }
+
+  /* Atmo band mobile */
+  .atmo-band { height: 180px; }
+  .atmo-band-text blockquote { font-size: 18px; }
+  .atmo-band-text cite { font-size: 11px; }
+
+  /* Problem cards mobile — horizontal scroll feel */
+  .problem-grid { gap: 12px; }
+  .problem-card { padding: 24px 20px; border-radius: 14px; }
+  .problem-icon { width: 42px; height: 42px; border-radius: 10px; margin-bottom: 14px; }
+  .problem-card h3 { font-size: 15.5px; }
+  .problem-card p { font-size: 13.5px; }
+
+  /* Stufen cards mobile — breathable */
+  .stufen-grid { gap: 14px; }
+  .stufe-card { padding: 28px 22px; border-radius: 16px; }
+  .stufe-card h3 { font-size: 20px; }
+  .stufe-card > p { font-size: 13.5px; }
+  .stufe-features li { font-size: 13px; }
+  .stufe-invest-label { font-size: 12px; }
+  .stufe-invest-label strong { font-size: 13.5px; }
+
+  /* Referenzen mobile */
+  .ref-grid { gap: 14px; }
+  .ref-preview { height: 180px; }
+  .ref-body { padding: 18px; }
+  .ref-card h3 { font-size: 16px; }
+  .ref-card .ref-desc { font-size: 13px; }
+  .stats-case { padding: 22px !important; }
+  .stats-case-text h3 { font-size: 19px !important; }
+  .stats-case-text p { font-size: 13.5px !important; }
+  .stats-grid { gap: 10px; }
+  .stat-box { padding: 14px; border-radius: 10px; }
+  .stat-box .num { font-size: 22px; }
+  .stat-box .label { font-size: 11px; }
+
+  /* Lightbox mobile */
+  .lightbox { padding: 12px; }
   .lightbox-inner { height: 80vh; border-radius: 12px; }
-  .footer-inner { flex-direction: column; gap: 16px; }
-  .atmo-band { height: 160px; }
+
+  /* Prozess mobile */
+  .prozess-steps { grid-template-columns: 1fr; gap: 12px; }
+  .step { padding: 24px 18px; border-radius: 14px; }
+  .step-num { width: 38px; height: 38px; font-size: 14px; margin-bottom: 12px; }
+  .step h3 { font-size: 14.5px; }
+  .step p { font-size: 12.5px; }
+
+  /* Über mobile — image first on mobile */
+  .ueber-grid { gap: 32px; }
+  .ueber-grid > div:last-child { order: -1; }
+  .ueber-image { border-radius: 16px; aspect-ratio: 16/10; }
+  .ueber-values { grid-template-columns: 1fr; gap: 10px; margin-top: 24px; }
+  .value { padding: 16px; border-radius: 10px; display: flex; gap: 14px; align-items: flex-start; }
+  .value i { margin-bottom: 0; flex-shrink: 0; width: 20px; height: 20px; }
+  .value h4 { font-size: 13.5px; }
+  .value p { font-size: 12px; }
+
+  /* Kontakt mobile — full width immersive */
+  .kontakt-grid { gap: 36px; }
+  .kontakt .section-title { font-size: clamp(24px, 7vw, 30px); }
+  .form-group input, .form-group select, .form-group textarea {
+    padding: 14px 16px; font-size: 16px; /* prevents iOS zoom */
+    border-radius: 12px;
+  }
+  .form-group label { font-size: 12px; }
+  .kontakt-form .btn { padding: 16px 24px; font-size: 15px; border-radius: 14px; }
+  .form-trust { flex-wrap: wrap; gap: 14px; }
+
+  /* Footer mobile */
+  .footer-inner { flex-direction: column; gap: 20px; }
+  .footer-links { flex-wrap: wrap; gap: 16px; }
+  .footer-links a { font-size: 12.5px; }
+  .footer-copy { font-size: 11px; margin-top: 24px; }
 }
 </style>
 </head>
@@ -559,18 +705,37 @@ footer {
 <!-- ═══ HERO ═══ -->
 <section class="hero">
   <div class="wrap">
-    <div class="hero-badge reveal"><i data-lucide="zap"></i> Digitale Umsetzung für KMU · Region Aachen</div>
+    <div class="hero-eyebrow reveal">
+      <span class="line"></span>
+      <span>Digitale Umsetzung für KMU</span>
+    </div>
     <h1 class="reveal">Dein Business verdient<br>besseres als einen Baukasten.<br><em>Du wirst es spüren.</em></h1>
     <p class="hero-sub reveal">Websites die Kunden bringen. Prozesse die Zeit sparen. Ein Partner der umsetzt — mit Strategie, nicht mit Templates.</p>
     <div class="hero-ctas reveal">
       <a href="#kontakt" class="btn btn-primary"><i data-lucide="message-circle" style="width:16px;height:16px"></i> Kostenloses Erstgespräch</a>
       <a href="#referenzen" class="btn btn-secondary">Referenzen ansehen</a>
     </div>
-    <div class="hero-trust reveal">
-      <div class="trust-item"><span class="num">100%</span> Festpreis</div>
-      <div class="trust-item"><span class="num">&lt;3</span> Wochen bis Live</div>
-      <div class="trust-item"><span class="num">−66%</span> Sales Cycle</div>
-      <div class="trust-item"><span class="num">∞</span> Kein Baukasten</div>
+    <div class="hero-values reveal">
+      <div class="hero-value">
+        <div class="hero-value-icon blue"><i data-lucide="lock"></i></div>
+        <h4>Festpreis. Immer.</h4>
+        <p>Du weißt vorher was es kostet. Keine Stundensätze, keine Überraschungen.</p>
+      </div>
+      <div class="hero-value">
+        <div class="hero-value-icon green"><i data-lucide="zap"></i></div>
+        <h4>In Wochen live</h4>
+        <p>Keine Monate. Dein Projekt steht in 2–3 Wochen — fertig, nicht fast fertig.</p>
+      </div>
+      <div class="hero-value">
+        <div class="hero-value-icon orange"><i data-lucide="bar-chart-3"></i></div>
+        <h4>Messbar. Nicht hübsch.</h4>
+        <p>Jedes Projekt wird an Ergebnissen gemessen — Anfragen, Zeitersparnis, Sichtbarkeit.</p>
+      </div>
+      <div class="hero-value">
+        <div class="hero-value-icon violet"><i data-lucide="fingerprint"></i></div>
+        <h4>Kein Template-Look</h4>
+        <p>Individuell konzipiert und gebaut. Dein Unternehmen, nicht irgendein Baukasten.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -751,7 +916,7 @@ footer {
             <div class="stats-case-text">
               <div class="ref-tag">IT-Dienstleistungen · Prozessdigitalisierung</div>
               <h3 style="font-family:var(--serif);font-size:22px;color:#fff;margin-bottom:8px;">Vertriebsprozess komplett digitalisiert</h3>
-              <p style="font-size:14px;color:var(--text-muted);line-height:1.7;">IT-Dienstleister, Region Aachen. CRM-Einführung (Pipedrive), automatisierte Angebotserstellung, Terminbuchung, E-Mail-Automationen. Inklusive Team-Schulung.</p>
+              <p style="font-size:14px;color:var(--text-muted);line-height:1.7;">IT-Dienstleister. CRM-Einführung (Pipedrive), automatisierte Angebotserstellung, Terminbuchung, E-Mail-Automationen. Inklusive Team-Schulung.</p>
             </div>
             <div class="stats-grid">
               <div class="stat-box"><span class="num">−66%</span><span class="label">Sales Cycle (3→1 Monat)</span></div>
