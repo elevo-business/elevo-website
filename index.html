@@ -22,6 +22,7 @@
   --surface: #151B28;
   --surface-hover: #1C2333;
   --border: #21293A;
+  --border-subtle: #181E2C;
   --text: #E2E8F0;
   --text-muted: #8492A6;
   --text-dim: #5A6578;
@@ -29,6 +30,7 @@
   --accent-hover: #2563EB;
   --accent-glow: rgba(59,130,246,.15);
   --accent-soft: rgba(59,130,246,.08);
+  --accent-warm: #6366F1;
   --green: #10B981;
   --green-soft: rgba(16,185,129,.1);
   --orange: #F59E0B;
@@ -56,8 +58,28 @@ header {
   transition: background .3s;
 }
 header .wrap { display: flex; align-items: center; justify-content: space-between; }
-.logo { font-family: var(--serif); font-size: 20px; color: var(--text); letter-spacing: .12em; }
-.logo span { color: var(--text-dim); font-family: var(--sans); font-size: 11px; letter-spacing: .06em; display: block; margin-top: -2px; }
+
+/* ═══ LOGO ═══ */
+.logo-mark {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+.logo-icon {
+  width: 36px; height: 36px; position: relative;
+}
+.logo-icon svg { width: 100%; height: 100%; }
+.logo-text {
+  display: flex; flex-direction: column;
+}
+.logo-text .wordmark {
+  font-family: var(--serif); font-size: 18px; color: var(--text);
+  letter-spacing: .18em; line-height: 1;
+}
+.logo-text .tagline {
+  font-family: var(--sans); font-size: 10px; color: var(--text-dim);
+  letter-spacing: .06em; margin-top: 2px; font-weight: 500;
+}
+
 nav { display: flex; align-items: center; gap: 32px; }
 nav a { color: var(--text-muted); font-size: 13.5px; font-weight: 500; letter-spacing: .02em; transition: color .2s; }
 nav a:hover { color: var(--text); }
@@ -75,15 +97,21 @@ nav a:hover { color: var(--text); }
 
 /* ═══ HERO ═══ */
 .hero {
-  padding: 160px 0 100px;
+  padding: 160px 0 60px;
   position: relative;
   overflow: hidden;
 }
 .hero::before {
   content: '';
-  position: absolute; top: 0; left: 50%; width: 800px; height: 800px;
-  transform: translate(-50%, -40%);
-  background: radial-gradient(ellipse, rgba(59,130,246,.08) 0%, transparent 70%);
+  position: absolute; top: 0; left: 50%; width: 900px; height: 900px;
+  transform: translate(-50%, -45%);
+  background: radial-gradient(ellipse, rgba(59,130,246,.07) 0%, rgba(99,102,241,.04) 30%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute; top: 120px; right: -200px; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(99,102,241,.04) 0%, transparent 60%);
   pointer-events: none;
 }
 .hero .wrap { position: relative; }
@@ -108,6 +136,38 @@ nav a:hover { color: var(--text); }
 .hero-trust { display: flex; gap: 32px; flex-wrap: wrap; }
 .trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-dim); }
 .trust-item .num { font-family: var(--serif); font-size: 22px; color: var(--text); }
+
+/* ═══ ATMOSPHERE BAND ═══ */
+.atmo-band {
+  position: relative; width: 100%; height: 280px; overflow: hidden;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.atmo-band-inner {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; height: 100%;
+}
+.atmo-img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(.7) saturate(.9);
+  transition: filter .5s;
+}
+.atmo-band:hover .atmo-img { filter: brightness(.8) saturate(1); }
+.atmo-band-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(6,8,15,.8) 0%, rgba(6,8,15,.3) 50%, rgba(6,8,15,.8) 100%);
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.atmo-band-text {
+  text-align: center; max-width: 600px; padding: 0 24px;
+}
+.atmo-band-text blockquote {
+  font-family: var(--serif); font-size: clamp(20px, 3vw, 28px);
+  color: #fff; line-height: 1.35; font-style: italic; opacity: .9;
+}
+.atmo-band-text cite {
+  display: block; margin-top: 12px; font-style: normal;
+  font-size: 13px; color: var(--text-dim); letter-spacing: .04em;
+}
 
 /* ═══ SECTIONS SHARED ═══ */
 .section-label {
@@ -152,7 +212,7 @@ nav a:hover { color: var(--text); }
 .stufe-card:hover { border-color: var(--accent); transform: translateY(-3px); }
 .stufe-card.featured { border-color: var(--accent); background: linear-gradient(180deg, rgba(59,130,246,.06) 0%, var(--surface) 60%); }
 .stufe-num {
-  font-family: var(--serif); font-size: 48px; color: rgba(59,130,246,.15);
+  font-family: var(--serif); font-size: 48px; color: rgba(59,130,246,.12);
   position: absolute; top: 20px; right: 24px; line-height: 1;
 }
 .stufe-label {
@@ -160,7 +220,7 @@ nav a:hover { color: var(--text); }
   color: var(--accent); margin-bottom: 8px;
 }
 .stufe-card h3 { font-family: var(--serif); font-size: 22px; color: #fff; margin-bottom: 12px; }
-.stufe-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; flex: 1; }
+.stufe-card > p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; flex: 1; }
 .stufe-features { list-style: none; margin-bottom: 24px; }
 .stufe-features li {
   font-size: 13.5px; color: var(--text-muted); padding: 6px 0;
@@ -169,8 +229,23 @@ nav a:hover { color: var(--text); }
 }
 .stufe-features li:last-child { border-bottom: 1px solid var(--border); }
 .stufe-features i { color: var(--green); flex-shrink: 0; margin-top: 3px; width: 16px; height: 16px; }
-.stufe-price { font-family: var(--serif); font-size: 24px; color: #fff; margin-top: auto; }
-.stufe-price span { font-family: var(--sans); font-size: 13px; color: var(--text-dim); font-weight: 400; }
+
+/* Investment Teaser */
+.stufe-invest {
+  margin-top: auto; padding-top: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.stufe-invest-label {
+  font-size: 12.5px; color: var(--text-dim); letter-spacing: .02em; line-height: 1.4;
+}
+.stufe-invest-label strong {
+  display: block; font-size: 14px; color: var(--text-muted); font-weight: 600;
+}
+.stufe-invest-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent-soft); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.stufe-invest-icon i { color: var(--accent); width: 16px; height: 16px; }
 
 /* ═══ REFERENZEN ═══ */
 .referenzen { background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -283,9 +358,53 @@ nav a:hover { color: var(--text); }
 .step h3 { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 8px; }
 .step p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
+/* ═══ INVESTMENT SECTION ═══ */
+.invest-section { background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.invest-header { text-align: center; margin-bottom: 48px; }
+.invest-header .section-desc { margin: 0 auto; }
+.invest-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.invest-card {
+  padding: 32px 28px; border-radius: 20px;
+  background: var(--surface); border: 1px solid var(--border);
+  text-align: center; transition: border-color .3s, transform .3s;
+}
+.invest-card:hover { border-color: var(--text-dim); transform: translateY(-2px); }
+.invest-card .invest-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: var(--accent-soft); display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+}
+.invest-card .invest-icon i { color: var(--accent); }
+.invest-card h4 { font-family: var(--serif); font-size: 18px; color: #fff; margin-bottom: 8px; }
+.invest-card .invest-range {
+  font-family: var(--serif); font-size: 24px; color: var(--accent); margin-bottom: 6px;
+}
+.invest-card .invest-type { font-size: 12px; color: var(--text-dim); margin-bottom: 16px; letter-spacing: .03em; }
+.invest-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+.invest-note {
+  text-align: center; margin-top: 32px;
+  font-size: 13.5px; color: var(--text-dim); line-height: 1.7;
+  max-width: 600px; margin-left: auto; margin-right: auto;
+}
+.invest-note strong { color: var(--text-muted); }
+
 /* ═══ UEBER ═══ */
-.ueber-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.ueber-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
 .ueber-text .section-desc { max-width: 100%; }
+.ueber-image {
+  border-radius: 20px; overflow: hidden; position: relative;
+  aspect-ratio: 4/3;
+}
+.ueber-image img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(.85) saturate(.9);
+}
+.ueber-image::after {
+  content: ''; position: absolute; inset: 0;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.06);
+  pointer-events: none;
+}
 .ueber-values { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
 .value {
   padding: 20px; border-radius: 12px;
@@ -335,6 +454,21 @@ footer {
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* ═══ DECORATIVE ELEMENTS ═══ */
+.deco-line {
+  width: 48px; height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  margin-bottom: 24px;
+}
+.deco-grid {
+  position: absolute; pointer-events: none; opacity: .03;
+  width: 400px; height: 400px;
+  background-image:
+    linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
 /* ═══ RESPONSIVE ═══ */
 @media (max-width: 900px) {
   nav a:not(.btn) { display: none; }
@@ -346,16 +480,22 @@ footer {
   .ueber-grid { grid-template-columns: 1fr; }
   .kontakt-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
+  .invest-grid { grid-template-columns: 1fr; }
+  .atmo-band { height: 200px; }
+  .atmo-band-inner { grid-template-columns: 1fr; }
+  .atmo-band-inner img:nth-child(2),
+  .atmo-band-inner img:nth-child(3) { display: none; }
 }
 @media (max-width: 500px) {
   :root { --px: 18px; }
   section { padding: 64px 0; }
-  .hero { padding: 130px 0 64px; }
+  .hero { padding: 130px 0 48px; }
   .hero-trust { gap: 20px; }
   .prozess-steps { grid-template-columns: 1fr; }
   .ueber-values { grid-template-columns: 1fr; }
   .lightbox-inner { height: 80vh; border-radius: 12px; }
   .footer-inner { flex-direction: column; gap: 16px; }
+  .atmo-band { height: 160px; }
 }
 </style>
 </head>
@@ -364,7 +504,23 @@ footer {
 <!-- ═══ HEADER ═══ -->
 <header>
   <div class="wrap">
-    <div class="logo">E L E V O<span>Vertrieb. Marketing. Digital.</span></div>
+    <a href="#" class="logo-mark">
+      <div class="logo-icon">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Ascending bars / signal mark -->
+          <rect x="2" y="24" width="5" height="10" rx="2" fill="rgba(59,130,246,.3)"/>
+          <rect x="10" y="17" width="5" height="17" rx="2" fill="rgba(59,130,246,.55)"/>
+          <rect x="18" y="10" width="5" height="24" rx="2" fill="rgba(59,130,246,.8)"/>
+          <rect x="26" y="2" width="5" height="32" rx="2" fill="#3B82F6"/>
+          <!-- Subtle upward arrow accent -->
+          <path d="M30 2 L28.5 5.5 L31.5 5.5 Z" fill="#fff" opacity=".6"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="wordmark">E L E V O</span>
+        <span class="tagline">Digital · Strategie · Umsetzung</span>
+      </div>
+    </a>
     <nav>
       <a href="#leistungen">Leistungen</a>
       <a href="#referenzen">Referenzen</a>
@@ -377,21 +533,36 @@ footer {
 <!-- ═══ HERO ═══ -->
 <section class="hero">
   <div class="wrap">
-    <div class="hero-badge"><i data-lucide="zap"></i> Digitale Umsetzung für KMU · Region Aachen</div>
+    <div class="hero-badge reveal"><i data-lucide="zap"></i> Digitale Umsetzung für KMU · Region Aachen</div>
     <h1 class="reveal">Dein Business verdient<br>besseres als einen Baukasten.<br><em>Du wirst es spüren.</em></h1>
-    <p class="hero-sub reveal">Websites die Kunden bringen. Prozesse die Zeit sparen. Ein Partner der umsetzt.</p>
+    <p class="hero-sub reveal">Websites die Kunden bringen. Prozesse die Zeit sparen. Ein Partner der umsetzt — mit Strategie, nicht mit Templates.</p>
     <div class="hero-ctas reveal">
       <a href="#kontakt" class="btn btn-primary"><i data-lucide="message-circle" style="width:16px;height:16px"></i> Kostenloses Erstgespräch</a>
       <a href="#referenzen" class="btn btn-secondary">Referenzen ansehen</a>
     </div>
     <div class="hero-trust reveal">
-      <div class="trust-item"><span class="num">4</span> Projekte umgesetzt</div>
-      <div class="trust-item"><span class="num">−66%</span> Sales Cycle</div>
-      <div class="trust-item"><span class="num">&lt;3</span> Wochen bis Live</div>
       <div class="trust-item"><span class="num">100%</span> Festpreis</div>
+      <div class="trust-item"><span class="num">&lt;3</span> Wochen bis Live</div>
+      <div class="trust-item"><span class="num">−66%</span> Sales Cycle</div>
+      <div class="trust-item"><span class="num">∞</span> Kein Baukasten</div>
     </div>
   </div>
 </section>
+
+<!-- ═══ ATMOSPHERE BAND ═══ -->
+<div class="atmo-band">
+  <div class="atmo-band-inner">
+    <img class="atmo-img" src="https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=800&q=80&auto=format&fit=crop" alt="Digital Strategy" loading="lazy">
+    <img class="atmo-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80&auto=format&fit=crop" alt="Data Analytics" loading="lazy">
+    <img class="atmo-img" src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80&auto=format&fit=crop" alt="Modern Workspace" loading="lazy">
+  </div>
+  <div class="atmo-band-overlay">
+    <div class="atmo-band-text">
+      <blockquote>&bdquo;Digitalisierung heißt nicht Technik kaufen. Es heißt, das Richtige für dein Geschäft bauen.&ldquo;</blockquote>
+      <cite>— ELEVO Prinzip</cite>
+    </div>
+  </div>
+</div>
 
 <!-- ═══ PROBLEM ═══ -->
 <section class="problem">
@@ -413,7 +584,7 @@ footer {
       <div class="problem-card reveal">
         <div class="problem-icon"><i data-lucide="scale"></i></div>
         <h3>Zu teuer oder zu schlecht</h3>
-        <p>Agenturen wollen 5.000€+ für eine Website. Baukästen wie Wix liefern generischen Einheitsbrei. Du brauchst Qualität zu einem fairen Preis — mit Strategie statt nur Design.</p>
+        <p>Agenturen wollen fünfstellig für eine Website. Baukästen liefern generischen Einheitsbrei. Du brauchst Qualität zu einem fairen Investment — mit Strategie statt nur Design.</p>
       </div>
     </div>
   </div>
@@ -441,14 +612,17 @@ footer {
           <li><i data-lucide="check"></i> DSGVO-konform + SSL</li>
           <li><i data-lucide="check"></i> 3 Monate Support</li>
         </ul>
-        <div class="stufe-price">ab 1.500€ <span>einmalig</span></div>
+        <div class="stufe-invest">
+          <div class="stufe-invest-icon"><i data-lucide="trending-up"></i></div>
+          <div class="stufe-invest-label"><strong>Niedriger vierstelliger Bereich</strong>Einmal-Investment · individuell kalkuliert</div>
+        </div>
       </div>
       <!-- Stufe 2 -->
       <div class="stufe-card featured reveal">
         <div class="stufe-num">02</div>
         <div class="stufe-label">Kernleistung</div>
         <h3>Prozess&shy;digitalisierung</h3>
-        <p>Dein Vertrieb, deine Termine, deine Angebote — automatisiert. Ich richte dir die Systeme ein, konfiguriere sie und schule dein Team. Du sparst ab Tag eins Zeit und Geld.</p>
+        <p>Dein Vertrieb, deine Termine, deine Angebote — automatisiert. Wir richten dir die Systeme ein, konfigurieren sie und schulen dein Team. Du sparst ab Tag eins Zeit und Geld.</p>
         <ul class="stufe-features">
           <li><i data-lucide="check"></i> CRM-Einführung (z.B. Pipedrive)</li>
           <li><i data-lucide="check"></i> Automatisierte Angebotserstellung</li>
@@ -456,7 +630,10 @@ footer {
           <li><i data-lucide="check"></i> Workflow-Automatisierung (Zapier)</li>
           <li><i data-lucide="check"></i> Team-Schulung inklusive</li>
         </ul>
-        <div class="stufe-price">ab 2.000€ <span>einmalig</span></div>
+        <div class="stufe-invest">
+          <div class="stufe-invest-icon"><i data-lucide="trending-up"></i></div>
+          <div class="stufe-invest-label"><strong>Mittlerer vierstelliger Bereich</strong>Einmal-Investment · nach Umfang</div>
+        </div>
       </div>
       <!-- Stufe 3 -->
       <div class="stufe-card reveal">
@@ -471,8 +648,15 @@ footer {
           <li><i data-lucide="check"></i> Strategische Beratung</li>
           <li><i data-lucide="check"></i> Website-Pflege & Updates</li>
         </ul>
-        <div class="stufe-price">ab 300€ <span>/Monat</span></div>
+        <div class="stufe-invest">
+          <div class="stufe-invest-icon"><i data-lucide="refresh-cw"></i></div>
+          <div class="stufe-invest-label"><strong>Niedriger dreistelliger Bereich</strong>Monatlich · flexible Laufzeit</div>
+        </div>
       </div>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:40px">
+      <p style="font-size:13.5px;color:var(--text-dim);max-width:520px;margin:0 auto 20px;line-height:1.7">Jedes Projekt wird individuell kalkuliert — du bekommst im Erstgespräch eine transparente Einschätzung. Kein Rätselraten, kein Kleingedrucktes.</p>
+      <a href="#kontakt" class="btn btn-primary"><i data-lucide="message-circle" style="width:16px;height:16px"></i> Erstgespräch vereinbaren</a>
     </div>
   </div>
 </section>
@@ -534,7 +718,7 @@ footer {
           </div>
         </div>
       </div>
-      <!-- Stats Case (IT-Dienstleister) -->
+      <!-- Stats Case -->
       <div class="ref-card reveal" style="cursor:default" onclick="">
         <div class="ref-body" style="padding:0">
           <div class="stats-case" style="border:none;background:transparent;padding:28px;">
@@ -579,17 +763,17 @@ footer {
       <div class="step reveal">
         <div class="step-num">1</div>
         <h3>Erstgespräch</h3>
-        <p>30 Minuten, kostenlos. Wir besprechen deine Ziele und ich zeige dir, was möglich ist. Ehrlich, ohne Verkaufsdruck.</p>
+        <p>30 Minuten, kostenlos. Wir besprechen deine Ziele und zeigen dir, was möglich ist. Ehrlich, ohne Verkaufsdruck.</p>
       </div>
       <div class="step reveal">
         <div class="step-num">2</div>
         <h3>Audit & Konzept</h3>
-        <p>Ich analysiere deinen digitalen Stand, identifiziere Quick Wins und erstelle ein konkretes Konzept mit Zeitplan und Festpreis.</p>
+        <p>Wir analysieren deinen digitalen Stand, identifizieren Quick Wins und erstellen ein konkretes Konzept mit Zeitplan und Festpreis.</p>
       </div>
       <div class="step reveal">
         <div class="step-num">3</div>
         <h3>Umsetzung</h3>
-        <p>Während du dich um dein Geschäft kümmerst, baue ich. Feedback-Runden inklusive — du siehst jederzeit den Fortschritt.</p>
+        <p>Während du dich um dein Geschäft kümmerst, bauen wir. Feedback-Runden inklusive — du siehst jederzeit den Fortschritt.</p>
       </div>
       <div class="step reveal">
         <div class="step-num">4</div>
@@ -606,31 +790,36 @@ footer {
     <div class="ueber-grid">
       <div class="ueber-text">
         <div class="section-label reveal">Über ELEVO</div>
-        <div class="section-title reveal">Kein Agentur-Team.<br><em>Ein Partner.</em></div>
-        <p class="section-desc reveal" style="margin-bottom:16px">Ich bin kein Agentur-Gründer der 20 Mitarbeiter beschäftigt und dich an einen Junior-Projektmanager weiterreicht. Ich bin der, der dein Geschäft versteht, die Strategie entwickelt und die Umsetzung selbst macht.</p>
-        <p class="section-desc reveal">ELEVO nutzt KI als Produktionstool — nicht als Ersatz für Strategie. Das macht uns schneller und günstiger als klassische Agenturen, während wir mehr liefern als jeder DIY-Builder. Der Unterschied: Menschliches Verständnis für dein Geschäft trifft auf moderne Technologie.</p>
+        <div class="section-title reveal">Boutique-Qualität.<br><em>Ohne Agentur-Overhead.</em></div>
+        <p class="section-desc reveal" style="margin-bottom:16px">ELEVO ist kein Konzern mit 20 Abteilungen und ein Junior-Projektmanager der zwischen dir und dem Ergebnis steht. Bei uns sitzt Strategie, Beratung und Umsetzung unter einem Dach — mit kurzen Wegen und direktem Draht.</p>
+        <p class="section-desc reveal">Wir nutzen KI als Produktionstool — nicht als Ersatz für Denken. Das macht uns schneller und günstiger als klassische Agenturen, während wir mehr liefern als jeder DIY-Builder. Menschliches Verständnis für dein Geschäft trifft auf moderne Technologie.</p>
       </div>
-      <div class="ueber-values reveal">
-        <div class="value">
-          <i data-lucide="target"></i>
-          <h4>Festpreis. Immer.</h4>
-          <p>Kein Stundensatz, keine versteckten Kosten. Du weißt vorher, was es kostet.</p>
+      <div>
+        <div class="ueber-image reveal">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80&auto=format&fit=crop" alt="ELEVO Team Workspace" loading="lazy">
         </div>
-        <div class="value">
-          <i data-lucide="rocket"></i>
-          <h4>Schnell. Messbar.</h4>
-          <p>In 2–3 Wochen live. Ergebnisse die du in Zahlen sehen kannst.</p>
-        </div>
-        <div class="value">
-          <i data-lucide="brain"></i>
-          <h4>Strategie. Nicht nur Design.</h4>
-          <p>Jedes Projekt beginnt mit der Frage: Was muss das für dein Geschäft bewirken?</p>
-        </div>
-        <div class="value">
-          <i data-lucide="handshake"></i>
-          <h4>Ehrlich. Direkt.</h4>
-          <p>Wenn etwas keinen Sinn macht, sage ich es. Kein Bullshit, kein Upsell-Druck.</p>
-        </div>
+      </div>
+    </div>
+    <div class="ueber-values reveal" style="margin-top:48px">
+      <div class="value">
+        <i data-lucide="target"></i>
+        <h4>Festpreis. Immer.</h4>
+        <p>Kein Stundensatz, keine versteckten Kosten. Du weißt vorher, was es kostet.</p>
+      </div>
+      <div class="value">
+        <i data-lucide="rocket"></i>
+        <h4>Schnell. Messbar.</h4>
+        <p>In 2–3 Wochen live. Ergebnisse die du in Zahlen sehen kannst.</p>
+      </div>
+      <div class="value">
+        <i data-lucide="brain"></i>
+        <h4>Strategie. Nicht nur Design.</h4>
+        <p>Jedes Projekt beginnt mit der Frage: Was muss das für dein Geschäft bewirken?</p>
+      </div>
+      <div class="value">
+        <i data-lucide="handshake"></i>
+        <h4>Ehrlich. Direkt.</h4>
+        <p>Wenn etwas keinen Sinn macht, sagen wir es. Kein Bullshit, kein Upsell-Druck.</p>
       </div>
     </div>
   </div>
@@ -643,7 +832,7 @@ footer {
       <div>
         <div class="section-label reveal">Jetzt starten</div>
         <div class="section-title reveal">Bereit für den<br><em>nächsten Schritt?</em></div>
-        <p class="section-desc reveal" style="margin-bottom:28px">30 Minuten Erstgespräch, kostenlos und unverbindlich. Ich analysiere deinen aktuellen digitalen Stand und zeige dir konkret, was möglich ist.</p>
+        <p class="section-desc reveal" style="margin-bottom:28px">30 Minuten Erstgespräch, kostenlos und unverbindlich. Wir analysieren deinen aktuellen digitalen Stand und zeigen dir konkret, was möglich ist — inklusive transparenter Einschätzung zum Investment.</p>
         <div class="reveal" style="display:flex;flex-direction:column;gap:16px">
           <div style="display:flex;align-items:center;gap:12px">
             <div style="width:40px;height:40px;border-radius:10px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center"><i data-lucide="message-circle" style="color:var(--accent);width:18px;height:18px"></i></div>
@@ -688,7 +877,7 @@ footer {
           </div>
           <div class="form-group">
             <label>Nachricht (optional)</label>
-            <textarea name="nachricht" placeholder="Erzähl mir kurz, was dich beschäftigt..."></textarea>
+            <textarea name="nachricht" placeholder="Erzähl uns kurz, was dich beschäftigt..."></textarea>
           </div>
           <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:14px 24px;font-size:15px">
             <i data-lucide="send" style="width:16px;height:16px"></i> Erstgespräch anfragen
@@ -708,7 +897,21 @@ footer {
 <footer>
   <div class="wrap">
     <div class="footer-inner">
-      <div class="logo">E L E V O<span>Vertrieb. Marketing. Digital.</span></div>
+      <a href="#" class="logo-mark" style="gap:10px">
+        <div class="logo-icon" style="width:28px;height:28px">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="24" width="5" height="10" rx="2" fill="rgba(59,130,246,.3)"/>
+            <rect x="10" y="17" width="5" height="17" rx="2" fill="rgba(59,130,246,.55)"/>
+            <rect x="18" y="10" width="5" height="24" rx="2" fill="rgba(59,130,246,.8)"/>
+            <rect x="26" y="2" width="5" height="32" rx="2" fill="#3B82F6"/>
+            <path d="M30 2 L28.5 5.5 L31.5 5.5 Z" fill="#fff" opacity=".6"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="wordmark" style="font-size:15px">E L E V O</span>
+          <span class="tagline">Digital · Strategie · Umsetzung</span>
+        </div>
+      </a>
       <div class="footer-links">
         <a href="#leistungen">Leistungen</a>
         <a href="#referenzen">Referenzen</a>
@@ -717,7 +920,7 @@ footer {
         <a href="/datenschutz.html">Datenschutz</a>
       </div>
     </div>
-    <p class="footer-copy">&copy; 2026 ELEVO. Alle Rechte vorbehalten.</p>
+    <p class="footer-copy">&copy; 2026 ELEVO Solutions. Alle Rechte vorbehalten.</p>
   </div>
 </footer>
 
@@ -762,7 +965,6 @@ function closeLightbox(e) {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
 // ═══ HEADER SCROLL ═══
-let lastScroll = 0;
 window.addEventListener('scroll', () => {
   const h = document.querySelector('header');
   if (window.scrollY > 100) {
