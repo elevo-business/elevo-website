@@ -2,248 +2,360 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>ELEVO — Professionelle Websites für KMU | Region Aachen</title>
-<meta name="description" content="Professionelle Websites für Gastronomie und kleine Unternehmen in der Region Aachen. Mobile-First, SEO-optimiert, Conversion-fokussiert. Kostenlose Erstberatung.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELEVO — Digitale Umsetzung für KMU | Websites & Prozesse | Region Aachen</title>
+<meta name="description" content="Professionelle Websites und Prozessdigitalisierung für KMU in der Region Aachen. Festpreis, persönlich, messbare Ergebnisse. Erstgespräch kostenlos.">
+<meta property="og:title" content="ELEVO — Digitale Umsetzung für KMU">
+<meta property="og:description" content="Websites die Kunden bringen. Prozesse die Zeit sparen. Ein Partner der umsetzt.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"ELEVO","description":"Digitale Umsetzung für KMU — Websites, Prozessdigitalisierung, SEO","url":"https://elevo.solutions","areaServed":{"@type":"GeoCircle","geoMidpoint":{"@type":"GeoCoordinates","latitude":50.7753,"longitude":6.0839},"geoRadius":"30000"},"priceRange":"€€"}
+</script>
 <style>
 :root {
-  --bg: #0A0A0C;
-  --panel: #111113;
-  --card: #161618;
-  --border: #222226;
-  --accent: #D4A853;
-  --accent-glow: rgba(212,168,83,0.12);
-  --white: #F4F4F5;
-  --off: #A1A1AA;
-  --muted: #71717A;
-  --dim: #3F3F46;
-  --green: #34D399;
-  --serif: 'Cormorant Garamond', Georgia, serif;
-  --sans: 'Archivo', system-ui, sans-serif;
+  --bg: #06080F;
+  --bg-elevated: #0D1117;
+  --surface: #151B28;
+  --surface-hover: #1C2333;
+  --border: #21293A;
+  --text: #E2E8F0;
+  --text-muted: #8492A6;
+  --text-dim: #5A6578;
+  --accent: #3B82F6;
+  --accent-hover: #2563EB;
+  --accent-glow: rgba(59,130,246,.15);
+  --accent-soft: rgba(59,130,246,.08);
+  --green: #10B981;
+  --green-soft: rgba(16,185,129,.1);
+  --orange: #F59E0B;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', -apple-system, sans-serif;
+  --max-w: 1100px;
+  --px: 24px;
 }
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: var(--sans); background: var(--bg); color: var(--white); line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); font-size: 15.5px; line-height: 1.7; }
 img { max-width: 100%; display: block; }
-
-/* ═══ UTILITY ═══ */
-.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-.accent { color: var(--accent); }
-.serif { font-family: var(--serif); }
-.text-muted { color: var(--muted); }
-.text-off { color: var(--off); }
-.text-sm { font-size: 14px; }
-.text-xs { font-size: 12px; }
-.mt-2 { margin-top: 16px; }
-.mt-4 { margin-top: 32px; }
-.mb-1 { margin-bottom: 8px; }
-.mb-2 { margin-bottom: 16px; }
-
-/* ═══ ANIMATIONS ═══ */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
-@keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.8; } }
-
-.reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.16,1,0.3,1); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+a { color: var(--accent); text-decoration: none; transition: color .2s; }
+a:hover { color: var(--accent-hover); }
+.wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--px); }
+section { padding: 90px 0; }
 
 /* ═══ HEADER ═══ */
 header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(10,10,12,0.85); backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(34,34,38,0.5);
-  padding: 14px 0;
-  transition: all 0.3s ease;
+  padding: 16px 0;
+  background: rgba(6,8,15,.75);
+  backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid rgba(255,255,255,.04);
+  transition: background .3s;
 }
-header .container { display: flex; justify-content: space-between; align-items: center; }
-.logo { font-family: var(--serif); color: var(--accent); font-size: 20px; letter-spacing: 0.3em; font-weight: 700; text-decoration: none; }
-.logo-sub { font-size: 8px; letter-spacing: 0.12em; color: var(--dim); display: block; margin-top: -2px; font-family: var(--sans); font-weight: 500; text-transform: uppercase; }
-.header-cta {
-  background: var(--accent); color: var(--bg); font-weight: 600; font-size: 12px;
-  padding: 10px 24px; border-radius: 6px; text-decoration: none;
-  letter-spacing: 0.04em; transition: all 0.2s;
+header .wrap { display: flex; align-items: center; justify-content: space-between; }
+.logo { font-family: var(--serif); font-size: 20px; color: var(--text); letter-spacing: .12em; }
+.logo span { color: var(--text-dim); font-family: var(--sans); font-size: 11px; letter-spacing: .06em; display: block; margin-top: -2px; }
+nav { display: flex; align-items: center; gap: 32px; }
+nav a { color: var(--text-muted); font-size: 13.5px; font-weight: 500; letter-spacing: .02em; transition: color .2s; }
+nav a:hover { color: var(--text); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 24px; border-radius: 100px; font-size: 13.5px; font-weight: 600;
+  transition: all .25s; cursor: pointer; border: none; font-family: var(--sans);
 }
-.header-cta:hover { background: #E8C97A; transform: translateY(-1px); }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 8px 32px rgba(59,130,246,.25); color:#fff; }
+.btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover { background: var(--surface-hover); border-color: var(--text-dim); color:#fff; }
+.btn-ghost { background: transparent; color: var(--text-muted); padding: 11px 16px; }
+.btn-ghost:hover { color: var(--text); }
 
 /* ═══ HERO ═══ */
 .hero {
-  min-height: 100vh; display: flex; align-items: center; justify-content: center;
-  text-align: center; padding: 120px 24px 80px; position: relative;
+  padding: 160px 0 100px;
+  position: relative;
   overflow: hidden;
 }
 .hero::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(212,168,83,0.06) 0%, transparent 70%);
+  content: '';
+  position: absolute; top: 0; left: 50%; width: 800px; height: 800px;
+  transform: translate(-50%, -40%);
+  background: radial-gradient(ellipse, rgba(59,130,246,.08) 0%, transparent 70%);
+  pointer-events: none;
 }
-.hero-content { position: relative; z-index: 1; max-width: 780px; }
-.hero-tagline {
-  font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
-  color: var(--accent); font-weight: 600; margin-bottom: 24px;
-  animation: fadeIn 0.8s ease 0.2s both;
+.hero .wrap { position: relative; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 16px; border-radius: 100px;
+  background: var(--accent-soft); border: 1px solid rgba(59,130,246,.15);
+  font-size: 12.5px; font-weight: 500; color: var(--accent);
+  margin-bottom: 28px; letter-spacing: .03em;
 }
+.hero-badge i { width: 14px; height: 14px; }
 .hero h1 {
-  font-family: var(--serif); font-size: clamp(36px, 6vw, 64px); font-weight: 700;
-  line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.01em;
-  animation: fadeUp 0.8s ease 0.4s both;
+  font-family: var(--serif); font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.15; color: #fff; max-width: 720px; margin-bottom: 20px;
 }
-.hero h1 .accent-line {
-  background: linear-gradient(90deg, var(--accent), #E8C97A, var(--accent));
-  background-size: 200% auto;
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  animation: shimmer 4s linear infinite;
-}
+.hero h1 em { font-style: normal; color: var(--accent); }
 .hero-sub {
-  font-size: 18px; color: var(--off); max-width: 560px; margin: 0 auto 40px;
-  line-height: 1.7; font-weight: 300;
-  animation: fadeUp 0.8s ease 0.6s both;
+  font-size: 17px; line-height: 1.7; color: var(--text-muted);
+  max-width: 540px; margin-bottom: 36px;
 }
-.hero-cta-group {
-  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
-  animation: fadeUp 0.8s ease 0.8s both;
-}
-.cta-primary {
-  background: var(--accent); color: var(--bg); font-weight: 700; font-size: 14px;
-  padding: 16px 36px; border-radius: 8px; text-decoration: none;
-  letter-spacing: 0.03em; transition: all 0.25s; display: inline-flex; align-items: center; gap: 8px;
-  box-shadow: 0 4px 24px rgba(212,168,83,0.25);
-}
-.cta-primary:hover { background: #E8C97A; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,168,83,0.35); }
-.cta-secondary {
-  border: 1.5px solid var(--border); color: var(--off); font-weight: 500; font-size: 14px;
-  padding: 16px 36px; border-radius: 8px; text-decoration: none;
-  transition: all 0.25s;
-}
-.cta-secondary:hover { border-color: var(--accent); color: var(--accent); }
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+.hero-trust { display: flex; gap: 32px; flex-wrap: wrap; }
+.trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-dim); }
+.trust-item .num { font-family: var(--serif); font-size: 22px; color: var(--text); }
 
-.hero-proof {
-  margin-top: 48px; display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
-  animation: fadeIn 1s ease 1.2s both;
+/* ═══ SECTIONS SHARED ═══ */
+.section-label {
+  font-size: 11.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 12px;
 }
-.hero-proof-item { text-align: center; }
-.hero-proof-num { font-family: var(--serif); font-size: 28px; font-weight: 700; color: var(--accent); }
-.hero-proof-label { font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
-
-/* ═══ SECTIONS ═══ */
-section { padding: 100px 0; }
-.section-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
-.section-title { font-family: var(--serif); font-size: clamp(28px, 4vw, 42px); font-weight: 700; line-height: 1.15; margin-bottom: 20px; }
-.section-sub { font-size: 16px; color: var(--off); max-width: 560px; line-height: 1.7; font-weight: 300; }
-
-/* ═══ PAIN SECTION ═══ */
-.pain { background: var(--panel); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 40px; }
-.pain-card {
-  background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
-  padding: 28px 24px; transition: all 0.25s;
+.section-title {
+  font-family: var(--serif); font-size: clamp(26px, 3.5vw, 38px);
+  line-height: 1.2; color: #fff; margin-bottom: 16px;
 }
-.pain-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-.pain-icon { font-size: 24px; margin-bottom: 14px; }
-.pain-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
-.pain-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.section-title em { font-style: normal; color: var(--accent); }
+.section-desc { font-size: 15.5px; color: var(--text-muted); max-width: 560px; line-height: 1.7; }
 
-/* ═══ SERVICES ═══ */
-.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 48px; }
-.service-card {
-  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-  padding: 36px 28px; position: relative; overflow: hidden; transition: all 0.3s;
+/* ═══ PROBLEM ═══ */
+.problem { background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+.problem-card {
+  padding: 32px 28px; border-radius: 16px;
+  background: var(--surface); border: 1px solid var(--border);
+  transition: border-color .3s, transform .3s;
 }
-.service-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--accent), transparent);
-  opacity: 0; transition: opacity 0.3s;
-}
-.service-card:hover { border-color: rgba(212,168,83,0.3); transform: translateY(-3px); }
-.service-card:hover::before { opacity: 1; }
-.service-tag { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 14px; }
-.service-card h3 { font-family: var(--serif); font-size: 24px; font-weight: 700; margin-bottom: 12px; }
-.service-card p { font-size: 14px; color: var(--off); line-height: 1.7; margin-bottom: 20px; }
-.service-price { font-family: var(--serif); font-size: 28px; font-weight: 700; color: var(--accent); }
-.service-price-note { font-size: 12px; color: var(--dim); font-family: var(--sans); font-weight: 400; }
-.service-features { list-style: none; margin-top: 20px; }
-.service-features li { font-size: 13px; color: var(--off); padding: 6px 0; display: flex; align-items: center; gap: 10px; }
-.service-features li::before { content: '✓'; color: var(--green); font-weight: 700; font-size: 12px; }
-
-/* ═══ PROCESS ═══ */
-.process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 48px; }
-.step { text-align: center; padding: 24px 16px; }
-.step-num {
-  width: 48px; height: 48px; border-radius: 50%;
-  background: var(--accent-glow); border: 1.5px solid rgba(212,168,83,0.3);
+.problem-card:hover { border-color: var(--text-dim); transform: translateY(-3px); }
+.problem-icon {
+  width: 48px; height: 48px; border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 16px; font-family: var(--serif); font-size: 20px;
-  font-weight: 700; color: var(--accent);
+  margin-bottom: 20px; background: rgba(245,158,11,.08);
 }
-.step h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
-.step p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.problem-icon i { color: var(--orange); }
+.problem-card h3 { font-size: 16.5px; font-weight: 700; margin-bottom: 10px; color: #fff; }
+.problem-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+/* ═══ LEISTUNGEN ═══ */
+.leistungen-header { text-align: center; margin-bottom: 56px; }
+.leistungen-header .section-desc { margin: 0 auto; }
+.stufen-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.stufe-card {
+  padding: 36px 28px; border-radius: 20px;
+  background: var(--surface); border: 1px solid var(--border);
+  position: relative; transition: border-color .3s, transform .3s;
+  display: flex; flex-direction: column;
+}
+.stufe-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.stufe-card.featured { border-color: var(--accent); background: linear-gradient(180deg, rgba(59,130,246,.06) 0%, var(--surface) 60%); }
+.stufe-num {
+  font-family: var(--serif); font-size: 48px; color: rgba(59,130,246,.15);
+  position: absolute; top: 20px; right: 24px; line-height: 1;
+}
+.stufe-label {
+  font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 8px;
+}
+.stufe-card h3 { font-family: var(--serif); font-size: 22px; color: #fff; margin-bottom: 12px; }
+.stufe-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; flex: 1; }
+.stufe-features { list-style: none; margin-bottom: 24px; }
+.stufe-features li {
+  font-size: 13.5px; color: var(--text-muted); padding: 6px 0;
+  display: flex; align-items: flex-start; gap: 10px;
+  border-top: 1px solid var(--border);
+}
+.stufe-features li:last-child { border-bottom: 1px solid var(--border); }
+.stufe-features i { color: var(--green); flex-shrink: 0; margin-top: 3px; width: 16px; height: 16px; }
+.stufe-price { font-family: var(--serif); font-size: 24px; color: #fff; margin-top: auto; }
+.stufe-price span { font-family: var(--sans); font-size: 13px; color: var(--text-dim); font-weight: 400; }
 
 /* ═══ REFERENZEN ═══ */
-.refs { background: var(--panel); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.ref-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
+.referenzen { background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.referenzen-header { text-align: center; margin-bottom: 56px; }
+.referenzen-header .section-desc { margin: 0 auto; }
+.ref-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .ref-card {
-  background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
-  padding: 28px 24px;
+  border-radius: 20px; overflow: hidden;
+  background: var(--surface); border: 1px solid var(--border);
+  cursor: pointer; transition: border-color .3s, transform .3s;
+  position: relative;
 }
-.ref-quote { font-size: 15px; color: var(--off); line-height: 1.7; font-style: italic; margin-bottom: 16px; }
-.ref-author { font-size: 13px; font-weight: 600; }
-.ref-role { font-size: 12px; color: var(--dim); }
-.ref-tag { display: inline-block; background: var(--accent-glow); color: var(--accent); font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 12px; border: 1px solid rgba(212,168,83,0.2); margin-top: 8px; }
+.ref-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.ref-preview {
+  height: 220px; overflow: hidden; position: relative;
+  background: var(--bg);
+}
+.ref-preview iframe {
+  width: 200%; height: 200%;
+  transform: scale(.5); transform-origin: top left;
+  border: none; pointer-events: none;
+}
+.ref-preview-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, var(--surface) 100%);
+  display: flex; align-items: flex-end; justify-content: center; padding-bottom: 16px;
+  opacity: 0; transition: opacity .3s;
+}
+.ref-card:hover .ref-preview-overlay { opacity: 1; }
+.ref-preview-overlay .btn { font-size: 12px; padding: 8px 18px; }
+.ref-body { padding: 24px; }
+.ref-tag {
+  font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 6px;
+}
+.ref-card h3 { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.ref-card .ref-desc { font-size: 13.5px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.6; }
+.ref-stats { display: flex; gap: 20px; }
+.ref-stat { font-size: 12px; color: var(--text-dim); display: flex; align-items: center; gap: 5px; }
+.ref-stat i { width: 14px; height: 14px; color: var(--green); }
 
-/* ═══ CTA SECTION ═══ */
-.cta-section {
-  text-align: center; padding: 120px 24px;
-  background: radial-gradient(ellipse 70% 50% at 50% 60%, rgba(212,168,83,0.08) 0%, transparent 70%);
+/* Stats Case */
+.stats-case {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, var(--surface) 0%, rgba(59,130,246,.05) 100%);
+  border-radius: 20px; border: 1px solid var(--border);
+  padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
 }
-.cta-section .section-title { max-width: 600px; margin: 0 auto 16px; }
-.cta-section .section-sub { margin: 0 auto 40px; text-align: center; }
-.cta-promise { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 24px; }
-.cta-promise span { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-.cta-promise span::before { content: '✓'; color: var(--green); font-weight: 700; }
+.stats-case-text h3 { font-family: var(--serif); font-size: 24px; color: #fff; margin-bottom: 8px; }
+.stats-case-text .ref-tag { margin-bottom: 10px; }
+.stats-case-text p { font-size: 14.5px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.stat-box {
+  padding: 20px; border-radius: 14px;
+  background: var(--bg-elevated); border: 1px solid var(--border);
+  text-align: center;
+}
+.stat-box .num { font-family: var(--serif); font-size: 28px; color: var(--accent); display: block; }
+.stat-box .label { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+
+/* ═══ LIGHTBOX ═══ */
+.lightbox {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,.85);
+  backdrop-filter: blur(8px);
+  display: none; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; transition: opacity .3s;
+}
+.lightbox.active { display: flex; opacity: 1; }
+.lightbox-inner {
+  width: 100%; max-width: 1200px; height: 85vh;
+  border-radius: 20px; overflow: hidden;
+  background: #fff; position: relative;
+  box-shadow: 0 40px 100px rgba(0,0,0,.5);
+}
+.lightbox-inner iframe { width: 100%; height: 100%; border: none; }
+.lightbox-close {
+  position: absolute; top: 16px; right: 16px; z-index: 10;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(0,0,0,.7); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
+}
+.lightbox-close:hover { background: rgba(0,0,0,.9); }
+.lightbox-close i { color: #fff; }
+.lightbox-info {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 16px 24px;
+  background: linear-gradient(transparent, rgba(0,0,0,.8));
+  display: flex; justify-content: space-between; align-items: center;
+}
+.lightbox-info span { color: #fff; font-size: 14px; font-weight: 500; }
+.lightbox-info a { color: var(--accent); font-size: 13px; }
+
+/* ═══ PROZESS ═══ */
+.prozess-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px; }
+.step {
+  text-align: center; padding: 32px 20px; border-radius: 16px;
+  background: var(--surface); border: 1px solid var(--border);
+  position: relative;
+}
+.step-num {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--accent); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 16px;
+  margin: 0 auto 16px;
+}
+.step h3 { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.step p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+/* ═══ UEBER ═══ */
+.ueber-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.ueber-text .section-desc { max-width: 100%; }
+.ueber-values { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+.value {
+  padding: 20px; border-radius: 12px;
+  background: var(--surface); border: 1px solid var(--border);
+}
+.value i { color: var(--accent); margin-bottom: 8px; }
+.value h4 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.value p { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
+
+/* ═══ KONTAKT ═══ */
+.kontakt { background: var(--bg-elevated); border-top: 1px solid var(--border); }
+.kontakt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+.kontakt-form { display: flex; flex-direction: column; gap: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 12.5px; font-weight: 600; color: var(--text-muted); letter-spacing: .03em; }
+.form-group input, .form-group select, .form-group textarea {
+  padding: 12px 16px; border-radius: 10px;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text); font-family: var(--sans); font-size: 14px;
+  transition: border-color .2s;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none; border-color: var(--accent);
+}
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-group select { cursor: pointer; }
+.form-trust { display: flex; gap: 20px; margin-top: 4px; }
+.form-trust span { font-size: 12px; color: var(--text-dim); display: flex; align-items: center; gap: 5px; }
+.form-trust i { width: 14px; height: 14px; color: var(--green); }
 
 /* ═══ FOOTER ═══ */
 footer {
-  border-top: 1px solid var(--border); padding: 48px 0 32px;
-  text-align: center;
+  padding: 48px 0 32px;
+  border-top: 1px solid var(--border);
 }
-.footer-logo { font-family: var(--serif); color: var(--accent); font-size: 16px; letter-spacing: 0.25em; font-weight: 700; }
-.footer-tagline { font-size: 10px; color: var(--dim); letter-spacing: 0.1em; margin-top: 4px; text-transform: uppercase; }
-.footer-links { margin-top: 20px; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
-.footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-.footer-links a:hover { color: var(--accent); }
-.footer-legal { margin-top: 24px; font-size: 11px; color: var(--dim); }
+.footer-inner { display: flex; justify-content: space-between; align-items: flex-start; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 13px; color: var(--text-dim); }
+.footer-links a:hover { color: var(--text); }
+.footer-copy { font-size: 12px; color: var(--text-dim); margin-top: 32px; }
 
-/* ═══ CONTACT FORM ═══ */
-.contact-form { max-width: 480px; margin: 0 auto; text-align: left; }
-.form-row { margin-bottom: 14px; }
-.form-row label { display: block; font-size: 11px; font-weight: 500; color: var(--off); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px; }
-.form-row input, .form-row select, .form-row textarea {
-  width: 100%; background: var(--bg); border: 1.5px solid var(--border); color: var(--white);
-  padding: 12px 14px; font-size: 14px; border-radius: 8px; outline: none;
-  font-family: var(--sans); transition: border-color 0.2s;
+/* ═══ SCROLL REVEAL ═══ */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
 }
-.form-row input:focus, .form-row select:focus, .form-row textarea:focus {
-  border-color: var(--accent); box-shadow: 0 0 0 3px rgba(212,168,83,0.1);
-}
-.form-row textarea { resize: vertical; min-height: 80px; }
-.form-submit {
-  width: 100%; background: var(--accent); color: var(--bg); font-weight: 700;
-  font-size: 14px; padding: 16px; border: none; border-radius: 8px; cursor: pointer;
-  letter-spacing: 0.03em; transition: all 0.2s; margin-top: 8px;
-}
-.form-submit:hover { background: #E8C97A; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* ═══ RESPONSIVE ═══ */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  nav a:not(.btn) { display: none; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .stufen-grid { grid-template-columns: 1fr; }
+  .ref-grid { grid-template-columns: 1fr; }
+  .stats-case { grid-template-columns: 1fr; }
+  .prozess-steps { grid-template-columns: repeat(2, 1fr); }
+  .ueber-grid { grid-template-columns: 1fr; }
+  .kontakt-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 500px) {
+  :root { --px: 18px; }
   section { padding: 64px 0; }
-  .hero { min-height: auto; padding: 100px 20px 60px; }
-  .hero-proof { gap: 20px; }
-  .cta-section { padding: 80px 20px; }
-  .header-cta { padding: 8px 16px; font-size: 11px; }
-  .hero-cta-group { flex-direction: column; align-items: center; }
-  .cta-primary, .cta-secondary { width: 100%; max-width: 320px; text-align: center; justify-content: center; }
+  .hero { padding: 130px 0 64px; }
+  .hero-trust { gap: 20px; }
+  .prozess-steps { grid-template-columns: 1fr; }
+  .ueber-values { grid-template-columns: 1fr; }
+  .lightbox-inner { height: 80vh; border-radius: 12px; }
+  .footer-inner { flex-direction: column; gap: 16px; }
 }
 </style>
 </head>
@@ -251,231 +363,342 @@ footer {
 
 <!-- ═══ HEADER ═══ -->
 <header>
-  <div class="container">
-    <a href="#" class="logo">E L E V O <span class="logo-sub">Vertrieb. Marketing. Digital.</span></a>
-    <a href="#kontakt" class="header-cta">Erstgespräch buchen</a>
+  <div class="wrap">
+    <div class="logo">E L E V O<span>Vertrieb. Marketing. Digital.</span></div>
+    <nav>
+      <a href="#leistungen">Leistungen</a>
+      <a href="#referenzen">Referenzen</a>
+      <a href="#prozess">So läuft's ab</a>
+      <a href="#kontakt" class="btn btn-primary">Erstgespräch buchen</a>
+    </nav>
   </div>
 </header>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-tagline">Websites für Unternehmen · Region Aachen</div>
-    <h1>Dein digitaler Auftritt ist dein <span class="accent-line">erster Vertriebsmitarbeiter.</span></h1>
-    <p class="hero-sub">Professionelle Websites für Gastronomie, Handwerk und KMU — Mobile-First, SEO-optimiert, und gebaut um Kunden zu gewinnen. Nicht nur gut auszusehen.</p>
-    <div class="hero-cta-group">
-      <a href="#kontakt" class="cta-primary">Kostenloses Erstgespräch →</a>
-      <a href="#leistungen" class="cta-secondary">Leistungen ansehen</a>
+  <div class="wrap">
+    <div class="hero-badge"><i data-lucide="zap"></i> Digitale Umsetzung für KMU · Region Aachen</div>
+    <h1 class="reveal">Dein Business verdient<br>besseres als einen Baukasten.<br><em>Du wirst es spüren.</em></h1>
+    <p class="hero-sub reveal">Websites die Kunden bringen. Prozesse die Zeit sparen. Ein Partner der umsetzt.</p>
+    <div class="hero-ctas reveal">
+      <a href="#kontakt" class="btn btn-primary"><i data-lucide="message-circle" style="width:16px;height:16px"></i> Kostenloses Erstgespräch</a>
+      <a href="#referenzen" class="btn btn-secondary">Referenzen ansehen</a>
     </div>
-    <div class="hero-proof">
-      <div class="hero-proof-item">
-        <div class="hero-proof-num">3</div>
-        <div class="hero-proof-label">Projekte umgesetzt</div>
-      </div>
-      <div class="hero-proof-item">
-        <div class="hero-proof-num">100%</div>
-        <div class="hero-proof-label">Kundenzufriedenheit</div>
-      </div>
-      <div class="hero-proof-item">
-        <div class="hero-proof-num">&lt;3 Wo.</div>
-        <div class="hero-proof-label">Time to Launch</div>
-      </div>
+    <div class="hero-trust reveal">
+      <div class="trust-item"><span class="num">4</span> Projekte umgesetzt</div>
+      <div class="trust-item"><span class="num">−66%</span> Sales Cycle</div>
+      <div class="trust-item"><span class="num">&lt;3</span> Wochen bis Live</div>
+      <div class="trust-item"><span class="num">100%</span> Festpreis</div>
     </div>
   </div>
 </section>
 
-<!-- ═══ PAIN POINTS ═══ -->
-<section class="pain">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">Das Problem</div>
-      <div class="section-title">Dein Wettbewerb hat eine Website.<br>Du verlierst Kunden, bevor sie dich kennenlernen.</div>
-      <p class="section-sub">80% aller Kunden googeln, bevor sie kaufen. Ohne professionellen Webauftritt existierst du für sie nicht.</p>
-    </div>
-    <div class="pain-grid">
-      <div class="pain-card reveal">
-        <div class="pain-icon">🔍</div>
-        <h4>Unsichtbar bei Google</h4>
+<!-- ═══ PROBLEM ═══ -->
+<section class="problem">
+  <div class="wrap">
+    <div class="section-label reveal">Das Problem</div>
+    <div class="section-title reveal">Dein Wettbewerb ist digital.<br><em>Und du?</em></div>
+    <p class="section-desc reveal">80% aller Kunden googeln, bevor sie kaufen. Ohne professionelle Online-Präsenz und effiziente Prozesse verlierst du jeden Tag Kunden — ohne es zu merken.</p>
+    <div class="problem-grid">
+      <div class="problem-card reveal">
+        <div class="problem-icon"><i data-lucide="eye-off"></i></div>
+        <h3>Unsichtbar bei Google</h3>
         <p>Deine Kunden suchen nach deiner Leistung — und finden deinen Wettbewerber. Ohne Website, ohne Sichtbarkeit, ohne Chance.</p>
       </div>
-      <div class="pain-card reveal">
-        <div class="pain-icon">📱</div>
-        <h4>Veralteter Webauftritt</h4>
-        <p>Eine Website aus 2015 auf dem Smartphone? Lange Ladezeiten, unleserliche Texte, kein Kontaktbutton. Dein Kunde klickt weg — in 3 Sekunden.</p>
+      <div class="problem-card reveal">
+        <div class="problem-icon"><i data-lucide="clock"></i></div>
+        <h3>Manuelle Prozesse fressen Zeit</h3>
+        <p>Angebote per Hand tippen, Termine per Telefon koordinieren, Kundendaten im Kopf behalten. Jede Woche verlierst du Stunden an Aufgaben, die ein System übernehmen könnte.</p>
       </div>
-      <div class="pain-card reveal">
-        <div class="pain-icon">💸</div>
-        <h4>Agentur-Preise, Freelancer-Enttäuschung</h4>
-        <p>Große Agenturen wollen 5.000€+, günstige Freelancer liefern Baukasten-Einheitsbrei. Du brauchst Qualität zu einem fairen Preis.</p>
+      <div class="problem-card reveal">
+        <div class="problem-icon"><i data-lucide="scale"></i></div>
+        <h3>Zu teuer oder zu schlecht</h3>
+        <p>Agenturen wollen 5.000€+ für eine Website. Baukästen wie Wix liefern generischen Einheitsbrei. Du brauchst Qualität zu einem fairen Preis — mit Strategie statt nur Design.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ SERVICES ═══ -->
+<!-- ═══ LEISTUNGEN ═══ -->
 <section id="leistungen">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">Leistungen</div>
-      <div class="section-title">Alles, was dein Unternehmen<br>digital braucht.</div>
-      <p class="section-sub">Kein Baukasten. Kein WordPress-Template. Individuell gebaut, für dein Geschäft optimiert.</p>
+  <div class="wrap">
+    <div class="leistungen-header">
+      <div class="section-label reveal">Leistungen</div>
+      <div class="section-title reveal">Drei Stufen.<br><em>Ein Ziel: Dein Wachstum.</em></div>
+      <p class="section-desc reveal">Starte mit dem, was du jetzt brauchst. Erweitere, wenn du bereit bist. Jede Stufe bringt messbare Ergebnisse.</p>
     </div>
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="service-tag">Kernleistung</div>
+    <div class="stufen-grid">
+      <!-- Stufe 1 -->
+      <div class="stufe-card reveal">
+        <div class="stufe-num">01</div>
+        <div class="stufe-label">Digitales Fundament</div>
         <h3>Professionelle Website</h3>
-        <p>Mobile-First, blitzschnell, SEO-optimiert. Individuelles Design das dein Unternehmen widerspiegelt — nicht ein Template das jeder hat.</p>
-        <div class="service-price">ab 1.500€ <span class="service-price-note">einmalig</span></div>
-        <ul class="service-features">
-          <li>Responsive Design (Mobile + Desktop)</li>
-          <li>SEO-Grundoptimierung</li>
-          <li>Google My Business Einrichtung</li>
-          <li>DSGVO-konform</li>
-          <li>SSL-Zertifikat inklusive</li>
-          <li>3 Monate Support nach Launch</li>
+        <p>Mobile-First, SEO-optimiert, Conversion-fokussiert. Individuelles Design mit einem Leit-Motiv das dein Unternehmen unverwechselbar macht. Kein Template. Kein Baukasten.</p>
+        <ul class="stufe-features">
+          <li><i data-lucide="check"></i> Individuelles Design & Leit-Motiv</li>
+          <li><i data-lucide="check"></i> SEO + Google My Business</li>
+          <li><i data-lucide="check"></i> Conversion-Architektur</li>
+          <li><i data-lucide="check"></i> DSGVO-konform + SSL</li>
+          <li><i data-lucide="check"></i> 3 Monate Support</li>
         </ul>
+        <div class="stufe-price">ab 1.500€ <span>einmalig</span></div>
       </div>
-      <div class="service-card reveal">
-        <div class="service-tag">Für Gastronomen</div>
-        <h3>Restaurant-Website</h3>
-        <p>Speisekarte, Reservierung, Google Maps, Bewertungen — alles auf einer schnellen, schönen Seite die Gäste bringt.</p>
-        <div class="service-price">ab 1.200€ <span class="service-price-note">einmalig</span></div>
-        <ul class="service-features">
-          <li>Digitale Speisekarte</li>
-          <li>Online-Reservierung / Kontaktformular</li>
-          <li>Google Maps Integration</li>
-          <li>Foto-Galerie</li>
-          <li>Social Media Verknüpfung</li>
-          <li>Öffnungszeiten + Anfahrt</li>
+      <!-- Stufe 2 -->
+      <div class="stufe-card featured reveal">
+        <div class="stufe-num">02</div>
+        <div class="stufe-label">Kernleistung</div>
+        <h3>Prozess&shy;digitalisierung</h3>
+        <p>Dein Vertrieb, deine Termine, deine Angebote — automatisiert. Ich richte dir die Systeme ein, konfiguriere sie und schule dein Team. Du sparst ab Tag eins Zeit und Geld.</p>
+        <ul class="stufe-features">
+          <li><i data-lucide="check"></i> CRM-Einführung (z.B. Pipedrive)</li>
+          <li><i data-lucide="check"></i> Automatisierte Angebotserstellung</li>
+          <li><i data-lucide="check"></i> Terminbuchung & E-Mail-Flows</li>
+          <li><i data-lucide="check"></i> Workflow-Automatisierung (Zapier)</li>
+          <li><i data-lucide="check"></i> Team-Schulung inklusive</li>
         </ul>
+        <div class="stufe-price">ab 2.000€ <span>einmalig</span></div>
       </div>
-      <div class="service-card reveal">
-        <div class="service-tag">Strategie</div>
-        <h3>Digitaler Audit</h3>
-        <p>Wo steht dein Unternehmen digital? Ich analysiere deine Online-Präsenz und zeige dir konkret, was du tun musst.</p>
-        <div class="service-price">kostenlos <span class="service-price-note">im Erstgespräch</span></div>
-        <ul class="service-features">
-          <li>Website-Analyse (falls vorhanden)</li>
-          <li>SEO-Quick-Check</li>
-          <li>Wettbewerbs-Vergleich</li>
-          <li>Konkrete Handlungsempfehlungen</li>
-          <li>Kein Verkaufsdruck — ehrliche Beratung</li>
+      <!-- Stufe 3 -->
+      <div class="stufe-card reveal">
+        <div class="stufe-num">03</div>
+        <div class="stufe-label">Laufend</div>
+        <h3>Optimierung & Wachstum</h3>
+        <p>SEO-Betreuung, Performance-Monitoring, Google Ads — damit deine digitale Infrastruktur nicht nur steht, sondern kontinuierlich Ergebnisse liefert.</p>
+        <ul class="stufe-features">
+          <li><i data-lucide="check"></i> Laufende SEO-Betreuung</li>
+          <li><i data-lucide="check"></i> Google Ads Management</li>
+          <li><i data-lucide="check"></i> Monatliche Reports</li>
+          <li><i data-lucide="check"></i> Strategische Beratung</li>
+          <li><i data-lucide="check"></i> Website-Pflege & Updates</li>
         </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ PROCESS ═══ -->
-<section style="background: var(--panel); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-  <div class="container">
-    <div class="reveal" style="text-align: center;">
-      <div class="section-label">So läuft's ab</div>
-      <div class="section-title">Von der Idee zur fertigen Website.<br>In 3 Wochen.</div>
-    </div>
-    <div class="process-steps">
-      <div class="step reveal">
-        <div class="step-num">1</div>
-        <h4>Erstgespräch</h4>
-        <p>30 Minuten, kostenlos. Wir besprechen deine Ziele, deine Zielgruppe und was deine Website leisten muss.</p>
-      </div>
-      <div class="step reveal">
-        <div class="step-num">2</div>
-        <h4>Konzept & Design</h4>
-        <p>Innerhalb einer Woche bekommst du einen ersten Entwurf. Kein Rätselraten — du siehst sofort, wie es aussehen wird.</p>
-      </div>
-      <div class="step reveal">
-        <div class="step-num">3</div>
-        <h4>Umsetzung</h4>
-        <p>Während du dich um dein Geschäft kümmerst, baue ich deine Website. Feedback-Runde inklusive.</p>
-      </div>
-      <div class="step reveal">
-        <div class="step-num">4</div>
-        <h4>Go-Live</h4>
-        <p>Deine Website geht online. Mit Einweisung, damit du weißt wie alles funktioniert. Plus 3 Monate Support.</p>
+        <div class="stufe-price">ab 300€ <span>/Monat</span></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══ REFERENZEN ═══ -->
-<section class="refs" id="referenzen">
-  <div class="container">
-    <div class="reveal" style="text-align: center;">
-      <div class="section-label">Referenzen</div>
-      <div class="section-title">Was unsere Kunden sagen.</div>
+<section id="referenzen" class="referenzen">
+  <div class="wrap">
+    <div class="referenzen-header">
+      <div class="section-label reveal">Referenzen</div>
+      <div class="section-title reveal">Keine Versprechen.<br><em>Ergebnisse.</em></div>
+      <p class="section-desc reveal">Klick auf ein Projekt um die Live-Website zu sehen. Das ist der Unterschied zwischen ELEVO und einem Baukasten.</p>
     </div>
     <div class="ref-grid">
-      <div class="ref-card reveal">
-        <div class="ref-quote">"Endlich eine Website, auf die ich stolz bin. Die Gäste finden uns jetzt sofort bei Google und die Reservierungen haben sich verdoppelt."</div>
-        <div class="ref-author">Gastro-Kunde</div>
-        <div class="ref-role">Restaurant · Region Aachen</div>
-        <div class="ref-tag">Website + Google My Business</div>
+      <!-- Federleicht -->
+      <div class="ref-card reveal" onclick="openLightbox('https://dinaroemgens-preview.elevo.solutions/', 'Federleicht — Dina Römgens')">
+        <div class="ref-preview">
+          <iframe src="https://dinaroemgens-preview.elevo.solutions/" loading="lazy" tabindex="-1" sandbox="allow-same-origin" title="Federleicht Preview"></iframe>
+          <div class="ref-preview-overlay"><span class="btn btn-primary">Live ansehen</span></div>
+        </div>
+        <div class="ref-body">
+          <div class="ref-tag">Gesundheit / Coaching</div>
+          <h3>Federleicht — Dina Römgens</h3>
+          <p class="ref-desc">Kompletter digitaler Auftritt für Online-Burnout-Coaching. Interaktiver Symptom-Check, Transformation-Storytelling, Conversion-Architektur.</p>
+          <div class="ref-stats">
+            <span class="ref-stat"><i data-lucide="check-circle"></i> Interaktiver Selbsttest</span>
+            <span class="ref-stat"><i data-lucide="check-circle"></i> Echte Testimonials</span>
+          </div>
+        </div>
       </div>
-      <div class="ref-card reveal">
-        <div class="ref-quote">"Professionell, schnell und fair. Innerhalb von 2 Wochen hatten wir eine Website, die besser aussieht als alles, was wir vorher hatten."</div>
-        <div class="ref-author">IT-Dienstleister</div>
-        <div class="ref-role">IT-Services · NRW</div>
-        <div class="ref-tag">Website Relaunch</div>
+      <!-- Akropolis -->
+      <div class="ref-card reveal" onclick="openLightbox('https://akropolis-preview.elevo.solutions/', 'Akropolis — Griechisches Restaurant')">
+        <div class="ref-preview">
+          <iframe src="https://akropolis-preview.elevo.solutions/" loading="lazy" tabindex="-1" sandbox="allow-same-origin" title="Akropolis Preview"></iframe>
+          <div class="ref-preview-overlay"><span class="btn btn-primary">Live ansehen</span></div>
+        </div>
+        <div class="ref-body">
+          <div class="ref-tag">Gastronomie</div>
+          <h3>Akropolis — Griechisches Restaurant</h3>
+          <p class="ref-desc">Digitale Speisekarte mit 25+ Gerichten, Galerie mit echten Fotos, Google Maps Integration, Reservierung per Click-to-Call.</p>
+          <div class="ref-stats">
+            <span class="ref-stat"><i data-lucide="check-circle"></i> Digitale Speisekarte</span>
+            <span class="ref-stat"><i data-lucide="check-circle"></i> Google Maps ready</span>
+          </div>
+        </div>
       </div>
-      <div class="ref-card reveal">
-        <div class="ref-quote">"Wir hatten keine Ahnung, wo wir anfangen sollen. Das Erstgespräch hat alles klar gemacht — und das Ergebnis spricht für sich."</div>
-        <div class="ref-author">Café-Besitzerin</div>
-        <div class="ref-role">Gastronomie · Aachen</div>
-        <div class="ref-tag">Website + Digitaler Audit</div>
+      <!-- ZUMA -->
+      <div class="ref-card reveal" onclick="openLightbox('https://zumalounge-preview.elevo.solutions/', 'ZUMA Lounge — Shisha & Cocktails')">
+        <div class="ref-preview">
+          <iframe src="https://zumalounge-preview.elevo.solutions/" loading="lazy" tabindex="-1" sandbox="allow-same-origin" title="ZUMA Preview"></iframe>
+          <div class="ref-preview-overlay"><span class="btn btn-primary">Live ansehen</span></div>
+        </div>
+        <div class="ref-body">
+          <div class="ref-tag">Nightlife / Gastronomie</div>
+          <h3>ZUMA Lounge</h3>
+          <p class="ref-desc">Premium-Webauftritt mit atmosphärischem Design, Instagram-Integration, WhatsApp-Kontakt. Zielgruppengerecht für junges, urbanes Publikum.</p>
+          <div class="ref-stats">
+            <span class="ref-stat"><i data-lucide="check-circle"></i> Premium Design</span>
+            <span class="ref-stat"><i data-lucide="check-circle"></i> WhatsApp Integration</span>
+          </div>
+        </div>
+      </div>
+      <!-- Stats Case (IT-Dienstleister) -->
+      <div class="ref-card reveal" style="cursor:default" onclick="">
+        <div class="ref-body" style="padding:0">
+          <div class="stats-case" style="border:none;background:transparent;padding:28px;">
+            <div class="stats-case-text">
+              <div class="ref-tag">IT-Dienstleistungen · Prozessdigitalisierung</div>
+              <h3 style="font-family:var(--serif);font-size:22px;color:#fff;margin-bottom:8px;">Vertriebsprozess komplett digitalisiert</h3>
+              <p style="font-size:14px;color:var(--text-muted);line-height:1.7;">IT-Dienstleister, Region Aachen. CRM-Einführung (Pipedrive), automatisierte Angebotserstellung, Terminbuchung, E-Mail-Automationen. Inklusive Team-Schulung.</p>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-box"><span class="num">−66%</span><span class="label">Sales Cycle (3→1 Monat)</span></div>
+              <div class="stat-box"><span class="num">2h</span><span class="label">Zeitersparnis pro Woche</span></div>
+              <div class="stat-box"><span class="num">~104h</span><span class="label">Gesparte Stunden pro Jahr</span></div>
+              <div class="stat-box"><span class="num">6–8k€</span><span class="label">Geschätzter Jahreswert</span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ CTA + CONTACT ═══ -->
-<section class="cta-section" id="kontakt">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">Jetzt starten</div>
-      <div class="section-title">Bereit für eine Website,<br>die Kunden bringt?</div>
-      <p class="section-sub">30 Minuten Erstgespräch, kostenlos und unverbindlich. Ich analysiere deinen aktuellen Stand und zeige dir, was möglich ist.</p>
+<!-- ═══ LIGHTBOX ═══ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()"><i data-lucide="x"></i></button>
+    <iframe id="lightbox-frame" src="" title="Referenz Live Preview"></iframe>
+    <div class="lightbox-info">
+      <span id="lightbox-title"></span>
+      <a id="lightbox-link" href="" target="_blank" rel="noopener">In neuem Tab öffnen →</a>
     </div>
+  </div>
+</div>
 
-    <div class="contact-form reveal" style="margin-top: 40px;">
-      <form action="https://formspree.io/f/DEINE_FORM_ID" method="POST">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-          <div class="form-row">
-            <label>Vorname</label>
-            <input type="text" name="firstName" required placeholder="Max">
+<!-- ═══ PROZESS ═══ -->
+<section id="prozess">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:48px">
+      <div class="section-label reveal">So läuft's ab</div>
+      <div class="section-title reveal">Von der Idee zum Ergebnis.<br><em>In Wochen, nicht Monaten.</em></div>
+    </div>
+    <div class="prozess-steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <h3>Erstgespräch</h3>
+        <p>30 Minuten, kostenlos. Wir besprechen deine Ziele und ich zeige dir, was möglich ist. Ehrlich, ohne Verkaufsdruck.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <h3>Audit & Konzept</h3>
+        <p>Ich analysiere deinen digitalen Stand, identifiziere Quick Wins und erstelle ein konkretes Konzept mit Zeitplan und Festpreis.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <h3>Umsetzung</h3>
+        <p>Während du dich um dein Geschäft kümmerst, baue ich. Feedback-Runden inklusive — du siehst jederzeit den Fortschritt.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">4</div>
+        <h3>Go-Live & Support</h3>
+        <p>Alles geht live. Mit Einweisung, damit du weißt wie alles funktioniert. Plus 3 Monate Support — wir bleiben dran.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ÜBER ELEVO ═══ -->
+<section id="ueber" style="border-top:1px solid var(--border)">
+  <div class="wrap">
+    <div class="ueber-grid">
+      <div class="ueber-text">
+        <div class="section-label reveal">Über ELEVO</div>
+        <div class="section-title reveal">Kein Agentur-Team.<br><em>Ein Partner.</em></div>
+        <p class="section-desc reveal" style="margin-bottom:16px">Ich bin kein Agentur-Gründer der 20 Mitarbeiter beschäftigt und dich an einen Junior-Projektmanager weiterreicht. Ich bin der, der dein Geschäft versteht, die Strategie entwickelt und die Umsetzung selbst macht.</p>
+        <p class="section-desc reveal">ELEVO nutzt KI als Produktionstool — nicht als Ersatz für Strategie. Das macht uns schneller und günstiger als klassische Agenturen, während wir mehr liefern als jeder DIY-Builder. Der Unterschied: Menschliches Verständnis für dein Geschäft trifft auf moderne Technologie.</p>
+      </div>
+      <div class="ueber-values reveal">
+        <div class="value">
+          <i data-lucide="target"></i>
+          <h4>Festpreis. Immer.</h4>
+          <p>Kein Stundensatz, keine versteckten Kosten. Du weißt vorher, was es kostet.</p>
+        </div>
+        <div class="value">
+          <i data-lucide="rocket"></i>
+          <h4>Schnell. Messbar.</h4>
+          <p>In 2–3 Wochen live. Ergebnisse die du in Zahlen sehen kannst.</p>
+        </div>
+        <div class="value">
+          <i data-lucide="brain"></i>
+          <h4>Strategie. Nicht nur Design.</h4>
+          <p>Jedes Projekt beginnt mit der Frage: Was muss das für dein Geschäft bewirken?</p>
+        </div>
+        <div class="value">
+          <i data-lucide="handshake"></i>
+          <h4>Ehrlich. Direkt.</h4>
+          <p>Wenn etwas keinen Sinn macht, sage ich es. Kein Bullshit, kein Upsell-Druck.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ KONTAKT ═══ -->
+<section id="kontakt" class="kontakt">
+  <div class="wrap">
+    <div class="kontakt-grid">
+      <div>
+        <div class="section-label reveal">Jetzt starten</div>
+        <div class="section-title reveal">Bereit für den<br><em>nächsten Schritt?</em></div>
+        <p class="section-desc reveal" style="margin-bottom:28px">30 Minuten Erstgespräch, kostenlos und unverbindlich. Ich analysiere deinen aktuellen digitalen Stand und zeige dir konkret, was möglich ist.</p>
+        <div class="reveal" style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:40px;height:40px;border-radius:10px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center"><i data-lucide="message-circle" style="color:var(--accent);width:18px;height:18px"></i></div>
+            <div><div style="font-size:13px;font-weight:600;color:#fff">Erstgespräch</div><div style="font-size:12px;color:var(--text-dim)">30 Min. kostenlos</div></div>
           </div>
-          <div class="form-row">
-            <label>Nachname</label>
-            <input type="text" name="lastName" required placeholder="Mustermann">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:40px;height:40px;border-radius:10px;background:var(--green-soft);display:flex;align-items:center;justify-content:center"><i data-lucide="clock" style="color:var(--green);width:18px;height:18px"></i></div>
+            <div><div style="font-size:13px;font-weight:600;color:#fff">Antwort in 24h</div><div style="font-size:12px;color:var(--text-dim)">Verbindlich</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:40px;height:40px;border-radius:10px;background:rgba(245,158,11,.08);display:flex;align-items:center;justify-content:center"><i data-lucide="shield-check" style="color:var(--orange);width:18px;height:18px"></i></div>
+            <div><div style="font-size:13px;font-weight:600;color:#fff">Kein Druck</div><div style="font-size:12px;color:var(--text-dim)">Ehrliche Beratung, keine Verkaufstricks</div></div>
           </div>
         </div>
-        <div class="form-row">
-          <label>E-Mail</label>
-          <input type="email" name="email" required placeholder="max@beispiel.de">
-        </div>
-        <div class="form-row">
-          <label>Unternehmen / Branche</label>
-          <input type="text" name="company" placeholder="z.B. Restaurant Da Mario, Aachen">
-        </div>
-        <div class="form-row">
-          <label>Worum geht's?</label>
-          <select name="service">
-            <option value="website">Neue Website</option>
-            <option value="relaunch">Website Relaunch</option>
-            <option value="audit">Digitaler Audit (kostenlos)</option>
-            <option value="other">Sonstiges</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label>Nachricht (optional)</label>
-          <textarea name="message" placeholder="Erzähl mir kurz, was du brauchst..."></textarea>
-        </div>
-        <button type="submit" class="form-submit">Kostenloses Erstgespräch anfragen →</button>
-      </form>
-      <div class="cta-promise" style="margin-top: 20px;">
-        <span>Kostenlos & unverbindlich</span>
-        <span>Antwort innerhalb 24h</span>
-        <span>Kein Verkaufsdruck</span>
+      </div>
+      <div class="reveal">
+        <form class="kontakt-form" action="#" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Vorname</label>
+              <input type="text" name="vorname" required placeholder="Max">
+            </div>
+            <div class="form-group">
+              <label>Nachname</label>
+              <input type="text" name="nachname" required placeholder="Mustermann">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>E-Mail</label>
+            <input type="email" name="email" required placeholder="max@unternehmen.de">
+          </div>
+          <div class="form-group">
+            <label>Worum geht's?</label>
+            <select name="thema" required>
+              <option value="" disabled selected>Bitte wählen</option>
+              <option value="website">Neue Website / Relaunch</option>
+              <option value="prozesse">Prozessdigitalisierung</option>
+              <option value="beides">Website + Prozesse</option>
+              <option value="audit">Kostenloser Digital-Audit</option>
+              <option value="sonstiges">Sonstiges</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Nachricht (optional)</label>
+            <textarea name="nachricht" placeholder="Erzähl mir kurz, was dich beschäftigt..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:14px 24px;font-size:15px">
+            <i data-lucide="send" style="width:16px;height:16px"></i> Erstgespräch anfragen
+          </button>
+          <div class="form-trust">
+            <span><i data-lucide="check"></i> Kostenlos</span>
+            <span><i data-lucide="check"></i> Antwort in 24h</span>
+            <span><i data-lucide="check"></i> Kein Druck</span>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -483,43 +706,71 @@ footer {
 
 <!-- ═══ FOOTER ═══ -->
 <footer>
-  <div class="container">
-    <div class="footer-logo">E L E V O</div>
-    <div class="footer-tagline">Vertrieb. Marketing. Digital.</div>
-    <div class="footer-links">
-      <a href="#leistungen">Leistungen</a>
-      <a href="#referenzen">Referenzen</a>
-      <a href="#kontakt">Kontakt</a>
-      <a href="/impressum.html">Impressum</a>
-      <a href="/datenschutz.html">Datenschutz</a>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="logo">E L E V O<span>Vertrieb. Marketing. Digital.</span></div>
+      <div class="footer-links">
+        <a href="#leistungen">Leistungen</a>
+        <a href="#referenzen">Referenzen</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="/impressum.html">Impressum</a>
+        <a href="/datenschutz.html">Datenschutz</a>
+      </div>
     </div>
-    <div class="footer-legal">© 2026 ELEVO. Alle Rechte vorbehalten.</div>
+    <p class="footer-copy">&copy; 2026 ELEVO. Alle Rechte vorbehalten.</p>
   </div>
 </footer>
 
-<!-- ═══ SCROLL REVEAL ═══ -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+// ═══ LUCIDE ICONS ═══
+lucide.createIcons();
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+// ═══ SCROLL REVEAL ═══
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
   });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ═══ LIGHTBOX ═══
+function openLightbox(url, title) {
+  const lb = document.getElementById('lightbox');
+  const frame = document.getElementById('lightbox-frame');
+  const titleEl = document.getElementById('lightbox-title');
+  const linkEl = document.getElementById('lightbox-link');
+  frame.src = url;
+  titleEl.textContent = title;
+  linkEl.href = url;
+  lb.style.display = 'flex';
+  requestAnimationFrame(() => lb.classList.add('active'));
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  if (e && e.target !== e.currentTarget) return;
+  const lb = document.getElementById('lightbox');
+  lb.classList.remove('active');
+  document.body.style.overflow = '';
+  setTimeout(() => {
+    lb.style.display = 'none';
+    document.getElementById('lightbox-frame').src = '';
+  }, 300);
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// ═══ HEADER SCROLL ═══
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const h = document.querySelector('header');
+  if (window.scrollY > 100) {
+    h.style.background = 'rgba(6,8,15,.92)';
+  } else {
+    h.style.background = 'rgba(6,8,15,.75)';
+  }
 });
 </script>
-
 </body>
 </html>
