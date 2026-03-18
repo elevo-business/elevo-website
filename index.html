@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ELEVO — Digitale Umsetzung für KMU | Websites & Prozesse</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" href="/favicon.png">
 <meta name="description" content="Professionelle Websites und Prozessdigitalisierung für KMU. Festpreis, persönlich, messbare Ergebnisse. Erstgespräch kostenlos.">
 <meta property="og:title" content="ELEVO — Digitale Umsetzung für KMU">
 <meta property="og:description" content="Websites die Kunden bringen. Prozesse die Zeit sparen. Ein Partner der mit dir wächst.">
@@ -12,6 +14,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18023151518"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());
+gtag('consent','default',{'ad_storage':'denied','analytics_storage':'denied','ad_user_data':'denied','ad_personalization':'denied'});
+gtag('config','AW-18023151518');
+</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"ELEVO","description":"Digitale Umsetzung für KMU — Websites, Prozessdigitalisierung, SEO","url":"https://elevo.solutions","areaServed":{"@type":"GeoCircle","geoMidpoint":{"@type":"GeoCoordinates","latitude":50.7753,"longitude":6.0839},"geoRadius":"30000"},"priceRange":"€€"}
 </script>
@@ -754,6 +763,62 @@ footer::before {
   .footer-links { flex-wrap: wrap; gap: 14px; }
 }
 
+/* ═══ LEGAL OVERLAY ═══ */
+.legal-overlay {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,.85); backdrop-filter: blur(12px);
+  display: none; align-items: center; justify-content: center;
+  padding: 24px; opacity: 0; transition: opacity .3s;
+}
+.legal-overlay.active { display: flex; opacity: 1; }
+.legal-inner {
+  width: 100%; max-width: 680px; max-height: 85vh;
+  background: var(--bg-elevated); border: 1px solid rgba(255,255,255,.06);
+  border-radius: 20px; overflow-y: auto; position: relative;
+  box-shadow: 0 40px 120px rgba(0,0,0,.6); padding: 48px 40px;
+}
+.legal-inner::-webkit-scrollbar { width: 4px; }
+.legal-inner::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+.legal-close {
+  position: sticky; top: 0; float: right;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all .2s; z-index: 1;
+}
+.legal-close:hover { background: rgba(255,255,255,.12); }
+.legal-close svg { width: 16px; height: 16px; stroke: var(--text-muted); stroke-width: 2; }
+.legal-inner h1 { font-family: var(--heading); font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 32px; }
+.legal-inner h2 { font-family: var(--heading); font-size: 15px; font-weight: 600; color: #fff; margin: 28px 0 8px; }
+.legal-inner p, .legal-inner li { font-size: 13.5px; color: var(--text-muted); line-height: 1.75; font-weight: 300; margin-bottom: 7px; }
+.legal-inner a { color: var(--accent); }
+.legal-inner strong { color: var(--text); font-weight: 500; }
+
+/* ═══ COOKIE BANNER ═══ */
+.cookie-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 3000;
+  background: rgba(17,24,39,.97); border-top: 1px solid var(--border);
+  padding: 18px 24px; display: none; backdrop-filter: blur(20px);
+}
+.cookie-banner.active { display: block; }
+.cookie-inner { max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; gap: 20px; justify-content: space-between; }
+.cookie-text { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; font-weight: 300; flex: 1; }
+.cookie-text a { color: var(--accent); cursor: pointer; }
+.cookie-btns { display: flex; gap: 8px; flex-shrink: 0; }
+.cookie-btn { padding: 9px 20px; border-radius: 100px; font-size: 12.5px; font-weight: 600; cursor: pointer; border: none; font-family: var(--body); transition: all .2s; }
+.cookie-accept { background: var(--accent); color: #fff; }
+.cookie-accept:hover { background: var(--accent-hover); }
+.cookie-decline { background: rgba(255,255,255,.05); color: var(--text-muted); border: 1px solid var(--border); }
+.cookie-decline:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 600px) {
+  .legal-inner { padding: 32px 24px; border-radius: 16px; }
+  .legal-inner h1 { font-size: 20px; }
+  .cookie-inner { flex-direction: column; text-align: center; gap: 14px; }
+}
+
 /* ═══ SELECTION COLOR ═══ */
 ::selection { background: rgba(59,130,246,.3); color: #fff; }
 </style>
@@ -1109,7 +1174,11 @@ footer::before {
         </div>
       </div>
       <div class="reveal">
-        <form class="kontakt-form" action="#" method="POST">
+        <form class="kontakt-form" id="elevoForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="28d113b8-4c7a-48c7-b10c-eabbc0f0c1d8">
+          <input type="hidden" name="subject" value="Anfrage — elevo.solutions">
+          <input type="hidden" name="from_name" value="ELEVO Website">
+          <input type="checkbox" name="botcheck" style="display:none">
           <div class="form-row">
             <div class="form-group"><label>Vorname</label><input type="text" name="vorname" required placeholder="Max"></div>
             <div class="form-group"><label>Nachname</label><input type="text" name="nachname" required placeholder="Mustermann"></div>
@@ -1118,15 +1187,15 @@ footer::before {
           <div class="form-group"><label>Worum geht's?</label>
             <select name="thema" required>
               <option value="" disabled selected>Bitte wählen</option>
-              <option value="website">Neue Website / Relaunch</option>
-              <option value="prozesse">Prozessdigitalisierung</option>
-              <option value="beides">Website + Prozesse</option>
-              <option value="audit">Kostenloser Digital-Audit</option>
-              <option value="sonstiges">Sonstiges</option>
+              <option value="Neue Website / Relaunch">Neue Website / Relaunch</option>
+              <option value="Prozessdigitalisierung">Prozessdigitalisierung</option>
+              <option value="Website + Prozesse">Website + Prozesse</option>
+              <option value="Kostenloser Digital-Audit">Kostenloser Digital-Audit</option>
+              <option value="Sonstiges">Sonstiges</option>
             </select>
           </div>
           <div class="form-group"><label>Nachricht (optional)</label><textarea name="nachricht" placeholder="Erzähl uns kurz, was dich beschäftigt..."></textarea></div>
-          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px 24px;font-size:15px">
+          <button type="submit" id="submitBtn" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px 24px;font-size:15px">
             <i data-lucide="send" style="width:16px;height:16px"></i> Erstgespräch anfragen
           </button>
           <div class="form-trust">
@@ -1135,6 +1204,11 @@ footer::before {
             <span><i data-lucide="check"></i> Kein Druck</span>
           </div>
         </form>
+        <div id="formSuccess" style="display:none;text-align:center;padding:40px 20px">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 16px"><i data-lucide="check-circle" style="color:#10B981;width:28px;height:28px"></i></div>
+          <h3 style="font-family:var(--heading);font-size:20px;color:#fff;margin-bottom:6px">Anfrage erhalten!</h3>
+          <p style="font-size:14.5px;color:var(--text-muted);max-width:380px;margin:0 auto;line-height:1.7;font-weight:300">Danke für deine Nachricht. Wir melden uns innerhalb von 24 Stunden.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1164,13 +1238,75 @@ footer::before {
         <a href="#leistungen">Leistungen</a>
         <a href="#referenzen">Referenzen</a>
         <a href="#kontakt">Kontakt</a>
-        <a href="/impressum.html">Impressum</a>
-        <a href="/datenschutz.html">Datenschutz</a>
+        <a href="/impressum.html" onclick="openLegal('impressum');return false">Impressum</a>
+        <a href="/datenschutz.html" onclick="openLegal('datenschutz');return false">Datenschutz</a>
       </div>
     </div>
     <p class="footer-copy">&copy; 2026 ELEVO Solutions. Alle Rechte vorbehalten.</p>
   </div>
 </footer>
+
+<!-- ═══ IMPRESSUM OVERLAY ═══ -->
+<div class="legal-overlay" id="impressum" onclick="closeLegal(event)">
+  <div class="legal-inner" onclick="event.stopPropagation()">
+    <button class="legal-close" onclick="closeLegal()"><svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></button>
+    <h1>Impressum</h1>
+    <h2>Angaben gemäß § 5 TMG</h2>
+    <p><strong>ELEVO</strong><br>M. Celik<br>Ahrstraße 6<br>52511 Geilenkirchen<br>Deutschland</p>
+    <h2>Kontakt</h2>
+    <p>E-Mail: info@elevo.solutions</p>
+    <h2>Umsatzsteuer-ID</h2>
+    <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br>wird nachgetragen</p>
+    <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+    <p>M. Celik<br>Ahrstraße 6<br>52511 Geilenkirchen</p>
+    <h2>EU-Streitschlichtung</h2>
+    <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>. Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+    <h2>Haftung für Inhalte</h2>
+    <p>Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
+    <h2>Haftung für Links</h2>
+    <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter verantwortlich.</p>
+    <p style="margin-top:32px;color:var(--text-dim);font-size:12px">Stand: März 2026</p>
+  </div>
+</div>
+
+<!-- ═══ DATENSCHUTZ OVERLAY ═══ -->
+<div class="legal-overlay" id="datenschutz" onclick="closeLegal(event)">
+  <div class="legal-inner" onclick="event.stopPropagation()">
+    <button class="legal-close" onclick="closeLegal()"><svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></button>
+    <h1>Datenschutzerklärung</h1>
+    <h2>1. Verantwortlicher</h2>
+    <p>ELEVO — M. Celik, Ahrstraße 6, 52511 Geilenkirchen.<br>E-Mail: info@elevo.solutions</p>
+    <h2>2. Hosting</h2>
+    <p>Diese Website wird auf einem Server in Deutschland gehostet. Der Hoster erhebt in Server-Logfiles automatisch Informationen (IP-Adresse, Browsertyp, Uhrzeit). Diese Daten werden nach 14 Tagen gelöscht. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+    <h2>3. Cloudflare</h2>
+    <p>Wir nutzen Cloudflare als CDN und DNS-Provider. Cloudflare ist unter dem EU-US Data Privacy Framework zertifiziert. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+    <h2>4. Google Fonts</h2>
+    <p>Diese Seite nutzt Google Fonts zur Darstellung von Schriftarten. Dabei wird deine IP-Adresse an Google übertragen. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+    <h2>5. Google Ads Conversion Tracking</h2>
+    <p>Nach deiner Einwilligung (Cookie-Banner) setzt Google Ads ein Cookie zur Messung der Anzeigenwirksamkeit. Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO. Widerruf durch Löschen der Cookies im Browser.</p>
+    <h2>6. Kontaktformular (Web3Forms)</h2>
+    <p>Deine Formulardaten werden über Web3Forms an unsere E-Mail weitergeleitet. Web3Forms speichert keine Daten dauerhaft. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO.</p>
+    <h2>7. Lucide Icons</h2>
+    <p>Icons werden über ein CDN (unpkg.com) geladen. Dabei wird deine IP-Adresse übertragen. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+    <h2>8. Cookies</h2>
+    <p>Diese Website verwendet ein Cookie zur Speicherung deiner Einwilligung (<code style="background:rgba(255,255,255,.06);padding:2px 6px;border-radius:4px;font-size:12px">elevo_consent</code>). Google Ads setzt nach Einwilligung zusätzliche Cookies.</p>
+    <h2>9. Deine Rechte</h2>
+    <p>Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch. Kontakt: info@elevo.solutions. Beschwerderecht bei einer Aufsichtsbehörde.</p>
+    <h2>10. Änderungen</h2>
+    <p>Stand: März 2026.</p>
+  </div>
+</div>
+
+<!-- ═══ COOKIE BANNER ═══ -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-inner">
+    <div class="cookie-text">Wir nutzen Cookies für die Analyse unserer Anzeigen (Google Ads). Ohne deine Zustimmung werden keine Tracking-Cookies gesetzt. <a onclick="openLegal('datenschutz')">Mehr erfahren</a></div>
+    <div class="cookie-btns">
+      <button class="cookie-btn cookie-decline" onclick="handleCookies(false)">Ablehnen</button>
+      <button class="cookie-btn cookie-accept" onclick="handleCookies(true)">Akzeptieren</button>
+    </div>
+  </div>
+</div>
 
 <script>
 // ═══ LUCIDE ═══
@@ -1315,7 +1451,67 @@ function closeLightbox(e) {
   document.body.style.overflow = '';
   setTimeout(() => { lb.style.display = 'none'; document.getElementById('lightbox-frame').src = ''; }, 300);
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLightbox(); closeLegal(); } });
+
+// ═══ LEGAL OVERLAYS ═══
+function openLegal(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.display = 'flex';
+  requestAnimationFrame(() => el.classList.add('active'));
+  document.body.style.overflow = 'hidden';
+}
+function closeLegal(e) {
+  if (e && e.target !== e.currentTarget) return;
+  document.querySelectorAll('.legal-overlay').forEach(el => {
+    el.classList.remove('active');
+    setTimeout(() => { el.style.display = 'none'; }, 300);
+  });
+  if (!document.querySelector('.lightbox.active')) document.body.style.overflow = '';
+}
+
+// ═══ FORM HANDLER ═══
+const form = document.getElementById('elevoForm');
+const btn = document.getElementById('submitBtn');
+const success = document.getElementById('formSuccess');
+if (form) {
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const origText = btn.innerHTML;
+    btn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:8px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Wird gesendet...</span>';
+    btn.disabled = true; btn.style.opacity = '0.7';
+    try {
+      const fd = new FormData(form);
+      const r = await fetch('https://api.web3forms.com/submit', {method:'POST', body:fd});
+      const j = await r.json();
+      if (j.success) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+        if (typeof gtag === 'function') gtag('event','conversion',{'send_to':'AW-18023151518/63WwCPLL9IocEJ7vjZJD','value':375.0,'currency':'EUR'});
+        lucide.createIcons();
+      } else throw new Error('fail');
+    } catch(err) {
+      btn.innerHTML = origText; btn.disabled = false; btn.style.opacity = '1';
+      alert('Fehler beim Senden. Bitte versuche es erneut oder schreib uns an info@elevo.solutions');
+    }
+  });
+}
+
+// ═══ COOKIE CONSENT ═══
+function handleCookies(accept) {
+  if (accept) {
+    gtag('consent','update',{'ad_storage':'granted','analytics_storage':'granted','ad_user_data':'granted','ad_personalization':'granted'});
+    localStorage.setItem('elevo_consent','granted');
+  } else {
+    localStorage.setItem('elevo_consent','denied');
+  }
+  document.getElementById('cookieBanner').classList.remove('active');
+}
+if (!localStorage.getItem('elevo_consent')) {
+  setTimeout(() => document.getElementById('cookieBanner').classList.add('active'), 1500);
+} else if (localStorage.getItem('elevo_consent') === 'granted') {
+  gtag('consent','update',{'ad_storage':'granted','analytics_storage':'granted','ad_user_data':'granted','ad_personalization':'granted'});
+}
 </script>
 </body>
 </html>
