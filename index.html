@@ -45,7 +45,7 @@
 
 /* ═══ RESET + BASE ═══ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; scroll-padding-top: 80px; }
+html { scroll-behavior: auto; -webkit-font-smoothing: antialiased; scroll-padding-top: 80px; }
 body {
   font-family: var(--body); background: var(--bg); color: var(--text);
   font-size: 15.5px; line-height: 1.7; overflow-x: hidden;
@@ -671,6 +671,7 @@ footer::before {
 /* ═══ RESPONSIVE — TABLET ═══ */
 @media (max-width: 900px) {
   nav a:not(.btn) { display: none; }
+  .hero { min-height: auto; display: block; padding: 140px 0 60px; }
   .hero-values { grid-template-columns: repeat(2, 1fr); }
   .hero-geo { display: none; }
   .problem-grid { grid-template-columns: 1fr; }
@@ -700,7 +701,7 @@ footer::before {
   .tagline { font-size: 8.5px; }
   nav .btn { padding: 9px 18px; font-size: 12px; }
 
-  .hero { padding: 110px 0 40px; min-height: 100svh; }
+  .hero { padding: 110px 0 40px; min-height: auto; display: block; }
   .hero h1 { font-size: clamp(28px, 8.5vw, 40px); margin-bottom: 18px; }
   .hero h1 br { display: none; }
   .hero-sub { font-size: 15px; margin-bottom: 28px; }
@@ -1174,6 +1175,9 @@ footer::before {
 <script>
 // ═══ LUCIDE ═══
 lucide.createIcons();
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+setTimeout(() => document.documentElement.style.scrollBehavior = 'smooth', 100);
 
 // ═══ HERO TEXT — WORD BY WORD REVEAL ═══
 (function() {
