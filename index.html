@@ -1175,7 +1175,7 @@ footer::before {
       </div>
       <div class="reveal">
         <form class="kontakt-form" id="elevoForm" novalidate>
-          <!-- Honeypot — unsichtbar, fängt Bots -->
+          <!-- Honeypot -->
           <input type="text" name="company" style="position:absolute;left:-9999px;opacity:0" tabindex="-1" autocomplete="off">
           <input type="hidden" name="_ts" id="formTimestamp">
           <div class="form-row">
@@ -1253,7 +1253,7 @@ footer::before {
     <h2>Angaben gemäß § 5 TMG</h2>
     <p><strong>ELEVO</strong><br>M. Celik<br>Ahrstraße 6<br>52511 Geilenkirchen<br>Deutschland</p>
     <h2>Kontakt</h2>
-    <p>E-Mail: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2c45424a436c4940495a43025f434059584543425f">[email&#160;protected]</a></p>
+    <p>E-Mail: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="264f48404966434a4350490855494a53524f494855">[email&#160;protected]</a></p>
     <h2>Umsatzsteuer-ID</h2>
     <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br>wird nachgetragen</p>
     <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
@@ -1274,7 +1274,7 @@ footer::before {
     <button class="legal-close" onclick="closeLegal()"><svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></button>
     <h1>Datenschutzerklärung</h1>
     <h2>1. Verantwortlicher</h2>
-    <p>ELEVO — M. Celik, Ahrstraße 6, 52511 Geilenkirchen.<br>E-Mail: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fe97909891be9b929b8891d08d91928b8a9791908d">[email&#160;protected]</a></p>
+    <p>ELEVO — M. Celik, Ahrstraße 6, 52511 Geilenkirchen.<br>E-Mail: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d7beb9b1b897b2bbb2a1b8f9a4b8bba2a3beb8b9a4">[email&#160;protected]</a></p>
     <h2>2. Hosting</h2>
     <p>Diese Website wird auf einem Server in Deutschland gehostet. Der Hoster erhebt in Server-Logfiles automatisch Informationen (IP-Adresse, Browsertyp, Uhrzeit). Diese Daten werden nach 14 Tagen gelöscht. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
     <h2>3. Cloudflare</h2>
@@ -1290,7 +1290,7 @@ footer::before {
     <h2>8. Cookies</h2>
     <p>Diese Website verwendet ein Cookie zur Speicherung deiner Einwilligung (<code style="background:rgba(255,255,255,.06);padding:2px 6px;border-radius:4px;font-size:12px">elevo_consent</code>). Google Ads setzt nach Einwilligung zusätzliche Cookies.</p>
     <h2>9. Deine Rechte</h2>
-    <p>Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch. Kontakt: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="771e19111837121b1201185904181b02031e181904">[email&#160;protected]</a>. Beschwerderecht bei einer Aufsichtsbehörde.</p>
+    <p>Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch. Kontakt: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dfb6b1b9b09fbab3baa9b0f1acb0b3aaabb6b0b1ac">[email&#160;protected]</a>. Beschwerderecht bei einer Aufsichtsbehörde.</p>
     <h2>10. Änderungen</h2>
     <p>Stand: März 2026.</p>
   </div>
@@ -1501,7 +1501,7 @@ if (form) {
       if (j.success) {
         form.style.display = 'none';
         success.style.display = 'block';
-        if (typeof gtag === 'function') gtag('event','conversion',{'send_to':'AW-18023151518/63WwCPLL9IocEJ7zjZJD','value':375.0,'currency':'EUR'});
+        if (typeof gtag === 'function') gtag('event','conversion',{'send_to':'AW-18023151518/63WwCPLL9IocEJ7vjZJD','value':375.0,'currency':'EUR'});
         lucide.createIcons();
       } else throw new Error(j.errors?.join(', ') || 'fail');
     } catch(err) {
@@ -1517,4 +1517,18 @@ function handleCookies(accept) {
     gtag('consent','update',{'ad_storage':'granted','analytics_storage':'granted','ad_user_data':'granted','ad_personalization':'granted'});
     localStorage.setItem('elevo_consent','granted');
   } else {
-    localStorage.setI
+    localStorage.setItem('elevo_consent','denied');
+  }
+  document.getElementById('cookieBanner').classList.remove('active');
+}
+
+// Cookie-Banner anzeigen wenn noch nicht entschieden
+if (!localStorage.getItem('elevo_consent')) {
+  setTimeout(() => document.getElementById('cookieBanner').classList.add('active'), 2000);
+} else if (localStorage.getItem('elevo_consent') === 'granted') {
+  gtag('consent','update',{'ad_storage':'granted','analytics_storage':'granted','ad_user_data':'granted','ad_personalization':'granted'});
+}
+
+</script>
+</body>
+</html>
