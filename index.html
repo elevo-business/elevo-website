@@ -1174,18 +1174,17 @@ footer::before {
         </div>
       </div>
       <div class="reveal">
-        <form class="kontakt-form" id="elevoForm" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="28d113b8-4c7a-48c7-b10c-eabbc0f0c1d8">
-          <input type="hidden" name="subject" value="Anfrage — elevo.solutions">
-          <input type="hidden" name="from_name" value="ELEVO Website">
-          <input type="checkbox" name="botcheck" style="display:none">
+        <form class="kontakt-form" id="elevoForm" novalidate>
+          <!-- Honeypot — unsichtbar, fängt Bots -->
+          <input type="text" name="company" style="position:absolute;left:-9999px;opacity:0" tabindex="-1" autocomplete="off">
+          <input type="hidden" name="_ts" id="formTimestamp">
           <div class="form-row">
-            <div class="form-group"><label>Vorname</label><input type="text" name="vorname" required placeholder="Max"></div>
-            <div class="form-group"><label>Nachname</label><input type="text" name="nachname" required placeholder="Mustermann"></div>
+            <div class="form-group"><label>Vorname</label><input type="text" name="firstName" required placeholder="Max"></div>
+            <div class="form-group"><label>Nachname</label><input type="text" name="lastName" required placeholder="Mustermann"></div>
           </div>
           <div class="form-group"><label>E-Mail</label><input type="email" name="email" required placeholder="max@unternehmen.de"></div>
           <div class="form-group"><label>Worum geht's?</label>
-            <select name="thema" required>
+            <select name="topic" required>
               <option value="" disabled selected>Bitte wählen</option>
               <option value="Neue Website / Relaunch">Neue Website / Relaunch</option>
               <option value="Prozessdigitalisierung">Prozessdigitalisierung</option>
@@ -1194,7 +1193,7 @@ footer::before {
               <option value="Sonstiges">Sonstiges</option>
             </select>
           </div>
-          <div class="form-group"><label>Nachricht (optional)</label><textarea name="nachricht" placeholder="Erzähl uns kurz, was dich beschäftigt..."></textarea></div>
+          <div class="form-group"><label>Nachricht (optional)</label><textarea name="message" placeholder="Erzähl uns kurz, was dich beschäftigt..."></textarea></div>
           <button type="submit" id="submitBtn" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px 24px;font-size:15px">
             <i data-lucide="send" style="width:16px;height:16px"></i> Erstgespräch anfragen
           </button>
@@ -1254,7 +1253,7 @@ footer::before {
     <h2>Angaben gemäß § 5 TMG</h2>
     <p><strong>ELEVO</strong><br>M. Celik<br>Ahrstraße 6<br>52511 Geilenkirchen<br>Deutschland</p>
     <h2>Kontakt</h2>
-    <p>E-Mail: info@elevo.solutions</p>
+    <p>E-Mail: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2c45424a436c4940495a43025f434059584543425f">[email&#160;protected]</a></p>
     <h2>Umsatzsteuer-ID</h2>
     <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br>wird nachgetragen</p>
     <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
@@ -1275,7 +1274,7 @@ footer::before {
     <button class="legal-close" onclick="closeLegal()"><svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></button>
     <h1>Datenschutzerklärung</h1>
     <h2>1. Verantwortlicher</h2>
-    <p>ELEVO — M. Celik, Ahrstraße 6, 52511 Geilenkirchen.<br>E-Mail: info@elevo.solutions</p>
+    <p>ELEVO — M. Celik, Ahrstraße 6, 52511 Geilenkirchen.<br>E-Mail: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fe97909891be9b929b8891d08d91928b8a9791908d">[email&#160;protected]</a></p>
     <h2>2. Hosting</h2>
     <p>Diese Website wird auf einem Server in Deutschland gehostet. Der Hoster erhebt in Server-Logfiles automatisch Informationen (IP-Adresse, Browsertyp, Uhrzeit). Diese Daten werden nach 14 Tagen gelöscht. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
     <h2>3. Cloudflare</h2>
@@ -1291,7 +1290,7 @@ footer::before {
     <h2>8. Cookies</h2>
     <p>Diese Website verwendet ein Cookie zur Speicherung deiner Einwilligung (<code style="background:rgba(255,255,255,.06);padding:2px 6px;border-radius:4px;font-size:12px">elevo_consent</code>). Google Ads setzt nach Einwilligung zusätzliche Cookies.</p>
     <h2>9. Deine Rechte</h2>
-    <p>Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch. Kontakt: info@elevo.solutions. Beschwerderecht bei einer Aufsichtsbehörde.</p>
+    <p>Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch. Kontakt: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="771e19111837121b1201185904181b02031e181904">[email&#160;protected]</a>. Beschwerderecht bei einer Aufsichtsbehörde.</p>
     <h2>10. Änderungen</h2>
     <p>Stand: März 2026.</p>
   </div>
@@ -1308,7 +1307,7 @@ footer::before {
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ═══ LUCIDE ═══
 lucide.createIcons();
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -1470,7 +1469,10 @@ function closeLegal(e) {
   if (!document.querySelector('.lightbox.active')) document.body.style.overflow = '';
 }
 
-// ═══ FORM HANDLER ═══
+// ═══ FORM HANDLER (ELEVO API → Pipedrive) ═══
+const ELEVO_API = 'https://api.elevo.solutions/api/contact';
+document.getElementById('formTimestamp').value = Date.now();
+
 const form = document.getElementById('elevoForm');
 const btn = document.getElementById('submitBtn');
 const success = document.getElementById('formSuccess');
@@ -1481,15 +1483,27 @@ if (form) {
     btn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:8px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Wird gesendet...</span>';
     btn.disabled = true; btn.style.opacity = '0.7';
     try {
-      const fd = new FormData(form);
-      const r = await fetch('https://api.web3forms.com/submit', {method:'POST', body:fd});
+      const r = await fetch(ELEVO_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: form.firstName.value,
+          lastName: form.lastName.value,
+          email: form.email.value,
+          topic: form.topic.value,
+          message: form.message.value,
+          company: form.company.value,
+          _ts: form._ts.value,
+          source: 'Website'
+        })
+      });
       const j = await r.json();
       if (j.success) {
         form.style.display = 'none';
         success.style.display = 'block';
-        if (typeof gtag === 'function') gtag('event','conversion',{'send_to':'AW-18023151518/63WwCPLL9IocEJ7vjZJD','value':375.0,'currency':'EUR'});
+        if (typeof gtag === 'function') gtag('event','conversion',{'send_to':'AW-18023151518/63WwCPLL9IocEJ7zjZJD','value':375.0,'currency':'EUR'});
         lucide.createIcons();
-      } else throw new Error('fail');
+      } else throw new Error(j.errors?.join(', ') || 'fail');
     } catch(err) {
       btn.innerHTML = origText; btn.disabled = false; btn.style.opacity = '1';
       alert('Fehler beim Senden. Bitte versuche es erneut oder schreib uns an info@elevo.solutions');
@@ -1503,15 +1517,4 @@ function handleCookies(accept) {
     gtag('consent','update',{'ad_storage':'granted','analytics_storage':'granted','ad_user_data':'granted','ad_personalization':'granted'});
     localStorage.setItem('elevo_consent','granted');
   } else {
-    localStorage.setItem('elevo_consent','denied');
-  }
-  document.getElementById('cookieBanner').classList.remove('active');
-}
-if (!localStorage.getItem('elevo_consent')) {
-  setTimeout(() => document.getElementById('cookieBanner').classList.add('active'), 1500);
-} else if (localStorage.getItem('elevo_consent') === 'granted') {
-  gtag('consent','update',{'ad_storage':'granted','analytics_storage':'granted','ad_user_data':'granted','ad_personalization':'granted'});
-}
-</script>
-</body>
-</html>
+    localStorage.setI
