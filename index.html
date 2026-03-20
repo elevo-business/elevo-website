@@ -1473,6 +1473,15 @@ function closeLegal(e) {
 const ELEVO_API = 'https://api.elevo.solutions/api/contact';
 document.getElementById('formTimestamp').value = Date.now();
 
+// UTM Tracking — aus URL auslesen
+const _urlParams = new URLSearchParams(window.location.search);
+const _utm = {
+  source: _urlParams.get('utm_source') || '',
+  medium: _urlParams.get('utm_medium') || '',
+  campaign: _urlParams.get('utm_campaign') || '',
+  term: _urlParams.get('utm_term') || ''
+};
+
 const form = document.getElementById('elevoForm');
 const btn = document.getElementById('submitBtn');
 const success = document.getElementById('formSuccess');
@@ -1494,7 +1503,11 @@ if (form) {
           message: form.message.value,
           company: form.company.value,
           _ts: form._ts.value,
-          source: 'Website'
+          source: 'Website',
+          utm_source: _utm.source,
+          utm_medium: _utm.medium,
+          utm_campaign: _utm.campaign,
+          utm_term: _utm.term
         })
       });
       const j = await r.json();
