@@ -7,7 +7,7 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" href="/favicon.png">
 <meta name="description" content="Website erstellen lassen zum Festpreis. Was kostet eine professionelle Website? Ab niedrigem vierstelligen Bereich &#8212; individuell, SEO-optimiert, in 2-3 Wochen live.">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <meta property="og:title" content="Website erstellen lassen &#8212; Kosten, Ablauf &amp; Festpreis | ELEVO">
 <meta property="og:description" content="Professionelle Website erstellen lassen zum Festpreis. Individuell, SEO-optimiert, in 2-3 Wochen live.">
 <meta property="og:type" content="website">
@@ -402,14 +402,13 @@ section{padding:80px 0;position:relative}
   <div class="cookie-btns"><button class="cookie-btn cookie-decline" onclick="handleCookies(false)">Ablehnen</button><button class="cookie-btn cookie-accept" onclick="handleCookies(true)">Akzeptieren</button></div>
 </div></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-function initPage(){
+<script>
+window.addEventListener('DOMContentLoaded',function(){
 if(typeof lucide!=='undefined'){lucide.createIcons()}
-var glow=document.getElementById('mouseGlow'),ga=false;
-if(window.innerWidth>600){
+var glow=document.getElementById('mouseGlow');
+if(window.innerWidth>600&&glow){var ga=false;
 document.addEventListener('mousemove',function(e){if(!ga){glow.classList.add('active');ga=true}glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'});
-document.addEventListener('mouseleave',function(){glow.classList.remove('active');ga=false});
-}
+document.addEventListener('mouseleave',function(){glow.classList.remove('active');ga=false})}
 var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');ro.unobserve(x.target)}})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el)});
 var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){var iframe=x.target;if(iframe.dataset.src){iframe.src=iframe.dataset.src}io.unobserve(iframe)}})},{rootMargin:'200px'});
@@ -417,9 +416,8 @@ document.querySelectorAll('iframe[data-src]').forEach(function(el){io.observe(el
 var co=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){var el=x.target,t=parseInt(el.dataset.count),a=Math.abs(t),pr=t<0?'\u2212':'',su=a>=1000?'\u20AC':(a===2?'h':(a===104?'h':'%')),di=a>=1000?(a/1000).toFixed(0)+'\u2013'+((a/1000)+2).toFixed(0)+'k':a.toString(),du=1400,st=performance.now();function tick(n){var p=Math.min((n-st)/du,1),ea=1-Math.pow(1-p,3),cu=Math.round(ea*a);if(a>=1000){var k=ea*a/1000;el.textContent=pr+k.toFixed(0)+'\u2013'+(k+2).toFixed(0)+'k\u20AC'}else{el.textContent=pr+cu+su}if(p<1){requestAnimationFrame(tick)}else{el.textContent=pr+di+su}}requestAnimationFrame(tick);co.unobserve(el)}})},{threshold:.5});
 document.querySelectorAll('[data-count]').forEach(function(el){co.observe(el)});
 var form=document.getElementById('elevoForm'),btn=document.getElementById('submitBtn'),success=document.getElementById('formSuccess');
-if(form){form.addEventListener('submit',function(e){e.preventDefault();var ot=btn.innerHTML;btn.innerHTML='<span style="display:inline-flex;align-items:center;gap:8px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Wird gesendet...</span>';btn.disabled=true;btn.style.opacity='0.7';var fd=new FormData(form);fetch('https://api.web3forms.com/submit',{method:'POST',body:fd}).then(function(r){return r.json()}).then(function(j){if(j.success){form.style.display='none';success.style.display='block';if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-18023151518/FORM_SUBMIT'})}}else{btn.innerHTML=ot;btn.disabled=false;btn.style.opacity='1';alert('Fehler beim Senden. Bitte versuche es erneut.')}}).catch(function(){btn.innerHTML=ot;btn.disabled=false;btn.style.opacity='1';alert('Verbindungsfehler. Bitte versuche es erneut.')})})}
-}
-if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initPage)}else{initPage()}
+if(form){form.addEventListener('submit',function(e){e.preventDefault();var ot=btn.innerHTML;btn.innerHTML='<span style="display:inline-flex;align-items:center;gap:8px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Wird gesendet...</span>';btn.disabled=true;btn.style.opacity='0.7';var fd=new FormData(form);fetch('https://api.web3forms.com/submit',{method:'POST',body:fd}).then(function(r){return r.json()}).then(function(j){if(j.success){form.style.display='none';success.style.display='block';if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-18023151518/FORM_SUBMIT'})}}else{btn.innerHTML=ot;btn.disabled=false;btn.style.opacity='1';console.error('Web3Forms error:',j);alert('API Fehler: '+(j.message||JSON.stringify(j)))}}).catch(function(err){btn.innerHTML=ot;btn.disabled=false;btn.style.opacity='1';console.error('Fetch error:',err);alert('Verbindungsfehler: '+err.message)})})}
+});
 function openLightbox(u,t){var l=document.getElementById('lightbox');document.getElementById('lightbox-frame').src=u;document.getElementById('lightbox-title').textContent=t;document.getElementById('lightbox-link').href=u;l.style.display='flex';requestAnimationFrame(function(){l.classList.add('active')});document.body.style.overflow='hidden'}
 function closeLightbox(e){if(e&&e.target!==e.currentTarget)return;var l=document.getElementById('lightbox');l.classList.remove('active');document.body.style.overflow='';setTimeout(function(){l.style.display='none';document.getElementById('lightbox-frame').src=''},300)}
 function openLegalModal(id){document.getElementById('modal-'+id).classList.add('active');document.body.style.overflow='hidden';if(typeof lucide!=='undefined'){lucide.createIcons()}}
