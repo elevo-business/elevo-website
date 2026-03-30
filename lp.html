@@ -8,8 +8,8 @@
 <link rel="icon" type="image/png" href="/favicon.png">
 <meta name="description" content="Website erstellen lassen zum Festpreis. Was kostet eine professionelle Website? Ab niedrigem vierstelligen Bereich &#8212; individuell, SEO-optimiert, in 2-3 Wochen live.">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="Website erstellen lassen &#8212; Kosten, Ablauf &amp; Festpreis | ELEVO">
-<meta property="og:description" content="Professionelle Website erstellen lassen zum Festpreis. Individuell, SEO-optimiert, in 2-3 Wochen live.">
+<meta property="og:title" content="Website erstellen lassen &#8212; Kosten &amp; Festpreis | ELEVO">
+<meta property="og:description" content="Professionelle Website zum Festpreis. Individuell, SEO-optimiert, in 2-3 Wochen live.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,31 +97,31 @@ section{padding:80px 0;position:relative}
 .p-icon i{color:var(--orange);width:20px;height:20px}
 .problem-card h3{font-family:var(--heading);font-size:15px;font-weight:600;margin-bottom:8px;color:#fff}
 .problem-card p{font-size:13.5px;color:var(--text-muted);line-height:1.7;font-weight:300}
-.included-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:36px}
-.included-item{display:flex;gap:14px;padding:20px;border-radius:14px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);transition:all .3s}
-.included-item:hover{border-color:rgba(59,130,246,.15)}
-.included-item>i{color:var(--accent);flex-shrink:0;width:20px;height:20px;margin-top:2px}
-.included-item h4{font-family:var(--heading);font-size:14px;font-weight:600;color:#fff;margin-bottom:4px}
-.included-item p{font-size:13px;color:var(--text-muted);line-height:1.65;font-weight:300}
-.stufen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
-.stufe-card{padding:32px 24px;border-radius:20px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);position:relative;transition:all .4s;display:flex;flex-direction:column}
-.stufe-card:hover{border-color:rgba(59,130,246,.2)}
-.stufe-card.featured{border-color:rgba(59,130,246,.25);background:linear-gradient(180deg,rgba(59,130,246,.06) 0%,rgba(255,255,255,.02) 50%)}
-.stufe-card.featured::before{content:'';position:absolute;top:-1px;left:20%;right:20%;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);border-radius:2px}
-.stufe-num{font-family:var(--heading);font-size:48px;font-weight:700;color:rgba(59,130,246,.07);position:absolute;top:16px;right:20px;line-height:1}
-.stufe-label{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
-.stufe-card h3{font-family:var(--heading);font-size:20px;font-weight:700;color:#fff;margin-bottom:10px}
-.stufe-card>p{font-size:13.5px;color:var(--text-muted);line-height:1.7;margin-bottom:20px;flex:1;font-weight:300}
-.stufe-features{list-style:none;margin-bottom:20px}
-.stufe-features li{font-size:13px;color:var(--text-muted);padding:6px 0;display:flex;align-items:flex-start;gap:9px;border-top:1px solid rgba(255,255,255,.04)}
-.stufe-features li:last-child{border-bottom:1px solid rgba(255,255,255,.04)}
-.stufe-features i{color:var(--green);flex-shrink:0;margin-top:3px;width:15px;height:15px}
-.stufe-invest{margin-top:auto;padding-top:16px;display:flex;align-items:center;gap:11px}
-.stufe-invest-icon{width:34px;height:34px;border-radius:9px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.stufe-invest-icon i{color:var(--accent);width:15px;height:15px}
-.stufe-invest-label{font-size:11.5px;color:var(--text-dim);line-height:1.4}
-.stufe-invest-label strong{display:block;font-size:13px;color:var(--text-muted);font-weight:600}
-.referenzen{background:var(--bg-elevated);border-top:1px solid rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.03)}
+.check-section{background:linear-gradient(180deg,var(--bg) 0%,var(--bg-elevated) 50%,var(--bg) 100%);border-top:1px solid rgba(59,130,246,.08);border-bottom:1px solid rgba(59,130,246,.08)}
+.check-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.check-card{padding:28px 22px;border-radius:var(--radius);background:rgba(255,255,255,.02);border:2px solid rgba(255,255,255,.04);cursor:pointer;transition:all .4s;text-align:center;position:relative}
+.check-card:hover{border-color:rgba(59,130,246,.25);transform:translateY(-3px)}
+.check-card.selected{border-color:var(--accent);background:rgba(59,130,246,.06)}
+.check-card.selected::before{content:'';position:absolute;top:-1px;left:20%;right:20%;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+.check-card-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;background:rgba(59,130,246,.08);transition:background .3s}
+.check-card.selected .check-card-icon{background:rgba(59,130,246,.15)}
+.check-card-icon i{color:var(--accent);width:24px;height:24px}
+.check-card h3{font-family:var(--heading);font-size:15px;font-weight:600;color:#fff;margin-bottom:6px}
+.check-card p{font-size:12.5px;color:var(--text-muted);line-height:1.6;font-weight:300}
+.check-card .check-invest{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);font-size:12px;color:var(--text-dim);font-weight:500}
+.check-card .check-invest strong{color:var(--accent);font-weight:600;display:block;font-size:13px;margin-top:2px}
+.check-result{margin-top:32px;max-width:480px;margin-left:auto;margin-right:auto;overflow:hidden;transition:max-height .5s ease,opacity .5s ease;max-height:0;opacity:0}
+.check-result.visible{max-height:400px;opacity:1}
+.check-result-inner{padding:32px;border-radius:20px;background:rgba(255,255,255,.03);border:1px solid rgba(59,130,246,.15);text-align:center}
+.check-result-inner h3{font-family:var(--heading);font-size:18px;font-weight:700;color:#fff;margin-bottom:8px}
+.check-result-inner p{font-size:13.5px;color:var(--text-muted);line-height:1.7;font-weight:300;margin-bottom:20px}
+.check-form{display:flex;flex-direction:column;gap:10px}
+.check-form input{padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:var(--text);font-family:var(--body);font-size:14px;font-weight:300;transition:all .3s}
+.check-form input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(59,130,246,.1);background:rgba(59,130,246,.03)}
+.check-form button{margin-top:4px}
+.check-form .check-trust{display:flex;gap:16px;justify-content:center;margin-top:8px}
+.check-form .check-trust span{font-size:11px;color:var(--text-dim);display:flex;align-items:center;gap:4px}
+.check-form .check-trust i{width:12px;height:12px;color:var(--green)}
 .ref-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .ref-card{border-radius:18px;overflow:hidden;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);cursor:pointer;transition:all .4s}
 .ref-card:hover{border-color:rgba(59,130,246,.2);transform:translateY(-3px)}
@@ -137,15 +137,6 @@ section{padding:80px 0;position:relative}
 .ref-stats{display:flex;gap:14px}
 .ref-stat{font-size:11.5px;color:var(--text-dim);display:flex;align-items:center;gap:4px}
 .ref-stat i{width:13px;height:13px;color:var(--green)}
-.stats-case{grid-column:1/-1;background:linear-gradient(135deg,rgba(255,255,255,.03) 0%,rgba(59,130,246,.04) 100%);border-radius:18px;border:1px solid rgba(255,255,255,.04);padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
-.stats-case-text h3{font-family:var(--heading);font-size:20px;font-weight:700;color:#fff;margin-bottom:6px}
-.stats-case-text .ref-tag{margin-bottom:8px}
-.stats-case-text p{font-size:14px;color:var(--text-muted);line-height:1.7;font-weight:300}
-.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.stat-box{padding:18px;border-radius:12px;background:rgba(5,7,14,.6);border:1px solid rgba(255,255,255,.05);text-align:center;transition:border-color .3s}
-.stat-box:hover{border-color:rgba(59,130,246,.2)}
-.stat-box .num{font-family:var(--heading);font-size:26px;font-weight:700;color:var(--accent);display:block}
-.stat-box .label{font-size:11px;color:var(--text-dim);margin-top:3px;font-weight:300}
 .lightbox{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.9);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .3s}
 .lightbox.active{display:flex;opacity:1}
 .lightbox-inner{width:100%;max-width:1200px;height:85vh;border-radius:20px;overflow:hidden;background:#fff;position:relative;box-shadow:0 40px 120px rgba(0,0,0,.6)}
@@ -156,13 +147,6 @@ section{padding:80px 0;position:relative}
 .lightbox-info{position:absolute;bottom:0;left:0;right:0;padding:14px 20px;background:linear-gradient(transparent,rgba(0,0,0,.8));display:flex;justify-content:space-between;align-items:center}
 .lightbox-info span{color:#fff;font-size:13px;font-weight:500}
 .lightbox-info a{color:var(--accent);font-size:12px}
-.prozess-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px;position:relative}
-.prozess-steps::before{content:'';position:absolute;top:28px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,var(--border),var(--border),transparent)}
-.step{text-align:center;padding:28px 16px;border-radius:var(--radius);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);position:relative;z-index:1;transition:all .4s}
-.step:hover{border-color:rgba(59,130,246,.15);transform:translateY(-3px)}
-.step-num{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;font-family:var(--heading);margin:0 auto 14px;box-shadow:0 0 0 5px rgba(59,130,246,.1)}
-.step h3{font-family:var(--heading);font-size:14px;font-weight:600;color:#fff;margin-bottom:6px}
-.step p{font-size:12.5px;color:var(--text-muted);line-height:1.65;font-weight:300}
 .faq-grid{display:grid;gap:12px;margin-top:36px}
 .faq-item{padding:24px;border-radius:14px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);transition:all .3s}
 .faq-item:hover{border-color:rgba(59,130,246,.15)}
@@ -172,16 +156,17 @@ section{padding:80px 0;position:relative}
 .kontakt{background:var(--bg-elevated);border-top:1px solid rgba(255,255,255,.03)}
 .kontakt-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px}
 .kontakt-form{display:flex;flex-direction:column;gap:14px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .form-group{display:flex;flex-direction:column;gap:5px}
 .form-group label{font-size:11.5px;font-weight:500;color:var(--text-muted);letter-spacing:.04em}
-.form-group input,.form-group select,.form-group textarea{padding:13px 15px;border-radius:11px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);color:var(--text);font-family:var(--body);font-size:14px;transition:all .3s;font-weight:300}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(59,130,246,.1);background:rgba(59,130,246,.03)}
+.form-group input,.form-group textarea{padding:13px 15px;border-radius:11px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);color:var(--text);font-family:var(--body);font-size:14px;transition:all .3s;font-weight:300}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(59,130,246,.1);background:rgba(59,130,246,.03)}
 .form-group textarea{resize:vertical;min-height:80px}
-.form-group select{cursor:pointer}
 .form-trust{display:flex;gap:18px;margin-top:4px}
 .form-trust span{font-size:11.5px;color:var(--text-dim);display:flex;align-items:center;gap:4px;font-weight:400}
 .form-trust i{width:13px;height:13px;color:var(--green)}
+.cta-band{padding:56px 0;text-align:center;background:linear-gradient(180deg,var(--bg) 0%,rgba(59,130,246,.03) 50%,var(--bg) 100%);border-top:1px solid rgba(59,130,246,.06);border-bottom:1px solid rgba(59,130,246,.06)}
+.cta-band h2{font-family:var(--heading);font-size:clamp(20px,3vw,28px);font-weight:700;color:#fff;margin-bottom:8px}
+.cta-band p{font-size:14px;color:var(--text-muted);margin-bottom:20px;font-weight:300}
 .lp-footer{padding:32px 0;border-top:1px solid rgba(255,255,255,.03)}
 .lp-footer .wrap{display:flex;justify-content:space-between;align-items:center}
 .lp-footer-copy{font-size:11px;color:var(--text-dim);font-weight:300}
@@ -211,8 +196,8 @@ section{padding:80px 0;position:relative}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 .reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}
-@media(max-width:900px){.trust-bar-inner{grid-template-columns:repeat(2,1fr)}.problem-grid,.included-grid,.ref-grid,.stufen-grid{grid-template-columns:1fr}.stats-case{grid-template-columns:1fr}.prozess-steps{grid-template-columns:repeat(2,1fr)}.prozess-steps::before{display:none}.kontakt-grid{grid-template-columns:1fr}.cookie-inner{flex-direction:column;text-align:center;gap:14px}.legal-modal-inner{padding:40px 22px 56px}.faq-item{padding:18px 20px}.faq-item p{padding-left:0}}
-@media(max-width:600px){:root{--px:20px}section{padding:56px 0}.hero{padding:72px 0 56px}.hero h1{font-size:clamp(26px,7.5vw,36px)}.hero-sub{font-size:15px}.hero-ctas{flex-direction:column}.hero-ctas .btn{width:100%;justify-content:center;padding:16px;font-size:15px}.hero-checks{flex-wrap:wrap;gap:12px}.trust-bar-inner{grid-template-columns:1fr 1fr;gap:10px}.trust-item{padding:12px 8px}.form-row{grid-template-columns:1fr}.form-group input,.form-group select,.form-group textarea{font-size:16px;padding:15px}.kontakt-form .btn{padding:16px;font-size:15px;border-radius:14px}.form-trust{flex-wrap:wrap;gap:10px}.stufe-card{padding:26px 20px}.stufe-card h3{font-size:18px}.prozess-steps{grid-template-columns:1fr;gap:10px}.step{text-align:left;display:flex;gap:14px;align-items:flex-start;padding:20px 16px}.step-num{margin:0;flex-shrink:0;width:36px;height:36px;font-size:13px}.ref-preview{height:170px}.lightbox{padding:6px}.lightbox-inner{height:82vh;border-radius:14px}.lp-footer .wrap{flex-direction:column;gap:12px;text-align:center}.grain{display:none}.mouse-glow{display:none}.hero-orb{filter:blur(40px);opacity:.6}}
+@media(max-width:900px){.trust-bar-inner{grid-template-columns:repeat(2,1fr)}.problem-grid,.ref-grid{grid-template-columns:1fr}.check-cards{grid-template-columns:1fr}.kontakt-grid{grid-template-columns:1fr}.cookie-inner{flex-direction:column;text-align:center;gap:14px}.legal-modal-inner{padding:40px 22px 56px}.faq-item{padding:18px 20px}.faq-item p{padding-left:0}}
+@media(max-width:600px){:root{--px:20px}section{padding:56px 0}.hero{padding:72px 0 56px}.hero h1{font-size:clamp(26px,7.5vw,36px)}.hero-sub{font-size:15px}.hero-ctas{flex-direction:column}.hero-ctas .btn{width:100%;justify-content:center;padding:16px;font-size:15px}.hero-checks{flex-wrap:wrap;gap:12px}.trust-bar-inner{grid-template-columns:1fr 1fr;gap:10px}.trust-item{padding:12px 8px}.form-group input,.form-group textarea{font-size:16px;padding:15px}.kontakt-form .btn{padding:16px;font-size:15px;border-radius:14px}.form-trust{flex-wrap:wrap;gap:10px}.ref-preview{height:170px}.lightbox{padding:6px}.lightbox-inner{height:82vh;border-radius:14px}.lp-footer .wrap{flex-direction:column;gap:12px;text-align:center}.grain{display:none}.mouse-glow{display:none}.hero-orb{filter:blur(40px);opacity:.6}.check-form input{font-size:16px}}
 </style>
 </head>
 <body>
@@ -221,110 +206,119 @@ section{padding:80px 0;position:relative}
 
 <div class="topbar"><div class="wrap">
   <a class="logo-mark" href="https://elevo.solutions" target="_blank" rel="noopener"><div class="logo-icon"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="16.5" stroke="rgba(59,130,246,.18)" stroke-width="1" fill="none"/><path d="M18 8 L25.5 19" stroke="#3B82F6" stroke-width="2.2" stroke-linecap="round"/><path d="M18 8 L10.5 19" stroke="#3B82F6" stroke-width="2.2" stroke-linecap="round"/><path d="M18 14 L22.5 21.5" stroke="rgba(59,130,246,.3)" stroke-width="1.4" stroke-linecap="round"/><path d="M18 14 L13.5 21.5" stroke="rgba(59,130,246,.3)" stroke-width="1.4" stroke-linecap="round"/><line x1="11" y1="26" x2="25" y2="26" stroke="rgba(59,130,246,.15)" stroke-width="1" stroke-linecap="round"/></svg></div><span class="wordmark">ELE<span class="wm-v">V</span>O</span></a>
-  <div class="topbar-cta"><a href="#kontakt" class="btn btn-primary">Erstgespr&#228;ch buchen</a></div>
+  <div class="topbar-cta"><a href="#projekt-check" class="btn btn-primary">Was kostet meine Website?</a></div>
 </div></div>
 
-<!-- HERO — keyword-optimiert -->
 <section class="hero">
   <div class="hero-bg" aria-hidden="true"><div class="hero-orb hero-orb-1"></div><div class="hero-orb hero-orb-2"></div></div>
   <div class="wrap">
-    <div class="hero-eyebrow"><span>Digitale Umsetzung f&#252;r KMU</span></div>
-    <h1>Professionelle Website erstellen lassen.<br><em>Zum Festpreis. In 2&#8211;3 Wochen live.</em></h1>
-    <p class="hero-sub">Was kostet es, eine professionelle Website erstellen zu lassen? Bei uns startest du im niedrigen vierstelligen Bereich &#8212; individuell gestaltet, SEO-optimiert, komplett fertig. Kein Baukasten, kein Stundensatz.</p>
+    <div class="hero-eyebrow"><span>Professionelle Websites f&#252;r KMU</span></div>
+    <h1>Was kostet eine professionelle Website?<br><em>Festpreis. Keine &#220;berraschungen.</em></h1>
+    <p class="hero-sub">Du willst wissen, was eine Website wirklich kostet? Bei uns startest du im niedrigen vierstelligen Bereich. Individuell gebaut, SEO-optimiert, in 2&#8211;3 Wochen live. Kein Baukasten, kein Stundensatz.</p>
     <div class="hero-ctas">
-      <a href="#kontakt" class="btn btn-primary"><i data-lucide="message-circle" style="width:16px;height:16px"></i> Kostenloses Erstgespr&#228;ch</a>
+      <a href="#projekt-check" class="btn btn-primary"><i data-lucide="zap" style="width:16px;height:16px"></i> Kostenlose Einsch&#228;tzung</a>
       <a href="#referenzen" class="btn btn-secondary">Referenzen ansehen</a>
     </div>
     <div class="hero-checks">
-      <span><i data-lucide="check"></i> 100% individuell</span>
       <span><i data-lucide="check"></i> Festpreis-Garantie</span>
-      <span><i data-lucide="check"></i> Kein Druck</span>
+      <span><i data-lucide="check"></i> In 2&#8211;3 Wochen live</span>
+      <span><i data-lucide="check"></i> 100% individuell</span>
     </div>
   </div>
 </section>
 
 <div class="trust-bar"><div class="wrap"><div class="trust-bar-inner">
   <div class="trust-item"><div class="trust-item-icon blue"><i data-lucide="lock"></i></div><h4>Festpreis. Immer.</h4><p>Du wei&#223;t vorher was es kostet.</p></div>
-  <div class="trust-item"><div class="trust-item-icon green"><i data-lucide="zap"></i></div><h4>In Wochen live</h4><p>Nicht Monate. In 2&#8211;3 Wochen fertig.</p></div>
-  <div class="trust-item"><div class="trust-item-icon orange"><i data-lucide="bar-chart-3"></i></div><h4>Messbar. Nicht h&#252;bsch.</h4><p>Ergebnisse in Zahlen, nicht Komplimente.</p></div>
-  <div class="trust-item"><div class="trust-item-icon violet"><i data-lucide="fingerprint"></i></div><h4>100% individuell</h4><p>Kein Template. Gebaut f&#252;r dich.</p></div>
+  <div class="trust-item"><div class="trust-item-icon green"><i data-lucide="zap"></i></div><h4>In Wochen live</h4><p>Nicht Monate. 2&#8211;3 Wochen.</p></div>
+  <div class="trust-item"><div class="trust-item-icon orange"><i data-lucide="bar-chart-3"></i></div><h4>Messbare Ergebnisse</h4><p>Mehr Anfragen, nicht nur Komplimente.</p></div>
+  <div class="trust-item"><div class="trust-item-icon violet"><i data-lucide="fingerprint"></i></div><h4>Kein Template</h4><p>Individuell f&#252;r dein Unternehmen.</p></div>
 </div></div></div>
 
 <section class="problem"><div class="wrap">
   <div class="section-label reveal">Das Problem</div>
-  <div class="section-title reveal">Dein Wettbewerb ist digital.<br><em>Und du?</em></div>
-  <p class="section-desc reveal">80% aller Kunden googeln bevor sie kaufen. Ohne professionelle Online-Pr&#228;senz verlierst du jeden Tag Kunden &#8212; ohne es zu merken.</p>
+  <div class="section-title reveal">Dein Wettbewerb ist online sichtbar.<br><em>Du auch?</em></div>
+  <p class="section-desc reveal">80% aller Kunden googeln bevor sie kaufen. Ohne starke Online-Pr&#228;senz verlierst du jeden Tag Anfragen an deine Konkurrenz.</p>
   <div class="problem-grid">
-    <div class="problem-card reveal reveal-delay-1"><div class="p-icon"><i data-lucide="eye-off"></i></div><h3>Unsichtbar bei Google</h3><p>Deine Kunden suchen nach deiner Leistung &#8212; und finden deinen Wettbewerber.</p></div>
-    <div class="problem-card reveal reveal-delay-2"><div class="p-icon"><i data-lucide="clock"></i></div><h3>Prozesse fressen Zeit</h3><p>Angebote per Hand, Termine per Telefon. Jede Woche gehen Stunden verloren f&#252;r Dinge die automatisiert laufen k&#246;nnten.</p></div>
+    <div class="problem-card reveal reveal-delay-1"><div class="p-icon"><i data-lucide="eye-off"></i></div><h3>Bei Google unsichtbar</h3><p>Kunden suchen deine Leistung &#8212; und finden den Wettbewerber der in seine Website investiert hat.</p></div>
+    <div class="problem-card reveal reveal-delay-2"><div class="p-icon"><i data-lucide="clock"></i></div><h3>Veralteter Auftritt</h3><p>Deine Website sieht aus wie 2015. Auf dem Smartphone funktioniert nichts. Kunden springen ab bevor sie anrufen.</p></div>
     <div class="problem-card reveal reveal-delay-3"><div class="p-icon"><i data-lucide="scale"></i></div><h3>Zu teuer oder zu schlecht</h3><p>Agenturen wollen f&#252;nfstellig. Billig-Anbieter liefern Einheitsbrei. Du brauchst Qualit&#228;t zum fairen Preis.</p></div>
   </div>
 </div></section>
 
-<section><div class="wrap">
-  <div class="section-label reveal">Was du bekommst</div>
-  <div class="section-title reveal">Website erstellen lassen &#8212; <em>alles inklusive.</em></div>
-  <p class="section-desc reveal">Alles was du brauchst um online Kunden zu gewinnen &#8212; aus einer Hand, zum Festpreis.</p>
-  <div class="included-grid">
-    <div class="included-item reveal reveal-delay-1"><i data-lucide="palette"></i><div><h4>Individuelles Design</h4><p>Kein Template. Ein Leit-Motiv das dein Unternehmen unverwechselbar macht.</p></div></div>
-    <div class="included-item reveal reveal-delay-2"><i data-lucide="search"></i><div><h4>SEO &amp; Google My Business</h4><p>Gefunden werden wenn Kunden nach deiner Leistung suchen.</p></div></div>
-    <div class="included-item reveal reveal-delay-1"><i data-lucide="target"></i><div><h4>Conversion-Architektur</h4><p>Jede Seite ist darauf gebaut Besucher in Anfragen zu verwandeln.</p></div></div>
-    <div class="included-item reveal reveal-delay-2"><i data-lucide="shield-check"></i><div><h4>DSGVO-konform &amp; SSL</h4><p>Rechtssicher, verschl&#252;sselt, Cookie-Banner &#8212; alles erledigt.</p></div></div>
-    <div class="included-item reveal reveal-delay-1"><i data-lucide="smartphone"></i><div><h4>Mobile-First</h4><p>Perfekt auf jedem Ger&#228;t. 70% deiner Besucher kommen &#252;ber das Smartphone.</p></div></div>
-    <div class="included-item reveal reveal-delay-2"><i data-lucide="refresh-cw"></i><div><h4>3 Monate Support &amp; Weiterentwicklung</h4><p>Nach dem Go-Live bleiben wir dran. Optimieren, anpassen, wachsen.</p></div></div>
+<!-- PROJEKT-CHECK — Signature Feature, Mid-Page Lead Capture -->
+<section id="projekt-check" class="check-section"><div class="wrap">
+  <div class="centered" style="margin-bottom:36px">
+    <div class="section-label reveal">In 30 Sekunden</div>
+    <div class="section-title reveal">Finde heraus, was <em>deine Website</em> kostet.</div>
+    <p class="section-desc reveal">W&#228;hle was du brauchst. Wir schicken dir eine ehrliche Einsch&#228;tzung &#8212; kostenlos, unverbindlich, innerhalb von 24 Stunden.</p>
   </div>
-</div></section>
-
-<!-- LEISTUNGEN / 3 STUFEN -->
-<section id="leistungen"><div class="wrap">
-  <div class="centered" style="margin-bottom:44px">
-    <div class="section-label reveal">Leistungen &amp; Kosten</div>
-    <div class="section-title reveal">Drei Stufen. <em>Ein Ziel: Dein Wachstum.</em></div>
-    <p class="section-desc reveal">Was kostet eine professionelle Website? Hier ist die transparente &#220;bersicht.</p>
+  <div class="check-cards">
+    <div class="check-card reveal reveal-delay-1" onclick="selectCheck(this,'Neue Website')" data-choice="Neue Website">
+      <div class="check-card-icon"><i data-lucide="globe"></i></div>
+      <h3>Neue Website</h3>
+      <p>Ich habe noch keine Website oder nur ein Google-Profil.</p>
+      <div class="check-invest">Investment ab<strong>Niedriger vierstelliger Bereich</strong></div>
+    </div>
+    <div class="check-card reveal reveal-delay-2" onclick="selectCheck(this,'Website-Relaunch')" data-choice="Website-Relaunch">
+      <div class="check-card-icon"><i data-lucide="refresh-cw"></i></div>
+      <h3>Website-Relaunch</h3>
+      <p>Meine Website ist veraltet und bringt keine Anfragen.</p>
+      <div class="check-invest">Investment ab<strong>Niedriger vierstelliger Bereich</strong></div>
+    </div>
+    <div class="check-card reveal reveal-delay-3" onclick="selectCheck(this,'Website + Digitalisierung')" data-choice="Website + Digitalisierung">
+      <div class="check-card-icon"><i data-lucide="layers"></i></div>
+      <h3>Website + Prozesse</h3>
+      <p>Ich will nicht nur eine Website &#8212; ich will Anfragen, die automatisch reinkommen.</p>
+      <div class="check-invest">Investment ab<strong>Mittlerer vierstelliger Bereich</strong></div>
+    </div>
   </div>
-  <div class="stufen-grid">
-    <div class="stufe-card reveal reveal-delay-1"><div class="stufe-num">01</div><div class="stufe-label">Digitales Fundament</div><h3>Professionelle Website</h3><p>Mobile-First, SEO-optimiert, Conversion-fokussiert. Individuelles Design das dein Unternehmen unverwechselbar macht.</p><ul class="stufe-features"><li><i data-lucide="check"></i> Individuelles Design &amp; Leit-Motiv</li><li><i data-lucide="check"></i> SEO + Google My Business</li><li><i data-lucide="check"></i> Conversion-Architektur</li><li><i data-lucide="check"></i> DSGVO-konform + SSL</li><li><i data-lucide="check"></i> 3 Monate Support</li></ul><div class="stufe-invest"><div class="stufe-invest-icon"><i data-lucide="trending-up"></i></div><div class="stufe-invest-label"><strong>Niedriger vierstelliger Bereich</strong>Einmal-Investment &#183; individuell kalkuliert</div></div></div>
-    <div class="stufe-card featured reveal reveal-delay-2"><div class="stufe-num">02</div><div class="stufe-label">Kernleistung</div><h3>Prozess&#173;digitalisierung</h3><p>Dein Vertrieb, deine Termine, deine Angebote &#8212; automatisiert. Wir richten die Systeme ein und schulen dein Team.</p><ul class="stufe-features"><li><i data-lucide="check"></i> CRM-Einf&#252;hrung &amp; Konfiguration</li><li><i data-lucide="check"></i> Automatisierte Angebotserstellung</li><li><i data-lucide="check"></i> Terminbuchung &amp; E-Mail-Flows</li><li><i data-lucide="check"></i> Workflow-Automatisierung</li><li><i data-lucide="check"></i> Team-Schulung inklusive</li></ul><div class="stufe-invest"><div class="stufe-invest-icon"><i data-lucide="trending-up"></i></div><div class="stufe-invest-label"><strong>Mittlerer vierstelliger Bereich</strong>Einmal-Investment &#183; nach Umfang</div></div></div>
-    <div class="stufe-card reveal reveal-delay-3"><div class="stufe-num">03</div><div class="stufe-label">Laufend</div><h3>Optimierung &amp; Wachstum</h3><p>Nach dem Launch f&#228;ngt die eigentliche Arbeit an. SEO, Ads, Performance &#8212; wir bleiben dran.</p><ul class="stufe-features"><li><i data-lucide="check"></i> Laufende SEO-Betreuung</li><li><i data-lucide="check"></i> Google Ads Management</li><li><i data-lucide="check"></i> Monatliche Reports</li><li><i data-lucide="check"></i> Strategische Beratung</li><li><i data-lucide="check"></i> Website-Pflege &amp; Updates</li></ul><div class="stufe-invest"><div class="stufe-invest-icon"><i data-lucide="refresh-cw"></i></div><div class="stufe-invest-label"><strong>Niedriger dreistelliger Bereich</strong>Monatlich &#183; flexible Laufzeit</div></div></div>
-  </div>
-  <div class="reveal" style="text-align:center;margin-top:36px">
-    <p style="font-size:13px;color:var(--text-dim);max-width:480px;margin:0 auto 18px;line-height:1.7;font-weight:300">Jedes Projekt wird individuell kalkuliert &#8212; du bekommst im Erstgespr&#228;ch eine transparente Einsch&#228;tzung.</p>
-    <a href="#kontakt" class="btn btn-primary"><i data-lucide="message-circle" style="width:15px;height:15px"></i> Erstgespr&#228;ch vereinbaren</a>
+  <div class="check-result" id="checkResult">
+    <div class="check-result-inner">
+      <h3 id="checkTitle">Gute Wahl.</h3>
+      <p>Wir schicken dir innerhalb von 24h eine ehrliche Einsch&#228;tzung &#8212; was es kostet, wie lange es dauert, und ob wir der richtige Partner sind.</p>
+      <form class="check-form" id="checkForm">
+        <input type="hidden" name="access_key" value="28d113b8-4c7a-48c7-b10c-eabbc0f0c1d8">
+        <input type="hidden" name="subject" id="checkSubject" value="Projekt-Check &#8212; elevo.solutions/lp">
+        <input type="hidden" name="from_name" value="ELEVO Projekt-Check">
+        <input type="checkbox" name="botcheck" style="display:none">
+        <input type="hidden" name="projekt_typ" id="checkType" value="">
+        <input type="text" name="name" required placeholder="Dein Name" autocomplete="name">
+        <input type="email" name="email" required placeholder="Deine E-Mail" autocomplete="email">
+        <button type="submit" id="checkBtn" class="btn btn-primary" style="width:100%;justify-content:center;padding:15px;font-size:14.5px"><i data-lucide="send" style="width:15px;height:15px"></i> Einsch&#228;tzung anfordern</button>
+        <div class="check-trust"><span><i data-lucide="check"></i> Kostenlos</span><span><i data-lucide="check"></i> Kein Spam</span><span><i data-lucide="check"></i> Antwort in 24h</span></div>
+      </form>
+      <div id="checkSuccess" style="display:none;padding:20px 0">
+        <div style="width:48px;height:48px;border-radius:50%;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 12px"><i data-lucide="check-circle" style="color:#10B981;width:24px;height:24px"></i></div>
+        <h3 style="font-family:var(--heading);font-size:18px;color:#fff;margin-bottom:4px">Anfrage erhalten!</h3>
+        <p style="font-size:13.5px;color:var(--text-muted);font-weight:300">Wir melden uns innerhalb von 24 Stunden.</p>
+      </div>
+    </div>
   </div>
 </div></section>
 
 <!-- REFERENZEN -->
-<section id="referenzen" class="referenzen"><div class="wrap">
+<section id="referenzen" style="background:var(--bg-elevated);border-top:1px solid rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.03)"><div class="wrap">
   <div class="centered" style="margin-bottom:40px">
     <div class="section-label reveal">Referenzen</div>
     <div class="section-title reveal">Keine Versprechen. <em>Ergebnisse.</em></div>
-    <p class="section-desc reveal">Echte Projekte, live klickbar. Von Coaching &#252;ber Gastronomie bis Prozessdigitalisierung.</p>
+    <p class="section-desc reveal">Echte Projekte, live klickbar. Jede Website individuell gebaut.</p>
   </div>
   <div class="ref-grid">
-    <div class="ref-card reveal" onclick="openLightbox('https://dinaroemgens-preview.elevo.solutions/','Federleicht')"><div class="ref-preview"><iframe data-src="https://dinaroemgens-preview.elevo.solutions/" loading="lazy" tabindex="-1" sandbox="allow-same-origin" title="Federleicht"></iframe><div class="ref-preview-overlay"><span class="btn btn-primary">Live ansehen</span></div></div><div class="ref-body"><div class="ref-tag">Gesundheit / Coaching</div><h3>Federleicht &#8212; Dina R&#246;mgens</h3><p class="ref-desc">Online-Burnout-Coaching. Interaktiver Symptom-Check, Storytelling, Conversion-Architektur.</p><div class="ref-stats"><span class="ref-stat"><i data-lucide="check-circle"></i> Interaktiver Selbsttest</span><span class="ref-stat"><i data-lucide="check-circle"></i> Conversion-optimiert</span></div></div></div>
-    <div class="ref-card reveal" onclick="openLightbox('https://akropolis-preview.elevo.solutions/','Akropolis')"><div class="ref-preview"><iframe data-src="https://akropolis-preview.elevo.solutions/" loading="lazy" tabindex="-1" sandbox="allow-same-origin" title="Akropolis"></iframe><div class="ref-preview-overlay"><span class="btn btn-primary">Live ansehen</span></div></div><div class="ref-body"><div class="ref-tag">Gastronomie</div><h3>Akropolis &#8212; Griechisches Restaurant</h3><p class="ref-desc">Digitale Speisekarte, echte Fotos, Google Maps, Click-to-Call Reservierung.</p><div class="ref-stats"><span class="ref-stat"><i data-lucide="check-circle"></i> Digitale Speisekarte</span><span class="ref-stat"><i data-lucide="check-circle"></i> Google Maps</span></div></div></div>
-    <div class="ref-card reveal" onclick="openLightbox('https://zumalounge-preview.elevo.solutions/','ZUMA Lounge')"><div class="ref-preview"><iframe data-src="https://zumalounge-preview.elevo.solutions/" loading="lazy" tabindex="-1" sandbox="allow-same-origin" title="ZUMA"></iframe><div class="ref-preview-overlay"><span class="btn btn-primary">Live ansehen</span></div></div><div class="ref-body"><div class="ref-tag">Nightlife / Gastronomie</div><h3>ZUMA Lounge</h3><p class="ref-desc">Premium-Design, atmosph&#228;risch, WhatsApp-Integration. Junges, urbanes Publikum.</p><div class="ref-stats"><span class="ref-stat"><i data-lucide="check-circle"></i> Premium Design</span><span class="ref-stat"><i data-lucide="check-circle"></i> WhatsApp</span></div></div></div>
-    <div class="ref-card reveal" style="cursor:default"><div class="ref-body" style="padding:0"><div class="stats-case" style="border:none;background:transparent;padding:24px"><div class="stats-case-text"><div class="ref-tag">IT-Dienstleistungen &#183; Prozessdigitalisierung</div><h3>Vertriebsprozess digitalisiert</h3><p>CRM-Einf&#252;hrung, automatisierte Angebotserstellung, Terminbuchung, E-Mail-Automationen.</p></div><div class="stats-grid"><div class="stat-box"><span class="num" data-count="-66">0</span><span class="label">Sales Cycle Reduktion</span></div><div class="stat-box"><span class="num" data-count="2">0</span><span class="label">Stunden gespart / Woche</span></div><div class="stat-box"><span class="num" data-count="104">0</span><span class="label">Gesparte Stunden / Jahr</span></div><div class="stat-box"><span class="num" data-count="8000">0</span><span class="label">Gesch&#228;tzter Jahreswert</span></div></div></div></div></div>
+    <div class="ref-card reveal" onclick="openLightbox('https://dinaroemgens-preview.elevo.solutions/','Federleicht')"><div class="ref-preview"><iframe data-src="https://dinaroemgens-preview.elevo.solutions/" loading="lazy" tabindex="-1" sandbox="allow-same-origin" title="Federleicht"></iframe><div class="ref-preview-overlay"><span class="btn btn-primary">Live ansehen</span></div></div><div class="ref-body"><div class="ref-tag">Gesundheit / Coaching</div><h3>Federleicht &#8212; Dina R&#246;mgens</h3><p class="ref-desc">Online-Burnout-Coaching. Interaktiver Selbsttest, Storytelling, Conversion-Architektur.</p><div class="ref-stats"><span class="ref-stat"><i data-lucide="check-circle"></i> Interaktiver Selbsttest</span><span class="ref-stat"><i data-lucide="check-circle"></i> Conversion-optimiert</span></div></div></div>
+    <div class="ref-card reveal" onclick="openLightbox('https://akropolis-preview.elevo.solutions/','Akropolis')"><div class="ref-preview"><iframe data-src="https://akropolis-preview.elevo.solutions/" loading="lazy" tabindex="-1" sandbox="allow-same-origin" title="Akropolis"></iframe><div class="ref-preview-overlay"><span class="btn btn-primary">Live ansehen</span></div></div><div class="ref-body"><div class="ref-tag">Gastronomie</div><h3>Akropolis &#8212; Griechisches Restaurant</h3><p class="ref-desc">Digitale Speisekarte, echte Fotos, Google Maps, Click-to-Call.</p><div class="ref-stats"><span class="ref-stat"><i data-lucide="check-circle"></i> Digitale Speisekarte</span><span class="ref-stat"><i data-lucide="check-circle"></i> Google Maps</span></div></div></div>
   </div>
 </div></section>
 
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)"><div class="lightbox-inner" onclick="event.stopPropagation()"><button class="lightbox-close" onclick="closeLightbox()"><i data-lucide="x"></i></button><iframe id="lightbox-frame" src="" title="Referenz"></iframe><div class="lightbox-info"><span id="lightbox-title"></span><a id="lightbox-link" href="" target="_blank" rel="noopener">In neuem Tab &#246;ffnen &#8594;</a></div></div></div>
-
-<!-- PROZESS -->
-<section><div class="wrap">
-  <div class="centered" style="margin-bottom:40px">
-    <div class="section-label reveal">So l&#228;uft's ab</div>
-    <div class="section-title reveal">Von der Idee zum Ergebnis. <em>Und dann weiter.</em></div>
+<!-- CTA BAND nach Referenzen -->
+<div class="cta-band reveal">
+  <div class="wrap">
+    <h2>Bereit f&#252;r eine Website die Kunden bringt?</h2>
+    <p>Finde in 30 Sekunden heraus was deine Website kostet.</p>
+    <a href="#projekt-check" class="btn btn-primary"><i data-lucide="zap" style="width:15px;height:15px"></i> Jetzt Einsch&#228;tzung holen</a>
   </div>
-  <div class="prozess-steps">
-    <div class="step reveal reveal-delay-1"><div class="step-num">1</div><div><h3>Erstgespr&#228;ch</h3><p>30 Min., kostenlos. Wir besprechen deine Ziele &#8212; ehrlich, ohne Verkaufsdruck.</p></div></div>
-    <div class="step reveal reveal-delay-2"><div class="step-num">2</div><div><h3>Audit &amp; Konzept</h3><p>Wir analysieren deinen digitalen Stand und erstellen ein Konzept mit Festpreis.</p></div></div>
-    <div class="step reveal reveal-delay-3"><div class="step-num">3</div><div><h3>Umsetzung</h3><p>Du k&#252;mmerst dich ums Gesch&#228;ft &#8212; wir bauen. Feedback-Runden inklusive.</p></div></div>
-    <div class="step reveal"><div class="step-num">4</div><div><h3>Go-Live &amp; Wachstum</h3><p>Alles geht live. Und dann fangen wir erst richtig an &#8212; optimieren, testen, skalieren.</p></div></div>
-  </div>
-</div></section>
+</div>
 
-<!-- FAQ — keyword-optimiert f&#252;r Quality Score -->
+<!-- FAQ -->
 <section id="faq"><div class="wrap">
   <div class="centered" style="margin-bottom:36px">
     <div class="section-label reveal">H&#228;ufige Fragen</div>
@@ -332,9 +326,9 @@ section{padding:80px 0;position:relative}
   </div>
   <div class="faq-grid">
     <div class="faq-item reveal"><h3><i data-lucide="help-circle"></i> Was kostet eine professionelle Website?</h3><p>Eine professionelle Website erstellen zu lassen kostet bei ELEVO im niedrigen vierstelligen Bereich &#8212; als Einmal-Investment, zum Festpreis. Keine versteckten Kosten, kein Stundensatz. Du bekommst im kostenlosen Erstgespr&#228;ch eine transparente Einsch&#228;tzung.</p></div>
-    <div class="faq-item reveal"><h3><i data-lucide="help-circle"></i> Wie lange dauert es, eine Website erstellen zu lassen?</h3><p>In der Regel 2&#8211;3 Wochen vom Erstgespr&#228;ch bis zum Go-Live. Wir arbeiten effizient und halten dich mit Feedback-Runden auf dem Laufenden. Keine monatelangen Agentur-Prozesse.</p></div>
+    <div class="faq-item reveal"><h3><i data-lucide="help-circle"></i> Wie lange dauert es?</h3><p>In der Regel 2&#8211;3 Wochen vom Erstgespr&#228;ch bis zum Go-Live. Keine monatelangen Agentur-Prozesse. Du bekommst Feedback-Runden und bist immer auf dem Laufenden.</p></div>
     <div class="faq-item reveal"><h3><i data-lucide="help-circle"></i> Was ist im Festpreis enthalten?</h3><p>Individuelles Design, SEO-Optimierung, Google My Business Einrichtung, DSGVO-konforme Umsetzung, SSL, Mobile-First Entwicklung und 3 Monate Support nach Go-Live. Alles aus einer Hand.</p></div>
-    <div class="faq-item reveal"><h3><i data-lucide="help-circle"></i> Website erstellen lassen oder selber machen?</h3><p>Baukastensysteme sind g&#252;nstiger, aber du bezahlst mit deiner Zeit und bekommst ein Ergebnis das aussieht wie tausend andere. Eine professionell erstellte Website konvertiert besser, rankt h&#246;her bei Google und spart dir langfristig Zeit und Geld.</p></div>
+    <div class="faq-item reveal"><h3><i data-lucide="help-circle"></i> Warum kein Baukasten?</h3><p>Baukastensysteme sind g&#252;nstiger, aber du bezahlst mit deiner Zeit und bekommst ein Ergebnis das aussieht wie tausend andere. Eine professionell erstellte Website konvertiert besser, rankt h&#246;her bei Google und spart dir langfristig Zeit und Geld.</p></div>
   </div>
 </div></section>
 
@@ -342,9 +336,9 @@ section{padding:80px 0;position:relative}
 <section id="kontakt" class="kontakt"><div class="wrap">
   <div class="kontakt-grid">
     <div>
-      <div class="section-label reveal">Jetzt starten</div>
+      <div class="section-label reveal">Lass uns reden</div>
       <div class="section-title reveal">Hier endet die Seite.<br><em>Hier beginnt dein Projekt.</em></div>
-      <p class="section-desc reveal" style="margin-bottom:24px">Erz&#228;hl uns kurz was du brauchst. Wir melden uns innerhalb von 24 Stunden mit einer ehrlichen Einsch&#228;tzung.</p>
+      <p class="section-desc reveal" style="margin-bottom:24px">Schreib uns kurz was du brauchst. Wir melden uns innerhalb von 24 Stunden mit einer ehrlichen Einsch&#228;tzung &#8212; kostenlos, ohne Verkaufsdruck.</p>
       <div class="reveal" style="display:flex;flex-direction:column;gap:14px">
         <div style="display:flex;align-items:center;gap:12px"><div style="width:38px;height:38px;border-radius:10px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center"><i data-lucide="message-circle" style="color:var(--accent);width:17px;height:17px"></i></div><div><div style="font-size:13px;font-weight:600;color:#fff;font-family:var(--heading)">Erstgespr&#228;ch</div><div style="font-size:12px;color:var(--text-dim);font-weight:300">30 Min. kostenlos</div></div></div>
         <div style="display:flex;align-items:center;gap:12px"><div style="width:38px;height:38px;border-radius:10px;background:var(--green-soft);display:flex;align-items:center;justify-content:center"><i data-lucide="clock" style="color:var(--green);width:17px;height:17px"></i></div><div><div style="font-size:13px;font-weight:600;color:#fff;font-family:var(--heading)">Antwort in 24h</div><div style="font-size:12px;color:var(--text-dim);font-weight:300">Verbindlich</div></div></div>
@@ -356,27 +350,11 @@ section{padding:80px 0;position:relative}
         <input type="hidden" name="access_key" value="28d113b8-4c7a-48c7-b10c-eabbc0f0c1d8">
         <input type="hidden" name="subject" value="LP Anfrage &#8212; elevo.solutions/lp">
         <input type="hidden" name="from_name" value="ELEVO Landing Page">
-        <input type="hidden" name="redirect" value="https://elevo.solutions/lp.html#kontakt">
         <input type="checkbox" name="botcheck" style="display:none">
-        <div class="form-row">
-          <div class="form-group"><label>Vorname</label><input type="text" name="vorname" required placeholder="Max"></div>
-          <div class="form-group"><label>Nachname</label><input type="text" name="nachname" required placeholder="Mustermann"></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>E-Mail</label><input type="email" name="email" required placeholder="max@unternehmen.de"></div>
-          <div class="form-group"><label>Telefon</label><input type="tel" name="telefon" required placeholder="+49 123 456 789"></div>
-        </div>
-        <div class="form-group"><label>Worum geht's?</label>
-          <select name="thema" required>
-            <option value="" disabled selected>Bitte w&#228;hlen</option>
-            <option value="Neue Website / Relaunch">Neue Website / Relaunch</option>
-            <option value="Prozessdigitalisierung">Prozessdigitalisierung</option>
-            <option value="Website + Prozesse">Website + Prozesse</option>
-            <option value="Sonstiges">Sonstiges</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Nachricht (optional)</label><textarea name="nachricht" placeholder="Erz&#228;hl uns kurz, was dich besch&#228;ftigt..."></textarea></div>
-        <button type="submit" id="submitBtn" class="btn btn-primary" style="width:100%;justify-content:center;padding:15px 24px;font-size:14.5px"><i data-lucide="send" style="width:15px;height:15px"></i> Erstgespr&#228;ch anfragen</button>
+        <div class="form-group"><label>Name</label><input type="text" name="name" required placeholder="Dein Name" autocomplete="name"></div>
+        <div class="form-group"><label>E-Mail</label><input type="email" name="email" required placeholder="name@unternehmen.de" autocomplete="email"></div>
+        <div class="form-group"><label>Was besch&#228;ftigt dich? (optional)</label><textarea name="nachricht" placeholder="Neue Website, Relaunch, Prozesse &#8212; erz&#228;hl kurz was du brauchst."></textarea></div>
+        <button type="submit" id="submitBtn" class="btn btn-primary" style="width:100%;justify-content:center;padding:15px 24px;font-size:14.5px"><i data-lucide="send" style="width:15px;height:15px"></i> Nachricht senden</button>
         <div class="form-trust"><span><i data-lucide="check"></i> Kostenlos</span><span><i data-lucide="check"></i> Antwort in 24h</span><span><i data-lucide="check"></i> Kein Druck</span></div>
       </form>
       <div id="formSuccess" style="display:none;text-align:center;padding:40px 20px">
@@ -393,30 +371,57 @@ section{padding:80px 0;position:relative}
   <div class="lp-footer-links"><a onclick="openLegalModal('impressum')">Impressum</a><a onclick="openLegalModal('datenschutz')">Datenschutz</a></div>
 </div></div>
 
-<div class="legal-modal" id="modal-impressum" onclick="if(event.target===this)closeLegalModal('impressum')"><div class="legal-modal-inner"><button class="legal-modal-close" onclick="closeLegalModal('impressum')"><i data-lucide="x"></i></button><h2>Impressum</h2><h3>Angaben gem&#228;&#223; &#167; 5 TMG</h3><p><strong>ELEVO</strong><br>M. Celik<br>Ahrstra&#223;e 6<br>52511 Geilenkirchen<br>Deutschland</p><h3>Kontakt</h3><p>E-Mail: <a href="/cdn-cgi/l/email-protection#741c110d34111811021b5a071b1801001d1b1a07"><span class="__cf_email__" data-cfemail="5c3439251c3930392a33722f333029283533322f">[email&#160;protected]</span></a></p><h3>Umsatzsteuer-ID</h3><p>Gem&#228;&#223; &#167; 27a UStG: wird nachgetragen</p><h3>Verantwortlich f&#252;r den Inhalt</h3><p>M. Celik, Ahrstra&#223;e 6, 52511 Geilenkirchen</p><h3>EU-Streitschlichtung</h3><p>OS-Plattform: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>. Wir nehmen nicht an Streitbeilegungsverfahren teil.</p><h3>Haftung f&#252;r Inhalte</h3><p>Gem&#228;&#223; &#167; 7 Abs. 1 TMG sind wir f&#252;r eigene Inhalte verantwortlich.</p><h3>Haftung f&#252;r Links</h3><p>F&#252;r Inhalte verlinkter Seiten ist der jeweilige Anbieter verantwortlich.</p></div></div>
+<div class="legal-modal" id="modal-impressum" onclick="if(event.target===this)closeLegalModal('impressum')"><div class="legal-modal-inner"><button class="legal-modal-close" onclick="closeLegalModal('impressum')"><i data-lucide="x"></i></button><h2>Impressum</h2><h3>Angaben gem&#228;&#223; &#167; 5 TMG</h3><p><strong>ELEVO</strong><br>M. Celik<br>Ahrstra&#223;e 6<br>52511 Geilenkirchen<br>Deutschland</p><h3>Kontakt</h3><p>E-Mail: hey@elevo.solutions</p><h3>Umsatzsteuer-ID</h3><p>Gem&#228;&#223; &#167; 27a UStG: DE364166667</p><h3>Verantwortlich f&#252;r den Inhalt</h3><p>M. Celik, Ahrstra&#223;e 6, 52511 Geilenkirchen</p><h3>EU-Streitschlichtung</h3><p>OS-Plattform: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>. Wir nehmen nicht an Streitbeilegungsverfahren teil.</p><h3>Haftung f&#252;r Inhalte</h3><p>Gem&#228;&#223; &#167; 7 Abs. 1 TMG sind wir f&#252;r eigene Inhalte verantwortlich.</p><h3>Haftung f&#252;r Links</h3><p>F&#252;r Inhalte verlinkter Seiten ist der jeweilige Anbieter verantwortlich.</p></div></div>
 
-<div class="legal-modal" id="modal-datenschutz" onclick="if(event.target===this)closeLegalModal('datenschutz')"><div class="legal-modal-inner"><button class="legal-modal-close" onclick="closeLegalModal('datenschutz')"><i data-lucide="x"></i></button><h2>Datenschutzerkl&#228;rung</h2><h3>1. Verantwortlicher</h3><p>ELEVO &#8212; M. Celik, Ahrstra&#223;e 6, 52511 Geilenkirchen. E-Mail: <a href="/cdn-cgi/l/email-protection#e1898498a1848d84978ecf928e8d9495888e8f92"><span class="__cf_email__" data-cfemail="543c312d14313831223b7a273b3821203d3b3a27">[email&#160;protected]</span></a></p><h3>2. Hosting</h3><p>Server in Deutschland. Logfiles (IP, Browser, Uhrzeit) werden nach 14 Tagen gel&#246;scht. Art. 6 Abs. 1 lit. f DSGVO.</p><h3>3. Cloudflare</h3><p>CDN/DNS-Provider. EU-US Data Privacy Framework zertifiziert. Art. 6 Abs. 1 lit. f DSGVO.</p><h3>4. Google Fonts</h3><p>Schriftarten von Google-Servern. IP-&#220;bertragung. Art. 6 Abs. 1 lit. f DSGVO.</p><h3>5. Google Ads Conversion Tracking</h3><p>Nach Einwilligung (Cookie-Banner). Art. 6 Abs. 1 lit. a DSGVO. Widerruf durch Cookie-L&#246;schung.</p><h3>6. Kontaktformular (Web3Forms)</h3><p>Daten werden an unsere E-Mail weitergeleitet. Keine dauerhafte Speicherung. Art. 6 Abs. 1 lit. b DSGVO.</p><h3>7. Lucide Icons</h3><p>CDN-Laden (unpkg.com). IP-&#220;bertragung. Art. 6 Abs. 1 lit. f DSGVO.</p><h3>8. Cookies</h3><p>Ein Cookie f&#252;r Einwilligung (elevo_consent). Google Ads Cookies nur nach Zustimmung.</p><h3>9. Deine Rechte</h3><p>Auskunft, Berichtigung, L&#246;schung, Einschr&#228;nkung, Daten&#252;bertragbarkeit, Widerspruch. Kontakt: <a href="/cdn-cgi/l/email-protection#3159544871545d54475e1f425e5d4445585e5f42"><span class="__cf_email__" data-cfemail="c7afa2be87a2aba2b1a8e9b4a8abb2b3aea8a9b4">[email&#160;protected]</span></a></p><h3>10. Stand</h3><p>M&#228;rz 2026.</p></div></div>
+<div class="legal-modal" id="modal-datenschutz" onclick="if(event.target===this)closeLegalModal('datenschutz')"><div class="legal-modal-inner"><button class="legal-modal-close" onclick="closeLegalModal('datenschutz')"><i data-lucide="x"></i></button><h2>Datenschutzerkl&#228;rung</h2><h3>1. Verantwortlicher</h3><p>ELEVO &#8212; M. Celik, Ahrstra&#223;e 6, 52511 Geilenkirchen. E-Mail: hey@elevo.solutions</p><h3>2. Hosting</h3><p>Server in Deutschland. Logfiles (IP, Browser, Uhrzeit) werden nach 14 Tagen gel&#246;scht. Art. 6 Abs. 1 lit. f DSGVO.</p><h3>3. Cloudflare</h3><p>CDN/DNS-Provider. EU-US Data Privacy Framework zertifiziert. Art. 6 Abs. 1 lit. f DSGVO.</p><h3>4. Google Fonts</h3><p>Schriftarten von Google-Servern. IP-&#220;bertragung. Art. 6 Abs. 1 lit. f DSGVO.</p><h3>5. Google Ads Conversion Tracking</h3><p>Nach Einwilligung (Cookie-Banner). Art. 6 Abs. 1 lit. a DSGVO. Widerruf durch Cookie-L&#246;schung.</p><h3>6. Kontaktformular (Web3Forms)</h3><p>Daten werden an unsere E-Mail weitergeleitet. Keine dauerhafte Speicherung. Art. 6 Abs. 1 lit. b DSGVO.</p><h3>7. Lucide Icons</h3><p>CDN-Laden (unpkg.com). IP-&#220;bertragung. Art. 6 Abs. 1 lit. f DSGVO.</p><h3>8. Cookies</h3><p>Ein Cookie f&#252;r Einwilligung (elevo_consent). Google Ads Cookies nur nach Zustimmung.</p><h3>9. Deine Rechte</h3><p>Auskunft, Berichtigung, L&#246;schung, Einschr&#228;nkung, Daten&#252;bertragbarkeit, Widerspruch. Kontakt: hey@elevo.solutions</p><h3>10. Stand</h3><p>M&#228;rz 2026.</p></div></div>
 
 <div class="cookie-banner" id="cookieBanner"><div class="cookie-inner">
   <div class="cookie-text">Wir nutzen Cookies f&#252;r die Analyse unserer Anzeigen (Google Ads). Ohne Zustimmung keine Tracking-Cookies. <a onclick="openLegalModal('datenschutz')">Mehr erfahren</a></div>
   <div class="cookie-btns"><button class="cookie-btn cookie-decline" onclick="handleCookies(false)">Ablehnen</button><button class="cookie-btn cookie-accept" onclick="handleCookies(true)">Akzeptieren</button></div>
 </div></div>
 
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)"><div class="lightbox-inner" onclick="event.stopPropagation()"><button class="lightbox-close" onclick="closeLightbox()"><i data-lucide="x"></i></button><iframe id="lightbox-frame" src="" title="Referenz"></iframe><div class="lightbox-info"><span id="lightbox-title"></span><a id="lightbox-link" href="" target="_blank" rel="noopener">In neuem Tab &#246;ffnen &#8594;</a></div></div></div>
+
 <script>
+function selectCheck(el,choice){
+  document.querySelectorAll('.check-card').forEach(function(c){c.classList.remove('selected')});
+  el.classList.add('selected');
+  document.getElementById('checkType').value=choice;
+  document.getElementById('checkSubject').value='Projekt-Check: '+choice+' — elevo.solutions/lp';
+  var titles={'Neue Website':'Neue Website? Gute Entscheidung.','Website-Relaunch':'Zeit f\u00fcr einen Neuanfang.','Website + Digitalisierung':'Der volle Hebel. Stark.'};
+  document.getElementById('checkTitle').textContent=titles[choice]||'Gute Wahl.';
+  var r=document.getElementById('checkResult');
+  r.classList.add('visible');
+  setTimeout(function(){r.scrollIntoView({behavior:'smooth',block:'center'})},100);
+}
+
+function submitForm(form,btn,successEl,isCheck){
+  var ot=btn.innerHTML;
+  btn.innerHTML='<span style="display:inline-flex;align-items:center;gap:8px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Wird gesendet...</span>';
+  btn.disabled=true;btn.style.opacity='0.7';
+  var fd=new FormData(form);
+  fetch('https://api.web3forms.com/submit',{method:'POST',body:fd}).then(function(r){return r.json()}).then(function(j){
+    if(j.success){
+      form.style.display='none';successEl.style.display='block';
+      if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-18023151518/63WwCPLL9IocEJ7vjZJD'})}
+    }else{btn.innerHTML=ot;btn.disabled=false;btn.style.opacity='1';console.error('Web3Forms:',j);alert('Fehler: '+(j.message||'Bitte versuche es erneut.'))}
+  }).catch(function(err){btn.innerHTML=ot;btn.disabled=false;btn.style.opacity='1';console.error('Fetch:',err);alert('Verbindungsfehler. Bitte versuche es erneut.')});
+}
+
 window.addEventListener('DOMContentLoaded',function(){
-if(typeof lucide!=='undefined'){lucide.createIcons()}
-var glow=document.getElementById('mouseGlow');
-if(window.innerWidth>600&&glow){var ga=false;
-document.addEventListener('mousemove',function(e){if(!ga){glow.classList.add('active');ga=true}glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'});
-document.addEventListener('mouseleave',function(){glow.classList.remove('active');ga=false})}
-var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');ro.unobserve(x.target)}})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el)});
-var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){var iframe=x.target;if(iframe.dataset.src){iframe.src=iframe.dataset.src}io.unobserve(iframe)}})},{rootMargin:'200px'});
-document.querySelectorAll('iframe[data-src]').forEach(function(el){io.observe(el)});
-var co=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){var el=x.target,t=parseInt(el.dataset.count),a=Math.abs(t),pr=t<0?'\u2212':'',su=a>=1000?'\u20AC':(a===2?'h':(a===104?'h':'%')),di=a>=1000?(a/1000).toFixed(0)+'\u2013'+((a/1000)+2).toFixed(0)+'k':a.toString(),du=1400,st=performance.now();function tick(n){var p=Math.min((n-st)/du,1),ea=1-Math.pow(1-p,3),cu=Math.round(ea*a);if(a>=1000){var k=ea*a/1000;el.textContent=pr+k.toFixed(0)+'\u2013'+(k+2).toFixed(0)+'k\u20AC'}else{el.textContent=pr+cu+su}if(p<1){requestAnimationFrame(tick)}else{el.textContent=pr+di+su}}requestAnimationFrame(tick);co.unobserve(el)}})},{threshold:.5});
-document.querySelectorAll('[data-count]').forEach(function(el){co.observe(el)});
-var form=document.getElementById('elevoForm'),btn=document.getElementById('submitBtn'),success=document.getElementById('formSuccess');
-if(form){form.addEventListener('submit',function(e){e.preventDefault();var ot=btn.innerHTML;btn.innerHTML='<span style="display:inline-flex;align-items:center;gap:8px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Wird gesendet...</span>';btn.disabled=true;btn.style.opacity='0.7';var fd=new FormData(form);fetch('https://api.web3forms.com/submit',{method:'POST',body:fd}).then(function(r){return r.json()}).then(function(j){if(j.success){form.style.display='none';success.style.display='block';if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-18023151518/FORM_SUBMIT'})}}else{btn.innerHTML=ot;btn.disabled=false;btn.style.opacity='1';console.error('Web3Forms error:',j);alert('API Fehler: '+(j.message||JSON.stringify(j)))}}).catch(function(err){btn.innerHTML=ot;btn.disabled=false;btn.style.opacity='1';console.error('Fetch error:',err);alert('Verbindungsfehler: '+err.message)})})}
+  if(typeof lucide!=='undefined'){lucide.createIcons()}
+  var glow=document.getElementById('mouseGlow');
+  if(window.innerWidth>600&&glow){var ga=false;
+    document.addEventListener('mousemove',function(e){if(!ga){glow.classList.add('active');ga=true}glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'});
+    document.addEventListener('mouseleave',function(){glow.classList.remove('active');ga=false})}
+  var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');ro.unobserve(x.target)}})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el)});
+  var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){var iframe=x.target;if(iframe.dataset.src){iframe.src=iframe.dataset.src}io.unobserve(iframe)}})},{rootMargin:'200px'});
+  document.querySelectorAll('iframe[data-src]').forEach(function(el){io.observe(el)});
+  var checkForm=document.getElementById('checkForm');
+  if(checkForm){checkForm.addEventListener('submit',function(e){e.preventDefault();submitForm(checkForm,document.getElementById('checkBtn'),document.getElementById('checkSuccess'),true)})}
+  var mainForm=document.getElementById('elevoForm');
+  if(mainForm){mainForm.addEventListener('submit',function(e){e.preventDefault();submitForm(mainForm,document.getElementById('submitBtn'),document.getElementById('formSuccess'),false)})}
 });
 function openLightbox(u,t){var l=document.getElementById('lightbox');document.getElementById('lightbox-frame').src=u;document.getElementById('lightbox-title').textContent=t;document.getElementById('lightbox-link').href=u;l.style.display='flex';requestAnimationFrame(function(){l.classList.add('active')});document.body.style.overflow='hidden'}
 function closeLightbox(e){if(e&&e.target!==e.currentTarget)return;var l=document.getElementById('lightbox');l.classList.remove('active');document.body.style.overflow='';setTimeout(function(){l.style.display='none';document.getElementById('lightbox-frame').src=''},300)}
