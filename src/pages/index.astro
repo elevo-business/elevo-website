@@ -1,0 +1,333 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Hero from '../components/Hero.astro';
+import '../styles/global.css';
+---
+
+<BaseLayout canonical="https://elevo.solutions/">
+  <a href="#hero" class="skip-link">Zum Hauptinhalt springen</a>
+
+  <Header />
+
+  <Hero
+    badge="Webagentur Aachen · Digital · Strategie · Umsetzung"
+    title='<span class="line">Websites die</span><span class="line accent" id="typed-text">verkaufen.</span><span class="line">Ergebnisse die zählen.</span>'
+    subtitle="Wir bauen digitale Erlebnisse, die Kunden gewinnen — keine Schaufenster-Websites. Für wachstumsorientierte Unternehmen in Aachen, NRW und DACH."
+    ctaText="Jetzt Projekt besprechen"
+    ctaHref="#kontakt"
+    secondaryCtaText="Unsere Referenzen"
+    secondaryCtaHref="/referenzen"
+    showStats={true}
+  />
+
+  <!-- Trusted By -->
+  <section id="trusted" aria-label="Unsere Kunden">
+    <div class="container">
+      <p class="trusted-label">Vertrauen uns bereits</p>
+      <div class="trusted-track" role="list" aria-label="Referenzkunden">
+        <span class="trusted-item" role="listitem">Greenchild</span>
+        <span class="trusted-item" role="listitem">Akropolis Aachen</span>
+        <span class="trusted-item" role="listitem">ZUMA Lounge</span>
+        <span class="trusted-item" role="listitem">IT-Vertrieb GmbH</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results / Referenzen -->
+  <section id="results" class="section" aria-labelledby="results-heading">
+    <div class="container">
+      <header class="section-header">
+        <div class="section-label reveal">Referenzen</div>
+        <h2 id="results-heading" class="reveal reveal-delay-1">Messbare Ergebnisse.<br>Echte Kunden.</h2>
+        <p class="reveal reveal-delay-2">Keine Versprechen — echte Zahlen aus abgeschlossenen Projekten.</p>
+      </header>
+
+      <div class="results-grid" role="list">
+        <article class="result-card reveal" role="listitem">
+          <div class="result-tag">Investment Platform</div>
+          <div class="result-metric"><span>0&#x2192;1</span></div>
+          <h3 class="result-title">Greenchild</h3>
+          <p class="result-desc">Von 0 auf Launch in 6 Wochen. Komplette Investment-Plattform mit integriertem Konfigurator, DE/EN Lokalisierung und automatisierten Onboarding-Flows.</p>
+          <div class="result-footer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Web-App · DE/EN · Konfigurator
+          </div>
+          <div class="result-testimonial">
+            <div class="result-stars" aria-label="5 von 5 Sternen">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="result-testimonial-text">„Von 0 auf Launch in 6 Wochen — schneller als wir es für möglich gehalten hätten."</p>
+            <span class="result-testimonial-author">— Greenchild, Geschäftsführung</span>
+          </div>
+        </article>
+
+        <article class="result-card reveal reveal-delay-1" role="listitem">
+          <div class="result-tag">Restaurant · Aachen</div>
+          <div class="result-metric"><span class="plus">+3×</span></div>
+          <h3 class="result-title">Akropolis Aachen</h3>
+          <p class="result-desc">Dreifach mehr Restaurantreservierungen und Platz 1 in der lokalen Google-Suche nach Website-Relaunch mit gezielter lokaler SEO-Strategie.</p>
+          <div class="result-footer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            Webdesign · Lokale SEO · #1 Google
+          </div>
+          <div class="result-testimonial">
+            <div class="result-stars" aria-label="5 von 5 Sternen">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="result-testimonial-text">„Platz 1 bei Google, dreifach mehr Reservierungen — das sind echte Ergebnisse."</p>
+            <span class="result-testimonial-author">— Akropolis Aachen, Inhaber</span>
+          </div>
+        </article>
+
+        <article class="result-card reveal reveal-delay-2" role="listitem">
+          <div class="result-tag">Hospitality &amp; Events</div>
+          <div class="result-metric"><span class="plus">+62%</span></div>
+          <h3 class="result-title">ZUMA Lounge</h3>
+          <p class="result-desc">62% mehr Buchungen durch Conversion-optimierte Landingpage, Google Ads Kampagnen und datengetriebene UX-Optimierung.</p>
+          <div class="result-footer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Landingpage · Google Ads · CRO
+          </div>
+          <div class="result-testimonial">
+            <div class="result-stars" aria-label="5 von 5 Sternen">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="result-testimonial-text">„Die Kombination aus Landing Page und Ads hat uns überrascht — +62% Buchungen in 3 Monaten."</p>
+            <span class="result-testimonial-author">— ZUMA Lounge, Management</span>
+          </div>
+        </article>
+
+        <article class="result-card reveal reveal-delay-3" role="listitem">
+          <div class="result-tag">Prozessdigitalisierung</div>
+          <div class="result-metric"><span class="accent">12h</span></div>
+          <h3 class="result-title">IT-Vertrieb GmbH</h3>
+          <p class="result-desc">12 Stunden manuelle Arbeit pro Woche automatisiert. CRM-Integration, automatisierte Angebotserstellung und Pipeline-Tracking ohne manuellen Aufwand.</p>
+          <div class="result-footer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Automatisierung · CRM-Integration
+          </div>
+          <div class="result-testimonial">
+            <div class="result-stars" aria-label="5 von 5 Sternen">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="result-testimonial-text">„12 Stunden manuelle Arbeit — wöchentlich. Diese Zeit haben wir jetzt für unser Kerngeschäft."</p>
+            <span class="result-testimonial-author">— IT-Vertrieb GmbH, Vertriebsleitung</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leistungen -->
+  <section id="leistungen" class="section" aria-labelledby="leistungen-heading">
+    <div class="container">
+      <header class="section-header">
+        <div class="section-label reveal">Leistungen</div>
+        <h2 id="leistungen-heading" class="reveal reveal-delay-1">Drei Hebel.<br>Ein Ziel: dein Wachstum.</h2>
+        <p class="reveal reveal-delay-2">Wir decken alles ab, was du für nachhaltiges digitales Wachstum brauchst.</p>
+      </header>
+
+      <div class="services-grid">
+        <article class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3 class="service-title">Website &amp; Webentwicklung</h3>
+          <p class="service-desc">Keine Templates. Keine Baukästen. Wir entwickeln individuelle Websites, die schnell laden, mobil performen und Besucher zu Kunden machen.</p>
+          <ul class="service-features" aria-label="Enthaltene Leistungen">
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Individuelles Design (kein Template)</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Mobile-first &amp; Core Web Vitals optimiert</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>SEO-Grundoptimierung inklusive</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Conversion-optimierte CTAs &amp; Formulare</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Hosting &amp; Wartung optional</li>
+          </ul>
+          <div class="service-price">
+            <div><div class="service-price-val">Investition auf Anfrage</div><div class="service-price-note">ab Mid-Market · individuelles Angebot</div></div>
+            <a href="#kontakt" class="service-cta">Anfragen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </article>
+
+        <article class="service-card featured reveal reveal-delay-1">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3 class="service-title">SEO &amp; Google Ads</h3>
+          <p class="service-desc">Sichtbarkeit, die kauft. Wir kombinieren technische SEO mit datengetriebenen Ads-Kampagnen — für nachhaltigen, messbaren Wachstum.</p>
+          <ul class="service-features" aria-label="Enthaltene Leistungen">
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Technische SEO &amp; Content-Strategie</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Lokale SEO (Google Business Profil)</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Google &amp; Meta Ads Kampagnen</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Monatliches Reporting &amp; Optimierung</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Conversion Tracking &amp; Analytics</li>
+          </ul>
+          <div class="service-price">
+            <div><div class="service-price-val">Retainer-Modell</div><div class="service-price-note">monatlich · Anfrage erwünscht</div></div>
+            <a href="#kontakt" class="service-cta">Anfragen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </article>
+
+        <article class="service-card reveal reveal-delay-2">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+          </div>
+          <h3 class="service-title">Prozessdigitalisierung</h3>
+          <p class="service-desc">Manuelle Prozesse kosten Zeit und Geld. Wir analysieren, digitalisieren und automatisieren deine Abläufe — damit du dich auf dein Kerngeschäft konzentrieren kannst.</p>
+          <ul class="service-features" aria-label="Enthaltene Leistungen">
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Prozessanalyse &amp; Digitalisierungskonzept</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>CRM-Integration &amp; Systemanbindung</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Prozessautomatisierung</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Schulung &amp; Dokumentation</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Laufende Betreuung optional</li>
+          </ul>
+          <div class="service-price">
+            <div><div class="service-price-val">Investition auf Anfrage</div><div class="service-price-note">Enterprise-Segment · individuelles Angebot</div></div>
+            <a href="#kontakt" class="service-cta">Anfragen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prozess -->
+  <section id="prozess" class="section" aria-labelledby="prozess-heading">
+    <div class="container">
+      <header class="section-header">
+        <div class="section-label reveal">Ablauf</div>
+        <h2 id="prozess-heading" class="reveal reveal-delay-1">Von der Idee zum<br>lebenden Projekt.</h2>
+        <p class="reveal reveal-delay-2">Kein Chaos, kein Rätselraten — unser Prozess ist klar, schnell und transparent.</p>
+      </header>
+
+      <div class="prozess-steps" role="list">
+        <div class="prozess-step reveal" role="listitem">
+          <div class="step-num" aria-hidden="true">01</div>
+          <h3 class="step-title">Erstgespräch</h3>
+          <p class="step-desc">30 Minuten. Wir hören zu, stellen die richtigen Fragen und analysieren deine Situation — kostenlos.</p>
+        </div>
+        <div class="prozess-step reveal reveal-delay-1" role="listitem">
+          <div class="step-num" aria-hidden="true">02</div>
+          <h3 class="step-title">Strategie &amp; Konzept</h3>
+          <p class="step-desc">Wir entwickeln eine maßgeschneiderte Strategie mit klaren Zielen, Meilensteinen und Budget.</p>
+        </div>
+        <div class="prozess-step reveal reveal-delay-2" role="listitem">
+          <div class="step-num" aria-hidden="true">03</div>
+          <h3 class="step-title">Umsetzung</h3>
+          <p class="step-desc">Schnelle, qualitätsbewusste Entwicklung mit regelmäßigen Updates und direktem Draht zu dir.</p>
+        </div>
+        <div class="prozess-step reveal reveal-delay-3" role="listitem">
+          <div class="step-num" aria-hidden="true">04</div>
+          <h3 class="step-title">Launch &amp; Wachstum</h3>
+          <p class="step-desc">Launch, Monitoring und datengetriebene Optimierung. Wir bleiben dabei — nicht nur bis zur Übergabe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Warum ELEVO -->
+  <section id="warum" class="section" aria-labelledby="warum-heading">
+    <div class="container">
+      <div class="warum-grid">
+        <div class="warum-text reveal-left">
+          <div class="section-label">Warum ELEVO</div>
+          <h2 id="warum-heading">Agentur aus Aachen.<br>Nicht irgendwo.</h2>
+          <p>Wir sind keine Remote-Fabrik. Wir kennen den Markt, die Region und die Unternehmen hier. Kurze Wege, persönliche Kommunikation, echte Verantwortung für dein Ergebnis.</p>
+          <ul class="warum-usps" aria-label="Unsere Stärken">
+            <li class="warum-usp">
+              <div class="usp-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+              <div class="usp-text"><h4>Ergebnisorientiert</h4><p>Wir messen uns an deinen KPIs — nicht an Designpreisen.</p></div>
+            </li>
+            <li class="warum-usp">
+              <div class="usp-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div class="usp-text"><h4>Schnelle Umsetzung</h4><p>Projekte gehen live — keine monatelangen Wartezeiten.</p></div>
+            </li>
+            <li class="warum-usp">
+              <div class="usp-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <div class="usp-text"><h4>Persönlich &amp; direkt</h4><p>Kein Account Manager. Ihr sprecht direkt mit den Spezialisten, die euer Projekt umsetzen.</p></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="warum-visual reveal-right" aria-hidden="true">
+          <div class="metric-box">
+            <div class="metric-val" data-count="3" data-suffix="×">0</div>
+            <div class="metric-label">mehr Reservierungen (Akropolis)</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val" data-count="62" data-suffix="%">0</div>
+            <div class="metric-label">mehr Buchungen (ZUMA)</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val" data-count="12" data-suffix="h">0</div>
+            <div class="metric-label">automatisiert pro Woche</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val" data-count="1" data-suffix="#">0</div>
+            <div class="metric-label">Google-Ranking (lokal)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section id="kontakt" class="section" aria-labelledby="kontakt-heading">
+    <div class="container">
+      <div class="kontakt-grid">
+        <div class="kontakt-info reveal-left">
+          <div class="section-label">Kontakt</div>
+          <h2 id="kontakt-heading">Lass uns über<br>dein Projekt reden.</h2>
+          <p>Kostenloses Erstgespräch — 30 Minuten, kein Verkaufsdruck. Wir schauen gemeinsam, ob und wie wir dir helfen können.</p>
+
+          <div class="kontakt-details">
+            <div class="kontakt-detail">
+              <div class="kontakt-detail-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div>
+                <div class="kontakt-detail-label">E-Mail</div>
+                <div class="kontakt-detail-val"><a href="mailto:hallo@elevo.solutions">hallo@elevo.solutions</a></div>
+              </div>
+            </div>
+            <div class="kontakt-detail">
+              <div class="kontakt-detail-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div>
+                <div class="kontakt-detail-label">Standort</div>
+                <div class="kontakt-detail-val">Ahrstraße 6, 52511 Geilenkirchen · NRW</div>
+              </div>
+            </div>
+            <div class="kontakt-detail">
+              <div class="kontakt-detail-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div>
+                <div class="kontakt-detail-label">Antwortzeit</div>
+                <div class="kontakt-detail-val">Innerhalb von 24 Stunden</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal-right">
+          <ContactForm />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+

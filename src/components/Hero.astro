@@ -1,0 +1,126 @@
+---
+interface Props {
+  badge?: string;
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+  showStats?: boolean;
+}
+
+const {
+  badge,
+  title = 'Websites die<br>Ergebnisse bringen.',
+  subtitle,
+  ctaText,
+  ctaHref = '/kontakt',
+  secondaryCtaText,
+  secondaryCtaHref,
+  showStats = false,
+} = Astro.props;
+---
+
+<section id="hero" aria-label="Hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-content">
+      {badge && (
+        <div class="hero-badge">
+          <span class="dot" aria-hidden="true"></span>
+          {badge}
+        </div>
+      )}
+
+      <h1 class="hero-headline" set:html={title} />
+
+      {subtitle && <p class="hero-sub">{subtitle}</p>}
+
+      {(ctaText || secondaryCtaText) && (
+        <div class="hero-ctas">
+          {ctaText && (
+            <a href={ctaHref} class="btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              {ctaText}
+            </a>
+          )}
+          {secondaryCtaText && secondaryCtaHref && (
+            <a href={secondaryCtaHref} class="btn-secondary">
+              {secondaryCtaText}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          )}
+        </div>
+      )}
+
+      {showStats && (
+        <div class="hero-stats" role="list" aria-label="Statistiken">
+          <div class="hero-stat" role="listitem">
+            <div class="hero-stat-num" data-count="62" data-suffix="%">0</div>
+            <div class="hero-stat-label">Ø Umsatzsteigerung</div>
+          </div>
+          <div class="hero-stat" role="listitem">
+            <div class="hero-stat-num" data-count="12" data-suffix="h">0</div>
+            <div class="hero-stat-label">Automatisiert pro Woche</div>
+          </div>
+          <div class="hero-stat" role="listitem">
+            <div class="hero-stat-num" data-count="6" data-suffix=" Wo.">0</div>
+            <div class="hero-stat-label">Ø Projektlaufzeit</div>
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Typed text animation (activates only if #typed-text element exists)
+  const typedEl = document.getElementById('typed-text');
+  if (typedEl) {
+    const words = ['verkaufen.', 'konvertieren.', 'begeistern.', 'wachsen.'];
+    let wi = 0, ci = 0, deleting = false;
+
+    function typeEffect() {
+      const word = words[wi];
+      typedEl.textContent = deleting ? word.slice(0, ci--) : word.slice(0, ci++);
+      let delay = deleting ? 60 : 100;
+      if (!deleting && ci > word.length) { delay = 2000; deleting = true; }
+      else if (deleting && ci < 0) { deleting = false; wi = (wi + 1) % words.length; ci = 0; delay = 300; }
+      setTimeout(typeEffect, delay);
+    }
+    setTimeout(typeEffect, 1500);
+  }
+
+  // Counter animation
+  function animateCounter(el: Element) {
+    const target = parseInt((el as HTMLElement).dataset.count || '0');
+    const suffix = (el as HTMLElement).dataset.suffix || '';
+    const duration = 1800;
+    const start = performance.now();
+
+    function update(time: number) {
+      const elapsed = time - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(ease * target) + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  // Reveal + counter IntersectionObserver (shared for all .reveal elements on page)
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        entry.target.querySelectorAll('[data-count]').forEach(animateCounter);
+        if ((entry.target as HTMLElement).dataset.count) animateCounter(entry.target);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, [data-count]').forEach(el => io.observe(el));
+</script>

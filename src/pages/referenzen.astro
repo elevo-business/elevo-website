@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import '../styles/global.css';
+---
+
+<BaseLayout
+  title="Referenzen — ELEVO Webagentur Aachen"
+  description="Echte Ergebnisse für echte Kunden. +3× Reservierungen, +62% Buchungen, Platz 1 bei Google. Unsere Referenzprojekte aus Aachen und DACH."
+  canonical="https://elevo.solutions/referenzen"
+>
+  <a href="#hero" class="skip-link">Zum Hauptinhalt springen</a>
+
+  <Header />
+
+  <Hero
+    badge="Referenzen"
+    title='<span class="line">Messbare Ergebnisse.</span><span class="line accent">Echte Kunden.</span>'
+    subtitle="Keine Versprechen — echte Zahlen aus abgeschlossenen Projekten. Was wir für unsere Kunden erreicht haben."
+    ctaText="Projekt besprechen"
+    ctaHref="/kontakt"
+    secondaryCtaText="Unsere Leistungen"
+    secondaryCtaHref="/leistungen"
+  />
+
+  <!-- Trusted By -->
+  <section id="trusted" aria-label="Unsere Kunden">
+    <div class="container">
+      <p class="trusted-label">Vertrauen uns bereits</p>
+      <div class="trusted-track" role="list" aria-label="Referenzkunden">
+        <span class="trusted-item" role="listitem">Greenchild</span>
+        <span class="trusted-item" role="listitem">Akropolis Aachen</span>
+        <span class="trusted-item" role="listitem">ZUMA Lounge</span>
+        <span class="trusted-item" role="listitem">IT-Vertrieb GmbH</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Referenzen -->
+  <section id="results" class="section" aria-labelledby="results-heading">
+    <div class="container">
+      <header class="section-header">
+        <div class="section-label reveal">Unsere Arbeit</div>
+        <h2 id="results-heading" class="reveal reveal-delay-1">Von 0 auf Wachstum.<br>Projekt für Projekt.</h2>
+        <p class="reveal reveal-delay-2">Jedes Projekt hat eine Geschichte — hier sind die Zahlen dahinter.</p>
+      </header>
+
+      <div class="results-grid" role="list">
+        <article class="result-card reveal" role="listitem">
+          <div class="result-tag">Investment Platform</div>
+          <div class="result-metric"><span>0&#x2192;1</span></div>
+          <h3 class="result-title">Greenchild</h3>
+          <p class="result-desc">Von 0 auf Launch in 6 Wochen. Komplette Investment-Plattform mit integriertem Konfigurator, DE/EN Lokalisierung und automatisierten Onboarding-Flows.</p>
+          <div class="result-footer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Web-App · DE/EN · Konfigurator
+          </div>
+          <div class="result-testimonial">
+            <div class="result-stars" aria-label="5 von 5 Sternen">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="result-testimonial-text">„Von 0 auf Launch in 6 Wochen — schneller als wir es für möglich gehalten hätten."</p>
+            <span class="result-testimonial-author">— Greenchild, Geschäftsführung</span>
+          </div>
+        </article>
+
+        <article class="result-card reveal reveal-delay-1" role="listitem">
+          <div class="result-tag">Restaurant · Aachen</div>
+          <div class="result-metric"><span class="plus">+3×</span></div>
+          <h3 class="result-title">Akropolis Aachen</h3>
+          <p class="result-desc">Dreifach mehr Restaurantreservierungen und Platz 1 in der lokalen Google-Suche nach Website-Relaunch mit gezielter lokaler SEO-Strategie.</p>
+          <div class="result-footer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            Webdesign · Lokale SEO · #1 Google
+          </div>
+          <div class="result-testimonial">
+            <div class="result-stars" aria-label="5 von 5 Sternen">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="result-testimonial-text">„Platz 1 bei Google, dreifach mehr Reservierungen — das sind echte Ergebnisse."</p>
+            <span class="result-testimonial-author">— Akropolis Aachen, Inhaber</span>
+          </div>
+        </article>
+
+        <article class="result-card reveal reveal-delay-2" role="listitem">
+          <div class="result-tag">Hospitality &amp; Events</div>
+          <div class="result-metric"><span class="plus">+62%</span></div>
+          <h3 class="result-title">ZUMA Lounge</h3>
+          <p class="result-desc">62% mehr Buchungen durch Conversion-optimierte Landingpage, Google Ads Kampagnen und datengetriebene UX-Optimierung.</p>
+          <div class="result-footer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Landingpage · Google Ads · CRO
+          </div>
+          <div class="result-testimonial">
+            <div class="result-stars" aria-label="5 von 5 Sternen">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="result-testimonial-text">„Die Kombination aus Landing Page und Ads hat uns überrascht — +62% Buchungen in 3 Monaten."</p>
+            <span class="result-testimonial-author">— ZUMA Lounge, Management</span>
+          </div>
+        </article>
+
+        <article class="result-card reveal reveal-delay-3" role="listitem">
+          <div class="result-tag">Prozessdigitalisierung</div>
+          <div class="result-metric"><span class="accent">12h</span></div>
+          <h3 class="result-title">IT-Vertrieb GmbH</h3>
+          <p class="result-desc">12 Stunden manuelle Arbeit pro Woche automatisiert. CRM-Integration, automatisierte Angebotserstellung und Pipeline-Tracking ohne manuellen Aufwand.</p>
+          <div class="result-footer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Automatisierung · CRM-Integration
+          </div>
+          <div class="result-testimonial">
+            <div class="result-stars" aria-label="5 von 5 Sternen">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="result-testimonial-text">„12 Stunden manuelle Arbeit — wöchentlich. Diese Zeit haben wir jetzt für unser Kerngeschäft."</p>
+            <span class="result-testimonial-author">— IT-Vertrieb GmbH, Vertriebsleitung</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" aria-labelledby="cta-ref-heading" style="background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-deep) 100%);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label reveal">Dein Projekt</div>
+        <h2 id="cta-ref-heading" class="reveal reveal-delay-1">Das nächste Ergebnis<br>könnte deins sein.</h2>
+        <p class="reveal reveal-delay-2">Kostenloses Erstgespräch — unverbindlich, konkret und auf den Punkt.</p>
+        <div class="hero-ctas reveal reveal-delay-3" style="margin-top: 32px;">
+          <a href="/kontakt" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Jetzt Gespräch vereinbaren
+          </a>
+          <a href="/leistungen" class="btn-secondary">
+            Unsere Leistungen
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

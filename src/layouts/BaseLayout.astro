@@ -1,0 +1,95 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'ELEVO — Webagentur Aachen | Websites, die Kunden bringen',
+  description = 'ELEVO — Webagentur Aachen. Websites, Prozessdigitalisierung und SEO & Ads für wachstumsorientierte Unternehmen in der Region. Messbare Ergebnisse, faire Preise.',
+  canonical = 'https://elevo.solutions/',
+  ogImage = 'https://elevo.solutions/og-image.jpg',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={description}>
+  <meta name="keywords" content="Webagentur Aachen, Webdesign Aachen, SEO Aachen, Webentwicklung Aachen, Digitalagentur NRW, Website erstellen lassen Aachen">
+  <meta name="author" content="ELEVO Digital GmbH">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#4A80F0">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={canonical}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={ogImage}>
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="ELEVO">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+
+  <!-- Canonical -->
+  <link rel="canonical" href={canonical}>
+
+  <title>{title}</title>
+
+  <!-- Fonts (self-hosted, DSGVO-konform) -->
+  <link rel="preload" as="font" href="/fonts/Sora-latin.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="/fonts/Outfit-latin.woff2" type="font/woff2" crossorigin>
+
+  <!-- Structured Data: LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "ELEVO",
+    "description": "Webagentur Aachen — Websites, Prozessdigitalisierung und SEO & Ads",
+    "url": "https://elevo.solutions",
+    "email": "hallo@elevo.solutions",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Ahrstraße 6",
+      "postalCode": "52511",
+      "addressLocality": "Geilenkirchen",
+      "addressRegion": "NRW",
+      "addressCountry": "DE"
+    },
+    "areaServed": ["Aachen", "NRW", "DACH"],
+    "priceRange": "€€€",
+    "knowsAbout": ["Webdesign", "SEO", "Prozessdigitalisierung", "Google Ads"],
+    "sameAs": []
+  }
+  </script>
+
+  <!-- Google Ads + Consent Mode v2 -->
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'analytics_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'wait_for_update': 500
+    });
+    gtag('js', new Date());
+    gtag('config', 'AW-18023151518');
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18023151518"></script>
+</head>
+
+<body>
+  <slot />
+</body>
+</html>

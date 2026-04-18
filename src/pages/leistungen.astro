@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import '../styles/global.css';
+---
+
+<BaseLayout
+  title="Leistungen — ELEVO Webagentur Aachen"
+  description="Website & Webentwicklung, SEO & Google Ads, Prozessdigitalisierung. Maßgeschneiderte digitale Lösungen für KMU und Mittelstand in Aachen und DACH."
+  canonical="https://elevo.solutions/leistungen"
+>
+  <a href="#hero" class="skip-link">Zum Hauptinhalt springen</a>
+
+  <Header />
+
+  <Hero
+    badge="Leistungen"
+    title='<span class="line">Drei Hebel.</span><span class="line accent">Ein Ziel: dein Wachstum.</span>'
+    subtitle="Wir decken alles ab, was du für nachhaltiges digitales Wachstum brauchst — von der Website bis zur Prozessautomatisierung."
+    ctaText="Projekt besprechen"
+    ctaHref="/kontakt"
+    secondaryCtaText="Unsere Referenzen"
+    secondaryCtaHref="/referenzen"
+  />
+
+  <!-- Leistungen -->
+  <section id="leistungen" class="section" aria-labelledby="leistungen-heading">
+    <div class="container">
+      <header class="section-header">
+        <div class="section-label reveal">Was wir machen</div>
+        <h2 id="leistungen-heading" class="reveal reveal-delay-1">Individuelle Lösungen.<br>Messbare Ergebnisse.</h2>
+        <p class="reveal reveal-delay-2">Kein Copy-Paste. Jedes Projekt wird strategisch geplant und handwerklich präzise umgesetzt.</p>
+      </header>
+
+      <div class="services-grid">
+        <article class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3 class="service-title">Website &amp; Webentwicklung</h3>
+          <p class="service-desc">Keine Templates. Keine Baukästen. Wir entwickeln individuelle Websites, die schnell laden, mobil performen und Besucher zu Kunden machen.</p>
+          <ul class="service-features" aria-label="Enthaltene Leistungen">
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Individuelles Design (kein Template)</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Mobile-first &amp; Core Web Vitals optimiert</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>SEO-Grundoptimierung inklusive</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Conversion-optimierte CTAs &amp; Formulare</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Hosting &amp; Wartung optional</li>
+          </ul>
+          <div class="service-price">
+            <div><div class="service-price-val">Investition auf Anfrage</div><div class="service-price-note">ab Mid-Market · individuelles Angebot</div></div>
+            <a href="/kontakt" class="service-cta">Anfragen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </article>
+
+        <article class="service-card featured reveal reveal-delay-1">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3 class="service-title">SEO &amp; Google Ads</h3>
+          <p class="service-desc">Sichtbarkeit, die kauft. Wir kombinieren technische SEO mit datengetriebenen Ads-Kampagnen — für nachhaltigen, messbaren Wachstum.</p>
+          <ul class="service-features" aria-label="Enthaltene Leistungen">
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Technische SEO &amp; Content-Strategie</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Lokale SEO (Google Business Profil)</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Google &amp; Meta Ads Kampagnen</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Monatliches Reporting &amp; Optimierung</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Conversion Tracking &amp; Analytics</li>
+          </ul>
+          <div class="service-price">
+            <div><div class="service-price-val">Retainer-Modell</div><div class="service-price-note">monatlich · Anfrage erwünscht</div></div>
+            <a href="/kontakt" class="service-cta">Anfragen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </article>
+
+        <article class="service-card reveal reveal-delay-2">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+          </div>
+          <h3 class="service-title">Prozessdigitalisierung</h3>
+          <p class="service-desc">Manuelle Prozesse kosten Zeit und Geld. Wir analysieren, digitalisieren und automatisieren deine Abläufe — damit du dich auf dein Kerngeschäft konzentrieren kannst.</p>
+          <ul class="service-features" aria-label="Enthaltene Leistungen">
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Prozessanalyse &amp; Digitalisierungskonzept</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>CRM-Integration &amp; Systemanbindung</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Prozessautomatisierung</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Schulung &amp; Dokumentation</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Laufende Betreuung optional</li>
+          </ul>
+          <div class="service-price">
+            <div><div class="service-price-val">Investition auf Anfrage</div><div class="service-price-note">Enterprise-Segment · individuelles Angebot</div></div>
+            <a href="/kontakt" class="service-cta">Anfragen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prozess -->
+  <section id="prozess" class="section" aria-labelledby="prozess-heading">
+    <div class="container">
+      <header class="section-header">
+        <div class="section-label reveal">Ablauf</div>
+        <h2 id="prozess-heading" class="reveal reveal-delay-1">Von der Idee zum<br>lebenden Projekt.</h2>
+        <p class="reveal reveal-delay-2">Kein Chaos, kein Rätselraten — unser Prozess ist klar, schnell und transparent.</p>
+      </header>
+
+      <div class="prozess-steps" role="list">
+        <div class="prozess-step reveal" role="listitem">
+          <div class="step-num" aria-hidden="true">01</div>
+          <h3 class="step-title">Erstgespräch</h3>
+          <p class="step-desc">30 Minuten. Wir hören zu, stellen die richtigen Fragen und analysieren deine Situation — kostenlos.</p>
+        </div>
+        <div class="prozess-step reveal reveal-delay-1" role="listitem">
+          <div class="step-num" aria-hidden="true">02</div>
+          <h3 class="step-title">Strategie &amp; Konzept</h3>
+          <p class="step-desc">Wir entwickeln eine maßgeschneiderte Strategie mit klaren Zielen, Meilensteinen und Budget.</p>
+        </div>
+        <div class="prozess-step reveal reveal-delay-2" role="listitem">
+          <div class="step-num" aria-hidden="true">03</div>
+          <h3 class="step-title">Umsetzung</h3>
+          <p class="step-desc">Schnelle, qualitätsbewusste Entwicklung mit regelmäßigen Updates und direktem Draht zu dir.</p>
+        </div>
+        <div class="prozess-step reveal reveal-delay-3" role="listitem">
+          <div class="step-num" aria-hidden="true">04</div>
+          <h3 class="step-title">Launch &amp; Wachstum</h3>
+          <p class="step-desc">Launch, Monitoring und datengetriebene Optimierung. Wir bleiben dabei — nicht nur bis zur Übergabe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" aria-labelledby="cta-heading" style="background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-dark) 100%);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label reveal">Bereit?</div>
+        <h2 id="cta-heading" class="reveal reveal-delay-1">Lass uns über<br>dein Projekt reden.</h2>
+        <p class="reveal reveal-delay-2">Kostenloses Erstgespräch — 30 Minuten, kein Verkaufsdruck.</p>
+        <div class="hero-ctas reveal reveal-delay-3" style="margin-top: 32px;">
+          <a href="/kontakt" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Jetzt Gespräch vereinbaren
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
