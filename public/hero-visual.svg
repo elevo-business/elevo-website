@@ -1,0 +1,252 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="ELEVO digitale Exzellenz Illustration">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#05070E"/>
+      <stop offset="100%" stop-color="#0D1525"/>
+    </linearGradient>
+    <radialGradient id="glowCenter" cx="60%" cy="38%" r="48%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowBottomCenter" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbBlue" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.7"/>
+      <stop offset="60%" stop-color="#3B82F6" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbCyan" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#60A5FA" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#60A5FA" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="nodeGlow" x="-150%" y="-150%" width="400%" height="400%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="lineGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="fadeLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#05070E" stop-opacity="0.7"/>
+      <stop offset="22%" stop-color="#05070E" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="fadeRight" x1="100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#05070E" stop-opacity="0.5"/>
+      <stop offset="22%" stop-color="#05070E" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="fadeBottom" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#05070E" stop-opacity="0.55"/>
+      <stop offset="28%" stop-color="#05070E" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="fadeTop" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#05070E" stop-opacity="0.35"/>
+      <stop offset="18%" stop-color="#05070E" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="frame"><rect width="800" height="600" rx="14"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <!-- Background -->
+    <rect width="800" height="600" fill="url(#bg)"/>
+    <rect width="800" height="600" fill="url(#glowCenter)"/>
+
+    <!-- Subtle dot grid -->
+    <g fill="#3B82F6" fill-opacity="0.055">
+      <circle cx="80" cy="60" r="1.2"/><circle cx="160" cy="60" r="1.2"/><circle cx="240" cy="60" r="1.2"/>
+      <circle cx="320" cy="60" r="1.2"/><circle cx="400" cy="60" r="1.2"/><circle cx="480" cy="60" r="1.2"/>
+      <circle cx="560" cy="60" r="1.2"/><circle cx="640" cy="60" r="1.2"/><circle cx="720" cy="60" r="1.2"/>
+      <circle cx="80" cy="140" r="1.2"/><circle cx="160" cy="140" r="1.2"/><circle cx="240" cy="140" r="1.2"/>
+      <circle cx="320" cy="140" r="1.2"/><circle cx="400" cy="140" r="1.2"/><circle cx="480" cy="140" r="1.2"/>
+      <circle cx="560" cy="140" r="1.2"/><circle cx="640" cy="140" r="1.2"/><circle cx="720" cy="140" r="1.2"/>
+      <circle cx="80" cy="220" r="1.2"/><circle cx="160" cy="220" r="1.2"/><circle cx="240" cy="220" r="1.2"/>
+      <circle cx="320" cy="220" r="1.2"/><circle cx="400" cy="220" r="1.2"/><circle cx="480" cy="220" r="1.2"/>
+      <circle cx="560" cy="220" r="1.2"/><circle cx="640" cy="220" r="1.2"/><circle cx="720" cy="220" r="1.2"/>
+      <circle cx="80" cy="300" r="1.2"/><circle cx="160" cy="300" r="1.2"/><circle cx="240" cy="300" r="1.2"/>
+      <circle cx="320" cy="300" r="1.2"/><circle cx="400" cy="300" r="1.2"/><circle cx="480" cy="300" r="1.2"/>
+      <circle cx="560" cy="300" r="1.2"/><circle cx="640" cy="300" r="1.2"/><circle cx="720" cy="300" r="1.2"/>
+      <circle cx="80" cy="380" r="1.2"/><circle cx="160" cy="380" r="1.2"/><circle cx="240" cy="380" r="1.2"/>
+      <circle cx="320" cy="380" r="1.2"/><circle cx="400" cy="380" r="1.2"/><circle cx="480" cy="380" r="1.2"/>
+      <circle cx="560" cy="380" r="1.2"/><circle cx="640" cy="380" r="1.2"/><circle cx="720" cy="380" r="1.2"/>
+      <circle cx="80" cy="460" r="1.2"/><circle cx="160" cy="460" r="1.2"/><circle cx="240" cy="460" r="1.2"/>
+      <circle cx="320" cy="460" r="1.2"/><circle cx="400" cy="460" r="1.2"/><circle cx="480" cy="460" r="1.2"/>
+      <circle cx="560" cy="460" r="1.2"/><circle cx="640" cy="460" r="1.2"/><circle cx="720" cy="460" r="1.2"/>
+      <circle cx="80" cy="540" r="1.2"/><circle cx="160" cy="540" r="1.2"/><circle cx="240" cy="540" r="1.2"/>
+      <circle cx="320" cy="540" r="1.2"/><circle cx="400" cy="540" r="1.2"/><circle cx="480" cy="540" r="1.2"/>
+      <circle cx="560" cy="540" r="1.2"/><circle cx="640" cy="540" r="1.2"/><circle cx="720" cy="540" r="1.2"/>
+    </g>
+
+    <!-- === BROWSER WINDOW === -->
+    <!-- Window shell -->
+    <rect x="210" y="88" width="420" height="296" rx="12"
+          fill="#0A0F1E" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.3"/>
+    <!-- Chrome bar -->
+    <rect x="210" y="88" width="420" height="38" rx="12"
+          fill="#0D1628"/>
+    <rect x="210" y="112" width="420" height="14" fill="#0D1628"/>
+    <!-- Traffic lights -->
+    <circle cx="236" cy="107" r="5.5" fill="#FF5F57" fill-opacity="0.75"/>
+    <circle cx="253" cy="107" r="5.5" fill="#FFBD2E" fill-opacity="0.75"/>
+    <circle cx="270" cy="107" r="5.5" fill="#27C93F" fill-opacity="0.75"/>
+    <!-- URL bar -->
+    <rect x="292" y="99" width="232" height="18" rx="9"
+          fill="#3B82F6" fill-opacity="0.08" stroke="#3B82F6" stroke-width="0.6" stroke-opacity="0.25"/>
+    <circle cx="307" cy="108" r="3.5" fill="#3B82F6" fill-opacity="0.45"/>
+    <rect x="316" y="105" width="68" height="6" rx="3" fill="#3B82F6" fill-opacity="0.25"/>
+
+    <!-- Content area: abstract webpage layout -->
+    <!-- Hero text block -->
+    <rect x="234" y="142" width="168" height="20" rx="5" fill="#3B82F6" fill-opacity="0.2"/>
+    <rect x="234" y="170" width="128" height="20" rx="5" fill="#3B82F6" fill-opacity="0.18"/>
+    <rect x="234" y="198" width="156" height="11" rx="3" fill="#3B82F6" fill-opacity="0.09"/>
+    <rect x="234" y="214" width="116" height="11" rx="3" fill="#3B82F6" fill-opacity="0.09"/>
+    <rect x="234" y="230" width="136" height="11" rx="3" fill="#3B82F6" fill-opacity="0.09"/>
+    <!-- Primary CTA button glow -->
+    <rect x="234" y="254" width="108" height="34" rx="8" fill="#3B82F6" fill-opacity="0.28"/>
+    <rect x="234" y="254" width="108" height="34" rx="8" fill="none" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.5"/>
+    <rect x="350" y="257" width="72" height="28" rx="6" fill="none" stroke="#3B82F6" stroke-width="0.8" stroke-opacity="0.25"/>
+    <!-- Right-side image placeholder -->
+    <rect x="442" y="136" width="158" height="112" rx="8" fill="#3B82F6" fill-opacity="0.07" stroke="#3B82F6" stroke-width="0.5" stroke-opacity="0.2"/>
+    <!-- Image placeholder icon -->
+    <circle cx="521" cy="180" r="14" fill="#3B82F6" fill-opacity="0.06"/>
+    <polyline points="449,238 472,214 492,228 512,204 550,238 600,238" fill="none" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.15"/>
+    <!-- Nav bar simulation -->
+    <rect x="234" y="300" width="362" height="1" fill="#3B82F6" fill-opacity="0.12"/>
+    <rect x="234" y="312" width="60" height="10" rx="3" fill="#3B82F6" fill-opacity="0.1"/>
+    <rect x="304" y="312" width="48" height="10" rx="3" fill="#3B82F6" fill-opacity="0.07"/>
+    <rect x="362" y="312" width="56" height="10" rx="3" fill="#3B82F6" fill-opacity="0.07"/>
+    <rect x="428" y="312" width="44" height="10" rx="3" fill="#3B82F6" fill-opacity="0.07"/>
+    <!-- Window border highlight -->
+    <rect x="210" y="88" width="420" height="296" rx="12"
+          fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-opacity="0.45"
+          filter="url(#lineGlow)"/>
+
+    <!-- === NETWORK CONNECTIONS === -->
+    <!-- Primary connection lines -->
+    <g fill="none" stroke="#3B82F6" stroke-opacity="0.18" stroke-width="1">
+      <line x1="75" y1="172" x2="210" y2="196"/>
+      <line x1="75" y1="172" x2="75" y2="392"/>
+      <line x1="75" y1="392" x2="175" y2="510"/>
+      <line x1="725" y1="144" x2="630" y2="190"/>
+      <line x1="725" y1="144" x2="725" y2="316"/>
+      <line x1="725" y1="316" x2="630" y2="370"/>
+      <line x1="630" y1="370" x2="630" y2="190"/>
+      <line x1="175" y1="510" x2="400" y2="496"/>
+      <line x1="400" y1="496" x2="630" y2="370"/>
+      <line x1="138" y1="72" x2="210" y2="124"/>
+      <line x1="138" y1="72" x2="75" y2="172"/>
+      <line x1="678" y1="514" x2="725" y2="316"/>
+      <line x1="678" y1="514" x2="400" y2="496"/>
+    </g>
+    <!-- Satellite lines -->
+    <g fill="none" stroke="#3B82F6" stroke-opacity="0.12" stroke-width="0.8">
+      <line x1="75" y1="172" x2="36" y2="92"/>
+      <line x1="725" y1="316" x2="768" y2="414"/>
+      <line x1="175" y1="510" x2="116" y2="562"/>
+      <line x1="400" y1="496" x2="400" y2="558"/>
+      <line x1="725" y1="144" x2="768" y2="78"/>
+    </g>
+    <!-- Curved data-flow paths -->
+    <g fill="none">
+      <path d="M 75 172 Q 196 232 420 232 Q 554 232 630 190"
+            stroke="#3B82F6" stroke-width="1.2" stroke-opacity="0.14"/>
+      <path d="M 75 392 Q 236 372 420 354 Q 558 344 630 370"
+            stroke="#60A5FA" stroke-width="0.9" stroke-opacity="0.1"/>
+      <path d="M 138 72 Q 352 54 554 96 Q 674 118 725 144"
+            stroke="#3B82F6" stroke-width="0.9" stroke-opacity="0.12"/>
+    </g>
+
+    <!-- === NODES === -->
+    <!-- Glow halos behind major nodes -->
+    <ellipse cx="75" cy="172" rx="36" ry="36" fill="url(#orbBlue)" opacity="0.35"/>
+    <ellipse cx="725" cy="144" rx="30" ry="30" fill="url(#orbCyan)" opacity="0.28"/>
+    <ellipse cx="400" cy="496" rx="44" ry="44" fill="url(#orbBlue)" opacity="0.22"/>
+
+    <!-- Major node: top-left -->
+    <circle cx="75" cy="172" r="8" fill="#07111F" stroke="#3B82F6" stroke-width="2" filter="url(#nodeGlow)"/>
+    <circle cx="75" cy="172" r="3.5" fill="#3B82F6"/>
+    <circle cx="75" cy="172" r="13" fill="none" stroke="#3B82F6" stroke-width="0.6" stroke-opacity="0.35"/>
+
+    <!-- Major node: top-right -->
+    <circle cx="725" cy="144" r="8" fill="#07111F" stroke="#60A5FA" stroke-width="2" filter="url(#nodeGlow)"/>
+    <circle cx="725" cy="144" r="3.5" fill="#60A5FA"/>
+    <circle cx="725" cy="144" r="13" fill="none" stroke="#60A5FA" stroke-width="0.6" stroke-opacity="0.3"/>
+
+    <!-- Major node: bottom-center -->
+    <circle cx="400" cy="496" r="8" fill="#07111F" stroke="#3B82F6" stroke-width="2" filter="url(#nodeGlow)"/>
+    <circle cx="400" cy="496" r="3.5" fill="#3B82F6"/>
+    <circle cx="400" cy="496" r="14" fill="none" stroke="#3B82F6" stroke-width="0.5" stroke-opacity="0.28"/>
+
+    <!-- Medium nodes -->
+    <circle cx="75" cy="392" r="6" fill="#07111F" stroke="#3B82F6" stroke-width="1.5"/>
+    <circle cx="75" cy="392" r="2.5" fill="#3B82F6"/>
+
+    <circle cx="725" cy="316" r="6" fill="#07111F" stroke="#3B82F6" stroke-width="1.5"/>
+    <circle cx="725" cy="316" r="2.5" fill="#3B82F6"/>
+
+    <circle cx="630" cy="190" r="5" fill="#07111F" stroke="#60A5FA" stroke-width="1.5"/>
+    <circle cx="630" cy="190" r="2" fill="#60A5FA"/>
+
+    <circle cx="630" cy="370" r="5" fill="#07111F" stroke="#3B82F6" stroke-width="1.5"/>
+    <circle cx="630" cy="370" r="2" fill="#3B82F6"/>
+
+    <circle cx="175" cy="510" r="5" fill="#07111F" stroke="#3B82F6" stroke-width="1.5"/>
+    <circle cx="175" cy="510" r="2" fill="#3B82F6"/>
+
+    <circle cx="678" cy="514" r="5" fill="#07111F" stroke="#60A5FA" stroke-width="1.5"/>
+    <circle cx="678" cy="514" r="2" fill="#60A5FA"/>
+
+    <circle cx="138" cy="72" r="5" fill="#07111F" stroke="#3B82F6" stroke-width="1.5"/>
+    <circle cx="138" cy="72" r="2" fill="#3B82F6"/>
+
+    <!-- Small satellite nodes -->
+    <circle cx="36" cy="92" r="3" fill="#3B82F6" fill-opacity="0.55"/>
+    <circle cx="768" cy="414" r="3" fill="#60A5FA" fill-opacity="0.5"/>
+    <circle cx="116" cy="562" r="3" fill="#3B82F6" fill-opacity="0.5"/>
+    <circle cx="400" cy="558" r="3" fill="#3B82F6" fill-opacity="0.5"/>
+    <circle cx="768" cy="78" r="3" fill="#60A5FA" fill-opacity="0.5"/>
+
+    <!-- Ambient scatter dots -->
+    <circle cx="344" cy="56" r="1.8" fill="#3B82F6" fill-opacity="0.28"/>
+    <circle cx="524" cy="40" r="1.8" fill="#3B82F6" fill-opacity="0.28"/>
+    <circle cx="762" cy="240" r="1.8" fill="#3B82F6" fill-opacity="0.28"/>
+    <circle cx="28" cy="298" r="1.8" fill="#3B82F6" fill-opacity="0.28"/>
+    <circle cx="198" cy="448" r="1.8" fill="#60A5FA" fill-opacity="0.28"/>
+    <circle cx="564" cy="440" r="1.8" fill="#3B82F6" fill-opacity="0.28"/>
+    <circle cx="490" cy="560" r="1.8" fill="#3B82F6" fill-opacity="0.22"/>
+    <circle cx="310" cy="558" r="1.8" fill="#3B82F6" fill-opacity="0.22"/>
+
+    <!-- === DECORATIVE HEXAGONS === -->
+    <!-- Top-right -->
+    <polygon points="700,42 718,32 736,42 736,64 718,74 700,64"
+             fill="none" stroke="#3B82F6" stroke-width="0.8" stroke-opacity="0.18"/>
+    <!-- Bottom-left -->
+    <polygon points="30,496 48,486 66,496 66,518 48,528 30,518"
+             fill="none" stroke="#3B82F6" stroke-width="0.8" stroke-opacity="0.14"/>
+
+    <!-- === CODE-LINE ACCENT (right bottom corner) === -->
+    <g fill="#3B82F6" fill-opacity="0.1">
+      <rect x="750" y="518" width="40" height="3" rx="1.5"/>
+      <rect x="750" y="526" width="30" height="3" rx="1.5"/>
+      <rect x="750" y="534" width="36" height="3" rx="1.5"/>
+      <rect x="750" y="542" width="22" height="3" rx="1.5"/>
+      <rect x="750" y="550" width="34" height="3" rx="1.5"/>
+    </g>
+    <!-- Left side code accent -->
+    <g fill="#3B82F6" fill-opacity="0.08">
+      <rect x="6" y="474" width="52" height="3" rx="1.5"/>
+      <rect x="6" y="482" width="38" height="3" rx="1.5"/>
+      <rect x="6" y="490" width="56" height="3" rx="1.5"/>
+      <rect x="6" y="498" width="28" height="3" rx="1.5"/>
+      <rect x="6" y="506" width="46" height="3" rx="1.5"/>
+    </g>
+
+    <!-- Edge fade overlays -->
+    <rect width="800" height="600" fill="url(#fadeLeft)"/>
+    <rect width="800" height="600" fill="url(#fadeRight)"/>
+    <rect width="800" height="600" fill="url(#fadeBottom)"/>
+    <rect width="800" height="600" fill="url(#fadeTop)"/>
+  </g>
+</svg>
