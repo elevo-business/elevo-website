@@ -3,162 +3,592 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Akropolis Aachen — Griechisches Restaurant</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { overflow-x: hidden; }
-    body { background: #0D0905; color: #F5F0E8; font-family: 'Outfit', sans-serif; overflow-x: hidden; min-height: 100vh; }
-    .nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; border-bottom: 1px solid rgba(212,175,55,0.2); }
-    .logo { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.3rem; color: #D4AF37; letter-spacing: 0.05em; }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a { color: #A0916E; text-decoration: none; font-size: 0.9rem; }
-    .nav-links a:hover { color: #F5F0E8; }
-    .btn { background: #D4AF37; color: #0D0905; padding: 10px 22px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-weight: 600; text-decoration: none; font-size: 0.9rem; }
-
-    /* ── Hero: verbesserte Version der bestehenden Struktur ── */
-    .hero {
-      position: relative;
-      padding: 120px 48px 100px;
-      text-align: center;
-      overflow: hidden;
-    }
-    /* Hintergrund-Schichten */
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,175,55,0.13) 0%, transparent 65%),
-        radial-gradient(ellipse 60% 40% at 20% 100%, rgba(120,60,10,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(120,60,10,0.10) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    /* Dekoratives Mäander-Muster oben */
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.6) 20%, #D4AF37 50%, rgba(212,175,55,0.6) 80%, transparent 100%);
-      pointer-events: none;
-    }
-    .hero > * { position: relative; z-index: 1; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: #D4AF37; margin-bottom: 24px; letter-spacing: 0.08em; text-transform: uppercase; }
-    .hero h1 { font-family: 'Sora', sans-serif; font-size: clamp(2.8rem, 5vw, 4rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 20px; }
-    .hero h1 span { color: #D4AF37; }
-    .hero p { color: #A0916E; font-size: 1.1rem; line-height: 1.7; margin-bottom: 40px; max-width: 560px; margin-left: auto; margin-right: auto; }
-    .hero-ctas { display: flex; gap: 16px; justify-content: center; }
-    .btn-outline { border: 1px solid rgba(212,175,55,0.4); color: #D4AF37; padding: 10px 22px; border-radius: 8px; text-decoration: none; font-size: 0.9rem; }
-
-    /* Dekorativer Mäander-Trenner unter dem Hero */
-    .hero-meander {
-      display: block;
-      width: 100%;
-      height: 18px;
-      opacity: 0.35;
-    }
-
-    .stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid rgba(212,175,55,0.15); border-bottom: 1px solid rgba(212,175,55,0.15); }
-    .stat { padding: 32px 48px; text-align: center; border-right: 1px solid rgba(212,175,55,0.15); }
-    .stat:last-child { border-right: none; }
-    .stat-val { font-family: 'Sora', sans-serif; font-size: 2.5rem; font-weight: 800; color: #D4AF37; }
-    .stat-label { color: #A0916E; font-size: 0.85rem; margin-top: 6px; }
-    .menu-section { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
-    .menu-section h2 { font-family: 'Sora', sans-serif; font-size: 2.2rem; font-weight: 800; text-align: center; margin-bottom: 48px; }
-    .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .menu-card { background: rgba(212,175,55,0.04); border: 1px solid rgba(212,175,55,0.15); border-radius: 12px; padding: 28px; }
-    .menu-category { font-size: 0.7rem; color: #D4AF37; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
-    .menu-item { padding: 12px 0; border-bottom: 1px solid rgba(212,175,55,0.08); display: flex; justify-content: space-between; }
-    .menu-item:last-child { border-bottom: none; }
-    .item-name { font-size: 0.9rem; font-weight: 500; }
-    .item-price { color: #D4AF37; font-weight: 600; font-size: 0.9rem; }
-    .cta-section { padding: 80px 48px; text-align: center; background: rgba(212,175,55,0.03); }
-    .cta-section h2 { font-family: 'Sora', sans-serif; font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; }
-    .cta-section p { color: #A0916E; margin-bottom: 32px; }
-    footer { border-top: 1px solid rgba(212,175,55,0.15); padding: 32px 48px; text-align: center; color: #64748B; font-size: 0.8rem; }
-    footer a { color: #D4AF37; text-decoration: none; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akropolis — Griechisches Restaurant Geilenkirchen</title>
+    <meta name="description" content="Akropolis — Authentische griechische Küche in Geilenkirchen. Erleben Sie mediterrane Gastfreundschaft, frische Zutaten und unvergessliche Momente.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/demos/akropolis/styles.css">
 </head>
 <body>
-  <nav class="nav">
-    <div class="logo">AKROPOLIS</div>
-    <ul class="nav-links">
-      <li><a href="#">Speisekarte</a></li>
-      <li><a href="#">Reservierung</a></li>
-      <li><a href="#">Über uns</a></li>
-      <li><a href="#">Kontakt</a></li>
-    </ul>
-    <a href="#" class="btn">Tisch reservieren</a>
-  </nav>
 
-  <div class="hero">
-    <div class="hero-badge">Griechische Küche · Aachen · Seit 1998</div>
-    <h1>Authentisch griechisch.<br><span>Herz von Aachen.</span></h1>
-    <p>Erlebe die Aromen Griechenlands mitten in Aachen. Frische Zutaten, traditionsreiche Rezepte und eine Atmosphäre, die dich direkt ans Mittelmeer versetzt.</p>
-    <div class="hero-ctas">
-      <a href="#" class="btn">Jetzt reservieren</a>
-      <a href="#" class="btn-outline">Zur Speisekarte</a>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-logo">AKROPOLIS</div>
+            <div class="preloader-line"></div>
+        </div>
     </div>
-  </div>
 
-  <!-- Dekorativer Mäander-Trenner -->
-  <svg class="hero-meander" viewBox="0 0 800 18" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M0 9 L9 9 L9 1 L18 1 L18 9 L27 9 L27 17 L36 17 L36 9 L45 9 L45 1 L54 1 L54 9 L63 9 L63 17 L72 17 L72 9 L81 9 L81 1 L90 1 L90 9 L99 9 L99 17 L108 17 L108 9 L117 9 L117 1 L126 1 L126 9 L135 9 L135 17 L144 17 L144 9 L153 9 L153 1 L162 1 L162 9 L171 9 L171 17 L180 17 L180 9 L189 9 L189 1 L198 1 L198 9 L207 9 L207 17 L216 17 L216 9 L225 9 L225 1 L234 1 L234 9 L243 9 L243 17 L252 17 L252 9 L261 9 L261 1 L270 1 L270 9 L279 9 L279 17 L288 17 L288 9 L297 9 L297 1 L306 1 L306 9 L315 9 L315 17 L324 17 L324 9 L333 9 L333 1 L342 1 L342 9 L351 9 L351 17 L360 17 L360 9 L369 9 L369 1 L378 1 L378 9 L387 9 L387 17 L396 17 L396 9 L405 9 L405 1 L414 1 L414 9 L423 9 L423 17 L432 17 L432 9 L441 9 L441 1 L450 1 L450 9 L459 9 L459 17 L468 17 L468 9 L477 9 L477 1 L486 1 L486 9 L495 9 L495 17 L504 17 L504 9 L513 9 L513 1 L522 1 L522 9 L531 9 L531 17 L540 17 L540 9 L549 9 L549 1 L558 1 L558 9 L567 9 L567 17 L576 17 L576 9 L585 9 L585 1 L594 1 L594 9 L603 9 L603 17 L612 17 L612 9 L621 9 L621 1 L630 1 L630 9 L639 9 L639 17 L648 17 L648 9 L657 9 L657 1 L666 1 L666 9 L675 9 L675 17 L684 17 L684 9 L693 9 L693 1 L702 1 L702 9 L711 9 L711 17 L720 17 L720 9 L729 9 L729 1 L738 1 L738 9 L747 9 L747 17 L756 17 L756 9 L765 9 L765 1 L774 1 L774 9 L783 9 L783 17 L792 17 L792 9 L800 9" stroke="#D4AF37" stroke-width="1.5" fill="none"/>
-  </svg>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <svg class="nav-logo-icon" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 12C2 12 6 10 20 10C34 10 38 12 38 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M4 12C2 12 0 11 0 9C0 7 2 6 4 6L36 6C38 6 40 7 40 9C40 11 38 12 36 12" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="8" y1="14" x2="8" y2="44" stroke="currentColor" stroke-width="2.5"/>
+                    <line x1="20" y1="14" x2="20" y2="44" stroke="currentColor" stroke-width="2.5"/>
+                    <line x1="32" y1="14" x2="32" y2="44" stroke="currentColor" stroke-width="2.5"/>
+                </svg>
+                <span class="nav-logo-text">AKROPOLIS</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">Über Uns</a></li>
+                <li><a href="#cuisine">Küche</a></li>
+                <li><a href="#gallery">Galerie</a></li>
+                <li><a href="#menu">Speisekarte</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+            <a href="tel:+4924512345678" class="nav-cta">Reservieren</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
 
-  <div class="stats-bar">
-    <div class="stat">
-      <div class="stat-val">#1</div>
-      <div class="stat-label">Griechisches Restaurant bei Google Aachen</div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-inner">
+            <div class="mobile-menu-brand">
+                <svg class="mobile-menu-icon" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 12C2 12 6 10 20 10C34 10 38 12 38 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M4 12C2 12 0 11 0 9C0 7 2 6 4 6L36 6C38 6 40 7 40 9C40 11 38 12 36 12" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="8" y1="14" x2="8" y2="44" stroke="currentColor" stroke-width="2.5"/>
+                    <line x1="20" y1="14" x2="20" y2="44" stroke="currentColor" stroke-width="2.5"/>
+                    <line x1="32" y1="14" x2="32" y2="44" stroke="currentColor" stroke-width="2.5"/>
+                </svg>
+            </div>
+            <ul class="mobile-menu-links">
+                <li><a href="#about">Über Uns</a></li>
+                <li><a href="#cuisine">Küche</a></li>
+                <li><a href="#gallery">Galerie</a></li>
+                <li><a href="#menu">Speisekarte</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+            <div class="mobile-menu-cta">
+                <a href="tel:+4924512345678" class="mobile-cta-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    Jetzt Reservieren
+                </a>
+            </div>
+            <div class="mobile-menu-hours">
+                <p>Di–Sa: 17:30–22:00</p>
+                <p>So: 11:30–14:30 & 17:30–22:00</p>
+            </div>
+        </div>
     </div>
-    <div class="stat">
-      <div class="stat-val">3×</div>
-      <div class="stat-label">Mehr Reservierungen nach Website-Relaunch</div>
-    </div>
-    <div class="stat">
-      <div class="stat-val">4.9★</div>
-      <div class="stat-label">Google-Bewertung (200+ Reviews)</div>
-    </div>
-  </div>
 
-  <div class="menu-section">
-    <h2>Unsere Speisekarte</h2>
-    <div class="menu-grid">
-      <div class="menu-card">
-        <div class="menu-category">Vorspeisen</div>
-        <div class="menu-item"><span class="item-name">Tzatziki</span><span class="item-price">6,50 €</span></div>
-        <div class="menu-item"><span class="item-name">Taramosalata</span><span class="item-price">7,50 €</span></div>
-        <div class="menu-item"><span class="item-name">Spanakopita</span><span class="item-price">9,00 €</span></div>
-        <div class="menu-item"><span class="item-name">Saganaki</span><span class="item-price">8,50 €</span></div>
-      </div>
-      <div class="menu-card">
-        <div class="menu-category">Hauptgerichte</div>
-        <div class="menu-item"><span class="item-name">Souvlaki (Schwein)</span><span class="item-price">16,50 €</span></div>
-        <div class="menu-item"><span class="item-name">Moussakas</span><span class="item-price">17,50 €</span></div>
-        <div class="menu-item"><span class="item-name">Lammkeule</span><span class="item-price">24,00 €</span></div>
-        <div class="menu-item"><span class="item-name">Gegrillter Fisch</span><span class="item-price">22,00 €</span></div>
-      </div>
-      <div class="menu-card">
-        <div class="menu-category">Desserts</div>
-        <div class="menu-item"><span class="item-name">Baklava</span><span class="item-price">5,50 €</span></div>
-        <div class="menu-item"><span class="item-name">Loukoumades</span><span class="item-price">6,00 €</span></div>
-        <div class="menu-item"><span class="item-name">Galaktoboureko</span><span class="item-price">6,50 €</span></div>
-        <div class="menu-item"><span class="item-name">Griechischer Kaffee</span><span class="item-price">3,50 €</span></div>
-      </div>
+    <!-- Mobile Floating CTA -->
+    <div class="mobile-float-cta" id="mobileFloatCta">
+        <a href="tel:+4924512345678" class="mobile-float-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Reservieren</span>
+        </a>
     </div>
-  </div>
 
-  <div class="cta-section">
-    <h2>Bereit für Griechenland in Aachen?</h2>
-    <p>Reserviere jetzt deinen Tisch — online, schnell, unverbindlich.</p>
-    <a href="#" class="btn" style="font-size:1rem;padding:14px 28px;">Tisch online reservieren</a>
-  </div>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <img src="/demos/akropolis/images/feast-table.jpg" alt="Akropolis Dining Experience">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle reveal">Griechisches Restaurant</p>
+            <h1 class="hero-title reveal">
+                <span class="hero-title-line">Willkommen im</span>
+                <span class="hero-title-accent">Akropolis</span>
+            </h1>
+            <p class="hero-desc reveal">Authentische mediterrane Küche — seit Generationen mit Leidenschaft zubereitet</p>
+            <div class="hero-actions reveal">
+                <a href="#cuisine" class="btn btn-primary">Entdecken</a>
+                <a href="tel:+4924512345678" class="btn btn-outline">Tisch reservieren</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
 
-  <footer>© 2024 Akropolis Aachen · Website von <a href="https://elevo.solutions">ELEVO Webagentur Aachen</a></footer>
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-images">
+                    <div class="about-img about-img-main reveal-left">
+                        <img src="/demos/akropolis/images/exterior.jpg" alt="Akropolis Restaurant Außenansicht">
+                    </div>
+                    <div class="about-img about-img-accent reveal-left" style="animation-delay: 0.2s">
+                        <img src="/demos/akropolis/images/medusa-lamp.jpg" alt="Elegantes Interieur">
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p class="section-label reveal">Über Uns</p>
+                    <h2 class="section-title reveal">Wo Tradition auf <em>Leidenschaft</em> trifft</h2>
+                    <p class="about-desc reveal">
+                        Im Herzen von Geilenkirchen vereinen wir die Aromen Griechenlands mit der Wärme
+                        mediterraner Gastfreundschaft. Jedes Gericht erzählt eine Geschichte — von sonnenverwöhnten
+                        Olivenhainen, kristallklarem Meer und Familienrezepten, die seit Generationen weitergegeben werden.
+                    </p>
+                    <p class="about-desc reveal">
+                        Vasiliki und Georgios Giannoulas laden Sie ein, den Geschmack Griechenlands zu erleben —
+                        in einer Atmosphäre, die Eleganz und Herzlichkeit vereint.
+                    </p>
+                    <div class="about-signature reveal">
+                        <span class="signature-line"></span>
+                        <span class="signature-text">Vasiliki & Georgios Giannoulas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cuisine Section -->
+    <section class="section cuisine" id="cuisine">
+        <div class="cuisine-bg">
+            <img src="/demos/akropolis/images/greece-sea.jpg" alt="Griechisches Meer">
+        </div>
+        <div class="cuisine-overlay"></div>
+        <div class="container">
+            <div class="cuisine-header">
+                <p class="section-label reveal">Unsere Küche</p>
+                <h2 class="section-title section-title-light reveal">Der Geschmack des <em>Mittelmeers</em></h2>
+            </div>
+            <div class="cuisine-grid">
+                <div class="cuisine-card reveal">
+                    <div class="cuisine-card-img">
+                        <img src="/demos/akropolis/images/bruschetta.jpg" alt="Vorspeisen">
+                    </div>
+                    <div class="cuisine-card-content">
+                        <h3>Vorspeisen & Mezze</h3>
+                        <p>Von knusprigem Saganaki bis zu cremigem Tzatziki — unsere Mezze-Auswahl ist eine Reise durch die Aromen Griechenlands.</p>
+                    </div>
+                </div>
+                <div class="cuisine-card reveal" style="animation-delay: 0.15s">
+                    <div class="cuisine-card-img">
+                        <img src="/demos/akropolis/images/octopus.jpg" alt="Meeresfrüchte">
+                    </div>
+                    <div class="cuisine-card-content">
+                        <h3>Vom Meer</h3>
+                        <p>Gegrillter Oktopus, frische Calamares und feinste Fischplatten — zubereitet wie an der griechischen Küste.</p>
+                    </div>
+                </div>
+                <div class="cuisine-card reveal" style="animation-delay: 0.3s">
+                    <div class="cuisine-card-img">
+                        <img src="/demos/akropolis/images/tomahawk.jpg" alt="Vom Grill">
+                    </div>
+                    <div class="cuisine-card-content">
+                        <h3>Vom Grill</h3>
+                        <p>Saftige Souvlaki, zartes Lammfleisch und unser legendäres Tomahawk Steak — perfekt über Kohle gegrillt.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statement Section -->
+    <section class="section statement">
+        <div class="container">
+            <div class="statement-inner reveal">
+                <blockquote class="statement-quote">
+                    „Kochen ist Liebe, die man schmecken kann"
+                </blockquote>
+                <p class="statement-attr">— Unsere Philosophie</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery" id="gallery">
+        <div class="container">
+            <div class="gallery-header">
+                <p class="section-label reveal">Galerie</p>
+                <h2 class="section-title reveal">Momente & <em>Impressionen</em></h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item gallery-item-tall reveal">
+                    <img src="/demos/akropolis/images/tomahawk-seasoning.jpg" alt="Tomahawk Steak">
+                    <div class="gallery-item-overlay">
+                        <span>Tomahawk Steak</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal" style="animation-delay:0.1s">
+                    <img src="/demos/akropolis/images/cocktail.jpg" alt="Signature Cocktail">
+                    <div class="gallery-item-overlay">
+                        <span>Signature Cocktails</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal" style="animation-delay:0.2s">
+                    <img src="/demos/akropolis/images/table-setting.jpg" alt="Tischgedeck">
+                    <div class="gallery-item-overlay">
+                        <span>Ambiance</span>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-item-wide reveal" style="animation-delay:0.15s">
+                    <img src="/demos/akropolis/images/cocktails.jpg" alt="Bar">
+                    <div class="gallery-item-overlay">
+                        <span>Bar & Lounge</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal" style="animation-delay:0.25s">
+                    <img src="/demos/akropolis/images/lifestyle-fun.jpg" alt="Gäste">
+                    <div class="gallery-item-overlay">
+                        <span>Unvergessliche Abende</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal" style="animation-delay:0.3s">
+                    <img src="/demos/akropolis/images/lifestyle-bw.jpg" alt="Lifestyle">
+                    <div class="gallery-item-overlay">
+                        <span>Lebensfreude</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section menu-section" id="menu">
+        <div class="container">
+            <div class="menu-header">
+                <p class="section-label reveal">Speisekarte</p>
+                <h2 class="section-title reveal">Unsere <em>Empfehlungen</em></h2>
+            </div>
+            <div class="menu-tabs reveal">
+                <button class="menu-tab active" data-tab="vorspeisen">Vorspeisen</button>
+                <button class="menu-tab" data-tab="grill">Vom Grill</button>
+                <button class="menu-tab" data-tab="fisch">Fisch</button>
+                <button class="menu-tab" data-tab="spezial">Spezialgerichte</button>
+            </div>
+            <div class="menu-content">
+                <!-- Vorspeisen -->
+                <div class="menu-panel active" id="tab-vorspeisen">
+                    <div class="menu-grid">
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Vorspeisenplatte</h4>
+                                <span class="menu-price">26,00 €</span>
+                            </div>
+                            <p>Kalte & warme Spezialitäten</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Tirosalata</h4>
+                                <span class="menu-price">7,50 €</span>
+                            </div>
+                            <p>Griechische Käsecreme</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Tiropitakia</h4>
+                                <span class="menu-price">9,50 €</span>
+                            </div>
+                            <p>Schafskäse gefüllter Blätterteig & Tzatziki</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Saganaki</h4>
+                                <span class="menu-price">10,50 €</span>
+                            </div>
+                            <p>Gebackener, panierter griechischer Schafskäse</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Oktopus vom Grill</h4>
+                                <span class="menu-price">19,00 €</span>
+                            </div>
+                            <p>Zart gegrillter Oktopus</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Dolmadakia</h4>
+                                <span class="menu-price">9,50 €</span>
+                            </div>
+                            <p>Hackfleisch & Reis gefüllte Weinblätter</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Gebratene Muscheln</h4>
+                                <span class="menu-price">11,00 €</span>
+                            </div>
+                            <p>Mit Knoblauch</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Kapsala</h4>
+                                <span class="menu-price">9,00 €</span>
+                            </div>
+                            <p>Geröstetes Brot mit Kräuterbutter, Tomaten & Fetakäse</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Grill -->
+                <div class="menu-panel" id="tab-grill">
+                    <div class="menu-grid">
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Souvlaki</h4>
+                                <span class="menu-price">17,50 €</span>
+                            </div>
+                            <p>2 Spieße mit Tzatziki, Reis & Salat</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Gyros mit Tzatziki</h4>
+                                <span class="menu-price">18,00 €</span>
+                            </div>
+                            <p>Reis & Salat</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Bifteki mit Feta</h4>
+                                <span class="menu-price">18,50 €</span>
+                            </div>
+                            <p>Gefülltes Hackfleisch, Tzatziki, Reis & Salat</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Lammkoteletts</h4>
+                                <span class="menu-price">36,50 €</span>
+                            </div>
+                            <p>5 Lammkoteletts mit Tzatziki, Reis & Salat</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Rumpsteak 250g</h4>
+                                <span class="menu-price">32,00 €</span>
+                            </div>
+                            <p>Vom Grill, mit gebratenen Zwiebeln & Champignons</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Akropolis-Platte</h4>
+                                <span class="menu-price">100,00 €</span>
+                            </div>
+                            <p>Für 4 Personen — Suzuki, Souvlaki, Gyros, Tzatziki, Reis & Salat</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Tomahawk Steak</h4>
+                                <span class="menu-price">90,00 €</span>
+                            </div>
+                            <p>Auf Vorbestellung — unser Signature Cut</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Schweinefilet</h4>
+                                <span class="menu-price">20,00 €</span>
+                            </div>
+                            <p>Mit Tzatziki, Reis & Salat</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fisch -->
+                <div class="menu-panel" id="tab-fisch">
+                    <div class="menu-grid">
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Calamares</h4>
+                                <span class="menu-price">22,00 €</span>
+                            </div>
+                            <p>Panierte Tintenfischringe mit Knoblauchsauce, Gemüse & Salat</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Scampis</h4>
+                                <span class="menu-price">27,50 €</span>
+                            </div>
+                            <p>Mit Knoblauchsauce, Gemüse & Salat</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Fischplatte für 2</h4>
+                                <span class="menu-price">57,00 €</span>
+                            </div>
+                            <p>Pangasiusfilet, 4 Scampis & Calamares mit Knoblauchsauce</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Gegrilltes Lachsfilet</h4>
+                                <span class="menu-price">26,00 €</span>
+                            </div>
+                            <p>Vom Grill, mit Gemüse & Salat</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Spezialgerichte -->
+                <div class="menu-panel" id="tab-spezial">
+                    <div class="menu-grid">
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Bifteki Metaxasauce</h4>
+                                <span class="menu-price">21,00 €</span>
+                            </div>
+                            <p>Mit Käse überbacken, Pommes frites & Salat</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Lachs in Orangensauce</h4>
+                                <span class="menu-price">28,00 €</span>
+                            </div>
+                            <p>Pommes frites & Salat</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Lammfilet</h4>
+                                <span class="menu-price">29,50 €</span>
+                            </div>
+                            <p>Mit Pommes frites oder Reis, Salat</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Kalbsteak</h4>
+                                <span class="menu-price">32,00 €</span>
+                            </div>
+                            <p>Mit Pommes frites oder Reis, Salat</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Rib-Eye-Steak</h4>
+                                <span class="menu-price">32,00 €</span>
+                            </div>
+                            <p>Mit Pommes frites oder Reis, Salat</p>
+                        </div>
+                        <div class="menu-item reveal">
+                            <div class="menu-item-header">
+                                <h4>Mavrodaphne-Teller</h4>
+                                <span class="menu-price">22,00 €</span>
+                            </div>
+                            <p>Geschnetzelte Hähnchen- oder Schweinemedaillons mit Zwiebeln & Champignons</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drinks Highlight -->
+    <section class="section drinks-section">
+        <div class="drinks-bg">
+            <img src="/demos/akropolis/images/cocktail.jpg" alt="Cocktails">
+        </div>
+        <div class="drinks-overlay"></div>
+        <div class="container">
+            <div class="drinks-content">
+                <p class="section-label section-label-light reveal">Bar & Weine</p>
+                <h2 class="section-title section-title-light reveal">Signature <em>Cocktails</em> & erlesene Weine</h2>
+                <p class="drinks-desc reveal">
+                    Von griechischem Ouzo über erlesene Weine aus Gerovassiliou und Malagousia
+                    bis zu unseren handgemachten Cocktails — der perfekte Begleiter für Ihren Abend.
+                </p>
+                <div class="drinks-highlights reveal">
+                    <div class="drinks-highlight-item">
+                        <span class="drinks-highlight-label">Champagner</span>
+                        <span class="drinks-highlight-name">Moët & Chandon</span>
+                    </div>
+                    <div class="drinks-divider"></div>
+                    <div class="drinks-highlight-item">
+                        <span class="drinks-highlight-label">Weißwein</span>
+                        <span class="drinks-highlight-name">Malagousia trocken</span>
+                    </div>
+                    <div class="drinks-divider"></div>
+                    <div class="drinks-highlight-item">
+                        <span class="drinks-highlight-label">Rotwein</span>
+                        <span class="drinks-highlight-name">Magiko Vouno trocken</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Reservation -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <p class="section-label reveal">Kontakt</p>
+                    <h2 class="section-title reveal">Besuchen Sie <em>uns</em></h2>
+                    <div class="contact-details">
+                        <div class="contact-item reveal">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <div>
+                                <h4>Adresse</h4>
+                                <p>Dohlenweg 5<br>52511 Geilenkirchen</p>
+                            </div>
+                        </div>
+                        <div class="contact-item reveal">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            </div>
+                            <div>
+                                <h4>Öffnungszeiten</h4>
+                                <p>Montag: Ruhetag</p>
+                                <p>Dienstag – Samstag: 17:30 – 22:00 Uhr</p>
+                                <p>Sonntag: 11:30 – 14:30 & 17:30 – 22:00 Uhr</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reservation-card" id="reservation">
+                    <div class="reservation-phone-cta">
+                        <div class="reservation-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <h3 class="reservation-title">Tisch reservieren</h3>
+                        <p class="reservation-desc">Rufen Sie uns an — wir freuen uns auf Ihre Reservierung</p>
+                        <a href="tel:+4924512345678" class="reservation-phone-number">02451 234 56 78</a>
+                        <a href="tel:+4924512345678" class="btn btn-primary btn-full">Jetzt anrufen</a>
+                        <p class="reservation-hours">Erreichbar während der Öffnungszeiten</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <div class="footer-logo-wrap">
+                        <svg class="footer-logo-icon" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 12C2 12 6 10 20 10C34 10 38 12 38 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M4 12C2 12 0 11 0 9C0 7 2 6 4 6L36 6C38 6 40 7 40 9C40 11 38 12 36 12" stroke="currentColor" stroke-width="1.5"/>
+                            <line x1="8" y1="14" x2="8" y2="44" stroke="currentColor" stroke-width="2.5"/>
+                            <line x1="20" y1="14" x2="20" y2="44" stroke="currentColor" stroke-width="2.5"/>
+                            <line x1="32" y1="14" x2="32" y2="44" stroke="currentColor" stroke-width="2.5"/>
+                        </svg>
+                        <span class="footer-logo-text">AKROPOLIS</span>
+                    </div>
+                    <p class="footer-tagline">Griechisches Restaurant seit Generationen</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h5>Navigation</h5>
+                        <a href="#about">Über Uns</a>
+                        <a href="#cuisine">Küche</a>
+                        <a href="#gallery">Galerie</a>
+                        <a href="#menu">Speisekarte</a>
+                    </div>
+                    <div class="footer-col">
+                        <h5>Kontakt</h5>
+                        <a href="#">Dohlenweg 5, 52511 Geilenkirchen</a>
+                        <a href="#">Di–Sa: 17:30–22:00</a>
+                        <a href="#">So: 11:30–14:30 & 17:30–22:00</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Akropolis Geilenkirchen. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/demos/akropolis/script.js" is:inline></script>
 </body>
 </html>
