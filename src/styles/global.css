@@ -918,6 +918,19 @@ section { position: relative; }
 
 .result-card:hover::before { opacity: 1; }
 
+.result-visual {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  color: var(--accent);
+  opacity: 0.1;
+  pointer-events: none;
+  transition: opacity var(--transition);
+}
+.result-card:hover .result-visual { opacity: 0.2; }
+
 .result-tag {
   display: inline-block;
   background: rgba(74, 128, 240, 0.1);
@@ -1048,7 +1061,7 @@ section { position: relative; }
 .service-card.featured:hover { box-shadow: 0 20px 60px rgba(74, 128, 240, 0.15); }
 
 .service-icon {
-  width: 52px; height: 52px;
+  width: 64px; height: 64px;
   background: rgba(74, 128, 240, 0.1);
   border: 1px solid rgba(74, 128, 240, 0.2);
   border-radius: 12px;
