@@ -210,7 +210,11 @@ section { position: relative; }
 
 .logo-icon { width: 36px; height: 36px; flex-shrink: 0; }
 
-.nav-logo .v-accent { color: var(--accent); }
+.nav-logo .v-accent {
+  color: var(--accent);
+  letter-spacing: -0.2em;
+  margin-left: -0.03em;
+}
 
 .nav-links {
   display: flex;
