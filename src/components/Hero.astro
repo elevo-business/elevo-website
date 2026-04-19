@@ -8,6 +8,7 @@ interface Props {
   secondaryCtaText?: string;
   secondaryCtaHref?: string;
   showStats?: boolean;
+  showVisual?: boolean;
 }
 
 const {
@@ -19,14 +20,16 @@ const {
   secondaryCtaText,
   secondaryCtaHref,
   showStats = false,
+  showVisual = false,
 } = Astro.props;
 ---
 
-<section id="hero" aria-label="Hero">
+<section id="hero" aria-label="Hero" class:list={[{ 'hero-has-visual': showVisual }]}>
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="hero-grid" aria-hidden="true"></div>
   <div class="container">
-    <div class="hero-content">
+    <div class="hero-layout">
+    <div class="hero-content" class:list={[{ 'hero-content-left': showVisual }]}>
       {badge && (
         <div class="hero-badge">
           <span class="dot" aria-hidden="true"></span>
@@ -71,6 +74,57 @@ const {
           </div>
         </div>
       )}
+    </div>
+
+    {showVisual && (
+      <div class="hero-visual-wrap" aria-hidden="true">
+        <div class="hero-device">
+          <!-- Browser mockup -->
+          <div class="hd-browser">
+            <div class="hd-browser-bar">
+              <span class="hd-dot"></span><span class="hd-dot"></span><span class="hd-dot"></span>
+              <div class="hd-url">elevo.solutions</div>
+            </div>
+            <div class="hd-browser-body">
+              <!-- Fake website preview inside browser -->
+              <div class="hd-site-header"></div>
+              <div class="hd-site-hero">
+                <div class="hd-site-title"></div>
+                <div class="hd-site-sub"></div>
+                <div class="hd-site-btn"></div>
+              </div>
+              <div class="hd-metrics">
+                <div class="hd-metric">
+                  <div class="hd-metric-val">+62%</div>
+                  <div class="hd-metric-bar"><div class="hd-metric-fill" style="width:62%"></div></div>
+                </div>
+                <div class="hd-metric">
+                  <div class="hd-metric-val">+3×</div>
+                  <div class="hd-metric-bar"><div class="hd-metric-fill" style="width:85%"></div></div>
+                </div>
+                <div class="hd-metric">
+                  <div class="hd-metric-val">12h</div>
+                  <div class="hd-metric-bar"><div class="hd-metric-fill" style="width:48%"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Floating stat cards -->
+          <div class="hd-float hd-float-1">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            <span>+62% Buchungen</span>
+          </div>
+          <div class="hd-float hd-float-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span>#1 bei Google</span>
+          </div>
+          <div class="hd-float hd-float-3">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>6 Wochen Launch</span>
+          </div>
+        </div>
+      </div>
+    )}
     </div>
   </div>
 </section>

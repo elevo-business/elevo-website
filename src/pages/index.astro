@@ -21,6 +21,7 @@ import '../styles/global.css';
     secondaryCtaText="Unsere Referenzen"
     secondaryCtaHref="/referenzen"
     showStats={true}
+    showVisual={true}
   />
 
   <!-- Trusted By -->
@@ -285,6 +286,114 @@ import '../styles/global.css';
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- ROI-Rechner -->
+  <section id="roi" class="section roi-section" aria-labelledby="roi-heading">
+    <div class="container">
+      <header class="section-header">
+        <div class="section-label reveal">Lead-Magnet</div>
+        <h2 id="roi-heading" class="reveal reveal-delay-1">Was bringt dir eine<br>neue Website wirklich?</h2>
+        <p class="reveal reveal-delay-2">Berechne dein Potenzial — in unter 60 Sekunden. Keine E-Mail nötig.</p>
+      </header>
+
+      <div class="roi-card reveal">
+        <div class="roi-inputs">
+          <div class="roi-field">
+            <label for="roi-visitors">Monatliche Website-Besucher</label>
+            <div class="roi-slider-wrap">
+              <input type="range" id="roi-visitors" min="100" max="50000" step="100" value="1000" class="roi-slider" aria-valuemin="100" aria-valuemax="50000" />
+              <span class="roi-slider-val" id="roi-visitors-val">1.000</span>
+            </div>
+          </div>
+
+          <div class="roi-field">
+            <label for="roi-cr">Aktuelle Conversion-Rate (%)</label>
+            <div class="roi-slider-wrap">
+              <input type="range" id="roi-cr" min="0.1" max="5" step="0.1" value="0.5" class="roi-slider" aria-valuemin="0.1" aria-valuemax="5" />
+              <span class="roi-slider-val" id="roi-cr-val">0,5%</span>
+            </div>
+          </div>
+
+          <div class="roi-field">
+            <label for="roi-value">Durchschn. Kundenwert (€)</label>
+            <div class="roi-slider-wrap">
+              <input type="range" id="roi-value" min="500" max="50000" step="500" value="3000" class="roi-slider" aria-valuemin="500" aria-valuemax="50000" />
+              <span class="roi-slider-val" id="roi-value-val">3.000 €</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="roi-result" aria-live="polite" aria-atomic="true">
+          <div class="roi-result-inner">
+            <p class="roi-result-label">Dein monatliches Potenzial mit ELEVO</p>
+            <div class="roi-result-num" id="roi-output">+6.000 €<span class="roi-result-month">/Monat</span></div>
+            <p class="roi-result-sub" id="roi-sub">+2 Kunden/Monat durch Ø 2,5% Conversion-Rate</p>
+          </div>
+          <a href="#kontakt" class="btn-primary roi-cta">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Potenzial jetzt ausschöpfen
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const visitorsEl = document.getElementById('roi-visitors') as HTMLInputElement;
+      const crEl = document.getElementById('roi-cr') as HTMLInputElement;
+      const valueEl = document.getElementById('roi-value') as HTMLInputElement;
+      const outputEl = document.getElementById('roi-output')!;
+      const subEl = document.getElementById('roi-sub')!;
+      const visitorsVal = document.getElementById('roi-visitors-val')!;
+      const crVal = document.getElementById('roi-cr-val')!;
+      const valueVal = document.getElementById('roi-value-val')!;
+
+      function fmt(n: number) {
+        return n.toLocaleString('de-DE');
+      }
+
+      let animFrame: number | null = null;
+      let currentRevenue = 6000;
+
+      function animateResult(target: number) {
+        if (animFrame) cancelAnimationFrame(animFrame);
+        const start = currentRevenue;
+        const diff = target - start;
+        const duration = 600;
+        const t0 = performance.now();
+
+        function step(now: number) {
+          const p = Math.min((now - t0) / duration, 1);
+          const ease = 1 - Math.pow(1 - p, 3);
+          const val = Math.round(start + diff * ease);
+          outputEl.innerHTML = `+${fmt(val)} €<span class="roi-result-month">/Monat</span>`;
+          if (p < 1) animFrame = requestAnimationFrame(step);
+          else { currentRevenue = target; animFrame = null; }
+        }
+        animFrame = requestAnimationFrame(step);
+      }
+
+      function calculate() {
+        const visitors = parseInt(visitorsEl.value);
+        const currentCr = parseFloat(crEl.value) / 100;
+        const custVal = parseInt(valueEl.value);
+        const targetCr = 0.025;
+        const newCustomers = Math.max(0, Math.round(visitors * (targetCr - currentCr)));
+        const revenue = newCustomers * custVal;
+        const target = Math.max(0, revenue);
+
+        visitorsVal.textContent = fmt(visitors);
+        crVal.textContent = crEl.value.replace('.', ',') + '%';
+        valueVal.textContent = fmt(custVal) + ' €';
+        subEl.textContent = `+${newCustomers} Kunden/Monat durch Ø 2,5% Conversion-Rate`;
+
+        animateResult(target);
+      }
+
+      visitorsEl.addEventListener('input', calculate);
+      crEl.addEventListener('input', calculate);
+      valueEl.addEventListener('input', calculate);
+    </script>
   </section>
 
   <!-- Kontakt -->
