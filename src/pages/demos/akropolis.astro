@@ -6,47 +6,459 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Akropolis Aachen — Griechisches Restaurant</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #0D0905; color: #F5F0E8; font-family: 'Outfit', sans-serif; }
-    .nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; border-bottom: 1px solid rgba(212,175,55,0.2); }
-    .logo { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.3rem; color: #D4AF37; letter-spacing: 0.05em; }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a { color: #A0916E; text-decoration: none; font-size: 0.9rem; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { overflow-x: hidden; scroll-behavior: smooth; }
+    body {
+      background: #0D0905;
+      color: #F5F0E8;
+      font-family: 'Outfit', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ── Nav ── */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 52px;
+      border-bottom: 1px solid rgba(212,175,55,0.15);
+      position: relative;
+      z-index: 10;
+      background: rgba(13,9,5,0.8);
+      backdrop-filter: blur(12px);
+    }
+    .logo {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: #D4AF37;
+      letter-spacing: 0.12em;
+    }
+    .logo span { color: #F5F0E8; font-weight: 400; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { color: #A0916E; text-decoration: none; font-size: 0.875rem; letter-spacing: 0.02em; transition: color 0.2s; }
     .nav-links a:hover { color: #F5F0E8; }
-    .btn { background: #D4AF37; color: #0D0905; padding: 10px 22px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-weight: 600; text-decoration: none; font-size: 0.9rem; }
-    .hero { position: relative; padding: 120px 48px 100px; text-align: center; background: linear-gradient(180deg, rgba(212,175,55,0.05) 0%, transparent 60%); }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: #D4AF37; margin-bottom: 24px; letter-spacing: 0.08em; text-transform: uppercase; }
-    .hero h1 { font-family: 'Sora', sans-serif; font-size: 3.5rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 20px; }
-    .hero h1 span { color: #D4AF37; }
-    .hero p { color: #A0916E; font-size: 1.1rem; line-height: 1.7; margin-bottom: 40px; max-width: 560px; margin-left: auto; margin-right: auto; }
-    .hero-ctas { display: flex; gap: 16px; justify-content: center; }
-    .btn-outline { border: 1px solid rgba(212,175,55,0.4); color: #D4AF37; padding: 10px 22px; border-radius: 8px; text-decoration: none; font-size: 0.9rem; }
-    .stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid rgba(212,175,55,0.15); border-bottom: 1px solid rgba(212,175,55,0.15); }
-    .stat { padding: 32px 48px; text-align: center; border-right: 1px solid rgba(212,175,55,0.15); }
+    .btn {
+      background: #D4AF37;
+      color: #0D0905;
+      padding: 11px 24px;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.875rem;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 80px 52px 60px;
+    }
+
+    /* Background layers */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-glow-left {
+      position: absolute;
+      top: -10%;
+      left: -5%;
+      width: 55%;
+      height: 70%;
+      background: radial-gradient(ellipse at center, rgba(212,175,55,0.12) 0%, transparent 65%);
+    }
+    .hero-glow-right {
+      position: absolute;
+      top: 10%;
+      right: 0;
+      width: 50%;
+      height: 80%;
+      background: radial-gradient(ellipse at 70% 30%, rgba(120,60,10,0.18) 0%, transparent 60%);
+    }
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+
+    /* Decorative arch / visual right side */
+    .hero-visual {
+      position: absolute;
+      right: 52px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: min(420px, 38vw);
+      z-index: 1;
+    }
+    .hero-arch-card {
+      position: relative;
+      border: 1px solid rgba(212,175,55,0.25);
+      border-radius: 200px 200px 24px 24px;
+      overflow: hidden;
+      background: linear-gradient(160deg, rgba(212,175,55,0.06) 0%, rgba(13,9,5,0.4) 60%);
+      padding: 48px 36px 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .hero-arch-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      border-radius: 2px;
+    }
+
+    /* Columns decoration */
+    .hero-columns {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 32px;
+    }
+    .hero-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .col-capital {
+      width: 36px;
+      height: 10px;
+      background: linear-gradient(90deg, rgba(212,175,55,0.3), rgba(212,175,55,0.6), rgba(212,175,55,0.3));
+      border-radius: 3px 3px 0 0;
+    }
+    .col-shaft {
+      width: 14px;
+      flex: 1;
+      height: 90px;
+      background: linear-gradient(180deg, rgba(212,175,55,0.35), rgba(212,175,55,0.15));
+      border-radius: 1px;
+    }
+    .col-base {
+      width: 30px;
+      height: 8px;
+      background: linear-gradient(90deg, rgba(212,175,55,0.25), rgba(212,175,55,0.5), rgba(212,175,55,0.25));
+      border-radius: 0 0 2px 2px;
+    }
+
+    /* Stars row */
+    .hero-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+    .hero-stars svg { color: #D4AF37; }
+    .hero-rating-text {
+      font-family: 'Sora', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #D4AF37;
+      margin-bottom: 4px;
+    }
+    .hero-rating-sub {
+      color: #A0916E;
+      font-size: 0.78rem;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    /* Meander divider in card */
+    .meander-line {
+      width: 100%;
+      height: 16px;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+
+    .hero-card-quote {
+      font-style: italic;
+      color: #C8B87A;
+      font-size: 0.82rem;
+      text-align: center;
+      line-height: 1.6;
+      border-left: 2px solid rgba(212,175,55,0.4);
+      padding-left: 14px;
+      text-align: left;
+    }
+
+    /* Floating badge */
+    .hero-float-badge {
+      position: absolute;
+      top: -14px;
+      right: -10px;
+      background: rgba(13,9,5,0.95);
+      border: 1px solid rgba(212,175,55,0.4);
+      border-radius: 10px;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      color: #D4AF37;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .hero-float-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 6px rgba(34,197,94,0.8);
+      flex-shrink: 0;
+    }
+
+    /* Hero content */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+    }
+    .hero-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212,175,55,0.08);
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 100px;
+      padding: 7px 18px;
+      font-size: 0.72rem;
+      color: #D4AF37;
+      margin-bottom: 28px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #D4AF37;
+      flex-shrink: 0;
+    }
+    .hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 24px;
+    }
+    .hero h1 .accent { color: #D4AF37; }
+    .hero h1 .line-2 { display: block; }
+    .hero-sub {
+      color: #A0916E;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 44px;
+      max-width: 480px;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-outline {
+      border: 1px solid rgba(212,175,55,0.35);
+      color: #D4AF37;
+      padding: 11px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-outline:hover { background: rgba(212,175,55,0.08); border-color: rgba(212,175,55,0.6); }
+
+    /* Bottom meander divider */
+    .hero-bottom-deco {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 24px;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    /* ── Stats Bar ── */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(212,175,55,0.15);
+      border-bottom: 1px solid rgba(212,175,55,0.15);
+      background: rgba(212,175,55,0.02);
+    }
+    .stat {
+      padding: 36px 48px;
+      text-align: center;
+      border-right: 1px solid rgba(212,175,55,0.15);
+      position: relative;
+    }
     .stat:last-child { border-right: none; }
-    .stat-val { font-family: 'Sora', sans-serif; font-size: 2.5rem; font-weight: 800; color: #D4AF37; }
-    .stat-label { color: #A0916E; font-size: 0.85rem; margin-top: 6px; }
-    .menu-section { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
-    .menu-section h2 { font-family: 'Sora', sans-serif; font-size: 2.2rem; font-weight: 800; text-align: center; margin-bottom: 48px; }
+    .stat-val {
+      font-family: 'Sora', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: #D4AF37;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label { color: #A0916E; font-size: 0.82rem; line-height: 1.5; }
+
+    /* ── Menu Section ── */
+    .menu-section { padding: 96px 52px; max-width: 1160px; margin: 0 auto; }
+    .section-eyebrow {
+      text-align: center;
+      font-size: 0.72rem;
+      color: #D4AF37;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .menu-section h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+    }
+    .section-sub {
+      text-align: center;
+      color: #A0916E;
+      font-size: 0.95rem;
+      margin-bottom: 56px;
+    }
     .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .menu-card { background: rgba(212,175,55,0.04); border: 1px solid rgba(212,175,55,0.15); border-radius: 12px; padding: 28px; }
-    .menu-category { font-size: 0.7rem; color: #D4AF37; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
-    .menu-item { padding: 12px 0; border-bottom: 1px solid rgba(212,175,55,0.08); display: flex; justify-content: space-between; }
+    .menu-card {
+      background: rgba(212,175,55,0.03);
+      border: 1px solid rgba(212,175,55,0.12);
+      border-radius: 14px;
+      padding: 28px;
+      transition: border-color 0.2s;
+    }
+    .menu-card:hover { border-color: rgba(212,175,55,0.28); }
+    .menu-category {
+      font-size: 0.68rem;
+      color: #D4AF37;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .menu-category::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(212,175,55,0.2);
+    }
+    .menu-item {
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(212,175,55,0.07);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
     .menu-item:last-child { border-bottom: none; }
-    .item-name { font-size: 0.9rem; font-weight: 500; }
-    .item-price { color: #D4AF37; font-weight: 600; font-size: 0.9rem; }
-    .cta-section { padding: 80px 48px; text-align: center; background: rgba(212,175,55,0.03); }
-    .cta-section h2 { font-family: 'Sora', sans-serif; font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; }
-    .cta-section p { color: #A0916E; margin-bottom: 32px; }
-    footer { border-top: 1px solid rgba(212,175,55,0.15); padding: 32px 48px; text-align: center; color: #64748B; font-size: 0.8rem; }
+    .item-name { font-size: 0.875rem; font-weight: 500; }
+    .item-desc { font-size: 0.75rem; color: #A0916E; margin-top: 2px; }
+    .item-price { color: #D4AF37; font-weight: 600; font-size: 0.9rem; white-space: nowrap; flex-shrink: 0; }
+
+    /* ── CTA Section ── */
+    .cta-section {
+      padding: 96px 52px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(212,175,55,0.04) 0%, transparent 100%);
+      border-top: 1px solid rgba(212,175,55,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, rgba(212,175,55,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-section h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+      position: relative;
+    }
+    .cta-section p { color: #A0916E; margin-bottom: 36px; font-size: 1rem; position: relative; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid rgba(212,175,55,0.1);
+      padding: 36px 52px;
+      text-align: center;
+      color: #4A4035;
+      font-size: 0.78rem;
+    }
     footer a { color: #D4AF37; text-decoration: none; }
+    footer a:hover { opacity: 0.8; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 60px 24px 40px; min-height: auto; }
+      .hero-visual { display: none; }
+      .hero-content { max-width: 100%; }
+      .hero h1 { font-size: 2.4rem; }
+      .stats-bar { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 1px solid rgba(212,175,55,0.15); padding: 28px 24px; }
+      .stat:last-child { border-bottom: none; }
+      .menu-section { padding: 64px 24px; }
+      .menu-grid { grid-template-columns: 1fr; gap: 16px; }
+      .cta-section { padding: 64px 24px; }
+      footer { padding: 28px 24px; }
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2rem; }
+      .hero-ctas { flex-direction: column; }
+      .btn, .btn-outline { text-align: center; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Nav -->
   <nav class="nav">
-    <div class="logo">AKROPOLIS</div>
+    <div class="logo">AKRO<span>POLIS</span></div>
     <ul class="nav-links">
       <li><a href="#">Speisekarte</a></li>
       <li><a href="#">Reservierung</a></li>
@@ -56,64 +468,181 @@
     <a href="#" class="btn">Tisch reservieren</a>
   </nav>
 
-  <div class="hero">
-    <div class="hero-badge">Griechische Küche · Aachen · Seit 1998</div>
-    <h1>Authentisch griechisch.<br><span>Herz von Aachen.</span></h1>
-    <p>Erlebe die Aromen Griechenlands mitten in Aachen. Frische Zutaten, traditionsreiche Rezepte und eine Atmosphäre, die dich direkt ans Mittelmeer versetzt.</p>
-    <div class="hero-ctas">
-      <a href="#" class="btn">Jetzt reservieren</a>
-      <a href="#" class="btn-outline">Zur Speisekarte</a>
+  <!-- Hero -->
+  <section class="hero">
+    <!-- Background -->
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-glow-left"></div>
+      <div class="hero-glow-right"></div>
+      <div class="hero-grain"></div>
     </div>
-  </div>
 
-  <div class="stats-bar">
-    <div class="stat">
+    <!-- Content -->
+    <div class="hero-content">
+      <div class="hero-badge-pill">
+        <span class="hero-badge-dot" aria-hidden="true"></span>
+        Griechische Küche · Aachen · Seit 1998
+      </div>
+      <h1>
+        Authentisch griechisch.
+        <span class="line-2"><span class="accent">Herz von Aachen.</span></span>
+      </h1>
+      <p class="hero-sub">
+        Erlebe die Aromen Griechenlands mitten in Aachen — frische Zutaten, traditionsreiche Rezepte und eine Atmosphäre, die dich direkt ans Mittelmeer versetzt.
+      </p>
+      <div class="hero-ctas">
+        <a href="#" class="btn">Jetzt reservieren</a>
+        <a href="#" class="btn-outline">Zur Speisekarte</a>
+      </div>
+    </div>
+
+    <!-- Visual card -->
+    <div class="hero-visual" aria-hidden="true">
+      <div style="position: relative;">
+        <!-- Floating live badge -->
+        <div class="hero-float-badge">
+          <span class="hero-float-badge-dot"></span>
+          Heute geöffnet · 12–22 Uhr
+        </div>
+        <div class="hero-arch-card">
+          <!-- Columns decoration -->
+          <div class="hero-columns">
+            <div class="hero-column">
+              <div class="col-capital"></div>
+              <div class="col-shaft"></div>
+              <div class="col-base"></div>
+            </div>
+            <div class="hero-column" style="margin-top: 12px;">
+              <div class="col-capital"></div>
+              <div class="col-shaft" style="height: 110px;"></div>
+              <div class="col-base"></div>
+            </div>
+            <div class="hero-column">
+              <div class="col-capital"></div>
+              <div class="col-shaft"></div>
+              <div class="col-base"></div>
+            </div>
+          </div>
+
+          <!-- Rating -->
+          <div class="hero-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="hero-rating-text">4.9★</div>
+          <div class="hero-rating-sub">200+ Google-Bewertungen</div>
+
+          <!-- Divider -->
+          <svg class="meander-line" viewBox="0 0 200 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 8 L8 8 L8 0 L16 0 L16 8 L24 8 L24 16 L32 16 L32 8 L40 8 L40 0 L48 0 L48 8 L56 8 L56 16 L64 16 L64 8 L72 8 L72 0 L80 0 L80 8 L88 8 L88 16 L96 16 L96 8 L104 8 L104 0 L112 0 L112 8 L120 8 L120 16 L128 16 L128 8 L136 8 L136 0 L144 0 L144 8 L152 8 L152 16 L160 16 L160 8 L168 8 L168 0 L176 0 L176 8 L184 8 L184 16 L192 16 L192 8 L200 8" stroke="#D4AF37" stroke-width="1.5" stroke-opacity="0.6"/>
+          </svg>
+
+          <!-- Testimonial -->
+          <blockquote class="hero-card-quote">
+            „Das beste griechische Restaurant in ganz Aachen — absolut authentisch."
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <div class="stats-bar" role="list">
+    <div class="stat" role="listitem">
       <div class="stat-val">#1</div>
-      <div class="stat-label">Griechisches Restaurant bei Google Aachen</div>
+      <div class="stat-label">Griechisches Restaurant<br>bei Google Aachen</div>
     </div>
-    <div class="stat">
+    <div class="stat" role="listitem">
       <div class="stat-val">3×</div>
-      <div class="stat-label">Mehr Reservierungen nach Website-Relaunch</div>
+      <div class="stat-label">Mehr Reservierungen<br>nach Website-Relaunch</div>
     </div>
-    <div class="stat">
+    <div class="stat" role="listitem">
       <div class="stat-val">4.9★</div>
-      <div class="stat-label">Google-Bewertung (200+ Reviews)</div>
+      <div class="stat-label">Google-Bewertung<br>200+ Reviews</div>
     </div>
   </div>
 
+  <!-- Menu Section -->
   <div class="menu-section">
-    <h2>Unsere Speisekarte</h2>
+    <div class="section-eyebrow">Unsere Küche</div>
+    <h2>Speisekarte</h2>
+    <p class="section-sub">Frische Zutaten, traditionsreiche Rezepte — direkt aus Griechenland.</p>
     <div class="menu-grid">
       <div class="menu-card">
         <div class="menu-category">Vorspeisen</div>
-        <div class="menu-item"><span class="item-name">Tzatziki</span><span class="item-price">6,50 €</span></div>
-        <div class="menu-item"><span class="item-name">Taramosalata</span><span class="item-price">7,50 €</span></div>
-        <div class="menu-item"><span class="item-name">Spanakopita</span><span class="item-price">9,00 €</span></div>
-        <div class="menu-item"><span class="item-name">Saganaki</span><span class="item-price">8,50 €</span></div>
+        <div class="menu-item">
+          <div><div class="item-name">Tzatziki</div><div class="item-desc">Joghurt, Knoblauch, Gurke</div></div>
+          <span class="item-price">6,50 €</span>
+        </div>
+        <div class="menu-item">
+          <div><div class="item-name">Taramosalata</div><div class="item-desc">Fischrogen, Olivenöl</div></div>
+          <span class="item-price">7,50 €</span>
+        </div>
+        <div class="menu-item">
+          <div><div class="item-name">Spanakopita</div><div class="item-desc">Blätterteig, Spinat, Feta</div></div>
+          <span class="item-price">9,00 €</span>
+        </div>
+        <div class="menu-item">
+          <div><div class="item-name">Saganaki</div><div class="item-desc">Gebratener Halloumi-Käse</div></div>
+          <span class="item-price">8,50 €</span>
+        </div>
       </div>
       <div class="menu-card">
         <div class="menu-category">Hauptgerichte</div>
-        <div class="menu-item"><span class="item-name">Souvlaki (Schwein)</span><span class="item-price">16,50 €</span></div>
-        <div class="menu-item"><span class="item-name">Moussakas</span><span class="item-price">17,50 €</span></div>
-        <div class="menu-item"><span class="item-name">Lammkeule</span><span class="item-price">24,00 €</span></div>
-        <div class="menu-item"><span class="item-name">Gegrillter Fisch</span><span class="item-price">22,00 €</span></div>
+        <div class="menu-item">
+          <div><div class="item-name">Souvlaki</div><div class="item-desc">Gegrilltes Schweinefleisch, Pita</div></div>
+          <span class="item-price">16,50 €</span>
+        </div>
+        <div class="menu-item">
+          <div><div class="item-name">Moussakas</div><div class="item-desc">Auberginen, Hackfleisch, Béchamel</div></div>
+          <span class="item-price">17,50 €</span>
+        </div>
+        <div class="menu-item">
+          <div><div class="item-name">Lammkeule</div><div class="item-desc">Slow-roasted, Kräuter der Provence</div></div>
+          <span class="item-price">24,00 €</span>
+        </div>
+        <div class="menu-item">
+          <div><div class="item-name">Gegrillter Fisch</div><div class="item-desc">Täglich frisch, Zitrone, Kapern</div></div>
+          <span class="item-price">22,00 €</span>
+        </div>
       </div>
       <div class="menu-card">
-        <div class="menu-category">Desserts</div>
-        <div class="menu-item"><span class="item-name">Baklava</span><span class="item-price">5,50 €</span></div>
-        <div class="menu-item"><span class="item-name">Loukoumades</span><span class="item-price">6,00 €</span></div>
-        <div class="menu-item"><span class="item-name">Galaktoboureko</span><span class="item-price">6,50 €</span></div>
-        <div class="menu-item"><span class="item-name">Griechischer Kaffee</span><span class="item-price">3,50 €</span></div>
+        <div class="menu-category">Desserts & Getränke</div>
+        <div class="menu-item">
+          <div><div class="item-name">Baklava</div><div class="item-desc">Blätterteig, Nüsse, Honig</div></div>
+          <span class="item-price">5,50 €</span>
+        </div>
+        <div class="menu-item">
+          <div><div class="item-name">Loukoumades</div><div class="item-desc">Griechische Donuts, Zimt</div></div>
+          <span class="item-price">6,00 €</span>
+        </div>
+        <div class="menu-item">
+          <div><div class="item-name">Galaktoboureko</div><div class="item-desc">Grießpudding im Teig</div></div>
+          <span class="item-price">6,50 €</span>
+        </div>
+        <div class="menu-item">
+          <div><div class="item-name">Griechischer Kaffee</div><div class="item-desc">Traditionell zubereitet</div></div>
+          <span class="item-price">3,50 €</span>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- CTA Section -->
   <div class="cta-section">
-    <h2>Bereit für Griechenland in Aachen?</h2>
+    <h2>Bereit für Griechenland<br>in Aachen?</h2>
     <p>Reserviere jetzt deinen Tisch — online, schnell, unverbindlich.</p>
-    <a href="#" class="btn" style="font-size:1rem;padding:14px 28px;">Tisch online reservieren</a>
+    <a href="#" class="btn" style="font-size: 1rem; padding: 14px 32px; display: inline-block;">Tisch online reservieren</a>
   </div>
 
-  <footer>© 2024 Akropolis Aachen · Website von <a href="https://elevo.solutions">ELEVO Webagentur Aachen</a></footer>
+  <footer>
+    © 2024 Akropolis Aachen &nbsp;·&nbsp;
+    Elisenbrunnen 1, 52062 Aachen &nbsp;·&nbsp;
+    Website von <a href="https://elevo.solutions" rel="noopener">ELEVO Digital</a>
+  </footer>
+
 </body>
 </html>
