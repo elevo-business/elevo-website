@@ -1,8 +1,8 @@
 ---
 const logoSvg = `<svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <circle cx="18" cy="18" r="17" stroke="#4A80F0" stroke-width="1.5"/>
-  <path d="M10 22L15 17L20 22L25 14" stroke="#4A80F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M8 18L13 13L18 18L23 10" stroke="#E2E8F0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+  <circle cx="18" cy="18" r="17" stroke="#3B82F6" stroke-width="1.5"/>
+  <polyline points="10,13 16,18 10,23" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <polyline points="17,13 23,18 17,23" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>`;
 ---
 
@@ -13,7 +13,7 @@ const logoSvg = `<svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="h
     <div class="nav-inner">
       <a href="/" class="nav-logo" aria-label="ELEVO Startseite">
         <Fragment set:html={logoSvg} />
-        EL<span class="v-accent">E</span>VO
+        ELE<span class="v-accent">V</span>O
       </a>
 
       <ul class="nav-links" role="list">
