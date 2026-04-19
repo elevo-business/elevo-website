@@ -4,7 +4,7 @@
 <form class="contact-form" id="contact-form" novalidate>
   <div class="form-row">
     <div class="form-group">
-      <label class="form-label" for="name">Dein Name *</label>
+      <label class="form-label" for="name">Ihr Name *</label>
       <input class="form-input" type="text" id="name" name="name" placeholder="Max Mustermann" required autocomplete="name">
     </div>
     <div class="form-group">
@@ -28,8 +28,8 @@
     </select>
   </div>
   <div class="form-group">
-    <label class="form-label" for="message">Dein Projekt *</label>
-    <textarea class="form-textarea" id="message" name="message" placeholder="Erzähl uns kurz, was du brauchst und was du dir vorstellst..." required></textarea>
+    <label class="form-label" for="message">Ihr Projekt *</label>
+    <textarea class="form-textarea" id="message" name="message" placeholder="Beschreiben Sie kurz Ihr Projekt und Ihre Ziele..." required></textarea>
   </div>
   <button type="submit" class="form-submit" id="submit-btn">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
@@ -54,13 +54,13 @@
 
     if (!name || !email || !message) {
       formMsg.className = 'form-message error';
-      formMsg.textContent = 'Bitte füll alle Pflichtfelder aus.';
+      formMsg.textContent = 'Bitte füllen Sie alle Pflichtfelder aus.';
       return;
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       formMsg.className = 'form-message error';
-      formMsg.textContent = 'Bitte gib eine gültige E-Mail-Adresse ein.';
+      formMsg.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
       return;
     }
 
@@ -87,7 +87,7 @@
       }
     } catch {
       formMsg.className = 'form-message error';
-      formMsg.textContent = 'Etwas ist schiefgelaufen. Schreib uns direkt: hallo@elevo.solutions';
+      formMsg.textContent = 'Etwas ist schiefgelaufen. Schreib uns direkt: hey@elevo.solutions';
     }
 
     submitBtn.disabled = false;
