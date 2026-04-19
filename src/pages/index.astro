@@ -366,8 +366,8 @@ import '../styles/global.css';
   <section id="roi" class="section roi-section" aria-labelledby="roi-heading">
     <div class="container">
       <header class="section-header">
-        <div class="section-label reveal">Lead-Magnet</div>
-        <h2 id="roi-heading" class="reveal reveal-delay-1">Wo stehst du<br>digital gerade?</h2>
+        <div class="section-label reveal">Potenzial-Rechner</div>
+        <h2 id="roi-heading" class="reveal reveal-delay-1">Wo stehen Sie<br>digital gerade?</h2>
         <p class="reveal reveal-delay-2">Schätzen Sie Ihr digitales Potenzial ein — in 60 Sekunden, ohne Anmeldung.</p>
       </header>
 
@@ -408,23 +408,21 @@ import '../styles/global.css';
     <script>
       const visitorsEl = document.getElementById('roi-visitors') as HTMLInputElement;
       const crEl = document.getElementById('roi-cr') as HTMLInputElement;
-      const valueEl = document.getElementById('roi-value') as HTMLInputElement | null;
       const outputEl = document.getElementById('roi-output')!;
       const subEl = document.getElementById('roi-sub')!;
       const visitorsVal = document.getElementById('roi-visitors-val')!;
       const crVal = document.getElementById('roi-cr-val')!;
-      const valueVal = document.getElementById('roi-value-val');
 
       function fmt(n: number) {
         return n.toLocaleString('de-DE');
       }
 
       let animFrame: number | null = null;
-      let currentCustomers = 2;
+      let currentDisplayVal = 2;
 
       function animateResult(target: number) {
         if (animFrame) cancelAnimationFrame(animFrame);
-        const start = currentCustomers;
+        const start = currentDisplayVal;
         const diff = target - start;
         const duration = 600;
         const t0 = performance.now();
@@ -433,9 +431,9 @@ import '../styles/global.css';
           const p = Math.min((now - t0) / duration, 1);
           const ease = 1 - Math.pow(1 - p, 3);
           const val = Math.round(start + diff * ease);
-          outputEl.innerHTML = `+${val} Anfragen<span class="roi-result-month">/Monat</span>`;
+          outputEl.innerHTML = `+${fmt(val)} Anfragen<span class="roi-result-month">/Monat</span>`;
           if (p < 1) animFrame = requestAnimationFrame(step);
-          else { currentCustomers = target; animFrame = null; }
+          else { currentDisplayVal = target; animFrame = null; }
         }
         animFrame = requestAnimationFrame(step);
       }
@@ -443,20 +441,25 @@ import '../styles/global.css';
       function calculate() {
         const visitors = parseInt(visitorsEl.value);
         const currentCr = parseFloat(crEl.value) / 100;
-        const targetCr = 0.025;
-        const newCustomers = Math.max(0, Math.round(visitors * (targetCr - currentCr)));
+        const currentLeads = Math.round(visitors * currentCr);
+
+        // Ziel-CR: 2,5% oder mindestens 50% über aktueller CR (falls bereits >2,5%)
+        const targetCr = Math.max(0.025, currentCr * 1.5);
+        const potentialLeads = Math.round(visitors * targetCr);
+        const additionalLeads = Math.max(1, potentialLeads - currentLeads);
 
         visitorsVal.textContent = fmt(visitors);
         crVal.textContent = crEl.value.replace('.', ',') + '%';
-        if (valueVal && valueEl) valueVal.textContent = fmt(parseInt(valueEl.value)) + ' €';
-        subEl.textContent = `Bei Ø 2,5% CR: +${newCustomers} Kunden/Monat möglich`;
 
-        animateResult(newCustomers);
+        const targetCrDisplay = (targetCr * 100).toFixed(1).replace('.', ',');
+        subEl.textContent = `Aktuell: ${fmt(currentLeads)} Anfragen/Monat — bei optimierter CR (${targetCrDisplay}%): +${fmt(additionalLeads)} mehr`;
+
+        animateResult(additionalLeads);
       }
 
       visitorsEl.addEventListener('input', calculate);
       crEl.addEventListener('input', calculate);
-      valueEl.addEventListener('input', calculate);
+      calculate();
     </script>
   </section>
 
