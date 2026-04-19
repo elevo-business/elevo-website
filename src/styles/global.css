@@ -1064,6 +1064,17 @@ section { position: relative; }
 }
 .result-card:hover .result-visual { opacity: 0.2; }
 
+.result-logo { display: flex; align-items: center; justify-content: center; }
+.ref-logo-img {
+  max-width: 80px;
+  max-height: 48px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.35;
+  transition: opacity var(--transition);
+}
+.result-card:hover .ref-logo-img { opacity: 0.18; }
+
 .result-tag {
   display: inline-block;
   background: rgba(74, 128, 240, 0.1);
