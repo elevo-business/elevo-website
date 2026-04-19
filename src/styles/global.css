@@ -212,8 +212,8 @@ section { position: relative; }
 
 .nav-logo .v-accent {
   color: var(--accent);
-  letter-spacing: -0.2em;
-  margin-left: -0.03em;
+  letter-spacing: 0;
+  margin: 0 -0.14em 0 -0.06em;
 }
 
 .nav-links {
