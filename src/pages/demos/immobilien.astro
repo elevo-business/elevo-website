@@ -1,0 +1,147 @@
+---
+---
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Immobilien Müller — Ihr Makler in der Region</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #08101E; color: #E2E8F0; font-family: 'Outfit', sans-serif; }
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; border-bottom: 1px solid rgba(59,130,246,0.2); }
+    .logo { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.1rem; color: #E2E8F0; }
+    .logo span { color: #3B82F6; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: #94A3B8; text-decoration: none; font-size: 0.9rem; }
+    .nav-links a:hover { color: #E2E8F0; }
+    .btn { background: #3B82F6; color: #fff; padding: 10px 22px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; font-size: 0.9rem; }
+    .hero { padding: 100px 48px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; max-width: 1200px; margin: 0 auto; align-items: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: #3B82F6; margin-bottom: 24px; }
+    .hero h1 { font-family: 'Sora', sans-serif; font-size: 2.8rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 20px; }
+    .hero h1 span { color: #3B82F6; }
+    .hero p { color: #94A3B8; font-size: 1rem; line-height: 1.7; margin-bottom: 32px; }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-outline { border: 1px solid rgba(59,130,246,0.4); color: #3B82F6; padding: 10px 22px; border-radius: 8px; text-decoration: none; font-size: 0.9rem; }
+    .search-box { background: rgba(59,130,246,0.05); border: 1px solid rgba(59,130,246,0.2); border-radius: 12px; padding: 24px; }
+    .search-title { font-size: 0.8rem; color: #64748B; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+    .search-field { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(59,130,246,0.2); border-radius: 8px; padding: 12px 16px; color: #E2E8F0; font-size: 0.9rem; margin-bottom: 12px; outline: none; font-family: 'Outfit', sans-serif; }
+    .search-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .search-submit { width: 100%; background: #3B82F6; color: #fff; border: none; padding: 12px; border-radius: 8px; font-size: 0.95rem; font-weight: 500; cursor: pointer; margin-top: 4px; font-family: 'Outfit', sans-serif; }
+    .properties { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+    .properties h2 { font-family: 'Sora', sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+    .properties-subtitle { color: #94A3B8; margin-bottom: 40px; }
+    .property-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .property-card { background: rgba(59,130,246,0.04); border: 1px solid rgba(59,130,246,0.15); border-radius: 12px; overflow: hidden; }
+    .property-img { height: 180px; background: linear-gradient(135deg, rgba(59,130,246,0.2) 0%, rgba(59,130,246,0.05) 100%); display: flex; align-items: center; justify-content: center; }
+    .property-img svg { opacity: 0.3; }
+    .property-tag { position: absolute; top: 12px; left: 12px; background: #3B82F6; color: #fff; font-size: 0.7rem; font-weight: 600; padding: 4px 10px; border-radius: 4px; }
+    .property-img-wrap { position: relative; }
+    .property-body { padding: 20px; }
+    .property-price { font-family: 'Sora', sans-serif; font-size: 1.4rem; font-weight: 700; color: #3B82F6; margin-bottom: 4px; }
+    .property-title { font-weight: 500; margin-bottom: 8px; }
+    .property-meta { display: flex; gap: 16px; color: #64748B; font-size: 0.8rem; }
+    .meta-item { display: flex; align-items: center; gap: 4px; }
+    .property-cta { display: block; margin-top: 16px; text-align: center; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); color: #3B82F6; padding: 10px; border-radius: 8px; text-decoration: none; font-size: 0.85rem; }
+    footer { border-top: 1px solid rgba(59,130,246,0.15); padding: 32px 48px; text-align: center; color: #64748B; font-size: 0.8rem; }
+    footer a { color: #3B82F6; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="logo">Immobilien <span>Müller</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Kaufen</a></li>
+      <li><a href="#">Mieten</a></li>
+      <li><a href="#">Verkaufen</a></li>
+      <li><a href="#">Über uns</a></li>
+    </ul>
+    <a href="#" class="btn">Kostenlose Bewertung</a>
+  </nav>
+
+  <div class="hero">
+    <div>
+      <div class="hero-badge">
+        <span style="width:8px;height:8px;background:#10B981;border-radius:50%;"></span>
+        Ihr regionaler Immobilienmakler
+      </div>
+      <h1>Ihr Traumhaus.<br><span>Wir finden es.</span></h1>
+      <p>Über 20 Jahre Erfahrung in der Region. Wir begleiten Sie beim Kauf, Verkauf und der Vermietung Ihrer Immobilie — persönlich, kompetent, erfolgreich.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn">Immobilien suchen</a>
+        <a href="#" class="btn-outline">Kostenlose Bewertung</a>
+      </div>
+    </div>
+    <div class="search-box">
+      <div class="search-title">Immobilie finden</div>
+      <select class="search-field" style="cursor:pointer;appearance:none;">
+        <option>Kaufen</option><option>Mieten</option>
+      </select>
+      <input class="search-field" type="text" placeholder="Ort, PLZ oder Stadtbezirk" readonly />
+      <div class="search-row">
+        <select class="search-field" style="cursor:pointer;"><option>Alle Immobilientypen</option><option>Haus</option><option>Wohnung</option></select>
+        <select class="search-field" style="cursor:pointer;"><option>Alle Preise</option><option>bis 200.000 €</option><option>bis 400.000 €</option></select>
+      </div>
+      <button class="search-submit">Jetzt suchen →</button>
+    </div>
+  </div>
+
+  <div class="properties">
+    <h2>Aktuelle Objekte</h2>
+    <p class="properties-subtitle">Ausgewählte Immobilien in Ihrer Region</p>
+    <div class="property-grid">
+      <div class="property-card">
+        <div class="property-img-wrap">
+          <div class="property-img"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div class="property-tag">KAUF</div>
+        </div>
+        <div class="property-body">
+          <div class="property-price">485.000 €</div>
+          <div class="property-title">Einfamilienhaus mit Garten</div>
+          <div class="property-meta">
+            <span class="meta-item">🏠 142 m²</span>
+            <span class="meta-item">🛏 4 Zi.</span>
+            <span class="meta-item">📍 Aachen</span>
+          </div>
+          <a href="#" class="property-cta">Details ansehen →</a>
+        </div>
+      </div>
+      <div class="property-card">
+        <div class="property-img-wrap">
+          <div class="property-img"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.5"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="12" y1="3" x2="12" y2="9"/></svg></div>
+          <div class="property-tag">KAUF</div>
+        </div>
+        <div class="property-body">
+          <div class="property-price">295.000 €</div>
+          <div class="property-title">Moderne 3-Zimmer-Wohnung</div>
+          <div class="property-meta">
+            <span class="meta-item">🏠 89 m²</span>
+            <span class="meta-item">🛏 3 Zi.</span>
+            <span class="meta-item">📍 Köln</span>
+          </div>
+          <a href="#" class="property-cta">Details ansehen →</a>
+        </div>
+      </div>
+      <div class="property-card">
+        <div class="property-img-wrap">
+          <div class="property-img"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><line x1="9" y1="22" x2="9" y2="12"/><line x1="15" y1="22" x2="15" y2="12"/><line x1="9" y1="12" x2="15" y2="12"/></svg></div>
+          <div class="property-tag">MIETE</div>
+        </div>
+        <div class="property-body">
+          <div class="property-price">1.450 € / Mo.</div>
+          <div class="property-title">Doppelhaushälfte mit Terrasse</div>
+          <div class="property-meta">
+            <span class="meta-item">🏠 118 m²</span>
+            <span class="meta-item">🛏 4 Zi.</span>
+            <span class="meta-item">📍 Düren</span>
+          </div>
+          <a href="#" class="property-cta">Details ansehen →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>© 2024 Immobilien Müller · Website von <a href="https://elevo.solutions">ELEVO Webagentur Aachen</a></footer>
+</body>
+</html>

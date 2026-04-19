@@ -187,6 +187,84 @@ import '../styles/global.css';
     </div>
   </section>
 
+  <!-- Live Website Viewer -->
+  <section id="live-viewer" class="section" aria-labelledby="viewer-heading">
+    <div class="container">
+      <header class="section-header">
+        <div class="section-label reveal">Live-Einblick</div>
+        <h2 id="viewer-heading" class="reveal reveal-delay-1">Unsere Arbeiten.<br>Live erleben.</h2>
+        <p class="reveal reveal-delay-2">Klicke auf eine Referenz und scrolle direkt durch die echte Website — ohne den Browser zu verlassen.</p>
+      </header>
+
+      <div class="viewer-tabs reveal" role="tablist" aria-label="Referenz-Websites">
+        <button class="viewer-tab active" role="tab" aria-selected="true" aria-controls="viewer-frame" data-url="/demos/greenchild" data-label="Greenchild">
+          <span class="viewer-tab-tag">Investment</span>
+          <span class="viewer-tab-name">Greenchild</span>
+        </button>
+        <button class="viewer-tab" role="tab" aria-selected="false" aria-controls="viewer-frame" data-url="/demos/akropolis" data-label="Akropolis Aachen">
+          <span class="viewer-tab-tag">Restaurant</span>
+          <span class="viewer-tab-name">Akropolis Aachen</span>
+        </button>
+        <button class="viewer-tab" role="tab" aria-selected="false" aria-controls="viewer-frame" data-url="/demos/immobilien" data-label="Immobilien Müller">
+          <span class="viewer-tab-tag">Immobilien</span>
+          <span class="viewer-tab-name">Immobilien Müller</span>
+        </button>
+      </div>
+
+      <div class="viewer-browser reveal reveal-delay-1">
+        <div class="viewer-bar">
+          <div class="viewer-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="viewer-url-wrap">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span class="viewer-url-text" id="viewer-url-text">greenchild.de</span>
+          </div>
+          <a class="viewer-open-btn" id="viewer-open-btn" href="/demos/greenchild" target="_blank" rel="noopener" aria-label="Website in neuem Tab öffnen">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+        <div class="viewer-frame-wrap">
+          <iframe
+            id="viewer-frame"
+            src="/demos/greenchild"
+            title="Greenchild Website"
+            loading="lazy"
+            sandbox="allow-scripts allow-same-origin"
+            class="viewer-iframe"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const tabs = document.querySelectorAll('.viewer-tab');
+      const frame = document.getElementById('viewer-frame') as HTMLIFrameElement;
+      const urlText = document.getElementById('viewer-url-text')!;
+      const openBtn = document.getElementById('viewer-open-btn') as HTMLAnchorElement;
+
+      const urlLabels: Record<string, string> = {
+        '/demos/greenchild': 'greenchild.de',
+        '/demos/akropolis': 'akropolis-aachen.de',
+        '/demos/immobilien': 'immobilien-mueller.de',
+      };
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+          const url = (tab as HTMLElement).dataset.url!;
+          const label = (tab as HTMLElement).dataset.label!;
+          frame.src = url;
+          frame.title = label;
+          urlText.textContent = urlLabels[url] || url;
+          openBtn.href = url;
+        });
+      });
+    </script>
+  </section>
+
   <!-- CTA -->
   <section class="section" aria-labelledby="cta-ref-heading" style="background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-deep) 100%);">
     <div class="container">

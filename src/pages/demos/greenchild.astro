@@ -1,0 +1,127 @@
+---
+---
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Greenchild — Nachhaltig Investieren</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #071A0E; color: #E2F5EA; font-family: 'Outfit', sans-serif; }
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; border-bottom: 1px solid rgba(16,185,129,0.2); }
+    .logo { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.3rem; color: #10B981; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: #94A3B8; text-decoration: none; font-size: 0.9rem; }
+    .nav-links a:hover { color: #E2F5EA; }
+    .btn { background: #10B981; color: #fff; padding: 10px 22px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; font-size: 0.9rem; }
+    .hero { padding: 100px 48px 80px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: #10B981; margin-bottom: 24px; }
+    .hero h1 { font-family: 'Sora', sans-serif; font-size: 3rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 20px; }
+    .hero h1 span { color: #10B981; }
+    .hero p { color: #94A3B8; font-size: 1.1rem; line-height: 1.7; margin-bottom: 32px; }
+    .hero-ctas { display: flex; gap: 16px; }
+    .btn-outline { border: 1px solid rgba(16,185,129,0.4); color: #10B981; padding: 10px 22px; border-radius: 8px; text-decoration: none; font-size: 0.9rem; }
+    .hero-visual { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); border-radius: 16px; padding: 32px; }
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .stat-box { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.15); border-radius: 12px; padding: 20px; }
+    .stat-val { font-family: 'Sora', sans-serif; font-size: 1.8rem; font-weight: 800; color: #10B981; }
+    .stat-label { font-size: 0.75rem; color: #64748B; margin-top: 4px; }
+    .chart-bar { height: 8px; background: rgba(255,255,255,0.08); border-radius: 4px; margin-top: 8px; overflow: hidden; }
+    .chart-fill { height: 100%; background: linear-gradient(90deg, #10B981, #34D399); border-radius: 4px; }
+    section { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+    section h2 { font-family: 'Sora', sans-serif; font-size: 2.2rem; font-weight: 800; margin-bottom: 16px; }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .feature { background: rgba(16,185,129,0.05); border: 1px solid rgba(16,185,129,0.15); border-radius: 12px; padding: 28px; }
+    .feature-icon { width: 48px; height: 48px; background: rgba(16,185,129,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .feature h3 { font-family: 'Sora', sans-serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+    .feature p { color: #64748B; font-size: 0.9rem; line-height: 1.6; }
+    footer { border-top: 1px solid rgba(16,185,129,0.15); padding: 32px 48px; text-align: center; color: #64748B; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="logo">greenchild</div>
+    <ul class="nav-links">
+      <li><a href="#">Investieren</a></li>
+      <li><a href="#">Projekte</a></li>
+      <li><a href="#">Über uns</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+    <a href="#" class="btn">Jetzt starten</a>
+  </nav>
+
+  <div class="hero">
+    <div>
+      <div class="hero-badge">
+        <span style="width:8px;height:8px;background:#10B981;border-radius:50%;"></span>
+        Nachhaltig · Transparent · Wachstum
+      </div>
+      <h1>Nachhaltig <span>investieren.</span><br>Die Zukunft mitgestalten.</h1>
+      <p>Greenchild verbindet Anleger mit verifizierten nachhaltigen Projekten. Transparente Renditen, messbare Wirkung — für eine bessere Welt und dein Portfolio.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn">Portfolio ansehen</a>
+        <a href="#" class="btn-outline">Mehr erfahren</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-val">€ 12M+</div>
+          <div class="stat-label">Investiert</div>
+          <div class="chart-bar"><div class="chart-fill" style="width:78%"></div></div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val">340+</div>
+          <div class="stat-label">Investoren</div>
+          <div class="chart-bar"><div class="chart-fill" style="width:65%"></div></div>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-val">8.4%</div>
+          <div class="stat-label">Ø Rendite p.a.</div>
+          <div class="chart-bar"><div class="chart-fill" style="width:84%"></div></div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val">18</div>
+          <div class="stat-label">Aktive Projekte</div>
+          <div class="chart-bar"><div class="chart-fill" style="width:45%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Warum Greenchild?</h2>
+    <p style="color:#94A3B8;max-width:560px;">Wir prüfen jedes Projekt nach strengen ESG-Kriterien. Nur das Beste für dein Portfolio und den Planeten.</p>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Verifiziert & Sicher</h3>
+        <p>Jedes Projekt wird durch unabhängige Experten geprüft und zertifiziert.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Messbare Rendite</h3>
+        <p>Transparente Berichte und Echtzeit-Tracking deiner Investitionen.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h3>Impact sichtbar</h3>
+        <p>Sieh, wie deine Investition konkret die Welt verbessert — in CO₂, Arbeitsplätzen, Energie.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2024 Greenchild GmbH · Website von <a href="https://elevo.solutions" style="color:#10B981">ELEVO</a></footer>
+</body>
+</html>
