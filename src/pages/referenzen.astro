@@ -197,16 +197,16 @@ import '../styles/global.css';
       </header>
 
       <div class="viewer-tabs reveal" role="tablist" aria-label="Referenz-Websites">
-        <button class="viewer-tab active" role="tab" aria-selected="true" aria-controls="viewer-frame" data-url="/demos/greenchild" data-label="Greenchild">
+        <button class="viewer-tab active" role="tab" aria-selected="true" aria-controls="viewer-frame" data-url="https://greenchild-preview.elevo.solutions" data-label="Greenchild">
           <span class="viewer-tab-tag">Investment</span>
           <span class="viewer-tab-name">Greenchild</span>
         </button>
-        <button class="viewer-tab" role="tab" aria-selected="false" aria-controls="viewer-frame" data-url="/demos/akropolis" data-label="Akropolis Aachen">
+        <button class="viewer-tab" role="tab" aria-selected="false" aria-controls="viewer-frame" data-url="https://akropolis-geilenkirchen.com" data-label="Akropolis Aachen">
           <span class="viewer-tab-tag">Restaurant</span>
           <span class="viewer-tab-name">Akropolis Aachen</span>
         </button>
         <button class="viewer-tab" role="tab" aria-selected="false" aria-controls="viewer-frame" data-url="/demos/immobilien" data-label="Immobilien Müller">
-          <span class="viewer-tab-tag">Immobilien</span>
+          <span class="viewer-tab-tag">Immobilien · Preview</span>
           <span class="viewer-tab-name">Immobilien Müller</span>
         </button>
       </div>
@@ -218,19 +218,18 @@ import '../styles/global.css';
           </div>
           <div class="viewer-url-wrap">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span class="viewer-url-text" id="viewer-url-text">greenchild.de</span>
+            <span class="viewer-url-text" id="viewer-url-text">greenchild-preview.elevo.solutions</span>
           </div>
-          <a class="viewer-open-btn" id="viewer-open-btn" href="/demos/greenchild" target="_blank" rel="noopener" aria-label="Website in neuem Tab öffnen">
+          <a class="viewer-open-btn" id="viewer-open-btn" href="https://greenchild-preview.elevo.solutions" target="_blank" rel="noopener" aria-label="Website in neuem Tab öffnen">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </a>
         </div>
         <div class="viewer-frame-wrap">
           <iframe
             id="viewer-frame"
-            src="/demos/greenchild"
+            src="https://greenchild-preview.elevo.solutions"
             title="Greenchild Website"
             loading="lazy"
-            sandbox="allow-scripts allow-same-origin"
             class="viewer-iframe"
           ></iframe>
         </div>
@@ -244,9 +243,9 @@ import '../styles/global.css';
       const openBtn = document.getElementById('viewer-open-btn') as HTMLAnchorElement;
 
       const urlLabels: Record<string, string> = {
-        '/demos/greenchild': 'greenchild.de',
-        '/demos/akropolis': 'akropolis-aachen.de',
-        '/demos/immobilien': 'immobilien-mueller.de',
+        'https://greenchild-preview.elevo.solutions': 'greenchild-preview.elevo.solutions',
+        'https://akropolis-geilenkirchen.com': 'akropolis-geilenkirchen.com',
+        '/demos/immobilien': 'immobilien-preview.elevo.solutions',
       };
 
       tabs.forEach(tab => {
