@@ -2103,7 +2103,9 @@ section { position: relative; }
 
 @media (max-width: 360px) {
   .container { padding: 0 16px; }
-  .hero-stat { padding: 0 10px; }
+  .hero-stat { padding: 0 10px; min-width: 45%; }
+  .hero-stats { flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .hero-stat-num { font-size: 1.6rem; }
   .warum-visual { grid-template-columns: 1fr 1fr; gap: 8px; }
   .metric-box { padding: 16px 12px; }
   .metric-val { font-size: 1.5rem; }
