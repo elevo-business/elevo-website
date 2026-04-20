@@ -6,7 +6,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Immobilien Müller — Ihr Makler in der Region</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="preload" as="font" href="/fonts/Sora-latin.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="/fonts/Outfit-latin.woff2" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: 'Sora'; font-style: normal; font-weight: 400 800; font-display: swap; src: url('/fonts/Sora-latin.woff2') format('woff2'); }
+    @font-face { font-family: 'Outfit'; font-style: normal; font-weight: 300 600; font-display: swap; src: url('/fonts/Outfit-latin.woff2') format('woff2'); }
+  </style>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #08101E; color: #E2E8F0; font-family: 'Outfit', sans-serif; }
@@ -78,7 +83,7 @@
       <select class="search-field" style="cursor:pointer;appearance:none;">
         <option>Kaufen</option><option>Mieten</option>
       </select>
-      <input class="search-field" type="text" placeholder="Ort, PLZ oder Stadtbezirk" readonly />
+      <input class="search-field" type="text" placeholder="Ort, PLZ oder Stadtbezirk" />
       <div class="search-row">
         <select class="search-field" style="cursor:pointer;"><option>Alle Immobilientypen</option><option>Haus</option><option>Wohnung</option></select>
         <select class="search-field" style="cursor:pointer;"><option>Alle Preise</option><option>bis 200.000 €</option><option>bis 400.000 €</option></select>

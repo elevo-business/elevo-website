@@ -6,8 +6,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Greenchild — Nachhaltig Investieren</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="preload" as="font" href="/fonts/Sora-latin.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="/fonts/Outfit-latin.woff2" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: 'Sora'; font-style: normal; font-weight: 400 800; font-display: swap; src: url('/fonts/Sora-latin.woff2') format('woff2'); }
+    @font-face { font-family: 'Outfit'; font-style: normal; font-weight: 300 600; font-display: swap; src: url('/fonts/Outfit-latin.woff2') format('woff2'); }
+  </style>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #071A0E; color: #E2F5EA; font-family: 'Outfit', sans-serif; }
@@ -120,6 +124,18 @@
         <p>Sieh, wie deine Investition konkret die Welt verbessert — in CO₂, Arbeitsplätzen, Energie.</p>
       </div>
     </div>
+  </section>
+
+  <!-- Lead Magnet Download -->
+  <section style="background:#0C2E20;padding:80px 48px;text-align:center;">
+    <p style="color:#2DD4A0;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">Kostenloser Guide</p>
+    <h2 style="font-family:'Sora',sans-serif;font-size:2rem;font-weight:700;color:#E2F5EA;margin-bottom:16px;">Nachhaltig investieren —<br>der komplette Leitfaden</h2>
+    <p style="color:#94A3B8;max-width:480px;margin:0 auto 32px;">10 Seiten geballtes Wissen: Wie du mit nachhaltigen Investitionen Rendite und Wirkung kombinierst.</p>
+    <a href="/greenchild-leadmagnet.pdf" download="Greenchild-Investitions-Guide.pdf"
+       style="display:inline-flex;align-items:center;gap:10px;background:#00A86B;color:#fff;padding:14px 28px;border-radius:8px;font-family:'Outfit',sans-serif;font-weight:600;text-decoration:none;font-size:1rem;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Guide kostenlos herunterladen
+    </a>
   </section>
 
   <footer>© 2024 Greenchild GmbH · Website von <a href="https://elevo.solutions" style="color:#10B981">ELEVO</a></footer>

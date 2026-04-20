@@ -1,7 +1,8 @@
 ---
+const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solutions/api/contact';
 ---
 
-<form class="contact-form" id="contact-form" novalidate>
+<form class="contact-form" id="contact-form" novalidate data-api-url={apiUrl}>
   <div class="form-row">
     <div class="form-group">
       <label class="form-label" for="name">Ihr Name *</label>
@@ -42,6 +43,7 @@
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
   const formMsg = document.getElementById('form-message')!;
+  const apiUrl = form.dataset.apiUrl!;;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -68,7 +70,7 @@
     submitBtn.textContent = 'Wird gesendet...';
 
     try {
-      const res = await fetch('https://api.elevo.solutions/api/contact', {
+      const res = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, company, service, message, source: 'elevo.solutions' })
