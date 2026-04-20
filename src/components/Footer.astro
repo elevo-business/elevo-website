@@ -113,21 +113,42 @@ const logoSvg = `<svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="h
   }
 
   const stored = localStorage.getItem(COOKIE_KEY);
-  if (stored) {
-    applyConsent(stored === 'granted');
-  } else {
-    document.getElementById('cookie-banner')!.classList.add('show');
+  if (stored) applyConsent(stored === 'granted');
+
+  const banner = document.getElementById('cookie-banner')!;
+  const acceptBtn = document.getElementById('cookie-accept')!;
+  const declineBtn = document.getElementById('cookie-decline')!;
+
+  function showBanner() {
+    banner.classList.add('show');
+    acceptBtn.focus();
   }
 
-  document.getElementById('cookie-accept')!.addEventListener('click', () => {
-    localStorage.setItem(COOKIE_KEY, 'granted');
-    applyConsent(true);
-    document.getElementById('cookie-banner')!.classList.remove('show');
+  function hideBanner() {
+    banner.classList.remove('show');
+  }
+
+  // Focus trap
+  banner.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key !== 'Tab') return;
+    if (e.shiftKey) {
+      if (document.activeElement === acceptBtn) { e.preventDefault(); declineBtn.focus(); }
+    } else {
+      if (document.activeElement === declineBtn) { e.preventDefault(); acceptBtn.focus(); }
+    }
   });
 
-  document.getElementById('cookie-decline')!.addEventListener('click', () => {
+  if (!stored) showBanner();
+
+  acceptBtn.addEventListener('click', () => {
+    localStorage.setItem(COOKIE_KEY, 'granted');
+    applyConsent(true);
+    hideBanner();
+  });
+
+  declineBtn.addEventListener('click', () => {
     localStorage.setItem(COOKIE_KEY, 'denied');
     applyConsent(false);
-    document.getElementById('cookie-banner')!.classList.remove('show');
+    hideBanner();
   });
 </script>
