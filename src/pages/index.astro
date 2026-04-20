@@ -424,8 +424,8 @@ import '../styles/global.css';
 
         const currentLeads = Math.round(visitors * currentCr);
 
-        // Ziel-CR: mindestens 2,5 % oder 1,5× aktuell, maximal 4 % (realistisch)
-        const targetCr = Math.min(Math.max(currentCr * 1.5, 0.025), 0.04);
+        // Ziel-CR: 50 % Verbesserung gegenüber aktuell (monoton — mehr CVR = mehr Anfragen)
+        const targetCr = currentCr * 1.5;
         const potentialLeads = Math.round(visitors * targetCr);
         const additionalLeads = Math.max(1, potentialLeads - currentLeads);
         const revenueImpact = additionalLeads * avgValue;
