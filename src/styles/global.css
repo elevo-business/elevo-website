@@ -983,9 +983,20 @@ section { position: relative; }
 .trusted-track {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 48px;
-  flex-wrap: wrap;
+  gap: 64px;
+  width: max-content;
+  animation: marquee 18s linear infinite;
+}
+
+.trusted-track:hover { animation-play-state: paused; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trusted-track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; }
 }
 
 .trusted-item {
@@ -999,6 +1010,20 @@ section { position: relative; }
 }
 
 .trusted-item:hover { color: var(--text-secondary); }
+
+.trusted-sep {
+  color: var(--accent);
+  opacity: 0.4;
+  font-family: var(--font-heading);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
 /* ===========================
    Section Spacing
