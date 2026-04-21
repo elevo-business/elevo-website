@@ -53,10 +53,10 @@ const seasonalTips = [
   <!-- Fullwidth Hero mit Hintergrundbild -->
   <header class="hero-full" id="hero">
     <div class="hero-full__bg">
-      <img src="/preview-images/rosskopf/hero.jpg" alt="Professionell gestalteter Garten mit Naturstein-Terrasse" width="1600" height="900" loading="eager" />
+      <img src="/preview-images/rosskopf/hero.jpg" alt="Professionell gestalteter Garten mit Naturstein-Terrasse" width="1920" height="1080" loading="eager" fetchpriority="high" />
       <div class="hero-full__overlay"></div>
     </div>
-    <div class="hero-full__content">
+    <div class="hero-full__content anim-fade-up">
       <div class="hero-full__badge">
         <span class="hero-full__badge-dot"></span>
         Frankfurt · GaLaBau · Seit 1998
@@ -71,7 +71,7 @@ const seasonalTips = [
     <div class="hero-full__stats">
       {prospect.stats?.map(s => (
         <div class="hero-full__stat">
-          <div class="hero-full__stat-val">{s.value}</div>
+          <div class="hero-full__stat-val" data-count={s.value}>{s.value}</div>
           <div class="hero-full__stat-lbl">{s.label}</div>
         </div>
       ))}
@@ -139,24 +139,24 @@ const seasonalTips = [
         <h2 class="showcase__title">Einblicke in <em>unsere Arbeit</em></h2>
         <p class="showcase__sub">Jedes Projekt ist einzigartig — hier sehen Sie eine Auswahl realisierter Gärten und Außenanlagen im Rhein-Main-Gebiet.</p>
       </div>
-      <div class="showcase__grid">
+      <div class="showcase__grid anim-on-scroll">
         <div class="showcase__item showcase__item--large">
-          <img src="/preview-images/rosskopf/gallery-1.jpg" alt="Gepflegter Privatgarten mit Rasenfläche und Staudenbeet" loading="lazy" width="800" height="500" />
+          <img src="/preview-images/rosskopf/gallery-1.jpg" alt="Gepflegter Privatgarten mit Rasenfläche und Staudenbeet" loading="lazy" width="800" height="600" />
           <div class="showcase__caption">
             <span class="showcase__tag">Privatgarten</span>
             <h3>Gartenanlage Sachsenhausen</h3>
             <p>Komplette Neugestaltung mit Rasenfläche, Staudenbeeten und Naturstein-Einfassung.</p>
           </div>
         </div>
-        <div class="showcase__item">
-          <img src="/preview-images/rosskopf/gallery-2.jpg" alt="Professionelle Rasenanlage mit sauberem Schnitt" loading="lazy" width="500" height="400" />
+        <div class="showcase__item showcase__item--small">
+          <img src="/preview-images/rosskopf/gallery-2.jpg" alt="Professionelle Rasenanlage mit sauberem Schnitt" loading="lazy" width="500" height="280" />
           <div class="showcase__caption">
             <span class="showcase__tag">Rasenpflege</span>
             <h3>Gewerbefläche Niederrad</h3>
           </div>
         </div>
-        <div class="showcase__item">
-          <img src="/preview-images/rosskopf/gallery-3.jpg" alt="Natursteinterrasse mit mediterraner Bepflanzung" loading="lazy" width="500" height="400" />
+        <div class="showcase__item showcase__item--small">
+          <img src="/preview-images/rosskopf/gallery-3.jpg" alt="Natursteinterrasse mit mediterraner Bepflanzung" loading="lazy" width="500" height="280" />
           <div class="showcase__caption">
             <span class="showcase__tag">Terrasse</span>
             <h3>Naturstein-Terrasse Oberursel</h3>
@@ -215,16 +215,40 @@ const seasonalTips = [
     links={[
       { heading: 'Leistungen', links: [{ label: 'Gartenplanung', href: '#leistungen' }, { label: 'Pflasterbau', href: '#leistungen' }, { label: 'Baumschnitt', href: '#leistungen' }, { label: 'Gartenpflege', href: '#leistungen' }] },
       { heading: 'Über uns', links: [{ label: 'Unser Team', href: '#ablauf' }, { label: 'Referenzen', href: '#referenzen' }, { label: 'Gartenkalender', href: '#saison' }] },
-      { heading: 'Kontakt', links: [{ label: 'Frankfurt am Main', href: '#' }, { label: 'info@rosskopf.net', href: 'mailto:info@rosskopf.net' }, { label: 'Impressum', href: '#' }, { label: 'Datenschutz', href: '#' }] },
+      { heading: 'Kontakt', links: [{ label: 'Frankfurt am Main', href: '#' }, { label: 'info@rosskopf.net', href: 'mailto:info@rosskopf.net' }, { label: 'Impressum', href: 'https://rosskopf.net/impressum' }, { label: 'Datenschutz', href: 'https://rosskopf.net/datenschutz' }] },
     ]}
   />
 </PreviewLayout>
 
 <style>
+  html { scroll-behavior: smooth; }
+
+  /* Scroll Animations */
+  .anim-fade-up {
+    animation: fadeUp 0.8s ease-out both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .anim-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .anim-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   /* Fullwidth Hero */
   .hero-full {
     position: relative;
-    min-height: 85vh;
+    min-height: 80vh;
+    max-height: 700px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -241,7 +265,7 @@ const seasonalTips = [
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 40%;
+    object-position: center 30%;
   }
 
   .hero-full__overlay {
@@ -249,10 +273,10 @@ const seasonalTips = [
     inset: 0;
     background: linear-gradient(
       to top,
-      rgba(10, 20, 10, 0.92) 0%,
-      rgba(10, 20, 10, 0.6) 40%,
-      rgba(10, 20, 10, 0.25) 70%,
-      rgba(10, 20, 10, 0.1) 100%
+      rgba(10, 20, 10, 0.95) 0%,
+      rgba(10, 20, 10, 0.7) 35%,
+      rgba(10, 20, 10, 0.35) 65%,
+      rgba(10, 20, 10, 0.15) 100%
     );
   }
 
@@ -671,9 +695,10 @@ const seasonalTips = [
 
   .showcase__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-rows: 1fr 1fr;
     gap: 16px;
+    height: 520px;
   }
 
   .showcase__item {
@@ -686,6 +711,10 @@ const seasonalTips = [
 
   .showcase__item--large {
     grid-row: 1 / 3;
+  }
+
+  .showcase__item--small {
+    min-height: 0;
   }
 
   .showcase__item img {
@@ -743,7 +772,66 @@ const seasonalTips = [
     .seasonal { padding: 60px 24px; }
     .seasonal__grid { grid-template-columns: 1fr; gap: 16px; }
     .showcase { padding: 60px 24px; }
-    .showcase__grid { grid-template-columns: 1fr; }
+    .showcase__grid { grid-template-columns: 1fr; height: auto; }
     .showcase__item--large { grid-row: auto; }
+    .showcase__item--small { min-height: 220px; }
   }
 </style>
+
+<script>
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const target = document.querySelector(anchor.getAttribute('href')!);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Scroll-triggered animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.anim-on-scroll, .process__step, .seasonal__card, .ptst__card, .psvc__card').forEach(el => {
+    el.classList.add('anim-on-scroll');
+    observer.observe(el);
+  });
+
+  // Counter animation for stats
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target as HTMLElement;
+        const raw = el.dataset.count || el.textContent || '';
+        const match = raw.match(/(\d+)/);
+        if (match) {
+          const target = parseInt(match[1]);
+          const suffix = raw.replace(/\d+/, '');
+          let current = 0;
+          const step = Math.max(1, Math.floor(target / 40));
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+            }
+            el.textContent = current + suffix;
+          }, 30);
+        }
+        countObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.hero-full__stat-val').forEach(el => {
+    countObserver.observe(el);
+  });
+</script>
