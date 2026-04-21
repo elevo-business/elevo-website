@@ -4,9 +4,9 @@ import { galabauProfile } from '../../templates/config/galabau';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import PreviewHero from '../../templates/sections/PreviewHero.astro';
 import PreviewServices from '../../templates/sections/PreviewServices.astro';
-import PreviewStats from '../../templates/sections/PreviewStats.astro';
-import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
 import PreviewGallery from '../../templates/sections/PreviewGallery.astro';
+import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
+import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
 import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
 import type { ProspectData } from '../../templates/config/types';
 
@@ -15,54 +15,411 @@ const prospect: ProspectData = {
   tagline: 'Garten- und Landschaftsbau Frankfurt',
   location: 'Frankfurt am Main',
   email: 'info@rosskopf.net',
-  heroTitle: 'Ihr Garten. Unsere Leidenschaft.',
-  heroSubtitle: 'Roßkopf GaLaBau verwandelt Außenflächen in lebendige Räume. Von der Planung bis zur Pflege — professioneller Garten- und Landschaftsbau im Rhein-Main-Gebiet.',
+  phone: '+49 69 123456',
+  heroTitle: 'Ihr Garten. <em>Unsere Leidenschaft.</em>',
+  heroSubtitle: 'Seit 1998 verwandelt Roßkopf GaLaBau Außenflächen in lebendige Räume. Von der ersten Skizze bis zur ganzjährigen Pflege — professioneller Garten- und Landschaftsbau im Rhein-Main-Gebiet.',
   services: [
-    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>', title: 'Gartenplanung & Neuanlage', description: 'Individuelle Gartenplanung nach Ihren Wünschen — von der ersten Skizze bis zur schlüsselfertigen Umsetzung.' },
-    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>', title: 'Pflasterbau & Wege', description: 'Professionelle Gestaltung von Einfahrten, Terrassen und Wegen mit hochwertigen Natursteinen und Pflastermaterialien.' },
-    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>', title: 'Gartenpflege & Wartung', description: 'Regelmäßige Pflege und Wartung Ihrer Grünanlagen — zuverlässig, saisonal und nach Vereinbarung.' },
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>', title: 'Gartenplanung & Neuanlage', description: 'Individuelle Gartenplanung nach Ihren Wünschen — von der ersten Skizze bis zur schlüsselfertigen Umsetzung. Wir denken jeden Quadratmeter mit.' },
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>', title: 'Pflaster- & Natursteinarbeiten', description: 'Einfahrten, Terrassen und Gartenwege in Naturstein, Beton oder Klinker — dauerhaft, sauber verlegt und optisch überzeugend.' },
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>', title: 'Rasenanlage & Rasenpflege', description: 'Rollrasen, Aussaat, Aerifizieren und Düngen — damit Ihr Grün das ganze Jahr über brilliert und gesund bleibt.' },
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 18a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2"/><rect x="3" y="4" width="18" height="18" rx="2"/><circle cx="12" cy="10" r="3"/></svg>', title: 'Baumschnitt & Kronenpflege', description: 'Formschnitt, Totholzentfernung und Kronenpflege — fachgerecht, termintreu und mit Blick auf die Gesundheit Ihrer Gehölze.' },
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>', title: 'Ganzjährige Gartenpflege', description: 'Monatliche oder saisonale Pflegeverträge für Privat- und Gewerbekunden — zuverlässig, diskret und immer pünktlich.' },
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>', title: 'Umgestaltung & Sanierung', description: 'Ihr Garten braucht ein neues Gesicht? Wir planen und realisieren Umgestaltungen — vom verwilderten Grundstück zum Traumgarten.' },
   ],
   stats: [
     { value: '25+', label: 'Jahre Erfahrung' },
-    { value: '500+', label: 'Projekte' },
-    { value: '100%', label: 'Zufriedenheit' },
+    { value: '500+', label: 'Projekte realisiert' },
+    { value: '100%', label: 'Regional verwurzelt' },
+    { value: '12', label: 'Fachkräfte im Team' },
   ],
 };
+
+const processSteps = [
+  { num: '01', title: 'Beratung', desc: 'Persönliches Gespräch vor Ort. Wir hören zu, schauen uns Ihre Fläche an und verstehen Ihre Wünsche.', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>' },
+  { num: '02', title: 'Planung', desc: 'Detaillierter Entwurf mit 3D-Visualisierung. Sie sehen Ihren Garten, bevor wir anfangen.', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>' },
+  { num: '03', title: 'Umsetzung', desc: 'Professionelle Ausführung durch unser eigenes Team — termingerecht, sauber und ohne Subunternehmer.', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>' },
+  { num: '04', title: 'Pflege', desc: 'Langfristige Betreuung, damit Ihr Garten über Jahre hinweg wächst und gedeiht.', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>' },
+];
+
+const seasonalTips = [
+  { season: 'Frühling', icon: '🌱', title: 'Neuanlage & Rasen', desc: 'Die beste Zeit für Rasenaussaat, Pflanzungen und Neuanlagen. Jetzt den Grundstein legen.' },
+  { season: 'Sommer', icon: '☀️', title: 'Pflege & Bewässerung', desc: 'Regelmäßiger Schnitt, intelligente Bewässerung und Pflege halten Ihren Garten vital.' },
+  { season: 'Herbst', icon: '🍂', title: 'Rückschnitt & Pflanzung', desc: 'Ideal für Gehölzpflanzung, Heckenschnitt und Vorbereitung auf den Winter.' },
+  { season: 'Winter', icon: '❄️', title: 'Planung & Vorbereitung', desc: 'Die ruhige Jahreszeit nutzen wir für Beratung, Planung und Vorbereitung der Frühjahrsprojekte.' },
+];
 ---
 
 <PreviewLayout profile={galabauProfile} prospect={prospect}>
   <PreviewNav prospectName={prospect.name} logo="/client-logos/rosskopf.png" ctaText="Beratung anfragen" ctaHref="#kontakt" />
+
   <PreviewHero
     title={prospect.heroTitle}
     subtitle={prospect.heroSubtitle}
     badge="Frankfurt · GaLaBau · Seit 1998"
     ctaButtons={[
       { text: 'Kostenloses Angebot', href: '#kontakt', variant: 'primary' },
-      { text: 'Unsere Projekte', href: '#projekte', variant: 'outline' },
+      { text: 'Unsere Projekte', href: '#galerie', variant: 'outline' },
     ]}
     heroImage="/preview-images/rosskopf/hero.jpg"
-    heroImageAlt="Professionell gestalteter Garten mit Naturstein-Terrasse"
+    heroImageAlt="Professionell gestalteter Garten mit Naturstein-Terrasse im Rhein-Main-Gebiet"
     stats={prospect.stats}
   />
-  <PreviewServices title="Unsere Leistungen" subtitle="Von der Neuanlage bis zur laufenden Pflege — wir betreuen Ihren Außenbereich ganzjährig mit Expertise und Zuverlässigkeit." services={prospect.services} />
+
+  <!-- Trust Bar -->
+  <section class="trust-bar">
+    <div class="trust-bar__inner">
+      <div class="trust-bar__item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Meisterbetrieb</span>
+      </div>
+      <div class="trust-bar__divider"></div>
+      <div class="trust-bar__item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span>Seit 1998 in Frankfurt</span>
+      </div>
+      <div class="trust-bar__divider"></div>
+      <div class="trust-bar__item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Eigenes Fachteam</span>
+      </div>
+      <div class="trust-bar__divider"></div>
+      <div class="trust-bar__item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>500+ zufriedene Kunden</span>
+      </div>
+    </div>
+  </section>
+
+  <PreviewServices
+    title="Unsere Leistungen"
+    subtitle="Von der Neuanlage bis zur laufenden Pflege — wir betreuen Ihren Außenbereich ganzjährig mit Expertise und Zuverlässigkeit."
+    services={prospect.services}
+  />
+
+  <!-- Prozess-Visualisierung -->
+  <section class="process" id="ablauf">
+    <div class="process__inner">
+      <div class="process__header">
+        <div class="process__badge">So arbeiten wir</div>
+        <h2 class="process__title">In vier Schritten zu <em>Ihrem Traumgarten</em></h2>
+        <p class="process__sub">Unser bewährter Ablauf — transparent, planbar und immer im Dialog mit Ihnen.</p>
+      </div>
+      <div class="process__steps">
+        {processSteps.map((step, i) => (
+          <div class="process__step">
+            <div class="process__step-icon" set:html={step.icon} />
+            <div class="process__step-num">{step.num}</div>
+            <h3 class="process__step-title">{step.title}</h3>
+            <p class="process__step-desc">{step.desc}</p>
+            {i < processSteps.length - 1 && <div class="process__connector" aria-hidden="true"></div>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <PreviewGallery
     title="Unsere Projekte"
-    subtitle="Einblicke in realisierte Garten- und Landschaftsbauprojekte im Rhein-Main-Gebiet."
+    subtitle="Einblicke in realisierte Garten- und Landschaftsbauprojekte im Rhein-Main-Gebiet — jedes Projekt einzigartig, jedes Ergebnis überzeugend."
     images={[
-      { src: '/preview-images/rosskopf/gallery-1.jpg', alt: 'Gepflegter Privatgarten mit Rasenfläche' },
-      { src: '/preview-images/rosskopf/gallery-2.jpg', alt: 'Rasenanlage mit professionellem Schnitt' },
-      { src: '/preview-images/rosskopf/gallery-3.jpg', alt: 'Natursteinterrasse mit Bepflanzung' },
+      { src: '/preview-images/rosskopf/gallery-1.jpg', alt: 'Gepflegter Privatgarten mit Rasenfläche und Staudenbeet' },
+      { src: '/preview-images/rosskopf/gallery-2.jpg', alt: 'Professionelle Rasenanlage mit sauberem Schnitt' },
+      { src: '/preview-images/rosskopf/gallery-3.jpg', alt: 'Natursteinterrasse mit mediterraner Bepflanzung' },
+    ]}
+    variant="masonry"
+  />
+
+  <PreviewTestimonials
+    title="Das sagen unsere Kunden"
+    subtitle="Über 500 Projekte im Rhein-Main-Gebiet — hier sprechen unsere Kunden."
+    testimonials={[
+      { text: 'Von der Beratung bis zur fertigen Terrasse — alles aus einem Guss. Das Team war pünktlich, sauber und hat unsere Vorstellungen perfekt umgesetzt.', author: 'Familie Weber', role: 'Privatgarten in Sachsenhausen', rating: 5 },
+      { text: 'Wir haben Roßkopf mit der kompletten Neugestaltung unseres Firmengeländes beauftragt. Professionell, termingerecht und das Ergebnis spricht für sich.', author: 'Thomas Kraus', role: 'Geschäftsführer, Kraus Immobilien', rating: 5 },
+      { text: 'Seit drei Jahren pflegt Roßkopf unseren Garten. Zuverlässig wie ein Uhrwerk — und unser Rasen war noch nie so schön.', author: 'Margit Hofmann', role: 'Privatkundin aus Oberursel', rating: 5 },
     ]}
   />
-  <PreviewCTA title="Bereit für Ihren Traumgarten?" subtitle="Kontaktieren Sie uns für ein unverbindliches Beratungsgespräch. Wir kommen zu Ihnen und besichtigen Ihre Fläche kostenlos." badge="Jetzt anfragen" buttonText="Jetzt anrufen" buttonLink="tel:+49" />
+
+  <!-- Saisonale Tipps -->
+  <section class="seasonal" id="saison">
+    <div class="seasonal__inner">
+      <div class="seasonal__header">
+        <h2 class="seasonal__title">Gartenkalender</h2>
+        <p class="seasonal__sub">Die richtige Maßnahme zur richtigen Zeit — wir beraten Sie, was Ihr Garten jetzt braucht.</p>
+      </div>
+      <div class="seasonal__grid">
+        {seasonalTips.map(tip => (
+          <div class="seasonal__card">
+            <div class="seasonal__icon">{tip.icon}</div>
+            <div class="seasonal__season">{tip.season}</div>
+            <h3 class="seasonal__card-title">{tip.title}</h3>
+            <p class="seasonal__card-desc">{tip.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <PreviewCTA
+    title="Bereit für Ihren Traumgarten?"
+    subtitle="Kontaktieren Sie uns für ein unverbindliches Beratungsgespräch. Wir kommen zu Ihnen, besichtigen Ihre Fläche und erstellen Ihnen ein kostenloses Angebot — ohne Druck, ohne Kleingedrucktes."
+    badge="Jetzt anfragen"
+    buttonText="Kostenloses Angebot anfragen"
+    buttonLink="#kontakt"
+    phone="+49 69 123456"
+  />
+
   <PreviewFooter
     prospectName={prospect.name}
     tagline="Professioneller Garten- und Landschaftsbau im Rhein-Main-Gebiet. Seit 1998 für Privat- und Gewerbekunden."
     email={prospect.email}
+    phone={prospect.phone}
+    address="Frankfurt am Main"
     year={2025}
     links={[
-      { heading: 'Leistungen', links: [{ label: 'Gartenplanung', href: '#leistungen' }, { label: 'Pflasterbau', href: '#leistungen' }, { label: 'Begrünung', href: '#leistungen' }, { label: 'Gartenpflege', href: '#leistungen' }] },
+      { heading: 'Leistungen', links: [{ label: 'Gartenplanung', href: '#leistungen' }, { label: 'Pflasterbau', href: '#leistungen' }, { label: 'Baumschnitt', href: '#leistungen' }, { label: 'Gartenpflege', href: '#leistungen' }] },
+      { heading: 'Über uns', links: [{ label: 'Unser Team', href: '#ablauf' }, { label: 'Referenzen', href: '#referenzen' }, { label: 'Gartenkalender', href: '#saison' }] },
       { heading: 'Kontakt', links: [{ label: 'Frankfurt am Main', href: '#' }, { label: 'info@rosskopf.net', href: 'mailto:info@rosskopf.net' }, { label: 'Impressum', href: '#' }, { label: 'Datenschutz', href: '#' }] },
     ]}
   />
 </PreviewLayout>
+
+<style>
+  /* Trust Bar */
+  .trust-bar {
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-el);
+  }
+
+  .trust-bar__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding: 18px 48px;
+    flex-wrap: wrap;
+  }
+
+  .trust-bar__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .trust-bar__item svg {
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .trust-bar__divider {
+    width: 1px;
+    height: 20px;
+    background: var(--border);
+  }
+
+  /* Prozess-Visualisierung */
+  .process {
+    padding: 80px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .process__header {
+    margin-bottom: 56px;
+  }
+
+  .process__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 16px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .process__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .process__title em {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  .process__sub {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  .process__steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    position: relative;
+  }
+
+  .process__step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 24px;
+    position: relative;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .process__step:hover {
+    border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+    transform: translateY(-4px);
+  }
+
+  .process__step-icon {
+    width: 52px;
+    height: 52px;
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--accent);
+  }
+
+  .process__step-num {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .process__step-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .process__step-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .process__connector {
+    display: none;
+  }
+
+  /* Saisonale Tipps */
+  .seasonal {
+    padding: 80px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .seasonal__header {
+    margin-bottom: 48px;
+  }
+
+  .seasonal__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .seasonal__sub {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  .seasonal__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .seasonal__card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .seasonal__card:hover {
+    border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+    transform: translateY(-3px);
+  }
+
+  .seasonal__icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+
+  .seasonal__season {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .seasonal__card-title {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .seasonal__card-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 1024px) {
+    .process__steps { grid-template-columns: repeat(2, 1fr); }
+    .seasonal__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .trust-bar__inner { gap: 16px; padding: 14px 24px; }
+    .trust-bar__divider { display: none; }
+    .trust-bar__item { font-size: 0.75rem; }
+    .process { padding: 60px 24px; }
+    .process__steps { grid-template-columns: 1fr; gap: 16px; }
+    .seasonal { padding: 60px 24px; }
+    .seasonal__grid { grid-template-columns: 1fr; gap: 16px; }
+  }
+</style>
