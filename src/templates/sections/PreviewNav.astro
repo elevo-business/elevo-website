@@ -30,7 +30,7 @@ const {
   <div class="pnav__inner">
     <a class="pnav__logo" href="/" aria-label={`${prospectName} — Startseite`}>
       {logo
-        ? <img src={logo} alt={`${prospectName} Logo`} width="48" height="48" loading="eager" />
+        ? <img src={logo} alt={`${prospectName} Logo`} width="140" height="56" loading="eager" />
         : (
           <>
             <div class="pnav__logo-icon" aria-hidden="true">
@@ -109,15 +109,16 @@ const {
   }
 
   .pnav__logo img {
-    width: 48px;
-    height: 48px;
+    max-height: 56px;
+    width: auto;
+    max-width: 180px;
     border-radius: 8px;
     object-fit: contain;
   }
 
   .pnav__logo-icon {
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
     background: var(--accent);
     border-radius: 8px;
     display: flex;
@@ -230,6 +231,14 @@ const {
     .pnav__links { display: none; }
     .pnav__cta { display: none; }
     .pnav__hamburger { display: flex; }
+    .pnav__logo img {
+      max-height: 44px;
+      max-width: 120px;
+    }
+    .pnav__logo-icon {
+      width: 36px;
+      height: 36px;
+    }
   }
 </style>
 
