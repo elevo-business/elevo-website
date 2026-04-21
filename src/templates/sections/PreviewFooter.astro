@@ -1,59 +1,54 @@
 ---
-export interface FooterLink {
-  label: string;
-  href: string;
-}
-
-export interface FooterColumn {
-  heading: string;
-  links: FooterLink[];
-}
-
 export interface Props {
   prospectName: string;
-  tagline?: string;
   address?: string;
   phone?: string;
   email?: string;
-  links?: FooterColumn[];
   year?: number;
 }
 
 const {
   prospectName,
-  tagline,
   address,
   phone,
   email,
-  links = [],
   year = new Date().getFullYear(),
 } = Astro.props;
-
-const flatLinks = links.flatMap(col => col.links);
 ---
 
-<footer class="pfooter" id="footer" aria-label="Seitenfuß">
-  <div class="pfooter__main">
-    <div class="pfooter__brand">
+<footer class="pfooter" id="footer" aria-label="Seitenfu&szlig;">
+  <div class="pfooter__inner">
+    <address class="pfooter__info" aria-label="Kontaktdaten">
       <span class="pfooter__name">{prospectName}</span>
-      {tagline && <span class="pfooter__tagline">{tagline}</span>}
-    </div>
-    <div class="pfooter__contact">
-      {email && <a href={`mailto:${email}`}>{email}</a>}
-      {phone && <a href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a>}
-      {address && <span>{address}</span>}
-    </div>
-  </div>
-  <div class="pfooter__bottom">
-    <span>© {year} {prospectName}</span>
-    <nav class="pfooter__links" aria-label="Footer-Links">
-      {flatLinks.slice(0, 4).map(link => (
-        <a href={link.href}>{link.label}</a>
-      ))}
+      {address && (
+        <>
+          <span class="pfooter__sep" aria-hidden="true">&middot;</span>
+          <span>{address}</span>
+        </>
+      )}
+      {phone && (
+        <>
+          <span class="pfooter__sep" aria-hidden="true">&middot;</span>
+          <a href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a>
+        </>
+      )}
+      {email && (
+        <>
+          <span class="pfooter__sep" aria-hidden="true">&middot;</span>
+          <a href={`mailto:${email}`}>{email}</a>
+        </>
+      )}
+    </address>
+
+    <nav class="pfooter__legal" aria-label="Rechtliche Links">
       <a href="#impressum">Impressum</a>
+      <span class="pfooter__sep" aria-hidden="true">|</span>
       <a href="#datenschutz">Datenschutz</a>
     </nav>
-    <span class="pfooter__credit">
+  </div>
+  <div class="pfooter__bottom">
+    <span>&copy; {year} {prospectName}</span>
+    <span>
       Website von{' '}
       <a href="https://elevo.solutions" rel="noopener noreferrer" aria-label="ELEVO Webagentur">
         ELEVO
@@ -69,56 +64,63 @@ const flatLinks = links.flatMap(col => col.links);
     margin: 0 auto;
   }
 
-  .pfooter__main {
+  .pfooter__inner {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 24px 48px;
-    gap: 24px;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 48px 0;
     flex-wrap: wrap;
   }
 
-  .pfooter__brand {
+  .pfooter__info {
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    font-style: normal;
+    font-size: 0.82rem;
+    color: var(--muted);
   }
 
   .pfooter__name {
     font-family: var(--font-heading);
-    font-weight: 800;
-    font-size: 1rem;
+    font-weight: 700;
     color: var(--text);
   }
 
-  .pfooter__tagline {
-    color: var(--muted);
-    font-size: 0.8rem;
-    line-height: 1.5;
-    max-width: 400px;
-  }
-
-  .pfooter__contact {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    flex-wrap: wrap;
-    font-style: normal;
-  }
-
-  .pfooter__contact span,
-  .pfooter__contact a {
-    font-size: 0.82rem;
+  .pfooter__info a {
     color: var(--muted);
     text-decoration: none;
     transition: color 0.2s ease;
   }
 
-  .pfooter__contact a:hover { color: var(--text); }
+  .pfooter__info a:hover { color: var(--text); }
+
+  .pfooter__sep {
+    padding: 0 8px;
+    color: var(--dim);
+  }
+
+  .pfooter__legal {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-shrink: 0;
+  }
+
+  .pfooter__legal a {
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .pfooter__legal a:hover { color: var(--text); }
 
   .pfooter__bottom {
-    border-top: 1px solid var(--border);
-    padding: 16px 48px;
+    padding: 12px 48px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -127,21 +129,6 @@ const flatLinks = links.flatMap(col => col.links);
     gap: 16px;
     flex-wrap: wrap;
   }
-
-  .pfooter__links {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .pfooter__links a {
-    color: var(--muted);
-    font-size: 0.78rem;
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-
-  .pfooter__links a:hover { color: var(--text); }
 
   .pfooter__credit a {
     color: var(--accent);
@@ -152,27 +139,32 @@ const flatLinks = links.flatMap(col => col.links);
   .pfooter__credit a:hover { color: var(--accent-hover); }
 
   @media (max-width: 768px) {
-    .pfooter__main {
+    .pfooter__inner {
+      padding: 16px 24px 0;
       flex-direction: column;
-      align-items: flex-start;
-      padding: 20px 24px;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
     }
 
-    .pfooter__contact {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 6px;
+    .pfooter__info {
+      justify-content: center;
     }
 
     .pfooter__bottom {
-      padding: 14px 24px;
+      padding: 10px 24px 16px;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
+      text-align: center;
+      gap: 4px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .pfooter__info {
+      flex-direction: column;
+      gap: 4px;
     }
 
-    .pfooter__links {
-      gap: 10px;
-    }
+    .pfooter__info .pfooter__sep { display: none; }
   }
 </style>
