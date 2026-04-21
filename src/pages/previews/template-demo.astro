@@ -1,0 +1,160 @@
+---
+import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
+import PreviewNav from '../../templates/sections/PreviewNav.astro';
+import PreviewHero from '../../templates/sections/PreviewHero.astro';
+import PreviewServices from '../../templates/sections/PreviewServices.astro';
+import PreviewGallery from '../../templates/sections/PreviewGallery.astro';
+import PreviewStats from '../../templates/sections/PreviewStats.astro';
+import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
+import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
+import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
+import { galabauProfile } from '../../templates/config/galabau.ts';
+
+const prospect = {
+  name: 'Roland Müller GaLaBau',
+  tagline: 'Garten- und Landschaftsbau Frankfurt',
+  location: 'Frankfurt am Main',
+  phone: '+49 69 123 456 78',
+  email: 'info@mueller-galabau.de',
+  heroTitle: 'Grüne Oasen für Frankfurt<br><em>seit zwei Jahrzehnten.</em>',
+  heroSubtitle: 'Roland Müller GaLaBau gestaltet seit über 20 Jahren Gärten, Parks und Außenanlagen im Rhein-Main-Gebiet. Bodenständig, kompetent und mit echtem Gespür für Natur.',
+  services: [
+    {
+      icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>',
+      title: 'Gartenplanung',
+      description: 'Individuelle Gartenentwürfe — vom Naturgartenkonzept bis zum modernen Designgarten. Jeder Quadratmeter durchdacht.',
+    },
+    {
+      icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22V12M12 12L6 6M12 12l6-6"/><rect x="2" y="20" width="20" height="2" rx="1"/></svg>',
+      title: 'Pflasterbau',
+      description: 'Einfahrten, Terrassen und Gartenwege in Naturstein, Beton oder Klinker — dauerhaft und optisch überzeugend.',
+    },
+    {
+      icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2"/></svg>',
+      title: 'Rasenpflege',
+      description: 'Rasenanlage, Aerifizieren, Düngen und regelmäßige Pflege — damit Ihr Grün das ganze Jahr brilliert.',
+    },
+    {
+      icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+      title: 'Neuanlage & Umgestaltung',
+      description: 'Ihr Garten soll ein neues Gesicht bekommen? Wir planen und realisieren Umgestaltungen jeder Größenordnung.',
+    },
+    {
+      icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
+      title: 'Laufende Gartenpflege',
+      description: 'Monatliche oder saisonale Pflegeverträge für Privat- und Gewerbekunden — zuverlässig und diskret.',
+    },
+    {
+      icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l6 18M6 3c0 0 6 4 12 0"/><path d="M6 3C6 3 0 7 0 15"/></svg>',
+      title: 'Baumschnitt',
+      description: 'Formschnitt, Kronenpflege und Fällarbeiten — fachgerecht und mit Blick auf die langfristige Gesundheit.',
+    },
+  ],
+  stats: [
+    { value: '20+', label: 'Jahre Erfahrung' },
+    { value: '800+', label: 'Gärten angelegt' },
+    { value: '100%', label: 'Regional' },
+  ],
+  galleryImages: [
+    { src: '/hero-visual.svg', alt: 'Gartenprojekt 1' },
+    { src: '/hero-visual.svg', alt: 'Gartenprojekt 2' },
+    { src: '/hero-visual.svg', alt: 'Gartenprojekt 3' },
+  ],
+  testimonials: [
+    {
+      text: 'Herr Müller und sein Team haben unseren verwilderten Garten in einen echten Blickfang verwandelt. Pünktlich, sauber, und das Ergebnis übertrifft alle Erwartungen.',
+      author: 'Familie Schneider',
+      role: 'Privatkundin, Sachsenhausen',
+      rating: 5,
+    },
+    {
+      text: 'Seit Jahren kümmert sich Roland Müller GaLaBau um unsere Außenanlage. Zuverlässiger geht es nicht — und der Garten sieht jeden Sommer besser aus.',
+      author: 'Thomas Bauer',
+      role: 'Gewerbetreibender, Höchst',
+      rating: 5,
+    },
+    {
+      text: 'Professionelle Beratung, faire Preise und handwerkliche Perfektion. Mehr kann man nicht verlangen.',
+      author: 'Claudia Hartmann',
+      role: 'Privatkunde, Bad Vilbel',
+      rating: 5,
+    },
+  ],
+};
+---
+
+<PreviewLayout profile={galabauProfile} prospect={prospect}>
+  <PreviewNav
+    prospectName={prospect.name}
+    navLinks={[
+      { label: 'Leistungen', href: '#leistungen' },
+      { label: 'Projekte', href: '#galerie' },
+      { label: 'Über uns', href: '#ueber-uns' },
+      { label: 'Kontakt', href: '#kontakt' },
+    ]}
+    ctaText="Angebot anfragen"
+    ctaHref="#kontakt"
+  />
+
+  <PreviewHero
+    title={prospect.heroTitle}
+    subtitle={prospect.heroSubtitle}
+    badge="Frankfurt · GaLaBau · 20+ Jahre Erfahrung"
+    ctaButtons={[
+      { text: 'Kostenloses Angebot', href: '#kontakt', variant: 'primary' },
+      { text: 'Unsere Projekte', href: '#galerie', variant: 'outline' },
+    ]}
+    stats={prospect.stats}
+  />
+
+  <PreviewServices
+    title="Unsere Leistungen"
+    subtitle="Von der ersten Skizze bis zur üppigen Bepflanzung — wir begleiten Ihr Projekt mit Erfahrung, Sorgfalt und Leidenschaft für das Grüne."
+    services={prospect.services}
+  />
+
+  <PreviewStats
+    stats={prospect.stats}
+    variant="cards"
+  />
+
+  <PreviewGallery
+    title="Unsere Projekte"
+    subtitle="Einblicke in ausgewählte Gartenprojekte aus Frankfurt und Umgebung."
+    images={prospect.galleryImages ?? []}
+    variant="beforeAfter"
+  />
+
+  <PreviewTestimonials
+    testimonials={prospect.testimonials ?? []}
+    title="Das sagen unsere Kunden"
+  />
+
+  <PreviewCTA
+    title="Ihr Garten in besten Händen?"
+    subtitle="Wir kommen zu Ihnen, schauen uns Ihre Fläche an und erstellen Ihnen ein unverbindliches Angebot — kostenlos und ohne Druck."
+    buttonText="Jetzt anrufen"
+    buttonLink={`tel:${prospect.phone}`}
+    phone={prospect.phone}
+    badge="Jetzt anfragen"
+  />
+
+  <PreviewFooter
+    prospectName={prospect.name}
+    tagline="Garten- und Landschaftsbau im Rhein-Main-Gebiet seit über 20 Jahren."
+    address="Frankfurt am Main"
+    phone={prospect.phone}
+    email={prospect.email}
+    links={[
+      {
+        heading: 'Leistungen',
+        links: [
+          { label: 'Gartenplanung', href: '#leistungen' },
+          { label: 'Pflasterbau', href: '#leistungen' },
+          { label: 'Rasenpflege', href: '#leistungen' },
+          { label: 'Baumschnitt', href: '#leistungen' },
+        ],
+      },
+    ]}
+  />
+</PreviewLayout>

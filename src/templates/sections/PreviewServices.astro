@@ -1,0 +1,149 @@
+---
+export interface Service {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface Props {
+  title: string;
+  subtitle?: string;
+  services: Service[];
+}
+
+const {
+  title,
+  subtitle,
+  services,
+} = Astro.props;
+---
+
+<section class="psvc" id="leistungen" aria-labelledby="psvc-heading">
+  <div class="psvc__inner">
+    <div class="psvc__header">
+      <h2 id="psvc-heading" class="psvc__title">{title}</h2>
+      {subtitle && <p class="psvc__sub">{subtitle}</p>}
+    </div>
+
+    <ul class="psvc__grid" role="list">
+      {services.map(svc => (
+        <li class="psvc__card">
+          <div class="psvc__icon" aria-hidden="true">
+            <Fragment set:html={svc.icon} />
+          </div>
+          <h3 class="psvc__card-title">{svc.title}</h3>
+          <p class="psvc__card-desc">{svc.description}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .psvc {
+    padding: 80px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .psvc__header {
+    margin-bottom: 48px;
+  }
+
+  .psvc__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .psvc__sub {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  .psvc__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    list-style: none;
+  }
+
+  .psvc__card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .psvc__card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 4%, transparent), transparent);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .psvc__card:hover {
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+    transform: translateY(-4px);
+  }
+
+  .psvc__card:hover::before { opacity: 1; }
+
+  .psvc__icon {
+    width: 48px;
+    height: 48px;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .psvc__icon :global(svg) {
+    width: 22px;
+    height: 22px;
+    stroke: var(--accent);
+    fill: none;
+    flex-shrink: 0;
+  }
+
+  .psvc__card-title {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  .psvc__card-desc {
+    color: var(--muted);
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 1024px) {
+    .psvc__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    .psvc { padding: 60px 24px; }
+  }
+
+  @media (max-width: 640px) {
+    .psvc__grid { grid-template-columns: 1fr; }
+  }
+</style>

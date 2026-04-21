@@ -1,0 +1,190 @@
+---
+export interface Testimonial {
+  text: string;
+  author: string;
+  role?: string;
+  rating?: number;
+}
+
+export interface Props {
+  testimonials: Testimonial[];
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  testimonials,
+  title = 'Das sagen unsere Kunden',
+  subtitle,
+} = Astro.props;
+
+const STARS = 5;
+---
+
+<section class="ptst" id="referenzen" aria-labelledby="ptst-heading">
+  <div class="ptst__inner">
+    <div class="ptst__header">
+      <h2 id="ptst-heading" class="ptst__title">{title}</h2>
+      {subtitle && <p class="ptst__sub">{subtitle}</p>}
+    </div>
+
+    <ul class="ptst__grid" role="list">
+      {testimonials.map(t => (
+        <li class="ptst__card" role="listitem">
+          {(t.rating ?? STARS) > 0 && (
+            <div class="ptst__stars" aria-label={`${t.rating ?? STARS} von 5 Sternen`} role="img">
+              {Array.from({ length: STARS }).map((_, i) => (
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill={i < (t.rating ?? STARS) ? 'currentColor' : 'none'}
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              ))}
+            </div>
+          )}
+
+          <blockquote class="ptst__quote">
+            <p>„{t.text}"</p>
+          </blockquote>
+
+          <footer class="ptst__author">
+            <div class="ptst__avatar" aria-hidden="true">
+              {t.author.charAt(0).toUpperCase()}
+            </div>
+            <div>
+              <div class="ptst__name">{t.author}</div>
+              {t.role && <div class="ptst__role">{t.role}</div>}
+            </div>
+          </footer>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .ptst {
+    padding: 80px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ptst__header { margin-bottom: 48px; }
+
+  .ptst__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .ptst__sub {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  .ptst__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    list-style: none;
+  }
+
+  .ptst__card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+    position: relative;
+  }
+
+  .ptst__card::before {
+    content: '\201C';
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: color-mix(in srgb, var(--accent) 15%, transparent);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .ptst__card:hover {
+    border-color: color-mix(in srgb, var(--accent) 25%, transparent);
+    transform: translateY(-3px);
+  }
+
+  .ptst__stars {
+    display: flex;
+    gap: 2px;
+    color: #F59E0B;
+  }
+
+  .ptst__quote {
+    flex: 1;
+  }
+
+  .ptst__quote p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  .ptst__author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .ptst__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .ptst__name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .ptst__role {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  @media (max-width: 900px) {
+    .ptst { padding: 60px 24px; }
+    .ptst__grid { grid-template-columns: 1fr; }
+  }
+</style>

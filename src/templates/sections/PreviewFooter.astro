@@ -1,0 +1,198 @@
+---
+export interface FooterLink {
+  label: string;
+  href: string;
+}
+
+export interface FooterColumn {
+  heading: string;
+  links: FooterLink[];
+}
+
+export interface Props {
+  prospectName: string;
+  tagline?: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+  links?: FooterColumn[];
+  year?: number;
+}
+
+const {
+  prospectName,
+  tagline,
+  address,
+  phone,
+  email,
+  links = [],
+  year = new Date().getFullYear(),
+} = Astro.props;
+
+const legalLinks: FooterColumn = {
+  heading: 'Rechtliches',
+  links: [
+    { label: 'Impressum', href: '#impressum' },
+    { label: 'Datenschutz', href: '#datenschutz' },
+  ],
+};
+
+const contactItems = [address, phone, email].filter(Boolean);
+---
+
+<footer class="pfooter" id="footer" aria-label="Seitenfu&szlig;">
+  <div class="pfooter__inner">
+    <div class="pfooter__brand">
+      <div class="pfooter__logo">{prospectName}</div>
+      {tagline && <p class="pfooter__tagline">{tagline}</p>}
+      {contactItems.length > 0 && (
+        <address class="pfooter__contact" aria-label="Kontaktdaten">
+          {address && <span>{address}</span>}
+          {phone && (
+            <a href={`tel:${phone.replace(/\s/g, '')}`} aria-label={`Anrufen: ${phone}`}>
+              {phone}
+            </a>
+          )}
+          {email && (
+            <a href={`mailto:${email}`} aria-label={`E-Mail an ${email}`}>
+              {email}
+            </a>
+          )}
+        </address>
+      )}
+    </div>
+
+    {[...links, legalLinks].map(col => (
+      <div class="pfooter__col">
+        <h3 class="pfooter__col-heading">{col.heading}</h3>
+        <ul class="pfooter__links" role="list">
+          {col.links.map(link => (
+            <li>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+
+  <div class="pfooter__bottom">
+    <span>© {year} {prospectName}</span>
+    <span>
+      Website von{' '}
+      <a href="https://elevo.solutions" rel="noopener noreferrer" aria-label="ELEVO Webagentur">
+        ELEVO
+      </a>
+    </span>
+  </div>
+</footer>
+
+<style>
+  .pfooter {
+    border-top: 1px solid var(--border);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .pfooter__inner {
+    display: grid;
+    grid-template-columns: 2fr repeat(auto-fill, minmax(140px, 1fr));
+    gap: 48px;
+    padding: 48px 48px 32px;
+    align-items: start;
+  }
+
+  .pfooter__logo {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .pfooter__tagline {
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    max-width: 280px;
+  }
+
+  .pfooter__contact {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-style: normal;
+  }
+
+  .pfooter__contact span,
+  .pfooter__contact a {
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .pfooter__contact a:hover { color: var(--text); }
+
+  .pfooter__col-heading {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+
+  .pfooter__links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pfooter__links a {
+    color: var(--muted);
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+    text-decoration: none;
+  }
+
+  .pfooter__links a:hover { color: var(--text); }
+
+  .pfooter__bottom {
+    border-top: 1px solid var(--border);
+    padding: 18px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--dim);
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .pfooter__bottom a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .pfooter__bottom a:hover { color: var(--accent-hover); }
+
+  @media (max-width: 900px) {
+    .pfooter__inner {
+      grid-template-columns: 1fr 1fr;
+      padding: 40px 24px 24px;
+      gap: 32px;
+    }
+
+    .pfooter__brand { grid-column: 1 / -1; }
+    .pfooter__bottom { padding: 16px 24px; flex-direction: column; text-align: center; }
+  }
+
+  @media (max-width: 480px) {
+    .pfooter__inner { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,186 @@
+---
+export interface Stat {
+  value: string;
+  label: string;
+}
+
+export type StatsVariant = 'bar' | 'cards';
+
+export interface Props {
+  stats: Stat[];
+  variant?: StatsVariant;
+  title?: string;
+}
+
+const {
+  stats,
+  variant = 'cards',
+  title,
+} = Astro.props;
+---
+
+<section class="pstat" id="zahlen" aria-labelledby={title ? 'pstat-heading' : undefined}>
+  <div class="pstat__inner">
+    {title && <h2 id="pstat-heading" class="pstat__title">{title}</h2>}
+
+    {variant === 'cards' && (
+      <ul class="pstat__cards" role="list" aria-label="Kennzahlen">
+        {stats.map(s => (
+          <li class="pstat__card" role="listitem">
+            <div class="pstat__num" aria-label={`${s.value} ${s.label}`}>{s.value}</div>
+            <div class="pstat__label">{s.label}</div>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {variant === 'bar' && (
+      <dl class="pstat__bars">
+        {stats.map(s => (
+          <>
+            <dt class="pstat__bar-label">{s.label}</dt>
+            <dd class="pstat__bar-row">
+              <div class="pstat__bar-track" role="progressbar" aria-label={s.value}>
+                <div class="pstat__bar-fill"></div>
+              </div>
+              <span class="pstat__bar-val">{s.value}</span>
+            </dd>
+          </>
+        ))}
+      </dl>
+    )}
+  </div>
+</section>
+
+<style>
+  .pstat {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+  }
+
+  .pstat__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+    color: var(--text);
+    text-align: center;
+  }
+
+  /* Cards variant */
+  .pstat__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    list-style: none;
+  }
+
+  .pstat__card {
+    background: var(--surface);
+    padding: 32px 24px;
+    text-align: center;
+    transition: background 0.2s ease;
+  }
+
+  .pstat__card:hover { background: var(--bg-el); }
+
+  .pstat__num {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 8px;
+    counter-reset: num;
+    animation: count-in 0.6s ease both;
+  }
+
+  @keyframes count-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .pstat__label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* Bar variant */
+  .pstat__bars {
+    max-width: 640px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px 16px;
+    align-items: center;
+  }
+
+  .pstat__bar-label {
+    font-size: 0.85rem;
+    color: var(--text);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .pstat__bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+  }
+
+  .pstat__bar-track {
+    flex: 1;
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .pstat__bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 4px;
+    width: 0;
+    animation: bar-grow 1s ease 0.2s both;
+  }
+
+  .pstat__bars > dd:nth-child(4) .pstat__bar-fill { animation-delay: 0.3s; width: 0; }
+  .pstat__bars > dd:nth-child(6) .pstat__bar-fill { animation-delay: 0.4s; }
+  .pstat__bars > dd:nth-child(8) .pstat__bar-fill { animation-delay: 0.5s; }
+
+  @keyframes bar-grow {
+    from { width: 0 !important; }
+    to { width: 80%; }
+  }
+
+  .pstat__bar-val {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 48px;
+    text-align: right;
+  }
+
+  @media (max-width: 900px) {
+    .pstat { padding: 0 24px 60px; }
+    .pstat__cards { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .pstat__cards { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pstat__num { animation: none; }
+    .pstat__bar-fill { animation: none; width: 80% !important; }
+  }
+</style>
