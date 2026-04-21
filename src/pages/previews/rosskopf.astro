@@ -1,0 +1,181 @@
+---
+---
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roßkopf GaLaBau — Garten- und Landschaftsbau Frankfurt</title>
+  <link rel="preload" as="font" href="/fonts/Sora-latin.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="/fonts/Outfit-latin.woff2" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: 'Sora'; font-style: normal; font-weight: 400 800; font-display: swap; src: url('/fonts/Sora-latin.woff2') format('woff2'); }
+    @font-face { font-family: 'Outfit'; font-style: normal; font-weight: 300 600; font-display: swap; src: url('/fonts/Outfit-latin.woff2') format('woff2'); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --accent: #22C55E; --accent-hover: #16A34A; --bg: #050E07; --bg-el: #091410; --surface: #0E1F14; --border: #1A3323; --text: #E2F5EA; --muted: #7BA892; --dim: #4A6B58; }
+    body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; }
+    a { text-decoration: none; }
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(5,14,7,.92); backdrop-filter: blur(12px); z-index: 100; }
+    .logo { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.25rem; color: var(--text); display: flex; align-items: center; gap: 10px; }
+    .logo-icon { width: 36px; height: 36px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: 0.9rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+    .btn { background: var(--accent); color: #fff; padding: 11px 24px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.9rem; transition: background .2s; }
+    .btn:hover { background: var(--accent-hover); }
+    .hero { padding: 100px 48px 80px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.25); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: var(--accent); margin-bottom: 24px; letter-spacing: .05em; text-transform: uppercase; font-weight: 600; }
+    .badge-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
+    h1 { font-family: 'Sora', sans-serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.1; letter-spacing: -.03em; margin-bottom: 20px; }
+    h1 span { color: var(--accent); }
+    .hero p { color: var(--muted); font-size: 1.05rem; line-height: 1.75; margin-bottom: 32px; max-width: 480px; }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-outline { border: 1px solid rgba(34,197,94,.35); color: var(--accent); padding: 11px 24px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; transition: border-color .2s; }
+    .btn-outline:hover { border-color: var(--accent); }
+    .hero-visual { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
+    .visual-header { background: var(--bg-el); padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .visual-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; background: linear-gradient(135deg, #0A1F10 0%, #0E2B16 50%, #071A0B 100%); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
+    .visual-placeholder { padding: 40px; text-align: center; }
+    .visual-placeholder svg { opacity: .3; margin-bottom: 12px; }
+    .visual-placeholder p { color: var(--dim); font-size: 0.85rem; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+    .stat { background: var(--bg-el); padding: 20px; text-align: center; }
+    .stat-val { font-family: 'Sora', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+    section { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+    h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; margin-bottom: 16px; letter-spacing: -.02em; }
+    .section-sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-bottom: 48px; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; transition: border-color .2s; }
+    .card:hover { border-color: rgba(34,197,94,.3); }
+    .card-icon { width: 48px; height: 48px; background: rgba(34,197,94,.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .card h3 { font-family: 'Sora', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
+    .card p { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
+    .cta-section { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 64px; text-align: center; margin: 0 48px 80px; }
+    .cta-section h2 { font-size: 2rem; margin-bottom: 12px; }
+    .cta-section p { color: var(--muted); max-width: 480px; margin: 0 auto 32px; }
+    .elevo-banner { background: var(--bg-el); border-top: 1px solid var(--border); padding: 16px 48px; text-align: center; font-size: 0.8rem; color: var(--dim); }
+    .elevo-banner a { color: var(--accent); }
+    footer { border-top: 1px solid var(--border); padding: 48px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; max-width: 1200px; margin: 0 auto; }
+    .footer-logo { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.1rem; margin-bottom: 12px; }
+    .footer-desc { color: var(--muted); font-size: 0.85rem; line-height: 1.7; }
+    .footer-col h4 { font-family: 'Sora', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--dim); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { color: var(--muted); font-size: 0.85rem; transition: color .2s; }
+    .footer-col a:hover { color: var(--text); }
+    .footer-bottom { border-top: 1px solid var(--border); padding: 20px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--dim); max-width: 1200px; margin: 0 auto; }
+    @media (max-width: 900px) {
+      .nav { padding: 16px 24px; } .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 60px 24px 48px; gap: 40px; }
+      .cards { grid-template-columns: 1fr; }
+      section { padding: 60px 24px; }
+      .cta-section { margin: 0 24px 60px; padding: 40px 24px; }
+      footer { grid-template-columns: 1fr; padding: 40px 24px; gap: 32px; }
+      .footer-bottom { padding: 16px 24px; flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 22C12 22 4 16 4 9a8 8 0 0 1 16 0c0 7-8 13-8 13z"/><circle cx="12" cy="9" r="2.5" fill="white" stroke="none"/></svg>
+      </div>
+      Roßkopf GaLaBau
+    </div>
+    <ul class="nav-links">
+      <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#projekte">Projekte</a></li>
+      <li><a href="#ueber-uns">Über uns</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="#kontakt" class="btn">Beratung anfragen</a>
+  </nav>
+
+  <div class="hero">
+    <div>
+      <div class="badge"><span class="badge-dot"></span> Frankfurt · GaLaBau · Seit 1998</div>
+      <h1>Ihr Garten.<br><span>Unsere Leidenschaft.</span></h1>
+      <p>Roßkopf GaLaBau verwandelt Außenflächen in lebendige Räume. Von der Planung bis zur Pflege — professioneller Garten- und Landschaftsbau im Rhein-Main-Gebiet.</p>
+      <div class="hero-ctas">
+        <a href="#kontakt" class="btn">Kostenloses Angebot</a>
+        <a href="#projekte" class="btn-outline">Unsere Projekte</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="visual-header">
+        <div class="dot" style="background:#EF4444"></div>
+        <div class="dot" style="background:#F59E0B"></div>
+        <div class="dot" style="background:#22C55E"></div>
+      </div>
+      <div class="visual-placeholder" style="padding:48px 32px">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <div class="stats">
+          <div class="stat"><div class="stat-val">25+</div><div class="stat-label">Jahre Erfahrung</div></div>
+          <div class="stat"><div class="stat-val">500+</div><div class="stat-label">Projekte</div></div>
+          <div class="stat"><div class="stat-val">100%</div><div class="stat-label">Zufriedenheit</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="leistungen">
+    <h2>Unsere Leistungen</h2>
+    <p class="section-sub">Von der Neuanlage bis zur laufenden Pflege — wir betreuen Ihren Außenbereich ganzjährig mit Expertise und Zuverlässigkeit.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Gartenplanung & Neuanlage</h3>
+        <p>Individuelle Gartenplanung nach Ihren Wünschen — von der ersten Skizze bis zur schlüsselfertigen Umsetzung.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+        <h3>Pflasterbau & Wege</h3>
+        <p>Professionelle Gestaltung von Einfahrten, Terrassen und Wegen mit hochwertigen Natursteinen und Pflastermaterialien.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h3>Gartenpflege & Wartung</h3>
+        <p>Regelmäßige Pflege und Wartung Ihrer Grünanlagen — zuverlässig, saisonal und nach Vereinbarung.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-section" id="kontakt">
+    <div class="badge" style="margin:0 auto 20px"><span class="badge-dot"></span> Jetzt anfragen</div>
+    <h2>Bereit für Ihren Traumgarten?</h2>
+    <p>Kontaktieren Sie uns für ein unverbindliches Beratungsgespräch. Wir kommen zu Ihnen und besichtigen Ihre Fläche kostenlos.</p>
+    <a href="tel:+49" class="btn" style="font-size:1rem;padding:14px 32px">Jetzt anrufen</a>
+  </div>
+
+  <footer>
+    <div>
+      <div class="footer-logo">Roßkopf GaLaBau</div>
+      <p class="footer-desc">Professioneller Garten- und Landschaftsbau im Rhein-Main-Gebiet. Seit 1998 für Privat- und Gewerbekunden.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Leistungen</h4>
+      <ul>
+        <li><a href="#">Gartenplanung</a></li>
+        <li><a href="#">Pflasterbau</a></li>
+        <li><a href="#">Begrünung</a></li>
+        <li><a href="#">Gartenpflege</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="#">Frankfurt am Main</a></li>
+        <li><a href="mailto:info@rosskopf.net">info@rosskopf.net</a></li>
+        <li><a href="#">Impressum</a></li>
+        <li><a href="#">Datenschutz</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom" style="max-width:100%;border-top:1px solid var(--border);padding:20px 48px;display:flex;justify-content:space-between;font-size:.78rem;color:var(--dim)">
+    <span>© 2025 Roßkopf GaLaBau GmbH</span>
+    <span>Website von <a href="https://elevo.solutions" style="color:var(--accent)">ELEVO</a></span>
+  </div>
+</body>
+</html>

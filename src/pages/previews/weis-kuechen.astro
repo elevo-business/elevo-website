@@ -1,0 +1,190 @@
+---
+---
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weis Küchenstudio — Küchenplanung & Einbauküchen Müllheim</title>
+  <link rel="preload" as="font" href="/fonts/Sora-latin.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="/fonts/Outfit-latin.woff2" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: 'Sora'; font-style: normal; font-weight: 400 800; font-display: swap; src: url('/fonts/Sora-latin.woff2') format('woff2'); }
+    @font-face { font-family: 'Outfit'; font-style: normal; font-weight: 300 600; font-display: swap; src: url('/fonts/Outfit-latin.woff2') format('woff2'); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --accent: #D97706; --accent-hover: #B45309; --bg: #0E0903; --bg-el: #140D04; --surface: #161008; --border: #2A1E0A; --text: #F5EED8; --muted: #A08C60; --dim: #6B5A3A; }
+    body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; }
+    a { text-decoration: none; }
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(14,9,3,.92); backdrop-filter: blur(12px); z-index: 100; }
+    .logo { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.25rem; color: var(--text); display: flex; align-items: center; gap: 10px; }
+    .logo-icon { width: 36px; height: 36px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: 0.9rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+    .btn { background: var(--accent); color: #fff; padding: 11px 24px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.9rem; transition: background .2s; }
+    .btn:hover { background: var(--accent-hover); }
+    .hero { padding: 100px 48px 80px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(217,119,6,.1); border: 1px solid rgba(217,119,6,.25); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: var(--accent); margin-bottom: 24px; letter-spacing: .05em; text-transform: uppercase; font-weight: 600; }
+    .badge-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
+    h1 { font-family: 'Sora', sans-serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.1; letter-spacing: -.03em; margin-bottom: 20px; }
+    h1 span { color: var(--accent); }
+    .hero p { color: var(--muted); font-size: 1.05rem; line-height: 1.75; margin-bottom: 32px; max-width: 480px; }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-outline { border: 1px solid rgba(217,119,6,.35); color: var(--accent); padding: 11px 24px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; transition: border-color .2s; }
+    .btn-outline:hover { border-color: var(--accent); }
+    .hero-visual { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
+    .visual-header { background: var(--bg-el); padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .visual-placeholder { padding: 48px 32px; text-align: center; }
+    .visual-placeholder svg { opacity: .3; margin-bottom: 24px; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+    .stat { background: var(--bg-el); padding: 20px; text-align: center; }
+    .stat-val { font-family: 'Sora', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+    section { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+    h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; margin-bottom: 16px; letter-spacing: -.02em; }
+    .section-sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-bottom: 48px; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; transition: border-color .2s; }
+    .card:hover { border-color: rgba(217,119,6,.3); }
+    .card-icon { width: 48px; height: 48px; background: rgba(217,119,6,.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .card h3 { font-family: 'Sora', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
+    .card p { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
+    .cta-section { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 64px; text-align: center; margin: 0 48px 80px; }
+    .cta-section h2 { font-size: 2rem; margin-bottom: 12px; }
+    .cta-section p { color: var(--muted); max-width: 480px; margin: 0 auto 32px; }
+    footer { border-top: 1px solid var(--border); padding: 48px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; max-width: 1200px; margin: 0 auto; }
+    .footer-logo { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.1rem; margin-bottom: 12px; }
+    .footer-desc { color: var(--muted); font-size: 0.85rem; line-height: 1.7; }
+    .footer-col h4 { font-family: 'Sora', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--dim); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { color: var(--muted); font-size: 0.85rem; transition: color .2s; }
+    .footer-col a:hover { color: var(--text); }
+    .footer-bottom { border-top: 1px solid var(--border); padding: 20px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--dim); max-width: 100%; }
+    @media (max-width: 900px) {
+      .nav { padding: 16px 24px; } .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 60px 24px 48px; gap: 40px; }
+      .cards { grid-template-columns: 1fr; }
+      section { padding: 60px 24px; }
+      .cta-section { margin: 0 24px 60px; padding: 40px 24px; }
+      footer { grid-template-columns: 1fr; padding: 40px 24px; gap: 32px; }
+      .footer-bottom { padding: 16px 24px; flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      Weis Küchenstudio
+    </div>
+    <ul class="nav-links">
+      <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#kuechen">Küchen</a></li>
+      <li><a href="#ueber-uns">Über uns</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="#kontakt" class="btn">Beratung vereinbaren</a>
+  </nav>
+
+  <div class="hero">
+    <div>
+      <div class="badge"><span class="badge-dot"></span> Müllheim · Küchenstudio · Beratung & Planung</div>
+      <h1>Küchen, die begeistern.<br><span>Weis Küchenstudio.</span></h1>
+      <p>Seit über 30 Jahren planen und realisieren wir in Müllheim Traumküchen, die in Funktion, Qualität und Design überzeugen. Persönliche Beratung, hochwertige Marken, perfekte Umsetzung.</p>
+      <div class="hero-ctas">
+        <a href="#kontakt" class="btn">Beratungstermin anfragen</a>
+        <a href="#leistungen" class="btn-outline">Unsere Leistungen</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="visual-header">
+        <div class="dot" style="background:#EF4444"></div>
+        <div class="dot" style="background:#F59E0B"></div>
+        <div class="dot" style="background:#D97706"></div>
+      </div>
+      <div class="visual-placeholder">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <div class="stats">
+          <div class="stat"><div class="stat-val">30+</div><div class="stat-label">Jahre Erfahrung</div></div>
+          <div class="stat"><div class="stat-val">1000+</div><div class="stat-label">Küchen</div></div>
+          <div class="stat"><div class="stat-val">Schwarzwald</div><div class="stat-label">Region</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="leistungen">
+    <h2>Unsere Leistungen</h2>
+    <p class="section-sub">Von der ersten Idee bis zur eingebauten Traumküche — wir begleiten Sie durch den gesamten Prozess mit Fachkenntnis und persönlichem Engagement.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
+        </div>
+        <h3>Küchenplanung</h3>
+        <p>Individuelle 3D-Planung Ihrer Wunschküche — abgestimmt auf Ihren Raum, Ihren Stil und Ihre Bedürfnisse.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3>Einbau & Montage</h3>
+        <p>Professioneller Einbau durch erfahrene Fachbetriebe — sauber, pünktlich und mit Qualitätsgarantie.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <h3>Markenküchen</h3>
+        <p>Exklusive Küchen führender Hersteller — zeitlos schön, funktional durchdacht und auf Wunsch nach Maß.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        </div>
+        <h3>Umbau & Renovierung</h3>
+        <p>Bestehende Küchen modernisieren und aufwerten — Fronten, Arbeitsplatten oder komplette Neugestaltung.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-section" id="kontakt">
+    <div class="badge" style="margin:0 auto 20px"><span class="badge-dot"></span> Jetzt Termin vereinbaren</div>
+    <h2>Ihre Traumküche wartet.</h2>
+    <p>Besuchen Sie unser Küchenstudio in Müllheim und lassen Sie sich von unserer Ausstellung inspirieren. Persönliche Beratung — unverbindlich und kostenfrei.</p>
+    <a href="#kontakt" class="btn" style="font-size:1rem;padding:14px 32px">Beratungstermin anfragen</a>
+  </div>
+
+  <footer>
+    <div>
+      <div class="footer-logo">Weis Küchenstudio</div>
+      <p class="footer-desc">Küchenfachbetrieb in Müllheim (Baden) — seit über 30 Jahren Ihr Partner für hochwertige Küchenplanung und Einbau in der Schwarzwald-Region.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Leistungen</h4>
+      <ul>
+        <li><a href="#">Küchenplanung</a></li>
+        <li><a href="#">Einbau & Montage</a></li>
+        <li><a href="#">Markenküchen</a></li>
+        <li><a href="#">Umbau & Renovierung</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="#">Müllheim, Baden</a></li>
+        <li><a href="#">Schwarzwald-Region</a></li>
+        <li><a href="#">Impressum</a></li>
+        <li><a href="#">Datenschutz</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <span>© 2025 Weis Küchenstudio</span>
+    <span>Website von <a href="https://elevo.solutions" style="color:var(--accent)">ELEVO</a></span>
+  </div>
+</body>
+</html>
