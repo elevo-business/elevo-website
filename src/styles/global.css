@@ -213,7 +213,7 @@ section { position: relative; }
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1.4rem;
-  letter-spacing: -0.12em;
+  letter-spacing: -0.04em;
 }
 
 .logo-icon { width: 36px; height: 36px; flex-shrink: 0; }
@@ -221,7 +221,7 @@ section { position: relative; }
 .nav-logo .v-accent {
   color: var(--accent);
   letter-spacing: 0;
-  margin: 0 -0.14em 0 -0.06em;
+  margin: 0 -0.04em 0 -0.02em;
 }
 
 .nav-links {
@@ -993,7 +993,7 @@ section { position: relative; }
   align-items: center;
   gap: 72px;
   width: max-content;
-  animation: marquee 22s linear infinite;
+  animation: marquee 14s linear infinite;
 }
 
 .trusted-track:hover { animation-play-state: paused; }
