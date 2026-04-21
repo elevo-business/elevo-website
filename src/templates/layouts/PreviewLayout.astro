@@ -1,0 +1,109 @@
+---
+import type { BranchProfile, ProspectData } from '../config/types';
+
+export interface Props {
+  profile: BranchProfile;
+  prospect: ProspectData;
+}
+
+const { profile, prospect } = Astro.props;
+const { colorScheme, typography } = profile;
+
+const title = prospect.tagline
+  ? `${prospect.name} — ${prospect.tagline}`
+  : `${prospect.name} — ${prospect.location}`;
+
+const cssVars = `
+  --accent: ${colorScheme.accent};
+  --accent-hover: ${colorScheme.accentHover};
+  --bg: ${colorScheme.bg};
+  --bg-el: ${colorScheme.bgEl};
+  --surface: ${colorScheme.surface};
+  --border: ${colorScheme.border};
+  --text: ${colorScheme.text};
+  --muted: ${colorScheme.muted};
+  --dim: ${colorScheme.dim};
+  --font-heading: '${typography.heading}', sans-serif;
+  --font-body: '${typography.body}', sans-serif;
+`.trim();
+---
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={prospect.heroSubtitle} />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={prospect.heroSubtitle} />
+  {prospect.logo && <meta property="og:image" content={prospect.logo} />}
+
+  <title>{title}</title>
+
+  <link rel="preload" as="font" href="/fonts/Sora-latin.woff2" type="font/woff2" crossorigin />
+  <link rel="preload" as="font" href="/fonts/Outfit-latin.woff2" type="font/woff2" crossorigin />
+
+  <style set:html={`
+    @font-face {
+      font-family: 'Sora';
+      font-style: normal;
+      font-weight: 400 800;
+      font-display: swap;
+      src: url('/fonts/Sora-latin.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Outfit';
+      font-style: normal;
+      font-weight: 300 600;
+      font-display: swap;
+      src: url('/fonts/Outfit-latin.woff2') format('woff2');
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { ${cssVars} }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    @media (max-width: 768px) {
+      .preview-nav-links { display: none; }
+      .preview-hero { grid-template-columns: 1fr !important; padding: 60px 24px 48px !important; gap: 40px !important; }
+      .preview-cards { grid-template-columns: 1fr !important; }
+      .preview-section { padding: 60px 24px !important; }
+      .preview-cta { margin: 0 24px 60px !important; padding: 40px 24px !important; }
+      .preview-footer { grid-template-columns: 1fr !important; padding: 40px 24px !important; gap: 32px !important; }
+      .preview-footer-bottom { padding: 16px 24px !important; flex-direction: column !important; gap: 8px !important; }
+      .preview-nav { padding: 16px 24px !important; }
+    }
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .preview-hero { gap: 48px !important; }
+      .preview-cards { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+  `} />
+
+  <link rel="stylesheet" href={`/templates/themes/${profile.id}.css`} />
+</head>
+<body>
+  <slot />
+
+  <style>
+    .elevo-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg, #0A0E1A 0%, #111827 100%); border-top: 2px solid #3B82F6; padding: 12px 24px; display: flex; align-items: center; justify-content: center; gap: 12px; font-family: 'Sora', sans-serif; box-shadow: 0 -4px 20px rgba(0,0,0,.5); }
+    .elevo-banner-badge { background: #3B82F6; color: #fff; font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: .08em; }
+    .elevo-banner-text { color: #E2E8F0; font-size: 0.85rem; font-weight: 400; }
+    .elevo-banner-link { color: #3B82F6; font-weight: 700; text-decoration: none; transition: color .2s; }
+    .elevo-banner-link:hover { color: #60A5FA; }
+    .elevo-banner-arrow { display: inline-block; margin-left: 4px; transition: transform .2s; }
+    .elevo-banner-link:hover .elevo-banner-arrow { transform: translateX(3px); }
+  </style>
+  <div class="elevo-banner">
+    <span class="elevo-banner-badge">Preview</span>
+    <span class="elevo-banner-text">Diese Website-Vorschau wurde erstellt von</span>
+    <a href="https://elevo.solutions" target="_blank" rel="noopener" class="elevo-banner-link">ELEVO<span class="elevo-banner-arrow">&rarr;</span></a>
+  </div>
+</body>
+</html>
