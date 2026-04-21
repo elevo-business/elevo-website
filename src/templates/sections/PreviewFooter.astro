@@ -29,56 +29,31 @@ const {
   year = new Date().getFullYear(),
 } = Astro.props;
 
-const legalLinks: FooterColumn = {
-  heading: 'Rechtliches',
-  links: [
-    { label: 'Impressum', href: '#impressum' },
-    { label: 'Datenschutz', href: '#datenschutz' },
-  ],
-};
-
-const contactItems = [address, phone, email].filter(Boolean);
+const flatLinks = links.flatMap(col => col.links);
 ---
 
-<footer class="pfooter" id="footer" aria-label="Seitenfu&szlig;">
-  <div class="pfooter__inner">
+<footer class="pfooter" id="footer" aria-label="Seitenfuß">
+  <div class="pfooter__main">
     <div class="pfooter__brand">
-      <div class="pfooter__logo">{prospectName}</div>
-      {tagline && <p class="pfooter__tagline">{tagline}</p>}
-      {contactItems.length > 0 && (
-        <address class="pfooter__contact" aria-label="Kontaktdaten">
-          {address && <span>{address}</span>}
-          {phone && (
-            <a href={`tel:${phone.replace(/\s/g, '')}`} aria-label={`Anrufen: ${phone}`}>
-              {phone}
-            </a>
-          )}
-          {email && (
-            <a href={`mailto:${email}`} aria-label={`E-Mail an ${email}`}>
-              {email}
-            </a>
-          )}
-        </address>
-      )}
+      <span class="pfooter__name">{prospectName}</span>
+      {tagline && <span class="pfooter__tagline">{tagline}</span>}
     </div>
-
-    {[...links, legalLinks].map(col => (
-      <div class="pfooter__col">
-        <h3 class="pfooter__col-heading">{col.heading}</h3>
-        <ul class="pfooter__links" role="list">
-          {col.links.map(link => (
-            <li>
-              <a href={link.href}>{link.label}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    ))}
+    <div class="pfooter__contact">
+      {email && <a href={`mailto:${email}`}>{email}</a>}
+      {phone && <a href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a>}
+      {address && <span>{address}</span>}
+    </div>
   </div>
-
   <div class="pfooter__bottom">
     <span>© {year} {prospectName}</span>
-    <span>
+    <nav class="pfooter__links" aria-label="Footer-Links">
+      {flatLinks.slice(0, 4).map(link => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+      <a href="#impressum">Impressum</a>
+      <a href="#datenschutz">Datenschutz</a>
+    </nav>
+    <span class="pfooter__credit">
       Website von{' '}
       <a href="https://elevo.solutions" rel="noopener noreferrer" aria-label="ELEVO Webagentur">
         ELEVO
@@ -94,34 +69,40 @@ const contactItems = [address, phone, email].filter(Boolean);
     margin: 0 auto;
   }
 
-  .pfooter__inner {
-    display: grid;
-    grid-template-columns: 2fr repeat(auto-fill, minmax(140px, 1fr));
-    gap: 48px;
-    padding: 48px 48px 32px;
-    align-items: start;
+  .pfooter__main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 48px;
+    gap: 24px;
+    flex-wrap: wrap;
   }
 
-  .pfooter__logo {
+  .pfooter__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .pfooter__name {
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--text);
-    margin-bottom: 12px;
   }
 
   .pfooter__tagline {
     color: var(--muted);
-    font-size: 0.85rem;
-    line-height: 1.7;
-    margin-bottom: 16px;
-    max-width: 280px;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    max-width: 400px;
   }
 
   .pfooter__contact {
     display: flex;
-    flex-direction: column;
-    gap: 6px;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
     font-style: normal;
   }
 
@@ -135,64 +116,63 @@ const contactItems = [address, phone, email].filter(Boolean);
 
   .pfooter__contact a:hover { color: var(--text); }
 
-  .pfooter__col-heading {
-    font-family: var(--font-heading);
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--dim);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 16px;
-  }
-
-  .pfooter__links {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .pfooter__links a {
-    color: var(--muted);
-    font-size: 0.85rem;
-    transition: color 0.2s ease;
-    text-decoration: none;
-  }
-
-  .pfooter__links a:hover { color: var(--text); }
-
   .pfooter__bottom {
     border-top: 1px solid var(--border);
-    padding: 18px 48px;
+    padding: 16px 48px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 0.78rem;
     color: var(--dim);
-    gap: 8px;
+    gap: 16px;
     flex-wrap: wrap;
   }
 
-  .pfooter__bottom a {
+  .pfooter__links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .pfooter__links a {
+    color: var(--muted);
+    font-size: 0.78rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .pfooter__links a:hover { color: var(--text); }
+
+  .pfooter__credit a {
     color: var(--accent);
     text-decoration: none;
     transition: color 0.2s ease;
   }
 
-  .pfooter__bottom a:hover { color: var(--accent-hover); }
+  .pfooter__credit a:hover { color: var(--accent-hover); }
 
-  @media (max-width: 900px) {
-    .pfooter__inner {
-      grid-template-columns: 1fr 1fr;
-      padding: 40px 24px 24px;
-      gap: 32px;
+  @media (max-width: 768px) {
+    .pfooter__main {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px 24px;
     }
 
-    .pfooter__brand { grid-column: 1 / -1; }
-    .pfooter__bottom { padding: 16px 24px; flex-direction: column; text-align: center; }
-  }
+    .pfooter__contact {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
 
-  @media (max-width: 480px) {
-    .pfooter__inner { grid-template-columns: 1fr; }
+    .pfooter__bottom {
+      padding: 14px 24px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .pfooter__links {
+      gap: 10px;
+    }
   }
 </style>

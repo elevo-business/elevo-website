@@ -1,0 +1,133 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "astro.config.mjs",
+      "file_type": "code",
+      "source_file": "/Users/mert/.paperclip/instances/default/workspaces/a0810509-f900-432d-b877-17ff37873bc1/elevo-astro/astro.config.mjs",
+      "source_location": "L1",
+      "id": "users_mert_paperclip_instances_default_workspaces_a0810509_f900_432d_b877_17ff37873bc1_elevo_astro_astro_config_mjs",
+      "community": 1,
+      "norm_label": "astro.config.mjs"
+    },
+    {
+      "label": "script.js",
+      "file_type": "code",
+      "source_file": "/Users/mert/.paperclip/instances/default/workspaces/a0810509-f900-432d-b877-17ff37873bc1/elevo-astro/public/demos/akropolis/script.js",
+      "source_location": "L1",
+      "id": "users_mert_paperclip_instances_default_workspaces_a0810509_f900_432d_b877_17ff37873bc1_elevo_astro_public_demos_akropolis_script_js",
+      "community": 0,
+      "norm_label": "script.js"
+    },
+    {
+      "label": "handleNavScroll()",
+      "file_type": "code",
+      "source_file": "/Users/mert/.paperclip/instances/default/workspaces/a0810509-f900-432d-b877-17ff37873bc1/elevo-astro/public/demos/akropolis/script.js",
+      "source_location": "L24",
+      "id": "script_handlenavscroll",
+      "community": 0,
+      "norm_label": "handlenavscroll()"
+    },
+    {
+      "label": "goToSlide()",
+      "file_type": "code",
+      "source_file": "/Users/mert/.paperclip/instances/default/workspaces/a0810509-f900-432d-b877-17ff37873bc1/elevo-astro/public/demos/akropolis/script.js",
+      "source_location": "L92",
+      "id": "script_gotoslide",
+      "community": 0,
+      "norm_label": "gotoslide()"
+    },
+    {
+      "label": "handleFloatCta()",
+      "file_type": "code",
+      "source_file": "/Users/mert/.paperclip/instances/default/workspaces/a0810509-f900-432d-b877-17ff37873bc1/elevo-astro/public/demos/akropolis/script.js",
+      "source_location": "L157",
+      "id": "script_handlefloatcta",
+      "community": 0,
+      "norm_label": "handlefloatcta()"
+    },
+    {
+      "label": "highlightNav()",
+      "file_type": "code",
+      "source_file": "/Users/mert/.paperclip/instances/default/workspaces/a0810509-f900-432d-b877-17ff37873bc1/elevo-astro/public/demos/akropolis/script.js",
+      "source_location": "L174",
+      "id": "script_highlightnav",
+      "community": 0,
+      "norm_label": "highlightnav()"
+    },
+    {
+      "label": "updateFlyingFood()",
+      "file_type": "code",
+      "source_file": "/Users/mert/.paperclip/instances/default/workspaces/a0810509-f900-432d-b877-17ff37873bc1/elevo-astro/public/demos/akropolis/script.js",
+      "source_location": "L240",
+      "id": "script_updateflyingfood",
+      "community": 0,
+      "norm_label": "updateflyingfood()"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/mert/.paperclip/instances/default/workspaces/a0810509-f900-432d-b877-17ff37873bc1/elevo-astro/public/demos/akropolis/script.js",
+      "source_location": "L24",
+      "weight": 1.0,
+      "_src": "users_mert_paperclip_instances_default_workspaces_a0810509_f900_432d_b877_17ff37873bc1_elevo_astro_public_demos_akropolis_script_js",
+      "_tgt": "script_handlenavscroll",
+      "source": "users_mert_paperclip_instances_default_workspaces_a0810509_f900_432d_b877_17ff37873bc1_elevo_astro_public_demos_akropolis_script_js",
+      "target": "script_handlenavscroll",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/mert/.paperclip/instances/default/workspaces/a0810509-f900-432d-b877-17ff37873bc1/elevo-astro/public/demos/akropolis/script.js",
+      "source_location": "L92",
+      "weight": 1.0,
+      "_src": "users_mert_paperclip_instances_default_workspaces_a0810509_f900_432d_b877_17ff37873bc1_elevo_astro_public_demos_akropolis_script_js",
+      "_tgt": "script_gotoslide",
+      "source": "users_mert_paperclip_instances_default_workspaces_a0810509_f900_432d_b877_17ff37873bc1_elevo_astro_public_demos_akropolis_script_js",
+      "target": "script_gotoslide",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/mert/.paperclip/instances/default/workspaces/a0810509-f900-432d-b877-17ff37873bc1/elevo-astro/public/demos/akropolis/script.js",
+      "source_location": "L157",
+      "weight": 1.0,
+      "_src": "users_mert_paperclip_instances_default_workspaces_a0810509_f900_432d_b877_17ff37873bc1_elevo_astro_public_demos_akropolis_script_js",
+      "_tgt": "script_handlefloatcta",
+      "source": "users_mert_paperclip_instances_default_workspaces_a0810509_f900_432d_b877_17ff37873bc1_elevo_astro_public_demos_akropolis_script_js",
+      "target": "script_handlefloatcta",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/mert/.paperclip/instances/default/workspaces/a0810509-f900-432d-b877-17ff37873bc1/elevo-astro/public/demos/akropolis/script.js",
+      "source_location": "L174",
+      "weight": 1.0,
+      "_src": "users_mert_paperclip_instances_default_workspaces_a0810509_f900_432d_b877_17ff37873bc1_elevo_astro_public_demos_akropolis_script_js",
+      "_tgt": "script_highlightnav",
+      "source": "users_mert_paperclip_instances_default_workspaces_a0810509_f900_432d_b877_17ff37873bc1_elevo_astro_public_demos_akropolis_script_js",
+      "target": "script_highlightnav",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/mert/.paperclip/instances/default/workspaces/a0810509-f900-432d-b877-17ff37873bc1/elevo-astro/public/demos/akropolis/script.js",
+      "source_location": "L240",
+      "weight": 1.0,
+      "_src": "users_mert_paperclip_instances_default_workspaces_a0810509_f900_432d_b877_17ff37873bc1_elevo_astro_public_demos_akropolis_script_js",
+      "_tgt": "script_updateflyingfood",
+      "source": "users_mert_paperclip_instances_default_workspaces_a0810509_f900_432d_b877_17ff37873bc1_elevo_astro_public_demos_akropolis_script_js",
+      "target": "script_updateflyingfood",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": []
+}
