@@ -187,20 +187,14 @@
     <span>© 2025 Willi Wenzel Malerbetrieb</span>
     <span>Website von <a href="https://elevo.solutions" style="color:var(--accent)">ELEVO</a></span>
   </div>
-<!-- ELEVO Branding Banner -->
+<!-- ELEVO Floating Dot -->
 <style>
-  .elevo-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg, #0A0E1A 0%, #111827 100%); border-top: 2px solid #3B82F6; padding: 12px 24px; display: flex; align-items: center; justify-content: center; gap: 12px; font-family: "Sora", sans-serif; box-shadow: 0 -4px 20px rgba(0,0,0,.5); }
-  .elevo-banner-badge { background: #3B82F6; color: #fff; font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: .08em; }
-  .elevo-banner-text { color: #E2E8F0; font-size: 0.85rem; font-weight: 400; }
-  .elevo-banner-link { color: #3B82F6; font-weight: 700; text-decoration: none; transition: color .2s; }
-  .elevo-banner-link:hover { color: #60A5FA; }
-  .elevo-banner-arrow { display: inline-block; margin-left: 4px; transition: transform .2s; }
-  .elevo-banner-link:hover .elevo-banner-arrow { transform: translateX(3px); }
+  .elevo-dot { position: fixed; bottom: 24px; right: 24px; z-index: 9999; width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #1E3A5F 0%, #0A0E1A 100%); border: 2px solid rgba(59,130,246,.4); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,.5), 0 0 20px rgba(59,130,246,.15); cursor: pointer; transition: transform .2s, box-shadow .2s; }
+  .elevo-dot:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(0,0,0,.6), 0 0 30px rgba(59,130,246,.25); }
+  .elevo-dot img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
 </style>
-<div class="elevo-banner">
-  <span class="elevo-banner-badge">Preview</span>
-  <span class="elevo-banner-text">Diese Website-Vorschau wurde erstellt von</span>
-  <a href="https://elevo.solutions" target="_blank" rel="noopener" class="elevo-banner-link">ELEVO<span class="elevo-banner-arrow">&rarr;</span></a>
-</div>
+<a href="https://elevo.solutions" target="_blank" rel="noopener" class="elevo-dot" title="Erstellt von ELEVO">
+  <img src="/elevo-chevron.jpg" alt="ELEVO" width="32" height="32" />
+</a>
 </body>
 </html>
