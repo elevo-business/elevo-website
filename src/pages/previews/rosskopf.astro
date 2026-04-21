@@ -2,9 +2,7 @@
 import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
 import { galabauProfile } from '../../templates/config/galabau';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
-import PreviewHero from '../../templates/sections/PreviewHero.astro';
 import PreviewServices from '../../templates/sections/PreviewServices.astro';
-import PreviewGallery from '../../templates/sections/PreviewGallery.astro';
 import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
 import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
 import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
@@ -52,18 +50,33 @@ const seasonalTips = [
 <PreviewLayout profile={galabauProfile} prospect={prospect}>
   <PreviewNav prospectName={prospect.name} logo="/client-logos/rosskopf.png" ctaText="Beratung anfragen" ctaHref="#kontakt" />
 
-  <PreviewHero
-    title={prospect.heroTitle}
-    subtitle={prospect.heroSubtitle}
-    badge="Frankfurt · GaLaBau · Seit 1998"
-    ctaButtons={[
-      { text: 'Kostenloses Angebot', href: '#kontakt', variant: 'primary' },
-      { text: 'Unsere Projekte', href: '#galerie', variant: 'outline' },
-    ]}
-    heroImage="/preview-images/rosskopf/hero.jpg"
-    heroImageAlt="Professionell gestalteter Garten mit Naturstein-Terrasse im Rhein-Main-Gebiet"
-    stats={prospect.stats}
-  />
+  <!-- Fullwidth Hero mit Hintergrundbild -->
+  <header class="hero-full" id="hero">
+    <div class="hero-full__bg">
+      <img src="/preview-images/rosskopf/hero.jpg" alt="Professionell gestalteter Garten mit Naturstein-Terrasse" width="1600" height="900" loading="eager" />
+      <div class="hero-full__overlay"></div>
+    </div>
+    <div class="hero-full__content">
+      <div class="hero-full__badge">
+        <span class="hero-full__badge-dot"></span>
+        Frankfurt · GaLaBau · Seit 1998
+      </div>
+      <h1 class="hero-full__title">Ihr Garten.<br/><span>Unsere Leidenschaft.</span></h1>
+      <p class="hero-full__sub">Seit 1998 verwandelt Roßkopf GaLaBau Außenflächen in lebendige Räume. Von der ersten Skizze bis zur ganzjährigen Pflege — professioneller Garten- und Landschaftsbau im Rhein-Main-Gebiet.</p>
+      <div class="hero-full__ctas">
+        <a href="#kontakt" class="hero-full__btn-primary">Kostenloses Angebot</a>
+        <a href="#galerie" class="hero-full__btn-outline">Unsere Projekte</a>
+      </div>
+    </div>
+    <div class="hero-full__stats">
+      {prospect.stats?.map(s => (
+        <div class="hero-full__stat">
+          <div class="hero-full__stat-val">{s.value}</div>
+          <div class="hero-full__stat-lbl">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </header>
 
   <!-- Trust Bar -->
   <section class="trust-bar">
@@ -118,16 +131,40 @@ const seasonalTips = [
     </div>
   </section>
 
-  <PreviewGallery
-    title="Unsere Projekte"
-    subtitle="Einblicke in realisierte Garten- und Landschaftsbauprojekte im Rhein-Main-Gebiet — jedes Projekt einzigartig, jedes Ergebnis überzeugend."
-    images={[
-      { src: '/preview-images/rosskopf/gallery-1.jpg', alt: 'Gepflegter Privatgarten mit Rasenfläche und Staudenbeet' },
-      { src: '/preview-images/rosskopf/gallery-2.jpg', alt: 'Professionelle Rasenanlage mit sauberem Schnitt' },
-      { src: '/preview-images/rosskopf/gallery-3.jpg', alt: 'Natursteinterrasse mit mediterraner Bepflanzung' },
-    ]}
-    variant="masonry"
-  />
+  <!-- Projekte Showcase -->
+  <section class="showcase" id="galerie">
+    <div class="showcase__inner">
+      <div class="showcase__header">
+        <div class="showcase__badge">Referenzprojekte</div>
+        <h2 class="showcase__title">Einblicke in <em>unsere Arbeit</em></h2>
+        <p class="showcase__sub">Jedes Projekt ist einzigartig — hier sehen Sie eine Auswahl realisierter Gärten und Außenanlagen im Rhein-Main-Gebiet.</p>
+      </div>
+      <div class="showcase__grid">
+        <div class="showcase__item showcase__item--large">
+          <img src="/preview-images/rosskopf/gallery-1.jpg" alt="Gepflegter Privatgarten mit Rasenfläche und Staudenbeet" loading="lazy" width="800" height="500" />
+          <div class="showcase__caption">
+            <span class="showcase__tag">Privatgarten</span>
+            <h3>Gartenanlage Sachsenhausen</h3>
+            <p>Komplette Neugestaltung mit Rasenfläche, Staudenbeeten und Naturstein-Einfassung.</p>
+          </div>
+        </div>
+        <div class="showcase__item">
+          <img src="/preview-images/rosskopf/gallery-2.jpg" alt="Professionelle Rasenanlage mit sauberem Schnitt" loading="lazy" width="500" height="400" />
+          <div class="showcase__caption">
+            <span class="showcase__tag">Rasenpflege</span>
+            <h3>Gewerbefläche Niederrad</h3>
+          </div>
+        </div>
+        <div class="showcase__item">
+          <img src="/preview-images/rosskopf/gallery-3.jpg" alt="Natursteinterrasse mit mediterraner Bepflanzung" loading="lazy" width="500" height="400" />
+          <div class="showcase__caption">
+            <span class="showcase__tag">Terrasse</span>
+            <h3>Naturstein-Terrasse Oberursel</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <PreviewTestimonials
     title="Das sagen unsere Kunden"
@@ -184,6 +221,183 @@ const seasonalTips = [
 </PreviewLayout>
 
 <style>
+  /* Fullwidth Hero */
+  .hero-full {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-full__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-full__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+  }
+
+  .hero-full__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(10, 20, 10, 0.92) 0%,
+      rgba(10, 20, 10, 0.6) 40%,
+      rgba(10, 20, 10, 0.25) 70%,
+      rgba(10, 20, 10, 0.1) 100%
+    );
+  }
+
+  .hero-full__content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 48px;
+    width: 100%;
+  }
+
+  .hero-full__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .hero-full__badge-dot {
+    width: 7px;
+    height: 7px;
+    background: #4ADE80;
+    border-radius: 50%;
+    animation: pulse-hero 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-hero {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.75); }
+  }
+
+  .hero-full__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
+  .hero-full__title span {
+    color: #4ADE80;
+  }
+
+  .hero-full__sub {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 32px;
+  }
+
+  .hero-full__ctas {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .hero-full__btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    transition: background 0.2s, transform 0.2s;
+    text-decoration: none;
+  }
+
+  .hero-full__btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+  }
+
+  .hero-full__btn-outline {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    font-family: var(--font-body);
+    transition: border-color 0.2s, background 0.2s;
+    text-decoration: none;
+  }
+
+  .hero-full__btn-outline:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .hero-full__stats {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .hero-full__stat {
+    background: rgba(10, 20, 10, 0.8);
+    backdrop-filter: blur(8px);
+    padding: 24px 16px;
+    text-align: center;
+  }
+
+  .hero-full__stat-val {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 800;
+    color: #4ADE80;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .hero-full__stat-lbl {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 6px;
+  }
+
+  @media (max-width: 768px) {
+    .hero-full { min-height: 75vh; }
+    .hero-full__content { padding: 0 24px 32px; }
+    .hero-full__stats { grid-template-columns: repeat(2, 1fr); }
+    .hero-full__ctas { flex-direction: column; }
+    .hero-full__btn-primary,
+    .hero-full__btn-outline { text-align: center; }
+  }
+
   /* Trust Bar */
   .trust-bar {
     border-bottom: 1px solid var(--border);
@@ -413,6 +627,113 @@ const seasonalTips = [
     .seasonal__grid { grid-template-columns: repeat(2, 1fr); }
   }
 
+  /* Showcase Gallery */
+  .showcase {
+    padding: 80px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .showcase__header { margin-bottom: 48px; }
+
+  .showcase__badge {
+    display: inline-flex;
+    align-items: center;
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 16px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .showcase__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .showcase__title em { color: var(--accent); font-style: normal; }
+
+  .showcase__sub {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  .showcase__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 16px;
+  }
+
+  .showcase__item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: pointer;
+  }
+
+  .showcase__item--large {
+    grid-row: 1 / 3;
+  }
+
+  .showcase__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .showcase__item:hover img { transform: scale(1.04); }
+
+  .showcase__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+    color: #fff;
+  }
+
+  .showcase__tag {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .showcase__caption h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .showcase__caption p {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.5;
+  }
+
   @media (max-width: 768px) {
     .trust-bar__inner { gap: 16px; padding: 14px 24px; }
     .trust-bar__divider { display: none; }
@@ -421,5 +742,8 @@ const seasonalTips = [
     .process__steps { grid-template-columns: 1fr; gap: 16px; }
     .seasonal { padding: 60px 24px; }
     .seasonal__grid { grid-template-columns: 1fr; gap: 16px; }
+    .showcase { padding: 60px 24px; }
+    .showcase__grid { grid-template-columns: 1fr; }
+    .showcase__item--large { grid-row: auto; }
   }
 </style>
