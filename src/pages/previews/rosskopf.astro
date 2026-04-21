@@ -2,7 +2,6 @@
 import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
 import { galabauProfile } from '../../templates/config/galabau';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
-import PreviewServices from '../../templates/sections/PreviewServices.astro';
 import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
 import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
 import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
@@ -103,11 +102,40 @@ const seasonalTips = [
     </div>
   </section>
 
-  <PreviewServices
-    title="Unsere Leistungen"
-    subtitle="Von der Neuanlage bis zur laufenden Pflege — wir betreuen Ihren Außenbereich ganzjährig mit Expertise und Zuverlässigkeit."
-    services={prospect.services}
-  />
+  <!-- Interactive Services with Tabs -->
+  <section class="services-tabs" id="leistungen">
+    <div class="services-tabs__inner">
+      <div class="services-tabs__header">
+        <div class="services-tabs__badge">Unsere Leistungen</div>
+        <h2 class="services-tabs__title">Was können wir <em>für Sie tun?</em></h2>
+        <p class="services-tabs__sub">Von der Neuanlage bis zur laufenden Pflege — wählen Sie einen Bereich, der Sie interessiert.</p>
+      </div>
+      <div class="services-tabs__nav" role="tablist">
+        {prospect.services.map((s, i) => (
+          <button
+            class={`services-tabs__tab ${i === 0 ? 'is-active' : ''}`}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            data-tab={i}
+            type="button"
+          >
+            <span class="services-tabs__tab-icon" set:html={s.icon} />
+            <span>{s.title}</span>
+          </button>
+        ))}
+      </div>
+      <div class="services-tabs__panels">
+        {prospect.services.map((s, i) => (
+          <div class={`services-tabs__panel ${i === 0 ? 'is-active' : ''}`} role="tabpanel" data-panel={i}>
+            <div class="services-tabs__panel-icon" set:html={s.icon} />
+            <h3 class="services-tabs__panel-title">{s.title}</h3>
+            <p class="services-tabs__panel-desc">{s.description}</p>
+            <a href="#kontakt" class="services-tabs__panel-cta">Jetzt anfragen &rarr;</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <!-- Prozess-Visualisierung -->
   <section class="process" id="ablauf">
@@ -192,6 +220,40 @@ const seasonalTips = [
             <p class="seasonal__card-desc">{tip.desc}</p>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Cost Estimator -->
+  <section class="estimator" id="kalkulator">
+    <div class="estimator__inner">
+      <div class="estimator__header">
+        <div class="estimator__badge">Kostenrechner</div>
+        <h2 class="estimator__title">Was kostet <em>Ihr Projekt?</em></h2>
+        <p class="estimator__sub">Erhalten Sie eine unverbindliche Ersteinschätzung — in unter 30 Sekunden.</p>
+      </div>
+      <div class="estimator__form">
+        <div class="estimator__field">
+          <label class="estimator__label">Art der Arbeit</label>
+          <div class="estimator__options" data-field="type">
+            <button class="estimator__option is-active" data-value="neuanlage" type="button">Neuanlage</button>
+            <button class="estimator__option" data-value="umgestaltung" type="button">Umgestaltung</button>
+            <button class="estimator__option" data-value="pflege" type="button">Pflege</button>
+          </div>
+        </div>
+        <div class="estimator__field">
+          <label class="estimator__label">Fläche in m²</label>
+          <div class="estimator__slider-wrap">
+            <input type="range" min="20" max="500" value="100" class="estimator__slider" id="area-slider" />
+            <span class="estimator__slider-val" id="area-val">100 m²</span>
+          </div>
+        </div>
+        <div class="estimator__result">
+          <div class="estimator__result-label">Geschätzte Kosten</div>
+          <div class="estimator__result-val" id="estimate-val">ca. 5.000 — 8.000 €</div>
+          <div class="estimator__result-note">Unverbindliche Schätzung. Genaue Kosten nach Besichtigung.</div>
+          <a href="#kontakt" class="estimator__result-cta">Jetzt kostenloses Angebot anfragen</a>
+        </div>
       </div>
     </div>
   </section>
@@ -757,6 +819,321 @@ const seasonalTips = [
     line-height: 1.5;
   }
 
+  /* Interactive Services Tabs */
+  .services-tabs {
+    padding: 80px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .services-tabs__header { margin-bottom: 40px; }
+
+  .services-tabs__badge {
+    display: inline-flex;
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 16px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .services-tabs__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .services-tabs__title em { color: var(--accent); font-style: normal; }
+
+  .services-tabs__sub {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  .services-tabs__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .services-tabs__tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 500;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .services-tabs__tab:hover {
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    color: var(--text);
+  }
+
+  .services-tabs__tab.is-active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .services-tabs__tab-icon { display: flex; }
+  .services-tabs__tab.is-active .services-tabs__tab-icon { color: #fff; }
+
+  .services-tabs__panels { position: relative; }
+
+  .services-tabs__panel {
+    display: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .services-tabs__panel.is-active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .services-tabs__panel-icon {
+    width: 56px;
+    height: 56px;
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--accent);
+  }
+
+  .services-tabs__panel-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .services-tabs__panel-desc {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 600px;
+  }
+
+  .services-tabs__panel-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: gap 0.2s ease;
+    text-decoration: none;
+  }
+
+  .services-tabs__panel-cta:hover { gap: 10px; }
+
+  /* Cost Estimator */
+  .estimator {
+    padding: 80px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .estimator__header { margin-bottom: 40px; }
+
+  .estimator__badge {
+    display: inline-flex;
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 16px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .estimator__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .estimator__title em { color: var(--accent); font-style: normal; }
+
+  .estimator__sub {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .estimator__form {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px;
+  }
+
+  .estimator__field { margin-bottom: 28px; }
+
+  .estimator__label {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .estimator__options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .estimator__option {
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .estimator__option:hover {
+    border-color: var(--accent);
+    color: var(--text);
+  }
+
+  .estimator__option.is-active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .estimator__slider-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .estimator__slider {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border);
+    outline: none;
+  }
+
+  .estimator__slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  .estimator__slider-val {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    min-width: 70px;
+    text-align: right;
+  }
+
+  .estimator__result {
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .estimator__result-label {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+
+  .estimator__result-val {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .estimator__result-note {
+    font-size: 0.78rem;
+    color: var(--dim);
+    margin-bottom: 20px;
+  }
+
+  .estimator__result-cta {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    transition: background 0.2s, transform 0.2s;
+    text-decoration: none;
+  }
+
+  .estimator__result-cta:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 1024px) {
+    .services-tabs__nav { gap: 6px; }
+    .services-tabs__tab { font-size: 0.75rem; padding: 8px 14px; }
+  }
+
   @media (max-width: 768px) {
     .trust-bar__inner { gap: 16px; padding: 14px 24px; }
     .trust-bar__divider { display: none; }
@@ -769,14 +1146,24 @@ const seasonalTips = [
     .showcase__grid { grid-template-columns: 1fr; height: auto; }
     .showcase__item--large { grid-row: auto; }
     .showcase__item--small { min-height: 220px; }
+    .services-tabs { padding: 60px 24px; }
+    .services-tabs__nav { gap: 6px; }
+    .services-tabs__tab { font-size: 0.75rem; padding: 8px 12px; }
+    .services-tabs__tab span:last-child { display: none; }
+    .services-tabs__panel { padding: 24px; }
+    .estimator { padding: 60px 24px; }
+    .estimator__form { padding: 24px; }
+    .estimator__options { flex-direction: column; }
   }
 </style>
 
 <script>
-  // Smooth scroll for anchor links
+  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
-      const target = document.querySelector(anchor.getAttribute('href')!);
+      const href = anchor.getAttribute('href');
+      if (!href) return;
+      const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -794,12 +1181,12 @@ const seasonalTips = [
     });
   }, { threshold: 0.15 });
 
-  document.querySelectorAll('.anim-on-scroll, .process__step, .seasonal__card, .ptst__card, .psvc__card').forEach(el => {
+  document.querySelectorAll('.anim-on-scroll, .process__step, .seasonal__card, .ptst__card').forEach(el => {
     el.classList.add('anim-on-scroll');
     observer.observe(el);
   });
 
-  // Counter animation for stats
+  // Counter animation
   const countObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -813,10 +1200,7 @@ const seasonalTips = [
           const step = Math.max(1, Math.floor(target / 40));
           const timer = setInterval(() => {
             current += step;
-            if (current >= target) {
-              current = target;
-              clearInterval(timer);
-            }
+            if (current >= target) { current = target; clearInterval(timer); }
             el.textContent = current + suffix;
           }, 30);
         }
@@ -825,7 +1209,62 @@ const seasonalTips = [
     });
   }, { threshold: 0.5 });
 
-  document.querySelectorAll('.hero-full__stat-val').forEach(el => {
-    countObserver.observe(el);
+  document.querySelectorAll('.hero-full__stat-val').forEach(el => countObserver.observe(el));
+
+  // Service Tabs
+  const tabs = document.querySelectorAll('.services-tabs__tab');
+  const panels = document.querySelectorAll('.services-tabs__panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const idx = (tab as HTMLElement).dataset.tab;
+      tabs.forEach(t => { t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false'); });
+      panels.forEach(p => p.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      tab.setAttribute('aria-selected', 'true');
+      const panel = document.querySelector(`[data-panel="${idx}"]`);
+      if (panel) panel.classList.add('is-active');
+    });
   });
+
+  // Cost Estimator
+  const typeButtons = document.querySelectorAll('.estimator__option');
+  const slider = document.getElementById('area-slider') as HTMLInputElement;
+  const areaVal = document.getElementById('area-val');
+  const estimateVal = document.getElementById('estimate-val');
+
+  const rates: Record<string, [number, number]> = {
+    neuanlage: [50, 80],
+    umgestaltung: [40, 65],
+    pflege: [3, 6],
+  };
+
+  let selectedType = 'neuanlage';
+
+  function updateEstimate() {
+    if (!slider || !areaVal || !estimateVal) return;
+    const area = parseInt(slider.value);
+    areaVal.textContent = area + ' m²';
+    const [lo, hi] = rates[selectedType] || [50, 80];
+    const min = Math.round(area * lo / 100) * 100;
+    const max = Math.round(area * hi / 100) * 100;
+    if (selectedType === 'pflege') {
+      estimateVal.textContent = `ca. ${min.toLocaleString('de-DE')} — ${max.toLocaleString('de-DE')} € / Monat`;
+    } else {
+      estimateVal.textContent = `ca. ${min.toLocaleString('de-DE')} — ${max.toLocaleString('de-DE')} €`;
+    }
+  }
+
+  typeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      typeButtons.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      selectedType = (btn as HTMLElement).dataset.value || 'neuanlage';
+      updateEstimate();
+    });
+  });
+
+  if (slider) {
+    slider.addEventListener('input', updateEstimate);
+    updateEstimate();
+  }
 </script>
