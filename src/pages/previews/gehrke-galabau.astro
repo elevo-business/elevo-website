@@ -6,6 +6,7 @@ import PreviewHero from '../../templates/sections/PreviewHero.astro';
 import PreviewServices from '../../templates/sections/PreviewServices.astro';
 import PreviewStats from '../../templates/sections/PreviewStats.astro';
 import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
+import PreviewGallery from '../../templates/sections/PreviewGallery.astro';
 import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
 import type { ProspectData } from '../../templates/config/types';
 
@@ -31,7 +32,7 @@ const prospect: ProspectData = {
 ---
 
 <PreviewLayout profile={galabauProfile} prospect={prospect}>
-  <PreviewNav prospectName={prospect.name} ctaText="Beratung anfragen" ctaHref="#kontakt" />
+  <PreviewNav prospectName={prospect.name} logo="/client-logos/gehrke-galabau.svg" ctaText="Beratung anfragen" ctaHref="#kontakt" />
   <PreviewHero
     title={prospect.heroTitle}
     subtitle={prospect.heroSubtitle}
@@ -40,9 +41,21 @@ const prospect: ProspectData = {
       { text: 'Kostenloses Angebot', href: '#kontakt', variant: 'primary' },
       { text: 'Unsere Leistungen', href: '#leistungen', variant: 'outline' },
     ]}
+    heroImage="https://images.unsplash.com/photo-1599598425947-5202edd56fde?auto=format&fit=crop&w=1400&q=80"
+    heroImageAlt="Familiärer Gartenbetrieb beim Anlegen einer Grünfläche"
     stats={prospect.stats}
   />
   <PreviewServices title="Unsere Leistungen" subtitle="Von der Gartenplanung bis zur laufenden Pflege — wir bieten alles aus einer Hand für Ihren Außenbereich in der Region Hannover." services={prospect.services} />
+  <PreviewGallery
+    title="Unsere Projekte"
+    subtitle="Familiäre Gartenarbeit in Seelze und der Region Hannover — nah, persönlich und handwerklich präzise."
+    images={[
+      { src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80', alt: 'Gartenplanung und Neuanlage Seelze' },
+      { src: 'https://images.unsplash.com/photo-1558222218-b7b54eede3f3?auto=format&fit=crop&w=800&q=80', alt: 'Bepflanzung mit standortgerechten Pflanzen' },
+      { src: 'https://images.unsplash.com/photo-1464288550599-43d5a73451f8?auto=format&fit=crop&w=800&q=80', alt: 'Pflasterbau Terrasse Region Hannover' },
+      { src: 'https://images.unsplash.com/photo-1545167622-3a6ac756afa4?auto=format&fit=crop&w=800&q=80', alt: 'Laufende Gartenpflege Familiengarten' },
+    ]}
+  />
   <PreviewCTA title="Ihr Garten in guten Händen." subtitle="Kontaktieren Sie Michael Gehrke für ein unverbindliches Beratungsgespräch in Seelze und Umgebung. Wir schauen uns Ihren Garten gerne kostenlos an." badge="Jetzt anfragen" buttonText="Jetzt anfragen" buttonLink={`mailto:${prospect.email}`} />
   <PreviewFooter
     prospectName={prospect.name}

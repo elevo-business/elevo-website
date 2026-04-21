@@ -6,6 +6,7 @@ import PreviewHero from '../../templates/sections/PreviewHero.astro';
 import PreviewServices from '../../templates/sections/PreviewServices.astro';
 import PreviewStats from '../../templates/sections/PreviewStats.astro';
 import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
+import PreviewGallery from '../../templates/sections/PreviewGallery.astro';
 import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
 import type { ProspectData } from '../../templates/config/types';
 
@@ -40,9 +41,21 @@ const prospect: ProspectData = {
       { text: 'Kostenloses Angebot', href: '#kontakt', variant: 'primary' },
       { text: 'Unsere Leistungen', href: '#leistungen', variant: 'outline' },
     ]}
+    heroImage="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=1400&q=80"
+    heroImageAlt="Naturnaher Garten mit Holzweg im Taunus"
     stats={prospect.stats}
   />
   <PreviewServices title="Unsere Leistungen" subtitle="Von der kreativen Gartengestaltung bis zur regelmäßigen Pflege — wir kümmern uns ganzjährig um Ihren grünen Rückzugsort." services={prospect.services} />
+  <PreviewGallery
+    title="Unsere Gärten"
+    subtitle="Gartengestaltungen und Natursteinarbeiten im Taunus und Rhein-Main-Gebiet."
+    images={[
+      { src: 'https://images.unsplash.com/photo-1481277542470-605612bd2d61?auto=format&fit=crop&w=800&q=80', alt: 'Gepflegter Garten mit Natursteinmauer Bad Soden' },
+      { src: 'https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?auto=format&fit=crop&w=800&q=80', alt: 'Saisonale Bepflanzung Eingangsbereich' },
+      { src: 'https://images.unsplash.com/photo-1459156212016-c812468e2115?auto=format&fit=crop&w=800&q=80', alt: 'Terrasse mit Naturstein und Bepflanzung' },
+      { src: 'https://images.unsplash.com/photo-1466027397211-20d0f2449a3c?auto=format&fit=crop&w=800&q=80', alt: 'Heckenschnitt und Gehölzpflege im Taunus' },
+    ]}
+  />
   <PreviewCTA title="Bereit für Ihren Traumgarten?" subtitle="Kontaktieren Sie Axel Schäfer für ein unverbindliches Beratungsgespräch. Wir kommen zu Ihnen nach Bad Soden und besichtigen Ihre Fläche kostenlos." badge="Jetzt anfragen" buttonText="Jetzt anfragen" buttonLink={`mailto:${prospect.email}`} />
   <PreviewFooter
     prospectName={prospect.name}

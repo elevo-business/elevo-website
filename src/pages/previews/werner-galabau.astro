@@ -6,6 +6,7 @@ import PreviewHero from '../../templates/sections/PreviewHero.astro';
 import PreviewServices from '../../templates/sections/PreviewServices.astro';
 import PreviewStats from '../../templates/sections/PreviewStats.astro';
 import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
+import PreviewGallery from '../../templates/sections/PreviewGallery.astro';
 import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
 import type { ProspectData } from '../../templates/config/types';
 
@@ -33,7 +34,7 @@ const prospect: ProspectData = {
 ---
 
 <PreviewLayout profile={galabauProfile} prospect={prospect}>
-  <PreviewNav prospectName={prospect.name} ctaText="Angebot anfragen" ctaHref="#kontakt" />
+  <PreviewNav prospectName={prospect.name} logo="/client-logos/werner-galabau.svg" ctaText="Angebot anfragen" ctaHref="#kontakt" />
   <PreviewHero
     title={prospect.heroTitle}
     subtitle={prospect.heroSubtitle}
@@ -42,9 +43,21 @@ const prospect: ProspectData = {
       { text: 'Kostenloses Angebot', href: '#kontakt', variant: 'primary' },
       { text: 'Unsere Leistungen', href: '#leistungen', variant: 'outline' },
     ]}
+    heroImage="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1400&q=80"
+    heroImageAlt="Großflächige gewerbliche Außenanlage mit gepflegtem Grün"
     stats={prospect.stats}
   />
   <PreviewServices title="Unsere Leistungen" subtitle="Werner GaLaBau steht für handwerkliche Exzellenz und professionelle Projektabwicklung — pünktlich, sauber und mit zertifizierter Qualität." services={prospect.services} />
+  <PreviewGallery
+    title="Projektgalerie"
+    subtitle="Auswahl realisierter Außenanlagen für Gewerbe- und Privatkunden im Rhein-Main-Gebiet."
+    images={[
+      { src: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&w=800&q=80', alt: 'Großflächige Pflasteranlage für Gewerbekunden' },
+      { src: 'https://images.unsplash.com/photo-1590167676527-2a5a3c8c7b21?auto=format&fit=crop&w=800&q=80', alt: 'Naturstein-Einfahrt mit Begrünung' },
+      { src: 'https://images.unsplash.com/photo-1571607388263-1044f9ea7f0c?auto=format&fit=crop&w=800&q=80', alt: 'Gepflegte Grünanlage eines Bürokomplexes' },
+      { src: 'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?auto=format&fit=crop&w=800&q=80', alt: 'Baumschnitt und Gehölzpflege' },
+    ]}
+  />
   <PreviewCTA title="Ihr Projekt, unsere Expertise." subtitle="Wir besichtigen Ihr Objekt kostenlos und erstellen Ihnen ein transparentes Angebot. Profitieren Sie von unserer zertifizierten Fachkompetenz." badge="Jetzt anfragen" buttonText="Jetzt anrufen" buttonLink="tel:+49" />
   <PreviewFooter
     prospectName={prospect.name}

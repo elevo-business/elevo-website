@@ -6,6 +6,7 @@ import PreviewHero from '../../templates/sections/PreviewHero.astro';
 import PreviewServices from '../../templates/sections/PreviewServices.astro';
 import PreviewStats from '../../templates/sections/PreviewStats.astro';
 import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
+import PreviewGallery from '../../templates/sections/PreviewGallery.astro';
 import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
 import type { ProspectData } from '../../templates/config/types';
 
@@ -31,7 +32,7 @@ const prospect: ProspectData = {
 ---
 
 <PreviewLayout profile={galabauProfile} prospect={prospect}>
-  <PreviewNav prospectName={prospect.name} ctaText="Beratung anfragen" ctaHref="#kontakt" />
+  <PreviewNav prospectName={prospect.name} logo="/client-logos/burkhardt.svg" ctaText="Beratung anfragen" ctaHref="#kontakt" />
   <PreviewHero
     title={prospect.heroTitle}
     subtitle={prospect.heroSubtitle}
@@ -40,9 +41,21 @@ const prospect: ProspectData = {
       { text: 'Kostenloses Angebot', href: '#kontakt', variant: 'primary' },
       { text: 'Unsere Leistungen', href: '#leistungen', variant: 'outline' },
     ]}
+    heroImage="https://images.unsplash.com/photo-1585320806297-9c5f04be5bca?auto=format&fit=crop&w=1400&q=80"
+    heroImageAlt="Professionell gepflegte Grünanlage eines Gewerbebetriebs"
     stats={prospect.stats}
   />
   <PreviewServices title="Unsere Leistungen" subtitle="Von der gewerblichen Außenanlage bis zum Privatgarten — Burkhardt GaLaBau liefert professionelle Ergebnisse für jeden Bedarf." services={prospect.services} />
+  <PreviewGallery
+    title="Referenzprojekte"
+    subtitle="Gewerbegelände, Privatgärten und Pflasterbau — realisiert im Rhein-Main-Gebiet."
+    images={[
+      { src: 'https://images.unsplash.com/photo-1566800180008-d0f6b07d9f04?auto=format&fit=crop&w=800&q=80', alt: 'Gepflegtes Firmengelände in Eschborn' },
+      { src: 'https://images.unsplash.com/photo-1598128558393-70ff21433be0?auto=format&fit=crop&w=800&q=80', alt: 'Pflasterarbeiten Einfahrt Privathaus' },
+      { src: 'https://images.unsplash.com/photo-1585637071003-89cd44d3efb5?auto=format&fit=crop&w=800&q=80', alt: 'Privatgarten Neugestaltung Rhein-Main' },
+      { src: 'https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?auto=format&fit=crop&w=800&q=80', alt: 'Grünanlage mit regelmäßiger Pflege' },
+    ]}
+  />
   <PreviewCTA title="Ihr Partner im Rhein-Main-Gebiet" subtitle="Ob Gewerbe oder Privat — sprechen Sie uns an. Wir erstellen Ihnen ein unverbindliches Angebot für Ihre Außenflächen." badge="Jetzt anfragen" buttonText="Jetzt anfragen" buttonLink={`mailto:${prospect.email}`} />
   <PreviewFooter
     prospectName={prospect.name}
