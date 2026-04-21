@@ -1383,10 +1383,42 @@ section { position: relative; }
   margin-bottom: 8px;
 }
 
+.case-quote-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.case-avatar {
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.case-avatar svg {
+  border-radius: 50%;
+}
+
 .case-quote-author {
   font-size: 0.72rem;
   color: var(--text-muted);
   font-weight: 500;
+}
+
+.case-ref-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  transition: gap var(--transition), opacity var(--transition);
+}
+
+.case-ref-link:hover {
+  gap: 7px;
+  opacity: 0.8;
 }
 
 .case-cta {
@@ -2157,8 +2189,18 @@ section { position: relative; }
   .services-grid { grid-template-columns: 1fr; }
   .warum-visual { grid-template-columns: 1fr 1fr; }
 
-  /* Hero visual: hide on small mobile to save space */
-  .hero-visual-wrap { display: none; }
+  /* Hero visual: stack below text on small mobile, constrained height */
+  .hero-visual-wrap {
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+    max-height: 200px;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+  }
+  .hero-photo-wrap { max-height: 200px; }
+  .hero-photo { aspect-ratio: auto; height: 200px; object-fit: cover; }
+  .hd-float { display: none; }
 
   /* ROI card mobile padding */
   .roi-card { padding: 28px 20px; }

@@ -1,0 +1,213 @@
+<section id="team" class="section team-section" aria-labelledby="team-heading">
+  <div class="container">
+    <header class="section-header">
+      <div class="section-label reveal">Das Team</div>
+      <h2 id="team-heading" class="reveal reveal-delay-1">Wir sind ELEVO.</h2>
+      <p class="reveal reveal-delay-2">Menschen, die liefern — kein Projektmanager, der weiterleitet, sondern Spezialisten, die Ihr Projekt verstehen und umsetzen.</p>
+    </header>
+
+    <div class="team-grid" role="list">
+      <article class="team-card reveal" role="listitem">
+        <div class="team-avatar" aria-hidden="true">
+          <svg viewBox="0 0 80 80" width="80" height="80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="40" cy="40" r="40" fill="rgba(59,130,246,0.12)"/>
+            <circle cx="40" cy="40" r="39" fill="none" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+            <text x="40" y="46" text-anchor="middle" font-family="'Sora', sans-serif" font-size="22" font-weight="700" fill="#3B82F6">ME</text>
+          </svg>
+        </div>
+        <div class="team-info">
+          <h3 class="team-name">Mert E.</h3>
+          <span class="team-role">Geschäftsführung &amp; Strategie</span>
+          <p class="team-bio">Verantwortlich für Kundenprojekte, Strategie und den roten Faden — von der ersten Idee bis zum Go-live.</p>
+        </div>
+        <div class="team-links" aria-label="Kontakt">
+          <a href="#kontakt" class="team-link" aria-label="Kontakt aufnehmen">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Kontakt
+          </a>
+        </div>
+      </article>
+
+      <article class="team-card reveal reveal-delay-1" role="listitem">
+        <div class="team-avatar" aria-hidden="true">
+          <svg viewBox="0 0 80 80" width="80" height="80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="40" cy="40" r="40" fill="rgba(16,185,129,0.10)"/>
+            <circle cx="40" cy="40" r="39" fill="none" stroke="rgba(16,185,129,0.3)" stroke-width="1"/>
+            <text x="40" y="46" text-anchor="middle" font-family="'Sora', sans-serif" font-size="22" font-weight="700" fill="#10B981">JK</text>
+          </svg>
+        </div>
+        <div class="team-info">
+          <h3 class="team-name">Jonas K.</h3>
+          <span class="team-role">Webentwicklung</span>
+          <p class="team-bio">Full-Stack-Entwickler mit Fokus auf Performance und saubere Architektur. Kein Template, das er nicht übertrumpfen kann.</p>
+        </div>
+        <div class="team-links" aria-label="Kontakt">
+          <a href="#kontakt" class="team-link" aria-label="Kontakt aufnehmen">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Kontakt
+          </a>
+        </div>
+      </article>
+
+      <article class="team-card reveal reveal-delay-2" role="listitem">
+        <div class="team-avatar" aria-hidden="true">
+          <svg viewBox="0 0 80 80" width="80" height="80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="40" cy="40" r="40" fill="rgba(245,158,11,0.10)"/>
+            <circle cx="40" cy="40" r="39" fill="none" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+            <text x="40" y="46" text-anchor="middle" font-family="'Sora', sans-serif" font-size="22" font-weight="700" fill="#F59E0B">LM</text>
+          </svg>
+        </div>
+        <div class="team-info">
+          <h3 class="team-name">Lisa M.</h3>
+          <span class="team-role">Design &amp; UX</span>
+          <p class="team-bio">Zuständig für visuelles Konzept, UX-Flows und alles, was Besucher dazu bringt, auf den richtigen Button zu klicken.</p>
+        </div>
+        <div class="team-links" aria-label="Kontakt">
+          <a href="#kontakt" class="team-link" aria-label="Kontakt aufnehmen">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Kontakt
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .team-section {
+    background: var(--bg-deep);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .team-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+    transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .team-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+
+  .team-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), var(--shadow-blue);
+  }
+
+  .team-card:hover::before {
+    opacity: 1;
+  }
+
+  .team-avatar {
+    margin-bottom: 20px;
+    flex-shrink: 0;
+  }
+
+  .team-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .team-name {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+
+  .team-role {
+    display: inline-block;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+
+  .team-bio {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+
+  .team-links {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .team-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: color var(--transition), border-color var(--transition), background var(--transition);
+  }
+
+  .team-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(59, 130, 246, 0.08);
+  }
+
+  @media (max-width: 1024px) {
+    .team-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .team-card {
+      padding: 28px 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .team-grid {
+      grid-template-columns: 1fr;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .team-card {
+      padding: 32px 28px;
+    }
+  }
+</style>
