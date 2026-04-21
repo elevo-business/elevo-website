@@ -1406,6 +1406,31 @@ section { position: relative; }
   color: #fff;
 }
 
+.case-preview {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(59,130,246,0.07) 0%, rgba(15,23,42,0.3) 100%);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.case-preview-logo {
+  max-height: 44px;
+  max-width: 140px;
+  object-fit: contain;
+  filter: brightness(0) invert(1) opacity(0.55);
+  transition: filter var(--transition);
+}
+
+.case-item:hover .case-preview-logo {
+  filter: brightness(0) invert(1) opacity(0.75);
+}
+
 @media (max-width: 960px) {
   .case-item {
     grid-template-columns: 64px 1fr;
