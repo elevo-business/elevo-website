@@ -15,7 +15,7 @@ import '../styles/global.css';
   <Header />
 
   <Hero
-    badge="Aachen · Für Handwerk &amp; Mittelstand · Messbare Ergebnisse"
+    badge="Digital Boutique · Für Handwerk &amp; Mittelstand · Messbare Ergebnisse"
     title='<span class="line">Ihre Website.</span><span class="line accent">Ihr stärkstes Verkaufsargument.</span>'
     subtitle="Speziell für Handwerker und Mittelstand: Websites, die bei Google oben stehen, Besucher in Kunden verwandeln — und messbare Ergebnisse liefern."
     ctaText="Jetzt Gespräch vereinbaren"
@@ -479,14 +479,14 @@ import '../styles/global.css';
     <div class="container">
       <header class="section-header">
         <div class="section-label reveal">Potenzial-Rechner</div>
-        <h2 id="roi-heading" class="reveal reveal-delay-1">Was kostet Sie<br>eine schwache Website?</h2>
-        <p class="reveal reveal-delay-2">Berechnen Sie Ihr ungenutztes Umsatzpotenzial — in 60 Sekunden, ohne Anmeldung.</p>
+        <h2 id="roi-heading" class="reveal reveal-delay-1">Wie viele Anfragen<br>entgehen Ihnen monatlich?</h2>
+        <p class="reveal reveal-delay-2">Zwei Angaben — und Sie sehen, was eine optimierte Website konkret bringen kann.</p>
       </header>
 
       <div class="roi-card reveal">
         <div class="roi-inputs">
           <div class="roi-field">
-            <label for="roi-visitors">Monatliche Website-Besucher</label>
+            <label for="roi-visitors">Wie viele Besucher hat Ihre Website pro Monat?</label>
             <div class="roi-slider-wrap">
               <input type="range" id="roi-visitors" min="100" max="50000" step="100" value="1000" class="roi-slider" aria-valuemin="100" aria-valuemax="50000" />
               <span class="roi-slider-val" id="roi-visitors-val">1.000</span>
@@ -494,32 +494,23 @@ import '../styles/global.css';
           </div>
 
           <div class="roi-field">
-            <label for="roi-cr">Wie viele Besucher fragen gerade an (%)</label>
+            <label for="roi-cr">Wie viele davon werden aktuell Kunden? (%)</label>
             <div class="roi-slider-wrap">
               <input type="range" id="roi-cr" min="0.1" max="5" step="0.1" value="0.5" class="roi-slider" aria-valuemin="0.1" aria-valuemax="5" />
               <span class="roi-slider-val" id="roi-cr-val">0,5 %</span>
-            </div>
-          </div>
-
-          <div class="roi-field">
-            <label for="roi-value">Ø Auftragswert (€)</label>
-            <div class="roi-slider-wrap">
-              <input type="range" id="roi-value" min="500" max="20000" step="500" value="3000" class="roi-slider" aria-valuemin="500" aria-valuemax="20000" />
-              <span class="roi-slider-val" id="roi-value-val">3.000 €</span>
             </div>
           </div>
         </div>
 
         <div class="roi-result" aria-live="polite" aria-atomic="true">
           <div class="roi-result-inner">
-            <p class="roi-result-label">Ungenutztes Potenzial pro Monat</p>
-            <div class="roi-result-num" id="roi-output">+20 Anfragen<span class="roi-result-month">/Monat</span></div>
-            <div class="roi-result-revenue" id="roi-revenue">≈ 60.000 € mehr Umsatz</div>
-            <p class="roi-result-sub" id="roi-sub">Bei optimierter CR von 2,5 %: 20 zusätzliche Anfragen × 3.000 € Auftragswert</p>
+            <p class="roi-result-label">Mit einer optimierten Website könnten eingehen</p>
+            <div class="roi-result-num" id="roi-output">+5 Anfragen<span class="roi-result-month">/Monat</span></div>
+            <p class="roi-result-sub" id="roi-sub">Bei verbesserter Anfragequote: 5 zusätzliche Anfragen pro Monat</p>
           </div>
-          <a href="#kontakt" class="btn-primary roi-cta">
+          <a href="/kontakt" class="btn-primary roi-cta">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            Potenzial jetzt ausschöpfen
+            Lassen Sie uns gemeinsam rechnen
           </a>
         </div>
       </div>
@@ -528,25 +519,19 @@ import '../styles/global.css';
     <script>
       const visitorsEl = document.getElementById('roi-visitors') as HTMLInputElement;
       const crEl = document.getElementById('roi-cr') as HTMLInputElement;
-      const valueEl = document.getElementById('roi-value') as HTMLInputElement;
       const outputEl = document.getElementById('roi-output')!;
-      const revenueEl = document.getElementById('roi-revenue')!;
       const subEl = document.getElementById('roi-sub')!;
       const visitorsVal = document.getElementById('roi-visitors-val')!;
       const crVal = document.getElementById('roi-cr-val')!;
-      const valueVal = document.getElementById('roi-value-val')!;
 
       function fmt(n: number) { return n.toLocaleString('de-DE'); }
-      function fmtEur(n: number) { return n.toLocaleString('de-DE') + ' €'; }
 
       let animFrame: number | null = null;
       let currentDisplayLeads = 0;
-      let currentDisplayRevenue = 0;
 
-      function animateResults(targetLeads: number, targetRevenue: number) {
+      function animateResults(targetLeads: number) {
         if (animFrame) cancelAnimationFrame(animFrame);
         const startLeads = currentDisplayLeads;
-        const startRevenue = currentDisplayRevenue;
         const duration = 500;
         const t0 = performance.now();
 
@@ -554,14 +539,11 @@ import '../styles/global.css';
           const p = Math.min((now - t0) / duration, 1);
           const ease = 1 - Math.pow(1 - p, 3);
           const leads = Math.round(startLeads + (targetLeads - startLeads) * ease);
-          const rev = Math.round(startRevenue + (targetRevenue - startRevenue) * ease);
           outputEl.innerHTML = `+${fmt(leads)} Anfragen<span class="roi-result-month">/Monat</span>`;
-          revenueEl.textContent = `≈ ${fmtEur(rev)} mehr Umsatz`;
           if (p < 1) {
             animFrame = requestAnimationFrame(step);
           } else {
             currentDisplayLeads = targetLeads;
-            currentDisplayRevenue = targetRevenue;
             animFrame = null;
           }
         }
@@ -572,29 +554,22 @@ import '../styles/global.css';
         const visitors = parseInt(visitorsEl.value);
         const currentCrPct = parseFloat(crEl.value);
         const currentCr = currentCrPct / 100;
-        const avgValue = parseInt(valueEl.value);
 
         const currentLeads = Math.round(visitors * currentCr);
-
-        // Ziel-CR: 50 % Verbesserung gegenüber aktuell (monoton — mehr CVR = mehr Anfragen)
         const targetCr = currentCr * 1.5;
         const potentialLeads = Math.round(visitors * targetCr);
         const additionalLeads = Math.max(1, potentialLeads - currentLeads);
-        const revenueImpact = additionalLeads * avgValue;
 
         visitorsVal.textContent = fmt(visitors);
         crVal.textContent = currentCrPct.toFixed(1).replace('.', ',') + ' %';
-        valueVal.textContent = fmtEur(avgValue);
 
-        const targetCrDisplay = (targetCr * 100).toFixed(1).replace('.', ',');
-        subEl.textContent = `Bei verbesserter Anfragequote von ${targetCrDisplay} %: ${fmt(additionalLeads)} zusätzliche Anfragen × ${fmtEur(avgValue)} Auftragswert`;
+        subEl.textContent = `Bei verbesserter Anfragequote: ${fmt(additionalLeads)} zusätzliche Anfragen pro Monat`;
 
-        animateResults(additionalLeads, revenueImpact);
+        animateResults(additionalLeads);
       }
 
       visitorsEl.addEventListener('input', calculate);
       crEl.addEventListener('input', calculate);
-      valueEl.addEventListener('input', calculate);
       calculate();
     </script>
   </section>
