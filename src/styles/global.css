@@ -213,7 +213,7 @@ section { position: relative; }
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1.4rem;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.12em;
 }
 
 .logo-icon { width: 36px; height: 36px; flex-shrink: 0; }
