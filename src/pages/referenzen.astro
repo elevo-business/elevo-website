@@ -71,29 +71,35 @@ import '../styles/global.css';
     </div>
   </section>
 
-  <!-- Referenzen -->
-  <section id="results" class="section" aria-labelledby="results-heading">
+  <!-- Referenzen Showcase -->
+  <section id="results" class="section" aria-labelledby="results-heading" style="padding-bottom: 0;">
     <div class="container">
       <header class="section-header">
         <div class="section-label reveal">Unsere Arbeit</div>
         <h2 id="results-heading" class="reveal reveal-delay-1">Von 0 auf Wachstum.<br>Projekt für Projekt.</h2>
         <p class="reveal reveal-delay-2">Jedes Projekt hat eine Geschichte — hier sind die Zahlen dahinter.</p>
       </header>
+    </div>
+  </section>
 
-      <div class="case-list" role="list">
-        <article class="case-item reveal" role="listitem">
-          <div class="case-num" aria-hidden="true">01</div>
-          <div class="case-body">
-            <div class="case-preview" aria-hidden="true">
-              <img src="/client-logos/greenchild.png" alt="" class="case-preview-logo" loading="lazy" decoding="async">
+  <div class="ref-showcase-list" role="list">
+
+    <!-- Greenchild -->
+    <div class="ref-showcase reveal" role="listitem" aria-labelledby="ref-gc-heading">
+      <div class="container">
+        <div class="ref-showcase-inner">
+          <div class="ref-showcase-content">
+            <div class="ref-logo-wrap">
+              <img src="/client-logos/greenchild.png" alt="Greenchild Logo" class="ref-logo-img" loading="lazy" decoding="async" width="160" height="56">
             </div>
             <span class="case-tag">Landwirtschaft &amp; Nachhaltigkeit</span>
-            <h3 class="case-name">Greenchild</h3>
-            <p class="case-desc">Landwirtschaftsunternehmen mit Fokus auf Nachhaltigkeit. Von 0 auf Launch in 3 Wochen: vollständige Web-Plattform mit integriertem Konfigurator, DE/EN Lokalisierung und digitalen Onboarding-Flows.</p>
-            <div class="case-services">Web-Plattform · DE/EN · Konfigurator</div>
-          </div>
-          <div class="case-side">
-            <div class="case-metric">0→1</div>
+            <h3 id="ref-gc-heading" class="ref-showcase-title">Greenchild</h3>
+            <p class="ref-showcase-desc">Landwirtschaftsunternehmen mit Fokus auf Nachhaltigkeit. Von 0 auf Launch in 3 Wochen: vollständige Web-Plattform mit integriertem Konfigurator, DE/EN Lokalisierung und digitalen Onboarding-Flows.</p>
+            <div class="ref-showcase-services">Web-Plattform · DE/EN · Konfigurator</div>
+            <div class="ref-metric-row">
+              <span class="ref-metric-val">0→1</span>
+              <span class="ref-metric-label">Von 0 auf Launch<br>in 3 Wochen</span>
+            </div>
             <div class="case-quote-block">
               <div class="case-quote-stars" aria-label="5 von 5 Sternen">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -105,26 +111,50 @@ import '../styles/global.css';
               <p class="case-quote-text">„Von 0 auf Launch in 3 Wochen — schneller als wir es für möglich gehalten hätten."</p>
               <span class="case-quote-author">— Greenchild, Geschäftsführung</span>
             </div>
-            <button class="case-cta ref-modal-trigger" data-url="https://greenchild-preview.elevo.solutions/de/" data-label="Greenchild" data-display-url="greenchild-preview.elevo.solutions" aria-label="Greenchild Website im Modal ansehen">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><circle cx="7" cy="6" r="1" fill="currentColor" stroke="none"/><circle cx="10" cy="6" r="1" fill="currentColor" stroke="none"/></svg>
-              Website live ansehen
-            </button>
           </div>
-        </article>
+          <div class="ref-showcase-preview">
+            <div class="ref-preview-browser">
+              <div class="ref-preview-bar">
+                <div class="ref-preview-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <div class="ref-preview-url-bar">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span class="ref-preview-url-text">greenchild-preview.elevo.solutions</span>
+                </div>
+              </div>
+              <div class="ref-preview-screen" style="background: linear-gradient(135deg, #0a1a0f 0%, #0d2010 40%, #061208 100%);">
+                <div class="ref-preview-bg-logo" aria-hidden="true">
+                  <img src="/client-logos/greenchild.png" alt="" loading="lazy" decoding="async">
+                </div>
+                <div class="ref-preview-content">
+                  <img src="/client-logos/greenchild.png" alt="Greenchild" class="ref-preview-logo-center" loading="lazy" decoding="async">
+                  <button class="ref-preview-play-btn ref-modal-trigger" data-url="https://greenchild-preview.elevo.solutions/de/" data-label="Greenchild" data-display-url="greenchild-preview.elevo.solutions" aria-label="Greenchild Website im Modal ansehen">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    Website live ansehen
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <article class="case-item reveal reveal-delay-1" role="listitem">
-          <div class="case-num" aria-hidden="true">02</div>
-          <div class="case-body">
-            <div class="case-preview" aria-hidden="true">
-              <img src="/client-logos/akropolis.jpg" alt="" class="case-preview-logo" loading="lazy" decoding="async">
+    <!-- Akropolis Geilenkirchen -->
+    <div class="ref-showcase reveal" role="listitem" aria-labelledby="ref-ak-heading">
+      <div class="container">
+        <div class="ref-showcase-inner">
+          <div class="ref-showcase-content">
+            <div class="ref-logo-wrap">
+              <img src="/client-logos/akropolis.jpg" alt="Akropolis Geilenkirchen Logo" class="ref-logo-img" loading="lazy" decoding="async" width="160" height="56">
             </div>
             <span class="case-tag">Restaurant · Geilenkirchen</span>
-            <h3 class="case-name">Akropolis Geilenkirchen</h3>
-            <p class="case-desc">Griechisches Restaurant in Geilenkirchen. Nach Website-Relaunch: deutlich mehr Tischreservierungen und Platz 1 in der lokalen Google-Suche.</p>
-            <div class="case-services">Webdesign · Auf Google gefunden · Platz 1 lokal</div>
-          </div>
-          <div class="case-side">
-            <div class="case-metric green">+3×</div>
+            <h3 id="ref-ak-heading" class="ref-showcase-title">Akropolis Geilenkirchen</h3>
+            <p class="ref-showcase-desc">Griechisches Restaurant in Geilenkirchen. Nach Website-Relaunch: deutlich mehr Tischreservierungen, Platz 1 in der lokalen Google-Suche und messbar mehr Neukunden über das Web.</p>
+            <div class="ref-showcase-services">Webdesign · Lokales SEO · Platz 1 Google</div>
+            <div class="ref-metric-row green">
+              <span class="ref-metric-val">+3×</span>
+              <span class="ref-metric-label">mehr Tischreservierungen<br>nach Relaunch</span>
+            </div>
             <div class="case-quote-block">
               <div class="case-quote-stars" aria-label="5 von 5 Sternen">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -136,26 +166,50 @@ import '../styles/global.css';
               <p class="case-quote-text">„Platz 1 bei Google, dreifach mehr Reservierungen — das sind echte Ergebnisse."</p>
               <span class="case-quote-author">— Akropolis Geilenkirchen, Inhaber</span>
             </div>
-            <button class="case-cta ref-modal-trigger" data-url="https://akropolis-geilenkirchen.com" data-label="Akropolis Geilenkirchen" data-display-url="akropolis-geilenkirchen.com" aria-label="Akropolis Geilenkirchen Website im Modal ansehen">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><circle cx="7" cy="6" r="1" fill="currentColor" stroke="none"/><circle cx="10" cy="6" r="1" fill="currentColor" stroke="none"/></svg>
-              Website live ansehen
-            </button>
           </div>
-        </article>
+          <div class="ref-showcase-preview">
+            <div class="ref-preview-browser">
+              <div class="ref-preview-bar">
+                <div class="ref-preview-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <div class="ref-preview-url-bar">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span class="ref-preview-url-text">akropolis-geilenkirchen.com</span>
+                </div>
+              </div>
+              <div class="ref-preview-screen" style="background: linear-gradient(135deg, #150e05 0%, #1e1408 40%, #0d0905 100%);">
+                <div class="ref-preview-bg-logo" aria-hidden="true">
+                  <img src="/client-logos/akropolis.jpg" alt="" loading="lazy" decoding="async">
+                </div>
+                <div class="ref-preview-content">
+                  <img src="/client-logos/akropolis.jpg" alt="Akropolis Geilenkirchen" class="ref-preview-logo-center" loading="lazy" decoding="async">
+                  <button class="ref-preview-play-btn ref-modal-trigger" data-url="https://akropolis-geilenkirchen.com" data-label="Akropolis Geilenkirchen" data-display-url="akropolis-geilenkirchen.com" aria-label="Akropolis Website im Modal ansehen">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    Website live ansehen
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <article class="case-item reveal reveal-delay-2" role="listitem">
-          <div class="case-num" aria-hidden="true">03</div>
-          <div class="case-body">
-            <div class="case-preview" aria-hidden="true">
-              <img src="/client-logos/zuma.svg" alt="" class="case-preview-logo" loading="lazy" decoding="async">
+    <!-- ZUMA Lounge -->
+    <div class="ref-showcase reveal" role="listitem" aria-labelledby="ref-zuma-heading">
+      <div class="container">
+        <div class="ref-showcase-inner">
+          <div class="ref-showcase-content">
+            <div class="ref-logo-wrap">
+              <img src="/client-logos/zuma.svg" alt="ZUMA Lounge Logo" class="ref-logo-img" loading="lazy" decoding="async" width="160" height="56">
             </div>
             <span class="case-tag">Hospitality &amp; Events</span>
-            <h3 class="case-name">ZUMA Lounge</h3>
-            <p class="case-desc">62 % mehr Buchungen durch eine optimierte Kontaktseite, gezielte Google-Werbekampagnen und verbesserte Nutzerführung über 3 Monate.</p>
-            <div class="case-services">Kontaktseite · Google Ads · Optimierung</div>
-          </div>
-          <div class="case-side">
-            <div class="case-metric green">+62%</div>
+            <h3 id="ref-zuma-heading" class="ref-showcase-title">ZUMA Lounge</h3>
+            <p class="ref-showcase-desc">62 % mehr Buchungen durch eine optimierte Kontaktseite, gezielte Google-Werbekampagnen und verbesserte Nutzerführung — in nur 3 Monaten messbar.</p>
+            <div class="ref-showcase-services">Kontaktseite · Google Ads · Optimierung</div>
+            <div class="ref-metric-row green">
+              <span class="ref-metric-val">+62%</span>
+              <span class="ref-metric-label">mehr Buchungen<br>in 3 Monaten</span>
+            </div>
             <div class="case-quote-block">
               <div class="case-quote-stars" aria-label="5 von 5 Sternen">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -168,21 +222,46 @@ import '../styles/global.css';
               <span class="case-quote-author">— ZUMA Lounge, Management</span>
             </div>
           </div>
-        </article>
+          <div class="ref-showcase-preview">
+            <div class="ref-preview-browser">
+              <div class="ref-preview-bar">
+                <div class="ref-preview-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <div class="ref-preview-url-bar">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span class="ref-preview-url-text">zuma-lounge.de</span>
+                </div>
+              </div>
+              <div class="ref-preview-screen" style="background: linear-gradient(135deg, #0d0a14 0%, #120f1a 40%, #080510 100%);">
+                <div class="ref-preview-bg-logo" aria-hidden="true">
+                  <img src="/client-logos/zuma.svg" alt="" loading="lazy" decoding="async">
+                </div>
+                <div class="ref-preview-content">
+                  <img src="/client-logos/zuma.svg" alt="ZUMA Lounge" class="ref-preview-logo-center" loading="lazy" decoding="async">
+                  <div style="font-size: 0.8rem; color: var(--text-muted); text-align: center; padding: 0 20px;">Kein öffentlicher Live-Viewer verfügbar</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <article class="case-item reveal reveal-delay-3" role="listitem">
-          <div class="case-num" aria-hidden="true">04</div>
-          <div class="case-body">
-            <div class="case-preview" aria-hidden="true">
-              <img src="/client-logos/it-vertrieb.svg" alt="" class="case-preview-logo" loading="lazy" decoding="async">
+    <!-- IT-Vertrieb GmbH -->
+    <div class="ref-showcase reveal" role="listitem" aria-labelledby="ref-itv-heading">
+      <div class="container">
+        <div class="ref-showcase-inner">
+          <div class="ref-showcase-content">
+            <div class="ref-logo-wrap">
+              <img src="/client-logos/it-vertrieb.svg" alt="IT-Vertrieb GmbH Logo" class="ref-logo-img" loading="lazy" decoding="async" width="160" height="56">
             </div>
             <span class="case-tag">Prozessdigitalisierung</span>
-            <h3 class="case-name">IT-Vertrieb GmbH</h3>
-            <p class="case-desc">12 Stunden manuelle Arbeit pro Woche automatisiert. Alle Kundendaten an einem Ort, automatische Angebotserstellung und Auftragsverfolgung — ohne manuelle Arbeit.</p>
-            <div class="case-services">Automatisierung · Kundenverwaltung · Auftragsverfolgung</div>
-          </div>
-          <div class="case-side">
-            <div class="case-metric">12h</div>
+            <h3 id="ref-itv-heading" class="ref-showcase-title">IT-Vertrieb GmbH</h3>
+            <p class="ref-showcase-desc">12 Stunden manuelle Arbeit pro Woche automatisiert. Alle Kundendaten an einem Ort, automatische Angebotserstellung und Auftragsverfolgung — ohne manuelle Eingriffe.</p>
+            <div class="ref-showcase-services">Automatisierung · Kundenverwaltung · Auftragsverfolgung</div>
+            <div class="ref-metric-row">
+              <span class="ref-metric-val">12h</span>
+              <span class="ref-metric-label">manuelle Arbeit pro Woche<br>automatisiert</span>
+            </div>
             <div class="case-quote-block">
               <div class="case-quote-stars" aria-label="5 von 5 Sternen">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -195,10 +274,31 @@ import '../styles/global.css';
               <span class="case-quote-author">— IT-Vertrieb GmbH, Vertriebsleitung</span>
             </div>
           </div>
-        </article>
+          <div class="ref-showcase-preview">
+            <div class="ref-preview-browser">
+              <div class="ref-preview-bar">
+                <div class="ref-preview-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <div class="ref-preview-url-bar">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span class="ref-preview-url-text">it-vertrieb.de</span>
+                </div>
+              </div>
+              <div class="ref-preview-screen" style="background: linear-gradient(135deg, #060b14 0%, #081020 40%, #040810 100%);">
+                <div class="ref-preview-bg-logo" aria-hidden="true">
+                  <img src="/client-logos/it-vertrieb.svg" alt="" loading="lazy" decoding="async">
+                </div>
+                <div class="ref-preview-content">
+                  <img src="/client-logos/it-vertrieb.svg" alt="IT-Vertrieb GmbH" class="ref-preview-logo-center" loading="lazy" decoding="async">
+                  <div style="font-size: 0.8rem; color: var(--text-muted); text-align: center; padding: 0 20px;">Interne Unternehmensplattform</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+
+  </div>
 
   <!-- Live Website Viewer -->
   <section id="live-viewer" class="section" aria-labelledby="viewer-heading">

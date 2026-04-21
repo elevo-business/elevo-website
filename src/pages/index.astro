@@ -229,6 +229,85 @@ import '../styles/global.css';
     </div>
   </section>
 
+  <!-- Live-Previews -->
+  <section id="home-live-preview" class="section" aria-labelledby="home-preview-heading">
+    <div class="container">
+      <header class="section-header">
+        <div class="section-label reveal">Live-Einblick</div>
+        <h2 id="home-preview-heading" class="reveal reveal-delay-1">Unsere Projekte.<br>Direkt erleben.</h2>
+        <p class="reveal reveal-delay-2">Scrollen Sie durch echte Kundenprojekte — ohne den Browser zu verlassen.</p>
+      </header>
+
+      <div class="home-preview-tabs reveal" role="tablist" aria-label="Referenz-Websites">
+        <button class="home-preview-tab active" role="tab" aria-selected="true" aria-controls="home-preview-frame" data-url="https://greenchild-preview.elevo.solutions/de/" data-label="Greenchild" data-display-url="greenchild-preview.elevo.solutions">
+          <span class="home-preview-tab-tag">Landwirtschaft</span>
+          <span class="home-preview-tab-name">Greenchild</span>
+        </button>
+        <button class="home-preview-tab" role="tab" aria-selected="false" aria-controls="home-preview-frame" data-url="https://akropolis-geilenkirchen.com" data-label="Akropolis Geilenkirchen" data-display-url="akropolis-geilenkirchen.com">
+          <span class="home-preview-tab-tag">Restaurant</span>
+          <span class="home-preview-tab-name">Akropolis</span>
+        </button>
+        <button class="home-preview-tab" role="tab" aria-selected="false" aria-controls="home-preview-frame" data-url="https://immobilien-preview.elevo.solutions" data-label="Immobilien Müller" data-display-url="immobilien-preview.elevo.solutions">
+          <span class="home-preview-tab-tag">Immobilien</span>
+          <span class="home-preview-tab-name">Immobilien Müller</span>
+        </button>
+      </div>
+
+      <div class="home-preview-browser reveal reveal-delay-1">
+        <div class="home-preview-bar">
+          <div class="viewer-dots" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="viewer-url-wrap">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span class="viewer-url-text" id="home-preview-url-text">greenchild-preview.elevo.solutions</span>
+          </div>
+          <a class="viewer-open-btn" id="home-preview-open-btn" href="https://greenchild-preview.elevo.solutions/de/" target="_blank" rel="noopener" aria-label="Website in neuem Tab öffnen">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+        <div class="home-preview-frame-wrap">
+          <iframe
+            id="home-preview-frame"
+            src="https://greenchild-preview.elevo.solutions/de/"
+            title="Greenchild Website"
+            loading="lazy"
+            class="home-preview-iframe"
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="home-preview-cta-row reveal reveal-delay-2">
+        <a href="/referenzen" class="btn-secondary">
+          Alle Referenzen ansehen
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <script>
+      const homeTabs = document.querySelectorAll('.home-preview-tab');
+      const homeFrame = document.getElementById('home-preview-frame') as HTMLIFrameElement;
+      const homeUrlText = document.getElementById('home-preview-url-text')!;
+      const homeOpenBtn = document.getElementById('home-preview-open-btn') as HTMLAnchorElement;
+
+      homeTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          homeTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+          const url = (tab as HTMLElement).dataset.url!;
+          const label = (tab as HTMLElement).dataset.label!;
+          const displayUrl = (tab as HTMLElement).dataset.displayUrl || url;
+          homeFrame.src = url;
+          homeFrame.title = label;
+          homeUrlText.textContent = displayUrl;
+          homeOpenBtn.href = url;
+        });
+      });
+    </script>
+  </section>
+
   <!-- Leistungen -->
   <section id="leistungen" class="section" aria-labelledby="leistungen-heading">
     <div class="container">
