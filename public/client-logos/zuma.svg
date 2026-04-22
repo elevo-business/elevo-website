@@ -1,4 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" width="160" height="48">
-  <text x="80" y="28" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#E2E8F0" text-anchor="middle" letter-spacing="6">ZUMA</text>
-  <text x="80" y="42" font-family="Arial, sans-serif" font-size="9" font-weight="400" fill="#94A3B8" text-anchor="middle" letter-spacing="4">LOUNGE</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 56" width="200" height="56">
+  <!-- Decorative accent: three angled lines suggesting movement/vibes -->
+  <g opacity="0.9">
+    <rect x="2" y="11" width="28" height="3.5" rx="1.75" fill="#C9A050" transform="rotate(-12 16 12.75)"/>
+    <rect x="4" y="21" width="22" height="3" rx="1.5" fill="#C9A050" opacity="0.65" transform="rotate(-12 15 22.5)"/>
+    <rect x="6" y="30" width="16" height="2.5" rx="1.25" fill="#C9A050" opacity="0.35" transform="rotate(-12 14 31.25)"/>
+  </g>
+  <!-- ZUMA wordmark -->
+  <text x="44" y="25" font-family="Georgia,'Times New Roman',serif" font-size="21" font-weight="700" fill="#F0EBE0" letter-spacing="6">ZUMA</text>
+  <!-- Separator -->
+  <rect x="44" y="30.5" width="148" height="0.75" fill="#C9A050" opacity="0.45"/>
+  <!-- LOUNGE subtitle -->
+  <text x="45" y="43" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="8.5" font-weight="400" fill="#8A7A62" letter-spacing="6.5">LOUNGE</text>
 </svg>
