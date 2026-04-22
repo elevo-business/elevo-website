@@ -1092,7 +1092,7 @@ section { position: relative; }
   display: flex;
   gap: 2px;
   margin-bottom: 8px;
-  color: #F59E0B;
+  color: var(--orange);
 }
 
 .result-testimonial-text {
@@ -1226,7 +1226,7 @@ section { position: relative; }
   display: flex;
   gap: 2px;
   margin-bottom: 8px;
-  color: #F59E0B;
+  color: var(--orange);
 }
 
 .case-quote-text {
