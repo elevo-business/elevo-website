@@ -3,6 +3,8 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
 ---
 
 <form class="contact-form" id="contact-form" novalidate data-api-url={apiUrl}>
+  <input type="text" name="_hp" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+  <input type="hidden" name="_ts" id="form-ts" value="">
   <div class="form-row">
     <div class="form-group">
       <label class="form-label" for="name">Ihr Name *</label>
@@ -46,10 +48,17 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
   const formMsg = document.getElementById('form-message')!;
-  const apiUrl = form.dataset.apiUrl!;;
+  const apiUrl = form.dataset.apiUrl!;
+  const tsInput = document.getElementById('form-ts') as HTMLInputElement;
+  if (tsInput) tsInput.value = String(Date.now());
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    const hp = (form.elements.namedItem('_hp') as HTMLInputElement)?.value;
+    if (hp) return;
+    const ts = (form.elements.namedItem('_ts') as HTMLInputElement)?.value;
+    if (ts && Date.now() - parseInt(ts, 10) < 1500) return;
 
     const name = (form.elements.namedItem('name') as HTMLInputElement).value.trim();
     const email = (form.elements.namedItem('email') as HTMLInputElement).value.trim();
