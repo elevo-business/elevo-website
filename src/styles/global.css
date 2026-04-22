@@ -216,13 +216,6 @@ section { position: relative; }
   letter-spacing: -0.12em;
 }
 
-.logo-icon { width: 36px; height: 36px; flex-shrink: 0; }
-
-.nav-logo .v-accent {
-  color: var(--accent);
-  letter-spacing: 0;
-  margin: 0 -0.04em 0 -0.02em;
-}
 
 .nav-links {
   display: flex;
@@ -900,71 +893,6 @@ section { position: relative; }
 
 .roi-cta { width: 100%; justify-content: center; }
 
-/* ===========================
-   Trusted By / Logos
-=========================== */
-#trusted {
-  padding: 48px 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  overflow: hidden;
-}
-
-.trusted-label {
-  text-align: center;
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 28px;
-}
-
-.trusted-track {
-  display: flex;
-  align-items: center;
-  gap: 72px;
-  width: max-content;
-  animation: marquee 14s linear infinite;
-}
-
-.trusted-track:hover { animation-play-state: paused; }
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .trusted-track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; gap: 48px; }
-}
-
-.trusted-logo-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.trusted-logo {
-  height: 36px;
-  width: auto;
-  max-width: 160px;
-  object-fit: contain;
-  filter: grayscale(1) brightness(1.8) opacity(0.5);
-  transition: filter 0.3s ease;
-}
-
-.trusted-logo:hover {
-  filter: grayscale(0) brightness(1) opacity(1);
-}
-
-.trusted-logo-svg {
-  filter: brightness(0) invert(1) opacity(0.4);
-}
-
-.trusted-logo-svg:hover {
-  filter: brightness(0) invert(1) opacity(0.85);
-}
 
 /* Legacy badge items */
 .trusted-item {
