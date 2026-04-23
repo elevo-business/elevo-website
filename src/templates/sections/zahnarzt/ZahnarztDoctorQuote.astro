@@ -1,0 +1,205 @@
+---
+interface Props {
+  quote: string;
+  author: string;
+  title: string;
+  imageSrc?: string;
+  imageAlt?: string;
+}
+
+const { quote, author, title, imageSrc, imageAlt = '' } = Astro.props;
+---
+
+<section class="zh-doctor-quote" aria-label="Arzt-Zitat">
+  <div class="zh-doctor-quote__container">
+    <figure class="zh-doctor-quote__figure">
+
+      <div class="zh-doctor-quote__quote-col">
+        <svg class="zh-doctor-quote__mark" viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M0 56V36C0 15.333 11.333 3.333 34 0l4 6C24.667 8.667 18.667 15.333 18 27H34V56H0ZM46 56V36C46 15.333 57.333 3.333 80 0l4 6C70.667 8.667 64.667 15.333 64 27H80V56H46Z" fill="currentColor"/>
+        </svg>
+
+        <blockquote class="zh-doctor-quote__text">
+          {quote}
+        </blockquote>
+
+        <figcaption class="zh-doctor-quote__author-block">
+          {imageSrc && (
+            <img
+              src={imageSrc}
+              alt={imageAlt || author}
+              class="zh-doctor-quote__author-img zh-doctor-quote__author-img--inline"
+              width="56"
+              height="56"
+              loading="lazy"
+            />
+          )}
+          <div class="zh-doctor-quote__author-info">
+            <span class="zh-doctor-quote__author-name">{author}</span>
+            <span class="zh-doctor-quote__author-title">{title}</span>
+          </div>
+        </figcaption>
+      </div>
+
+      {imageSrc && (
+        <div class="zh-doctor-quote__portrait-col" aria-hidden="true">
+          <div class="zh-doctor-quote__portrait-wrap">
+            <img
+              src={imageSrc}
+              alt={imageAlt || author}
+              class="zh-doctor-quote__portrait-img"
+              width="400"
+              height="500"
+              loading="lazy"
+            />
+            <div class="zh-doctor-quote__portrait-glow"></div>
+          </div>
+        </div>
+      )}
+
+    </figure>
+  </div>
+</section>
+
+<style>
+  .zh-doctor-quote {
+    background: var(--zh-bg, var(--bg-deep));
+    padding: 96px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .zh-doctor-quote::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 20% 50%, rgba(14, 138, 123, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .zh-doctor-quote__container {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .zh-doctor-quote__figure {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 56px;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Quote column */
+  .zh-doctor-quote__mark {
+    width: 56px;
+    height: auto;
+    color: var(--zh-accent, #0E8A7B);
+    opacity: 0.35;
+    margin-bottom: 32px;
+    display: block;
+  }
+
+  .zh-doctor-quote__text {
+    font-family: var(--font-heading);
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--zh-text, var(--text-primary));
+    margin: 0 0 40px;
+    letter-spacing: -0.01em;
+  }
+
+  .zh-doctor-quote__author-block {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .zh-doctor-quote__author-img--inline {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--zh-accent, #0E8A7B);
+    flex-shrink: 0;
+  }
+
+  .zh-doctor-quote__author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .zh-doctor-quote__author-name {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--zh-text, var(--text-primary));
+  }
+
+  .zh-doctor-quote__author-title {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--zh-accent, #0E8A7B);
+    font-weight: 500;
+  }
+
+  /* Portrait column */
+  .zh-doctor-quote__portrait-col {
+    display: none;
+  }
+
+  .zh-doctor-quote__portrait-wrap {
+    position: relative;
+    border-radius: var(--radius-lg, 20px);
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    max-height: 480px;
+  }
+
+  .zh-doctor-quote__portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+
+  .zh-doctor-quote__portrait-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(14, 138, 123, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* Desktop layout: quote left, portrait right — portrait hidden on mobile */
+  @media (min-width: 1024px) {
+    .zh-doctor-quote__figure {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+
+    .zh-doctor-quote__portrait-col {
+      display: block;
+    }
+
+    /* hide inline image on desktop since large portrait is visible */
+    .zh-doctor-quote__author-img--inline {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .zh-doctor-quote {
+      padding: 72px 20px;
+    }
+
+    .zh-doctor-quote__text {
+      font-size: 1.15rem;
+    }
+  }
+</style>

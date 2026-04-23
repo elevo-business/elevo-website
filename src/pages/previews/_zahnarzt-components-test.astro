@@ -1,0 +1,70 @@
+---
+import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
+import { zahnarztAesthetikProfile } from '../../templates/config/zahnarzt-themes';
+import ZahnarztHeroSplit from '../../templates/sections/zahnarzt/ZahnarztHeroSplit.astro';
+import ZahnarztDoctorQuote from '../../templates/sections/zahnarzt/ZahnarztDoctorQuote.astro';
+import ZahnarztTechShowcase from '../../templates/sections/zahnarzt/ZahnarztTechShowcase.astro';
+import ZahnarztFamilyAges from '../../templates/sections/zahnarzt/ZahnarztFamilyAges.astro';
+---
+
+<PreviewLayout profile={zahnarztAesthetikProfile} prospect={{ name: 'Komponenten-Test', tagline: 'Testseite für neue Zahnarzt-Sektionen', location: 'Test', email: 'test@test.de', phone: '' }}>
+
+  <ZahnarztHeroSplit
+    title="Ihr Lächeln. <em>Perfekt.</em> Dauerhaft."
+    subtitle="Dr. Klein und sein Spezialistenteam in München-Schwabing verbinden modernste Implantologie mit ästhetischer Perfektion. 15 Jahre Erfahrung, 3.000+ Implantate, 10 Jahre Garantie."
+    badge="Premium Implantologie München"
+    ctaPrimary={{ text: 'Smile-Design-Analyse buchen', href: '#kontakt' }}
+    ctaSecondary={{ text: 'Unsere Behandlungsphilosophie →', href: '#leistungen' }}
+    stats={[
+      { value: '15+', label: 'Jahre Implantologie' },
+      { value: '3.000+', label: 'Implantate gesetzt' },
+      { value: '24h', label: 'Kostenvoranschlag' },
+      { value: '5★', label: 'Google Bewertung' },
+    ]}
+  />
+
+  <ZahnarztDoctorQuote
+    quote="In 15 Jahren Implantologie habe ich eines gelernt: Die meisten Bedenken lösen sich, wenn wir gemeinsam am Bildschirm durch die 3D-Planung gehen. Dann ist das Unbekannte plötzlich sehr konkret — und das Ergebnis liegt zum Greifen nah."
+    author="Dr. med. dent. Klein"
+    title="Spezialist für Implantologie & Ästhetische Zahnmedizin, München-Schwabing"
+  />
+
+  <ZahnarztTechShowcase
+    title="Modernste Technologie für Ihr perfektes Lächeln"
+    subtitle="Wir investieren konsequent in die neueste Zahntechnik — für mehr Präzision, weniger Schmerz, kürzere Behandlungszeiten."
+    technologies={[
+      { icon: 'scan', title: '3D-Volumentomographie', description: 'Dreidimensionale Röntgenaufnahmen mit minimaler Strahlung — für millimetergenaue Implantat-Planung noch vor dem ersten Eingriff.' },
+      { icon: 'digital', title: 'Digital Smile Design', description: 'Sie sehen Ihr neues Lächeln am Bildschirm, bevor wir beginnen. Gesichtsproportionen, Farbton, Zahngröße — digital simuliert, individuell abgestimmt.' },
+      { icon: 'cad', title: 'CAD/CAM-Fertigung', description: 'Vollkeramik-Kronen und Veneers werden computergestützt gefräst — in einer Sitzung, mit perfekter Passform und natürlichem Aussehen.' },
+      { icon: 'xray', title: 'Digitales Röntgen', description: '90% weniger Strahlung als konventionelles Röntgen. Sofortbilder direkt am Behandlungsstuhl — für schnelle, präzise Diagnosen.' },
+      { icon: 'laser', title: 'Laser-Zahnreinigung', description: 'Schonende Entfernung von Zahnbelag und Bakterien ohne Schmerzen. Besonders effektiv bei Parodontitis und empfindlichen Zähnen.' },
+      { icon: 'implant', title: 'Geführte Implantologie', description: 'Computergestützte OP-Schablone für millimeterpräzise Implantat-Setzung. Minimalinvasiv, vorhersagbar, sicher — auch in anspruchsvollen Fällen.' },
+    ]}
+  />
+
+  <ZahnarztFamilyAges
+    title="Für jedes Alter die richtige Behandlung"
+    subtitle="Von den ersten Milchzähnen bis zur seniorengerechten Prothetik — wir begleiten Ihre Familie ein Leben lang."
+    ageGroups={[
+      {
+        ageRange: '3–12 Jahre',
+        icon: 'smile',
+        title: 'Kinder — Spielend gesunde Zähne',
+        description: 'Sanfte Erstbehandlung, Versiegelungen und spielerische Prophylaxe. Wir machen den Zahnarztbesuch zum positiven Erlebnis — damit Ihre Kinder lebenslang gerne kommen.',
+      },
+      {
+        ageRange: '13–17 Jahre',
+        icon: 'star',
+        title: 'Teenager — Ästhetik & Kieferorthopädie',
+        description: 'Invisalign Teen, professionelle Zahnreinigung und diskrete Korrekturen. Gesunde Zähne, die mit dem Leben Schritt halten — ohne sichtbare Spangen.',
+      },
+      {
+        ageRange: '18+ Jahre',
+        icon: 'shield',
+        title: 'Erwachsene & Senioren — Langfristige Gesundheit',
+        description: 'Implantate, ästhetische Korrekturen und Parodontitis-Behandlung. Wir erhalten Ihre natürlichen Zähne so lange wie möglich — und ersetzen, was nicht zu retten ist.',
+      },
+    ]}
+  />
+
+</PreviewLayout>

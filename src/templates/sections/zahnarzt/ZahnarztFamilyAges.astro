@@ -1,0 +1,242 @@
+---
+interface AgeGroup {
+  ageRange: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  ageGroups: AgeGroup[];
+}
+
+const { title, subtitle, ageGroups } = Astro.props;
+
+const iconPaths: Record<string, string> = {
+  child: 'M12 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm0 10c-4.42 0-8 1.79-8 4v2h16v-2c0-2.21-3.58-4-8-4z',
+  teen: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8z',
+  adult: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
+  star: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z',
+  heart: 'M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z',
+  smile: 'M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zM8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01',
+  shield: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z',
+  sun: 'M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42',
+};
+
+function getIconPath(icon: string): string {
+  return iconPaths[icon] || iconPaths.smile;
+}
+
+const accentColors = [
+  { bg: 'rgba(14, 138, 123, 0.1)', border: 'rgba(14, 138, 123, 0.25)', text: '#0E8A7B', glow: 'rgba(14, 138, 123, 0.15)' },
+  { bg: 'rgba(59, 130, 246, 0.1)', border: 'rgba(59, 130, 246, 0.25)', text: '#3B82F6', glow: 'rgba(59, 130, 246, 0.15)' },
+  { bg: 'rgba(168, 85, 247, 0.1)', border: 'rgba(168, 85, 247, 0.25)', text: '#A855F7', glow: 'rgba(168, 85, 247, 0.15)' },
+];
+---
+
+<section class="zh-family-ages" aria-labelledby="zh-family-heading">
+  <div class="zh-family-ages__container">
+    <header class="zh-family-ages__header">
+      <h2 class="zh-family-ages__title" id="zh-family-heading">{title}</h2>
+      {subtitle && <p class="zh-family-ages__subtitle">{subtitle}</p>}
+    </header>
+
+    <ul class="zh-family-ages__grid" role="list">
+      {ageGroups.map((group, index) => {
+        const colors = accentColors[index % accentColors.length];
+        return (
+          <li
+            class="zh-family-ages__card"
+            style={`--card-accent-bg: ${colors.bg}; --card-accent-border: ${colors.border}; --card-accent-text: ${colors.text}; --card-accent-glow: ${colors.glow};`}
+          >
+            <div class="zh-family-ages__card-top">
+              <div class="zh-family-ages__card-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d={getIconPath(group.icon)} />
+                </svg>
+              </div>
+              <span class="zh-family-ages__card-range" aria-label="Altersbereich">{group.ageRange}</span>
+            </div>
+
+            <h3 class="zh-family-ages__card-title">{group.title}</h3>
+            <p class="zh-family-ages__card-desc">{group.description}</p>
+
+            <div class="zh-family-ages__card-glow" aria-hidden="true"></div>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .zh-family-ages {
+    background: var(--zh-bg, var(--bg-deep));
+    padding: 96px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .zh-family-ages::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(14, 138, 123, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .zh-family-ages__container {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .zh-family-ages__header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .zh-family-ages__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3vw, 2.75rem);
+    font-weight: 700;
+    color: var(--zh-text, var(--text-primary));
+    margin: 0 0 16px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .zh-family-ages__subtitle {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--zh-muted, var(--text-secondary));
+    margin: 0 auto;
+    max-width: 560px;
+  }
+
+  /* Cards grid */
+  .zh-family-ages__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .zh-family-ages__card {
+    position: relative;
+    padding: 36px 32px;
+    background: var(--zh-surface, rgba(255, 255, 255, 0.03));
+    border: 1px solid var(--card-accent-border, rgba(14, 138, 123, 0.2));
+    border-radius: var(--radius-lg, 20px);
+    overflow: hidden;
+    transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  }
+
+  .zh-family-ages__card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 48px var(--card-accent-glow, rgba(14, 138, 123, 0.15));
+    border-color: var(--card-accent-text, #0E8A7B);
+  }
+
+  .zh-family-ages__card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .zh-family-ages__card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: var(--card-accent-bg, rgba(14, 138, 123, 0.1));
+    color: var(--card-accent-text, #0E8A7B);
+    transition: transform 200ms ease, background 200ms ease;
+  }
+
+  .zh-family-ages__card:hover .zh-family-ages__card-icon {
+    transform: scale(1.1) rotate(-3deg);
+  }
+
+  .zh-family-ages__card-range {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--card-accent-text, #0E8A7B);
+    background: var(--card-accent-bg, rgba(14, 138, 123, 0.1));
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 1px solid var(--card-accent-border, rgba(14, 138, 123, 0.2));
+  }
+
+  .zh-family-ages__card-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+    font-weight: 700;
+    color: var(--zh-text, var(--text-primary));
+    margin: 0 0 12px;
+    line-height: 1.2;
+  }
+
+  .zh-family-ages__card-desc {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--zh-muted, var(--text-secondary));
+    margin: 0;
+  }
+
+  /* Subtle background glow on hover */
+  .zh-family-ages__card-glow {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: var(--card-accent-glow, rgba(14, 138, 123, 0.12));
+    opacity: 0;
+    transition: opacity 300ms ease;
+    pointer-events: none;
+    filter: blur(40px);
+  }
+
+  .zh-family-ages__card:hover .zh-family-ages__card-glow {
+    opacity: 1;
+  }
+
+  /* Tablet: 2 columns */
+  @media (min-width: 640px) {
+    .zh-family-ages__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Desktop: 3 columns */
+  @media (min-width: 1024px) {
+    .zh-family-ages__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .zh-family-ages {
+      padding: 72px 20px;
+    }
+
+    .zh-family-ages__card {
+      padding: 28px 24px;
+    }
+  }
+</style>

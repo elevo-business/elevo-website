@@ -1,0 +1,279 @@
+---
+interface Technology {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  technologies: Technology[];
+}
+
+const { title, subtitle, technologies } = Astro.props;
+
+const iconPaths: Record<string, string> = {
+  scan: 'M3 9V5a2 2 0 0 1 2-2h4M3 15v4a2 2 0 0 0 2 2h4M21 9V5a2 2 0 0 0-2-2h-4M21 15v4a2 2 0 0 1-2 2h-4M9 12h6M12 9v6',
+  xray: 'M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3M12 8v8M8 12h8',
+  cad: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5',
+  digital: 'M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18',
+  laser: 'M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z',
+  implant: 'M12 2v6m0 0c-2 0-4 1-4 3v3h8v-3c0-2-2-3-4-3zm-4 6v6a4 4 0 0 0 8 0v-6',
+  microscope: 'M6 18h8M3 22h18M14 22V10a2 2 0 0 0-4 0v12M10 10V6a2 2 0 0 1 4 0v4M7 14h10',
+  wifi: 'M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01',
+  cpu: 'M9 3H5a2 2 0 0 0-2 2v4m6-6h6m-6 0v18m6-18h4a2 2 0 0 1 2 2v4m-6-6v18m0 0H5a2 2 0 0 1-2-2v-4m18-10v10m0 0v4a2 2 0 0 1-2 2h-4M3 13h18',
+};
+
+function getIconPath(icon: string): string {
+  return iconPaths[icon] || iconPaths.cpu;
+}
+---
+
+<section class="zh-tech-showcase" aria-labelledby="zh-tech-heading">
+  <div class="zh-tech-showcase__container">
+    <header class="zh-tech-showcase__header">
+      <div class="zh-tech-showcase__header-label" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d={getIconPath('cpu')} />
+        </svg>
+        <span>Moderne Technologie</span>
+      </div>
+      <h2 class="zh-tech-showcase__title" id="zh-tech-heading">{title}</h2>
+      {subtitle && <p class="zh-tech-showcase__subtitle">{subtitle}</p>}
+    </header>
+
+    <ul class="zh-tech-showcase__list" role="list">
+      {technologies.map((tech, index) => (
+        <li class="zh-tech-showcase__item">
+          <div class="zh-tech-showcase__item-number" aria-hidden="true">
+            {String(index + 1).padStart(2, '0')}
+          </div>
+          <div class="zh-tech-showcase__item-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d={getIconPath(tech.icon)} />
+            </svg>
+          </div>
+          <div class="zh-tech-showcase__item-content">
+            <h3 class="zh-tech-showcase__item-title">{tech.title}</h3>
+            <p class="zh-tech-showcase__item-desc">{tech.description}</p>
+          </div>
+          <div class="zh-tech-showcase__item-accent" aria-hidden="true"></div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .zh-tech-showcase {
+    background: var(--zh-bg, var(--bg-deep));
+    padding: 96px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .zh-tech-showcase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--zh-accent, #0E8A7B), transparent);
+    opacity: 0.4;
+  }
+
+  .zh-tech-showcase::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(14, 138, 123, 0.05) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .zh-tech-showcase__container {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .zh-tech-showcase__header {
+    margin-bottom: 64px;
+  }
+
+  .zh-tech-showcase__header-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 1px solid var(--zh-border, rgba(14, 138, 123, 0.2));
+    color: var(--zh-accent, #0E8A7B);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .zh-tech-showcase__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3vw, 2.75rem);
+    font-weight: 700;
+    color: var(--zh-text, var(--text-primary));
+    margin: 0 0 16px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    max-width: 700px;
+  }
+
+  .zh-tech-showcase__subtitle {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--zh-muted, var(--text-secondary));
+    margin: 0;
+    max-width: 580px;
+  }
+
+  /* Horizontal card list */
+  .zh-tech-showcase__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .zh-tech-showcase__item {
+    display: grid;
+    grid-template-columns: 48px 56px 1fr;
+    gap: 0 24px;
+    align-items: center;
+    padding: 28px 32px;
+    background: var(--zh-surface, rgba(14, 138, 123, 0.04));
+    border: 1px solid var(--zh-border, rgba(14, 138, 123, 0.1));
+    border-radius: var(--radius, 12px);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 200ms ease, background 200ms ease, transform 200ms ease;
+    cursor: default;
+  }
+
+  .zh-tech-showcase__item:hover {
+    border-color: var(--zh-accent, #0E8A7B);
+    background: var(--zh-accent-subtle, rgba(14, 138, 123, 0.07));
+    transform: translateX(4px);
+  }
+
+  .zh-tech-showcase__item-number {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--zh-accent, #0E8A7B);
+    opacity: 0.25;
+    line-height: 1;
+    user-select: none;
+    transition: opacity 200ms ease;
+  }
+
+  .zh-tech-showcase__item:hover .zh-tech-showcase__item-number {
+    opacity: 0.6;
+  }
+
+  .zh-tech-showcase__item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: var(--zh-accent-subtle, rgba(14, 138, 123, 0.1));
+    color: var(--zh-accent, #0E8A7B);
+    flex-shrink: 0;
+    transition: background 200ms ease, transform 200ms ease;
+  }
+
+  .zh-tech-showcase__item:hover .zh-tech-showcase__item-icon {
+    background: var(--zh-accent, #0E8A7B);
+    color: #fff;
+    transform: scale(1.05);
+  }
+
+  .zh-tech-showcase__item-title {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--zh-text, var(--text-primary));
+    margin: 0 0 6px;
+  }
+
+  .zh-tech-showcase__item-desc {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--zh-muted, var(--text-secondary));
+    margin: 0;
+  }
+
+  .zh-tech-showcase__item-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--zh-accent, #0E8A7B);
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+
+  .zh-tech-showcase__item:hover .zh-tech-showcase__item-accent {
+    opacity: 1;
+  }
+
+  /* Mobile: simplify grid */
+  @media (max-width: 640px) {
+    .zh-tech-showcase {
+      padding: 72px 20px;
+    }
+
+    .zh-tech-showcase__item {
+      grid-template-columns: 44px 1fr;
+      grid-template-rows: auto auto;
+      padding: 20px;
+      gap: 12px;
+    }
+
+    .zh-tech-showcase__item-number {
+      grid-column: 1;
+      grid-row: 1;
+      font-size: 1.1rem;
+    }
+
+    .zh-tech-showcase__item-icon {
+      grid-column: 2;
+      grid-row: 1;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+    }
+
+    .zh-tech-showcase__item-content {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+  }
+
+  /* Desktop: 2-column layout */
+  @media (min-width: 1024px) {
+    .zh-tech-showcase__list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+  }
+</style>
