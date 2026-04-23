@@ -2,6 +2,11 @@
 import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
 import { zahnarztFamilieProfile } from '../../templates/config/zahnarzt-themes';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
+import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
+import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
+import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
+import ZahnarztBeforeAfter from '../../templates/sections/zahnarzt/ZahnarztBeforeAfter.astro';
+import ZahnarztCostCalc from '../../templates/sections/zahnarzt/ZahnarztCostCalc.astro';
 import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
 import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
 import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
@@ -9,409 +14,96 @@ import type { ProspectData } from '../../templates/config/types';
 
 const prospect: ProspectData = {
   name: 'Zahnarztpraxis Weber',
-  tagline: 'Familienzahnarzt & Ganzheitliche Zahnmedizin Stuttgart-Mitte',
+  tagline: 'Familienzahnarzt in Stuttgart-Mitte',
   location: 'Stuttgart-Mitte',
   email: 'info@zahnarzt-weber-stuttgart.de',
-  phone: '+49 711 2345678',
-  heroTitle: 'Gesunde Zähne für <em>Ihre ganze Familie.</em>',
-  heroSubtitle: 'Zahnarztpraxis Weber in Stuttgart begleitet Patienten von klein bis groß. Ganzheitliche Zahnmedizin, herzliches Team, kurze Wartezeiten — Ihr Familienzahnarzt für alle Lebenslagen in Stuttgart-Mitte.',
+  phone: '+49 711 4567890',
+  heroTitle: 'Ihre Familienzahnarztpraxis in Stuttgart — für alle Generationen.',
+  heroSubtitle: 'Von der ersten Kinderkontrolle bis zur Seniorenversorgung: Praxis Weber begleitet Ihre ganze Familie mit Herzlichkeit und Fachkompetenz.',
   services: [
-    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>', title: 'Prophylaxe & PZR', description: 'Professionelle Zahnreinigung für die ganze Familie — die effektivste Investition in lebenslange Zahngesundheit. Sanft, gründlich, nachhaltig.' },
-    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>', title: 'Zahnerhaltung', description: 'Hochwertige zahnfarbene Füllungen und Keramikinlays — ästhetisch, langlebig und schonend für Ihre natürliche Zahnsubstanz.' },
-    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>', title: 'Implantate', description: 'Moderne Implantate als dauerhafter Ersatz für fehlende Zähne — präzise geplant, natürlich integriert, für ein Leben lang.' },
-    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>', title: 'Prothetik & Zahnersatz', description: 'Hochwertiger Zahnersatz von Kronen über Brücken bis zu Prothesen — für ein vollständiges, funktionelles und ästhetisches Gebiss.' },
-    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>', title: 'Parodontologie', description: 'Schonende Behandlung von Zahnfleischerkrankungen — für gesundes Zahnfleisch als Fundament der Zahngesundheit Ihrer ganzen Familie.' },
-    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>', title: 'Kinderzahnheilkunde', description: 'Spielerische, angstfreie Zahnmedizin für die Kleinsten — wir legen den Grundstein für lebenslange Zahngesundheit von Anfang an.' },
+    { icon: 'heart', title: 'Kinderzahnheilkunde', description: 'Spielerische und behutsame Behandlung für die Kleinen — damit der Zahnarztbesuch Spaß macht.' },
+    { icon: 'smile', title: 'Jugendzahnheilkunde', description: 'Kieferorthopädische Beratung, Brackets und Aligner für Teenager — gemeinsam zum perfekten Lächeln.' },
+    { icon: 'tooth', title: 'Erwachsenenversorgung', description: 'Füllungen, Kronen, Brücken und Implantate — hochwertige Versorgung für dauerhaft gesunde Zähne.' },
+    { icon: 'shield', title: 'Seniorenbehandlung', description: 'Einfühlsame Behandlung mit besonderem Fokus auf Prothesen, Implantate und Zahnfleischgesundheit.' },
+    { icon: 'check', title: 'Prophylaxe für die Familie', description: 'Professionelle Zahnreinigung und Vorsorge für alle Altersgruppen — auch als Familienprogramm.' },
+    { icon: 'star', title: 'Notfallversorgung', description: 'Schnelle Hilfe bei Zahnschmerzen und Notfällen — auch außerhalb regulärer Sprechzeiten.' },
   ],
   stats: [
-    { value: '22+', label: 'Jahre Erfahrung' },
-    { value: 'Familienpraxis', label: 'für alle Generationen' },
-    { value: '4', label: 'Zahnärzte im Team' },
-    { value: 'Stuttgart', label: 'Ihr Standort' },
+    { value: '25+', label: 'Jahre Familienzahnarzt' },
+    { value: '3.000+', label: 'Familien betreut' },
+    { value: '4.8★', label: 'Google-Bewertung' },
   ],
 };
-
-const ratgeberCards = [
-  { thema: 'Kinderzähne', icon: '🧒', title: 'Kinderzähne gesund erhalten', desc: 'Gesunde Milchzähne sind die Basis für ein gesundes bleibendes Gebiss. Regelmäßige Kontrollen ab dem ersten Zahn und fluoridhaltige Zahnpasta sind entscheidend.' },
-  { thema: 'Prophylaxe', icon: '✨', title: 'Prophylaxe für die ganze Familie', desc: 'Zweimal jährlich zur PZR für Erwachsene, regelmäßige Kontrollen für Kinder und eine gute häusliche Mundhygiene schützen die Zahngesundheit aller.' },
-  { thema: 'Zahnersatz', icon: '🦷', title: 'Welcher Zahnersatz passt?', desc: 'Von Kronen über Brücken bis zu Implantaten — die Wahl hängt von Ihrem Befund, Ihren Wünschen und Ihrem Budget ab. Wir beraten Sie transparent.' },
-  { thema: 'Senioren-ZHK', icon: '💙', title: 'Zahngesundheit im Alter', desc: 'Im Alter verändern sich Zähne und Zahnfleisch. Wir begleiten Sie und Ihre Familie durch alle Lebensphasen — mit Geduld und Expertise.' },
-];
 ---
 
 <PreviewLayout profile={zahnarztFamilieProfile} prospect={prospect}>
-  <PreviewNav prospectName={prospect.name} logo="" ctaText="Familien-Termin buchen" ctaHref="#kontakt" />
+  <PreviewNav
+    prospectName={prospect.name}
+    ctaText="Termin buchen"
+    ctaHref="#kontakt"
+  />
 
-  <!-- FAMILY HERO: Warm, bright atmosphere -->
-  <header class="hero-family" id="hero">
-    <div class="hero-family__bg">
-      <img
-        src="https://images.unsplash.com/photo-1588776814546-1eee4da2d4d1?w=1920&q=80&fit=crop"
-        alt="Zahnarztpraxis Weber Stuttgart-Mitte — Familienzahnarzt für alle Generationen"
-        width="1920"
-        height="1080"
-        loading="eager"
-        fetchpriority="high"
-      />
-      <div class="hero-family__overlay"></div>
-    </div>
-    <div class="hero-family__content anim-fade-up">
-      <div class="hero-family__badge">
-        <span class="hero-family__badge-dot"></span>
-        Stuttgart-Mitte · Familienpraxis · Ganzheitliche ZHK
-      </div>
-      <h1 class="hero-family__title">Gesunde Zähne für<br /><em>Ihre ganze Familie.</em></h1>
-      <p class="hero-family__sub">{prospect.heroSubtitle}</p>
-      <div class="hero-family__ctas">
-        <a href="#kontakt" class="hero-family__btn-primary">Familien-Termin buchen</a>
-        <a href="#kontakt" class="hero-family__btn-secondary">Kinderbehandlung anfragen</a>
-      </div>
-    </div>
-    <div class="hero-family__stats">
-      {prospect.stats?.map(s => (
-        <div class="hero-family__stat">
-          <div class="hero-family__stat-val">{s.value}</div>
-          <div class="hero-family__stat-lbl">{s.label}</div>
-        </div>
-      ))}
-    </div>
-  </header>
+  <ZahnarztHero
+    title={prospect.heroTitle}
+    subtitle={prospect.heroSubtitle}
+    badge="Familienzahnarzt Stuttgart"
+    ctaPrimary={{ text: 'Termin buchen', href: '#kontakt' }}
+    ctaSecondary={{ text: 'Leistungen entdecken', href: '#leistungen' }}
+    imageSrc="/preview-images/zahnarzt-weber/hero.jpg"
+    imageAlt="Zahnarztpraxis Weber Stuttgart — Familienzahnarzt"
+    stats={prospect.stats}
+  />
 
-  <section class="trust-bar">
-    <div class="trust-bar__inner">
-      <div class="trust-bar__item">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <span>Alle Generationen willkommen</span>
-      </div>
-      <div class="trust-bar__divider"></div>
-      <div class="trust-bar__item">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        <span>Angstfreie Kinderbehandlung</span>
-      </div>
-      <div class="trust-bar__divider"></div>
-      <div class="trust-bar__item">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        <span>Kurze Wartezeiten</span>
-      </div>
-      <div class="trust-bar__divider"></div>
-      <div class="trust-bar__item">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <span>Top-Bewertungen in Stuttgart</span>
-      </div>
-    </div>
-  </section>
+  <ZahnarztServices
+    title="Für Ihre ganze Familie"
+    subtitle="Ob Klein oder Groß — wir haben für jedes Alter die passende Behandlung."
+    services={prospect.services}
+  />
 
-  <section class="services-grid" id="leistungen">
-    <div class="services-grid__inner">
-      <div class="services-grid__header">
-        <div class="services-grid__badge">Unsere Leistungen</div>
-        <h2 class="services-grid__title">Zahnmedizin für <em>alle Lebenslagen</em></h2>
-        <p class="services-grid__sub">Von der Kindervorsorge bis zum Zahnersatz im Alter — wir begleiten Ihre gesamte Familie durch alle Phasen der Zahngesundheit.</p>
-      </div>
-      <ul class="services-grid__list" role="list">
-        {prospect.services.map(s => (
-          <li class="services-grid__item anim-on-scroll">
-            <div class="services-grid__icon" set:html={s.icon} aria-hidden="true" />
-            <h3 class="services-grid__item-title">{s.title}</h3>
-            <p class="services-grid__item-desc">{s.description}</p>
-            <a href="#kontakt" class="services-grid__item-cta">Termin anfragen &rarr;</a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <section class="showcase" id="praxis">
-    <div class="showcase__inner">
-      <div class="showcase__header">
-        <div class="showcase__badge">Einblicke in unsere Praxis</div>
-        <h2 class="showcase__title">Herzlich willkommen in <em>Stuttgart-Mitte</em></h2>
-        <p class="showcase__sub">Unsere Familienpraxis ist modern ausgestattet und warm gestaltet — damit sich Klein und Groß bei uns wohlfühlen.</p>
-      </div>
-      <div class="showcase__grid anim-on-scroll">
-        <div class="showcase__item showcase__item--large">
-          <img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=800&q=80&fit=crop" alt="Freundlicher Behandlungsraum Zahnarztpraxis Weber Stuttgart" loading="lazy" width="800" height="600" />
-          <div class="showcase__caption">
-            <span class="showcase__tag">Behandlungsräume</span>
-            <h3>Modern & einladend</h3>
-            <p>Helle, freundlich gestaltete Räume — damit Sie sich von Anfang an wohlfühlen.</p>
-          </div>
-        </div>
-        <div class="showcase__col">
-          <div class="showcase__item">
-            <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=600&q=80&fit=crop" alt="Kinderbehandlung Zahnarztpraxis Weber" loading="lazy" width="600" height="400" />
-            <div class="showcase__caption">
-              <span class="showcase__tag">Kinder</span>
-              <h3>Spielerisch & angstfrei</h3>
-              <p>Kindgerechte Umgebung und geduldiges Team für entspannte Zahnarztbesuche.</p>
-            </div>
-          </div>
-          <div class="showcase__item">
-            <img src="https://images.unsplash.com/photo-1609840113966-f90f8c9d2e77?w=600&q=80&fit=crop" alt="Diagnostik Zahnarztpraxis Weber Stuttgart" loading="lazy" width="600" height="400" />
-            <div class="showcase__caption">
-              <span class="showcase__tag">Technik</span>
-              <h3>Digitale Diagnostik</h3>
-              <p>Modernste Ausstattung für präzise Befunderhebung — schonend und effizient.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="ratgeber" id="ratgeber">
-    <div class="ratgeber__inner">
-      <div class="ratgeber__header">
-        <div class="ratgeber__badge">Ratgeber</div>
-        <h2 class="ratgeber__title">Gesunde Zähne — <em>ein Leben lang</em></h2>
-        <p class="ratgeber__sub">Wissenswertes für die ganze Familie — von Kinderzähnen bis zur Seniorenzahnmedizin.</p>
-      </div>
-      <div class="ratgeber__grid">
-        {ratgeberCards.map(card => (
-          <div class="ratgeber__card anim-on-scroll">
-            <div class="ratgeber__icon" aria-hidden="true">{card.icon}</div>
-            <div class="ratgeber__thema">{card.thema}</div>
-            <h3 class="ratgeber__card-title">{card.title}</h3>
-            <p class="ratgeber__card-desc">{card.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <PreviewTestimonials
-    title="Was Stuttgarter Familien sagen"
-    subtitle="Familien aus ganz Stuttgart-Mitte vertrauen Zahnarztpraxis Weber — schon seit Generationen."
-    testimonials={[
-      { text: 'Wir sind mit unseren drei Kindern seit Jahren hier. Das Team ist unglaublich geduldig mit den Kleinen — kein Schreien, kein Stress. Meine Tochter (6) geht inzwischen sogar gerne zum Zahnarzt. Einfach toll.', author: 'Familie Bauer', role: 'Patienten seit 2017, Stuttgart-Mitte', rating: 5 },
-      { text: 'Als ältere Patientin ist mir besonders wichtig, dass ich ernst genommen werde und Zeit bekomme. Dr. Weber nimmt sich immer Zeit, erklärt alles verständlich und behandelt schonend. Eine Praxis, der ich absolut vertraue.', author: 'Helga R.', role: 'Patientin seit 2014', rating: 5 },
-      { text: 'Ich hatte große Angst vor einer Wurzelbehandlung. Das Team hat mich von Anfang an beruhigt, alles erklärt und sehr sanft behandelt. Es war kaum zu spüren. Ich bin so froh, dass ich diese Praxis gefunden habe.', author: 'Tobias M.', role: 'Patient seit 2020, Stuttgart', rating: 5 },
+  <ZahnarztTimeline
+    title="Ihr Familienbesuch bei uns"
+    subtitle="Einfach, herzlich und strukturiert — so funktioniert der Zahnarztbesuch bei uns."
+    steps={[
+      { num: 1, title: 'Anmeldung & Kennenlernen', desc: 'Melden Sie sich an — gerne als Familie. Wir nehmen uns Zeit für jedes Familienmitglied.', icon: 'phone' },
+      { num: 2, title: 'Befund & Beratung', desc: 'Gründliche Untersuchung und verständliche Erklärung aller Befunde — auch für Kinder.', icon: 'search' },
+      { num: 3, title: 'Behandlung', desc: 'Altersgerechte Behandlung mit modernsten Methoden — schonend und effizient.', icon: 'tooth' },
+      { num: 4, title: 'Vorsorge-Recall', desc: 'Regelmäßige Vorsorge für die ganze Familie — wir erinnern Sie an Kontrolltermine.', icon: 'calendar' },
     ]}
   />
 
-  <section class="estimator" id="kalkulator">
-    <div class="estimator__inner">
-      <div class="estimator__header">
-        <div class="estimator__badge">Vorsorge-Check</div>
-        <h2 class="estimator__title">Was kostet <em>Ihre Behandlung?</em></h2>
-        <p class="estimator__sub">Erste unverbindliche Einschätzung — schnell und transparent.</p>
-      </div>
-      <div class="estimator__form">
-        <div class="estimator__field">
-          <label class="estimator__label">Behandlungsbereich</label>
-          <div class="estimator__options" data-field="type">
-            <button class="estimator__option is-active" data-value="implantate" type="button">Implantate</button>
-            <button class="estimator__option" data-value="bleaching" type="button">Bleaching</button>
-            <button class="estimator__option" data-value="veneers" type="button">Veneers</button>
-          </div>
-        </div>
-        <div class="estimator__field">
-          <label class="estimator__label" id="unit-label">Anzahl Zähne / Kiefer</label>
-          <div class="estimator__slider-wrap">
-            <input type="range" min="1" max="8" value="2" class="estimator__slider" id="unit-slider" aria-labelledby="unit-label" />
-            <span class="estimator__slider-val" id="unit-val" aria-live="polite">2 Zähne</span>
-          </div>
-        </div>
-        <div class="estimator__result">
-          <div class="estimator__result-label">Geschätzte Kosten</div>
-          <div class="estimator__result-val" id="estimate-val" aria-live="polite">ca. 3.000 — 6.000 €</div>
-          <div class="estimator__result-note">Unverbindliche Schätzung. Genaue Kosten nach Untersuchung und individuellem Behandlungsplan.</div>
-          <a href="#kontakt" class="estimator__result-cta">Vorsorge-Check vereinbaren</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <ZahnarztBeforeAfter
+    title="Unsere Behandlungsergebnisse"
+    subtitle="Schöne Zähne in jedem Alter — das ist unser Versprechen."
+    cases={[
+      { beforeSrc: '/preview-images/zahnarzt-weber/gallery-1.jpg', afterSrc: '/preview-images/zahnarzt-weber/gallery-2.jpg', label: 'Korrekturen Erwachsene' },
+      { beforeSrc: '/preview-images/zahnarzt-weber/gallery-3.jpg', afterSrc: '/preview-images/zahnarzt-weber/gallery-4.jpg', label: 'Kinderprophylaxe' },
+    ]}
+  />
+
+  <ZahnarztCostCalc />
+
+  <PreviewTestimonials
+    title="Familien über Praxis Weber"
+    testimonials={[
+      { text: 'Unsere ganze Familie geht zu Praxis Weber — von der Ältesten (76) bis zum Jüngsten (4). Alle fühlen sich hier wohl.', author: 'Familie Becker', role: 'Stammkunden' },
+      { text: 'Meine Kinder freuen sich tatsächlich auf den Zahnarzt! Das Team hat eine tolle Art mit den Kleinen umzugehen.', author: 'Laura M.', role: 'Mutter von 3 Kindern' },
+      { text: 'Seit Jahren unsere Praxis des Vertrauens. Immer zuvorkommend, kompetent und menschlich.', author: 'Heinrich G.', role: 'Patient seit 12 Jahren' },
+    ]}
+  />
 
   <PreviewCTA
-    title="Ihre Familie in guten Händen."
-    subtitle="Vereinbaren Sie jetzt Ihren Familien-Termin bei Zahnarztpraxis Weber in Stuttgart-Mitte. Wir betreuen alle Generationen — herzlich, kompetent und mit echtem Engagement."
-    badge="Familien-Termin buchen"
-    buttonText="Familien-Termin buchen"
-    buttonLink="#kontakt"
-    phone="+49 711 2345678"
+    title="Ihre Familienzahnarztpraxis in Stuttgart"
+    subtitle="Vereinbaren Sie jetzt einen Termin für Ihre Familie — wir freuen uns auf Sie."
+    ctaText="Familientermin vereinbaren"
+    ctaHref={`mailto:${prospect.email}`}
+    phone={prospect.phone}
   />
 
   <PreviewFooter
     prospectName={prospect.name}
     email={prospect.email}
     phone={prospect.phone}
-    address="Königstraße 21, 70173 Stuttgart-Mitte"
+    location={prospect.location}
     year={2025}
   />
 </PreviewLayout>
-
-<style is:global>
-  :root {
-    --accent: #059669;
-    --accent-hover: #047857;
-  }
-</style>
-
-<style>
-  html { scroll-behavior: smooth; }
-  .anim-fade-up { animation: fadeUp 0.8s ease-out both; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-  .anim-on-scroll { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .anim-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
-
-  /* FAMILY HERO */
-  .hero-family { position: relative; min-height: 78vh; max-height: 680px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
-  .hero-family__bg { position: absolute; inset: 0; z-index: 0; }
-  .hero-family__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; filter: saturate(1.05); }
-  .hero-family__overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,30,20,0.88) 0%, rgba(5,30,20,0.55) 40%, rgba(5,30,20,0.2) 100%); }
-  .hero-family__content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 48px 48px; width: 100%; }
-  .hero-family__badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(167,243,208,0.15); backdrop-filter: blur(8px); border: 1px solid rgba(167,243,208,0.3); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: rgba(255,255,255,0.92); margin-bottom: 20px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
-  .hero-family__badge-dot { width: 7px; height: 7px; background: #6EE7B7; border-radius: 50%; animation: pulseF 2s ease-in-out infinite; }
-  @keyframes pulseF { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.75); } }
-  .hero-family__title { font-family: var(--font-heading); font-size: clamp(2.6rem, 5vw, 4rem); font-weight: 800; line-height: 1.07; letter-spacing: -0.03em; color: #fff; margin-bottom: 20px; }
-  .hero-family__title em { color: #6EE7B7; font-style: normal; }
-  .hero-family__sub { color: rgba(255,255,255,0.8); font-size: 1.05rem; line-height: 1.7; max-width: 560px; margin-bottom: 32px; }
-  .hero-family__ctas { display: flex; gap: 14px; flex-wrap: wrap; }
-  .hero-family__btn-primary { background: var(--accent); color: #fff; padding: 14px 28px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; font-family: var(--font-body); transition: background 0.2s, transform 0.2s; text-decoration: none; }
-  .hero-family__btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
-  .hero-family__btn-secondary { border: 1px solid rgba(110,231,183,0.4); color: rgba(255,255,255,0.9); padding: 14px 28px; border-radius: 10px; font-size: 0.95rem; font-weight: 500; font-family: var(--font-body); transition: border-color 0.2s, background 0.2s; text-decoration: none; }
-  .hero-family__btn-secondary:hover { border-color: rgba(110,231,183,0.7); background: rgba(5,150,105,0.15); }
-  .hero-family__stats { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.08); border-top: 1px solid rgba(255,255,255,0.1); }
-  .hero-family__stat { background: rgba(5,30,20,0.8); backdrop-filter: blur(8px); padding: 22px 16px; text-align: center; }
-  .hero-family__stat-val { font-family: var(--font-heading); font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 800; color: #6EE7B7; letter-spacing: -0.02em; line-height: 1; }
-  .hero-family__stat-lbl { font-size: 0.72rem; color: rgba(255,255,255,0.55); margin-top: 6px; }
-
-  /* TRUST BAR */
-  .trust-bar { border-bottom: 1px solid var(--border); background: var(--bg-el); }
-  .trust-bar__inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 32px; padding: 16px 48px; flex-wrap: wrap; }
-  .trust-bar__item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 500; color: var(--muted); white-space: nowrap; }
-  .trust-bar__item svg { color: var(--accent); flex-shrink: 0; }
-  .trust-bar__divider { width: 1px; height: 18px; background: var(--border); }
-
-  /* SERVICES GRID */
-  .services-grid { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
-  .services-grid__header { margin-bottom: 52px; }
-  .services-grid__badge { display: inline-flex; align-items: center; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
-  .services-grid__title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; color: var(--text); }
-  .services-grid__title em { color: var(--accent); font-style: normal; }
-  .services-grid__sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; }
-  .services-grid__list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; list-style: none; padding: 0; margin: 0; }
-  .services-grid__item { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; transition: transform 0.25s ease, border-color 0.25s ease; }
-  .services-grid__item:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
-  .services-grid__icon { width: 48px; height: 48px; background: color-mix(in srgb, var(--accent) 10%, transparent); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent); margin-bottom: 16px; }
-  .services-grid__item-title { font-family: var(--font-heading); font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-  .services-grid__item-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
-  .services-grid__item-cta { color: var(--accent); font-size: 0.82rem; font-weight: 600; transition: letter-spacing 0.2s; display: inline-block; }
-  .services-grid__item-cta:hover { letter-spacing: 0.02em; }
-
-  /* SHOWCASE */
-  .showcase { padding: 80px 48px; background: var(--bg-el); }
-  .showcase__inner { max-width: 1200px; margin: 0 auto; }
-  .showcase__header { margin-bottom: 48px; }
-  .showcase__badge { display: inline-flex; align-items: center; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
-  .showcase__title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; color: var(--text); }
-  .showcase__title em { color: var(--accent); font-style: normal; }
-  .showcase__sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; }
-  .showcase__grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; height: 420px; }
-  .showcase__col { display: flex; flex-direction: column; gap: 16px; }
-  .showcase__item { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); flex: 1; }
-  .showcase__item--large { flex: none; }
-  .showcase__item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
-  .showcase__item:hover img { transform: scale(1.04); }
-  .showcase__caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: #fff; }
-  .showcase__tag { display: inline-block; background: var(--accent); color: #fff; padding: 3px 10px; border-radius: 100px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px; }
-  .showcase__caption h3 { font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700; margin-bottom: 3px; }
-  .showcase__caption p { font-size: 0.78rem; color: rgba(255,255,255,0.75); line-height: 1.4; }
-
-  /* RATGEBER */
-  .ratgeber { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
-  .ratgeber__inner { }
-  .ratgeber__header { margin-bottom: 48px; }
-  .ratgeber__badge { display: inline-flex; align-items: center; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
-  .ratgeber__title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; color: var(--text); }
-  .ratgeber__title em { color: var(--accent); font-style: normal; }
-  .ratgeber__sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; }
-  .ratgeber__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-  .ratgeber__card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; transition: border-color 0.25s ease, transform 0.25s ease; }
-  .ratgeber__card:hover { border-color: color-mix(in srgb, var(--accent) 35%, transparent); transform: translateY(-3px); }
-  .ratgeber__icon { font-size: 2rem; margin-bottom: 12px; line-height: 1; }
-  .ratgeber__thema { font-family: var(--font-heading); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-  .ratgeber__card-title { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-  .ratgeber__card-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
-
-  /* ESTIMATOR */
-  .estimator { padding: 80px 48px; background: var(--bg-el); }
-  .estimator__inner { max-width: 1200px; margin: 0 auto; }
-  .estimator__header { margin-bottom: 40px; }
-  .estimator__badge { display: inline-flex; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
-  .estimator__title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; color: var(--text); }
-  .estimator__title em { color: var(--accent); font-style: normal; }
-  .estimator__sub { color: var(--muted); font-size: 1rem; line-height: 1.7; }
-  .estimator__form { background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 40px; }
-  .estimator__field { margin-bottom: 28px; }
-  .estimator__label { display: block; font-family: var(--font-heading); font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
-  .estimator__options { display: flex; gap: 10px; flex-wrap: wrap; }
-  .estimator__option { padding: 10px 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); color: var(--muted); font-size: 0.85rem; font-weight: 500; font-family: var(--font-body); cursor: pointer; transition: all 0.2s ease; }
-  .estimator__option:hover { border-color: var(--accent); color: var(--text); }
-  .estimator__option.is-active { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .estimator__slider-wrap { display: flex; align-items: center; gap: 16px; }
-  .estimator__slider { flex: 1; -webkit-appearance: none; height: 6px; border-radius: 3px; background: var(--border); outline: none; }
-  .estimator__slider::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
-  .estimator__slider-val { font-family: var(--font-heading); font-size: 1rem; font-weight: 700; color: var(--text); min-width: 80px; text-align: right; }
-  .estimator__result { margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--border); text-align: center; }
-  .estimator__result-label { font-size: 0.82rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
-  .estimator__result-val { font-family: var(--font-heading); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: var(--accent); margin-bottom: 8px; }
-  .estimator__result-note { font-size: 0.78rem; color: var(--dim); margin-bottom: 20px; }
-  .estimator__result-cta { display: inline-block; background: var(--accent); color: #fff; padding: 14px 28px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; font-family: var(--font-body); transition: background 0.2s, transform 0.2s; text-decoration: none; }
-  .estimator__result-cta:hover { background: var(--accent-hover); transform: translateY(-2px); }
-
-  @media (max-width: 1024px) { .services-grid__list { grid-template-columns: repeat(2, 1fr); } .ratgeber__grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 768px) {
-    .hero-family { min-height: 72vh; } .hero-family__content { padding: 0 24px 32px; } .hero-family__stats { grid-template-columns: repeat(2, 1fr); } .hero-family__ctas { flex-direction: column; }
-    .trust-bar__inner { gap: 16px; padding: 14px 24px; } .trust-bar__divider { display: none; }
-    .services-grid { padding: 60px 24px; } .services-grid__list { grid-template-columns: 1fr; }
-    .showcase { padding: 60px 24px; } .showcase__grid { grid-template-columns: 1fr; height: auto; } .showcase__item { min-height: 220px; }
-    .ratgeber { padding: 60px 24px; } .ratgeber__grid { grid-template-columns: 1fr; }
-    .estimator { padding: 60px 24px; } .estimator__form { padding: 24px; } .estimator__options { flex-direction: column; }
-  }
-</style>
-
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.anim-on-scroll').forEach(el => observer.observe(el));
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', (e) => {
-      const href = (anchor as HTMLAnchorElement).getAttribute('href');
-      if (!href) return;
-      const target = document.querySelector(href);
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-    });
-  });
-  const typeButtons = document.querySelectorAll('.estimator__option');
-  const slider = document.getElementById('unit-slider') as HTMLInputElement;
-  const unitVal = document.getElementById('unit-val');
-  const unitLabel = document.getElementById('unit-label');
-  const estimateVal = document.getElementById('estimate-val');
-  const rates: Record<string, [number, number]> = { implantate: [1500, 3000], bleaching: [300, 600], veneers: [400, 900] };
-  const isFlatRate: Record<string, boolean> = { bleaching: true };
-  let selectedType = 'implantate';
-  function updateEstimate() {
-    if (!slider || !unitVal || !estimateVal) return;
-    const units = parseInt(slider.value);
-    const isFlat = isFlatRate[selectedType];
-    if (isFlat) { unitVal.textContent = units <= 1 ? '1 Kiefer' : '2 Kiefer'; if (unitLabel) unitLabel.textContent = 'Anzahl Kiefer'; }
-    else { unitVal.textContent = units + (units === 1 ? ' Zahn' : ' Zähne'); if (unitLabel) unitLabel.textContent = 'Anzahl Zähne'; }
-    const [lo, hi] = rates[selectedType] || [1500, 3000];
-    const count = isFlat ? Math.min(units, 2) : units;
-    estimateVal.textContent = `ca. ${(lo * count).toLocaleString('de-DE')} — ${(hi * count).toLocaleString('de-DE')} €`;
-  }
-  typeButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      typeButtons.forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      selectedType = (btn as HTMLElement).dataset.value || 'implantate';
-      if (slider) { slider.max = isFlatRate[selectedType] ? '2' : '8'; slider.value = isFlatRate[selectedType] ? '1' : '2'; }
-      updateEstimate();
-    });
-  });
-  if (slider) { slider.addEventListener('input', updateEstimate); updateEstimate(); }
-</script>

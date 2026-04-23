@@ -2,326 +2,114 @@
 import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
 import { zahnarztAngstProfile } from '../../templates/config/zahnarzt-themes';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
+import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
+import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
+import ZahnarztAnxiety from '../../templates/sections/zahnarzt/ZahnarztAnxiety.astro';
+import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
+import ZahnarztBeforeAfter from '../../templates/sections/zahnarzt/ZahnarztBeforeAfter.astro';
+import ZahnarztCostCalc from '../../templates/sections/zahnarzt/ZahnarztCostCalc.astro';
 import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
 import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
 import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
-import PreviewAnxietyComfort from '../../templates/sections/PreviewAnxietyComfort.astro';
-import PreviewTreatmentSpectrum from '../../templates/sections/PreviewTreatmentSpectrum.astro';
-import PreviewSmileCheck from '../../templates/sections/PreviewSmileCheck.astro';
 import type { ProspectData } from '../../templates/config/types';
 
 const prospect: ProspectData = {
   name: 'Zahnarztpraxis Fischer',
-  tagline: 'Sanfte Zahnmedizin — auch für Angstpatienten',
+  tagline: 'Zahnarzt ohne Angst in Frankfurt',
   location: 'Frankfurt am Main',
   email: 'info@zahnarzt-fischer-frankfurt.de',
-  phone: '+49 69 8734120',
-  heroTitle: 'Angstfrei zum Zahnarzt — wir machen das möglich.',
-  heroSubtitle: 'In unserer Praxis in Frankfurt behandeln wir besonders einfühlsam. Lachgas, entspannte Atmosphäre und ein verständnisvolles Team sorgen dafür, dass Sie sich sicher und wohl fühlen.',
+  phone: '+49 69 1234567',
+  heroTitle: 'Zahnarztbesuche ohne Angst — wir begleiten Sie einfühlsam.',
+  heroSubtitle: 'In unserer Praxis in Frankfurt steht Ihre Entspannung an erster Stelle. Modernste Schmerztherapie, ruhige Atmosphäre und ein verständnisvolles Team — damit Sie sich sicher fühlen.',
   services: [
-    { icon: 'shield', title: 'Angstpatienten', description: 'Lachgas, beruhigende Atmosphäre und einfühlsame Behandlung für ein entspanntes Erlebnis.' },
-    { icon: 'star', title: 'Prophylaxe', description: 'Professionelle Zahnreinigung und Vorsorge für dauerhaft gesunde Zähne.' },
-    { icon: 'zap', title: 'Schmerzbehandlung', description: 'Modernste Betäubungsverfahren — Sie spüren kaum etwas.' },
-    { icon: 'heart', title: 'Kinderzahnheilkunde', description: 'Spielerische Heranführung ans Zahnarztleben für unsere jüngsten Patienten.' },
-    { icon: 'activity', title: 'Implantologie', description: 'Langlebige Zahnimplantate als komfortable Alternative zur Prothese.' },
-    { icon: 'award', title: 'Ästhetik & Bleaching', description: 'Strahlendes Lächeln durch schonende Aufhellungs- und Korrekturverfahren.' },
+    { icon: 'heart', title: 'Angstpatienten-Betreuung', description: 'Einfühlsame Begleitung für Patienten mit Zahnarztangst — wir nehmen uns die Zeit, die Sie brauchen.' },
+    { icon: 'shield', title: 'Schmerzfreie Behandlung', description: 'Modernste Anästhesiemethoden für eine nahezu schmerzfreie Behandlungserfahrung.' },
+    { icon: 'tooth', title: 'Vollnarkose & Dämmerschlaf', description: 'Behandlung unter Vollnarkose oder mit Lachgas — für eine entspannte Atmosphäre ohne Stress.' },
+    { icon: 'smile', title: 'Ästhetische Zahnheilkunde', description: 'Bleaching, Veneers und Zahnkorrekturen für ein strahlendes Lächeln.' },
+    { icon: 'check', title: 'Prophylaxe & Vorsorge', description: 'Professionelle Zahnreinigung und individuelle Vorsorge für langfristige Zahngesundheit.' },
+    { icon: 'clock', title: 'Flexible Terminvergabe', description: 'Kurze Wartezeiten, flexible Abendtermine — Behandlung, die in Ihren Alltag passt.' },
   ],
   stats: [
-    { value: '18+', label: 'Jahre Erfahrung' },
-    { value: '4.9★', label: 'Google Bewertung' },
-    { value: '3.200+', label: 'Patienten' },
-    { value: '100%', label: 'Angstfrei-Garantie' },
+    { value: '15+', label: 'Jahre Erfahrung' },
+    { value: '2.000+', label: 'Angstpatienten behandelt' },
+    { value: '98%', label: 'Empfehlungsrate' },
   ],
 };
-
-const treatments = [
-  {
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
-    title: 'Angstpatienten-Behandlung',
-    description: 'Individuelle Sedierung, Lachgas und ein eingespieltes Team — für Patienten, die Zahnarztbesuche fürchten.',
-    ctaText: 'Angstfrei-Beratung',
-    ctaHref: '#kontakt',
-  },
-  {
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9" stroke-linecap="round" stroke-width="2.5"/><line x1="15" y1="9" x2="15.01" y2="9" stroke-linecap="round" stroke-width="2.5"/></svg>',
-    title: 'Professionelle Zahnreinigung',
-    description: 'Gründliche Reinigung aller Zahnflächen, Entfernung von Belag und Verfärbungen — für ein frisches Gefühl.',
-  },
-  {
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>',
-    title: 'Zahnästhetik & Bleaching',
-    description: 'Von sanftem Bleaching bis zu Veneers: Wir gestalten Ihr Wunschlächeln — schonend und natürlich.',
-    ctaText: 'Beratung vereinbaren',
-    ctaHref: '#kontakt',
-  },
-  {
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>',
-    title: 'Kinderzahnheilkunde',
-    description: 'Spielerisch und ohne Druck — damit Ihr Kind von Anfang an gerne zum Zahnarzt kommt.',
-  },
-  {
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>',
-    title: 'Implantologie',
-    description: 'Hochwertige Implantate als komfortable und langlebige Lösung bei fehlenden Zähnen.',
-    ctaText: 'Implantat-Beratung',
-    ctaHref: '#kontakt',
-  },
-  {
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9S3 16.97 3 12 7.03 3 12 3s9 4.03 9 9z"/></svg>',
-    title: 'Notfallbehandlung',
-    description: 'Akute Zahnschmerzen? Wir behandeln Sie noch heute — auch kurzfristig und ohne lange Wartezeit.',
-    ctaText: 'Notfall-Termin heute',
-    ctaHref: 'tel:+4969873412',
-  },
-];
-
-const comfortPoints = [
-  {
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
-    title: 'Lachgas-Sedierung',
-    description: 'Sanfte Entspannung durch Lachgas — ohne Nebenwirkungen, vollständig kontrollierbar. Sie bleiben bei Bewusstsein und fühlen sich einfach wohl.',
-  },
-  {
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>',
-    title: 'Einfühlsames Team',
-    description: 'Kein Druck, kein Zeitstress. Wir erklären jeden Schritt, nehmen uns Zeit für Ihre Fragen und begleiten Sie im eigenen Tempo.',
-  },
-  {
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>',
-    title: 'Kurze Wartezeiten',
-    description: 'Pünktliche Termine, keine langen Wartezimmer-Situationen. Wir respektieren Ihre Zeit und Ihre Nerven.',
-  },
-  {
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9S3 16.97 3 12 7.03 3 12 3s9 4.03 9 9z"/></svg>',
-    title: 'Transparente Kosten',
-    description: 'Vor jeder Behandlung erhalten Sie einen klaren Kostenplan. Keine Überraschungen auf der Rechnung — versprochen.',
-  },
-];
-
-const smileSteps = [
-  {
-    question: 'Wie stark ist Ihre Angst vor dem Zahnarzt?',
-    options: [
-      { label: 'Sehr stark — ich vermeide Zahnarztbesuche', value: 'sehr-stark' },
-      { label: 'Mittel — ich brauche Überwindung', value: 'mittel' },
-      { label: 'Leicht — ich bin etwas nervös', value: 'leicht' },
-    ],
-  },
-  {
-    question: 'Was belastet Sie am meisten?',
-    options: [
-      { label: 'Der Bohrer / die Geräusche', value: 'geraeusche' },
-      { label: 'Die Spritze / Betäubung', value: 'injektion' },
-      { label: 'Kontrollverlust / hilflos sein', value: 'kontrolle' },
-      { label: 'Schmerzen', value: 'schmerzen' },
-    ],
-  },
-  {
-    question: 'Wann waren Sie zuletzt beim Zahnarzt?',
-    options: [
-      { label: 'Vor weniger als 1 Jahr', value: 'unter-1' },
-      { label: 'Vor 1–3 Jahren', value: '1-3' },
-      { label: 'Vor mehr als 3 Jahren', value: 'ueber-3' },
-    ],
-  },
-];
-
-const testimonials = [
-  {
-    text: 'Ich habe 10 Jahre lang jeden Zahnarzt gemieden. Dank Frau Fischer und dem Lachgas war mein erster Besuch tatsächlich entspannt. Ich kann es kaum glauben.',
-    author: 'Markus H.',
-    role: 'Patient seit 2022',
-    rating: 5,
-  },
-  {
-    text: 'Endlich eine Praxis, die versteht was Zahnarztangst bedeutet. Niemand hat mich gehetzt, alles wurde erklärt. Das Team ist unglaublich verständnisvoll.',
-    author: 'Sandra K.',
-    role: 'Patientin seit 2021',
-    rating: 5,
-  },
-  {
-    text: 'Mein Sohn hatte früher Panikattacken vor dem Zahnarzt. Heute kommt er freiwillig mit. Die Art, wie das Team mit Kindern umgeht, ist wirklich besonders.',
-    author: 'Familie Brandt',
-    role: 'Patienten seit 2020',
-    rating: 5,
-  },
-];
-
-const ratgeberItems = [
-  { icon: '💤', title: 'Entspannung vor dem Termin', desc: 'Atemübungen und Tipps, wie Sie sich mental auf den Zahnarztbesuch vorbereiten.' },
-  { icon: '💊', title: 'Lachgas: Wie funktioniert es?', desc: 'Alles, was Sie über die sanfte Sedierung wissen müssen — sicher, schnell, ohne Nebenwirkungen.' },
-  { icon: '🦷', title: 'Zähne schonend reinigen', desc: 'Die richtigen Putztechniken, die Zahnfleisch und Schmelz langfristig schützen.' },
-  { icon: '🏃', title: 'Notfall-Checkliste', desc: 'Was tun bei akuten Zahnschmerzen? Erste Hilfe bis zum Arzttermin.' },
-];
 ---
 
 <PreviewLayout profile={zahnarztAngstProfile} prospect={prospect}>
-  <style is:global>
-    :root {
-      --accent: #EA580C;
-      --accent-hover: #C2410C;
-      --accent-light: rgba(234, 88, 12, 0.12);
-      --accent-glow: rgba(234, 88, 12, 0.35);
-    }
-  </style>
-
   <PreviewNav
     prospectName={prospect.name}
-    navLinks={[
-      { label: 'Angstpatienten', href: '#angstpatienten' },
-      { label: 'Leistungen', href: '#leistungen' },
-      { label: 'Bewertungen', href: '#testimonials' },
-      { label: 'Kontakt', href: '#kontakt' },
+    ctaText="Termin vereinbaren"
+    ctaHref="#kontakt"
+  />
+
+  <ZahnarztHero
+    title={prospect.heroTitle}
+    subtitle={prospect.heroSubtitle}
+    badge="Angstpatienten willkommen"
+    ctaPrimary={{ text: 'Termin vereinbaren', href: '#kontakt' }}
+    ctaSecondary={{ text: 'Mehr erfahren', href: '#leistungen' }}
+    imageSrc="/preview-images/zahnarzt-fischer/hero.jpg"
+    imageAlt="Zahnarztpraxis Fischer Frankfurt — einfühlsame Behandlung"
+    stats={prospect.stats}
+  />
+
+  <ZahnarztAnxiety
+    title="Zahnarztangst? Bei uns sind Sie in guten Händen."
+    quote="Ich hatte jahrelang Angst vor dem Zahnarzt. Das Team von Praxis Fischer hat mir gezeigt, dass Behandlung auch entspannt sein kann."
+    quoteAuthor="Michael K., Frankfurt"
+    trustPoints={[
+      { icon: 'heart', title: 'Einfühlsames Team', desc: 'Wir nehmen Ihre Angst ernst und gehen in Ihrem Tempo vor.' },
+      { icon: 'shield', title: 'Schmerzfreie Methoden', desc: 'Modernste Anästhesie für eine nahezu schmerzfreie Behandlung.' },
+      { icon: 'smile', title: 'Entspannte Atmosphäre', desc: 'Ruhige Praxisräume und beruhigende Musik für Ihr Wohlbefinden.' },
+      { icon: 'hand', title: 'Stopp-Signal', desc: 'Sie behalten jederzeit die Kontrolle — Behandlungspause auf Wunsch.' },
     ]}
-    ctaText="Angstfrei-Beratung"
-    ctaHref="#kontakt"
   />
 
-  <!-- HERO: Comfort-Style, weich und einladend -->
-  <section class="hero-comfort" id="start" aria-label="Hero">
-    <div class="hero-comfort__bg" aria-hidden="true">
-      <div class="hero-comfort__blob hero-comfort__blob--1"></div>
-      <div class="hero-comfort__blob hero-comfort__blob--2"></div>
-      <div class="hero-comfort__blob hero-comfort__blob--3"></div>
-    </div>
-
-    <div class="hero-comfort__inner">
-      <div class="hero-comfort__badge" role="note">
-        <span class="hero-comfort__badge-dot" aria-hidden="true"></span>
-        Spezialisiert auf Angstpatienten
-      </div>
-
-      <h1 class="hero-comfort__title">
-        Zahnarzt ohne <span class="hero-comfort__title-highlight">Angst</span><br/>
-        — das geht wirklich.
-      </h1>
-
-      <p class="hero-comfort__sub">
-        In unserer Praxis in Frankfurt haben wir uns auf einfühlsame Zahnmedizin spezialisiert. Mit Lachgas, geduldigen Erklärungen und einem herzlichen Team machen wir den Unterschied.
-      </p>
-
-      <div class="hero-comfort__trust" aria-label="Vertrauenspunkte">
-        <span class="hero-comfort__trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Lachgas-Sedierung
-        </span>
-        <span class="hero-comfort__trust-sep" aria-hidden="true">·</span>
-        <span class="hero-comfort__trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          Kein Druck, kein Stress
-        </span>
-        <span class="hero-comfort__trust-sep" aria-hidden="true">·</span>
-        <span class="hero-comfort__trust-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-          4,9 ★ Bewertung
-        </span>
-      </div>
-
-      <div class="hero-comfort__actions">
-        <a href="#angstpatienten" class="hero-comfort__btn-primary">
-          Angstfrei-Beratung
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="tel:+4969873412" class="hero-comfort__btn-secondary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.07 6.07l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
-          Notfall-Termin heute
-        </a>
-      </div>
-
-      <div class="hero-comfort__stats" role="list" aria-label="Praxisstatistiken">
-        {prospect.stats && prospect.stats.map(stat => (
-          <div class="hero-comfort__stat" role="listitem">
-            <span class="hero-comfort__stat-value">{stat.value}</span>
-            <span class="hero-comfort__stat-label">{stat.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    <div class="hero-comfort__visual" aria-hidden="true">
-      <div class="hero-comfort__card hero-comfort__card--main">
-        <div class="hero-comfort__card-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <p class="hero-comfort__card-title">Lachgas-Behandlung</p>
-        <p class="hero-comfort__card-sub">Entspannt in 3 Minuten</p>
-      </div>
-      <div class="hero-comfort__card hero-comfort__card--secondary">
-        <span class="hero-comfort__card-emoji">😊</span>
-        <p class="hero-comfort__card-title">„Endlich kein Stress mehr"</p>
-        <p class="hero-comfort__card-sub">Markus H., Patient</p>
-      </div>
-      <div class="hero-comfort__card hero-comfort__card--tertiary">
-        <span class="hero-comfort__card-star">★★★★★</span>
-        <p class="hero-comfort__card-title">4.9 / 5.0</p>
-        <p class="hero-comfort__card-sub">Google Bewertung</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ANXIETY COMFORT: Prominent direkt nach Hero -->
-  <PreviewAnxietyComfort
-    title="Wir verstehen Ihre Angst — und behandeln sie sanft."
-    subtitle="Zahnarztangst ist keine Schwäche. Sie ist weit verbreitet und wir haben die Erfahrung, mit ihr umzugehen. Unser Ziel ist, dass Sie die Praxis mit einem Lächeln verlassen."
-    points={comfortPoints}
-    imageSrc="/images/previews/zahnarzt/comfort-behandlung.jpg"
-    imageAlt="Einfühlsame Zahnarztbehandlung in Frankfurt"
-    ctaText="Jetzt Angstfrei-Beratung buchen"
-    ctaHref="#kontakt"
+  <ZahnarztServices
+    title="Unsere Leistungen für Sie"
+    subtitle="Von der Angstbehandlung bis zur ästhetischen Zahnheilkunde — alles unter einem Dach."
+    services={prospect.services}
   />
 
-  <!-- TREATMENT SPECTRUM -->
-  <PreviewTreatmentSpectrum
-    title="Unsere Leistungen"
-    subtitle="Von der Prophylaxe bis zur Angstpatientenbehandlung — alles aus einer Hand, immer einfühlsam."
-    treatments={treatments}
+  <ZahnarztTimeline
+    title="Ihr erster Besuch bei uns"
+    subtitle="Wir führen Sie Schritt für Schritt durch den Ablauf — damit Sie genau wissen, was Sie erwartet."
+    steps={[
+      { num: 1, title: 'Kostenloser Ersttermin', desc: 'Lernen Sie uns kennen — ganz ohne Behandlung. Wir hören zu und beantworten alle Fragen.', icon: 'chat' },
+      { num: 2, title: 'Individuelle Planung', desc: 'Gemeinsam erstellen wir einen Behandlungsplan, der Ihre Wünsche und Ängste berücksichtigt.', icon: 'calendar' },
+      { num: 3, title: 'Behandlung in Ihrem Tempo', desc: 'Wir gehen so vor, wie es für Sie angenehm ist — mit Pausen wann immer Sie möchten.', icon: 'tooth' },
+      { num: 4, title: 'Nachsorge & Begleitung', desc: 'Auch nach der Behandlung sind wir für Sie da — mit Nachsorge und einem offenen Ohr.', icon: 'check' },
+    ]}
   />
 
-  <!-- TESTIMONIALS -->
+  <ZahnarztBeforeAfter
+    title="Behandlungsergebnisse"
+    subtitle="Sehen Sie selbst, was mit moderner Zahnheilkunde möglich ist."
+    cases={[
+      { beforeSrc: '/preview-images/zahnarzt-fischer/gallery-1.jpg', afterSrc: '/preview-images/zahnarzt-fischer/gallery-2.jpg', label: 'Komplett-Sanierung' },
+      { beforeSrc: '/preview-images/zahnarzt-fischer/gallery-3.jpg', afterSrc: '/preview-images/zahnarzt-fischer/gallery-4.jpg', label: 'Ästhetische Korrektur' },
+    ]}
+  />
+
+  <ZahnarztCostCalc />
+
   <PreviewTestimonials
     title="Was unsere Patienten sagen"
-    subtitle="Echte Erfahrungen von Menschen, die genauso wie Sie gezögert haben."
-    testimonials={testimonials}
+    testimonials={[
+      { text: 'Endlich wieder ohne Angst zum Zahnarzt! Das Team hat mich so behutsam behandelt, ich konnte kaum glauben, wie entspannt alles war.', author: 'Sandra M.', role: 'Patientin seit 3 Jahren' },
+      { text: 'Herr Fischer hat mir meine langjährige Zahnarztphobie genommen. Kompetent, geduldig und immer einfühlsam.', author: 'Thomas R.', role: 'Angstpatient' },
+      { text: 'Die Lachgasbehandlung war ein Gamechanger für mich. Endlich schmerzfrei und entspannt beim Zahnarzt.', author: 'Petra K.', role: 'Patientin' },
+    ]}
   />
 
-  <!-- RATGEBER -->
-  <section class="ratgeber" id="ratgeber" aria-labelledby="ratgeber-heading">
-    <div class="ratgeber__inner">
-      <div class="ratgeber__header">
-        <div class="ratgeber__badge" role="note">Ratgeber</div>
-        <h2 id="ratgeber-heading" class="ratgeber__title">Tipps für Angstpatienten</h2>
-        <p class="ratgeber__sub">Hilfreiche Informationen, die Ihnen helfen, den nächsten Schritt zu wagen.</p>
-      </div>
-      <ul class="ratgeber__grid" role="list">
-        {ratgeberItems.map(item => (
-          <li class="ratgeber__item" role="listitem">
-            <span class="ratgeber__item-icon" aria-hidden="true">{item.icon}</span>
-            <h3 class="ratgeber__item-title">{item.title}</h3>
-            <p class="ratgeber__item-desc">{item.desc}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <!-- SMILE CHECK -->
-  <PreviewSmileCheck
-    title="Wie stark ist Ihre Zahnarztangst?"
-    subtitle="Beantworten Sie 3 kurze Fragen — wir zeigen Ihnen, wie wir Ihnen am besten helfen können."
-    steps={smileSteps}
-    resultCtaText="Kostenlose Angstfrei-Beratung buchen"
-    resultCtaHref="#kontakt"
-  />
-
-  <!-- CTA -->
   <PreviewCTA
-    title="Bereit für Ihren ersten stressfreien Besuch?"
-    subtitle="Rufen Sie uns an oder schreiben Sie uns — wir antworten persönlich und nehmen uns Zeit für Sie."
-    ctaText="Schmerzfrei testen"
-    ctaHref="#kontakt"
-    secondaryText="Notfall: Soforttermin"
-    secondaryHref="tel:+4969873412"
-    features={['Lachgas auf Anfrage', 'Keine Wartezeit', 'Kostenloser Erstbesuch']}
+    title="Bereit für Ihren ersten Schritt?"
+    subtitle="Vereinbaren Sie jetzt Ihren unverbindlichen Ersttermin — kostenlos und ohne Behandlung."
+    ctaText="Jetzt Termin vereinbaren"
+    ctaHref={`mailto:${prospect.email}`}
+    phone={prospect.phone}
   />
 
   <PreviewFooter
@@ -332,461 +120,3 @@ const ratgeberItems = [
     year={2025}
   />
 </PreviewLayout>
-
-<style>
-  /* ===== HERO: COMFORT STYLE ===== */
-  .hero-comfort {
-    position: relative;
-    min-height: 90vh;
-    display: grid;
-    grid-template-columns: 1fr 480px;
-    align-items: center;
-    gap: 64px;
-    padding: 100px 64px 80px;
-    max-width: 1280px;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-
-  .hero-comfort__bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .hero-comfort__blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.12;
-  }
-
-  .hero-comfort__blob--1 {
-    width: 500px;
-    height: 500px;
-    background: var(--accent);
-    top: -100px;
-    right: 0;
-  }
-
-  .hero-comfort__blob--2 {
-    width: 350px;
-    height: 350px;
-    background: color-mix(in srgb, var(--accent) 70%, #ff8c00);
-    bottom: -50px;
-    left: 100px;
-  }
-
-  .hero-comfort__blob--3 {
-    width: 250px;
-    height: 250px;
-    background: #fbbf24;
-    top: 200px;
-    left: -50px;
-    opacity: 0.08;
-  }
-
-  .hero-comfort__inner {
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-comfort__badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: color-mix(in srgb, var(--accent) 12%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
-    border-radius: 100px;
-    padding: 6px 16px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-  }
-
-  .hero-comfort__badge-dot {
-    width: 7px;
-    height: 7px;
-    background: var(--accent);
-    border-radius: 50%;
-    animation: comfort-pulse 2.5s ease-in-out infinite;
-    flex-shrink: 0;
-  }
-
-  @keyframes comfort-pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.45; transform: scale(0.72); }
-  }
-
-  .hero-comfort__title {
-    font-family: var(--font-heading);
-    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: var(--text);
-    line-height: 1.15;
-    margin-bottom: 20px;
-  }
-
-  .hero-comfort__title-highlight {
-    color: var(--accent);
-    position: relative;
-  }
-
-  .hero-comfort__title-highlight::after {
-    content: '';
-    position: absolute;
-    bottom: 2px;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: color-mix(in srgb, var(--accent) 40%, transparent);
-    border-radius: 2px;
-  }
-
-  .hero-comfort__sub {
-    color: var(--muted);
-    font-size: 1.05rem;
-    line-height: 1.75;
-    margin-bottom: 28px;
-    max-width: 520px;
-  }
-
-  .hero-comfort__trust {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px 12px;
-    margin-bottom: 36px;
-  }
-
-  .hero-comfort__trust-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.82rem;
-    color: var(--muted);
-    font-weight: 500;
-  }
-
-  .hero-comfort__trust-item svg {
-    stroke: var(--accent);
-    flex-shrink: 0;
-  }
-
-  .hero-comfort__trust-sep {
-    color: var(--dim);
-    font-size: 0.75rem;
-  }
-
-  .hero-comfort__actions {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-bottom: 48px;
-  }
-
-  .hero-comfort__btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--accent);
-    color: #fff;
-    padding: 14px 28px;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    font-family: var(--font-body);
-    text-decoration: none;
-    transition: background var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1)),
-                transform var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1)),
-                box-shadow var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1));
-  }
-
-  .hero-comfort__btn-primary:hover {
-    background: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px var(--accent-glow, color-mix(in srgb, var(--accent) 35%, transparent));
-  }
-
-  .hero-comfort__btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: transparent;
-    color: var(--text);
-    padding: 13px 24px;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    font-family: var(--font-body);
-    text-decoration: none;
-    border: 1px solid var(--border);
-    transition: border-color var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1)),
-                background var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1)),
-                color var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1));
-  }
-
-  .hero-comfort__btn-secondary:hover {
-    border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 8%, transparent);
-    color: var(--accent);
-  }
-
-  .hero-comfort__btn-secondary svg {
-    stroke: currentColor;
-    flex-shrink: 0;
-  }
-
-  .hero-comfort__stats {
-    display: flex;
-    gap: 36px;
-    flex-wrap: wrap;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
-  }
-
-  .hero-comfort__stat {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .hero-comfort__stat-value {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--text);
-    letter-spacing: -0.02em;
-  }
-
-  .hero-comfort__stat-label {
-    font-size: 0.75rem;
-    color: var(--muted);
-    font-weight: 500;
-  }
-
-  /* Visual column */
-  .hero-comfort__visual {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .hero-comfort__card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .hero-comfort__card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 100% 60% at 0% 50%, color-mix(in srgb, var(--accent) 5%, transparent), transparent);
-    pointer-events: none;
-  }
-
-  .hero-comfort__card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px color-mix(in srgb, var(--accent) 12%, transparent);
-  }
-
-  .hero-comfort__card--main .hero-comfort__card-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    background: color-mix(in srgb, var(--accent) 12%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 14px;
-    color: var(--accent);
-  }
-
-  .hero-comfort__card--main .hero-comfort__card-icon svg {
-    stroke: var(--accent);
-  }
-
-  .hero-comfort__card--secondary {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .hero-comfort__card-emoji {
-    font-size: 2rem;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  .hero-comfort__card-star {
-    color: #f59e0b;
-    font-size: 1.1rem;
-    letter-spacing: 2px;
-    flex-shrink: 0;
-  }
-
-  .hero-comfort__card--tertiary {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: color-mix(in srgb, var(--accent) 6%, var(--surface));
-    border-color: color-mix(in srgb, var(--accent) 20%, transparent);
-  }
-
-  .hero-comfort__card-title {
-    font-family: var(--font-heading);
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 2px;
-  }
-
-  .hero-comfort__card-sub {
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-
-  /* ===== RATGEBER ===== */
-  .ratgeber {
-    padding: 80px 48px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .ratgeber__header {
-    text-align: center;
-    margin-bottom: 48px;
-  }
-
-  .ratgeber__badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: color-mix(in srgb, var(--accent) 10%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
-    border-radius: 100px;
-    padding: 6px 16px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-
-  .ratgeber__title {
-    font-family: var(--font-heading);
-    font-size: clamp(1.6rem, 2.8vw, 2.1rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    margin-bottom: 12px;
-  }
-
-  .ratgeber__sub {
-    color: var(--muted);
-    font-size: 1rem;
-    line-height: 1.7;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .ratgeber__grid {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-
-  .ratgeber__item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px 24px;
-    transition: border-color 0.3s ease, transform 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ratgeber__item::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 40% at 50% 0%, color-mix(in srgb, var(--accent) 5%, transparent), transparent);
-    pointer-events: none;
-  }
-
-  .ratgeber__item:hover {
-    border-color: color-mix(in srgb, var(--accent) 35%, transparent);
-    transform: translateY(-3px);
-  }
-
-  .ratgeber__item-icon {
-    font-size: 1.8rem;
-    display: block;
-    margin-bottom: 14px;
-    position: relative;
-  }
-
-  .ratgeber__item-title {
-    font-family: var(--font-heading);
-    font-size: 0.92rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 8px;
-    line-height: 1.3;
-    position: relative;
-  }
-
-  .ratgeber__item-desc {
-    font-size: 0.82rem;
-    color: var(--muted);
-    line-height: 1.65;
-    position: relative;
-  }
-
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 1100px) {
-    .hero-comfort {
-      grid-template-columns: 1fr 400px;
-      gap: 48px;
-      padding: 80px 40px;
-    }
-    .ratgeber__grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 900px) {
-    .hero-comfort {
-      grid-template-columns: 1fr;
-      padding: 80px 24px 60px;
-      min-height: auto;
-    }
-    .hero-comfort__visual { order: -1; }
-    .ratgeber { padding: 60px 24px; }
-    .ratgeber__grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 600px) {
-    .hero-comfort__stats { gap: 20px; }
-    .hero-comfort__actions { flex-direction: column; align-items: stretch; }
-    .hero-comfort__btn-primary,
-    .hero-comfort__btn-secondary { justify-content: center; }
-    .ratgeber__grid { grid-template-columns: 1fr; }
-  }
-</style>

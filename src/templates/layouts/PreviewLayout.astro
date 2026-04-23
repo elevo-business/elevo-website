@@ -25,6 +25,16 @@ const cssVars = `
   --dim: ${colorScheme.dim};
   --font-heading: '${typography.heading}', sans-serif;
   --font-body: '${typography.body}', sans-serif;
+  --zh-accent: ${colorScheme.accent};
+  --zh-accent-hover: ${colorScheme.accentHover};
+  --zh-bg: ${colorScheme.bg};
+  --zh-surface: ${colorScheme.surface};
+  --zh-border: ${colorScheme.border};
+  --zh-text: ${colorScheme.text};
+  --zh-muted: ${colorScheme.muted};
+  --zh-dim: ${colorScheme.dim};
+  --zh-accent-subtle: color-mix(in srgb, ${colorScheme.accent} 12%, transparent);
+  --zh-anxiety-bg: color-mix(in srgb, ${colorScheme.accent} 4%, transparent);
 `.trim();
 ---
 

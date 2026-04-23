@@ -206,12 +206,12 @@ const treatDataJson = JSON.stringify(treatmentData);
 
   .tcc__badge {
     display: inline-flex;
-    background: color-mix(in srgb, var(--accent) 10%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    background: color-mix(in srgb, var(--zh-accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--zh-accent) 25%, transparent);
     border-radius: 100px;
     padding: 6px 16px;
     font-size: 0.75rem;
-    color: var(--accent);
+    color: var(--zh-accent);
     margin-bottom: 16px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -224,11 +224,11 @@ const treatDataJson = JSON.stringify(treatmentData);
     font-weight: 800;
     letter-spacing: -0.02em;
     margin-bottom: 14px;
-    color: var(--text);
+    color: var(--zh-text);
   }
 
   .tcc__sub {
-    color: var(--muted);
+    color: var(--zh-muted);
     font-size: 1rem;
     line-height: 1.7;
     max-width: 560px;
@@ -251,7 +251,7 @@ const treatDataJson = JSON.stringify(treatmentData);
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--zh-muted);
   }
 
   .tcc__diagram-card {
@@ -289,23 +289,23 @@ const treatDataJson = JSON.stringify(treatmentData);
 
   .tcc-tooth:hover,
   .tcc-tooth:focus-visible {
-    fill: color-mix(in srgb, var(--accent) 20%, #F5F0EB);
-    stroke: var(--accent);
+    fill: color-mix(in srgb, var(--zh-accent) 20%, #F5F0EB);
+    stroke: var(--zh-accent);
     stroke-width: 1.5;
     outline: none;
     transform: scale(1.12);
   }
 
   .tcc-tooth[aria-pressed="true"] {
-    fill: var(--accent);
-    stroke: color-mix(in srgb, var(--accent) 60%, #000);
+    fill: var(--zh-accent);
+    stroke: color-mix(in srgb, var(--zh-accent) 60%, #000);
     stroke-width: 1.5;
-    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent) 60%, transparent));
+    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--zh-accent) 60%, transparent));
   }
 
   .tcc__hint {
     font-size: 0.78rem;
-    color: var(--dim);
+    color: var(--zh-dim);
     text-align: center;
   }
 
@@ -322,13 +322,13 @@ const treatDataJson = JSON.stringify(treatmentData);
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    background: color-mix(in srgb, var(--accent) 12%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    background: color-mix(in srgb, var(--zh-accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--zh-accent) 30%, transparent);
     border-radius: 100px;
     padding: 3px 10px;
     font-size: 0.72rem;
     font-weight: 600;
-    color: var(--accent);
+    color: var(--zh-accent);
     font-family: var(--font-heading);
   }
 
@@ -346,8 +346,8 @@ const treatDataJson = JSON.stringify(treatmentData);
 
   /* Panel */
   .tcc__panel {
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--zh-surface);
+    border: 1px solid var(--zh-border);
     border-radius: 20px;
     padding: 32px;
     position: sticky;
@@ -365,7 +365,7 @@ const treatDataJson = JSON.stringify(treatmentData);
     flex: 1;
     text-align: center;
     gap: 12px;
-    color: var(--dim);
+    color: var(--zh-dim);
     padding: 24px;
   }
 
@@ -375,7 +375,7 @@ const treatDataJson = JSON.stringify(treatmentData);
     font-family: var(--font-heading);
     font-size: 1rem;
     font-weight: 700;
-    color: var(--muted);
+    color: var(--zh-muted);
     margin: 0;
   }
 
@@ -395,9 +395,9 @@ const treatDataJson = JSON.stringify(treatmentData);
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--zh-muted);
     padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--zh-border);
   }
 
   .tcc__treatments { display: flex; flex-direction: column; gap: 8px; }
@@ -407,9 +407,9 @@ const treatDataJson = JSON.stringify(treatmentData);
     align-items: center;
     gap: 12px;
     padding: 12px 14px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--zh-border);
     border-radius: 12px;
-    background: var(--bg);
+    background: var(--zh-bg);
     cursor: pointer;
     transition: border-color 0.2s ease, background 0.2s ease;
     text-align: left;
@@ -418,20 +418,20 @@ const treatDataJson = JSON.stringify(treatmentData);
   }
 
   .tcc__treat-btn:hover {
-    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
-    background: color-mix(in srgb, var(--accent) 4%, var(--bg));
+    border-color: color-mix(in srgb, var(--zh-accent) 40%, transparent);
+    background: color-mix(in srgb, var(--zh-accent) 4%, var(--zh-bg));
   }
 
   .tcc__treat-btn[aria-checked="true"] {
-    border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 8%, var(--bg));
+    border-color: var(--zh-accent);
+    background: color-mix(in srgb, var(--zh-accent) 8%, var(--zh-bg));
   }
 
   .tcc__treat-check {
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    border: 2px solid var(--border);
+    border: 2px solid var(--zh-border);
     flex-shrink: 0;
     transition: border-color 0.15s, background 0.15s;
     display: flex;
@@ -440,8 +440,8 @@ const treatDataJson = JSON.stringify(treatmentData);
   }
 
   .tcc__treat-btn[aria-checked="true"] .tcc__treat-check {
-    border-color: var(--accent);
-    background: var(--accent);
+    border-color: var(--zh-accent);
+    background: var(--zh-accent);
   }
 
   .tcc__treat-check-dot {
@@ -459,14 +459,14 @@ const treatDataJson = JSON.stringify(treatmentData);
   .tcc__treat-name {
     font-size: 0.88rem;
     font-weight: 600;
-    color: var(--text);
+    color: var(--zh-text);
     display: block;
     margin-bottom: 2px;
   }
 
   .tcc__treat-meta {
     font-size: 0.75rem;
-    color: var(--muted);
+    color: var(--zh-muted);
     display: flex;
     gap: 8px;
     align-items: center;
@@ -487,15 +487,15 @@ const treatDataJson = JSON.stringify(treatmentData);
     font-family: var(--font-heading);
     font-size: 0.82rem;
     font-weight: 700;
-    color: var(--accent);
+    color: var(--zh-accent);
     white-space: nowrap;
     flex-shrink: 0;
   }
 
   /* Summary */
   .tcc__summary {
-    background: var(--bg);
-    border: 1px solid var(--border);
+    background: var(--zh-bg);
+    border: 1px solid var(--zh-border);
     border-radius: 14px;
     padding: 18px;
     display: flex;
@@ -509,7 +509,7 @@ const treatDataJson = JSON.stringify(treatmentData);
     font-weight: 700;
     letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--zh-muted);
     margin-bottom: 4px;
   }
 
@@ -522,9 +522,9 @@ const treatDataJson = JSON.stringify(treatmentData);
     font-size: 0.82rem;
   }
 
-  .tcc__summary-tooth { color: var(--muted); }
-  .tcc__summary-treat { color: var(--text); font-weight: 500; }
-  .tcc__summary-cost { color: var(--accent); font-weight: 600; font-family: var(--font-heading); font-size: 0.78rem; }
+  .tcc__summary-tooth { color: var(--zh-muted); }
+  .tcc__summary-treat { color: var(--zh-text); font-weight: 500; }
+  .tcc__summary-cost { color: var(--zh-accent); font-weight: 600; font-family: var(--font-heading); font-size: 0.78rem; }
 
   .tcc__total-row {
     display: flex;
@@ -532,25 +532,25 @@ const treatDataJson = JSON.stringify(treatmentData);
     align-items: center;
     padding-top: 10px;
     margin-top: 4px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--zh-border);
   }
 
   .tcc__total-label {
     font-size: 0.82rem;
     font-weight: 600;
-    color: var(--text);
+    color: var(--zh-text);
   }
 
   .tcc__total-val {
     font-family: var(--font-heading);
     font-size: 1.1rem;
     font-weight: 800;
-    color: var(--accent);
+    color: var(--zh-accent);
   }
 
   .tcc__total-note {
     font-size: 0.72rem;
-    color: var(--dim);
+    color: var(--zh-dim);
     margin: 0;
   }
 
@@ -558,7 +558,7 @@ const treatDataJson = JSON.stringify(treatmentData);
   .tcc__cta {
     display: block;
     text-align: center;
-    background: var(--accent);
+    background: var(--zh-accent);
     color: #fff;
     padding: 14px 20px;
     border-radius: 10px;
@@ -569,12 +569,12 @@ const treatDataJson = JSON.stringify(treatmentData);
     transition: background 0.2s, transform 0.2s;
   }
 
-  .tcc__cta:hover { background: var(--accent-hover); transform: translateY(-2px); }
+  .tcc__cta:hover { background: var(--zh-accent-hover); transform: translateY(-2px); }
 
   .tcc__reset {
     background: none;
     border: none;
-    color: var(--muted);
+    color: var(--zh-muted);
     font-size: 0.78rem;
     font-family: var(--font-body);
     cursor: pointer;
@@ -583,7 +583,7 @@ const treatDataJson = JSON.stringify(treatmentData);
     transition: color 0.15s;
   }
 
-  .tcc__reset:hover { color: var(--text); }
+  .tcc__reset:hover { color: var(--zh-text); }
 
   /* Responsive */
   @media (max-width: 1024px) {
