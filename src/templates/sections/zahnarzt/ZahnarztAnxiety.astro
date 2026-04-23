@@ -5,14 +5,20 @@ interface TrustPoint {
   desc: string;
 }
 
+interface CtaButton {
+  text: string;
+  href: string;
+}
+
 interface Props {
   title: string;
   quote: string;
   quoteAuthor?: string;
   trustPoints: TrustPoint[];
+  cta?: CtaButton;
 }
 
-const { title, quote, quoteAuthor, trustPoints } = Astro.props;
+const { title, quote, quoteAuthor, trustPoints, cta } = Astro.props;
 
 const iconPaths: Record<string, string> = {
   heart: 'M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z',
@@ -63,6 +69,14 @@ function getIconPath(icon: string): string {
         </li>
       ))}
     </ul>
+
+    {cta && (
+      <div class="zahnarzt-anxiety__cta-wrap">
+        <a href={cta.href} class="zahnarzt-anxiety__cta">
+          {cta.text}
+        </a>
+      </div>
+    )}
   </div>
 </section>
 
@@ -189,6 +203,32 @@ function getIconPath(icon: string): string {
     line-height: 1.6;
     color: var(--zh-muted, var(--text-secondary));
     margin: 0;
+  }
+
+  .zahnarzt-anxiety__cta-wrap {
+    margin-top: 48px;
+    text-align: center;
+  }
+
+  .zahnarzt-anxiety__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border-radius: 100px;
+    background: transparent;
+    border: 1.5px solid var(--anxiety-accent);
+    color: var(--anxiety-accent);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background var(--transition, 200ms ease), color var(--transition, 200ms ease);
+  }
+
+  .zahnarzt-anxiety__cta:hover {
+    background: var(--anxiety-accent);
+    color: #fff;
   }
 
   @media (min-width: 768px) {

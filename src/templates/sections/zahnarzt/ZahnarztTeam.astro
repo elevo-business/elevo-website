@@ -1,13 +1,19 @@
 ---
+interface CtaButton {
+  text: string;
+  href: string;
+}
+
 interface Props {
   name: string;
   title: string;
   bio: string;
   imageSrc?: string;
   qualifications?: string[];
+  cta?: CtaButton;
 }
 
-const { name, title, bio, imageSrc, qualifications = [] } = Astro.props;
+const { name, title, bio, imageSrc, qualifications = [], cta } = Astro.props;
 ---
 
 <section class="zahnarzt-team" aria-labelledby="zahnarzt-team-heading">
@@ -65,6 +71,15 @@ const { name, title, bio, imageSrc, qualifications = [] } = Astro.props;
               ))}
             </ul>
           </div>
+        )}
+
+        {cta && (
+          <a href={cta.href} class="zahnarzt-team__cta">
+            {cta.text}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
         )}
       </div>
     </div>
@@ -216,6 +231,28 @@ const { name, title, bio, imageSrc, qualifications = [] } = Astro.props;
     color: var(--zh-accent, #0E8A7B);
     flex-shrink: 0;
     margin-top: 1px;
+  }
+
+  .zahnarzt-team__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 32px;
+    padding: 14px 32px;
+    border-radius: 100px;
+    background: var(--zh-accent, #0E8A7B);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background var(--transition, 200ms ease), transform var(--transition, 200ms ease), box-shadow var(--transition, 200ms ease);
+  }
+
+  .zahnarzt-team__cta:hover {
+    background: var(--zh-accent-hover, #0a7066);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(14, 138, 123, 0.3);
   }
 
   @media (min-width: 1024px) {

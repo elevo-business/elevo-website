@@ -5,13 +5,19 @@ interface Case {
   label: string;
 }
 
+interface CtaButton {
+  text: string;
+  href: string;
+}
+
 interface Props {
   title: string;
   subtitle?: string;
   cases: Case[];
+  cta?: CtaButton;
 }
 
-const { title, subtitle, cases } = Astro.props;
+const { title, subtitle, cases, cta } = Astro.props;
 ---
 
 <section class="zahnarzt-ba" aria-labelledby="zahnarzt-ba-heading">
@@ -90,6 +96,17 @@ const { title, subtitle, cases } = Astro.props;
         ))}
       </ul>
     </div>
+
+    {cta && (
+      <div class="zahnarzt-ba__cta-wrap">
+        <a href={cta.href} class="zahnarzt-ba__cta">
+          {cta.text}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    )}
   </div>
 </section>
 
@@ -269,5 +286,31 @@ const { title, subtitle, cases } = Astro.props;
     color: var(--zh-muted, var(--text-secondary));
     text-align: center;
     margin: 0;
+  }
+
+  .zahnarzt-ba__cta-wrap {
+    margin-top: 48px;
+    text-align: center;
+  }
+
+  .zahnarzt-ba__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    border-radius: 100px;
+    background: var(--zh-accent, #0E8A7B);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background var(--transition, 200ms ease), transform var(--transition, 200ms ease), box-shadow var(--transition, 200ms ease);
+  }
+
+  .zahnarzt-ba__cta:hover {
+    background: var(--zh-accent-hover, #0a7066);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(14, 138, 123, 0.3);
   }
 </style>
