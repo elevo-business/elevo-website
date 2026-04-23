@@ -1,0 +1,35 @@
+:root {
+  --accent: #0E8A7B;
+  --accent-hover: #0A7A6B;
+  --bg: #F7FAFA;
+  --bg-el: #EFF7F6;
+  --surface: #E5F0EF;
+  --border: #C8DDD9;
+  --text: #1A2E2A;
+  --muted: #5A7A75;
+  --dim: #8AABA5;
+  --font-heading: 'Sora', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+}
+
+.preview-badge {
+  background: rgba(14, 138, 123, 0.08);
+  border-color: rgba(14, 138, 123, 0.2);
+}
+
+.preview-card:hover {
+  border-color: rgba(14, 138, 123, 0.35);
+}
+
+.preview-card-icon {
+  background: rgba(14, 138, 123, 0.08);
+}
+
+.preview-btn-outline {
+  border-color: rgba(14, 138, 123, 0.3);
+  color: var(--accent);
+}
+
+.preview-btn-outline:hover {
+  border-color: var(--accent);
+}

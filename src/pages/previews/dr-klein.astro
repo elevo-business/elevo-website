@@ -1,0 +1,535 @@
+---
+import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
+import { zahnarztProfile } from '../../templates/config/zahnarzt';
+import PreviewNav from '../../templates/sections/PreviewNav.astro';
+import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
+import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
+import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
+import type { ProspectData } from '../../templates/config/types';
+
+const prospect: ProspectData = {
+  name: 'Dr. Klein Zahnmedizin',
+  tagline: 'Moderne Zahnmedizin München',
+  location: 'München',
+  email: 'info@dr-klein-zahnarzt.de',
+  phone: '+49 89 1234567',
+  heroTitle: 'Ihr Lächeln. <em>Unsere Expertise.</em>',
+  heroSubtitle: 'Seit über 15 Jahren steht Dr. Klein für moderne Zahnmedizin in München — von der Prophylaxe bis zur ästhetischen Zahnheilkunde. Angstfrei, schonend und auf dem neuesten Stand der Technik.',
+  services: [
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>', title: 'Ästhetische Zahnheilkunde', description: 'Veneers, Bleaching und unsichtbare Korrekturen für Ihr perfektes Lächeln — schonend und individuell geplant.' },
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>', title: 'Implantologie', description: 'Festsitzender Zahnersatz auf Implantaten — minimalinvasiv, präzise geplant und langlebig.' },
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>', title: 'Prophylaxe & PZR', description: 'Professionelle Zahnreinigung und individuelle Vorsorge für langfristig gesunde Zähne.' },
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>', title: 'Parodontologie', description: 'Moderne Behandlung von Zahnfleischerkrankungen — schonend und nachhaltig wirksam.' },
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>', title: 'Angstpatienten', description: 'Einfühlsame Behandlung mit Sedierung und schmerzfreien Verfahren für ein entspanntes Erlebnis.' },
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>', title: 'Kinderzahnheilkunde', description: 'Spielerische Zahnmedizin für die Kleinsten — damit der Zahnarztbesuch Spass macht.' },
+  ],
+  stats: [
+    { value: '15+', label: 'Jahre Erfahrung' },
+    { value: '3.500+', label: 'Patienten betreut' },
+    { value: '100%', label: 'Angstpatienten-Konzept' },
+    { value: '6', label: 'Fachkräfte im Team' },
+  ],
+};
+
+const processSteps = [
+  { num: '01', title: 'Beratung', desc: 'Persönliches Gespräch und digitale Diagnostik. Wir nehmen uns Zeit für Ihre Wünsche und Sorgen.', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>' },
+  { num: '02', title: 'Diagnose', desc: '3D-Scan und detaillierte Behandlungsplanung. Sie verstehen jeden Schritt, bevor wir beginnen.', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>' },
+  { num: '03', title: 'Behandlung', desc: 'Schonende Durchführung mit modernster Technik — schmerzarm und präzise.', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>' },
+  { num: '04', title: 'Nachsorge', desc: 'Regelmässige Kontrollen und professionelle Prophylaxe für langfristigen Erfolg.', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>' },
+];
+
+const healthTips = [
+  { season: 'Frühling', icon: '🌱', title: 'Prophylaxe-Check', desc: 'Idealer Zeitpunkt für die halbjährliche Kontrolle und professionelle Zahnreinigung.' },
+  { season: 'Sommer', icon: '☀️', title: 'Bleaching-Saison', desc: 'Strahlend weisse Zähne für den Sommer — jetzt Bleaching-Termin vereinbaren.' },
+  { season: 'Herbst', icon: '🍂', title: 'Zahngesundheit', desc: 'Kinder-Checkup nach den Ferien und Fluoridierung vor dem Winter.' },
+  { season: 'Winter', icon: '❄️', title: 'Vorsorge-Planung', desc: 'Bonusheft prüfen und Vorsorgetermine für das neue Jahr planen.' },
+];
+---
+
+<PreviewLayout profile={zahnarztProfile} prospect={prospect}>
+  <PreviewNav prospectName={prospect.name} ctaText="Termin vereinbaren" ctaHref="#kontakt" />
+
+  <header class="hero-full" id="hero">
+    <div class="hero-full__bg">
+      <div class="hero-full__gradient"></div>
+      <div class="hero-full__overlay"></div>
+    </div>
+    <div class="hero-full__content anim-fade-up">
+      <div class="hero-full__badge">
+        <span class="hero-full__badge-dot"></span>
+        München · Zahnmedizin · Seit 2008
+      </div>
+      <h1 class="hero-full__title" set:html="Ihr Lächeln. <em>Unsere Expertise.</em>" />
+      <p class="hero-full__sub">Seit über 15 Jahren steht Dr. Klein für moderne Zahnmedizin in München — von der Prophylaxe bis zur ästhetischen Zahnheilkunde. Angstfrei, schonend und auf dem neuesten Stand der Technik.</p>
+      <div class="hero-full__ctas">
+        <a href="#kontakt" class="hero-full__btn-primary">Termin vereinbaren</a>
+        <a href="#leistungen" class="hero-full__btn-outline">Unsere Leistungen</a>
+      </div>
+    </div>
+    <div class="hero-full__stats">
+      {prospect.stats?.map(s => (
+        <div class="hero-full__stat">
+          <div class="hero-full__stat-val" data-count={s.value}>{s.value}</div>
+          <div class="hero-full__stat-lbl">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </header>
+
+  <section class="trust-bar">
+    <div class="trust-bar__inner">
+      <div class="trust-bar__item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Zertifizierte Implantologie</span>
+      </div>
+      <div class="trust-bar__divider"></div>
+            <div class="trust-bar__item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span>Seit 2008 in München</span>
+      </div>
+      <div class="trust-bar__divider"></div>
+            <div class="trust-bar__item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Digitale Diagnostik</span>
+      </div>
+      <div class="trust-bar__divider"></div>
+            <div class="trust-bar__item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>4.9★ Google-Bewertung</span>
+      </div>
+      
+    </div>
+  </section>
+
+  <section class="services-tabs" id="leistungen">
+    <div class="services-tabs__inner">
+      <div class="services-tabs__header">
+        <div class="services-tabs__badge">Unsere Leistungen</div>
+        <h2 class="services-tabs__title">Was können wir <em>für Sie tun?</em></h2>
+        <p class="services-tabs__sub">Moderne Zahnmedizin für Ihre Gesundheit und Ihr Wohlbefinden — wählen Sie einen Bereich.</p>
+      </div>
+      <div class="services-tabs__nav" role="tablist">
+        {prospect.services.map((s, i) => (
+          <button
+            class={`services-tabs__tab ${i === 0 ? 'is-active' : ''}`}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            data-tab={i}
+            type="button"
+          >
+            <span class="services-tabs__tab-icon" set:html={s.icon} />
+            <span>{s.title}</span>
+          </button>
+        ))}
+      </div>
+      <div class="services-tabs__panels">
+        {prospect.services.map((s, i) => (
+          <div class={`services-tabs__panel ${i === 0 ? 'is-active' : ''}`} role="tabpanel" data-panel={i}>
+            <div class="services-tabs__panel-icon" set:html={s.icon} />
+            <h3 class="services-tabs__panel-title">{s.title}</h3>
+            <p class="services-tabs__panel-desc">{s.description}</p>
+            <a href="#kontakt" class="services-tabs__panel-cta">Jetzt Termin vereinbaren &rarr;</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="process" id="ablauf">
+    <div class="process__inner">
+      <div class="process__header">
+        <div class="process__badge">Unser Ablauf</div>
+        <h2 class="process__title">In vier Schritten zu <em>gesunden Zähnen</em></h2>
+        <p class="process__sub">Transparent, planbar und immer im Dialog mit Ihnen.</p>
+      </div>
+      <div class="process__steps">
+        {processSteps.map((step, i) => (
+          <div class="process__step">
+            <div class="process__step-icon" set:html={step.icon} />
+            <div class="process__step-num">{step.num}</div>
+            <h3 class="process__step-title">{step.title}</h3>
+            <p class="process__step-desc">{step.desc}</p>
+            {i < processSteps.length - 1 && <div class="process__connector" aria-hidden="true"></div>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="showcase" id="galerie">
+    <div class="showcase__inner">
+      <div class="showcase__header">
+        <div class="showcase__badge">Behandlungsbeispiele</div>
+        <h2 class="showcase__title">Einblicke in <em>unsere Arbeit</em></h2>
+        <p class="showcase__sub">Ausgewählte Beispiele unserer Behandlungen — jeder Fall ist individuell, jedes Ergebnis einzigartig.</p>
+      </div>
+      <div class="showcase__grid anim-on-scroll">
+        <div class="showcase__item showcase__item--large">
+          <div class="showcase__placeholder showcase__placeholder--large">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <div class="showcase__caption">
+            <span class="showcase__tag">Ästhetik</span>
+            <h3>Veneers-Behandlung Schwabing</h3>
+            <p>Vollständige Smile-Makeover-Behandlung mit 8 Veneers für ein strahlendes Lächeln.</p>
+          </div>
+        </div>
+        <div class="showcase__item showcase__item--small">
+          <div class="showcase__placeholder showcase__placeholder--small">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <div class="showcase__caption">
+            <span class="showcase__tag">Implantologie</span>
+            <h3>All-on-4 Bogenhausen</h3>
+          </div>
+        </div>
+        <div class="showcase__item showcase__item--small">
+          <div class="showcase__placeholder showcase__placeholder--small">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <div class="showcase__caption">
+            <span class="showcase__tag">Bleaching</span>
+            <h3>In-Office Bleaching Maxvorstadt</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <PreviewTestimonials
+    title="Das sagen unsere Patienten"
+    subtitle="Echte Erfahrungen unserer Patienten — Vertrauen, das gewachsen ist."
+    testimonials={[
+      { text: 'Ich hatte jahrelang Angst vorm Zahnarzt. Bei Dr. Klein habe ich mich zum ersten Mal wirklich sicher gefühlt. Absolut empfehlenswert!', author: 'Sandra M.', role: 'Patientin seit 2019', rating: 5 },
+      { text: 'Meine Veneers sehen fantastisch aus — natürlich und perfekt. Das Team hat sich wirklich Zeit genommen.', author: 'Michael K.', role: 'Ästhetische Behandlung', rating: 5 },
+      { text: 'Die beste Zahnreinigung, die ich je hatte. Professionell, gründlich und dabei total angenehm.', author: 'Julia H.', role: 'Stammkundin seit 2015', rating: 5 },
+    ]}
+  />
+
+  <section class="health-tips" id="ratgeber">
+    <div class="health-tips__inner">
+      <div class="health-tips__header">
+        <h2 class="health-tips__title">Zahngesundheits-Ratgeber</h2>
+        <p class="health-tips__sub">Tipps für gesunde Zähne — das ganze Jahr über.</p>
+      </div>
+      <div class="health-tips__grid">
+        {healthTips.map(tip => (
+          <div class="health-tips__card">
+            <div class="health-tips__icon">{tip.icon}</div>
+            <div class="health-tips__season">{tip.season}</div>
+            <h3 class="health-tips__card-title">{tip.title}</h3>
+            <p class="health-tips__card-desc">{tip.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="estimator" id="kalkulator">
+    <div class="estimator__inner">
+      <div class="estimator__header">
+        <div class="estimator__badge">Kostenrechner</div>
+        <h2 class="estimator__title">Was kostet <em>Ihre Behandlung?</em></h2>
+        <p class="estimator__sub">Erhalten Sie eine unverbindliche Ersteinschätzung — in unter 30 Sekunden.</p>
+      </div>
+      <div class="estimator__form">
+        <div class="estimator__field">
+          <label class="estimator__label">Art der Behandlung</label>
+          <div class="estimator__options" data-field="type">
+            <button class="estimator__option is-active" data-value="implantate" type="button">Implantate</button>
+            <button class="estimator__option" data-value="bleaching" type="button">Bleaching</button>
+            <button class="estimator__option" data-value="veneers" type="button">Veneers</button>
+          </div>
+        </div>
+        <div class="estimator__field">
+          <label class="estimator__label">Anzahl Zähne</label>
+          <div class="estimator__slider-wrap">
+            <input type="range" min="1" max="12" value="1" class="estimator__slider" id="area-slider" />
+            <span class="estimator__slider-val" id="area-val">1 Zahn</span>
+          </div>
+        </div>
+        <div class="estimator__result">
+          <div class="estimator__result-label">Geschätzte Kosten</div>
+          <div class="estimator__result-val" id="estimate-val">Wird berechnet...</div>
+          <div class="estimator__result-note">Unverbindliche Schätzung. Genaue Kosten nach Beratung.</div>
+          <a href="#kontakt" class="estimator__result-cta">Jetzt Beratungstermin anfragen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <PreviewCTA
+    title="Bereit für Ihr strahlendes Lächeln?"
+    subtitle="Vereinbaren Sie einen Termin — wir beraten Sie persönlich, ehrlich und unverbindlich. Ihre Zahngesundheit liegt uns am Herzen."
+    badge="Jetzt anfragen"
+    buttonText="Termin vereinbaren"
+    buttonLink="#kontakt"
+    phone="+49 89 1234567"
+  />
+
+  <PreviewFooter
+    prospectName={prospect.name}
+    email={prospect.email}
+    phone={prospect.phone}
+    address="München"
+    year={2025}
+  />
+</PreviewLayout>
+
+<style>
+  html { scroll-behavior: smooth; }
+
+  .anim-fade-up { animation: fadeUp 0.8s ease-out both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .anim-on-scroll { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .anim-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+  .hero-full { position: relative; min-height: 80vh; max-height: 700px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+  .hero-full__bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-full__gradient { position: absolute; inset: 0; background: linear-gradient(135deg, #0E8A7B 0%, #0A6B5F 40%, #085A50 70%, #064D44 100%); }
+  .hero-full__overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(6, 40, 36, 0.95) 0%, rgba(6, 40, 36, 0.6) 35%, rgba(6, 40, 36, 0.25) 65%, rgba(6, 40, 36, 0.1) 100%); }
+  .hero-full__content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 48px 48px; width: 100%; }
+  .hero-full__badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: rgba(255,255,255,0.9); margin-bottom: 20px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+  .hero-full__badge-dot { width: 7px; height: 7px; background: #4ADE80; border-radius: 50%; animation: pulse-hero 2s ease-in-out infinite; }
+  @keyframes pulse-hero { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.75); } }
+  .hero-full__title { font-family: var(--font-heading); font-size: clamp(2.8rem, 5.5vw, 4.2rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; color: #fff; margin-bottom: 20px; }
+  .hero-full__title :global(em) { color: #4ADE80; font-style: normal; }
+  .hero-full__sub { color: rgba(255,255,255,0.75); font-size: 1.1rem; line-height: 1.7; max-width: 560px; margin-bottom: 32px; }
+  .hero-full__ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-full__btn-primary { background: var(--accent); color: #fff; padding: 14px 28px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; font-family: var(--font-body); transition: background 0.2s, transform 0.2s; text-decoration: none; }
+  .hero-full__btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
+  .hero-full__btn-outline { border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 14px 28px; border-radius: 10px; font-size: 0.95rem; font-weight: 500; font-family: var(--font-body); transition: border-color 0.2s, background 0.2s; text-decoration: none; }
+  .hero-full__btn-outline:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.08); }
+  .hero-full__stats { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border-top: 1px solid rgba(255,255,255,0.1); }
+  .hero-full__stat { background: rgba(6, 40, 36, 0.8); backdrop-filter: blur(8px); padding: 24px 16px; text-align: center; }
+  .hero-full__stat-val { font-family: var(--font-heading); font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 800; color: #4ADE80; letter-spacing: -0.03em; line-height: 1; }
+  .hero-full__stat-lbl { font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-top: 6px; }
+
+  @media (max-width: 768px) {
+    .hero-full { min-height: 75vh; max-height: none; }
+    .hero-full__content { padding: 0 24px 32px; }
+    .hero-full__stats { grid-template-columns: repeat(2, 1fr); }
+    .hero-full__ctas { flex-direction: column; }
+    .hero-full__btn-primary, .hero-full__btn-outline { text-align: center; }
+  }
+
+  .trust-bar { border-bottom: 1px solid var(--border); background: var(--bg-el); }
+  .trust-bar__inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 32px; padding: 18px 48px; flex-wrap: wrap; }
+  .trust-bar__item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 500; color: var(--muted); white-space: nowrap; }
+  .trust-bar__item svg { color: var(--accent); flex-shrink: 0; }
+  .trust-bar__divider { width: 1px; height: 20px; background: var(--border); }
+
+  .process { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+  .process__header { margin-bottom: 56px; }
+  .process__badge { display: inline-flex; align-items: center; gap: 8px; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+  .process__title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; color: var(--text); }
+  .process__title em { color: var(--accent); font-style: normal; }
+  .process__sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; }
+  .process__steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .process__step { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px; transition: border-color 0.25s ease, transform 0.25s ease; }
+  .process__step:hover { border-color: color-mix(in srgb, var(--accent) 35%, transparent); transform: translateY(-4px); }
+  .process__step-icon { width: 52px; height: 52px; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--accent); }
+  .process__step-num { font-family: var(--font-heading); font-size: 0.7rem; font-weight: 800; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 8px; text-transform: uppercase; }
+  .process__step-title { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .process__step-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+  .process__connector { display: none; }
+
+  .health-tips { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+  .health-tips__header { margin-bottom: 48px; }
+  .health-tips__title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; color: var(--text); }
+  .health-tips__sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; }
+  .health-tips__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .health-tips__card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; transition: border-color 0.25s ease, transform 0.25s ease; }
+  .health-tips__card:hover { border-color: color-mix(in srgb, var(--accent) 35%, transparent); transform: translateY(-3px); }
+  .health-tips__icon { font-size: 2rem; margin-bottom: 12px; line-height: 1; }
+  .health-tips__season { font-family: var(--font-heading); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .health-tips__card-title { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .health-tips__card-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+
+  .showcase { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+  .showcase__header { margin-bottom: 48px; }
+  .showcase__badge { display: inline-flex; align-items: center; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+  .showcase__title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; color: var(--text); }
+  .showcase__title em { color: var(--accent); font-style: normal; }
+  .showcase__sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; }
+  .showcase__grid { display: grid; grid-template-columns: 1.2fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px; height: 520px; }
+  .showcase__item { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); cursor: pointer; }
+  .showcase__item--large { grid-row: 1 / 3; }
+  .showcase__item--small { min-height: 0; }
+  .showcase__placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--surface); color: var(--dim); }
+  .showcase__item:hover .showcase__placeholder { background: var(--bg-el); }
+  .showcase__caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; background: linear-gradient(transparent, rgba(0,0,0,0.75)); color: #fff; }
+  .showcase__tag { display: inline-block; background: var(--accent); color: #fff; padding: 3px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .showcase__caption h3 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+  .showcase__caption p { font-size: 0.82rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
+
+  .services-tabs { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+  .services-tabs__header { margin-bottom: 40px; }
+  .services-tabs__badge { display: inline-flex; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+  .services-tabs__title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; color: var(--text); }
+  .services-tabs__title em { color: var(--accent); font-style: normal; }
+  .services-tabs__sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; }
+  .services-tabs__nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+  .services-tabs__tab { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border: 1px solid var(--border); border-radius: 100px; background: var(--surface); color: var(--muted); font-size: 0.82rem; font-weight: 500; font-family: var(--font-body); cursor: pointer; transition: all 0.25s ease; }
+  .services-tabs__tab:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); color: var(--text); }
+  .services-tabs__tab.is-active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .services-tabs__tab-icon { display: flex; }
+  .services-tabs__tab.is-active .services-tabs__tab-icon { color: #fff; }
+  .services-tabs__panels { position: relative; }
+  .services-tabs__panel { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 40px; animation: fadeIn 0.3s ease; }
+  .services-tabs__panel.is-active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .services-tabs__panel-icon { width: 56px; height: 56px; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--accent); }
+  .services-tabs__panel-title { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+  .services-tabs__panel-desc { font-size: 1rem; color: var(--muted); line-height: 1.7; margin-bottom: 24px; max-width: 600px; }
+  .services-tabs__panel-cta { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-weight: 600; font-size: 0.9rem; transition: gap 0.2s ease; text-decoration: none; }
+  .services-tabs__panel-cta:hover { gap: 10px; }
+
+  .estimator { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+  .estimator__header { margin-bottom: 40px; }
+  .estimator__badge { display: inline-flex; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+  .estimator__title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; color: var(--text); }
+  .estimator__title em { color: var(--accent); font-style: normal; }
+  .estimator__sub { color: var(--muted); font-size: 1rem; line-height: 1.7; }
+  .estimator__form { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 40px; }
+  .estimator__field { margin-bottom: 28px; }
+  .estimator__label { display: block; font-family: var(--font-heading); font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+  .estimator__options { display: flex; gap: 10px; flex-wrap: wrap; }
+  .estimator__option { padding: 10px 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); color: var(--muted); font-size: 0.85rem; font-weight: 500; font-family: var(--font-body); cursor: pointer; transition: all 0.2s ease; }
+  .estimator__option:hover { border-color: var(--accent); color: var(--text); }
+  .estimator__option.is-active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .estimator__slider-wrap { display: flex; align-items: center; gap: 16px; }
+  .estimator__slider { flex: 1; -webkit-appearance: none; height: 6px; border-radius: 3px; background: var(--border); outline: none; }
+  .estimator__slider::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+  .estimator__slider-val { font-family: var(--font-heading); font-size: 1rem; font-weight: 700; color: var(--text); min-width: 70px; text-align: right; }
+  .estimator__result { margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--border); text-align: center; }
+  .estimator__result-label { font-size: 0.82rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+  .estimator__result-val { font-family: var(--font-heading); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: var(--accent); margin-bottom: 8px; transition: all 0.3s ease; }
+  .estimator__result-note { font-size: 0.78rem; color: var(--dim); margin-bottom: 20px; }
+  .estimator__result-cta { display: inline-block; background: var(--accent); color: #fff; padding: 14px 28px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; font-family: var(--font-body); transition: background 0.2s, transform 0.2s; text-decoration: none; }
+  .estimator__result-cta:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
+  @media (max-width: 1024px) {
+    .process__steps { grid-template-columns: repeat(2, 1fr); }
+    .health-tips__grid { grid-template-columns: repeat(2, 1fr); }
+    .services-tabs__nav { gap: 6px; }
+    .services-tabs__tab { font-size: 0.75rem; padding: 8px 14px; }
+  }
+
+  @media (max-width: 768px) {
+    .trust-bar__inner { gap: 16px; padding: 14px 24px; }
+    .trust-bar__divider { display: none; }
+    .trust-bar__item { font-size: 0.75rem; }
+    .process { padding: 60px 24px; }
+    .process__steps { grid-template-columns: 1fr; gap: 16px; }
+    .health-tips { padding: 60px 24px; }
+    .health-tips__grid { grid-template-columns: 1fr; gap: 16px; }
+    .showcase { padding: 60px 24px; }
+    .showcase__grid { grid-template-columns: 1fr; height: auto; }
+    .showcase__item--large { grid-row: auto; }
+    .showcase__item--small { min-height: 220px; }
+    .services-tabs { padding: 60px 24px; }
+    .services-tabs__nav { gap: 6px; }
+    .services-tabs__tab { font-size: 0.75rem; padding: 8px 12px; }
+    .services-tabs__tab span:last-child { display: none; }
+    .services-tabs__panel { padding: 24px; }
+    .estimator { padding: 60px 24px; }
+    .estimator__form { padding: 24px; }
+    .estimator__options { flex-direction: column; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const href = anchor.getAttribute('href');
+      if (!href) return;
+      const target = document.querySelector(href);
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.anim-on-scroll, .process__step, .health-tips__card').forEach(el => {
+    el.classList.add('anim-on-scroll');
+    observer.observe(el);
+  });
+
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target as HTMLElement;
+        const raw = el.dataset.count || el.textContent || '';
+        const match = raw.match(/(\d+)/);
+        if (match) {
+          const target = parseInt(match[1]);
+          const suffix = raw.replace(/\d+/, '');
+          let current = 0;
+          const step = Math.max(1, Math.floor(target / 40));
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) { current = target; clearInterval(timer); }
+            el.textContent = current + suffix;
+          }, 30);
+        }
+        countObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.hero-full__stat-val').forEach(el => countObserver.observe(el));
+
+  const tabs = document.querySelectorAll('.services-tabs__tab');
+  const panels = document.querySelectorAll('.services-tabs__panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const idx = (tab as HTMLElement).dataset.tab;
+      tabs.forEach(t => { t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false'); });
+      panels.forEach(p => p.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      tab.setAttribute('aria-selected', 'true');
+      const panel = document.querySelector(`[data-panel="${idx}"]`);
+      if (panel) panel.classList.add('is-active');
+    });
+  });
+
+  const typeButtons = document.querySelectorAll('.estimator__option');
+  const slider = document.getElementById('area-slider') as HTMLInputElement;
+  const areaVal = document.getElementById('area-val');
+  const estimateVal = document.getElementById('estimate-val');
+
+  const rates: Record<string, [number, number]> = {
+    implantate: [1500, 3500],
+    bleaching: [250, 600],
+    veneers: [400, 900],
+  };
+
+  let selectedType = 'implantate';
+
+  function updateEstimate() {
+    if (!slider || !areaVal || !estimateVal) return;
+    const count = parseInt(slider.value);
+    areaVal.textContent = count === 1 ? '1 Zahn' : count + ' Zähne';
+    const [lo, hi] = rates[selectedType] || [500, 1500];
+    const min = Math.round(count * lo / 100) * 100;
+    const max = Math.round(count * hi / 100) * 100;
+    estimateVal.textContent = `ca. ${min.toLocaleString('de-DE')} — ${max.toLocaleString('de-DE')} €`;
+  }
+
+  typeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      typeButtons.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      selectedType = (btn as HTMLElement).dataset.value || 'implantate';
+      updateEstimate();
+    });
+  });
+
+  if (slider) {
+    slider.addEventListener('input', updateEstimate);
+    updateEstimate();
+  }
+</script>
