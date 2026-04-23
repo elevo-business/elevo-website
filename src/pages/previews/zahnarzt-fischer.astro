@@ -19,8 +19,8 @@ const prospect: ProspectData = {
   location: 'Frankfurt am Main',
   email: 'info@zahnarzt-fischer-frankfurt.de',
   phone: '+49 69 1234567',
-  heroTitle: 'Zahnarztbesuche ohne Angst — wir begleiten Sie einfühlsam.',
-  heroSubtitle: 'In unserer Praxis in Frankfurt steht Ihre Entspannung an erster Stelle. Modernste Schmerztherapie, ruhige Atmosphäre und ein verständnisvolles Team — damit Sie sich sicher fühlen.',
+  heroTitle: 'Der Zahnarztbesuch, vor dem Sie keine Angst haben müssen.',
+  heroSubtitle: '2.000 Angstpatienten haben bei uns den ersten Schritt gewagt. Schmerzfreie Methoden, Ihr Tempo, ein Team das zuhört. Praxis Fischer in Frankfurt — damit Zahnarztangst Vergangenheit wird.',
   services: [
     { icon: 'heart', title: 'Angstpatienten-Betreuung', description: 'Einfühlsame Begleitung für Patienten mit Zahnarztangst — wir nehmen uns die Zeit, die Sie brauchen.' },
     { icon: 'shield', title: 'Schmerzfreie Behandlung', description: 'Modernste Anästhesiemethoden für eine nahezu schmerzfreie Behandlungserfahrung.' },
@@ -48,22 +48,23 @@ const prospect: ProspectData = {
     title={prospect.heroTitle}
     subtitle={prospect.heroSubtitle}
     badge="Angstpatienten willkommen"
-    ctaPrimary={{ text: 'Termin vereinbaren', href: '#kontakt' }}
-    ctaSecondary={{ text: 'Mehr erfahren', href: '#leistungen' }}
+    ctaPrimary={{ text: 'Kostenloses Kennenlerngespräch buchen', href: '#kontakt' }}
+    ctaSecondary={{ text: 'Wie wir Angstpatienten behandeln →', href: '#angst' }}
     imageSrc="/preview-images/zahnarzt-fischer/hero.jpg"
     imageAlt="Zahnarztpraxis Fischer Frankfurt — einfühlsame Behandlung"
     stats={prospect.stats}
   />
 
   <ZahnarztAnxiety
-    title="Zahnarztangst? Bei uns sind Sie in guten Händen."
-    quote="Ich hatte jahrelang Angst vor dem Zahnarzt. Das Team von Praxis Fischer hat mir gezeigt, dass Behandlung auch entspannt sein kann."
-    quoteAuthor="Michael K., Frankfurt"
+    id="angst"
+    title="Sie haben Angst vorm Zahnarzt? Damit sind Sie nicht allein."
+    quote="Ich hatte 8 Jahre keinen Zahnarzt besucht. Bei Praxis Fischer habe ich mich zum ersten Mal verstanden gefühlt. Heute gehe ich alle 6 Monate — freiwillig."
+    quoteAuthor="M. K., Frankfurt"
     trustPoints={[
-      { icon: 'heart', title: 'Einfühlsames Team', desc: 'Wir nehmen Ihre Angst ernst und gehen in Ihrem Tempo vor.' },
-      { icon: 'shield', title: 'Schmerzfreie Methoden', desc: 'Modernste Anästhesie für eine nahezu schmerzfreie Behandlung.' },
-      { icon: 'smile', title: 'Entspannte Atmosphäre', desc: 'Ruhige Praxisräume und beruhigende Musik für Ihr Wohlbefinden.' },
-      { icon: 'hand', title: 'Stopp-Signal', desc: 'Sie behalten jederzeit die Kontrolle — Behandlungspause auf Wunsch.' },
+      { icon: 'heart', title: 'Einfühlsames Team', desc: 'Geschulte Mitarbeiter, die Zahnarztangst ernst nehmen. Kein »Stellen Sie sich nicht so an«.' },
+      { icon: 'shield', title: 'Schmerzfreie Methoden', desc: 'Oberflächenbetäubung vor der Spritze. Computergesteuerte Anästhesie. Sie spüren nichts.' },
+      { icon: 'hand', title: 'Stopp-Signal', desc: 'Heben Sie die Hand, wir stoppen sofort. Keine Ausnahmen.' },
+      { icon: 'smile', title: 'Entspannte Atmosphäre', desc: 'Kopfhörer mit Musik, Decken, gedämpftes Licht. Kein klinisches Weiß.' },
     ]}
   />
 
@@ -74,13 +75,13 @@ const prospect: ProspectData = {
   />
 
   <ZahnarztTimeline
-    title="Ihr erster Besuch bei uns"
-    subtitle="Wir führen Sie Schritt für Schritt durch den Ablauf — damit Sie genau wissen, was Sie erwartet."
+    title="Ihr Tempo. Ihre Regeln."
+    subtitle="Wir behandeln Sie erst, wenn Sie bereit sind. Nicht eine Sekunde früher."
     steps={[
-      { num: 1, title: 'Kostenloser Ersttermin', desc: 'Lernen Sie uns kennen — ganz ohne Behandlung. Wir hören zu und beantworten alle Fragen.', icon: 'chat' },
-      { num: 2, title: 'Individuelle Planung', desc: 'Gemeinsam erstellen wir einen Behandlungsplan, der Ihre Wünsche und Ängste berücksichtigt.', icon: 'calendar' },
-      { num: 3, title: 'Behandlung in Ihrem Tempo', desc: 'Wir gehen so vor, wie es für Sie angenehm ist — mit Pausen wann immer Sie möchten.', icon: 'tooth' },
-      { num: 4, title: 'Nachsorge & Begleitung', desc: 'Auch nach der Behandlung sind wir für Sie da — mit Nachsorge und einem offenen Ohr.', icon: 'check' },
+      { num: 1, title: 'Gespräch ohne Stuhl', desc: 'Kein Behandlungszimmer beim ersten Mal. Nur ein ruhiges Gespräch. Sie erzählen, wir hören zu.', icon: 'chat' },
+      { num: 2, title: 'Gemeinsame Planung', desc: 'Sie bestimmen das Tempo. Wir erklären jeden Schritt vorher. Nichts passiert ohne Ihr OK.', icon: 'calendar' },
+      { num: 3, title: 'Sanfte Behandlung', desc: 'Modernste Betäubung, Dämmerschlaf wenn gewünscht. Ihr Stopp-Signal gilt sofort. Immer.', icon: 'tooth' },
+      { num: 4, title: 'Nachsorge & Begleitung', desc: 'Wir bleiben dran. Regelmäßige Termine in kleinen Schritten — bis der Zahnarztbesuch normal wird.', icon: 'check' },
     ]}
   />
 
@@ -105,9 +106,9 @@ const prospect: ProspectData = {
   />
 
   <PreviewCTA
-    title="Bereit für Ihren ersten Schritt?"
-    subtitle="Vereinbaren Sie jetzt Ihren unverbindlichen Ersttermin — kostenlos und ohne Behandlung."
-    ctaText="Jetzt Termin vereinbaren"
+    title="Bereit für den ersten Schritt? Wir sind es auch."
+    subtitle="Kein Stuhl, kein Instrument — nur ein ruhiges Gespräch. Kostenloses Kennenlernen, ganz ohne Druck."
+    ctaText="Kostenloses Kennenlerngespräch buchen"
     ctaHref={`mailto:${prospect.email}`}
     phone={prospect.phone}
   />

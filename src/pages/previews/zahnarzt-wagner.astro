@@ -18,8 +18,8 @@ const prospect: ProspectData = {
   location: 'Hamburg-Eppendorf',
   email: 'info@zahnarzt-wagner-hamburg.de',
   phone: '+49 40 7654321',
-  heroTitle: 'Implantologie auf höchstem Niveau — Ihre Praxis in Hamburg-Eppendorf.',
-  heroSubtitle: 'Praxis Wagner kombiniert modernste Implantologie mit ästhetischer Zahnheilkunde. Für ein natürliches Lächeln, das hält — dauerhaft und kompromisslos.',
+  heroTitle: 'Wieder fest zubeißen. Ohne Kompromisse.',
+  heroSubtitle: 'Über 1.200 Implantate. Jedes einzelne sitzt. Praxis Wagner in Hamburg-Eppendorf verbindet Präzision mit modernster 3D-Planung — damit Ihr Implantat ein Leben lang hält.',
   services: [
     { icon: 'implant', title: 'Implantologie', description: 'Zahnimplantate für dauerhaften, natürlich aussehenden Zahnersatz — von der Planung bis zur Krone.' },
     { icon: 'smile', title: 'Veneers & Bleaching', description: 'Hauchdünne Keramikschalen und professionelles Aufhellen für ein makelloses Lächeln.' },
@@ -46,9 +46,9 @@ const prospect: ProspectData = {
   <ZahnarztHero
     title={prospect.heroTitle}
     subtitle={prospect.heroSubtitle}
-    badge="Implantologie-Spezialist"
-    ctaPrimary={{ text: 'Beratungsgespräch vereinbaren', href: '#kontakt' }}
-    ctaSecondary={{ text: 'Leistungen entdecken', href: '#leistungen' }}
+    badge="Implantologie-Spezialist seit 2006"
+    ctaPrimary={{ text: 'Kostenvoranschlag in 24h', href: '#kontakt' }}
+    ctaSecondary={{ text: 'So läuft eine Implantation ab →', href: '#ablauf' }}
     imageSrc="/preview-images/zahnarzt-wagner/hero.jpg"
     imageAlt="Zahnarztpraxis Wagner Hamburg-Eppendorf — Implantologie"
     stats={prospect.stats}
@@ -61,26 +61,32 @@ const prospect: ProspectData = {
   />
 
   <ZahnarztTimeline
-    title="Ihr Weg zum Implantat"
-    subtitle="Von der ersten Beratung bis zum fertigen Implantat — strukturiert und transparent."
+    id="ablauf"
+    title="Von der Diagnose zum fertigen Implantat"
+    subtitle="Vier Schritte. Alles geplant, nichts dem Zufall überlassen."
     steps={[
-      { num: 1, title: 'Beratung & Planung', desc: 'Umfassende 3D-Diagnostik und individuelle Planung Ihrer Implantat-Versorgung.', icon: 'search' },
-      { num: 2, title: 'Vorbereitung', desc: 'Ggf. Knochenaufbau oder andere Vorbereitungsmaßnahmen — schonend und präzise.', icon: 'calendar' },
-      { num: 3, title: 'Implantateinzatz', desc: 'Präzise Implantation unter optimaler Anästhesie — minimal-invasiv und sicher.', icon: 'tooth' },
-      { num: 4, title: 'Krone & Nachsorge', desc: 'Versorgung mit der finalen Krone und langfristige Begleitung für dauerhaften Erfolg.', icon: 'check' },
+      { num: 1, title: '3D-Analyse', desc: 'Wir röntgen Ihren Kiefer dreidimensional. Sie sehen auf dem Bildschirm genau, wo das Implantat sitzt — bevor wir anfangen.', icon: 'search' },
+      { num: 2, title: 'Behandlungsplan', desc: 'Sie bekommen einen schriftlichen Plan mit Kosten, Dauer und Alternativen. Keine Überraschungen.', icon: 'calendar' },
+      { num: 3, title: 'Implantation', desc: 'Der Eingriff dauert 30–60 Minuten pro Implantat. Unter lokaler Betäubung. Die meisten Patienten arbeiten am nächsten Tag.', icon: 'tooth' },
+      { num: 4, title: 'Krone & Nachsorge', desc: 'Nach der Einheilzeit setzen wir die Krone. Danach: regelmäßige Kontrolle, damit das Implantat Jahrzehnte hält.', icon: 'check' },
     ]}
   />
 
   <ZahnarztBeforeAfter
-    title="Ergebnisse, die überzeugen"
-    subtitle="Natürliche Ästhetik und dauerhafte Funktion — das sind unsere Maßstäbe."
+    title="Echte Ergebnisse. Echte Patienten."
+    subtitle="Jedes Implantat erzählt eine Geschichte. Hier sind einige davon."
     cases={[
-      { beforeSrc: '/preview-images/zahnarzt-wagner/gallery-1.jpg', afterSrc: '/preview-images/zahnarzt-wagner/gallery-2.jpg', label: 'Vollkeramik-Implantat' },
-      { beforeSrc: '/preview-images/zahnarzt-wagner/gallery-3.jpg', afterSrc: '/preview-images/zahnarzt-wagner/gallery-4.jpg', label: 'Ästhetische Sanierung' },
+      { beforeSrc: '/preview-images/zahnarzt-wagner/gallery-1.jpg', afterSrc: '/preview-images/zahnarzt-wagner/gallery-2.jpg', label: 'Einzelzahn-Implantat Oberkiefer — Wieder fest zubeißen nach Sportunfall. Behandlungsdauer: 4 Monate.' },
+      { beforeSrc: '/preview-images/zahnarzt-wagner/gallery-3.jpg', afterSrc: '/preview-images/zahnarzt-wagner/gallery-4.jpg', label: 'Sofortimplantat Frontzahn — Zahnverlust am Freitag, provisorisches Implantat am Montag.' },
     ]}
   />
 
-  <ZahnarztCostCalc />
+  <ZahnarztCostCalc
+    title="Was kostet mein Implantat?"
+    subtitle="Klicken Sie auf den Zahn, wählen Sie die Behandlung — und sehen Sie sofort eine Kostenschätzung. Unverbindlich und transparent."
+    ctaText="Genauer Kostenvoranschlag? Schicken wir Ihnen in 24 Stunden."
+    ctaHref="#kontakt"
+  />
 
   <PreviewTestimonials
     title="Was Patienten über uns sagen"
@@ -92,9 +98,9 @@ const prospect: ProspectData = {
   />
 
   <PreviewCTA
-    title="Kostenlose Implantat-Beratung"
-    subtitle="Erfahren Sie in einem unverbindlichen Gespräch, welche Möglichkeiten Ihnen offenstehen."
-    ctaText="Beratungsgespräch vereinbaren"
+    title="Jetzt unverbindlich beraten lassen"
+    subtitle="Erfahren Sie kostenlos, welche Implantatlösung für Sie passt — persönliches Gespräch, keine Verpflichtung."
+    ctaText="Jetzt unverbindlich beraten lassen"
     ctaHref={`mailto:${prospect.email}`}
     phone={prospect.phone}
   />

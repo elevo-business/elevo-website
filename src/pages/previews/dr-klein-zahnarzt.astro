@@ -20,7 +20,7 @@ const prospect: ProspectData = {
   email: 'praxis@dr-klein-zahnarzt.de',
   phone: '+49 89 4521090',
   heroTitle: 'Ihr Lächeln. Unser Meisterwerk.',
-  heroSubtitle: 'Dr. Klein und sein Spezialistenteam in München-Schwabing verbinden modernste Implantologie mit ästhetischer Perfektion. Premium-Materialien, digitale Präzision, 10 Jahre Garantie — für ein Lächeln, das ein Leben lang hält.',
+  heroSubtitle: 'Dr. Klein und sein Spezialistenteam in München-Schwabing verbinden modernste Implantologie mit ästhetischer Perfektion. Schweizer Titan, digitale Planung, 10 Jahre Garantie — für ein Lächeln, das ein Leben lang hält.',
   services: [
     { icon: 'implant', title: 'Premium Implantologie', description: 'Schweizer Titan-Implantate mit 3D-Volumentomographie und computergestützter OP-Schablone. Minimale Invasivität, maximale Sicherheit — 10 Jahre Garantie.' },
     { icon: 'star', title: 'Porzellan-Veneers', description: 'Hauchdünne Keramik-Veneers für ein strahlendes Hollywood-Lächeln. Computergeplantes Digital-Smile-Design — Sie sehen das Ergebnis vor der Behandlung.' },
@@ -49,8 +49,8 @@ const prospect: ProspectData = {
     title={prospect.heroTitle}
     subtitle={prospect.heroSubtitle}
     badge="Premium Implantologie München"
-    ctaPrimary={{ text: 'Kostenlose Erstberatung', href: '#kontakt' }}
-    ctaSecondary={{ text: 'Leistungen entdecken', href: '#leistungen' }}
+    ctaPrimary={{ text: 'Kostenlose Smile-Design-Analyse buchen', href: '#kontakt' }}
+    ctaSecondary={{ text: 'Unsere Behandlungsphilosophie →', href: '#leistungen' }}
     imageSrc="/preview-images/dr-klein-zahnarzt/hero.jpg"
     imageAlt="Dr. Klein München-Schwabing — Premium Implantologie und Ästhetik"
     stats={prospect.stats}
@@ -65,7 +65,7 @@ const prospect: ProspectData = {
   <ZahnarztTeam
     name="Dr. med. dent. Klein"
     title="Spezialist für Implantologie & Ästhetische Zahnmedizin"
-    bio="Mit über 15 Jahren Erfahrung in der Implantologie und einem besonderen Gespür für Ästhetik verfolgt Dr. Klein einen klaren Anspruch: Jeder Patient verlässt die Praxis mit einem Lächeln, das ihn strahlen lässt. Fortlaufende Weiterbildungen und modernste Technik sind für ihn selbstverständlich."
+    bio="Spezialist für Implantologie und ästhetische Zahnheilkunde. Seit 15 Jahren in München-Schwabing. »Jedes Lächeln ist ein Unikat. Mein Anspruch ist, dass Sie Ihr Ergebnis nicht nur sehen — sondern spüren.«"
     imageSrc="/preview-images/dr-klein-zahnarzt/gallery-1.jpg"
     qualifications={[
       'Studium an der LMU München',
@@ -77,25 +77,30 @@ const prospect: ProspectData = {
 
   <ZahnarztTimeline
     title="Ihr Weg zum perfekten Lächeln"
-    subtitle="Von der digitalen Planung bis zum fertigen Ergebnis — strukturiert und transparent."
+    subtitle="Jedes Lächeln ist individuell. Deshalb planen wir Ihres digital — bevor die Behandlung beginnt."
     steps={[
-      { num: 1, title: 'Smile-Design-Analyse', desc: 'Digitale Analyse Ihres Lächelns mit 3D-Simulation des geplanten Ergebnisses — Sie sehen Ihr neues Lächeln, bevor die Behandlung beginnt.', icon: 'search' },
-      { num: 2, title: 'Individuelle Planung', desc: 'Maßgeschneiderter Behandlungsplan mit transparenter Kostenübersicht — keine Überraschungen, volle Kontrolle.', icon: 'calendar' },
-      { num: 3, title: 'Präzise Behandlung', desc: 'Umsetzung mit modernster Technik und premium Materialien — schonend, präzise und ästhetisch kompromisslos.', icon: 'star' },
-      { num: 4, title: 'Langzeit-Begleitung', desc: '10 Jahre Garantie und regelmäßige Kontrolltermine sichern Ihr Ergebnis dauerhaft.', icon: 'check' },
+      { num: 1, title: 'Smile-Design-Analyse', desc: 'Digitaler Scan, Fotoanalyse, Gesichtsproportionen. Sie sehen Ihr neues Lächeln am Bildschirm.', icon: 'search' },
+      { num: 2, title: 'Individuelle Planung', desc: 'Material-Auswahl, Farbabstimmung, Zeitplan. Alles auf Sie abgestimmt, schriftlich dokumentiert.', icon: 'calendar' },
+      { num: 3, title: 'Präzise Umsetzung', desc: 'Schweizer Titan-Implantate, CAD/CAM-Kronen, Digital Smile Design. Technik im Dienst der Ästhetik.', icon: 'star' },
+      { num: 4, title: '10-Jahre-Garantie', desc: 'Wir stehen hinter unserer Arbeit. Regelmäßige Kontrollen inklusive. Ihr Lächeln, langfristig geschützt.', icon: 'check' },
     ]}
   />
 
   <ZahnarztBeforeAfter
-    title="Unsere Ergebnisse"
-    subtitle="Ästhetische Perfektion, die für sich spricht."
+    title="Digital geplant. Perfekt umgesetzt."
+    subtitle="Sehen Sie den Unterschied — geplant mit Digital Smile Design, umgesetzt mit Premium-Materialien."
     cases={[
-      { beforeSrc: '/preview-images/dr-klein-zahnarzt/gallery-2.jpg', afterSrc: '/preview-images/dr-klein-zahnarzt/gallery-3.jpg', label: 'Hollywood-Smile mit Veneers' },
-      { beforeSrc: '/preview-images/dr-klein-zahnarzt/gallery-4.jpg', afterSrc: '/preview-images/dr-klein-zahnarzt/gallery-1.jpg', label: 'Premium Implantat-Versorgung' },
+      { beforeSrc: '/preview-images/dr-klein-zahnarzt/gallery-2.jpg', afterSrc: '/preview-images/dr-klein-zahnarzt/gallery-3.jpg', label: 'Komplettes Smile Makeover — 10 Veneers, Farbton individuell abgestimmt. Behandlung: 2 Sitzungen.' },
+      { beforeSrc: '/preview-images/dr-klein-zahnarzt/gallery-4.jpg', afterSrc: '/preview-images/dr-klein-zahnarzt/gallery-1.jpg', label: 'Bleaching + Composite-Korrektur — Ohne Schleifen, ohne Betäubung. Ergebnis in einer Sitzung.' },
     ]}
   />
 
-  <ZahnarztCostCalc />
+  <ZahnarztCostCalc
+    title="Investition in Ihr Lächeln"
+    subtitle="Premium-Qualität hat ihren Wert. Unser Rechner zeigt Ihnen transparent, welche Investition für Ihr Wunschergebnis nötig ist."
+    ctaText="Persönliche Beratung mit Dr. Klein — Smile-Design-Analyse buchen"
+    ctaHref="#kontakt"
+  />
 
   <PreviewTestimonials
     title="Was unsere Patienten sagen"
@@ -107,9 +112,9 @@ const prospect: ProspectData = {
   />
 
   <PreviewCTA
-    title="Bereit für Ihr Traumlächeln?"
-    subtitle="Vereinbaren Sie Ihre kostenlose Erstberatung mit Dr. Klein — inkl. digitaler Smile-Design-Analyse."
-    ctaText="Kostenlose Erstberatung"
+    title="Exklusive Erstberatung vereinbaren"
+    subtitle="Inklusive kostenloser Smile-Design-Analyse — sehen Sie Ihr neues Lächeln, bevor die Behandlung beginnt."
+    ctaText="Exklusive Erstberatung vereinbaren"
     ctaHref={`mailto:${prospect.email}`}
     phone={prospect.phone}
   />

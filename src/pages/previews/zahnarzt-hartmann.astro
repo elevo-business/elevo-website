@@ -18,8 +18,8 @@ const prospect: ProspectData = {
   location: 'Berlin-Mitte',
   email: 'info@zahnarzt-hartmann-berlin.de',
   phone: '+49 30 9876543',
-  heroTitle: 'Ihre Zahngesundheit in Berlin-Mitte — modern, präzise, nachhaltig.',
-  heroSubtitle: 'Praxis Hartmann steht für evidenzbasierte Zahnheilkunde mit Schwerpunkt Parodontologie. Wir behandeln nicht nur Symptome — wir lösen die Ursachen.',
+  heroTitle: 'Zahnfleischprobleme lösen. Nicht nur behandeln.',
+  heroSubtitle: 'Zahnfleischbluten, lockere Zähne, Mundgeruch — Parodontitis hat viele Gesichter. Praxis Hartmann in Berlin-Mitte findet die Ursache und behandelt sie. Evidenzbasiert, gründlich, langfristig.',
   services: [
     { icon: 'tooth', title: 'Parodontologie', description: 'Spezialisierte Behandlung von Zahnfleischerkrankungen — schonend und langfristig wirksam.' },
     { icon: 'shield', title: 'Implantatversorgung', description: 'Hochwertige Zahnimplantate für dauerhaften Zahnersatz — natürlich und funktional.' },
@@ -46,9 +46,9 @@ const prospect: ProspectData = {
   <ZahnarztHero
     title={prospect.heroTitle}
     subtitle={prospect.heroSubtitle}
-    badge="Parodontologie-Spezialist"
-    ctaPrimary={{ text: 'Termin buchen', href: '#kontakt' }}
-    ctaSecondary={{ text: 'Unsere Leistungen', href: '#leistungen' }}
+    badge="Parodontologie-Spezialist Berlin"
+    ctaPrimary={{ text: 'Parodontitis-Check vereinbaren', href: '#kontakt' }}
+    ctaSecondary={{ text: 'Habe ich Parodontitis? Symptome prüfen →', href: '#leistungen' }}
     imageSrc="/preview-images/zahnarzt-hartmann/hero.jpg"
     imageAlt="Zahnarztpraxis Hartmann Berlin-Mitte — moderne Zahnheilkunde"
     stats={prospect.stats}
@@ -61,22 +61,22 @@ const prospect: ProspectData = {
   />
 
   <ZahnarztTimeline
-    title="Ihr Behandlungsablauf"
-    subtitle="Strukturiert, transparent und auf Ihre Bedürfnisse abgestimmt."
+    title="So stoppen wir Parodontitis"
+    subtitle="Parodontitis ist behandelbar. Je früher, desto besser. So gehen wir vor."
     steps={[
-      { num: 1, title: 'Befund & Analyse', desc: 'Umfassende digitale Diagnostik mit Röntgen und 3D-Scan für ein vollständiges Bild Ihrer Zahngesundheit.', icon: 'search' },
-      { num: 2, title: 'Behandlungsplan', desc: 'Wir erklären alle Befunde und erstellen gemeinsam mit Ihnen einen strukturierten Behandlungsplan.', icon: 'calendar' },
-      { num: 3, title: 'Behandlung', desc: 'Präzise Durchführung mit modernsten Methoden — schonend, effizient und nachhaltig.', icon: 'tooth' },
-      { num: 4, title: 'Recall & Kontrolle', desc: 'Regelmäßige Kontrolltermine sichern den langfristigen Erfolg Ihrer Behandlung.', icon: 'check' },
+      { num: 1, title: 'Befund & Messung', desc: 'Taschentiefen, Röntgen, Bakterientest. Wir messen, was andere übersehen.', icon: 'search' },
+      { num: 2, title: 'Ursachen-Therapie', desc: 'Professionelle Reinigung der Zahnfleischtaschen. Antibiotika nur wenn nötig, gezielt statt pauschal.', icon: 'calendar' },
+      { num: 3, title: 'Kontrolle & Stabilisierung', desc: 'Regelmäßige Nachmessung. Die Taschen werden flacher, das Zahnfleisch erholt sich.', icon: 'tooth' },
+      { num: 4, title: 'Langzeit-Recall', desc: 'Alle 3–6 Monate Kontrolle. Damit Parodontitis nicht zurückkommt. Dauerhaft.', icon: 'check' },
     ]}
   />
 
   <ZahnarztBeforeAfter
-    title="Behandlungsergebnisse"
-    subtitle="Präzise Ergebnisse, die für sich sprechen."
+    title="Zahnfleisch gerettet. Zähne erhalten."
+    subtitle="Parodontitis-Behandlung zeigt Ergebnisse. Dokumentiert in Zahlen."
     cases={[
-      { beforeSrc: '/preview-images/zahnarzt-hartmann/gallery-1.jpg', afterSrc: '/preview-images/zahnarzt-hartmann/gallery-2.jpg', label: 'Parodontale Sanierung' },
-      { beforeSrc: '/preview-images/zahnarzt-hartmann/gallery-3.jpg', afterSrc: '/preview-images/zahnarzt-hartmann/gallery-4.jpg', label: 'Implantat-Versorgung' },
+      { beforeSrc: '/preview-images/zahnarzt-hartmann/gallery-1.jpg', afterSrc: '/preview-images/zahnarzt-hartmann/gallery-2.jpg', label: 'Schwere Parodontitis — Taschentiefen von 8mm auf 3mm reduziert. Alle Zähne erhalten. Behandlung: 6 Monate.' },
+      { beforeSrc: '/preview-images/zahnarzt-hartmann/gallery-3.jpg', afterSrc: '/preview-images/zahnarzt-hartmann/gallery-4.jpg', label: 'Implantat trotz Parodontitis — Erst Parodontitis behandelt, dann Implantat gesetzt. Sitzt seit 3 Jahren.' },
     ]}
   />
 
@@ -92,9 +92,9 @@ const prospect: ProspectData = {
   />
 
   <PreviewCTA
-    title="Termin in Berlin-Mitte vereinbaren"
-    subtitle="Starten Sie jetzt in eine nachhaltig gesunde Zukunft für Ihre Zähne."
-    ctaText="Jetzt Termin buchen"
+    title="Ursache finden. Zahnfleisch retten."
+    subtitle="Je früher Parodontitis behandelt wird, desto mehr Zähne können erhalten werden. Vereinbaren Sie jetzt Ihren Parodontitis-Check."
+    ctaText="Parodontitis-Check vereinbaren"
     ctaHref={`mailto:${prospect.email}`}
     phone={prospect.phone}
   />

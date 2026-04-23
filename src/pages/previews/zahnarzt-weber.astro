@@ -18,8 +18,8 @@ const prospect: ProspectData = {
   location: 'Stuttgart-Mitte',
   email: 'info@zahnarzt-weber-stuttgart.de',
   phone: '+49 711 4567890',
-  heroTitle: 'Ihre Familienzahnarztpraxis in Stuttgart — für alle Generationen.',
-  heroSubtitle: 'Von der ersten Kinderkontrolle bis zur Seniorenversorgung: Praxis Weber begleitet Ihre ganze Familie mit Herzlichkeit und Fachkompetenz.',
+  heroTitle: 'Zahngesund aufwachsen. Zahngesund bleiben.',
+  heroSubtitle: 'Vom ersten Milchzahn bis zur Seniorenversorgung: Praxis Weber in Stuttgart begleitet über 3.000 Familien. Weil gute Zahngesundheit kein Zufall ist — sondern ein Familienprojekt.',
   services: [
     { icon: 'heart', title: 'Kinderzahnheilkunde', description: 'Spielerische und behutsame Behandlung für die Kleinen — damit der Zahnarztbesuch Spaß macht.' },
     { icon: 'smile', title: 'Jugendzahnheilkunde', description: 'Kieferorthopädische Beratung, Brackets und Aligner für Teenager — gemeinsam zum perfekten Lächeln.' },
@@ -46,9 +46,9 @@ const prospect: ProspectData = {
   <ZahnarztHero
     title={prospect.heroTitle}
     subtitle={prospect.heroSubtitle}
-    badge="Familienzahnarzt Stuttgart"
-    ctaPrimary={{ text: 'Termin buchen', href: '#kontakt' }}
-    ctaSecondary={{ text: 'Leistungen entdecken', href: '#leistungen' }}
+    badge="Familienzahnarzt seit 2001"
+    ctaPrimary={{ text: 'Familientermin anfragen', href: '#kontakt' }}
+    ctaSecondary={{ text: 'Was macht einen guten Familienzahnarzt aus? →', href: '#leistungen' }}
     imageSrc="/preview-images/zahnarzt-weber/hero.jpg"
     imageAlt="Zahnarztpraxis Weber Stuttgart — Familienzahnarzt"
     stats={prospect.stats}
@@ -61,22 +61,22 @@ const prospect: ProspectData = {
   />
 
   <ZahnarztTimeline
-    title="Ihr Familienbesuch bei uns"
-    subtitle="Einfach, herzlich und strukturiert — so funktioniert der Zahnarztbesuch bei uns."
+    title="So läuft der erste Besuch"
+    subtitle="Kein Stress, kein Zeitdruck. Wir nehmen uns Zeit zum Kennenlernen."
     steps={[
-      { num: 1, title: 'Anmeldung & Kennenlernen', desc: 'Melden Sie sich an — gerne als Familie. Wir nehmen uns Zeit für jedes Familienmitglied.', icon: 'phone' },
-      { num: 2, title: 'Befund & Beratung', desc: 'Gründliche Untersuchung und verständliche Erklärung aller Befunde — auch für Kinder.', icon: 'search' },
-      { num: 3, title: 'Behandlung', desc: 'Altersgerechte Behandlung mit modernsten Methoden — schonend und effizient.', icon: 'tooth' },
-      { num: 4, title: 'Vorsorge-Recall', desc: 'Regelmäßige Vorsorge für die ganze Familie — wir erinnern Sie an Kontrolltermine.', icon: 'calendar' },
+      { num: 1, title: 'Ankommen', desc: 'Spielecke für die Kleinen, Getränke für die Großen. Ankommen und wohlfühlen.', icon: 'phone' },
+      { num: 2, title: 'Kennenlernen', desc: 'Wir besprechen Ihre Wünsche und Sorgen. Bei Kindern: erst mal nur gucken, kein Druck.', icon: 'search' },
+      { num: 3, title: 'Befund', desc: 'Schonende Untersuchung für alle Familienmitglieder. Alles verständlich erklärt, keine Fachbegriffe.', icon: 'tooth' },
+      { num: 4, title: 'Gemeinsamer Plan', desc: 'Ein Vorsorgeplan für die ganze Familie. Ein Recall-System, damit kein Termin vergessen wird.', icon: 'calendar' },
     ]}
   />
 
   <ZahnarztBeforeAfter
-    title="Unsere Behandlungsergebnisse"
-    subtitle="Schöne Zähne in jedem Alter — das ist unser Versprechen."
+    title="Behandlungsergebnisse für die ganze Familie"
+    subtitle="Gesunde, schöne Zähne in jedem Alter — das ist unser Versprechen."
     cases={[
-      { beforeSrc: '/preview-images/zahnarzt-weber/gallery-1.jpg', afterSrc: '/preview-images/zahnarzt-weber/gallery-2.jpg', label: 'Korrekturen Erwachsene' },
-      { beforeSrc: '/preview-images/zahnarzt-weber/gallery-3.jpg', afterSrc: '/preview-images/zahnarzt-weber/gallery-4.jpg', label: 'Kinderprophylaxe' },
+      { beforeSrc: '/preview-images/zahnarzt-weber/gallery-1.jpg', afterSrc: '/preview-images/zahnarzt-weber/gallery-2.jpg', label: 'Invisalign-Korrektur Erwachsene — Diskrete Zahnkorrektur über 12 Monate.' },
+      { beforeSrc: '/preview-images/zahnarzt-weber/gallery-3.jpg', afterSrc: '/preview-images/zahnarzt-weber/gallery-4.jpg', label: 'Kinderprophylaxe — Gesunde Milchzähne als Grundlage für bleibende Zähne.' },
     ]}
   />
 
@@ -92,9 +92,9 @@ const prospect: ProspectData = {
   />
 
   <PreviewCTA
-    title="Ihre Familienzahnarztpraxis in Stuttgart"
-    subtitle="Vereinbaren Sie jetzt einen Termin für Ihre Familie — wir freuen uns auf Sie."
-    ctaText="Familientermin vereinbaren"
+    title="Anrufen und Familientermin buchen"
+    subtitle="Wir nehmen neue Familien auf — vereinbaren Sie jetzt einen gemeinsamen Termin für alle."
+    ctaText="Familientermin anfragen"
     ctaHref={`mailto:${prospect.email}`}
     phone={prospect.phone}
   />
