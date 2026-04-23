@@ -3,6 +3,7 @@ import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
 import { zahnarztProfile } from '../../templates/config/zahnarzt';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
+import PreviewSmileCheck from '../../templates/sections/PreviewSmileCheck.astro';
 import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
 import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
 import type { ProspectData } from '../../templates/config/types';
@@ -49,6 +50,7 @@ const ratgeberCards = [
 <PreviewLayout profile={zahnarztProfile} prospect={prospect}>
   <PreviewNav prospectName={prospect.name} logo="" ctaText="Termin vereinbaren" ctaHref="#kontakt" />
 
+
   <header class="hero-full" id="hero">
     <div class="hero-full__bg">
       <img src="https://images.unsplash.com/photo-1609840113966-f90f8c9d2e77?w=1920&q=80&fit=crop" alt="Zahnarzt Hartmann Praxis Berlin-Mitte" width="1920" height="1080" loading="eager" fetchpriority="high" />
@@ -63,7 +65,7 @@ const ratgeberCards = [
       <p class="hero-full__sub">{prospect.heroSubtitle}</p>
       <div class="hero-full__ctas">
         <a href="#kontakt" class="hero-full__btn-primary">Termin vereinbaren</a>
-        <a href="#leistungen" class="hero-full__btn-outline">Unsere Leistungen</a>
+        <a href="tel:+493027895640" class="hero-full__btn-outline">Rückruf in 30 Min</a>
       </div>
     </div>
     <div class="hero-full__stats">
@@ -148,34 +150,6 @@ const ratgeberCards = [
     </div>
   </section>
 
-  <section class="showcase" id="praxis">
-    <div class="showcase__inner">
-      <div class="showcase__header">
-        <div class="showcase__badge">Einblicke</div>
-        <h2 class="showcase__title">Moderne Praxis in <em>Berlin-Mitte</em></h2>
-        <p class="showcase__sub">Hochmoderne Ausstattung für präzise Diagnostik und schonende Behandlung — damit Ihre Zähne in den besten Händen sind.</p>
-      </div>
-      <div class="showcase__grid showcase__grid--two anim-on-scroll">
-        <div class="showcase__item">
-          <img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=800&q=80&fit=crop" alt="Moderner Behandlungsraum Zahnarzt Hartmann Berlin" loading="lazy" width="800" height="600" />
-          <div class="showcase__caption">
-            <span class="showcase__tag">Diagnostik</span>
-            <h3>Digitale Präzision</h3>
-            <p>Digitales Röntgen, 3D-Diagnostik und modernste Endodontologie-Instrumente für präzisen Zahnerhalt.</p>
-          </div>
-        </div>
-        <div class="showcase__item">
-          <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=800&q=80&fit=crop" alt="Parodontologie-Behandlung Hartmann Berlin-Mitte" loading="lazy" width="800" height="600" />
-          <div class="showcase__caption">
-            <span class="showcase__tag">Parodontologie</span>
-            <h3>Zahnerhalt als Priorität</h3>
-            <p>Schonende Parodontitis-Therapie mit langfristigem Nachsorgekonzept — für ein gesundes Zahnfleisch.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <PreviewTestimonials
     title="Was unsere Patienten sagen"
     subtitle="Patienten aus ganz Berlin vertrauen Dr. Hartmann ihren Zähnen an — lesen Sie, was sie über ihren Zahnerhalt berichten."
@@ -184,6 +158,40 @@ const ratgeberCards = [
       { text: 'Meine Parodontitis war weit fortgeschritten. Das Team hat mir ein klares Behandlungskonzept erklärt und Schritt für Schritt umgesetzt. Nach einem Jahr ist mein Zahnfleisch wieder gesund.', author: 'Claudia N.', role: 'Patientin seit 2018, Berlin', rating: 5 },
       { text: 'Endlich ein Zahnarzt, der nicht sofort zum Bohrer greift. Dr. Hartmann erklärt alles genau, arbeitet sehr sorgfältig und das Ergebnis spricht für sich. Ich komme seit Jahren und bin rundum zufrieden.', author: 'Stefan H.', role: 'Patient seit 2017, Berlin-Mitte', rating: 5 },
     ]}
+  />
+
+  <PreviewSmileCheck
+    title="Behandlungskosten berechnen"
+    subtitle="Beantworten Sie 3 Fragen und erhalten Sie eine erste unverbindliche Einschätzung zu Ihrer Behandlung."
+    steps={[
+      {
+        question: 'Welches Anliegen hat für Sie Priorität?',
+        options: [
+          { label: 'Zahnerhalt — meine natürlichen Zähne behalten', value: 'zahnerhalt' },
+          { label: 'Parodontitis — Zahnfleisch behandeln lassen', value: 'parodontose' },
+          { label: 'Wurzelbehandlung — Zahn retten statt ziehen', value: 'wurzel' },
+          { label: 'Regelmäßige Prophylaxe & Kontrolle', value: 'prophylaxe' },
+        ],
+      },
+      {
+        question: 'Wie dringend ist Ihr Bedarf?',
+        options: [
+          { label: 'Akut — ich habe Beschwerden oder Schmerzen', value: 'akut' },
+          { label: 'Mittelfristig — ich möchte vorbeugen', value: 'mittel' },
+          { label: 'Langfristig — regelmäßige Betreuung gewünscht', value: 'langfristig' },
+        ],
+      },
+      {
+        question: 'Haben Sie aktuell einen Zahnarzt in Berlin?',
+        options: [
+          { label: 'Nein — ich suche eine neue Praxis', value: 'neu' },
+          { label: 'Ja, aber ich bin unzufrieden', value: 'wechsel' },
+          { label: 'Ich möchte eine Zweitmeinung einholen', value: 'zweitmeinung' },
+        ],
+      },
+    ]}
+    resultCtaText="Behandlungskosten berechnen"
+    resultCtaHref="#kalkulator"
   />
 
   <section class="ratgeber" id="ratgeber">
@@ -240,9 +248,9 @@ const ratgeberCards = [
 
   <PreviewCTA
     title="Bereit für gesunde Zähne in Berlin-Mitte?"
-    subtitle="Vereinbaren Sie jetzt Ihren Termin bei Zahnarzt Hartmann. Zahnerhalt ist unsere Leidenschaft — wir freuen uns darauf, Ihnen zu helfen."
+    subtitle="Vereinbaren Sie jetzt Ihren Termin bei Zahnarzt Hartmann — oder rufen Sie uns an für einen Rückruf in 30 Minuten. Zahnerhalt ist unsere Leidenschaft."
     badge="Termin vereinbaren"
-    buttonText="Jetzt Termin buchen"
+    buttonText="Termin vereinbaren"
     buttonLink="#kontakt"
     phone="+49 30 27895640"
   />
