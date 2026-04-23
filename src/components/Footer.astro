@@ -11,7 +11,7 @@
         <p class="footer-tagline">
           Digital Boutique. Strategie · Design · Umsetzung.
         </p>
-        <a href="mailto:hey@elevo.solutions" style="font-size:0.85rem; color: var(--accent);">hey@elevo.solutions</a>
+        <a href="mailto:hallo@elevo.solutions" style="font-size:0.85rem; color: var(--accent);">hallo@elevo.solutions</a>
       </div>
 
       <div>
@@ -38,6 +38,7 @@
         <ul class="footer-links">
           <li><a href="/impressum">Impressum</a></li>
           <li><a href="/datenschutz">Datenschutz</a></li>
+          <li><a href="#" id="cookie-settings-link" aria-label="Cookie-Einstellungen anpassen">Cookie-Einstellungen</a></li>
         </ul>
         <p class="footer-col-title" style="margin-top:1.5rem;">Folgen Sie uns</p>
         <ul class="footer-links footer-social">
@@ -81,11 +82,44 @@
 <div id="cookie-banner" role="dialog" aria-modal="true" aria-labelledby="cookie-title">
   <p class="cookie-title" id="cookie-title">🍪 Cookies &amp; Datenschutz</p>
   <p class="cookie-text">
-    Wir verwenden Cookies für Google Analytics und Google Ads, um unsere Website zu verbessern.
+    Wir verwenden Cookies für Statistik und Marketing. Wähle, welche du erlaubst.
     Mehr dazu in unserer <a href="/datenschutz">Datenschutzerklärung</a>.
   </p>
+  <div class="cookie-toggles">
+    <div class="cookie-toggle-row">
+      <div class="cookie-toggle-info">
+        <div class="cookie-toggle-label">Notwendig</div>
+        <div class="cookie-toggle-desc">Technisch erforderlich, immer aktiv</div>
+      </div>
+      <label class="cookie-toggle-switch" aria-label="Notwendige Cookies (immer aktiv)">
+        <input type="checkbox" id="toggle-necessary" checked disabled>
+        <span class="cookie-toggle-track"></span>
+      </label>
+    </div>
+    <div class="cookie-toggle-row">
+      <div class="cookie-toggle-info">
+        <div class="cookie-toggle-label">Statistik</div>
+        <div class="cookie-toggle-desc">Google Analytics — anonyme Nutzungsanalyse</div>
+      </div>
+      <label class="cookie-toggle-switch" aria-label="Statistik-Cookies">
+        <input type="checkbox" id="toggle-statistics">
+        <span class="cookie-toggle-track"></span>
+      </label>
+    </div>
+    <div class="cookie-toggle-row">
+      <div class="cookie-toggle-info">
+        <div class="cookie-toggle-label">Marketing</div>
+        <div class="cookie-toggle-desc">Google Ads — personalisierte Werbung</div>
+      </div>
+      <label class="cookie-toggle-switch" aria-label="Marketing-Cookies">
+        <input type="checkbox" id="toggle-marketing">
+        <span class="cookie-toggle-track"></span>
+      </label>
+    </div>
+  </div>
   <div class="cookie-btns">
     <button class="cookie-accept" id="cookie-accept">Alle akzeptieren</button>
+    <button class="cookie-save" id="cookie-save">Auswahl speichern</button>
     <button class="cookie-decline" id="cookie-decline">Nur notwendige</button>
   </div>
 </div>
@@ -95,54 +129,99 @@
 
   const COOKIE_KEY = 'elevo_consent_v2';
 
-  function applyConsent(granted: boolean) {
+  interface ConsentPrefs { statistics: boolean; marketing: boolean; }
+
+  function applyConsent(prefs: ConsentPrefs) {
     if (typeof (window as any).gtag !== 'undefined') {
       (window as any).gtag('consent', 'update', {
-        'ad_storage': granted ? 'granted' : 'denied',
-        'analytics_storage': granted ? 'granted' : 'denied',
-        'ad_user_data': granted ? 'granted' : 'denied',
-        'ad_personalization': granted ? 'granted' : 'denied'
+        'analytics_storage': prefs.statistics ? 'granted' : 'denied',
+        'ad_storage': prefs.marketing ? 'granted' : 'denied',
+        'ad_user_data': prefs.marketing ? 'granted' : 'denied',
+        'ad_personalization': prefs.marketing ? 'granted' : 'denied'
       });
     }
   }
 
-  const stored = localStorage.getItem(COOKIE_KEY);
-  if (stored) applyConsent(stored === 'granted');
+  function syncToggles(prefs: ConsentPrefs) {
+    (document.getElementById('toggle-statistics') as HTMLInputElement).checked = prefs.statistics;
+    (document.getElementById('toggle-marketing') as HTMLInputElement).checked = prefs.marketing;
+  }
+
+  function saveConsent(prefs: ConsentPrefs) {
+    localStorage.setItem(COOKIE_KEY, JSON.stringify(prefs));
+    applyConsent(prefs);
+    hideBanner();
+  }
 
   const banner = document.getElementById('cookie-banner')!;
   const acceptBtn = document.getElementById('cookie-accept')!;
+  const saveBtn = document.getElementById('cookie-save')!;
   const declineBtn = document.getElementById('cookie-decline')!;
+  const settingsLink = document.getElementById('cookie-settings-link');
 
   function showBanner() {
     banner.classList.add('show');
-    acceptBtn.focus();
+    setTimeout(() => acceptBtn.focus(), 50);
   }
 
   function hideBanner() {
     banner.classList.remove('show');
   }
 
+  function getTogglePrefs(): ConsentPrefs {
+    return {
+      statistics: (document.getElementById('toggle-statistics') as HTMLInputElement).checked,
+      marketing: (document.getElementById('toggle-marketing') as HTMLInputElement).checked
+    };
+  }
+
   // Focus trap
   banner.addEventListener('keydown', (e: KeyboardEvent) => {
     if (e.key !== 'Tab') return;
+    const focusable = Array.from(banner.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], input:not([disabled])'));
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
     if (e.shiftKey) {
-      if (document.activeElement === acceptBtn) { e.preventDefault(); declineBtn.focus(); }
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
     } else {
-      if (document.activeElement === declineBtn) { e.preventDefault(); acceptBtn.focus(); }
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
   });
 
-  if (!stored) showBanner();
+  const storedRaw = localStorage.getItem(COOKIE_KEY);
+  if (storedRaw) {
+    try {
+      const prefs = JSON.parse(storedRaw) as ConsentPrefs;
+      applyConsent(prefs);
+      syncToggles(prefs);
+    } catch {
+      applyConsent({ statistics: true, marketing: true });
+      syncToggles({ statistics: true, marketing: true });
+    }
+  } else {
+    showBanner();
+  }
 
   acceptBtn.addEventListener('click', () => {
-    localStorage.setItem(COOKIE_KEY, 'granted');
-    applyConsent(true);
-    hideBanner();
+    syncToggles({ statistics: true, marketing: true });
+    saveConsent({ statistics: true, marketing: true });
+  });
+
+  saveBtn.addEventListener('click', () => {
+    saveConsent(getTogglePrefs());
   });
 
   declineBtn.addEventListener('click', () => {
-    localStorage.setItem(COOKIE_KEY, 'denied');
-    applyConsent(false);
-    hideBanner();
+    syncToggles({ statistics: false, marketing: false });
+    saveConsent({ statistics: false, marketing: false });
+  });
+
+  settingsLink?.addEventListener('click', (e: Event) => {
+    e.preventDefault();
+    const raw = localStorage.getItem(COOKIE_KEY);
+    if (raw) {
+      try { syncToggles(JSON.parse(raw) as ConsentPrefs); } catch {}
+    }
+    showBanner();
   });
 </script>

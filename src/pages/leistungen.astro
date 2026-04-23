@@ -37,18 +37,61 @@ import '../styles/global.css';
 
       <div class="services-grid">
         <article class="service-card reveal">
-          <div class="service-icon" aria-hidden="true">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="2" y="3" width="28" height="20" rx="3"/>
-              <line x1="2" y1="10" x2="30" y2="10"/>
-              <circle cx="6.5" cy="6.5" r="1.4" fill="currentColor" stroke="none"/>
-              <circle cx="11" cy="6.5" r="1.4" fill="currentColor" stroke="none"/>
-              <circle cx="15.5" cy="6.5" r="1.4" fill="currentColor" stroke="none"/>
-              <polyline points="8,15 10.5,17.5 8,20"/>
-              <polyline points="14,15 11.5,17.5 14,20"/>
-              <line x1="17" y1="17.5" x2="24" y2="17.5"/>
-              <line x1="16" y1="23" x2="16" y2="27"/>
-              <line x1="11" y1="27" x2="21" y2="27"/>
+          <div class="service-illustration" aria-hidden="true">
+            <svg viewBox="0 0 280 100" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Ambient glow -->
+              <ellipse cx="110" cy="50" rx="86" ry="38" style="fill: var(--accent-glow)" opacity="0.4"/>
+              <!-- Browser frame -->
+              <rect x="10" y="6" width="198" height="88" rx="8" fill="rgba(15,22,40,0.9)" style="stroke: var(--border-strong)" stroke-width="1.5"/>
+              <!-- Toolbar bg -->
+              <rect x="10" y="6" width="198" height="22" rx="8" fill="rgba(59,130,246,0.06)"/>
+              <rect x="10" y="20" width="198" height="8" fill="rgba(59,130,246,0.06)"/>
+              <!-- Traffic dots -->
+              <circle cx="28" cy="17" r="4" fill="rgba(59,130,246,0.35)"/>
+              <circle cx="40" cy="17" r="4" fill="rgba(59,130,246,0.22)"/>
+              <circle cx="52" cy="17" r="4" fill="rgba(59,130,246,0.13)"/>
+              <!-- Address bar -->
+              <rect x="66" y="11" width="108" height="12" rx="6" fill="rgba(255,255,255,0.04)" style="stroke: var(--border)" stroke-width="1"/>
+              <rect x="74" y="14" width="50" height="6" rx="3" style="fill: var(--accent)" opacity="0.45"/>
+              <!-- Divider -->
+              <line x1="10" y1="28" x2="208" y2="28" style="stroke: var(--border)" stroke-width="1"/>
+              <!-- Gutter -->
+              <rect x="10" y="28" width="11" height="66" fill="rgba(59,130,246,0.03)"/>
+              <line x1="21" y1="28" x2="21" y2="94" style="stroke: var(--border)" stroke-width="0.5"/>
+              <!-- Code line 1 -->
+              <rect x="26" y="34" width="28" height="7" rx="2" style="fill: var(--accent)" opacity="0.75"/>
+              <rect x="60" y="34" width="48" height="7" rx="2" fill="rgba(148,163,184,0.35)"/>
+              <rect x="114" y="34" width="10" height="7" rx="2" style="fill: var(--accent)" opacity="0.55"/>
+              <rect x="130" y="34" width="34" height="7" rx="2" fill="rgba(148,163,184,0.25)"/>
+              <!-- Code line 2 -->
+              <rect x="34" y="45" width="16" height="6" rx="2" style="fill: var(--accent)" opacity="0.45"/>
+              <rect x="56" y="45" width="62" height="6" rx="2" fill="rgba(148,163,184,0.3)"/>
+              <rect x="124" y="45" width="8" height="6" rx="2" style="fill: var(--accent)" opacity="0.65"/>
+              <rect x="138" y="45" width="36" height="6" rx="2" fill="rgba(148,163,184,0.2)"/>
+              <!-- Code line 3 -->
+              <rect x="34" y="55" width="12" height="6" rx="2" fill="rgba(245,158,11,0.5)"/>
+              <rect x="52" y="55" width="40" height="6" rx="2" fill="rgba(148,163,184,0.3)"/>
+              <rect x="98" y="55" width="8" height="6" rx="2" style="fill: var(--accent)" opacity="0.6"/>
+              <rect x="112" y="55" width="22" height="6" rx="2" fill="rgba(16,185,129,0.4)"/>
+              <!-- Code line 4 -->
+              <rect x="34" y="65" width="20" height="6" rx="2" fill="rgba(148,163,184,0.35)"/>
+              <rect x="60" y="65" width="8" height="6" rx="2" style="fill: var(--accent)" opacity="0.8"/>
+              <rect x="74" y="65" width="22" height="6" rx="2" fill="rgba(16,185,129,0.35)"/>
+              <!-- Code line 5 -->
+              <rect x="26" y="75" width="10" height="6" rx="2" style="fill: var(--accent)" opacity="0.9"/>
+              <rect x="42" y="75" width="50" height="6" rx="2" fill="rgba(148,163,184,0.2)"/>
+              <!-- Cursor -->
+              <rect x="98" y="73" width="2" height="9" rx="1" style="fill: var(--accent)"/>
+              <!-- Mobile device -->
+              <rect x="222" y="10" width="36" height="74" rx="7" fill="rgba(10,14,26,0.95)" style="stroke: var(--border-strong)" stroke-width="1.5"/>
+              <rect x="227" y="18" width="26" height="56" rx="4" fill="rgba(59,130,246,0.04)"/>
+              <circle cx="240" cy="88" r="3.5" fill="rgba(59,130,246,0.2)"/>
+              <rect x="234" y="11" width="12" height="4" rx="2" fill="rgba(10,14,26,0.95)"/>
+              <rect x="230" y="22" width="20" height="4" rx="1" style="fill: var(--accent)" opacity="0.5"/>
+              <rect x="230" y="30" width="14" height="3" rx="1" fill="rgba(148,163,184,0.35)"/>
+              <rect x="230" y="37" width="18" height="3" rx="1" fill="rgba(148,163,184,0.25)"/>
+              <rect x="230" y="44" width="10" height="3" rx="1" style="fill: var(--accent)" opacity="0.35"/>
+              <rect x="230" y="52" width="20" height="8" rx="2" style="fill: var(--accent)" opacity="0.15"/>
             </svg>
           </div>
           <h3 class="service-title">Website &amp; Anwendungsentwicklung</h3>
@@ -67,15 +110,47 @@ import '../styles/global.css';
         </article>
 
         <article class="service-card featured reveal reveal-delay-1">
-          <div class="service-icon" aria-hidden="true">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="16" cy="14" r="7"/>
-              <line x1="16" y1="7" x2="16" y2="4"/>
-              <line x1="16" y1="21" x2="16" y2="28"/>
-              <line x1="12" y1="28" x2="20" y2="28"/>
-              <line x1="13" y1="11" x2="16" y2="14"/>
-              <line x1="16" y1="14" x2="19" y2="11"/>
-              <polyline points="10,18 16,14 22,18"/>
+          <div class="service-illustration" aria-hidden="true">
+            <svg viewBox="0 0 280 100" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Ambient glow -->
+              <ellipse cx="148" cy="50" rx="70" ry="42" style="fill: var(--accent-glow)" opacity="0.38"/>
+              <!-- Concentric rings -->
+              <circle cx="148" cy="50" r="42" fill="none" style="stroke: var(--border)" stroke-width="1" stroke-dasharray="4,10"/>
+              <circle cx="148" cy="50" r="30" fill="none" style="stroke: var(--border)" stroke-width="1" stroke-dasharray="3,7"/>
+              <circle cx="148" cy="50" r="18" fill="none" style="stroke: rgba(59,130,246,0.22)" stroke-width="1"/>
+              <!-- Compass axes -->
+              <line x1="148" y1="8" x2="148" y2="92" style="stroke: var(--border)" stroke-width="0.8"/>
+              <line x1="106" y1="50" x2="190" y2="50" style="stroke: var(--border)" stroke-width="0.8"/>
+              <line x1="118" y1="20" x2="178" y2="80" style="stroke: var(--border)" stroke-width="0.5" opacity="0.5"/>
+              <line x1="178" y1="20" x2="118" y2="80" style="stroke: var(--border)" stroke-width="0.5" opacity="0.5"/>
+              <!-- Compass arrows -->
+              <polygon points="148,8 144,22 148,18 152,22" style="fill: var(--accent)" opacity="0.9"/>
+              <polygon points="190,50 174,46 178,50 174,54" style="fill: var(--accent)" opacity="0.65"/>
+              <polygon points="148,92 152,78 148,82 144,78" fill="rgba(148,163,184,0.4)"/>
+              <polygon points="106,50 122,46 118,50 122,54" fill="rgba(148,163,184,0.3)"/>
+              <!-- Center -->
+              <circle cx="148" cy="50" r="8" style="fill: var(--bg-card); stroke: var(--accent)" stroke-width="1.5"/>
+              <circle cx="148" cy="50" r="3.5" style="fill: var(--accent)"/>
+              <!-- Roadmap arc (NE quadrant) -->
+              <path d="M 170 26 Q 184 22 192 34 Q 200 46 196 60" fill="none" style="stroke: var(--accent)" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.72"/>
+              <!-- Checkpoints -->
+              <circle cx="170" cy="26" r="3.5" style="fill: var(--bg-deep); stroke: var(--accent)" stroke-width="1.5"/>
+              <circle cx="190" cy="30" r="2.5" style="fill: var(--accent)" opacity="0.7"/>
+              <circle cx="196" cy="47" r="2.5" style="fill: var(--accent)" opacity="0.6"/>
+              <circle cx="196" cy="60" r="3.5" style="fill: var(--bg-deep); stroke: var(--accent)" stroke-width="1.5"/>
+              <!-- Growth chart bars (SW) -->
+              <rect x="22" y="64" width="9" height="18" rx="2" style="fill: var(--accent)" opacity="0.15"/>
+              <rect x="35" y="56" width="9" height="26" rx="2" style="fill: var(--accent)" opacity="0.25"/>
+              <rect x="48" y="46" width="9" height="36" rx="2" style="fill: var(--accent)" opacity="0.42"/>
+              <rect x="61" y="50" width="9" height="32" rx="2" style="fill: var(--accent)" opacity="0.32"/>
+              <line x1="20" y1="82" x2="76" y2="82" style="stroke: var(--border)" stroke-width="1"/>
+              <polyline points="26,72 39,62 52,48 65,52" fill="none" style="stroke: var(--accent)" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+              <!-- Data scatter (NW) -->
+              <circle cx="86" cy="22" r="2.5" style="fill: var(--border-strong)" opacity="0.7"/>
+              <circle cx="100" cy="14" r="2" style="fill: var(--border-strong)" opacity="0.5"/>
+              <circle cx="114" cy="26" r="2" style="fill: var(--border-strong)" opacity="0.4"/>
+              <line x1="86" y1="22" x2="100" y2="14" style="stroke: var(--border)" stroke-width="0.8" opacity="0.5"/>
+              <line x1="100" y1="14" x2="114" y2="26" style="stroke: var(--border)" stroke-width="0.8" opacity="0.4"/>
             </svg>
           </div>
           <h3 class="service-title">Digitalisierungsberatung</h3>
@@ -94,17 +169,62 @@ import '../styles/global.css';
         </article>
 
         <article class="service-card reveal reveal-delay-2">
-          <div class="service-icon" aria-hidden="true">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="6" cy="16" r="4"/>
-              <circle cx="16" cy="6" r="4"/>
-              <circle cx="26" cy="16" r="4"/>
-              <circle cx="16" cy="26" r="4"/>
-              <line x1="10" y1="14" x2="13" y2="9"/>
-              <line x1="19" y1="9" x2="22" y2="14"/>
-              <line x1="22" y1="18" x2="19" y2="23"/>
-              <line x1="13" y1="23" x2="10" y2="18"/>
-              <circle cx="16" cy="16" r="2.5" fill="currentColor" stroke="none"/>
+          <div class="service-illustration" aria-hidden="true">
+            <svg viewBox="0 0 280 100" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Ambient glow -->
+              <ellipse cx="140" cy="62" rx="96" ry="30" style="fill: var(--accent-glow)" opacity="0.28"/>
+              <!-- Integration nodes (top decorative) -->
+              <circle cx="54" cy="16" r="7" fill="none" style="stroke: var(--border-strong)" stroke-width="1"/>
+              <circle cx="54" cy="16" r="2.5" style="fill: var(--border-strong)" opacity="0.6"/>
+              <circle cx="104" cy="10" r="7" fill="none" style="stroke: var(--border-strong)" stroke-width="1"/>
+              <circle cx="104" cy="10" r="2.5" style="fill: var(--accent)" opacity="0.5"/>
+              <circle cx="154" cy="16" r="7" fill="none" style="stroke: var(--border-strong)" stroke-width="1"/>
+              <circle cx="154" cy="16" r="2.5" style="fill: var(--border-strong)" opacity="0.6"/>
+              <circle cx="204" cy="10" r="7" fill="none" style="stroke: var(--border-strong)" stroke-width="1"/>
+              <circle cx="204" cy="10" r="2.5" style="fill: var(--border-strong)" opacity="0.4"/>
+              <!-- connectors between top nodes -->
+              <line x1="61" y1="14" x2="97" y2="12" style="stroke: var(--border)" stroke-width="1" stroke-dasharray="3,4" opacity="0.5"/>
+              <line x1="111" y1="12" x2="147" y2="14" style="stroke: var(--border)" stroke-width="1" stroke-dasharray="3,4" opacity="0.5"/>
+              <line x1="161" y1="14" x2="197" y2="12" style="stroke: var(--border)" stroke-width="1" stroke-dasharray="3,4" opacity="0.4"/>
+              <!-- top nodes → workflow -->
+              <line x1="54" y1="23" x2="54" y2="44" style="stroke: var(--border)" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+              <line x1="204" y1="17" x2="204" y2="44" style="stroke: var(--border)" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+              <!-- Main workflow at y=58 -->
+              <!-- Start circle -->
+              <circle cx="26" cy="58" r="16" fill="rgba(59,130,246,0.12)" style="stroke: var(--accent)" stroke-width="1.5"/>
+              <polygon points="21,51 21,65 34,58" style="fill: var(--accent)" opacity="0.8"/>
+              <!-- Arrow 1→2 -->
+              <line x1="42" y1="58" x2="62" y2="58" style="stroke: var(--border-strong)" stroke-width="1.5"/>
+              <polygon points="60,54 60,62 68,58" style="fill: var(--border-strong)"/>
+              <!-- Process rect -->
+              <rect x="68" y="44" width="46" height="28" rx="7" fill="rgba(59,130,246,0.08)" style="stroke: var(--accent)" stroke-width="1.5"/>
+              <!-- Gear inside -->
+              <circle cx="91" cy="58" r="7.5" fill="none" style="stroke: var(--accent)" stroke-width="1.5"/>
+              <circle cx="91" cy="58" r="3" style="fill: var(--accent)"/>
+              <rect x="89" y="49" width="4" height="3.5" rx="1" style="fill: var(--accent)"/>
+              <rect x="89" y="63.5" width="4" height="3.5" rx="1" style="fill: var(--accent)"/>
+              <rect x="99" y="56" width="3.5" height="4" rx="1" style="fill: var(--accent)"/>
+              <rect x="80" y="56" width="3.5" height="4" rx="1" style="fill: var(--accent)"/>
+              <!-- Arrow 2→3 -->
+              <line x1="114" y1="58" x2="134" y2="58" style="stroke: var(--border-strong)" stroke-width="1.5"/>
+              <polygon points="132,54 132,62 140,58" style="fill: var(--border-strong)"/>
+              <!-- Decision diamond -->
+              <polygon points="158,43 178,58 158,73 138,58" fill="rgba(59,130,246,0.06)" style="stroke: var(--accent)" stroke-width="1.5"/>
+              <circle cx="158" cy="58" r="4" style="fill: var(--accent)"/>
+              <!-- Arrow 3→4 (yes) -->
+              <line x1="178" y1="58" x2="198" y2="58" style="stroke: var(--border-strong)" stroke-width="1.5"/>
+              <polygon points="196,54 196,62 204,58" style="fill: var(--border-strong)"/>
+              <circle cx="190" cy="52" r="2.5" style="fill: var(--green)" opacity="0.7"/>
+              <!-- End circle -->
+              <circle cx="220" cy="58" r="16" fill="rgba(16,185,129,0.1)" style="stroke: var(--green)" stroke-width="1.5"/>
+              <polyline points="212,58 218,65 228,51" style="stroke: var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <!-- No branch (down from diamond) -->
+              <line x1="158" y1="73" x2="158" y2="86" style="stroke: var(--border-strong)" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <circle cx="164" cy="78" r="2.5" fill="rgba(245,158,11,0.6)" opacity="0.8"/>
+              <!-- Retry box -->
+              <rect x="134" y="86" width="48" height="12" rx="4" fill="rgba(245,158,11,0.06)" style="stroke: rgba(245,158,11,0.35)" stroke-width="1"/>
+              <path d="M 146 91 Q 158 87 168 91" fill="none" style="stroke: rgba(245,158,11,0.55)" stroke-width="1.5" stroke-linecap="round"/>
+              <polygon points="165,89 170,93 172,88" fill="rgba(245,158,11,0.55)"/>
             </svg>
           </div>
           <h3 class="service-title">Prozessdigitalisierung</h3>

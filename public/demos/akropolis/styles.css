@@ -18,8 +18,8 @@
     --gray: #8a8a8a;
     --gray-light: #b5b5b5;
     --gray-dark: #3a3a3a;
-    --font-display: 'Playfair Display', Georgia, serif;
-    --font-body: 'Cormorant Garamond', Georgia, serif;
+    --font-display: 'Sora', sans-serif;
+    --font-body: 'Outfit', sans-serif;
     --transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --transition-fast: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }

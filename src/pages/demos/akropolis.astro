@@ -8,9 +8,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akropolis — Griechisches Restaurant Geilenkirchen</title>
     <meta name="description" content="Akropolis — Authentische griechische Küche in Geilenkirchen. Erleben Sie mediterrane Gastfreundschaft, frische Zutaten und unvergessliche Momente.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/fonts/Sora-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url('/fonts/Outfit-latin.woff2') format('woff2');
+}
+</style>
 <link rel="stylesheet" href="/demos/akropolis/styles.css">
 
 <!-- Legal Modal Styles (inline) -->
@@ -87,7 +100,7 @@
 .legal-modal-close:hover { color: #fff; }
 
 .legal-modal-content h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Sora', sans-serif;
     font-size: 28px;
     color: #fff;
     margin: 0 0 28px;
@@ -689,10 +702,6 @@
         <p>Wenn Sie uns per Telefon kontaktieren, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten (Name, Anfrage) zum Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter. Grundlage ist Art. 6 Abs. 1 lit. b DSGVO.</p>
 
         <h3>5. Externe Dienste</h3>
-
-        <h4>Google Fonts</h4>
-        <p>Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten sogenannte Google Fonts, die von Google bereitgestellt werden. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Fonts in Ihren Browsercache, um Texte und Schriftarten korrekt anzuzeigen. Zu diesem Zweck muss der von Ihnen verwendete Browser Verbindung zu den Servern von Google aufnehmen. Hierdurch erlangt Google Kenntnis darüber, dass über Ihre IP-Adresse diese Website aufgerufen wurde.</p>
-        <p>Die Nutzung von Google Fonts erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen finden Sie unter <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a>.</p>
 
         <h4>Cloudflare</h4>
         <p>Wir nutzen das Content Delivery Network (CDN) von Cloudflare Inc., 101 Townsend St, San Francisco, CA 94107, USA. Cloudflare bietet ein weltweit verteiltes Content Delivery Network mit DNS. Technisch wird der Informationstransfer zwischen Ihrem Browser und unserer Website über das Netzwerk von Cloudflare geleitet. Cloudflare ist unter dem EU-US Data Privacy Framework zertifiziert.</p>
