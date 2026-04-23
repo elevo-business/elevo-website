@@ -51,7 +51,7 @@ const healthTips = [
 
   <header class="hero-full" id="hero">
     <div class="hero-full__bg">
-      <div class="hero-full__gradient"></div>
+      <img src="/preview-images/zahnarzt-fischer/hero.jpg" alt="Moderner Behandlungsraum der Zahnarztpraxis Fischer in Stuttgart" width="1920" height="1080" loading="eager" fetchpriority="high" />
       <div class="hero-full__overlay"></div>
     </div>
     <div class="hero-full__content anim-fade-up">
@@ -62,8 +62,8 @@ const healthTips = [
       <h1 class="hero-full__title" set:html="Präzision trifft <em>Leidenschaft.</em>" />
       <p class="hero-full__sub">Dr. Fischer steht für höchste Qualität in der Zahnmedizin — Ihr Experte für Prothetik und Zahnerhaltung in Stuttgart-West. Handwerk trifft Hightech.</p>
       <div class="hero-full__ctas">
-        <a href="#kontakt" class="hero-full__btn-primary">Termin vereinbaren</a>
-        <a href="#leistungen" class="hero-full__btn-outline">Unsere Leistungen</a>
+        <a href="#kontakt" class="hero-full__btn-primary">Erstberatung anfragen</a>
+        <a href="#leistungen" class="hero-full__btn-outline">Unsere Expertise</a>
       </div>
     </div>
     <div class="hero-full__stats">
@@ -165,9 +165,7 @@ const healthTips = [
       </div>
       <div class="showcase__grid anim-on-scroll">
         <div class="showcase__item showcase__item--large">
-          <div class="showcase__placeholder showcase__placeholder--large">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          </div>
+          <img src="/preview-images/zahnarzt-fischer/gallery-1.jpg" alt="Hochwertige Prothetik-Arbeit" loading="lazy" width="800" height="600" class="showcase__img" />
           <div class="showcase__caption">
             <span class="showcase__tag">Prothetik</span>
             <h3>Teleskoparbeit Stuttgart-West</h3>
@@ -175,18 +173,14 @@ const healthTips = [
           </div>
         </div>
         <div class="showcase__item showcase__item--small">
-          <div class="showcase__placeholder showcase__placeholder--small">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          </div>
+          <img src="/preview-images/zahnarzt-fischer/gallery-2.jpg" alt="Moderne Zahnerhaltung" loading="lazy" width="800" height="600" class="showcase__img" />
           <div class="showcase__caption">
             <span class="showcase__tag">Zahnerhalt</span>
             <h3>Wurzelbehandlung Vaihingen</h3>
           </div>
         </div>
         <div class="showcase__item showcase__item--small">
-          <div class="showcase__placeholder showcase__placeholder--small">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          </div>
+          <img src="/preview-images/zahnarzt-fischer/gallery-3.jpg" alt="Implantat-Versorgung" loading="lazy" width="800" height="600" class="showcase__img" />
           <div class="showcase__caption">
             <span class="showcase__tag">Implantat</span>
             <h3>Implantatbrücke Degerloch</h3>
@@ -286,7 +280,7 @@ const healthTips = [
 
   .hero-full { position: relative; min-height: 80vh; max-height: 700px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
   .hero-full__bg { position: absolute; inset: 0; z-index: 0; }
-  .hero-full__gradient { position: absolute; inset: 0; background: linear-gradient(135deg, #0E8A7B 0%, #0A6B5F 40%, #085A50 70%, #064D44 100%); }
+  .hero-full__bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .hero-full__overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(6, 40, 36, 0.95) 0%, rgba(6, 40, 36, 0.6) 35%, rgba(6, 40, 36, 0.25) 65%, rgba(6, 40, 36, 0.1) 100%); }
   .hero-full__content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 48px 48px; width: 100%; }
   .hero-full__badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: rgba(255,255,255,0.9); margin-bottom: 20px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
@@ -356,8 +350,8 @@ const healthTips = [
   .showcase__item { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); cursor: pointer; }
   .showcase__item--large { grid-row: 1 / 3; }
   .showcase__item--small { min-height: 0; }
-  .showcase__placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--surface); color: var(--dim); }
-  .showcase__item:hover .showcase__placeholder { background: var(--bg-el); }
+  .showcase__img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+  .showcase__item:hover .showcase__img { transform: scale(1.03); }
   .showcase__caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; background: linear-gradient(transparent, rgba(0,0,0,0.75)); color: #fff; }
   .showcase__tag { display: inline-block; background: var(--accent); color: #fff; padding: 3px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
   .showcase__caption h3 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
