@@ -38,12 +38,6 @@ const processSteps = [
   { num: '04', title: 'Nachsorge', desc: 'Regelmässige Kontrollen und professionelle Prophylaxe für langfristigen Erfolg.', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>' },
 ];
 
-const healthTips = [
-  { season: 'Frühling', icon: '🌱', title: 'Prophylaxe-Check', desc: 'Idealer Zeitpunkt für die halbjährliche Kontrolle und professionelle Zahnreinigung.' },
-  { season: 'Sommer', icon: '☀️', title: 'Bleaching-Saison', desc: 'Strahlend weisse Zähne für den Sommer — jetzt Bleaching-Termin vereinbaren.' },
-  { season: 'Herbst', icon: '🍂', title: 'Zahngesundheit', desc: 'Kinder-Checkup nach den Ferien und Fluoridierung vor dem Winter.' },
-  { season: 'Winter', icon: '❄️', title: 'Vorsorge-Planung', desc: 'Bonusheft prüfen und Vorsorgetermine für das neue Jahr planen.' },
-];
 ---
 
 <PreviewLayout profile={{...zahnarztProfile, colorScheme: {...zahnarztProfile.colorScheme, accent: '#2563EB', accentHover: '#1D4ED8', bg: '#F8FAFF', bgEl: '#EFF6FF', surface: '#DBEAFE', border: '#93C5FD', muted: '#1E40AF', dim: '#2563EB'}}} prospect={prospect}>
@@ -200,25 +194,6 @@ const healthTips = [
     ]}
   />
 
-  <section class="health-tips" id="ratgeber">
-    <div class="health-tips__inner">
-      <div class="health-tips__header">
-        <h2 class="health-tips__title">Zahngesundheits-Ratgeber</h2>
-        <p class="health-tips__sub">Tipps für gesunde Zähne — das ganze Jahr über.</p>
-      </div>
-      <div class="health-tips__grid">
-        {healthTips.map(tip => (
-          <div class="health-tips__card">
-            <div class="health-tips__icon">{tip.icon}</div>
-            <div class="health-tips__season">{tip.season}</div>
-            <h3 class="health-tips__card-title">{tip.title}</h3>
-            <p class="health-tips__card-desc">{tip.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <section class="estimator" id="kalkulator">
     <div class="estimator__inner">
       <div class="estimator__header">
@@ -328,17 +303,6 @@ const healthTips = [
   .process__step-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
   .process__connector { display: none; }
 
-  .health-tips { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
-  .health-tips__header { margin-bottom: 48px; }
-  .health-tips__title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; color: var(--text); }
-  .health-tips__sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; }
-  .health-tips__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-  .health-tips__card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; transition: border-color 0.25s ease, transform 0.25s ease; }
-  .health-tips__card:hover { border-color: color-mix(in srgb, var(--accent) 35%, transparent); transform: translateY(-3px); }
-  .health-tips__icon { font-size: 2rem; margin-bottom: 12px; line-height: 1; }
-  .health-tips__season { font-family: var(--font-heading); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-  .health-tips__card-title { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-  .health-tips__card-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
 
   .showcase { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
   .showcase__header { margin-bottom: 48px; }
@@ -405,7 +369,6 @@ const healthTips = [
 
   @media (max-width: 1024px) {
     .process__steps { grid-template-columns: repeat(2, 1fr); }
-    .health-tips__grid { grid-template-columns: repeat(2, 1fr); }
     .services-tabs__nav { gap: 6px; }
     .services-tabs__tab { font-size: 0.75rem; padding: 8px 14px; }
   }
@@ -416,8 +379,6 @@ const healthTips = [
     .trust-bar__item { font-size: 0.75rem; }
     .process { padding: 60px 24px; }
     .process__steps { grid-template-columns: 1fr; gap: 16px; }
-    .health-tips { padding: 60px 24px; }
-    .health-tips__grid { grid-template-columns: 1fr; gap: 16px; }
     .showcase { padding: 60px 24px; }
     .showcase__grid { grid-template-columns: 1fr; height: auto; }
     .showcase__item--large { grid-row: auto; }
@@ -448,7 +409,7 @@ const healthTips = [
       if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
     });
   }, { threshold: 0.15 });
-  document.querySelectorAll('.anim-on-scroll, .process__step, .health-tips__card').forEach(el => {
+  document.querySelectorAll('.anim-on-scroll, .process__step').forEach(el => {
     el.classList.add('anim-on-scroll');
     observer.observe(el);
   });
