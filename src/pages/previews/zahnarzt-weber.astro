@@ -46,7 +46,7 @@ const healthTips = [
 ];
 ---
 
-<PreviewLayout profile={zahnarztProfile} prospect={prospect}>
+<PreviewLayout profile={{...zahnarztProfile, colorScheme: {...zahnarztProfile.colorScheme, accent: '#059669', accentHover: '#047857', bg: '#F7FDFB', bgEl: '#ECFDF5', surface: '#D1FAE5', border: '#6EE7B7', muted: '#065F46', dim: '#059669'}}} prospect={prospect}>
   <PreviewNav prospectName={prospect.name} ctaText="Termin vereinbaren" ctaHref="#kontakt" />
 
   <header class="hero-full" id="hero">
