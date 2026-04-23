@@ -4,6 +4,7 @@ import { zahnarztAesthetikProfile } from '../../templates/config/zahnarzt-themes
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
 import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
+import ZahnarztAnxiety from '../../templates/sections/zahnarzt/ZahnarztAnxiety.astro';
 import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
 import ZahnarztBeforeAfter from '../../templates/sections/zahnarzt/ZahnarztBeforeAfter.astro';
 import ZahnarztTeam from '../../templates/sections/zahnarzt/ZahnarztTeam.astro';
@@ -56,23 +57,55 @@ const prospect: ProspectData = {
     stats={prospect.stats}
   />
 
+  <div class="zh-trust-bar" role="list" aria-label="Qualitätsmerkmale">
+    <div class="zh-trust-bar__inner">
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        <span>Digital Smile Design</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>Schweizer Titan-Implantate</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+        </svg>
+        <span>Kostenvoranschlag in 24h</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <span>10 Jahre Garantie</span>
+      </div>
+    </div>
+  </div>
+
   <ZahnarztServices
     title="Unsere Premium-Leistungen"
     subtitle="Ästhetische Perfektion und Implantologie auf höchstem Niveau — für Ihr Traumlächeln."
     services={prospect.services}
   />
 
-  <ZahnarztTeam
-    name="Dr. med. dent. Klein"
-    title="Spezialist für Implantologie & Ästhetische Zahnmedizin"
-    bio="Spezialist für Implantologie und ästhetische Zahnheilkunde. Seit 15 Jahren in München-Schwabing. »Jedes Lächeln ist ein Unikat. Mein Anspruch ist, dass Sie Ihr Ergebnis nicht nur sehen — sondern spüren.«"
-    imageSrc="/preview-images/dr-klein-zahnarzt/gallery-1.jpg"
-    qualifications={[
-      'Studium an der LMU München',
-      'Spezialisierung Implantologie (DGI)',
-      'Zertifizierter Invisalign-Behandler',
-      'Digital Smile Design Practitioner',
+  <ZahnarztAnxiety
+    title="Große Behandlungen muss niemand fürchten"
+    quote="In 15 Jahren Implantologie habe ich eines gelernt: Die meisten Bedenken lösen sich, wenn wir gemeinsam am Bildschirm durch die 3D-Planung gehen. Dann ist das Unbekannte plötzlich sehr konkret."
+    quoteAuthor="Dr. med. dent. Klein"
+    trustPoints={[
+      { icon: 'shield', title: '3D-Visualisierung vor dem Eingriff', desc: 'Sie sehen am Bildschirm genau, wo Implantat oder Veneer positioniert wird — noch vor dem ersten Schritt.' },
+      { icon: 'heart', title: 'Sedierung auf Wunsch', desc: 'Dämmerschlaf oder Lachgas — für Patienten, die lieber entspannt schlafen, als jeden Schritt zu verfolgen.' },
+      { icon: 'check', title: 'Lokale Betäubung reicht meist', desc: 'Über 3.000 Implantate gesetzt. Fast immer unter lokaler Betäubung. Schmerzen: minimal bis keine.' },
+      { icon: 'star', title: 'Schriftlicher Ablaufplan', desc: 'Sie bekommen alles schwarz auf weiß — Ablauf, Kosten, Zeitplan. Keine offenen Fragen.' },
     ]}
+    cta={{ text: 'Erstberatung vereinbaren', href: '#kontakt' }}
   />
 
   <ZahnarztTimeline
@@ -95,11 +128,19 @@ const prospect: ProspectData = {
     ]}
   />
 
-  <ZahnarztCostCalc
-    title="Investition in Ihr Lächeln"
-    subtitle="Premium-Qualität hat ihren Wert. Unser Rechner zeigt Ihnen transparent, welche Investition für Ihr Wunschergebnis nötig ist."
-    ctaText="Persönliche Beratung mit Dr. Klein — Smile-Design-Analyse buchen"
-    ctaHref="#kontakt"
+  <ZahnarztTeam
+    name="Dr. med. dent. Klein"
+    title="Spezialist für Implantologie & Ästhetische Zahnmedizin, München-Schwabing"
+    bio="Spezialist für Implantologie und ästhetische Zahnheilkunde. Seit 15 Jahren in München-Schwabing. Mein Anspruch: Jedes Lächeln ist ein Unikat. Das Ergebnis soll nicht nur gut aussehen — Sie sollen es spüren."
+    imageSrc="/preview-images/dr-klein-zahnarzt/gallery-1.jpg"
+    qualifications={[
+      'Approbierter Zahnarzt (LMU München)',
+      'Spezialisierung Implantologie (DGI)',
+      'Zertifizierter Invisalign Diamond Provider',
+      'Digital Smile Design Practitioner (DSD)',
+      'Mitglied der Deutschen Gesellschaft für Ästhetische Zahnmedizin',
+    ]}
+    cta={{ text: 'Erstberatung mit Dr. Klein — Smile-Design-Analyse buchen', href: '#kontakt' }}
   />
 
   <PreviewTestimonials
@@ -109,6 +150,13 @@ const prospect: ProspectData = {
       { text: 'Die Implantat-Beratung war absolut professionell. Dr. Klein hat sich Zeit genommen, alle Fragen zu beantworten. Das Ergebnis ist perfekt.', author: 'Florian K.', role: 'Implantat-Patient' },
       { text: 'Endlich eine Praxis, die Ästhetik ernst nimmt. Das Smile Design vorab zu sehen war beeindruckend — genau so ist es geworden.', author: 'Nadine S.', role: 'Patientin' },
     ]}
+  />
+
+  <ZahnarztCostCalc
+    title="Investition in Ihr Lächeln"
+    subtitle="Premium-Qualität hat ihren Wert. Unser Rechner zeigt Ihnen transparent, welche Investition für Ihr Wunschergebnis nötig ist."
+    ctaText="Persönliche Beratung mit Dr. Klein — Smile-Design-Analyse buchen"
+    ctaHref="#kontakt"
   />
 
   <PreviewCTA
@@ -127,3 +175,76 @@ const prospect: ProspectData = {
     year={2025}
   />
 </PreviewLayout>
+
+<style>
+  .zh-trust-bar {
+    background: linear-gradient(
+      to bottom,
+      var(--bg-deep, #0d1f1c),
+      color-mix(in srgb, var(--accent, #0E8A7B) 4%, var(--bg-deep, #0d1f1c))
+    );
+    border-bottom: 1px solid rgba(14, 138, 123, 0.15);
+  }
+
+  .zh-trust-bar__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 20px 48px;
+    flex-wrap: wrap;
+  }
+
+  .zh-trust-bar__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body, sans-serif);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted, #8aafa5);
+    white-space: nowrap;
+  }
+
+  .zh-trust-bar__item svg {
+    color: var(--accent, #0E8A7B);
+    flex-shrink: 0;
+  }
+
+  .zh-trust-bar__divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(14, 138, 123, 0.2);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .zh-trust-bar__inner {
+      gap: 16px;
+      padding: 16px 24px;
+    }
+
+    .zh-trust-bar__divider {
+      display: none;
+    }
+
+    .zh-trust-bar__item {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .zh-trust-bar__inner {
+      justify-content: flex-start;
+      gap: 12px;
+    }
+
+    .zh-trust-bar__item {
+      flex: 1 1 calc(50% - 6px);
+      min-width: 0;
+      white-space: normal;
+    }
+  }
+</style>

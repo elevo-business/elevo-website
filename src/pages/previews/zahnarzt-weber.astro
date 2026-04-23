@@ -4,8 +4,10 @@ import { zahnarztFamilieProfile } from '../../templates/config/zahnarzt-themes';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
 import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
+import ZahnarztAnxiety from '../../templates/sections/zahnarzt/ZahnarztAnxiety.astro';
 import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
 import ZahnarztBeforeAfter from '../../templates/sections/zahnarzt/ZahnarztBeforeAfter.astro';
+import ZahnarztTeam from '../../templates/sections/zahnarzt/ZahnarztTeam.astro';
 import ZahnarztCostCalc from '../../templates/sections/zahnarzt/ZahnarztCostCalc.astro';
 import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
 import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
@@ -54,10 +56,55 @@ const prospect: ProspectData = {
     stats={prospect.stats}
   />
 
+  <div class="zh-trust-bar" role="list" aria-label="Qualitätsmerkmale">
+    <div class="zh-trust-bar__inner">
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <span>Familien seit 2001 willkommen</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        <span>Kindgerechte Atmosphäre</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>Alle Kassen & Privat</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        <span>4,8★ Google Stuttgart</span>
+      </div>
+    </div>
+  </div>
+
   <ZahnarztServices
     title="Für Ihre ganze Familie"
     subtitle="Ob Klein oder Groß — wir haben für jedes Alter die passende Behandlung."
     services={prospect.services}
+  />
+
+  <ZahnarztAnxiety
+    title="Wir nehmen die Angst vor dem Zahnarzt ernst"
+    quote="Ich sage meinen Patienten immer: Kein Druck, kein Zeitlimit, kein Instrument ohne Ihr OK. Das gilt für Kinder genauso wie für die Ältesten in unserer Praxis."
+    quoteAuthor="Dr. Petra Weber"
+    trustPoints={[
+      { icon: 'heart', title: 'Spielecke & familiäre Atmosphäre', desc: 'Kein klinisches Weiß, kein steriler Empfang. Wir haben eine Spielecke, Getränke und Zeit.' },
+      { icon: 'smile', title: 'Generationenübergreifende Erfahrung', desc: '25 Jahre mit Familien — wir wissen, was Kinder brauchen und was Senioren schätzen.' },
+      { icon: 'shield', title: 'Sanfte Betäubung für alle', desc: 'Oberflächenbetäubung, computergesteuerte Anästhesie — jede Altersgruppe behandeln wir schonend.' },
+      { icon: 'check', title: 'Stopp-Signal gilt immer', desc: 'Ein Zeichen reicht. Wir hören auf. Sofort. Das gilt für Kinder wie für Erwachsene.' },
+    ]}
+    cta={{ text: 'Familientermin anfragen', href: '#kontakt' }}
   />
 
   <ZahnarztTimeline
@@ -80,7 +127,19 @@ const prospect: ProspectData = {
     ]}
   />
 
-  <ZahnarztCostCalc />
+  <ZahnarztTeam
+    name="Dr. Petra Weber"
+    title="Zahnärztin & Familienspezialistin, Stuttgart-Mitte"
+    bio="Seit über 25 Jahren begleite ich Familien durch alle Phasen des Lebens — vom ersten Milchzahn bis zum gepflegten Seniorengebiss. Was mich antreibt: Vertrauen. Denn wer unserem Team vertraut, kommt gerne wieder."
+    qualifications={[
+      'Approbierte Zahnärztin (Universität Tübingen)',
+      'Fortbildungszertifikat Kinderzahnheilkunde (DGKiZa)',
+      'Geriatrie-Fortbildung (Seniorenbehandlung)',
+      'Prophylaxe-Zertifikat für alle Altersgruppen',
+      'Notfallmedizin & Erste Hilfe aktualisiert',
+    ]}
+    cta={{ text: 'Team kennenlernen — Familientermin buchen', href: '#kontakt' }}
+  />
 
   <PreviewTestimonials
     title="Familien über Praxis Weber"
@@ -90,6 +149,8 @@ const prospect: ProspectData = {
       { text: 'Seit Jahren unsere Praxis des Vertrauens. Immer zuvorkommend, kompetent und menschlich.', author: 'Heinrich G.', role: 'Patient seit 12 Jahren' },
     ]}
   />
+
+  <ZahnarztCostCalc />
 
   <PreviewCTA
     title="Anrufen und Familientermin buchen"
@@ -107,3 +168,76 @@ const prospect: ProspectData = {
     year={2025}
   />
 </PreviewLayout>
+
+<style>
+  .zh-trust-bar {
+    background: linear-gradient(
+      to bottom,
+      var(--bg-deep, #0d1f1c),
+      color-mix(in srgb, var(--accent, #0E8A7B) 4%, var(--bg-deep, #0d1f1c))
+    );
+    border-bottom: 1px solid rgba(14, 138, 123, 0.15);
+  }
+
+  .zh-trust-bar__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 20px 48px;
+    flex-wrap: wrap;
+  }
+
+  .zh-trust-bar__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body, sans-serif);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted, #8aafa5);
+    white-space: nowrap;
+  }
+
+  .zh-trust-bar__item svg {
+    color: var(--accent, #0E8A7B);
+    flex-shrink: 0;
+  }
+
+  .zh-trust-bar__divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(14, 138, 123, 0.2);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .zh-trust-bar__inner {
+      gap: 16px;
+      padding: 16px 24px;
+    }
+
+    .zh-trust-bar__divider {
+      display: none;
+    }
+
+    .zh-trust-bar__item {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .zh-trust-bar__inner {
+      justify-content: flex-start;
+      gap: 12px;
+    }
+
+    .zh-trust-bar__item {
+      flex: 1 1 calc(50% - 6px);
+      min-width: 0;
+      white-space: normal;
+    }
+  }
+</style>

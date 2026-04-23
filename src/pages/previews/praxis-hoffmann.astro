@@ -4,8 +4,10 @@ import { zahnarztAesthetikProfile } from '../../templates/config/zahnarzt-themes
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
 import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
+import ZahnarztAnxiety from '../../templates/sections/zahnarzt/ZahnarztAnxiety.astro';
 import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
 import ZahnarztBeforeAfter from '../../templates/sections/zahnarzt/ZahnarztBeforeAfter.astro';
+import ZahnarztTeam from '../../templates/sections/zahnarzt/ZahnarztTeam.astro';
 import ZahnarztCostCalc from '../../templates/sections/zahnarzt/ZahnarztCostCalc.astro';
 import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
 import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
@@ -54,10 +56,55 @@ const prospect: ProspectData = {
     stats={prospect.stats}
   />
 
+  <div class="zh-trust-bar" role="list" aria-label="Qualitätsmerkmale">
+    <div class="zh-trust-bar__inner">
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        <span>Digital Smile Design</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+        </svg>
+        <span>Termin in 48h</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>Premium Keramikmaterialien</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <span>4,9★ Google Stuttgart</span>
+      </div>
+    </div>
+  </div>
+
   <ZahnarztServices
     title="Unsere Ästhetik-Leistungen"
     subtitle="Von Bleaching bis Invisalign — wir erschaffen Lächeln, die begeistern."
     services={prospect.services}
+  />
+
+  <ZahnarztAnxiety
+    title="Ihr Wunschlächeln verdient kein schlechtes Gefühl"
+    quote="Ästhetische Zahnmedizin beginnt mit einem offenen Gespräch — nicht mit dem Bohrer. Wir zeigen Ihnen erst digital, was möglich ist. Dann entscheiden Sie in Ruhe."
+    quoteAuthor="Dr. Maria Hoffmann"
+    trustPoints={[
+      { icon: 'smile', title: 'Smile-Simulation vorab', desc: 'Sie sehen Ihr neues Lächeln am Bildschirm — bevor irgendetwas behandelt wird. Keine bösen Überraschungen.' },
+      { icon: 'heart', title: 'Keine Überzeugungsarbeit', desc: 'Wir beraten, erklären und empfehlen. Den letzten Schritt machen Sie. Immer.' },
+      { icon: 'shield', title: 'Schonende Methoden', desc: 'Minimalinvasive Techniken, moderne Betäubung — ästhetische Behandlungen müssen nicht wehtun.' },
+      { icon: 'star', title: 'Transparente Kosten', desc: 'Schriftlicher Kostenplan vor Behandlungsbeginn. Kein Cent mehr als besprochen.' },
+    ]}
+    cta={{ text: 'Kostenlose Smile-Beratung buchen', href: '#kontakt' }}
   />
 
   <ZahnarztTimeline
@@ -80,7 +127,19 @@ const prospect: ProspectData = {
     ]}
   />
 
-  <ZahnarztCostCalc />
+  <ZahnarztTeam
+    name="Dr. Maria Hoffmann"
+    title="Spezialistin für Ästhetische Zahnmedizin, Stuttgart"
+    bio="Schöne Zähne sind keine Nebensächlichkeit — sie beeinflussen, wie wir uns fühlen und wie wir auf andere wirken. Ich sehe meine Arbeit als eine Verbindung aus Handwerk, Ästhetik und echtem Einfühlungsvermögen. Jedes Lächeln ist ein Unikat."
+    qualifications={[
+      'Approbierte Zahnärztin (LMU München)',
+      'Digital Smile Design Practitioner (DSD)',
+      'Zertifizierte Invisalign-Behandlerin',
+      'Fortbildungszertifikat Veneers & Ästhetische Zahnheilkunde',
+      'Mitglied der Deutschen Gesellschaft für Zahnerhaltung',
+    ]}
+    cta={{ text: 'Team kennenlernen — Smile-Beratung buchen', href: '#kontakt' }}
+  />
 
   <PreviewTestimonials
     title="Was Patienten über uns sagen"
@@ -90,6 +149,8 @@ const prospect: ProspectData = {
       { text: 'Sehr kompetentes Team mit echter Leidenschaft für schöne Zähne. Mein Lächeln hat sich komplett verändert.', author: 'Annika R.', role: 'Patientin' },
     ]}
   />
+
+  <ZahnarztCostCalc />
 
   <PreviewCTA
     title="Ihr Traumlächeln wartet"
@@ -107,3 +168,76 @@ const prospect: ProspectData = {
     year={2025}
   />
 </PreviewLayout>
+
+<style>
+  .zh-trust-bar {
+    background: linear-gradient(
+      to bottom,
+      var(--bg-deep, #0d1f1c),
+      color-mix(in srgb, var(--accent, #0E8A7B) 4%, var(--bg-deep, #0d1f1c))
+    );
+    border-bottom: 1px solid rgba(14, 138, 123, 0.15);
+  }
+
+  .zh-trust-bar__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 20px 48px;
+    flex-wrap: wrap;
+  }
+
+  .zh-trust-bar__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body, sans-serif);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted, #8aafa5);
+    white-space: nowrap;
+  }
+
+  .zh-trust-bar__item svg {
+    color: var(--accent, #0E8A7B);
+    flex-shrink: 0;
+  }
+
+  .zh-trust-bar__divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(14, 138, 123, 0.2);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .zh-trust-bar__inner {
+      gap: 16px;
+      padding: 16px 24px;
+    }
+
+    .zh-trust-bar__divider {
+      display: none;
+    }
+
+    .zh-trust-bar__item {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .zh-trust-bar__inner {
+      justify-content: flex-start;
+      gap: 12px;
+    }
+
+    .zh-trust-bar__item {
+      flex: 1 1 calc(50% - 6px);
+      min-width: 0;
+      white-space: normal;
+    }
+  }
+</style>

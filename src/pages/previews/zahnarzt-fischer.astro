@@ -3,10 +3,11 @@ import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
 import { zahnarztAngstProfile } from '../../templates/config/zahnarzt-themes';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
-import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
 import ZahnarztAnxiety from '../../templates/sections/zahnarzt/ZahnarztAnxiety.astro';
+import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
 import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
 import ZahnarztBeforeAfter from '../../templates/sections/zahnarzt/ZahnarztBeforeAfter.astro';
+import ZahnarztTeam from '../../templates/sections/zahnarzt/ZahnarztTeam.astro';
 import ZahnarztCostCalc from '../../templates/sections/zahnarzt/ZahnarztCostCalc.astro';
 import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
 import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
@@ -55,6 +56,38 @@ const prospect: ProspectData = {
     stats={prospect.stats}
   />
 
+  <div class="zh-trust-bar" role="list" aria-label="Qualitätsmerkmale">
+    <div class="zh-trust-bar__inner">
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        <span>Kein Stress, kein Druck</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>Stopp-Signal gilt sofort</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <span>Sanfte Betäubung & Lachgas</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        <span>98% Empfehlungsrate</span>
+      </div>
+    </div>
+  </div>
+
   <ZahnarztAnxiety
     id="angst"
     title="Sie haben Angst vorm Zahnarzt? Damit sind Sie nicht allein."
@@ -94,7 +127,19 @@ const prospect: ProspectData = {
     ]}
   />
 
-  <ZahnarztCostCalc />
+  <ZahnarztTeam
+    name="Dr. Christian Fischer"
+    title="Zahnarzt & Angstpatienten-Spezialist, Frankfurt"
+    bio="Ich weiß, was Zahnarztangst bedeutet — denn ich höre sie jeden Tag. Und ich weiß auch, was dagegen hilft: Geduld, Respekt und eine Praxis, die Ihren Rhythmus akzeptiert. Nicht meinen. 2.000 Angstpatienten haben diesen Weg mit uns gemacht."
+    qualifications={[
+      'Approbierter Zahnarzt (Goethe-Universität Frankfurt)',
+      'Fortbildung Hypnose & Entspannungstechniken',
+      'Zertifiziert in Lachgas-Sedierung (N₂O)',
+      'Angstbehandlung-Zertifikat (DGAZ)',
+      'Mitglied der Deutschen Gesellschaft für Angst beim Zahnarzt',
+    ]}
+    cta={{ text: 'Kostenloses Kennenlerngespräch buchen', href: '#kontakt' }}
+  />
 
   <PreviewTestimonials
     title="Was unsere Patienten sagen"
@@ -104,6 +149,8 @@ const prospect: ProspectData = {
       { text: 'Die Lachgasbehandlung war ein Gamechanger für mich. Endlich schmerzfrei und entspannt beim Zahnarzt.', author: 'Petra K.', role: 'Patientin' },
     ]}
   />
+
+  <ZahnarztCostCalc />
 
   <PreviewCTA
     title="Bereit für den ersten Schritt? Wir sind es auch."
@@ -121,3 +168,76 @@ const prospect: ProspectData = {
     year={2025}
   />
 </PreviewLayout>
+
+<style>
+  .zh-trust-bar {
+    background: linear-gradient(
+      to bottom,
+      var(--bg-deep, #0d1f1c),
+      color-mix(in srgb, var(--accent, #0E8A7B) 4%, var(--bg-deep, #0d1f1c))
+    );
+    border-bottom: 1px solid rgba(14, 138, 123, 0.15);
+  }
+
+  .zh-trust-bar__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 20px 48px;
+    flex-wrap: wrap;
+  }
+
+  .zh-trust-bar__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body, sans-serif);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted, #8aafa5);
+    white-space: nowrap;
+  }
+
+  .zh-trust-bar__item svg {
+    color: var(--accent, #0E8A7B);
+    flex-shrink: 0;
+  }
+
+  .zh-trust-bar__divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(14, 138, 123, 0.2);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .zh-trust-bar__inner {
+      gap: 16px;
+      padding: 16px 24px;
+    }
+
+    .zh-trust-bar__divider {
+      display: none;
+    }
+
+    .zh-trust-bar__item {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .zh-trust-bar__inner {
+      justify-content: flex-start;
+      gap: 12px;
+    }
+
+    .zh-trust-bar__item {
+      flex: 1 1 calc(50% - 6px);
+      min-width: 0;
+      white-space: normal;
+    }
+  }
+</style>
