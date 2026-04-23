@@ -171,3 +171,21 @@ const prospect: ProspectData = {
 | Handwerk (Maler, SHK) | `handwerkProfile` | Blau #2563EB |
 | Makler / Immobilien | `maklerProfile` | Gold #C9A84C |
 | Küche / Interior | `kuechenProfile` | Amber #D97706 |
+
+## Skills
+
+### /brand-audit
+Automatisierte ELEVO Brand-CI Prüfung gegen Corporate Identity Regeln.
+
+Beim Aufruf von `/brand-audit` prüft der Skill:
+- **Farben**: Hardcoded Hex-Werte ausserhalb CI? CSS Custom Properties korrekt genutzt?
+- **Fonts**: Self-hosted? Kein Google CDN? Sora/Outfit vorhanden?
+- **Sprache & Ton**: Keine externen Tool-Namen, "Wir"-Form, kein englischer Placeholder-Text
+
+Implementierung: `.claude/skills/brand-audit/`
+Referenz: `.claude/skills/brand-audit/resources/brand-reference.md`
+
+### /deploy-check
+Pre-Deployment Checkliste — Build, SEO, Assets, Brand-CI vor jedem Deployment.
+
+Implementierung: `.claude/skills/deploy-check/`

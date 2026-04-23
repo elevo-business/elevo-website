@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <radialGradient id="node-glow-center" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="node-glow-a" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bg-grad" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur-sm">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <style>
+      .node-pulse-center {
+        animation: pulse-center 3s ease-in-out infinite;
+        transform-origin: 400px 300px;
+      }
+      .node-pulse-a {
+        animation: pulse-node 4s ease-in-out infinite 0.5s;
+        transform-origin: 190px 150px;
+      }
+      .node-pulse-c {
+        animation: pulse-node 4.5s ease-in-out infinite 1.2s;
+        transform-origin: 630px 340px;
+      }
+      .node-pulse-d {
+        animation: pulse-node 3.8s ease-in-out infinite 0.8s;
+        transform-origin: 210px 430px;
+      }
+      .edge-flow {
+        stroke-dasharray: 8 16;
+        animation: flow-dash 4s linear infinite;
+      }
+      .edge-flow-reverse {
+        stroke-dasharray: 8 16;
+        animation: flow-dash-reverse 5s linear infinite;
+      }
+      @keyframes pulse-center {
+        0%, 100% { opacity: 0.8; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.08); }
+      }
+      @keyframes pulse-node {
+        0%, 100% { opacity: 0.6; transform: scale(1); }
+        50% { opacity: 0.9; transform: scale(1.12); }
+      }
+      @keyframes flow-dash {
+        to { stroke-dashoffset: -48; }
+      }
+      @keyframes flow-dash-reverse {
+        to { stroke-dashoffset: 48; }
+      }
+    </style>
+  </defs>
+
+  <!-- Background ambient glow -->
+  <ellipse cx="400" cy="270" rx="320" ry="240" fill="url(#bg-grad)"/>
+
+  <!-- Grid dots pattern (very subtle) -->
+  <g opacity="0.08">
+    <pattern id="dots" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="1" fill="#3B82F6"/>
+    </pattern>
+    <rect width="800" height="600" fill="url(#dots)"/>
+  </g>
+
+  <!-- === CONNECTION LINES (static, background layer) === -->
+
+  <!-- Center to Node A -->
+  <line x1="400" y1="300" x2="190" y2="150" stroke="#3B82F6" stroke-opacity="0.18" stroke-width="1.5"/>
+  <!-- Center to Node B -->
+  <line x1="400" y1="300" x2="595" y2="115" stroke="#3B82F6" stroke-opacity="0.14" stroke-width="1.2"/>
+  <!-- Center to Node C -->
+  <line x1="400" y1="300" x2="630" y2="340" stroke="#3B82F6" stroke-opacity="0.2" stroke-width="1.5"/>
+  <!-- Center to Node D -->
+  <line x1="400" y1="300" x2="210" y2="430" stroke="#3B82F6" stroke-opacity="0.16" stroke-width="1.2"/>
+  <!-- Center to Node H -->
+  <line x1="400" y1="300" x2="360" y2="120" stroke="#3B82F6" stroke-opacity="0.12" stroke-width="1"/>
+  <!-- Center to Node I -->
+  <line x1="400" y1="300" x2="520" y2="195" stroke="#3B82F6" stroke-opacity="0.16" stroke-width="1.2"/>
+  <!-- Node A to F -->
+  <line x1="190" y1="150" x2="85" y2="295" stroke="#3B82F6" stroke-opacity="0.1" stroke-width="1"/>
+  <!-- Node A to H -->
+  <line x1="190" y1="150" x2="360" y2="120" stroke="#3B82F6" stroke-opacity="0.1" stroke-width="1"/>
+  <!-- Node B to G -->
+  <line x1="595" y1="115" x2="690" y2="220" stroke="#3B82F6" stroke-opacity="0.1" stroke-width="1"/>
+  <!-- Node B to I -->
+  <line x1="595" y1="115" x2="520" y2="195" stroke="#3B82F6" stroke-opacity="0.12" stroke-width="1"/>
+  <!-- Node C to G -->
+  <line x1="630" y1="340" x2="690" y2="220" stroke="#3B82F6" stroke-opacity="0.1" stroke-width="1"/>
+  <!-- Node C to E -->
+  <line x1="630" y1="340" x2="470" y2="490" stroke="#3B82F6" stroke-opacity="0.1" stroke-width="1"/>
+  <!-- Node D to E -->
+  <line x1="210" y1="430" x2="470" y2="490" stroke="#3B82F6" stroke-opacity="0.1" stroke-width="1"/>
+  <!-- Node D to F -->
+  <line x1="210" y1="430" x2="85" y2="295" stroke="#3B82F6" stroke-opacity="0.08" stroke-width="1"/>
+  <!-- Node E to Center -->
+  <line x1="470" y1="490" x2="400" y2="300" stroke="#3B82F6" stroke-opacity="0.1" stroke-width="1"/>
+
+  <!-- === ANIMATED FLOW LINES (selected edges show packet movement) === -->
+
+  <!-- Flow: A → Center -->
+  <line x1="190" y1="150" x2="400" y2="300" stroke="#3B82F6" stroke-opacity="0.45" stroke-width="1.5" class="edge-flow"/>
+  <!-- Flow: Center → C -->
+  <line x1="400" y1="300" x2="630" y2="340" stroke="#60A5FA" stroke-opacity="0.4" stroke-width="1.5" class="edge-flow-reverse"/>
+  <!-- Flow: I → Center -->
+  <line x1="520" y1="195" x2="400" y2="300" stroke="#3B82F6" stroke-opacity="0.35" stroke-width="1" class="edge-flow"/>
+
+  <!-- === GLOW HALOS (blurred, behind nodes) === -->
+
+  <!-- Center glow -->
+  <circle cx="400" cy="300" r="60" fill="url(#node-glow-center)" filter="url(#blur-sm)"/>
+
+  <!-- Node A glow -->
+  <circle cx="190" cy="150" r="36" fill="url(#node-glow-a)" filter="url(#blur-sm)"/>
+
+  <!-- Node C glow -->
+  <circle cx="630" cy="340" r="30" fill="url(#node-glow-a)" filter="url(#blur-sm)"/>
+
+  <!-- === NODES === -->
+
+  <!-- Node F (tiny) -->
+  <circle cx="85" cy="295" r="4" fill="#3B82F6" fill-opacity="0.3" stroke="#3B82F6" stroke-opacity="0.4" stroke-width="1"/>
+
+  <!-- Node G (tiny) -->
+  <circle cx="690" cy="220" r="4" fill="#3B82F6" fill-opacity="0.3" stroke="#3B82F6" stroke-opacity="0.4" stroke-width="1"/>
+
+  <!-- Node H (small) -->
+  <circle cx="360" cy="120" r="7" fill="#3B82F6" fill-opacity="0.25" stroke="#3B82F6" stroke-opacity="0.5" stroke-width="1.2"/>
+  <circle cx="360" cy="120" r="3" fill="#3B82F6" fill-opacity="0.7"/>
+
+  <!-- Node E (small) -->
+  <circle cx="470" cy="490" r="7" fill="#3B82F6" fill-opacity="0.25" stroke="#3B82F6" stroke-opacity="0.5" stroke-width="1.2"/>
+  <circle cx="470" cy="490" r="3" fill="#3B82F6" fill-opacity="0.7"/>
+
+  <!-- Node B (small-medium) -->
+  <circle cx="595" cy="115" r="9" fill="#3B82F6" fill-opacity="0.2" stroke="#3B82F6" stroke-opacity="0.5" stroke-width="1.5"/>
+  <circle cx="595" cy="115" r="4" fill="#3B82F6" fill-opacity="0.75"/>
+
+  <!-- Node I (small-medium) -->
+  <circle cx="520" cy="195" r="9" fill="#3B82F6" fill-opacity="0.2" stroke="#3B82F6" stroke-opacity="0.5" stroke-width="1.5"/>
+  <circle cx="520" cy="195" r="4" fill="#3B82F6" fill-opacity="0.75"/>
+
+  <!-- Node D (medium, animated) -->
+  <circle cx="210" cy="430" r="13" fill="#3B82F6" fill-opacity="0.12" stroke="#3B82F6" stroke-opacity="0.4" stroke-width="1.5" class="node-pulse-d"/>
+  <circle cx="210" cy="430" r="7" fill="#3B82F6" fill-opacity="0.5" stroke="#3B82F6" stroke-opacity="0.6" stroke-width="1"/>
+  <circle cx="210" cy="430" r="3" fill="#3B82F6"/>
+
+  <!-- Node C (medium-large, animated) -->
+  <circle cx="630" cy="340" r="16" fill="#3B82F6" fill-opacity="0.1" stroke="#3B82F6" stroke-opacity="0.35" stroke-width="1.5" class="node-pulse-c"/>
+  <circle cx="630" cy="340" r="9" fill="#3B82F6" fill-opacity="0.45" stroke="#3B82F6" stroke-opacity="0.65" stroke-width="1"/>
+  <circle cx="630" cy="340" r="4" fill="#3B82F6"/>
+
+  <!-- Node A (large, animated) -->
+  <circle cx="190" cy="150" r="20" fill="#3B82F6" fill-opacity="0.1" stroke="#3B82F6" stroke-opacity="0.35" stroke-width="1.5" class="node-pulse-a"/>
+  <circle cx="190" cy="150" r="11" fill="#3B82F6" fill-opacity="0.4" stroke="#3B82F6" stroke-opacity="0.6" stroke-width="1.2"/>
+  <circle cx="190" cy="150" r="5" fill="#3B82F6"/>
+
+  <!-- Center node (largest, animated) — represents ELEVO as the hub -->
+  <circle cx="400" cy="300" r="32" fill="#3B82F6" fill-opacity="0.06" stroke="#3B82F6" stroke-opacity="0.2" stroke-width="1.5" class="node-pulse-center"/>
+  <circle cx="400" cy="300" r="20" fill="#3B82F6" fill-opacity="0.15" stroke="#3B82F6" stroke-opacity="0.5" stroke-width="1.5"/>
+  <circle cx="400" cy="300" r="10" fill="#3B82F6" fill-opacity="0.7" stroke="#3B82F6" stroke-opacity="0.9" stroke-width="1.5"/>
+  <circle cx="400" cy="300" r="4" fill="#ffffff" fill-opacity="0.9"/>
+
+</svg>
