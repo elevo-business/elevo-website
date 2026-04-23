@@ -1,0 +1,483 @@
+---
+import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
+import { zahnarztProfile } from '../../templates/config/zahnarzt';
+import PreviewNav from '../../templates/sections/PreviewNav.astro';
+import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
+import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
+import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
+import type { ProspectData } from '../../templates/config/types';
+
+const prospect: ProspectData = {
+  name: 'Praxis Lehmann – Implantologie & Prothetik',
+  tagline: 'Implantologie & Hochwertiger Zahnersatz Düsseldorf',
+  location: 'Düsseldorf-Stadtmitte',
+  email: 'info@praxis-lehmann-dus.de',
+  phone: '+49 211 8765432',
+  heroTitle: 'Exzellenter Zahnersatz. <em>Meisterliche Qualität.</em>',
+  heroSubtitle: 'Mit 25 Jahren Erfahrung in Düsseldorf steht Praxis Lehmann für Implantologie und Prothetik auf höchstem Niveau. Über 10.000 zufriedene Patienten vertrauen unserer Expertise und unserem Team.',
+  services: [
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>', title: 'Implantologie', description: 'Modernste Implantate als dauerhafter, natürlich wirkender Zahnersatz — digital geplant, präzise gesetzt und mit langjähriger Erfahrung aus über 5.000 platzierten Implantaten.' },
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>', title: 'Zahnersatz', description: 'Hochwertiger festsitzender und herausnehmbarer Zahnersatz aus premium Materialien — für ein vollständiges, funktionelles und ästhetisches Gebiss, das ein Leben lang hält.' },
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>', title: 'Kronen & Brücken', description: 'Präzisionsgefertigte Keramikkronen und Brücken — zahntechnische Meisterarbeit, die sich harmonisch ins natürliche Gebiss einfügt und höchste Langlebigkeit bietet.' },
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>', title: 'Parodontologie', description: 'Schonende Behandlung von Zahnfleischerkrankungen — gesundes Zahnfleisch ist die unverzichtbare Grundlage für dauerhaft erfolgreiche Implantate und Zahnersatz.' },
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>', title: 'Prophylaxe', description: 'Professionelle Zahnreinigung und individuelle Prophylaxe — der wichtigste Beitrag zum Schutz Ihrer Implantate und Ihres natürlichen Gebisses.' },
+    { icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>', title: 'Bleaching', description: 'Professionelles Zahnaufhellen für ein strahlendes Lächeln — abgestimmt auf Ihren natürlichen Zahnersatz für ein harmonisches Gesamtbild.' },
+  ],
+  stats: [
+    { value: '25+', label: 'Jahre Erfahrung' },
+    { value: '10.000+', label: 'Patienten betreut' },
+    { value: '5', label: 'Zahnärzte im Team' },
+    { value: 'Düsseldorf', label: 'Ihr Standort' },
+  ],
+};
+
+const processSteps = [
+  { num: '01', title: 'Erstbesuch', desc: 'Ausführliche Beratung und umfassende Diagnostik — wir nehmen uns die Zeit, Ihren Befund vollständig zu erfassen und Ihnen alle Optionen transparent darzulegen.', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>' },
+  { num: '02', title: 'Diagnose', desc: 'Digitale 3D-Bildgebung und Knochenanalyse — präzise Grundlage für Ihre individuelle Implantat- und Prothetikplanung auf höchstem Niveau.', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>' },
+  { num: '03', title: 'Behandlungsplan', desc: 'Maßgeschneiderter Behandlungsplan mit vollständiger Kostentransparenz — keine Überraschungen, nur exzellente Ergebnisse nach Plan.', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>' },
+  { num: '04', title: 'Behandlung', desc: 'Meisterliche Präzisionsarbeit mit modernster Technik — Implantate und Zahnersatz auf höchstem Qualitätsniveau, für Ergebnisse die überzeugen.', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>' },
+];
+
+const ratgeberCards = [
+  { thema: 'Implantate', icon: '🦷', title: 'Implantate langfristig pflegen', desc: 'Implantate halten ein Leben lang — wenn sie richtig gepflegt werden. Tägliche Reinigung mit Interdentalbürsten, regelmäßige PZR und Nachsorgekontrollen sind entscheidend.' },
+  { thema: 'Zahnersatz', icon: '💎', title: 'Zahnersatz-Optionen im Überblick', desc: 'Krone, Brücke, Implantat oder herausnehmbarer Zahnersatz — jede Option hat Vor- und Nachteile. Wir beraten Sie ausführlich, welche Lösung für Ihren Befund und Ihr Budget am besten passt.' },
+  { thema: 'Kronen vs. Brücken', icon: '🔬', title: 'Krone oder Brücke — was ist besser?', desc: 'Kronen ersetzen einzelne Zähne, Brücken überbrücken Lücken mithilfe der Nachbarzähne. Implantate sind oft die nachhaltigere Alternative, da sie den Knochen erhalten.' },
+  { thema: 'Nachsorge', icon: '✨', title: 'Implantate nach der Operation', desc: 'Die Einheilphase dauert 3-6 Monate. Weiche Kost, Nikotinverzicht und regelmäßige Kontrollen sichern den Erfolg Ihres Implantats. Wir begleiten Sie durch den gesamten Prozess.' },
+];
+---
+
+<PreviewLayout profile={zahnarztProfile} prospect={prospect}>
+  <PreviewNav prospectName={prospect.name} logo="" ctaText="Termin vereinbaren" ctaHref="#kontakt" />
+
+  <header class="hero-full" id="hero">
+    <div class="hero-full__bg">
+      <img src="https://images.unsplash.com/photo-1593433922543-5c3ee0c7f8a5?w=1920&q=80&fit=crop" alt="Praxis Lehmann Implantologie Düsseldorf" width="1920" height="1080" loading="eager" fetchpriority="high" />
+      <div class="hero-full__overlay"></div>
+    </div>
+    <div class="hero-full__content anim-fade-up">
+      <div class="hero-full__badge">
+        <span class="hero-full__badge-dot"></span>
+        Düsseldorf · Implantologie · Hochwertiger Zahnersatz
+      </div>
+      <h1 class="hero-full__title">Exzellenter Zahnersatz.<br/><span>Meisterliche Qualität.</span></h1>
+      <p class="hero-full__sub">{prospect.heroSubtitle}</p>
+      <div class="hero-full__ctas">
+        <a href="#kontakt" class="hero-full__btn-primary">Termin vereinbaren</a>
+        <a href="#leistungen" class="hero-full__btn-outline">Unsere Leistungen</a>
+      </div>
+    </div>
+    <div class="hero-full__stats">
+      {prospect.stats?.map(s => (
+        <div class="hero-full__stat">
+          <div class="hero-full__stat-val" data-count={s.value}>{s.value}</div>
+          <div class="hero-full__stat-lbl">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </header>
+
+  <section class="trust-bar">
+    <div class="trust-bar__inner">
+      <div class="trust-bar__item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Modernste Technik</span>
+      </div>
+      <div class="trust-bar__divider"></div>
+      <div class="trust-bar__item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span>Angstpatienten willkommen</span>
+      </div>
+      <div class="trust-bar__divider"></div>
+      <div class="trust-bar__item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span>Schmerzarme Behandlung</span>
+      </div>
+      <div class="trust-bar__divider"></div>
+      <div class="trust-bar__item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>5-Sterne-Bewertungen</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-tabs" id="leistungen">
+    <div class="services-tabs__inner">
+      <div class="services-tabs__header">
+        <div class="services-tabs__badge">Unsere Leistungen</div>
+        <h2 class="services-tabs__title">Was können wir <em>für Sie tun?</em></h2>
+        <p class="services-tabs__sub">Von Implantaten über Zahnersatz bis zu Kronen und Brücken — wählen Sie einen Bereich, der Sie interessiert.</p>
+      </div>
+      <div class="services-tabs__nav" role="tablist">
+        {prospect.services.map((s, i) => (
+          <button class={`services-tabs__tab ${i === 0 ? 'is-active' : ''}`} role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-tab={i} type="button">
+            <span class="services-tabs__tab-icon" set:html={s.icon} />
+            <span>{s.title}</span>
+          </button>
+        ))}
+      </div>
+      <div class="services-tabs__panels">
+        {prospect.services.map((s, i) => (
+          <div class={`services-tabs__panel ${i === 0 ? 'is-active' : ''}`} role="tabpanel" data-panel={i}>
+            <div class="services-tabs__panel-icon" set:html={s.icon} />
+            <h3 class="services-tabs__panel-title">{s.title}</h3>
+            <p class="services-tabs__panel-desc">{s.description}</p>
+            <a href="#kontakt" class="services-tabs__panel-cta">Jetzt Termin vereinbaren &rarr;</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="process" id="ablauf">
+    <div class="process__inner">
+      <div class="process__header">
+        <div class="process__badge">So arbeiten wir</div>
+        <h2 class="process__title">Ihr Weg zu <em>exzellentem Zahnersatz</em></h2>
+        <p class="process__sub">Präzise, transparent und auf höchstem Niveau — von der ersten Beratung bis zum perfekten Implantat oder Zahnersatz.</p>
+      </div>
+      <div class="process__steps">
+        {processSteps.map((step, i) => (
+          <div class="process__step anim-on-scroll">
+            <div class="process__step-icon" set:html={step.icon} />
+            <div class="process__step-num">{step.num}</div>
+            <h3 class="process__step-title">{step.title}</h3>
+            <p class="process__step-desc">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="showcase" id="praxis">
+    <div class="showcase__inner">
+      <div class="showcase__header">
+        <div class="showcase__badge">Einblicke</div>
+        <h2 class="showcase__title">Spitzenmedizin in <em>Düsseldorf</em></h2>
+        <p class="showcase__sub">Modernste Technik, höchste Präzision und über 25 Jahre Erfahrung — Implantologie und Prothetik auf dem Niveau einer Universitätsklinik.</p>
+      </div>
+      <div class="showcase__grid showcase__grid--two anim-on-scroll">
+        <div class="showcase__item">
+          <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80&fit=crop" alt="Hochmoderner Behandlungsraum Praxis Lehmann Düsseldorf" loading="lazy" width="800" height="600" />
+          <div class="showcase__caption">
+            <span class="showcase__tag">Technologie</span>
+            <h3>3D-Implantatplanung</h3>
+            <p>Digitale Volumentomographie und computergestützte Implantatplanung für maximale Präzision und Sicherheit.</p>
+          </div>
+        </div>
+        <div class="showcase__item">
+          <img src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?w=800&q=80&fit=crop" alt="Zahnersatz Ergebnisse Praxis Lehmann Düsseldorf" loading="lazy" width="800" height="600" />
+          <div class="showcase__caption">
+            <span class="showcase__tag">Ergebnisse</span>
+            <h3>Meisterliche Prothetik</h3>
+            <p>Über 10.000 zufriedene Patienten und mehr als 5.000 erfolgreich platzierte Implantate sprechen für sich.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <PreviewTestimonials
+    title="Was unsere Patienten sagen"
+    subtitle="Über 10.000 betreute Patienten aus Düsseldorf und der Region vertrauen Praxis Lehmann — lesen Sie ihre Erfahrungen."
+    testimonials={[
+      { text: 'Nach dem Verlust mehrerer Zähne war ich verzweifelt. Praxis Lehmann hat mir ein komplettes Implantatkonzept erstellt. Heute habe ich wieder ein vollständiges, natürlich wirkendes Gebiss — ich bin überglücklich.', author: 'Horst B.', role: 'Implantat-Patient, Düsseldorf', rating: 5 },
+      { text: 'Die Keramikkronen von Praxis Lehmann sind von meinen natürlichen Zähnen nicht zu unterscheiden. Die Beratung war ausführlich, die Behandlung präzise und das Ergebnis übertrifft alles, was ich erwartet hatte.', author: 'Renate S.', role: 'Krone & Zahnersatz, Düsseldorf-Stadtmitte', rating: 5 },
+      { text: 'Schon meine Eltern waren Patienten bei Praxis Lehmann. Das Know-how, die Ausstattung und die Freundlichkeit des Teams sind unübertroffen. Nach meiner Implantatbehandlung weiß ich: besser geht es nicht.', author: 'Michael T.', role: 'Langzeit-Patient, Düsseldorf', rating: 5 },
+    ]}
+  />
+
+  <section class="ratgeber" id="ratgeber">
+    <div class="ratgeber__inner">
+      <div class="ratgeber__header">
+        <h2 class="ratgeber__title">Zahngesundheits-Ratgeber</h2>
+        <p class="ratgeber__sub">Wissenswertes rund um Implantologie und Prothetik — von unserem Expertenteam für Sie zusammengestellt.</p>
+      </div>
+      <div class="ratgeber__grid">
+        {ratgeberCards.map(card => (
+          <div class="ratgeber__card anim-on-scroll">
+            <div class="ratgeber__icon">{card.icon}</div>
+            <div class="ratgeber__thema">{card.thema}</div>
+            <h3 class="ratgeber__card-title">{card.title}</h3>
+            <p class="ratgeber__card-desc">{card.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="estimator" id="kalkulator">
+    <div class="estimator__inner">
+      <div class="estimator__header">
+        <div class="estimator__badge">Kostenrechner</div>
+        <h2 class="estimator__title">Was kostet <em>Ihre Behandlung?</em></h2>
+        <p class="estimator__sub">Erhalten Sie eine erste unverbindliche Kostenschätzung für Ihre Wunschbehandlung.</p>
+      </div>
+      <div class="estimator__form">
+        <div class="estimator__field">
+          <label class="estimator__label">Art der Behandlung</label>
+          <div class="estimator__options" data-field="type">
+            <button class="estimator__option is-active" data-value="implantate" type="button">Implantate</button>
+            <button class="estimator__option" data-value="bleaching" type="button">Bleaching</button>
+            <button class="estimator__option" data-value="veneers" type="button">Veneers</button>
+          </div>
+        </div>
+        <div class="estimator__field">
+          <label class="estimator__label" id="unit-label">Anzahl Zähne / Kiefer</label>
+          <div class="estimator__slider-wrap">
+            <input type="range" min="1" max="8" value="2" class="estimator__slider" id="unit-slider" />
+            <span class="estimator__slider-val" id="unit-val">2 Zähne</span>
+          </div>
+        </div>
+        <div class="estimator__result">
+          <div class="estimator__result-label">Geschätzte Kosten</div>
+          <div class="estimator__result-val" id="estimate-val">ca. 3.000 — 6.000 €</div>
+          <div class="estimator__result-note">Unverbindliche Schätzung. Genaue Kosten nach Untersuchung und individuellem Behandlungsplan.</div>
+          <a href="#kontakt" class="estimator__result-cta">Kostenloses Beratungsgespräch vereinbaren</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <PreviewCTA
+    title="Bereit für exzellenten Zahnersatz in Düsseldorf?"
+    subtitle="Vereinbaren Sie jetzt Ihr persönliches Beratungsgespräch bei Praxis Lehmann. 25 Jahre Erfahrung, höchste Qualität und über 10.000 zufriedene Patienten — wir freuen uns auf Sie."
+    badge="Termin vereinbaren"
+    buttonText="Jetzt Termin buchen"
+    buttonLink="#kontakt"
+    phone="+49 211 8765432"
+  />
+
+  <PreviewFooter
+    prospectName={prospect.name}
+    email={prospect.email}
+    phone={prospect.phone}
+    address="Königsallee 30, 40212 Düsseldorf-Stadtmitte"
+    year={2025}
+  />
+</PreviewLayout>
+
+<style>
+  html { scroll-behavior: smooth; }
+  .anim-fade-up { animation: fadeUp 0.8s ease-out both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .anim-on-scroll { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .anim-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+  .hero-full { position: relative; min-height: 80vh; max-height: 700px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+  .hero-full__bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-full__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+  .hero-full__overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,25,22,0.92) 0%, rgba(10,25,22,0.6) 40%, rgba(10,25,22,0.3) 100%); }
+  .hero-full__content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 48px 48px; width: 100%; }
+  .hero-full__badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: rgba(255,255,255,0.9); margin-bottom: 20px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+  .hero-full__badge-dot { width: 7px; height: 7px; background: #0E8A7B; border-radius: 50%; animation: pulse-hero 2s ease-in-out infinite; }
+  @keyframes pulse-hero { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.75); } }
+  .hero-full__title { font-family: var(--font-heading); font-size: clamp(2.8rem, 5.5vw, 4.2rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; color: #fff; margin-bottom: 20px; }
+  .hero-full__title span { color: #4ECDC4; }
+  .hero-full__sub { color: rgba(255,255,255,0.8); font-size: 1.1rem; line-height: 1.7; max-width: 580px; margin-bottom: 32px; }
+  .hero-full__ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-full__btn-primary { background: var(--accent); color: #fff; padding: 14px 28px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; font-family: var(--font-body); transition: background 0.2s, transform 0.2s; text-decoration: none; }
+  .hero-full__btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
+  .hero-full__btn-outline { border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 14px 28px; border-radius: 10px; font-size: 0.95rem; font-weight: 500; font-family: var(--font-body); transition: border-color 0.2s, background 0.2s; text-decoration: none; }
+  .hero-full__btn-outline:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.08); }
+  .hero-full__stats { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border-top: 1px solid rgba(255,255,255,0.1); }
+  .hero-full__stat { background: rgba(10,25,22,0.85); backdrop-filter: blur(8px); padding: 24px 16px; text-align: center; }
+  .hero-full__stat-val { font-family: var(--font-heading); font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 800; color: #4ECDC4; letter-spacing: -0.03em; line-height: 1; }
+  .hero-full__stat-lbl { font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-top: 6px; }
+  @media (max-width: 768px) { .hero-full { min-height: 75vh; } .hero-full__content { padding: 0 24px 32px; } .hero-full__stats { grid-template-columns: repeat(2, 1fr); } .hero-full__ctas { flex-direction: column; } }
+
+  .trust-bar { border-bottom: 1px solid var(--border); background: var(--bg-el); }
+  .trust-bar__inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 32px; padding: 18px 48px; flex-wrap: wrap; }
+  .trust-bar__item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 500; color: var(--muted); white-space: nowrap; }
+  .trust-bar__item svg { color: var(--accent); flex-shrink: 0; }
+  .trust-bar__divider { width: 1px; height: 20px; background: var(--border); }
+
+  .services-tabs { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+  .services-tabs__header { margin-bottom: 40px; }
+  .services-tabs__badge { display: inline-flex; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+  .services-tabs__title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; color: var(--text); }
+  .services-tabs__title em { color: var(--accent); font-style: normal; }
+  .services-tabs__sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; }
+  .services-tabs__nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+  .services-tabs__tab { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border: 1px solid var(--border); border-radius: 100px; background: var(--surface); color: var(--muted); font-size: 0.82rem; font-weight: 500; font-family: var(--font-body); cursor: pointer; transition: all 0.25s ease; }
+  .services-tabs__tab:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); color: var(--text); }
+  .services-tabs__tab.is-active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .services-tabs__tab-icon { display: flex; }
+  .services-tabs__panels { position: relative; }
+  .services-tabs__panel { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 40px; animation: fadeIn 0.3s ease; }
+  .services-tabs__panel.is-active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .services-tabs__panel-icon { width: 56px; height: 56px; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--accent); }
+  .services-tabs__panel-title { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+  .services-tabs__panel-desc { font-size: 1rem; color: var(--muted); line-height: 1.7; margin-bottom: 24px; max-width: 600px; }
+  .services-tabs__panel-cta { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-weight: 600; font-size: 0.9rem; transition: gap 0.2s ease; text-decoration: none; }
+  .services-tabs__panel-cta:hover { gap: 10px; }
+
+  .process { padding: 80px 48px; background: var(--bg-el); }
+  .process__inner { max-width: 1200px; margin: 0 auto; }
+  .process__header { margin-bottom: 56px; }
+  .process__badge { display: inline-flex; align-items: center; gap: 8px; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+  .process__title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; color: var(--text); }
+  .process__title em { color: var(--accent); font-style: normal; }
+  .process__sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; }
+  .process__steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .process__step { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px; transition: border-color 0.25s ease, transform 0.25s ease; }
+  .process__step:hover { border-color: color-mix(in srgb, var(--accent) 35%, transparent); transform: translateY(-4px); }
+  .process__step-icon { width: 52px; height: 52px; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--accent); }
+  .process__step-num { font-family: var(--font-heading); font-size: 0.7rem; font-weight: 800; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 8px; }
+  .process__step-title { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .process__step-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+
+  .showcase { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+  .showcase__header { margin-bottom: 48px; }
+  .showcase__badge { display: inline-flex; align-items: center; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+  .showcase__title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; color: var(--text); }
+  .showcase__title em { color: var(--accent); font-style: normal; }
+  .showcase__sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; }
+  .showcase__grid--two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; height: 380px; }
+  .showcase__item { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+  .showcase__item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+  .showcase__item:hover img { transform: scale(1.04); }
+  .showcase__caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; background: linear-gradient(transparent, rgba(0,0,0,0.75)); color: #fff; }
+  .showcase__tag { display: inline-block; background: var(--accent); color: #fff; padding: 3px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .showcase__caption h3 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+  .showcase__caption p { font-size: 0.82rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
+
+  .ratgeber { padding: 80px 48px; background: var(--bg-el); }
+  .ratgeber__inner { max-width: 1200px; margin: 0 auto; }
+  .ratgeber__header { margin-bottom: 48px; }
+  .ratgeber__title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; color: var(--text); }
+  .ratgeber__sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 520px; }
+  .ratgeber__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .ratgeber__card { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; transition: border-color 0.25s ease, transform 0.25s ease; }
+  .ratgeber__card:hover { border-color: color-mix(in srgb, var(--accent) 35%, transparent); transform: translateY(-3px); }
+  .ratgeber__icon { font-size: 2rem; margin-bottom: 12px; line-height: 1; }
+  .ratgeber__thema { font-family: var(--font-heading); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .ratgeber__card-title { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .ratgeber__card-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+
+  .estimator { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+  .estimator__header { margin-bottom: 40px; }
+  .estimator__badge { display: inline-flex; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+  .estimator__title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; color: var(--text); }
+  .estimator__title em { color: var(--accent); font-style: normal; }
+  .estimator__sub { color: var(--muted); font-size: 1rem; line-height: 1.7; }
+  .estimator__form { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 40px; }
+  .estimator__field { margin-bottom: 28px; }
+  .estimator__label { display: block; font-family: var(--font-heading); font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+  .estimator__options { display: flex; gap: 10px; flex-wrap: wrap; }
+  .estimator__option { padding: 10px 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); color: var(--muted); font-size: 0.85rem; font-weight: 500; font-family: var(--font-body); cursor: pointer; transition: all 0.2s ease; }
+  .estimator__option:hover { border-color: var(--accent); color: var(--text); }
+  .estimator__option.is-active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .estimator__slider-wrap { display: flex; align-items: center; gap: 16px; }
+  .estimator__slider { flex: 1; -webkit-appearance: none; height: 6px; border-radius: 3px; background: var(--border); outline: none; }
+  .estimator__slider::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+  .estimator__slider-val { font-family: var(--font-heading); font-size: 1rem; font-weight: 700; color: var(--text); min-width: 80px; text-align: right; }
+  .estimator__result { margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--border); text-align: center; }
+  .estimator__result-label { font-size: 0.82rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+  .estimator__result-val { font-family: var(--font-heading); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: var(--accent); margin-bottom: 8px; transition: all 0.3s ease; }
+  .estimator__result-note { font-size: 0.78rem; color: var(--dim); margin-bottom: 20px; }
+  .estimator__result-cta { display: inline-block; background: var(--accent); color: #fff; padding: 14px 28px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; font-family: var(--font-body); transition: background 0.2s, transform 0.2s; text-decoration: none; }
+  .estimator__result-cta:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
+  @media (max-width: 1024px) { .process__steps { grid-template-columns: repeat(2, 1fr); } .ratgeber__grid { grid-template-columns: repeat(2, 1fr); } .services-tabs__tab { font-size: 0.75rem; padding: 8px 14px; } }
+  @media (max-width: 768px) {
+    .trust-bar__inner { gap: 16px; padding: 14px 24px; } .trust-bar__divider { display: none; } .trust-bar__item { font-size: 0.75rem; }
+    .services-tabs { padding: 60px 24px; } .services-tabs__tab span:last-child { display: none; } .services-tabs__panel { padding: 24px; }
+    .process { padding: 60px 24px; } .process__steps { grid-template-columns: 1fr; gap: 16px; }
+    .showcase { padding: 60px 24px; } .showcase__grid--two { grid-template-columns: 1fr; height: auto; } .showcase__item { min-height: 220px; }
+    .ratgeber { padding: 60px 24px; } .ratgeber__grid { grid-template-columns: 1fr; gap: 16px; }
+    .estimator { padding: 60px 24px; } .estimator__form { padding: 24px; } .estimator__options { flex-direction: column; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const href = anchor.getAttribute('href');
+      if (!href) return;
+      const target = document.querySelector(href);
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.anim-on-scroll').forEach(el => observer.observe(el));
+
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target as HTMLElement;
+        const raw = el.dataset.count || el.textContent || '';
+        const match = raw.match(/(\d[\d.]*)/);
+        if (match) {
+          const numStr = match[1].replace('.', '');
+          const target = parseInt(numStr);
+          const suffix = raw.replace(/[\d.]+/, '');
+          let current = 0;
+          const step = Math.max(1, Math.floor(target / 40));
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) { current = target; clearInterval(timer); }
+            el.textContent = (target > 999 ? (current).toLocaleString('de-DE') : current) + suffix;
+          }, 30);
+        }
+        countObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.hero-full__stat-val').forEach(el => countObserver.observe(el));
+
+  const tabs = document.querySelectorAll('.services-tabs__tab');
+  const panels = document.querySelectorAll('.services-tabs__panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const idx = (tab as HTMLElement).dataset.tab;
+      tabs.forEach(t => { t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false'); });
+      panels.forEach(p => p.classList.remove('is-active'));
+      tab.classList.add('is-active'); tab.setAttribute('aria-selected', 'true');
+      const panel = document.querySelector(`[data-panel="${idx}"]`);
+      if (panel) panel.classList.add('is-active');
+    });
+  });
+
+  const typeButtons = document.querySelectorAll('.estimator__option');
+  const slider = document.getElementById('unit-slider') as HTMLInputElement;
+  const unitVal = document.getElementById('unit-val');
+  const unitLabel = document.getElementById('unit-label');
+  const estimateVal = document.getElementById('estimate-val');
+  const rates: Record<string, [number, number]> = { implantate: [1500, 3000], bleaching: [300, 600], veneers: [400, 900] };
+  const isFlatRate: Record<string, boolean> = { bleaching: true };
+  let selectedType = 'implantate';
+  function updateEstimate() {
+    if (!slider || !unitVal || !estimateVal) return;
+    const units = parseInt(slider.value);
+    const isFlat = isFlatRate[selectedType];
+    if (isFlat) {
+      unitVal.textContent = units <= 1 ? '1 Kiefer' : '2 Kiefer';
+      if (unitLabel) unitLabel.textContent = 'Anzahl Kiefer';
+    } else {
+      unitVal.textContent = units + (units === 1 ? ' Zahn' : ' Zähne');
+      if (unitLabel) unitLabel.textContent = 'Anzahl Zähne';
+    }
+    const [lo, hi] = rates[selectedType] || [1500, 3000];
+    const count = isFlat ? Math.min(units, 2) : units;
+    const min = lo * count;
+    const max = hi * count;
+    estimateVal.textContent = `ca. ${min.toLocaleString('de-DE')} — ${max.toLocaleString('de-DE')} €`;
+  }
+  typeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      typeButtons.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      selectedType = (btn as HTMLElement).dataset.value || 'implantate';
+      if (slider) {
+        slider.max = isFlatRate[selectedType] ? '2' : '8';
+        slider.value = isFlatRate[selectedType] ? '1' : '2';
+      }
+      updateEstimate();
+    });
+  });
+  if (slider) { slider.addEventListener('input', updateEstimate); updateEstimate(); }
+</script>
