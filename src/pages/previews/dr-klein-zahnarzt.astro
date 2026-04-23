@@ -5,6 +5,7 @@ import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
 import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
 import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
+import ZahnarztCostCalc from '../../templates/sections/zahnarzt/ZahnarztCostCalc.astro';
 import type { ProspectData } from '../../templates/config/types';
 
 const prospect: ProspectData = {
@@ -205,38 +206,12 @@ const ratgeberCards = [
     </div>
   </section>
 
-  <section class="estimator" id="kalkulator">
-    <div class="estimator__inner">
-      <div class="estimator__header">
-        <div class="estimator__badge">Kostenrechner</div>
-        <h2 class="estimator__title">Was kostet <em>Ihre Behandlung?</em></h2>
-        <p class="estimator__sub">Erhalten Sie eine erste unverbindliche Kostenschätzung für Ihre Wunschbehandlung.</p>
-      </div>
-      <div class="estimator__form">
-        <div class="estimator__field">
-          <label class="estimator__label">Art der Behandlung</label>
-          <div class="estimator__options" data-field="type">
-            <button class="estimator__option is-active" data-value="implantate" type="button">Implantate</button>
-            <button class="estimator__option" data-value="bleaching" type="button">Bleaching</button>
-            <button class="estimator__option" data-value="veneers" type="button">Veneers</button>
-          </div>
-        </div>
-        <div class="estimator__field">
-          <label class="estimator__label" id="unit-label">Anzahl Zähne / Kiefer</label>
-          <div class="estimator__slider-wrap">
-            <input type="range" min="1" max="8" value="2" class="estimator__slider" id="unit-slider" />
-            <span class="estimator__slider-val" id="unit-val">2 Zähne</span>
-          </div>
-        </div>
-        <div class="estimator__result">
-          <div class="estimator__result-label">Geschätzte Kosten</div>
-          <div class="estimator__result-val" id="estimate-val">ca. 3.000 — 6.000 €</div>
-          <div class="estimator__result-note">Unverbindliche Schätzung. Genaue Kosten nach Untersuchung und individuellem Behandlungsplan.</div>
-          <a href="#kontakt" class="estimator__result-cta">Kostenloses Beratungsgespräch vereinbaren</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <ZahnarztCostCalc
+    title="Was kostet Ihre Behandlung?"
+    subtitle="Klicken Sie auf die betroffenen Zähne und erhalten Sie eine erste unverbindliche Kostenschätzung für Ihre Wunschbehandlung bei Dr. Klein."
+    ctaText="Kostenloses Beratungsgespräch vereinbaren"
+    ctaHref="#kontakt"
+  />
 
   <PreviewCTA
     title="Bereit für Ihr schönstes Lächeln?"
@@ -355,29 +330,6 @@ const ratgeberCards = [
   .ratgeber__card-title { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
   .ratgeber__card-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
 
-  .estimator { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
-  .estimator__header { margin-bottom: 40px; }
-  .estimator__badge { display: inline-flex; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
-  .estimator__title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; color: var(--text); }
-  .estimator__title em { color: var(--accent); font-style: normal; }
-  .estimator__sub { color: var(--muted); font-size: 1rem; line-height: 1.7; }
-  .estimator__form { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 40px; }
-  .estimator__field { margin-bottom: 28px; }
-  .estimator__label { display: block; font-family: var(--font-heading); font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
-  .estimator__options { display: flex; gap: 10px; flex-wrap: wrap; }
-  .estimator__option { padding: 10px 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); color: var(--muted); font-size: 0.85rem; font-weight: 500; font-family: var(--font-body); cursor: pointer; transition: all 0.2s ease; }
-  .estimator__option:hover { border-color: var(--accent); color: var(--text); }
-  .estimator__option.is-active { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .estimator__slider-wrap { display: flex; align-items: center; gap: 16px; }
-  .estimator__slider { flex: 1; -webkit-appearance: none; height: 6px; border-radius: 3px; background: var(--border); outline: none; }
-  .estimator__slider::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
-  .estimator__slider-val { font-family: var(--font-heading); font-size: 1rem; font-weight: 700; color: var(--text); min-width: 80px; text-align: right; }
-  .estimator__result { margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--border); text-align: center; }
-  .estimator__result-label { font-size: 0.82rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
-  .estimator__result-val { font-family: var(--font-heading); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: var(--accent); margin-bottom: 8px; transition: all 0.3s ease; }
-  .estimator__result-note { font-size: 0.78rem; color: var(--dim); margin-bottom: 20px; }
-  .estimator__result-cta { display: inline-block; background: var(--accent); color: #fff; padding: 14px 28px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; font-family: var(--font-body); transition: background 0.2s, transform 0.2s; text-decoration: none; }
-  .estimator__result-cta:hover { background: var(--accent-hover); transform: translateY(-2px); }
 
   @media (max-width: 1024px) { .process__steps { grid-template-columns: repeat(2, 1fr); } .ratgeber__grid { grid-template-columns: repeat(2, 1fr); } .services-tabs__tab { font-size: 0.75rem; padding: 8px 14px; } }
   @media (max-width: 768px) {
@@ -442,42 +394,4 @@ const ratgeberCards = [
     });
   });
 
-  const typeButtons = document.querySelectorAll('.estimator__option');
-  const slider = document.getElementById('unit-slider') as HTMLInputElement;
-  const unitVal = document.getElementById('unit-val');
-  const unitLabel = document.getElementById('unit-label');
-  const estimateVal = document.getElementById('estimate-val');
-  const rates: Record<string, [number, number]> = { implantate: [1500, 3000], bleaching: [300, 600], veneers: [400, 900] };
-  const isFlatRate: Record<string, boolean> = { bleaching: true };
-  let selectedType = 'implantate';
-  function updateEstimate() {
-    if (!slider || !unitVal || !estimateVal) return;
-    const units = parseInt(slider.value);
-    const isFlat = isFlatRate[selectedType];
-    if (isFlat) {
-      unitVal.textContent = units <= 1 ? '1 Kiefer' : '2 Kiefer';
-      if (unitLabel) unitLabel.textContent = 'Anzahl Kiefer';
-    } else {
-      unitVal.textContent = units + (units === 1 ? ' Zahn' : ' Zähne');
-      if (unitLabel) unitLabel.textContent = 'Anzahl Zähne';
-    }
-    const [lo, hi] = rates[selectedType] || [1500, 3000];
-    const count = isFlat ? Math.min(units, 2) : units;
-    const min = lo * count;
-    const max = hi * count;
-    estimateVal.textContent = `ca. ${min.toLocaleString('de-DE')} — ${max.toLocaleString('de-DE')} €`;
-  }
-  typeButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      typeButtons.forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      selectedType = (btn as HTMLElement).dataset.value || 'implantate';
-      if (slider) {
-        slider.max = isFlatRate[selectedType] ? '2' : '8';
-        slider.value = isFlatRate[selectedType] ? '1' : '2';
-      }
-      updateEstimate();
-    });
-  });
-  if (slider) { slider.addEventListener('input', updateEstimate); updateEstimate(); }
 </script>

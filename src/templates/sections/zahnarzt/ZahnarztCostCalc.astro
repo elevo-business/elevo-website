@@ -1,0 +1,788 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const {
+  title = 'Was kostet Ihre Behandlung?',
+  subtitle = 'Klicken Sie auf die betroffenen Zähne — wir zeigen Ihnen eine unverbindliche Kostenschätzung.',
+  ctaText = 'Kostenloses Beratungsgespräch vereinbaren',
+  ctaHref = '#kontakt',
+} = Astro.props;
+
+type Zone = 'molar' | 'premolar' | 'canine' | 'incisor';
+
+interface ToothDef {
+  id: string;
+  cx: number;
+  cy: number;
+  rx: number;
+  ry: number;
+  zone: Zone;
+  jaw: 'upper' | 'lower';
+}
+
+function zone(i: number): Zone {
+  if (i <= 2 || i >= 13) return 'molar';
+  if (i === 3 || i === 4 || i === 11 || i === 12) return 'premolar';
+  if (i === 5 || i === 10) return 'canine';
+  return 'incisor';
+}
+
+function rxFor(z: Zone) { return z === 'molar' ? 15 : z === 'premolar' ? 11 : 9; }
+function ryFor(z: Zone) { return z === 'molar' ? 9 : 8; }
+
+const upperTeeth: ToothDef[] = Array.from({ length: 16 }, (_, i) => {
+  const a = (i / 15) * Math.PI;
+  const z = zone(i);
+  return { id: `U${i + 1}`, cx: Math.round(260 - 140 * Math.cos(a)), cy: Math.round(58 + 62 * Math.sin(a)), rx: rxFor(z), ry: ryFor(z), zone: z, jaw: 'upper' };
+});
+
+const lowerTeeth: ToothDef[] = Array.from({ length: 16 }, (_, i) => {
+  const a = (i / 15) * Math.PI;
+  const z = zone(i);
+  return { id: `L${i + 1}`, cx: Math.round(260 - 140 * Math.cos(a)), cy: Math.round(192 - 62 * Math.sin(a)), rx: rxFor(z), ry: ryFor(z), zone: z, jaw: 'lower' };
+});
+
+const treatmentData = {
+  molar: [
+    { id: 'fuellung', name: 'Füllung', min: 80, max: 250, duration: '1 Termin', kasse: true },
+    { id: 'inlay', name: 'Inlay (Keramik)', min: 350, max: 700, duration: '2 Termine', kasse: false },
+    { id: 'krone', name: 'Krone', min: 800, max: 1400, duration: '2–3 Termine', kasse: false },
+    { id: 'implantat', name: 'Implantat', min: 1800, max: 3500, duration: '3–6 Monate', kasse: false },
+  ],
+  premolar: [
+    { id: 'fuellung', name: 'Füllung', min: 80, max: 200, duration: '1 Termin', kasse: true },
+    { id: 'inlay', name: 'Inlay (Keramik)', min: 300, max: 600, duration: '2 Termine', kasse: false },
+    { id: 'krone', name: 'Krone', min: 700, max: 1200, duration: '2–3 Termine', kasse: false },
+    { id: 'implantat', name: 'Implantat', min: 1600, max: 3000, duration: '3–6 Monate', kasse: false },
+  ],
+  canine: [
+    { id: 'fuellung', name: 'Füllung', min: 80, max: 180, duration: '1 Termin', kasse: true },
+    { id: 'veneer', name: 'Veneer', min: 500, max: 900, duration: '2 Termine', kasse: false },
+    { id: 'krone', name: 'Krone', min: 700, max: 1200, duration: '2 Termine', kasse: false },
+  ],
+  incisor: [
+    { id: 'fuellung', name: 'Füllung', min: 80, max: 160, duration: '1 Termin', kasse: true },
+    { id: 'veneer', name: 'Veneer', min: 500, max: 900, duration: '2 Termine', kasse: false },
+    { id: 'bleaching', name: 'Bleaching', min: 300, max: 600, duration: '1 Termin', kasse: false },
+    { id: 'krone', name: 'Krone', min: 700, max: 1100, duration: '2 Termine', kasse: false },
+  ],
+};
+
+const allTeethJson = JSON.stringify([...upperTeeth, ...lowerTeeth]);
+const treatDataJson = JSON.stringify(treatmentData);
+---
+
+<section class="tcc" id="zahnschema-rechner">
+  <div class="tcc__inner">
+    <div class="tcc__header">
+      <div class="tcc__badge">Kostenrechner</div>
+      <h2 class="tcc__title">{title}</h2>
+      <p class="tcc__sub">{subtitle}</p>
+    </div>
+
+    <div class="tcc__layout">
+      <!-- SVG Zahnschema -->
+      <div class="tcc__diagram-col">
+        <div class="tcc__jaw-label tcc__jaw-label--upper">Oberkiefer</div>
+
+        <div class="tcc__diagram-card">
+          <svg
+            class="tcc__svg"
+            viewBox="95 40 330 175"
+            xmlns="http://www.w3.org/2000/svg"
+            role="group"
+            aria-label="Interaktives Zahnschema — klicken Sie auf einen Zahn"
+          >
+            <!-- Mouth background -->
+            <rect x="95" y="40" width="330" height="175" rx="12" fill="#1A1A1A" />
+
+            <!-- Gum upper -->
+            <path class="tcc-gum tcc-gum--upper"
+              d="M 107 60 Q 260 138 413 60 L 413 68 Q 260 146 107 68 Z" />
+
+            <!-- Gum lower -->
+            <path class="tcc-gum tcc-gum--lower"
+              d="M 107 192 Q 260 114 413 192 L 413 184 Q 260 106 107 184 Z" />
+
+            <!-- Bite line hint -->
+            <line x1="100" y1="125" x2="420" y2="125" stroke="#2A2A2A" stroke-width="1" />
+
+            <!-- Upper teeth -->
+            {upperTeeth.map((t) => (
+              <ellipse
+                class="tcc-tooth"
+                data-tooth-id={t.id}
+                data-zone={t.zone}
+                data-jaw={t.jaw}
+                cx={t.cx}
+                cy={t.cy}
+                rx={t.rx}
+                ry={t.ry}
+                role="button"
+                tabindex="0"
+                aria-label={`Zahn Oberkiefer, ${t.zone}`}
+                aria-pressed="false"
+              />
+            ))}
+
+            <!-- Lower teeth -->
+            {lowerTeeth.map((t) => (
+              <ellipse
+                class="tcc-tooth"
+                data-tooth-id={t.id}
+                data-zone={t.zone}
+                data-jaw={t.jaw}
+                cx={t.cx}
+                cy={t.cy}
+                rx={t.rx}
+                ry={t.ry}
+                role="button"
+                tabindex="0"
+                aria-label={`Zahn Unterkiefer, ${t.zone}`}
+                aria-pressed="false"
+              />
+            ))}
+          </svg>
+        </div>
+
+        <div class="tcc__jaw-label tcc__jaw-label--lower">Unterkiefer</div>
+        <p class="tcc__hint">Tippen Sie auf einen Zahn — Mehrfachauswahl möglich</p>
+
+        <!-- Mobile: selected teeth chips -->
+        <div class="tcc__chips" id="tcc-chips" aria-live="polite"></div>
+      </div>
+
+      <!-- Treatment panel -->
+      <div class="tcc__panel" id="tcc-panel" aria-live="polite">
+        <div class="tcc__empty" id="tcc-empty">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <path d="M24 4C14 4 8 12 8 20c0 10 6 16 8 22h16c2-6 8-12 8-22 0-8-6-16-16-16z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"/>
+            <path d="M16 26c0-4 4-6 8-6s8 2 8 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          </svg>
+          <p class="tcc__empty-title">Kein Zahn ausgewählt</p>
+          <p class="tcc__empty-sub">Klicken Sie auf einen Zahn im Zahnschema, um Behandlungsoptionen und Kosten zu sehen.</p>
+        </div>
+
+        <div class="tcc__content" id="tcc-content" hidden>
+          <div class="tcc__active-label" id="tcc-active-label"></div>
+
+          <div class="tcc__treatments" id="tcc-treatments" role="radiogroup" aria-label="Behandlungsoptionen"></div>
+
+          <div class="tcc__summary" id="tcc-summary" hidden>
+            <div class="tcc__summary-title">Ausgewählte Behandlungen</div>
+            <div class="tcc__summary-list" id="tcc-summary-list"></div>
+            <div class="tcc__total-row">
+              <span class="tcc__total-label">Geschätzte Gesamtkosten</span>
+              <span class="tcc__total-val" id="tcc-total"></span>
+            </div>
+            <p class="tcc__total-note">Unverbindliche Schätzung · Genaue Kosten nach Untersuchung</p>
+          </div>
+
+          <a href={ctaHref} class="tcc__cta" id="tcc-cta" hidden>{ctaText}</a>
+          <button class="tcc__reset" id="tcc-reset" type="button">Auswahl zurücksetzen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Data island -->
+<script type="application/json" id="tcc-teeth-data">{allTeethJson}</script>
+<script type="application/json" id="tcc-treat-data">{treatDataJson}</script>
+
+<style>
+  .tcc {
+    padding: 80px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .tcc__header { margin-bottom: 48px; }
+
+  .tcc__badge {
+    display: inline-flex;
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 16px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .tcc__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .tcc__sub {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 560px;
+  }
+
+  /* Layout */
+  .tcc__layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 32px;
+    align-items: start;
+  }
+
+  /* Diagram col */
+  .tcc__diagram-col { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+
+  .tcc__jaw-label {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .tcc__diagram-card {
+    width: 100%;
+    max-width: 520px;
+    background: #111;
+    border-radius: 20px;
+    padding: 16px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .tcc__svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    touch-action: none;
+  }
+
+  /* Gum areas */
+  .tcc-gum { fill: #3D1A1A; }
+
+  /* Teeth base styles */
+  .tcc-tooth {
+    fill: #F5F0EB;
+    stroke: #C8C0B4;
+    stroke-width: 1;
+    cursor: pointer;
+    transition: fill 0.18s ease, stroke 0.18s ease, transform 0.15s ease;
+    transform-origin: center;
+    transform-box: fill-box;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.25));
+  }
+
+  .tcc-tooth:hover,
+  .tcc-tooth:focus-visible {
+    fill: color-mix(in srgb, var(--accent) 20%, #F5F0EB);
+    stroke: var(--accent);
+    stroke-width: 1.5;
+    outline: none;
+    transform: scale(1.12);
+  }
+
+  .tcc-tooth[aria-pressed="true"] {
+    fill: var(--accent);
+    stroke: color-mix(in srgb, var(--accent) 60%, #000);
+    stroke-width: 1.5;
+    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent) 60%, transparent));
+  }
+
+  .tcc__hint {
+    font-size: 0.78rem;
+    color: var(--dim);
+    text-align: center;
+  }
+
+  /* Chips */
+  .tcc__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    min-height: 28px;
+  }
+
+  .tcc__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    border-radius: 100px;
+    padding: 3px 10px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent);
+    font-family: var(--font-heading);
+  }
+
+  .tcc__chip-x {
+    cursor: pointer;
+    opacity: 0.6;
+    font-size: 0.9rem;
+    line-height: 1;
+    background: none;
+    border: none;
+    color: inherit;
+    padding: 0;
+  }
+  .tcc__chip-x:hover { opacity: 1; }
+
+  /* Panel */
+  .tcc__panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    position: sticky;
+    top: 24px;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tcc__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+    gap: 12px;
+    color: var(--dim);
+    padding: 24px;
+  }
+
+  .tcc__empty svg { opacity: 0.4; }
+
+  .tcc__empty-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .tcc__empty-sub {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    max-width: 220px;
+    margin: 0;
+  }
+
+  /* Panel content */
+  .tcc__content { display: flex; flex-direction: column; gap: 20px; flex: 1; }
+
+  .tcc__active-label {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tcc__treatments { display: flex; flex-direction: column; gap: 8px; }
+
+  .tcc__treat-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg);
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    text-align: left;
+    width: 100%;
+    font-family: var(--font-body);
+  }
+
+  .tcc__treat-btn:hover {
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    background: color-mix(in srgb, var(--accent) 4%, var(--bg));
+  }
+
+  .tcc__treat-btn[aria-checked="true"] {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 8%, var(--bg));
+  }
+
+  .tcc__treat-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    transition: border-color 0.15s, background 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tcc__treat-btn[aria-checked="true"] .tcc__treat-check {
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+
+  .tcc__treat-check-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fff;
+    display: none;
+  }
+
+  .tcc__treat-btn[aria-checked="true"] .tcc__treat-check-dot { display: block; }
+
+  .tcc__treat-info { flex: 1; }
+
+  .tcc__treat-name {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .tcc__treat-meta {
+    font-size: 0.75rem;
+    color: var(--muted);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .tcc__treat-kasse {
+    background: color-mix(in srgb, #16A34A 12%, transparent);
+    color: #16A34A;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .tcc__treat-price {
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Summary */
+  .tcc__summary {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tcc__summary-title {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .tcc__summary-list { display: flex; flex-direction: column; gap: 4px; }
+
+  .tcc__summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+  }
+
+  .tcc__summary-tooth { color: var(--muted); }
+  .tcc__summary-treat { color: var(--text); font-weight: 500; }
+  .tcc__summary-cost { color: var(--accent); font-weight: 600; font-family: var(--font-heading); font-size: 0.78rem; }
+
+  .tcc__total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    margin-top: 4px;
+    border-top: 1px solid var(--border);
+  }
+
+  .tcc__total-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .tcc__total-val {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .tcc__total-note {
+    font-size: 0.72rem;
+    color: var(--dim);
+    margin: 0;
+  }
+
+  /* CTA */
+  .tcc__cta {
+    display: block;
+    text-align: center;
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .tcc__cta:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
+  .tcc__reset {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-family: var(--font-body);
+    cursor: pointer;
+    text-align: center;
+    padding: 4px;
+    transition: color 0.15s;
+  }
+
+  .tcc__reset:hover { color: var(--text); }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .tcc__layout { grid-template-columns: 1fr; }
+    .tcc__panel {
+      position: static;
+      /* mobile bottom-sheet feel */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .tcc { padding: 60px 20px; }
+    .tcc__diagram-card { padding: 10px; }
+    .tcc__panel { padding: 24px; min-height: auto; }
+  }
+</style>
+
+<script define:vars={{ allTeethJson, treatDataJson, ctaHref }}>
+  const allTeeth = JSON.parse(allTeethJson);
+  const treats = JSON.parse(treatDataJson);
+
+  // State: Map<toothId, { zone, treatId: string|null, jaw }>
+  const selected = new Map();
+  let activeTooth = null;
+
+  const panel = document.getElementById('tcc-panel');
+  const emptyEl = document.getElementById('tcc-empty');
+  const contentEl = document.getElementById('tcc-content');
+  const activeLabel = document.getElementById('tcc-active-label');
+  const treatList = document.getElementById('tcc-treatments');
+  const summaryEl = document.getElementById('tcc-summary');
+  const summaryList = document.getElementById('tcc-summary-list');
+  const totalEl = document.getElementById('tcc-total');
+  const ctaEl = document.getElementById('tcc-cta');
+  const resetBtn = document.getElementById('tcc-reset');
+  const chipsEl = document.getElementById('tcc-chips');
+
+  function jawLabel(jaw) { return jaw === 'upper' ? 'OK' : 'UK'; }
+  function zoneLabel(zone) {
+    return { molar: 'Backenzahn', premolar: 'Vorderer Backenzahn', canine: 'Eckzahn', incisor: 'Schneidezahn' }[zone] || zone;
+  }
+
+  function fmtPrice(min, max) {
+    return `${min.toLocaleString('de-DE')} – ${max.toLocaleString('de-DE')} €`;
+  }
+
+  function renderTreatments() {
+    if (!activeTooth) return;
+    const tooth = selected.get(activeTooth);
+    if (!tooth) return;
+    const options = treats[tooth.zone] || [];
+
+    activeLabel.textContent = `${jawLabel(tooth.jaw)}-${zoneLabel(tooth.zone)} — Behandlung wählen`;
+
+    treatList.innerHTML = '';
+    options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tcc__treat-btn';
+      btn.setAttribute('role', 'radio');
+      btn.setAttribute('aria-checked', tooth.treatId === opt.id ? 'true' : 'false');
+      btn.dataset.treatId = opt.id;
+      btn.innerHTML = `
+        <span class="tcc__treat-check"><span class="tcc__treat-check-dot"></span></span>
+        <span class="tcc__treat-info">
+          <span class="tcc__treat-name">${opt.name}</span>
+          <span class="tcc__treat-meta">
+            <span>${opt.duration}</span>
+            ${opt.kasse ? '<span class="tcc__treat-kasse">GKV</span>' : ''}
+          </span>
+        </span>
+        <span class="tcc__treat-price">ab ${opt.min.toLocaleString('de-DE')} €</span>
+      `;
+      btn.addEventListener('click', () => selectTreatment(opt.id));
+      treatList.appendChild(btn);
+    });
+  }
+
+  function renderSummary() {
+    const items = [...selected.entries()].filter(([, v]) => v.treatId);
+    if (items.length === 0) {
+      summaryEl.hidden = true;
+      ctaEl.hidden = true;
+      return;
+    }
+    summaryEl.hidden = false;
+    ctaEl.hidden = false;
+
+    let totalMin = 0, totalMax = 0;
+    summaryList.innerHTML = '';
+
+    items.forEach(([id, tooth]) => {
+      const opt = treats[tooth.zone]?.find(t => t.id === tooth.treatId);
+      if (!opt) return;
+      totalMin += opt.min;
+      totalMax += opt.max;
+      const row = document.createElement('div');
+      row.className = 'tcc__summary-item';
+      row.innerHTML = `
+        <span class="tcc__summary-tooth">${jawLabel(tooth.jaw)} ${zoneLabel(tooth.zone)}</span>
+        <span class="tcc__summary-treat">${opt.name}</span>
+        <span class="tcc__summary-cost">${fmtPrice(opt.min, opt.max)}</span>
+      `;
+      summaryList.appendChild(row);
+    });
+
+    totalEl.textContent = `ca. ${fmtPrice(totalMin, totalMax)}`;
+  }
+
+  function renderChips() {
+    chipsEl.innerHTML = '';
+    selected.forEach((tooth, id) => {
+      const chip = document.createElement('span');
+      chip.className = 'tcc__chip';
+      const label = tooth.treatId
+        ? `${jawLabel(tooth.jaw)} · ${treats[tooth.zone]?.find(t => t.id === tooth.treatId)?.name || id}`
+        : `${jawLabel(tooth.jaw)} ${zoneLabel(tooth.zone)}`;
+      chip.innerHTML = `${label}<button class="tcc__chip-x" aria-label="Zahn entfernen">×</button>`;
+      chip.querySelector('.tcc__chip-x').addEventListener('click', () => deselectTooth(id));
+      chipsEl.appendChild(chip);
+    });
+  }
+
+  function render() {
+    if (selected.size === 0) {
+      emptyEl.hidden = false;
+      contentEl.hidden = true;
+      chipsEl.innerHTML = '';
+      return;
+    }
+    emptyEl.hidden = true;
+    contentEl.hidden = false;
+    renderTreatments();
+    renderSummary();
+    renderChips();
+  }
+
+  function selectTooth(toothId, zone, jaw) {
+    if (selected.has(toothId)) {
+      if (activeTooth === toothId) {
+        deselectTooth(toothId);
+        return;
+      }
+      activeTooth = toothId;
+    } else {
+      selected.set(toothId, { zone, jaw, treatId: null });
+      activeTooth = toothId;
+    }
+    updateToothVisuals();
+    render();
+  }
+
+  function deselectTooth(toothId) {
+    selected.delete(toothId);
+    if (activeTooth === toothId) {
+      activeTooth = selected.size > 0 ? [...selected.keys()].at(-1) : null;
+    }
+    const el = document.querySelector(`[data-tooth-id="${toothId}"]`);
+    if (el) el.setAttribute('aria-pressed', 'false');
+    updateToothVisuals();
+    render();
+  }
+
+  function selectTreatment(treatId) {
+    if (!activeTooth) return;
+    const tooth = selected.get(activeTooth);
+    if (!tooth) return;
+    tooth.treatId = tooth.treatId === treatId ? null : treatId;
+    render();
+  }
+
+  function updateToothVisuals() {
+    document.querySelectorAll('.tcc-tooth').forEach(el => {
+      const id = el.dataset.toothId;
+      el.setAttribute('aria-pressed', selected.has(id) ? 'true' : 'false');
+    });
+  }
+
+  function reset() {
+    selected.clear();
+    activeTooth = null;
+    updateToothVisuals();
+    render();
+  }
+
+  // Wire up teeth
+  document.querySelectorAll('.tcc-tooth').forEach(el => {
+    const id = el.dataset.toothId;
+    const z = el.dataset.zone;
+    const jaw = el.dataset.jaw;
+
+    el.addEventListener('click', () => selectTooth(id, z, jaw));
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectTooth(id, z, jaw);
+      }
+    });
+  });
+
+  resetBtn?.addEventListener('click', reset);
+</script>
