@@ -1,0 +1,227 @@
+---
+interface Step {
+  num: number;
+  title: string;
+  desc: string;
+  icon?: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  steps: Step[];
+}
+
+const { title, subtitle, steps } = Astro.props;
+
+const iconPaths: Record<string, string> = {
+  phone: 'M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.14h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16',
+  calendar: 'M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z',
+  tooth: 'M12 2C9.5 2 8 4 8 6c0 1.5.5 2.5 1 3.5L7.5 18c-.3 1.5.5 2 1.5 2s1.5-.5 1.5-1.5c0 1 .5 1.5 1.5 1.5s1.5-.5 1.5-1.5c0 1 .5 1.5 1.5 1.5s1.8-.5 1.5-2L14 9.5c.5-1 1-2 1-3.5C15 4 13.5 2 12 2z',
+  check: 'M20 6L9 17l-5-5',
+  smile: 'M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zM8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01',
+  star: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z',
+  chat: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z',
+  search: 'M21 21l-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0z',
+};
+
+function getIconPath(icon?: string): string {
+  if (!icon) return iconPaths.check;
+  return iconPaths[icon] || iconPaths.check;
+}
+---
+
+<section class="zahnarzt-timeline" aria-labelledby="zahnarzt-timeline-heading">
+  <div class="zahnarzt-timeline__container">
+    <div class="zahnarzt-timeline__header">
+      <h2 class="zahnarzt-timeline__title" id="zahnarzt-timeline-heading">{title}</h2>
+      {subtitle && <p class="zahnarzt-timeline__subtitle">{subtitle}</p>}
+    </div>
+
+    <ol class="zahnarzt-timeline__list" role="list">
+      {steps.map((step, i) => (
+        <li class={`zahnarzt-timeline__step${i % 2 === 0 ? ' zahnarzt-timeline__step--left' : ' zahnarzt-timeline__step--right'}`}>
+          <div class="zahnarzt-timeline__connector" aria-hidden="true">
+            <div class="zahnarzt-timeline__circle">
+              <span class="zahnarzt-timeline__num">{step.num}</span>
+            </div>
+            {i < steps.length - 1 && <div class="zahnarzt-timeline__line" />}
+          </div>
+          <div class="zahnarzt-timeline__card">
+            {step.icon && (
+              <div class="zahnarzt-timeline__icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d={getIconPath(step.icon)} />
+                </svg>
+              </div>
+            )}
+            <h3 class="zahnarzt-timeline__card-title">{step.title}</h3>
+            <p class="zahnarzt-timeline__card-desc">{step.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .zahnarzt-timeline {
+    background: var(--zh-bg, var(--bg-deep));
+    padding: 96px 24px;
+  }
+
+  .zahnarzt-timeline__container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .zahnarzt-timeline__header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .zahnarzt-timeline__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--zh-text, var(--text-primary));
+    margin: 0 0 16px;
+  }
+
+  .zahnarzt-timeline__subtitle {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--zh-muted, var(--text-secondary));
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 520px;
+  }
+
+  .zahnarzt-timeline__list {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .zahnarzt-timeline__step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 24px;
+    position: relative;
+  }
+
+  .zahnarzt-timeline__connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .zahnarzt-timeline__circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--zh-accent, #0E8A7B);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 0 4px var(--zh-accent-subtle, rgba(14, 138, 123, 0.15));
+  }
+
+  .zahnarzt-timeline__num {
+    line-height: 1;
+  }
+
+  .zahnarzt-timeline__line {
+    width: 2px;
+    flex: 1;
+    background: linear-gradient(to bottom, var(--zh-accent, #0E8A7B), var(--zh-border, rgba(14, 138, 123, 0.2)));
+    min-height: 40px;
+    margin: 8px 0;
+  }
+
+  .zahnarzt-timeline__card {
+    background: var(--zh-surface, rgba(14, 138, 123, 0.05));
+    border: 1px solid var(--zh-border, rgba(14, 138, 123, 0.12));
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    margin-bottom: 24px;
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .zahnarzt-timeline__card:hover {
+    border-color: var(--zh-accent, #0E8A7B);
+    box-shadow: 0 8px 32px rgba(14, 138, 123, 0.1);
+  }
+
+  .zahnarzt-timeline__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--zh-accent-subtle, rgba(14, 138, 123, 0.12));
+    color: var(--zh-accent, #0E8A7B);
+    margin-bottom: 14px;
+  }
+
+  .zahnarzt-timeline__card-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--zh-text, var(--text-primary));
+    margin: 0 0 10px;
+  }
+
+  .zahnarzt-timeline__card-desc {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--zh-muted, var(--text-secondary));
+    margin: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .zahnarzt-timeline__step {
+      grid-template-columns: 1fr 48px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .zahnarzt-timeline__connector {
+      order: 2;
+    }
+
+    .zahnarzt-timeline__step--left .zahnarzt-timeline__card {
+      order: 1;
+      text-align: right;
+    }
+
+    .zahnarzt-timeline__step--left .zahnarzt-timeline__icon {
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    .zahnarzt-timeline__step--right .zahnarzt-timeline__card {
+      order: 3;
+      grid-column: 3;
+    }
+
+    .zahnarzt-timeline__step--right::before {
+      content: '';
+      order: 1;
+    }
+  }
+</style>

@@ -1,0 +1,199 @@
+---
+interface TrustPoint {
+  icon: string;
+  title: string;
+  desc: string;
+}
+
+interface Props {
+  title: string;
+  quote: string;
+  quoteAuthor?: string;
+  trustPoints: TrustPoint[];
+}
+
+const { title, quote, quoteAuthor, trustPoints } = Astro.props;
+
+const iconPaths: Record<string, string> = {
+  heart: 'M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z',
+  shield: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z',
+  smile: 'M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zM8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01',
+  hand: 'M18 11V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8M6 10a2 2 0 0 0-2 2v4a8 8 0 0 0 8 8 8 8 0 0 0 8-8 2 2 0 0 0-2-2h-1',
+  check: 'M20 6L9 17l-5-5',
+  clock: 'M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 5v5l4 2',
+  star: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z',
+  eye: 'M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z',
+};
+
+function getIconPath(icon: string): string {
+  return iconPaths[icon] || iconPaths.heart;
+}
+---
+
+<section class="zahnarzt-anxiety" aria-labelledby="zahnarzt-anxiety-heading">
+  <div class="zahnarzt-anxiety__container">
+    <h2 class="zahnarzt-anxiety__title" id="zahnarzt-anxiety-heading">{title}</h2>
+
+    <figure class="zahnarzt-anxiety__quote-wrap">
+      <svg class="zahnarzt-anxiety__quote-icon" width="40" height="32" viewBox="0 0 40 32" fill="none" aria-hidden="true">
+        <path d="M0 32V20C0 9 6.667 2 20 0l2.667 4C16 5.667 12.333 9.333 12 15H20V32H0ZM20 32V20C20 9 26.667 2 40 0l2.667 4C36 5.667 32.333 9.333 32 15H40V32H20Z" fill="currentColor" opacity="0.2"/>
+      </svg>
+      <blockquote class="zahnarzt-anxiety__quote">
+        {quote}
+      </blockquote>
+      {quoteAuthor && (
+        <figcaption class="zahnarzt-anxiety__quote-author">
+          — {quoteAuthor}
+        </figcaption>
+      )}
+    </figure>
+
+    <ul class="zahnarzt-anxiety__trust-grid" role="list">
+      {trustPoints.map((point) => (
+        <li class="zahnarzt-anxiety__trust-point">
+          <div class="zahnarzt-anxiety__trust-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d={getIconPath(point.icon)} />
+            </svg>
+          </div>
+          <div class="zahnarzt-anxiety__trust-content">
+            <h3 class="zahnarzt-anxiety__trust-title">{point.title}</h3>
+            <p class="zahnarzt-anxiety__trust-desc">{point.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .zahnarzt-anxiety {
+    --anxiety-bg: var(--zh-anxiety-bg, rgba(14, 138, 123, 0.04));
+    --anxiety-accent: var(--zh-accent, #0E8A7B);
+    background: var(--anxiety-bg);
+    border-top: 1px solid var(--zh-border, rgba(14, 138, 123, 0.1));
+    border-bottom: 1px solid var(--zh-border, rgba(14, 138, 123, 0.1));
+    padding: 96px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .zahnarzt-anxiety::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(14, 138, 123, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .zahnarzt-anxiety__container {
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .zahnarzt-anxiety__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--zh-text, var(--text-primary));
+    margin: 0 0 48px;
+    line-height: 1.2;
+  }
+
+  .zahnarzt-anxiety__quote-wrap {
+    margin: 0 0 64px;
+    padding: 0;
+    position: relative;
+  }
+
+  .zahnarzt-anxiety__quote-icon {
+    color: var(--anxiety-accent);
+    margin: 0 auto 24px;
+    display: block;
+  }
+
+  .zahnarzt-anxiety__quote {
+    font-family: var(--font-heading);
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--zh-text, var(--text-primary));
+    margin: 0 0 20px;
+    padding: 0 16px;
+  }
+
+  .zahnarzt-anxiety__quote-author {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--anxiety-accent);
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .zahnarzt-anxiety__trust-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+  }
+
+  .zahnarzt-anxiety__trust-point {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: var(--zh-surface, rgba(14, 138, 123, 0.06));
+    border: 1px solid var(--zh-border, rgba(14, 138, 123, 0.12));
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: border-color var(--transition);
+  }
+
+  .zahnarzt-anxiety__trust-point:hover {
+    border-color: var(--anxiety-accent);
+  }
+
+  .zahnarzt-anxiety__trust-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--zh-accent-subtle, rgba(14, 138, 123, 0.12));
+    color: var(--anxiety-accent);
+    flex-shrink: 0;
+  }
+
+  .zahnarzt-anxiety__trust-content {
+    flex: 1;
+  }
+
+  .zahnarzt-anxiety__trust-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--zh-text, var(--text-primary));
+    margin: 0 0 6px;
+  }
+
+  .zahnarzt-anxiety__trust-desc {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--zh-muted, var(--text-secondary));
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .zahnarzt-anxiety__trust-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

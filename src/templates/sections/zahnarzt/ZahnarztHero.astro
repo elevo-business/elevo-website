@@ -1,0 +1,256 @@
+---
+interface Stat {
+  value: string;
+  label: string;
+}
+
+interface CtaButton {
+  text: string;
+  href: string;
+  variant?: 'primary' | 'secondary';
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  badge?: string;
+  ctaPrimary?: CtaButton;
+  ctaSecondary?: CtaButton;
+  imageSrc?: string;
+  imageAlt?: string;
+  stats?: Stat[];
+}
+
+const {
+  title,
+  subtitle,
+  badge,
+  ctaPrimary,
+  ctaSecondary,
+  imageSrc,
+  imageAlt = '',
+  stats = [],
+} = Astro.props;
+---
+
+<section class="zahnarzt-hero" aria-label="Hero">
+  <div class="zahnarzt-hero__inner">
+    <div class="zahnarzt-hero__content">
+      {badge && (
+        <span class="zahnarzt-hero__badge" aria-label="Kategorie">{badge}</span>
+      )}
+      <h1 class="zahnarzt-hero__title">{title}</h1>
+      <p class="zahnarzt-hero__subtitle">{subtitle}</p>
+      {(ctaPrimary || ctaSecondary) && (
+        <div class="zahnarzt-hero__ctas">
+          {ctaPrimary && (
+            <a href={ctaPrimary.href} class="zahnarzt-hero__cta zahnarzt-hero__cta--primary">
+              {ctaPrimary.text}
+            </a>
+          )}
+          {ctaSecondary && (
+            <a href={ctaSecondary.href} class="zahnarzt-hero__cta zahnarzt-hero__cta--secondary">
+              {ctaSecondary.text}
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+
+    <div class="zahnarzt-hero__image-wrap">
+      {imageSrc ? (
+        <img
+          src={imageSrc}
+          alt={imageAlt}
+          class="zahnarzt-hero__image"
+          width="640"
+          height="480"
+          loading="eager"
+        />
+      ) : (
+        <div class="zahnarzt-hero__image-placeholder" aria-hidden="true">
+          <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Zahnarzt Praxis">
+            <rect width="400" height="300" fill="var(--zh-surface, #f0faf9)" rx="16"/>
+            <circle cx="200" cy="120" r="60" fill="var(--zh-accent, #0E8A7B)" opacity="0.15"/>
+            <path d="M160 140 Q200 100 240 140 Q240 180 200 185 Q160 180 160 140Z" fill="var(--zh-accent, #0E8A7B)" opacity="0.6"/>
+            <rect x="120" y="190" width="160" height="8" rx="4" fill="var(--zh-accent, #0E8A7B)" opacity="0.2"/>
+            <rect x="150" y="208" width="100" height="6" rx="3" fill="var(--zh-accent, #0E8A7B)" opacity="0.15"/>
+          </svg>
+        </div>
+      )}
+    </div>
+  </div>
+
+  {stats.length > 0 && (
+    <div class="zahnarzt-hero__stats" aria-label="Kennzahlen">
+      {stats.map((stat) => (
+        <div class="zahnarzt-hero__stat">
+          <span class="zahnarzt-hero__stat-value">{stat.value}</span>
+          <span class="zahnarzt-hero__stat-label">{stat.label}</span>
+        </div>
+      ))}
+    </div>
+  )}
+</section>
+
+<style>
+  .zahnarzt-hero {
+    background: var(--zh-bg, var(--bg-deep));
+    padding: 80px 24px 0;
+  }
+
+  .zahnarzt-hero__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .zahnarzt-hero__badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 100px;
+    background: var(--zh-accent-subtle, rgba(14, 138, 123, 0.12));
+    color: var(--zh-accent, #0E8A7B);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .zahnarzt-hero__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--zh-text, var(--text-primary));
+    margin: 0 0 20px;
+  }
+
+  .zahnarzt-hero__subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    line-height: 1.7;
+    color: var(--zh-muted, var(--text-secondary));
+    margin: 0 0 36px;
+    max-width: 540px;
+  }
+
+  .zahnarzt-hero__ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .zahnarzt-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: var(--btn-md-padding);
+    border-radius: var(--btn-radius);
+    font-family: var(--font-body);
+    font-size: var(--btn-md-font);
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .zahnarzt-hero__cta--primary {
+    background: var(--zh-accent, #0E8A7B);
+    color: #fff;
+  }
+
+  .zahnarzt-hero__cta--primary:hover {
+    background: var(--zh-accent-hover, #0a7066);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(14, 138, 123, 0.3);
+  }
+
+  .zahnarzt-hero__cta--secondary {
+    background: transparent;
+    color: var(--zh-text, var(--text-primary));
+    border: 1.5px solid var(--zh-border, rgba(14, 138, 123, 0.3));
+  }
+
+  .zahnarzt-hero__cta--secondary:hover {
+    background: var(--zh-accent-subtle, rgba(14, 138, 123, 0.08));
+    border-color: var(--zh-accent, #0E8A7B);
+  }
+
+  .zahnarzt-hero__image-wrap {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--zh-surface, #f0faf9);
+  }
+
+  .zahnarzt-hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .zahnarzt-hero__image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .zahnarzt-hero__image-placeholder svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .zahnarzt-hero__stats {
+    max-width: 1200px;
+    margin: 48px auto 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--zh-border, rgba(14, 138, 123, 0.15));
+    border-top: 1px solid var(--zh-border, rgba(14, 138, 123, 0.15));
+    border-radius: 0 0 var(--radius) var(--radius);
+    overflow: hidden;
+  }
+
+  .zahnarzt-hero__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 28px 20px;
+    background: var(--zh-bg, var(--bg-deep));
+    text-align: center;
+  }
+
+  .zahnarzt-hero__stat-value {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    color: var(--zh-accent, #0E8A7B);
+    line-height: 1;
+  }
+
+  .zahnarzt-hero__stat-label {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--zh-muted, var(--text-secondary));
+  }
+
+  @media (min-width: 1024px) {
+    .zahnarzt-hero__inner {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .zahnarzt-hero__subtitle {
+      max-width: none;
+    }
+  }
+</style>

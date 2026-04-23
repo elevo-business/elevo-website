@@ -1,0 +1,166 @@
+---
+import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
+import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
+import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
+import ZahnarztAnxiety from '../../templates/sections/zahnarzt/ZahnarztAnxiety.astro';
+import ZahnarztBeforeAfter from '../../templates/sections/zahnarzt/ZahnarztBeforeAfter.astro';
+import ZahnarztTeam from '../../templates/sections/zahnarzt/ZahnarztTeam.astro';
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zahnarzt V2 — Komponenten Test</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="preconnect" href="/" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      @font-face {
+        font-family: 'Sora';
+        font-style: normal;
+        font-weight: 400 800;
+        font-display: swap;
+        src: url('/fonts/Sora-latin.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Outfit';
+        font-style: normal;
+        font-weight: 300 600;
+        font-display: swap;
+        src: url('/fonts/Outfit-latin.woff2') format('woff2');
+      }
+
+      :root {
+        --bg-deep: #05070E;
+        --bg-dark: #0A0E1A;
+        --bg-card: #0F1628;
+        --accent: #3B82F6;
+        --text-primary: #E2E8F0;
+        --text-secondary: #94A3B8;
+        --font-heading: 'Sora', sans-serif;
+        --font-body: 'Outfit', sans-serif;
+        --radius: 12px;
+        --radius-lg: 20px;
+        --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --btn-md-padding: 14px 28px;
+        --btn-md-font: 1rem;
+        --btn-radius: var(--radius);
+
+        /* Zahnarzt Theme Vars */
+        --zh-accent: #0E8A7B;
+        --zh-accent-hover: #0a7066;
+        --zh-accent-subtle: rgba(14, 138, 123, 0.12);
+        --zh-bg: #05070E;
+        --zh-surface: rgba(14, 138, 123, 0.06);
+        --zh-border: rgba(14, 138, 123, 0.18);
+        --zh-text: #E2E8F0;
+        --zh-muted: #94A3B8;
+        --zh-anxiety-bg: rgba(14, 138, 123, 0.04);
+      }
+
+      body {
+        font-family: var(--font-body);
+        background: var(--bg-deep);
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
+
+      .test-label {
+        background: rgba(59, 130, 246, 0.15);
+        border-bottom: 2px solid rgba(59, 130, 246, 0.4);
+        padding: 10px 24px;
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #60A5FA;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="test-label">Test: ZahnarztHero</div>
+    <ZahnarztHero
+      title="Ihr Lächeln verdient die beste Behandlung"
+      subtitle="Moderne Zahnheilkunde mit Einfühlvermögen — für entspannte Patienten und strahlende Ergebnisse."
+      badge="Ihre Zahnarztpraxis in München"
+      ctaPrimary={{ text: 'Termin vereinbaren', href: '#kontakt' }}
+      ctaSecondary={{ text: 'Leistungen entdecken', href: '#leistungen' }}
+      stats={[
+        { value: '20+', label: 'Jahre Erfahrung' },
+        { value: '3.500+', label: 'Behandlungen' },
+        { value: '4,9★', label: 'Bewertung' },
+        { value: '24h', label: 'Terminanfrage' },
+      ]}
+    />
+
+    <div class="test-label">Test: ZahnarztServices</div>
+    <ZahnarztServices
+      title="Unsere Leistungen"
+      subtitle="Modernes Behandlungsspektrum für Ihre Zahngesundheit — von der Prophylaxe bis zur ästhetischen Restauration."
+      services={[
+        { icon: 'tooth', title: 'Implantologie', description: 'Hochwertige Implantate aus Titan oder Keramik für dauerhaften Zahnersatz.' },
+        { icon: 'smile', title: 'Ästhetik & Veneers', description: 'Hauchdünne Keramikschalen für ein perfektes, natürliches Lächeln.' },
+        { icon: 'shield', title: 'Prophylaxe', description: 'Professionelle Zahnreinigung und individuelle Vorsorge.' },
+        { icon: 'sparkle', title: 'Bleaching', description: 'Professionelles Zahnaufhellen für bis zu 8 Nuancen hellere Zähne.' },
+        { icon: 'check', title: 'Invisible Aligner', description: 'Unsichtbare Zahnkorrektur ohne störende Metallklammern.' },
+        { icon: 'heart', title: 'Angstbehandlung', description: 'Sanfte Behandlung mit Lachgas oder Vollnarkose für entspannte Patienten.' },
+      ]}
+    />
+
+    <div class="test-label">Test: ZahnarztTimeline</div>
+    <ZahnarztTimeline
+      title="Ihr Weg zum perfekten Lächeln"
+      subtitle="In wenigen Schritten zum Ergebnis — transparent und ohne Überraschungen."
+      steps={[
+        { num: 1, icon: 'phone', title: 'Termin vereinbaren', desc: 'Online oder telefonisch — wir finden einen Termin der zu Ihnen passt.' },
+        { num: 2, icon: 'search', title: 'Diagnostik & Beratung', desc: 'Digitales Röntgen, Fotodokumentation und ausführliche Beratung Ihrer Optionen.' },
+        { num: 3, icon: 'tooth', title: 'Behandlungsplan', desc: 'Klarer Plan mit allen Leistungen, Kosten und Zeitrahmen — keine versteckten Gebühren.' },
+        { num: 4, icon: 'smile', title: 'Behandlung & Ergebnis', desc: 'Professionelle Behandlung in entspannter Atmosphäre mit strahlendem Ergebnis.' },
+      ]}
+    />
+
+    <div class="test-label">Test: ZahnarztAnxiety</div>
+    <ZahnarztAnxiety
+      title="Zahnarztangst? Wir verstehen Sie."
+      quote="Rund 60% der Menschen in Deutschland haben Angst vor dem Zahnarzt. Bei uns sind Sie damit nicht allein — und Sie müssen diese Angst nicht überwinden, wir übernehmen das für Sie."
+      quoteAuthor="Dr. med. dent. Maria Klein"
+      trustPoints={[
+        { icon: 'heart', title: 'Einfühlsames Team', desc: 'Wir nehmen uns Zeit und erklären jeden Schritt, bevor wir ihn durchführen.' },
+        { icon: 'shield', title: 'Sanfte Methoden', desc: 'Lachgas-Sedierung oder Vollnarkose — Behandlung ohne Angst und Schmerz.' },
+        { icon: 'star', title: 'Stopp-Signal', desc: 'Sie sind jederzeit in der Kontrolle. Auf Ihr Zeichen halten wir sofort inne.' },
+      ]}
+    />
+
+    <div class="test-label">Test: ZahnarztBeforeAfter</div>
+    <ZahnarztBeforeAfter
+      title="Echte Ergebnisse"
+      subtitle="Sehen Sie selbst, was mit moderner Zahnheilkunde möglich ist."
+      cases={[
+        { label: 'Vollkeramik Restauration' },
+        { label: 'Veneers Oberkiefer' },
+        { label: 'Implantat + Krone' },
+      ]}
+    />
+
+    <div class="test-label">Test: ZahnarztTeam</div>
+    <ZahnarztTeam
+      name="Dr. med. dent. Maria Klein"
+      title="Fachzahnärztin für Oralchirurgie & Implantologie"
+      bio="Mit über 20 Jahren Erfahrung in der Zahnheilkunde verbinde ich moderne Technik mit einem einfühlsamen Behandlungsansatz. Mein Ziel: Jeder Patient verlässt meine Praxis mit einem strahlenden Lächeln — und ohne Angst vor dem nächsten Termin."
+      qualifications={[
+        'Approbation als Zahnärztin (LMU München)',
+        'Fachzahnärztin für Oralchirurgie',
+        'Zertifizierte Implantologin (DGI)',
+        'Masterabschluss Ästhetische Zahnheilkunde',
+        'Mitglied der Deutschen Gesellschaft für Implantologie',
+      ]}
+    />
+
+  </body>
+</html>

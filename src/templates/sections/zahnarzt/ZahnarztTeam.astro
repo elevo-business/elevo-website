@@ -1,0 +1,227 @@
+---
+interface Props {
+  name: string;
+  title: string;
+  bio: string;
+  imageSrc?: string;
+  qualifications?: string[];
+}
+
+const { name, title, bio, imageSrc, qualifications = [] } = Astro.props;
+---
+
+<section class="zahnarzt-team" aria-labelledby="zahnarzt-team-heading">
+  <div class="zahnarzt-team__container">
+    <div class="zahnarzt-team__inner">
+      <div class="zahnarzt-team__photo-wrap">
+        {imageSrc ? (
+          <img
+            src={imageSrc}
+            alt={`Portrait von ${name}`}
+            class="zahnarzt-team__photo"
+            width="480"
+            height="560"
+            loading="lazy"
+          />
+        ) : (
+          <div class="zahnarzt-team__photo-placeholder" aria-hidden="true">
+            <svg viewBox="0 0 480 560" xmlns="http://www.w3.org/2000/svg">
+              <rect width="480" height="560" fill="var(--zh-surface, #f0faf9)"/>
+              <circle cx="240" cy="200" r="100" fill="var(--zh-accent, #0E8A7B)" opacity="0.12"/>
+              <circle cx="240" cy="185" r="60" fill="var(--zh-accent, #0E8A7B)" opacity="0.2"/>
+              <ellipse cx="240" cy="340" rx="100" ry="70" fill="var(--zh-accent, #0E8A7B)" opacity="0.12"/>
+              <rect x="120" y="430" width="240" height="10" rx="5" fill="var(--zh-accent, #0E8A7B)" opacity="0.15"/>
+              <rect x="160" y="452" width="160" height="8" rx="4" fill="var(--zh-accent, #0E8A7B)" opacity="0.1"/>
+            </svg>
+          </div>
+        )}
+        <div class="zahnarzt-team__photo-badge" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          Zertifiziert
+        </div>
+      </div>
+
+      <div class="zahnarzt-team__profile">
+        <p class="zahnarzt-team__role-label">Ihr Zahnarzt</p>
+        <h2 class="zahnarzt-team__name" id="zahnarzt-team-heading">{name}</h2>
+        <p class="zahnarzt-team__title">{title}</p>
+        <p class="zahnarzt-team__bio">{bio}</p>
+
+        {qualifications.length > 0 && (
+          <div class="zahnarzt-team__qualifications">
+            <h3 class="zahnarzt-team__qual-heading">Qualifikationen</h3>
+            <ul class="zahnarzt-team__qual-list" role="list">
+              {qualifications.map((q) => (
+                <li class="zahnarzt-team__qual-item">
+                  <span class="zahnarzt-team__qual-check" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                  </span>
+                  {q}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .zahnarzt-team {
+    background: var(--zh-bg, var(--bg-deep));
+    padding: 96px 24px;
+  }
+
+  .zahnarzt-team__container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .zahnarzt-team__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .zahnarzt-team__photo-wrap {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 6 / 7;
+    background: var(--zh-surface, rgba(14, 138, 123, 0.05));
+    border: 1px solid var(--zh-border, rgba(14, 138, 123, 0.12));
+  }
+
+  .zahnarzt-team__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .zahnarzt-team__photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .zahnarzt-team__photo-placeholder svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .zahnarzt-team__photo-badge {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: var(--zh-accent, #0E8A7B);
+    color: #fff;
+    border-radius: 100px;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .zahnarzt-team__role-label {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--zh-accent, #0E8A7B);
+    margin: 0 0 12px;
+  }
+
+  .zahnarzt-team__name {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--zh-text, var(--text-primary));
+    margin: 0 0 8px;
+    line-height: 1.15;
+  }
+
+  .zahnarzt-team__title {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--zh-muted, var(--text-secondary));
+    margin: 0 0 28px;
+    font-weight: 400;
+  }
+
+  .zahnarzt-team__bio {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--zh-muted, var(--text-secondary));
+    margin: 0 0 36px;
+  }
+
+  .zahnarzt-team__qualifications {
+    background: var(--zh-surface, rgba(14, 138, 123, 0.04));
+    border: 1px solid var(--zh-border, rgba(14, 138, 123, 0.12));
+    border-radius: var(--radius);
+    padding: 28px;
+  }
+
+  .zahnarzt-team__qual-heading {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--zh-text, var(--text-primary));
+    margin: 0 0 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .zahnarzt-team__qual-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .zahnarzt-team__qual-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    color: var(--zh-muted, var(--text-secondary));
+    line-height: 1.5;
+  }
+
+  .zahnarzt-team__qual-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--zh-accent-subtle, rgba(14, 138, 123, 0.12));
+    color: var(--zh-accent, #0E8A7B);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  @media (min-width: 1024px) {
+    .zahnarzt-team__inner {
+      grid-template-columns: 2fr 3fr;
+      gap: 64px;
+    }
+  }
+</style>

@@ -1,0 +1,273 @@
+---
+interface Case {
+  beforeSrc?: string;
+  afterSrc?: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  cases: Case[];
+}
+
+const { title, subtitle, cases } = Astro.props;
+---
+
+<section class="zahnarzt-ba" aria-labelledby="zahnarzt-ba-heading">
+  <div class="zahnarzt-ba__container">
+    <div class="zahnarzt-ba__header">
+      <h2 class="zahnarzt-ba__title" id="zahnarzt-ba-heading">{title}</h2>
+      {subtitle && <p class="zahnarzt-ba__subtitle">{subtitle}</p>}
+    </div>
+
+    <div class="zahnarzt-ba__scroll-wrap" role="region" aria-label="Vorher-Nachher Galerie">
+      <ul class="zahnarzt-ba__cases" role="list">
+        {cases.map((c, i) => (
+          <li class="zahnarzt-ba__case">
+            <div
+              class="zahnarzt-ba__slider"
+              role="img"
+              aria-label={`Vorher-Nachher: ${c.label}`}
+            >
+              <div class="zahnarzt-ba__before">
+                {c.beforeSrc ? (
+                  <img
+                    src={c.beforeSrc}
+                    alt={`Vorher: ${c.label}`}
+                    class="zahnarzt-ba__img"
+                    width="360"
+                    height="280"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="zahnarzt-ba__img-placeholder zahnarzt-ba__img-placeholder--before" aria-hidden="true">
+                    <svg viewBox="0 0 360 280" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="360" height="280" fill="#e8e0d8"/>
+                      <circle cx="180" cy="110" r="55" fill="#c4b8a8" opacity="0.5"/>
+                      <rect x="100" y="175" width="160" height="8" rx="4" fill="#c4b8a8" opacity="0.4"/>
+                      <rect x="130" y="193" width="100" height="6" rx="3" fill="#c4b8a8" opacity="0.3"/>
+                    </svg>
+                  </div>
+                )}
+                <span class="zahnarzt-ba__label zahnarzt-ba__label--before" aria-hidden="true">Vorher</span>
+              </div>
+
+              <div class="zahnarzt-ba__divider" aria-hidden="true">
+                <div class="zahnarzt-ba__divider-line" />
+                <div class="zahnarzt-ba__divider-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M8 3L4 7l4 4M16 3l4 4-4 4" />
+                  </svg>
+                </div>
+              </div>
+
+              <div class="zahnarzt-ba__after">
+                {c.afterSrc ? (
+                  <img
+                    src={c.afterSrc}
+                    alt={`Nachher: ${c.label}`}
+                    class="zahnarzt-ba__img"
+                    width="360"
+                    height="280"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="zahnarzt-ba__img-placeholder zahnarzt-ba__img-placeholder--after" aria-hidden="true">
+                    <svg viewBox="0 0 360 280" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="360" height="280" fill="var(--zh-surface, #f0faf9)"/>
+                      <circle cx="180" cy="110" r="55" fill="var(--zh-accent, #0E8A7B)" opacity="0.15"/>
+                      <rect x="100" y="175" width="160" height="8" rx="4" fill="var(--zh-accent, #0E8A7B)" opacity="0.25"/>
+                      <rect x="130" y="193" width="100" height="6" rx="3" fill="var(--zh-accent, #0E8A7B)" opacity="0.15"/>
+                    </svg>
+                  </div>
+                )}
+                <span class="zahnarzt-ba__label zahnarzt-ba__label--after" aria-hidden="true">Nachher</span>
+              </div>
+            </div>
+            <p class="zahnarzt-ba__case-label">{c.label}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .zahnarzt-ba {
+    background: var(--zh-bg, var(--bg-dark));
+    padding: 96px 24px;
+  }
+
+  .zahnarzt-ba__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .zahnarzt-ba__header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .zahnarzt-ba__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--zh-text, var(--text-primary));
+    margin: 0 0 16px;
+  }
+
+  .zahnarzt-ba__subtitle {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--zh-muted, var(--text-secondary));
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 540px;
+  }
+
+  .zahnarzt-ba__scroll-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--zh-border, rgba(14, 138, 123, 0.2)) transparent;
+    padding-bottom: 8px;
+  }
+
+  .zahnarzt-ba__scroll-wrap::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .zahnarzt-ba__scroll-wrap::-webkit-scrollbar-thumb {
+    background: var(--zh-border, rgba(14, 138, 123, 0.2));
+    border-radius: 2px;
+  }
+
+  .zahnarzt-ba__cases {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: max-content;
+  }
+
+  @media (min-width: 1024px) {
+    .zahnarzt-ba__cases {
+      min-width: unset;
+      flex-wrap: wrap;
+    }
+  }
+
+  .zahnarzt-ba__case {
+    flex: 0 0 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  @media (min-width: 1024px) {
+    .zahnarzt-ba__case {
+      flex: 1 1 300px;
+    }
+  }
+
+  .zahnarzt-ba__slider {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 32px 1fr;
+    gap: 0;
+    background: var(--zh-surface, rgba(14, 138, 123, 0.05));
+    border: 1px solid var(--zh-border, rgba(14, 138, 123, 0.12));
+    aspect-ratio: 16 / 10;
+    position: relative;
+  }
+
+  .zahnarzt-ba__before,
+  .zahnarzt-ba__after {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .zahnarzt-ba__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .zahnarzt-ba__img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .zahnarzt-ba__img-placeholder svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .zahnarzt-ba__label {
+    position: absolute;
+    bottom: 8px;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  .zahnarzt-ba__label--before {
+    left: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+  }
+
+  .zahnarzt-ba__label--after {
+    right: 8px;
+    background: var(--zh-accent, #0E8A7B);
+    color: #fff;
+  }
+
+  .zahnarzt-ba__divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--zh-bg, var(--bg-dark));
+    position: relative;
+    z-index: 1;
+  }
+
+  .zahnarzt-ba__divider-line {
+    width: 2px;
+    flex: 1;
+    background: var(--zh-border, rgba(14, 138, 123, 0.25));
+  }
+
+  .zahnarzt-ba__divider-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--zh-accent, #0E8A7B);
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .zahnarzt-ba__case-label {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--zh-muted, var(--text-secondary));
+    text-align: center;
+    margin: 0;
+  }
+</style>
