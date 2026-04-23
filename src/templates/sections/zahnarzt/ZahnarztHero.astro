@@ -39,8 +39,8 @@ const {
       {badge && (
         <span class="zahnarzt-hero__badge" aria-label="Kategorie">{badge}</span>
       )}
-      <h1 class="zahnarzt-hero__title">{title}</h1>
-      <p class="zahnarzt-hero__subtitle">{subtitle}</p>
+      <h1 class="zahnarzt-hero__title" set:html={title} />
+      <p class="zahnarzt-hero__subtitle" set:html={subtitle} />
       {(ctaPrimary || ctaSecondary) && (
         <div class="zahnarzt-hero__ctas">
           {ctaPrimary && (
