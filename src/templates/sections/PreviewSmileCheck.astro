@@ -1,0 +1,467 @@
+---
+export interface StepOption {
+  label: string;
+  value: string;
+}
+
+export interface SmileStep {
+  question: string;
+  options: StepOption[];
+}
+
+export interface Props {
+  title: string;
+  subtitle: string;
+  steps: SmileStep[];
+  resultCtaText: string;
+  resultCtaHref: string;
+}
+
+const { title, subtitle, steps, resultCtaText, resultCtaHref } = Astro.props;
+const totalSteps = steps.length;
+---
+
+<section class="psc" id="smile-check" aria-labelledby="psc-heading">
+  <div class="psc__inner">
+    <div class="psc__header">
+      <div class="psc__badge" role="note">
+        <span class="psc__badge-dot" aria-hidden="true"></span>
+        Ihr persönlicher Smile-Check
+      </div>
+      <h2 id="psc-heading" class="psc__title">{title}</h2>
+      <p class="psc__sub">{subtitle}</p>
+    </div>
+
+    <div class="psc__card" role="region" aria-live="polite" aria-label="Smile-Check Quiz">
+      <div class="psc__progress" aria-hidden="true">
+        {steps.map((_, i) => (
+          <span
+            class={`psc__dot${i === 0 ? ' psc__dot--active' : ''}`}
+            data-step={i}
+            aria-hidden="true"
+          ></span>
+        ))}
+        <span class="psc__dot psc__dot--result" data-step={totalSteps} aria-hidden="true"></span>
+      </div>
+
+      {steps.map((step, i) => (
+        <div
+          class={`psc__step${i === 0 ? ' psc__step--visible' : ''}`}
+          data-step={i}
+          role="group"
+          aria-label={`Schritt ${i + 1} von ${totalSteps}`}
+        >
+          <p class="psc__step-counter" aria-hidden="true">Schritt {i + 1} / {totalSteps}</p>
+          <h3 class="psc__question">{step.question}</h3>
+          <ul class="psc__options" role="list">
+            {step.options.map(opt => (
+              <li class="psc__option-item">
+                <button
+                  class="psc__option-btn"
+                  type="button"
+                  data-step={i}
+                  data-value={opt.value}
+                  aria-label={opt.label}
+                >
+                  {opt.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <div class="psc__result" data-step={totalSteps} role="group" aria-label="Ihr Ergebnis">
+        <div class="psc__result-icon" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" focusable="false">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2" stroke-linecap="round"/>
+            <line x1="9" y1="9" x2="9.01" y2="9" stroke-linecap="round" stroke-width="2.5"/>
+            <line x1="15" y1="9" x2="15.01" y2="9" stroke-linecap="round" stroke-width="2.5"/>
+          </svg>
+        </div>
+        <h3 class="psc__result-title">Ihr Ergebnis ist bereit!</h3>
+        <p class="psc__result-desc">Basierend auf Ihren Antworten empfehlen wir ein persönliches Beratungsgespräch — kostenlos und unverbindlich.</p>
+        <a href={resultCtaHref} class="psc__result-cta">
+          {resultCtaText}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <button type="button" class="psc__restart" aria-label="Smile-Check neu starten">
+          Nochmal starten
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .psc {
+    padding: 80px 48px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--accent) 3%, transparent) 50%,
+      transparent 100%
+    );
+  }
+
+  .psc__inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .psc__header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .psc__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .psc__badge-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: psc-pulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes psc-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .psc__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+
+  .psc__sub {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .psc__card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .psc__card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 40% at 50% 0%, color-mix(in srgb, var(--accent) 6%, transparent), transparent);
+    pointer-events: none;
+  }
+
+  /* Progress dots */
+  .psc__progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 36px;
+    position: relative;
+  }
+
+  .psc__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1)),
+                transform var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1)),
+                width var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1));
+  }
+
+  .psc__dot--active {
+    background: var(--accent);
+    width: 28px;
+    border-radius: 100px;
+  }
+
+  .psc__dot--done {
+    background: color-mix(in srgb, var(--accent) 50%, transparent);
+  }
+
+  /* Steps */
+  .psc__step {
+    display: none;
+  }
+
+  .psc__step--visible {
+    display: block;
+    animation: psc-fade-in 0.25s ease;
+  }
+
+  @keyframes psc-fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .psc__step-counter {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .psc__question {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 28px;
+    line-height: 1.4;
+    position: relative;
+  }
+
+  .psc__options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .psc__option-btn {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    color: var(--text);
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: border-color var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1)),
+                background var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1)),
+                transform var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1));
+    position: relative;
+  }
+
+  .psc__option-btn:hover {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
+    transform: translateX(4px);
+  }
+
+  .psc__option-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .psc__option-btn--selected {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+  }
+
+  /* Result */
+  .psc__result {
+    display: none;
+    text-align: center;
+    animation: psc-fade-in 0.3s ease;
+  }
+
+  .psc__result--visible {
+    display: block;
+  }
+
+  .psc__result-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: var(--accent);
+  }
+
+  .psc__result-icon :global(svg) {
+    stroke: var(--accent);
+  }
+
+  .psc__result-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .psc__result-desc {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 420px;
+    margin: 0 auto 32px;
+    position: relative;
+  }
+
+  .psc__result-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    text-decoration: none;
+    transition: background var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1)),
+                transform var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1)),
+                box-shadow var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1));
+    margin-bottom: 16px;
+  }
+
+  .psc__result-cta:hover {
+    background: var(--accent-hover, color-mix(in srgb, var(--accent) 80%, #000));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+
+  .psc__restart {
+    display: block;
+    margin: 12px auto 0;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-family: var(--font-body);
+    cursor: pointer;
+    padding: 8px;
+    transition: color var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1));
+    text-decoration: underline;
+    text-decoration-color: transparent;
+  }
+
+  .psc__restart:hover {
+    color: var(--text);
+    text-decoration-color: currentColor;
+  }
+
+  @media (max-width: 900px) {
+    .psc { padding: 60px 24px; }
+    .psc__card { padding: 36px 28px; }
+  }
+
+  @media (max-width: 480px) {
+    .psc__card { padding: 28px 20px; }
+    .psc__result-cta { width: 100%; justify-content: center; }
+  }
+</style>
+
+<script>
+  function initSmileCheck() {
+    document.querySelectorAll<HTMLElement>('.psc__card').forEach(card => {
+      const steps = Array.from(card.querySelectorAll<HTMLElement>('.psc__step'));
+      const result = card.querySelector<HTMLElement>('.psc__result');
+      const dots = Array.from(card.querySelectorAll<HTMLElement>('.psc__dot'));
+      const totalSteps = steps.length;
+
+      let current = 0;
+
+      function showStep(idx: number) {
+        steps.forEach((s, i) => {
+          s.classList.toggle('psc__step--visible', i === idx);
+        });
+        if (result) result.classList.remove('psc__result--visible');
+
+        dots.forEach((dot, i) => {
+          dot.classList.remove('psc__dot--active', 'psc__dot--done');
+          if (i < idx) dot.classList.add('psc__dot--done');
+          else if (i === idx) dot.classList.add('psc__dot--active');
+        });
+      }
+
+      function showResult() {
+        steps.forEach(s => s.classList.remove('psc__step--visible'));
+        if (result) result.classList.add('psc__result--visible');
+
+        dots.forEach((dot, i) => {
+          dot.classList.remove('psc__dot--active', 'psc__dot--done');
+          if (i < totalSteps) dot.classList.add('psc__dot--done');
+          else dot.classList.add('psc__dot--active');
+        });
+      }
+
+      card.querySelectorAll<HTMLButtonElement>('.psc__option-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const stepIdx = Number(btn.dataset.step);
+          const stepEl = steps[stepIdx];
+          if (stepEl) {
+            stepEl.querySelectorAll('.psc__option-btn').forEach(b =>
+              b.classList.remove('psc__option-btn--selected')
+            );
+            btn.classList.add('psc__option-btn--selected');
+          }
+
+          const nextStep = stepIdx + 1;
+          setTimeout(() => {
+            if (nextStep < totalSteps) {
+              current = nextStep;
+              showStep(current);
+            } else {
+              showResult();
+            }
+          }, 200);
+        });
+      });
+
+      const restartBtn = card.querySelector<HTMLButtonElement>('.psc__restart');
+      if (restartBtn) {
+        restartBtn.addEventListener('click', () => {
+          card.querySelectorAll('.psc__option-btn--selected').forEach(b =>
+            b.classList.remove('psc__option-btn--selected')
+          );
+          current = 0;
+          showStep(0);
+        });
+      }
+
+      showStep(0);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSmileCheck);
+  } else {
+    initSmileCheck();
+  }
+</script>

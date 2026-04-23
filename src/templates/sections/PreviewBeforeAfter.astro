@@ -1,0 +1,273 @@
+---
+export interface BeforeAfterItem {
+  beforeSrc: string;
+  afterSrc: string;
+  beforeAlt: string;
+  afterAlt: string;
+  treatment: string;
+  description?: string;
+}
+
+export interface Props {
+  title: string;
+  subtitle?: string;
+  items: BeforeAfterItem[];
+}
+
+const { title, subtitle, items } = Astro.props;
+---
+
+<section class="pba" id="ergebnisse" aria-labelledby="pba-heading">
+  <div class="pba__inner">
+    <div class="pba__header">
+      <h2 id="pba-heading" class="pba__title">{title}</h2>
+      {subtitle && <p class="pba__sub">{subtitle}</p>}
+    </div>
+
+    <div class="pba__grid" role="list">
+      {items.map((item, i) => (
+        <div class="pba__item" role="listitem">
+          <div class="pba__slider-wrap">
+            <div class="pba__after-img">
+              <img
+                src={item.afterSrc}
+                alt={item.afterAlt}
+                loading={i < 2 ? 'eager' : 'lazy'}
+                width="600"
+                height="420"
+              />
+              <span class="pba__badge pba__badge--after" aria-hidden="true">Nachher</span>
+            </div>
+            <div class="pba__before-img">
+              <img
+                src={item.beforeSrc}
+                alt={item.beforeAlt}
+                loading={i < 2 ? 'eager' : 'lazy'}
+                width="600"
+                height="420"
+              />
+              <span class="pba__badge pba__badge--before" aria-hidden="true">Vorher</span>
+            </div>
+            <input
+              type="range"
+              class="pba__range"
+              min="0"
+              max="100"
+              value="50"
+              aria-label={`Vorher-Nachher-Schieberegler für: ${item.treatment}`}
+            />
+            <div class="pba__handle" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" focusable="false">
+                <path d="M8 9l-4 3 4 3M16 9l4 3-4 3"/>
+              </svg>
+            </div>
+            <div class="pba__divider" aria-hidden="true"></div>
+          </div>
+          <div class="pba__info">
+            <h3 class="pba__treatment">{item.treatment}</h3>
+            {item.description && <p class="pba__desc">{item.description}</p>}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pba {
+    padding: 80px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .pba__header {
+    margin-bottom: 48px;
+  }
+
+  .pba__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .pba__sub {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  .pba__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  .pba__item {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .pba__slider-wrap {
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    touch-action: none;
+  }
+
+  .pba__after-img,
+  .pba__before-img {
+    position: relative;
+    width: 100%;
+  }
+
+  .pba__after-img img,
+  .pba__before-img img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
+
+  .pba__before-img {
+    position: absolute;
+    inset: 0;
+    clip-path: inset(0 50% 0 0);
+    transition: clip-path 0s;
+  }
+
+  .pba__before-img img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+  }
+
+  .pba__badge {
+    position: absolute;
+    top: 12px;
+    z-index: 2;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    pointer-events: none;
+  }
+
+  .pba__badge--after {
+    right: 12px;
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .pba__badge--before {
+    left: 12px;
+    background: rgba(0, 0, 0, 0.55);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .pba__divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: #fff;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 3;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  }
+
+  .pba__handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+    pointer-events: none;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .pba__range {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: ew-resize;
+    z-index: 5;
+    margin: 0;
+    padding: 0;
+  }
+
+  .pba__info {
+    padding: 18px 22px 20px;
+  }
+
+  .pba__treatment {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .pba__desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px) {
+    .pba { padding: 60px 24px; }
+    .pba__grid { grid-template-columns: 1fr; }
+    .pba__after-img img { height: 260px; }
+  }
+
+  @media (max-width: 480px) {
+    .pba__after-img img { height: 220px; }
+  }
+</style>
+
+<script>
+  function initBeforeAfterSliders() {
+    document.querySelectorAll<HTMLElement>('.pba__slider-wrap').forEach(wrap => {
+      const range = wrap.querySelector<HTMLInputElement>('.pba__range');
+      const beforeImg = wrap.querySelector<HTMLElement>('.pba__before-img');
+      const divider = wrap.querySelector<HTMLElement>('.pba__divider');
+      const handle = wrap.querySelector<HTMLElement>('.pba__handle');
+      if (!range || !beforeImg || !divider || !handle) return;
+
+      function update(val: number) {
+        beforeImg!.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
+        divider!.style.left = `${val}%`;
+        handle!.style.left = `${val}%`;
+      }
+
+      range.addEventListener('input', () => update(Number(range.value)));
+      update(50);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBeforeAfterSliders);
+  } else {
+    initBeforeAfterSliders();
+  }
+</script>

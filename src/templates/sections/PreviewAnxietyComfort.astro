@@ -1,0 +1,251 @@
+---
+export interface ComfortPoint {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface Props {
+  title: string;
+  subtitle: string;
+  points: ComfortPoint[];
+  imageSrc: string;
+  imageAlt: string;
+  ctaText: string;
+  ctaHref: string;
+}
+
+const { title, subtitle, points, imageSrc, imageAlt, ctaText, ctaHref } = Astro.props;
+---
+
+<section class="pac" id="angstpatienten" aria-labelledby="pac-heading">
+  <div class="pac__inner">
+    <div class="pac__image-col">
+      <div class="pac__image-wrap">
+        <img
+          src={imageSrc}
+          alt={imageAlt}
+          loading="lazy"
+          width="560"
+          height="620"
+          class="pac__image"
+        />
+        <div class="pac__image-glow" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div class="pac__content-col">
+      <div class="pac__badge" role="note">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        Für Angstpatienten
+      </div>
+
+      <h2 id="pac-heading" class="pac__title">{title}</h2>
+      <p class="pac__sub">{subtitle}</p>
+
+      <ul class="pac__points" role="list">
+        {points.map(p => (
+          <li class="pac__point">
+            <div class="pac__point-icon" aria-hidden="true">
+              <Fragment set:html={p.icon} />
+            </div>
+            <div class="pac__point-text">
+              <h3 class="pac__point-title">{p.title}</h3>
+              <p class="pac__point-desc">{p.description}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <a href={ctaHref} class="pac__cta" aria-label={ctaText}>
+        {ctaText}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pac {
+    padding: 80px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .pac__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  /* Image column */
+  .pac__image-wrap {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .pac__image {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    display: block;
+    border-radius: 20px;
+    filter: saturate(0.92);
+  }
+
+  .pac__image-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--accent) 6%, transparent) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+
+  /* Content column */
+  .pac__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .pac__badge :global(svg) {
+    stroke: var(--accent);
+    fill: color-mix(in srgb, var(--accent) 20%, transparent);
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  .pac__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.7rem, 2.5vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+
+  .pac__sub {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 36px;
+    max-width: 460px;
+  }
+
+  .pac__points {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .pac__point {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .pac__point-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+
+  .pac__point-icon :global(svg) {
+    width: 20px;
+    height: 20px;
+    stroke: var(--accent);
+    fill: none;
+    flex-shrink: 0;
+  }
+
+  .pac__point-title {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .pac__point-desc {
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .pac__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    text-decoration: none;
+    transition: background var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1)),
+                transform var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1)),
+                box-shadow var(--transition, 0.3s cubic-bezier(0.4, 0, 0.2, 1));
+  }
+
+  .pac__cta:hover {
+    background: var(--accent-hover, color-mix(in srgb, var(--accent) 80%, #000));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+
+  @media (max-width: 1024px) {
+    .pac__inner { gap: 48px; }
+    .pac__image { height: 420px; }
+  }
+
+  @media (max-width: 900px) {
+    .pac { padding: 60px 24px; }
+    .pac__inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .pac__image { height: 320px; }
+    .pac__image-col { order: 2; }
+    .pac__content-col { order: 1; }
+  }
+
+  @media (max-width: 480px) {
+    .pac__image { height: 260px; }
+    .pac__cta { width: 100%; justify-content: center; }
+  }
+</style>
