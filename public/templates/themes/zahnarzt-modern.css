@@ -1,0 +1,62 @@
+:root {
+  --accent: #3B82F6;
+  --accent-hover: #2563EB;
+  --bg: #F8FAFC;
+  --bg-el: #F1F5F9;
+  --surface: #E2E8F0;
+  --border: #CBD5E1;
+  --text: #0F172A;
+  --muted: #475569;
+  --dim: #94A3B8;
+  --font-heading: 'Sora', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+}
+
+.preview-badge {
+  background: rgba(59, 130, 246, 0.07);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.preview-card:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+}
+
+.preview-card-icon {
+  background: rgba(59, 130, 246, 0.07);
+}
+
+.preview-btn-outline {
+  border-color: rgba(59, 130, 246, 0.3);
+  color: var(--accent);
+}
+
+.preview-btn-outline:hover {
+  border-color: var(--accent);
+}
+
+/* Technisches Blau für CTAs */
+.preview-btn-primary {
+  background: linear-gradient(135deg, #3B82F6, #2563EB);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+}
+
+.preview-btn-primary:hover {
+  background: linear-gradient(135deg, #2563EB, #1D4ED8);
+  box-shadow: 0 6px 28px rgba(59, 130, 246, 0.4);
+}
+
+/* Moderner Hero-Badge */
+.preview-hero-badge {
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.22);
+  color: #1D4ED8;
+}
+
+.preview-stat-value {
+  color: #3B82F6;
+}
+
+/* Präzise Trennlinien */
+.preview-divider {
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.25), transparent);
+}

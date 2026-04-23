@@ -1,0 +1,62 @@
+:root {
+  --accent: #C9A84C;
+  --accent-hover: #B8973E;
+  --bg: #F8F6F1;
+  --bg-el: #F0EDE5;
+  --surface: #E8E3D8;
+  --border: #D4CCBB;
+  --text: #1E2A3A;
+  --muted: #5A6677;
+  --dim: #8A95A5;
+  --font-heading: 'Sora', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+}
+
+.preview-badge {
+  background: rgba(201, 168, 76, 0.08);
+  border-color: rgba(201, 168, 76, 0.22);
+}
+
+.preview-card:hover {
+  border-color: rgba(201, 168, 76, 0.35);
+}
+
+.preview-card-icon {
+  background: rgba(201, 168, 76, 0.08);
+}
+
+.preview-btn-outline {
+  border-color: rgba(201, 168, 76, 0.35);
+  color: var(--accent);
+}
+
+.preview-btn-outline:hover {
+  border-color: var(--accent);
+}
+
+/* Accent glow für interaktive Elemente */
+.preview-btn-primary {
+  background: linear-gradient(135deg, #C9A84C, #D4B558);
+  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+}
+
+.preview-btn-primary:hover {
+  background: linear-gradient(135deg, #B8973E, #C9A84C);
+  box-shadow: 0 6px 28px rgba(201, 168, 76, 0.4);
+}
+
+/* Gold-Akzent für Hero-Highlights */
+.preview-hero-badge {
+  background: rgba(201, 168, 76, 0.1);
+  border-color: rgba(201, 168, 76, 0.25);
+  color: #8B6A1A;
+}
+
+.preview-stat-value {
+  color: #C9A84C;
+}
+
+/* Elegante Trennlinien */
+.preview-divider {
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.3), transparent);
+}

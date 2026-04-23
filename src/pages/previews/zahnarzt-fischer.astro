@@ -1,6 +1,6 @@
 ---
 import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
-import { zahnarztProfile } from '../../templates/config/zahnarzt';
+import { zahnarztAngstProfile } from '../../templates/config/zahnarzt-themes';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
 import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
@@ -155,7 +155,7 @@ const ratgeberItems = [
 ];
 ---
 
-<PreviewLayout profile={zahnarztProfile} prospect={prospect}>
+<PreviewLayout profile={zahnarztAngstProfile} prospect={prospect}>
   <style is:global>
     :root {
       --accent: #EA580C;

@@ -1,0 +1,64 @@
+:root {
+  --accent: #7CB9E8;
+  --accent-hover: #6AADDF;
+  --bg: #F5FAFE;
+  --bg-el: #EBF4FB;
+  --surface: #DCE9F4;
+  --border: #B8D4E8;
+  --text: #1A2A3A;
+  --muted: #5A7A8F;
+  --dim: #8AAFC2;
+  --font-heading: 'Sora', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+}
+
+.preview-badge {
+  background: rgba(124, 185, 232, 0.08);
+  border-color: rgba(124, 185, 232, 0.22);
+}
+
+.preview-card:hover {
+  border-color: rgba(124, 185, 232, 0.4);
+}
+
+.preview-card-icon {
+  background: rgba(124, 185, 232, 0.1);
+}
+
+.preview-btn-outline {
+  border-color: rgba(124, 185, 232, 0.4);
+  color: #4A8AB5;
+}
+
+.preview-btn-outline:hover {
+  border-color: #7CB9E8;
+  color: #3A7AA5;
+}
+
+/* Sanftes Blau für CTAs — nicht zu dominant */
+.preview-btn-primary {
+  background: linear-gradient(135deg, #5BA3D4, #7CB9E8);
+  box-shadow: 0 4px 20px rgba(124, 185, 232, 0.3);
+  color: #fff;
+}
+
+.preview-btn-primary:hover {
+  background: linear-gradient(135deg, #4A93C4, #6AADDF);
+  box-shadow: 0 6px 28px rgba(124, 185, 232, 0.4);
+}
+
+/* Beruhigender Hero-Badge */
+.preview-hero-badge {
+  background: rgba(124, 185, 232, 0.12);
+  border-color: rgba(124, 185, 232, 0.28);
+  color: #3A6E90;
+}
+
+.preview-stat-value {
+  color: #4A8AB5;
+}
+
+/* Sanfte Trennlinien */
+.preview-divider {
+  background: linear-gradient(90deg, transparent, rgba(124, 185, 232, 0.3), transparent);
+}

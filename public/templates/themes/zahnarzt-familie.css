@@ -1,0 +1,62 @@
+:root {
+  --accent: #2D9E6F;
+  --accent-hover: #258A5F;
+  --bg: #F7FBF8;
+  --bg-el: #EFF6F1;
+  --surface: #E2EFE7;
+  --border: #C5DBC9;
+  --text: #1A2E22;
+  --muted: #5A7A65;
+  --dim: #8AAF95;
+  --font-heading: 'Sora', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+}
+
+.preview-badge {
+  background: rgba(45, 158, 111, 0.08);
+  border-color: rgba(45, 158, 111, 0.2);
+}
+
+.preview-card:hover {
+  border-color: rgba(45, 158, 111, 0.35);
+}
+
+.preview-card-icon {
+  background: rgba(45, 158, 111, 0.08);
+}
+
+.preview-btn-outline {
+  border-color: rgba(45, 158, 111, 0.3);
+  color: var(--accent);
+}
+
+.preview-btn-outline:hover {
+  border-color: var(--accent);
+}
+
+/* Frisches Grün für CTAs */
+.preview-btn-primary {
+  background: linear-gradient(135deg, #2D9E6F, #38B280);
+  box-shadow: 0 4px 20px rgba(45, 158, 111, 0.28);
+}
+
+.preview-btn-primary:hover {
+  background: linear-gradient(135deg, #258A5F, #2D9E6F);
+  box-shadow: 0 6px 28px rgba(45, 158, 111, 0.38);
+}
+
+/* Familiärer Hero-Badge */
+.preview-hero-badge {
+  background: rgba(45, 158, 111, 0.1);
+  border-color: rgba(45, 158, 111, 0.25);
+  color: #1A6645;
+}
+
+.preview-stat-value {
+  color: #2D9E6F;
+}
+
+/* Natürliche Trennlinien */
+.preview-divider {
+  background: linear-gradient(90deg, transparent, rgba(45, 158, 111, 0.25), transparent);
+}

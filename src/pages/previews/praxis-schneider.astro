@@ -1,6 +1,6 @@
 ---
 import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
-import { zahnarztProfile } from '../../templates/config/zahnarzt';
+import { zahnarztAesthetikProfile } from '../../templates/config/zahnarzt-themes';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
 import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
@@ -46,7 +46,7 @@ const ratgeberCards = [
 ];
 ---
 
-<PreviewLayout profile={zahnarztProfile} prospect={prospect}>
+<PreviewLayout profile={zahnarztAesthetikProfile} prospect={prospect}>
   <PreviewNav prospectName={prospect.name} logo="" ctaText="Termin vereinbaren" ctaHref="#kontakt" />
 
   <header class="hero-full" id="hero">

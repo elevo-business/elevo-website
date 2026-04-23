@@ -1,6 +1,6 @@
 ---
 import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
-import { zahnarztProfile } from '../../templates/config/zahnarzt';
+import { zahnarztAesthetikProfile } from '../../templates/config/zahnarzt-themes';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import PreviewTreatmentSpectrum from '../../templates/sections/PreviewTreatmentSpectrum.astro';
 import PreviewBeforeAfter from '../../templates/sections/PreviewBeforeAfter.astro';
@@ -99,7 +99,7 @@ const ratgeberCards = [
 ];
 ---
 
-<PreviewLayout profile={zahnarztProfile} prospect={prospect}>
+<PreviewLayout profile={zahnarztAesthetikProfile} prospect={prospect}>
   <PreviewNav prospectName={prospect.name} ctaText="Kostenlose Erstberatung" ctaHref="#kontakt" />
 
   <header class="hero-split" id="hero">
