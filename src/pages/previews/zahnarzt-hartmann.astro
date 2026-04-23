@@ -3,8 +3,8 @@ import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
 import { zahnarztModernProfile } from '../../templates/config/zahnarzt-themes';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
+import ZahnarztTechShowcase from '../../templates/sections/zahnarzt/ZahnarztTechShowcase.astro';
 import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
-import ZahnarztAnxiety from '../../templates/sections/zahnarzt/ZahnarztAnxiety.astro';
 import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
 import ZahnarztBeforeAfter from '../../templates/sections/zahnarzt/ZahnarztBeforeAfter.astro';
 import ZahnarztTeam from '../../templates/sections/zahnarzt/ZahnarztTeam.astro';
@@ -89,24 +89,22 @@ const prospect: ProspectData = {
     </div>
   </div>
 
+  <ZahnarztTechShowcase
+    title="Modernste Technologie für präzise Diagnose"
+    subtitle="Parodontitis erkennen, bevor sie Schäden anrichtet — mit Geräten, die kein Detail übersehen."
+    technologies={[
+      { icon: 'xray', title: '3D-Volumentomographie (DVT)', description: 'Dreidimensionale Röntgendiagnostik mit minimaler Strahlenbelastung — sichtbar, was auf 2D-Bildern verborgen bleibt.' },
+      { icon: 'scan', title: 'Digitaler Intraoralscanner', description: 'Präzise 3D-Abdrücke ohne Abformmasse — schnell, genau und für Patienten deutlich angenehmer.' },
+      { icon: 'microscope', title: 'Paro-Status-System', description: 'Digitale Taschentiefenmessung mit automatischer Dokumentation — jeder Messwert transparent und nachvollziehbar.' },
+      { icon: 'digital', title: 'Digitale Behandlungsplanung', description: 'Alle Befunde in einem System — von der Diagnose über die Therapie bis zum Recall strukturiert geplant.' },
+    ]}
+  />
+
   <ZahnarztServices
     title="Unser Behandlungsspektrum"
     subtitle="Von der Prophylaxe bis zur Implantatversorgung — alles aus einer Hand."
     services={prospect.services}
     cardCtaText="Mehr erfahren"
-  />
-
-  <ZahnarztAnxiety
-    title="Angstpatienten willkommen"
-    quote="Zahnarztangst ist häufiger als Sie denken — und kein Grund, Ihre Gesundheit aufzuschieben. Wir nehmen uns die Zeit, die Sie brauchen."
-    quoteAuthor="Dr. Thomas Hartmann"
-    trustPoints={[
-      { icon: 'heart', title: 'Sedierung möglich', desc: 'Auf Wunsch behandeln wir unter leichter Sedierung — für ein entspanntes, angstfreies Erlebnis.' },
-      { icon: 'smile', title: 'Ruhige Atmosphäre', desc: 'Unsere Praxis ist bewusst ruhig gestaltet. Kein hektischer Wartebereich, keine lauten Geräusche.' },
-      { icon: 'star', title: 'Einfühlsames Team', desc: 'Alle Mitarbeiter sind im Umgang mit Angstpatienten geschult. Wir erklären jeden Schritt vorher.' },
-      { icon: 'shield', title: 'Schmerzfreie Behandlung', desc: 'Modernste Betäubungsverfahren und sanfte Techniken sorgen dafür, dass Sie kaum etwas spüren.' },
-    ]}
-    cta={{ text: 'Unverbindlich Kontakt aufnehmen', href: '#kontakt' }}
   />
 
   <ZahnarztTimeline
@@ -147,9 +145,9 @@ const prospect: ProspectData = {
   <PreviewTestimonials
     title="Unsere Patienten über uns"
     testimonials={[
-      { text: 'Dr. Hartmann hat mein langjähriges Zahnfleischproblem endlich gelöst. Fachkompetenz auf höchstem Niveau.', author: 'Markus B.', role: 'Patient seit 5 Jahren' },
-      { text: 'Die Implantatversorgung war unkompliziert und professionell. Ich würde die Praxis jederzeit weiterempfehlen.', author: 'Claudia W.', role: 'Implantat-Patientin' },
-      { text: 'Modernste Technik und ein kompetentes Team — ich fühle mich hier bestens betreut.', author: 'Stefan H.', role: 'Patient' },
+      { text: 'Dr. Hartmann hat mein langjähriges Zahnfleischproblem endlich gelöst. Fachkompetenz auf höchstem Niveau.', author: 'Markus Braun', role: 'Patient seit 5 Jahren' },
+      { text: 'Die Implantatversorgung war unkompliziert und professionell. Ich würde die Praxis jederzeit weiterempfehlen.', author: 'Claudia Winkler', role: 'Implantat-Patientin' },
+      { text: 'Modernste Technik und ein kompetentes Team — ich fühle mich hier bestens betreut.', author: 'Stefan Hoffmann', role: 'Patient' },
     ]}
   />
 
@@ -158,7 +156,7 @@ const prospect: ProspectData = {
   <PreviewCTA
     title="Ursache finden. Zahnfleisch retten."
     subtitle="Je früher Parodontitis behandelt wird, desto mehr Zähne können erhalten werden. Vereinbaren Sie jetzt Ihren Parodontitis-Check."
-    ctaText="Parodontitis-Check vereinbaren"
+    ctaText="Digitale Erstanalyse buchen"
     ctaHref={`mailto:${prospect.email}`}
     phone={prospect.phone}
   />

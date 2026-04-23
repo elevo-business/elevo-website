@@ -4,11 +4,8 @@ import { zahnarztFamilieProfile } from '../../templates/config/zahnarzt-themes';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
 import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
-import ZahnarztAnxiety from '../../templates/sections/zahnarzt/ZahnarztAnxiety.astro';
-import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
-import ZahnarztBeforeAfter from '../../templates/sections/zahnarzt/ZahnarztBeforeAfter.astro';
+import ZahnarztFamilyAges from '../../templates/sections/zahnarzt/ZahnarztFamilyAges.astro';
 import ZahnarztTeam from '../../templates/sections/zahnarzt/ZahnarztTeam.astro';
-import ZahnarztCostCalc from '../../templates/sections/zahnarzt/ZahnarztCostCalc.astro';
 import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
 import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
 import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
@@ -94,36 +91,28 @@ const prospect: ProspectData = {
     services={prospect.services}
   />
 
-  <ZahnarztAnxiety
-    title="Wir nehmen die Angst vor dem Zahnarzt ernst"
-    quote="Ich sage meinen Patienten immer: Kein Druck, kein Zeitlimit, kein Instrument ohne Ihr OK. Das gilt für Kinder genauso wie für die Ältesten in unserer Praxis."
-    quoteAuthor="Dr. Petra Weber"
-    trustPoints={[
-      { icon: 'heart', title: 'Spielecke & familiäre Atmosphäre', desc: 'Kein klinisches Weiß, kein steriler Empfang. Wir haben eine Spielecke, Getränke und Zeit.' },
-      { icon: 'smile', title: 'Generationenübergreifende Erfahrung', desc: '25 Jahre mit Familien — wir wissen, was Kinder brauchen und was Senioren schätzen.' },
-      { icon: 'shield', title: 'Sanfte Betäubung für alle', desc: 'Oberflächenbetäubung, computergesteuerte Anästhesie — jede Altersgruppe behandeln wir schonend.' },
-      { icon: 'check', title: 'Stopp-Signal gilt immer', desc: 'Ein Zeichen reicht. Wir hören auf. Sofort. Das gilt für Kinder wie für Erwachsene.' },
-    ]}
-    cta={{ text: 'Familientermin anfragen', href: '#kontakt' }}
-  />
-
-  <ZahnarztTimeline
-    title="So läuft der erste Besuch"
-    subtitle="Kein Stress, kein Zeitdruck. Wir nehmen uns Zeit zum Kennenlernen."
-    steps={[
-      { num: 1, title: 'Ankommen', desc: 'Spielecke für die Kleinen, Getränke für die Großen. Ankommen und wohlfühlen.', icon: 'phone' },
-      { num: 2, title: 'Kennenlernen', desc: 'Wir besprechen Ihre Wünsche und Sorgen. Bei Kindern: erst mal nur gucken, kein Druck.', icon: 'search' },
-      { num: 3, title: 'Befund', desc: 'Schonende Untersuchung für alle Familienmitglieder. Alles verständlich erklärt, keine Fachbegriffe.', icon: 'tooth' },
-      { num: 4, title: 'Gemeinsamer Plan', desc: 'Ein Vorsorgeplan für die ganze Familie. Ein Recall-System, damit kein Termin vergessen wird.', icon: 'calendar' },
-    ]}
-  />
-
-  <ZahnarztBeforeAfter
-    title="Behandlungsergebnisse für die ganze Familie"
-    subtitle="Gesunde, schöne Zähne in jedem Alter — das ist unser Versprechen."
-    cases={[
-      { beforeSrc: '/preview-images/zahnarzt-weber/gallery-1.jpg', afterSrc: '/preview-images/zahnarzt-weber/gallery-2.jpg', label: 'Invisalign-Korrektur Erwachsene — Diskrete Zahnkorrektur über 12 Monate.' },
-      { beforeSrc: '/preview-images/zahnarzt-weber/gallery-3.jpg', afterSrc: '/preview-images/zahnarzt-weber/gallery-4.jpg', label: 'Kinderprophylaxe — Gesunde Milchzähne als Grundlage für bleibende Zähne.' },
+  <ZahnarztFamilyAges
+    title="Für jedes Alter die richtige Behandlung"
+    subtitle="Von den ersten Milchzähnen bis zur Seniorenversorgung — Praxis Weber kennt die Bedürfnisse jeder Generation."
+    ageGroups={[
+      {
+        ageRange: '3–12 Jahre',
+        title: 'Kinderzahnheilkunde',
+        description: 'Spielerische Behandlung, die Kindern zeigt: Zahnarzt kann Spaß machen. Prophylaxe, Versiegelungen und Fluoridierung für starke Milchzähne.',
+        icon: 'child',
+      },
+      {
+        ageRange: '13–25 Jahre',
+        title: 'Jugendzahnheilkunde',
+        description: 'Kieferorthopädische Beratung, Invisalign und ästhetische Korrekturen für Teenager und junge Erwachsene — damit das Lächeln stimmt.',
+        icon: 'teen',
+      },
+      {
+        ageRange: '26+ Jahre',
+        title: 'Erwachsene & Senioren',
+        description: 'Kronen, Implantate, Prothesenversorgung und Parodontitisbehandlung — langfristig gesunde Zähne in jedem Lebensabschnitt.',
+        icon: 'adult',
+      },
     ]}
   />
 
@@ -145,17 +134,15 @@ const prospect: ProspectData = {
     title="Familien über Praxis Weber"
     testimonials={[
       { text: 'Unsere ganze Familie geht zu Praxis Weber — von der Ältesten (76) bis zum Jüngsten (4). Alle fühlen sich hier wohl.', author: 'Familie Becker', role: 'Stammkunden' },
-      { text: 'Meine Kinder freuen sich tatsächlich auf den Zahnarzt! Das Team hat eine tolle Art mit den Kleinen umzugehen.', author: 'Laura M.', role: 'Mutter von 3 Kindern' },
-      { text: 'Seit Jahren unsere Praxis des Vertrauens. Immer zuvorkommend, kompetent und menschlich.', author: 'Heinrich G.', role: 'Patient seit 12 Jahren' },
+      { text: 'Meine Kinder freuen sich tatsächlich auf den Zahnarzt! Das Team hat eine tolle Art mit den Kleinen umzugehen.', author: 'Laura Müller', role: 'Mutter von 3 Kindern' },
+      { text: 'Seit Jahren unsere Praxis des Vertrauens. Immer zuvorkommend, kompetent und menschlich.', author: 'Heinrich Gottschalk', role: 'Patient seit 12 Jahren' },
     ]}
   />
-
-  <ZahnarztCostCalc />
 
   <PreviewCTA
     title="Anrufen und Familientermin buchen"
     subtitle="Wir nehmen neue Familien auf — vereinbaren Sie jetzt einen gemeinsamen Termin für alle."
-    ctaText="Familientermin anfragen"
+    ctaText="Familien-Checkup vereinbaren"
     ctaHref={`mailto:${prospect.email}`}
     phone={prospect.phone}
   />

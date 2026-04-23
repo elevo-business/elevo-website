@@ -4,8 +4,8 @@ import { zahnarztModernProfile } from '../../templates/config/zahnarzt-themes';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
 import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
-import ZahnarztAnxiety from '../../templates/sections/zahnarzt/ZahnarztAnxiety.astro';
-import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
+import ZahnarztDoctorQuote from '../../templates/sections/zahnarzt/ZahnarztDoctorQuote.astro';
+import ZahnarztTechShowcase from '../../templates/sections/zahnarzt/ZahnarztTechShowcase.astro';
 import ZahnarztBeforeAfter from '../../templates/sections/zahnarzt/ZahnarztBeforeAfter.astro';
 import ZahnarztTeam from '../../templates/sections/zahnarzt/ZahnarztTeam.astro';
 import ZahnarztCostCalc from '../../templates/sections/zahnarzt/ZahnarztCostCalc.astro';
@@ -94,28 +94,22 @@ const prospect: ProspectData = {
     services={prospect.services}
   />
 
-  <ZahnarztAnxiety
-    title="1.200 Implantate. Keiner bereut es."
-    quote="Die Angst vor einem Implantat ist meistens größer als der Eingriff selbst. Wir zeigen Ihnen Schritt für Schritt, was passiert — damit aus Ungewissheit Vertrauen wird."
-    quoteAuthor="Dr. Stefan Wagner"
-    trustPoints={[
-      { icon: 'shield', title: '3D-Planung zeigt alles vorab', desc: 'Sie sehen am Bildschirm genau, wo das Implantat sitzt — noch bevor der erste Schnitt gemacht wird.' },
-      { icon: 'check', title: 'Lokal betäubt reicht', desc: 'Über 1.200 Implantate unter lokaler Betäubung. Fast alle Patienten arbeiten am nächsten Tag.' },
-      { icon: 'heart', title: 'Sedierung auf Wunsch', desc: 'Wer lieber entspannt schläft: Dämmerschlaf oder Lachgas sind möglich. Sagen Sie einfach Bescheid.' },
-      { icon: 'star', title: 'Transparenter Zeitplan', desc: 'Von der Implantation bis zur fertigen Krone — wir geben Ihnen einen klaren Zeitplan. Keine Überraschungen.' },
-    ]}
-    cta={{ text: 'Kostenvoranschlag anfordern', href: '#kontakt' }}
+  <ZahnarztDoctorQuote
+    quote="Ein Implantat ist kein Ersatz für einen Zahn — es ist ein neuer Zahn. Wer sorgfältig plant, wer die Biologie versteht und wer ehrlich berät, der setzt Implantate, die Jahrzehnte halten."
+    author="Dr. Stefan Wagner"
+    title="Zahnarzt & Implantologe, Hamburg-Eppendorf"
+    imageSrc="/preview-images/zahnarzt-wagner/gallery-1.jpg"
+    imageAlt="Dr. Stefan Wagner"
   />
 
-  <ZahnarztTimeline
-    id="ablauf"
-    title="Von der Diagnose zum fertigen Implantat"
-    subtitle="Vier Schritte. Alles geplant, nichts dem Zufall überlassen."
-    steps={[
-      { num: 1, title: '3D-Analyse', desc: 'Wir röntgen Ihren Kiefer dreidimensional. Sie sehen auf dem Bildschirm genau, wo das Implantat sitzt — bevor wir anfangen.', icon: 'search' },
-      { num: 2, title: 'Behandlungsplan', desc: 'Sie bekommen einen schriftlichen Plan mit Kosten, Dauer und Alternativen. Keine Überraschungen.', icon: 'calendar' },
-      { num: 3, title: 'Implantation', desc: 'Der Eingriff dauert 30–60 Minuten pro Implantat. Unter lokaler Betäubung. Die meisten Patienten arbeiten am nächsten Tag.', icon: 'tooth' },
-      { num: 4, title: 'Krone & Nachsorge', desc: 'Nach der Einheilzeit setzen wir die Krone. Danach: regelmäßige Kontrolle, damit das Implantat Jahrzehnte hält.', icon: 'check' },
+  <ZahnarztTechShowcase
+    title="Technologie, die Implantate sicherer macht"
+    subtitle="Moderne Diagnostik und digitale Planung reduzieren Risiken auf ein Minimum."
+    technologies={[
+      { icon: 'xray', title: '3D-Röntgen & DVT', description: 'Dreidimensionale Kieferanalyse vor jedem Implantat — Knochenvolumen, Nerven, Sinus auf einen Blick.' },
+      { icon: 'cad', title: 'CAD/CAM-Kronen', description: 'Computergefertigte Keramikkronen, die präzise auf das Implantat abgestimmt sind — in Farbe und Form.' },
+      { icon: 'scan', title: 'Digitaler Implantatworkflow', description: 'Vom Scan über die 3D-Planung bis zur OP-Schablone — alles digital, nichts dem Zufall überlassen.' },
+      { icon: 'implant', title: 'Sofortimplantation', description: 'In ausgewählten Fällen: Implantat direkt nach Extraktion. Weniger Sitzungen, schnelleres Ergebnis.' },
     ]}
   />
 
@@ -145,9 +139,9 @@ const prospect: ProspectData = {
   <PreviewTestimonials
     title="Was Patienten über uns sagen"
     testimonials={[
-      { text: 'Die Implantat-Behandlung bei Praxis Wagner war absolut professionell. Ich bin überglücklich mit dem Ergebnis.', author: 'Brigitte S.', role: 'Implantat-Patientin' },
-      { text: 'Endlich wieder richtig kauen und lachen — das Implantat sieht genauso aus wie mein eigener Zahn.', author: 'Frank M.', role: 'Patient' },
-      { text: 'Kompetente Beratung, modernste Technik und ein Team, das sich wirklich Zeit nimmt. Absolute Empfehlung.', author: 'Anja L.', role: 'Patientin seit 4 Jahren' },
+      { text: 'Die Implantat-Behandlung bei Praxis Wagner war absolut professionell. Ich bin überglücklich mit dem Ergebnis.', author: 'Brigitte Schäfer', role: 'Implantat-Patientin' },
+      { text: 'Endlich wieder richtig kauen und lachen — das Implantat sieht genauso aus wie mein eigener Zahn.', author: 'Frank Mayer', role: 'Patient' },
+      { text: 'Kompetente Beratung, modernste Technik und ein Team, das sich wirklich Zeit nimmt. Absolute Empfehlung.', author: 'Anja Lorenz', role: 'Patientin seit 4 Jahren' },
     ]}
   />
 
@@ -161,7 +155,7 @@ const prospect: ProspectData = {
   <PreviewCTA
     title="Jetzt unverbindlich beraten lassen"
     subtitle="Erfahren Sie kostenlos, welche Implantatlösung für Sie passt — persönliches Gespräch, keine Verpflichtung."
-    ctaText="Jetzt unverbindlich beraten lassen"
+    ctaText="Termin online buchen"
     ctaHref={`mailto:${prospect.email}`}
     phone={prospect.phone}
   />

@@ -4,11 +4,10 @@ import { zahnarztAngstProfile } from '../../templates/config/zahnarzt-themes';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
 import ZahnarztAnxiety from '../../templates/sections/zahnarzt/ZahnarztAnxiety.astro';
+import ZahnarztDoctorQuote from '../../templates/sections/zahnarzt/ZahnarztDoctorQuote.astro';
 import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
 import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
-import ZahnarztBeforeAfter from '../../templates/sections/zahnarzt/ZahnarztBeforeAfter.astro';
 import ZahnarztTeam from '../../templates/sections/zahnarzt/ZahnarztTeam.astro';
-import ZahnarztCostCalc from '../../templates/sections/zahnarzt/ZahnarztCostCalc.astro';
 import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
 import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
 import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
@@ -101,6 +100,14 @@ const prospect: ProspectData = {
     ]}
   />
 
+  <ZahnarztDoctorQuote
+    quote="Zahnarztangst ist real. Kein Willpower-Problem, kein Übertreiben. Wer zu uns kommt, bekommt Zeit — so viel wie nötig. Nie mehr, nie weniger."
+    author="Dr. Christian Fischer"
+    title="Zahnarzt & Angstpatienten-Spezialist, Frankfurt"
+    imageSrc="/preview-images/zahnarzt-fischer/gallery-1.jpg"
+    imageAlt="Dr. Christian Fischer"
+  />
+
   <ZahnarztServices
     title="Unsere Leistungen für Sie"
     subtitle="Von der Angstbehandlung bis zur ästhetischen Zahnheilkunde — alles unter einem Dach."
@@ -115,15 +122,6 @@ const prospect: ProspectData = {
       { num: 2, title: 'Gemeinsame Planung', desc: 'Sie bestimmen das Tempo. Wir erklären jeden Schritt vorher. Nichts passiert ohne Ihr OK.', icon: 'calendar' },
       { num: 3, title: 'Sanfte Behandlung', desc: 'Modernste Betäubung, Dämmerschlaf wenn gewünscht. Ihr Stopp-Signal gilt sofort. Immer.', icon: 'tooth' },
       { num: 4, title: 'Nachsorge & Begleitung', desc: 'Wir bleiben dran. Regelmäßige Termine in kleinen Schritten — bis der Zahnarztbesuch normal wird.', icon: 'check' },
-    ]}
-  />
-
-  <ZahnarztBeforeAfter
-    title="Behandlungsergebnisse"
-    subtitle="Sehen Sie selbst, was mit moderner Zahnheilkunde möglich ist."
-    cases={[
-      { beforeSrc: '/preview-images/zahnarzt-fischer/gallery-1.jpg', afterSrc: '/preview-images/zahnarzt-fischer/gallery-2.jpg', label: 'Komplett-Sanierung' },
-      { beforeSrc: '/preview-images/zahnarzt-fischer/gallery-3.jpg', afterSrc: '/preview-images/zahnarzt-fischer/gallery-4.jpg', label: 'Ästhetische Korrektur' },
     ]}
   />
 
@@ -144,18 +142,16 @@ const prospect: ProspectData = {
   <PreviewTestimonials
     title="Was unsere Patienten sagen"
     testimonials={[
-      { text: 'Endlich wieder ohne Angst zum Zahnarzt! Das Team hat mich so behutsam behandelt, ich konnte kaum glauben, wie entspannt alles war.', author: 'Sandra M.', role: 'Patientin seit 3 Jahren' },
-      { text: 'Herr Fischer hat mir meine langjährige Zahnarztphobie genommen. Kompetent, geduldig und immer einfühlsam.', author: 'Thomas R.', role: 'Angstpatient' },
-      { text: 'Die Lachgasbehandlung war ein Gamechanger für mich. Endlich schmerzfrei und entspannt beim Zahnarzt.', author: 'Petra K.', role: 'Patientin' },
+      { text: 'Endlich wieder ohne Angst zum Zahnarzt! Das Team hat mich so behutsam behandelt, ich konnte kaum glauben, wie entspannt alles war.', author: 'Sandra Meier', role: 'Patientin seit 3 Jahren' },
+      { text: 'Herr Fischer hat mir meine langjährige Zahnarztphobie genommen. Kompetent, geduldig und immer einfühlsam.', author: 'Thomas Richter', role: 'Angstpatient' },
+      { text: 'Die Lachgasbehandlung war ein Gamechanger für mich. Endlich schmerzfrei und entspannt beim Zahnarzt.', author: 'Petra Kellermann', role: 'Patientin' },
     ]}
   />
-
-  <ZahnarztCostCalc />
 
   <PreviewCTA
     title="Bereit für den ersten Schritt? Wir sind es auch."
     subtitle="Kein Stuhl, kein Instrument — nur ein ruhiges Gespräch. Kostenloses Kennenlernen, ganz ohne Druck."
-    ctaText="Kostenloses Kennenlerngespräch buchen"
+    ctaText="Angstfrei-Gespräch buchen"
     ctaHref={`mailto:${prospect.email}`}
     phone={prospect.phone}
   />

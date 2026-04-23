@@ -2,10 +2,9 @@
 import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
 import { zahnarztAesthetikProfile } from '../../templates/config/zahnarzt-themes';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
-import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
+import ZahnarztHeroSplit from '../../templates/sections/zahnarzt/ZahnarztHeroSplit.astro';
+import ZahnarztDoctorQuote from '../../templates/sections/zahnarzt/ZahnarztDoctorQuote.astro';
 import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
-import ZahnarztAnxiety from '../../templates/sections/zahnarzt/ZahnarztAnxiety.astro';
-import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
 import ZahnarztBeforeAfter from '../../templates/sections/zahnarzt/ZahnarztBeforeAfter.astro';
 import ZahnarztTeam from '../../templates/sections/zahnarzt/ZahnarztTeam.astro';
 import ZahnarztCostCalc from '../../templates/sections/zahnarzt/ZahnarztCostCalc.astro';
@@ -46,7 +45,7 @@ const prospect: ProspectData = {
     ctaHref="#kontakt"
   />
 
-  <ZahnarztHero
+  <ZahnarztHeroSplit
     title={prospect.heroTitle}
     subtitle={prospect.heroSubtitle}
     badge="Premium Implantologie München"
@@ -95,28 +94,12 @@ const prospect: ProspectData = {
     services={prospect.services}
   />
 
-  <ZahnarztAnxiety
-    title="Große Behandlungen muss niemand fürchten"
-    quote="In 15 Jahren Implantologie habe ich eines gelernt: Die meisten Bedenken lösen sich, wenn wir gemeinsam am Bildschirm durch die 3D-Planung gehen. Dann ist das Unbekannte plötzlich sehr konkret."
-    quoteAuthor="Dr. med. dent. Klein"
-    trustPoints={[
-      { icon: 'shield', title: '3D-Visualisierung vor dem Eingriff', desc: 'Sie sehen am Bildschirm genau, wo Implantat oder Veneer positioniert wird — noch vor dem ersten Schritt.' },
-      { icon: 'heart', title: 'Sedierung auf Wunsch', desc: 'Dämmerschlaf oder Lachgas — für Patienten, die lieber entspannt schlafen, als jeden Schritt zu verfolgen.' },
-      { icon: 'check', title: 'Lokale Betäubung reicht meist', desc: 'Über 3.000 Implantate gesetzt. Fast immer unter lokaler Betäubung. Schmerzen: minimal bis keine.' },
-      { icon: 'star', title: 'Schriftlicher Ablaufplan', desc: 'Sie bekommen alles schwarz auf weiß — Ablauf, Kosten, Zeitplan. Keine offenen Fragen.' },
-    ]}
-    cta={{ text: 'Erstberatung vereinbaren', href: '#kontakt' }}
-  />
-
-  <ZahnarztTimeline
-    title="Ihr Weg zum perfekten Lächeln"
-    subtitle="Jedes Lächeln ist individuell. Deshalb planen wir Ihres digital — bevor die Behandlung beginnt."
-    steps={[
-      { num: 1, title: 'Smile-Design-Analyse', desc: 'Digitaler Scan, Fotoanalyse, Gesichtsproportionen. Sie sehen Ihr neues Lächeln am Bildschirm.', icon: 'search' },
-      { num: 2, title: 'Individuelle Planung', desc: 'Material-Auswahl, Farbabstimmung, Zeitplan. Alles auf Sie abgestimmt, schriftlich dokumentiert.', icon: 'calendar' },
-      { num: 3, title: 'Präzise Umsetzung', desc: 'Schweizer Titan-Implantate, CAD/CAM-Kronen, Digital Smile Design. Technik im Dienst der Ästhetik.', icon: 'star' },
-      { num: 4, title: '10-Jahre-Garantie', desc: 'Wir stehen hinter unserer Arbeit. Regelmäßige Kontrollen inklusive. Ihr Lächeln, langfristig geschützt.', icon: 'check' },
-    ]}
+  <ZahnarztDoctorQuote
+    quote="Ästhetische Zahnmedizin ist keine Kosmetik — es ist Präzision. Jedes Veneer, jedes Implantat sitzt so, dass Sie es nicht nur sehen, sondern auch fühlen: das Vertrauen, das Ihr Lächeln ausstrahlt."
+    author="Dr. med. dent. Klein"
+    title="Spezialist für Implantologie & Ästhetische Zahnmedizin, München-Schwabing"
+    imageSrc="/preview-images/dr-klein-zahnarzt/gallery-1.jpg"
+    imageAlt="Dr. med. dent. Klein"
   />
 
   <ZahnarztBeforeAfter
@@ -146,9 +129,9 @@ const prospect: ProspectData = {
   <PreviewTestimonials
     title="Was unsere Patienten sagen"
     testimonials={[
-      { text: 'Dr. Klein hat mein Lächeln komplett verändert. Die Veneers sehen absolut natürlich aus — ich bekomme ständig Komplimente.', author: 'Isabella V.', role: 'Veneer-Patientin' },
-      { text: 'Die Implantat-Beratung war absolut professionell. Dr. Klein hat sich Zeit genommen, alle Fragen zu beantworten. Das Ergebnis ist perfekt.', author: 'Florian K.', role: 'Implantat-Patient' },
-      { text: 'Endlich eine Praxis, die Ästhetik ernst nimmt. Das Smile Design vorab zu sehen war beeindruckend — genau so ist es geworden.', author: 'Nadine S.', role: 'Patientin' },
+      { text: 'Dr. Klein hat mein Lächeln komplett verändert. Die Veneers sehen absolut natürlich aus — ich bekomme ständig Komplimente.', author: 'Isabella Vogel', role: 'Veneer-Patientin' },
+      { text: 'Die Implantat-Beratung war absolut professionell. Dr. Klein hat sich Zeit genommen, alle Fragen zu beantworten. Das Ergebnis ist perfekt.', author: 'Florian Kaufmann', role: 'Implantat-Patient' },
+      { text: 'Endlich eine Praxis, die Ästhetik ernst nimmt. Das Smile Design vorab zu sehen war beeindruckend — genau so ist es geworden.', author: 'Nadine Schreiber', role: 'Patientin' },
     ]}
   />
 
@@ -162,7 +145,7 @@ const prospect: ProspectData = {
   <PreviewCTA
     title="Exklusive Erstberatung vereinbaren"
     subtitle="Inklusive kostenloser Smile-Design-Analyse — sehen Sie Ihr neues Lächeln, bevor die Behandlung beginnt."
-    ctaText="Exklusive Erstberatung vereinbaren"
+    ctaText="Exklusive Smile-Design-Analyse buchen"
     ctaHref={`mailto:${prospect.email}`}
     phone={prospect.phone}
   />
