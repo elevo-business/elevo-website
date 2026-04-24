@@ -1,6 +1,6 @@
 ---
 import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
-import { zahnarztAesthetikProfile } from '../../templates/config/zahnarzt-themes';
+import { drKleinZahnarztProfile } from '../../templates/config/zahnarzt-themes';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import ZahnarztHeroSplit from '../../templates/sections/zahnarzt/ZahnarztHeroSplit.astro';
 import ZahnarztDoctorQuote from '../../templates/sections/zahnarzt/ZahnarztDoctorQuote.astro';
@@ -38,9 +38,10 @@ const prospect: ProspectData = {
 };
 ---
 
-<PreviewLayout profile={zahnarztAesthetikProfile} prospect={prospect}>
+<PreviewLayout profile={drKleinZahnarztProfile} prospect={prospect}>
   <PreviewNav
     prospectName={prospect.name}
+    logo="/preview-images/dr-klein-zahnarzt/logo.png"
     ctaText="Erstberatung vereinbaren"
     ctaHref="#kontakt"
   />
@@ -152,6 +153,7 @@ const prospect: ProspectData = {
 
   <PreviewFooter
     prospectName={prospect.name}
+    logo="/preview-images/dr-klein-zahnarzt/logo.png"
     email={prospect.email}
     phone={prospect.phone}
     location={prospect.location}

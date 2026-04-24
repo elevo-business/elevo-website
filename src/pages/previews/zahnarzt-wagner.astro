@@ -1,6 +1,6 @@
 ---
 import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
-import { zahnarztModernProfile } from '../../templates/config/zahnarzt-themes';
+import { zahnarztWagnerProfile } from '../../templates/config/zahnarzt-themes';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
 import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
@@ -38,9 +38,10 @@ const prospect: ProspectData = {
 };
 ---
 
-<PreviewLayout profile={zahnarztModernProfile} prospect={prospect}>
+<PreviewLayout profile={zahnarztWagnerProfile} prospect={prospect}>
   <PreviewNav
     prospectName={prospect.name}
+    logo="/preview-images/zahnarzt-wagner/logo.png"
     ctaText="Beratungsgespräch"
     ctaHref="#kontakt"
   />
@@ -98,7 +99,7 @@ const prospect: ProspectData = {
     quote="Ein Implantat ist kein Ersatz für einen Zahn — es ist ein neuer Zahn. Wer sorgfältig plant, wer die Biologie versteht und wer ehrlich berät, der setzt Implantate, die Jahrzehnte halten."
     author="Dr. Stefan Wagner"
     title="Zahnarzt & Implantologe, Hamburg-Eppendorf"
-    imageSrc="/preview-images/zahnarzt-wagner/gallery-1.jpg"
+    imageSrc="/preview-images/zahnarzt-wagner/doctor.jpg"
     imageAlt="Dr. Stefan Wagner"
   />
 
@@ -162,6 +163,7 @@ const prospect: ProspectData = {
 
   <PreviewFooter
     prospectName={prospect.name}
+    logo="/preview-images/zahnarzt-wagner/logo.png"
     email={prospect.email}
     phone={prospect.phone}
     location={prospect.location}

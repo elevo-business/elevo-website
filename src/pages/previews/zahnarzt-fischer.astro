@@ -1,6 +1,6 @@
 ---
 import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
-import { zahnarztAngstProfile } from '../../templates/config/zahnarzt-themes';
+import { zahnarztFischerProfile } from '../../templates/config/zahnarzt-themes';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
 import ZahnarztAnxiety from '../../templates/sections/zahnarzt/ZahnarztAnxiety.astro';
@@ -37,9 +37,10 @@ const prospect: ProspectData = {
 };
 ---
 
-<PreviewLayout profile={zahnarztAngstProfile} prospect={prospect}>
+<PreviewLayout profile={zahnarztFischerProfile} prospect={prospect}>
   <PreviewNav
     prospectName={prospect.name}
+    logo="/preview-images/zahnarzt-fischer/logo.svg"
     ctaText="Termin vereinbaren"
     ctaHref="#kontakt"
   />
@@ -158,6 +159,7 @@ const prospect: ProspectData = {
 
   <PreviewFooter
     prospectName={prospect.name}
+    logo="/preview-images/zahnarzt-fischer/logo.svg"
     email={prospect.email}
     phone={prospect.phone}
     location={prospect.location}

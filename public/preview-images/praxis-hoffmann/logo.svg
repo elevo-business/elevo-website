@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" width="320" height="72">
+  <defs>
+    <linearGradient id="hf-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6B3FA0"/>
+      <stop offset="100%" stop-color="#4E2C7A"/>
+    </linearGradient>
+  </defs>
+  <!-- Icon: diamond/gem -->
+  <rect x="4" y="12" width="48" height="48" rx="12" fill="url(#hf-grad)"/>
+  <polygon points="28,18 38,28 28,50 18,28" fill="white" opacity="0.9"/>
+  <polygon points="28,18 38,28 28,35 18,28" fill="white" opacity="0.5"/>
+  <!-- Practice name -->
+  <text x="66" y="29" font-family="Sora, system-ui, sans-serif" font-size="17" font-weight="700" fill="#1E1030" letter-spacing="-0.3px">Zahnarztpraxis</text>
+  <text x="66" y="52" font-family="Sora, system-ui, sans-serif" font-size="19" font-weight="800" fill="#6B3FA0" letter-spacing="-0.4px">Hoffmann &amp; Kollegen</text>
+</svg>

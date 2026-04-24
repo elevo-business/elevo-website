@@ -1,6 +1,6 @@
 ---
 import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
-import { zahnarztFamilieProfile } from '../../templates/config/zahnarzt-themes';
+import { zahnarztWeberProfile } from '../../templates/config/zahnarzt-themes';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
 import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
@@ -35,9 +35,10 @@ const prospect: ProspectData = {
 };
 ---
 
-<PreviewLayout profile={zahnarztFamilieProfile} prospect={prospect}>
+<PreviewLayout profile={zahnarztWeberProfile} prospect={prospect}>
   <PreviewNav
     prospectName={prospect.name}
+    logo="/preview-images/zahnarzt-weber/logo.svg"
     ctaText="Termin buchen"
     ctaHref="#kontakt"
   />
@@ -149,6 +150,7 @@ const prospect: ProspectData = {
 
   <PreviewFooter
     prospectName={prospect.name}
+    logo="/preview-images/zahnarzt-weber/logo.svg"
     email={prospect.email}
     phone={prospect.phone}
     location={prospect.location}

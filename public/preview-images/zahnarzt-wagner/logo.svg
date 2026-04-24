@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 72" width="280" height="72">
+  <defs>
+    <linearGradient id="wg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3CBFAE"/>
+      <stop offset="100%" stop-color="#2A9E8E"/>
+    </linearGradient>
+  </defs>
+  <!-- Icon: wave / tooth shape -->
+  <rect x="4" y="12" width="48" height="48" rx="12" fill="url(#wg-grad)"/>
+  <path d="M14 30 Q18 22 22 30 Q26 38 30 30 Q34 22 38 30" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M14 42 Q18 34 22 42 Q26 50 30 42 Q34 34 38 42" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <!-- Practice name -->
+  <text x="66" y="32" font-family="Sora, system-ui, sans-serif" font-size="18" font-weight="700" fill="#0F2826" letter-spacing="-0.3px">Zahnarztpraxis</text>
+  <text x="66" y="55" font-family="Sora, system-ui, sans-serif" font-size="22" font-weight="800" fill="#3CBFAE" letter-spacing="-0.5px">Wagner</text>
+</svg>

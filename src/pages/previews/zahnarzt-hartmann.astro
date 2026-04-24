@@ -1,6 +1,6 @@
 ---
 import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
-import { zahnarztModernProfile } from '../../templates/config/zahnarzt-themes';
+import { zahnarztHartmannProfile } from '../../templates/config/zahnarzt-themes';
 import PreviewNav from '../../templates/sections/PreviewNav.astro';
 import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
 import ZahnarztTechShowcase from '../../templates/sections/zahnarzt/ZahnarztTechShowcase.astro';
@@ -38,9 +38,10 @@ const prospect: ProspectData = {
 };
 ---
 
-<PreviewLayout profile={zahnarztModernProfile} prospect={prospect}>
+<PreviewLayout profile={zahnarztHartmannProfile} prospect={prospect}>
   <PreviewNav
     prospectName={prospect.name}
+    logo="/preview-images/zahnarzt-hartmann/logo.jpg"
     ctaText="Termin buchen"
     ctaHref="#kontakt"
   />
@@ -163,6 +164,7 @@ const prospect: ProspectData = {
 
   <PreviewFooter
     prospectName={prospect.name}
+    logo="/preview-images/zahnarzt-hartmann/logo.jpg"
     email={prospect.email}
     phone={prospect.phone}
     location={prospect.location}

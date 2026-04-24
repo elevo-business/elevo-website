@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 72" width="280" height="72">
+  <defs>
+    <linearGradient id="wb-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2E8B57"/>
+      <stop offset="100%" stop-color="#1E6E42"/>
+    </linearGradient>
+  </defs>
+  <!-- Icon: leaf/tooth -->
+  <rect x="4" y="12" width="48" height="48" rx="12" fill="url(#wb-grad)"/>
+  <path d="M28 18 C20 18 14 24 14 32 C14 40 20 46 28 46 C36 46 42 40 42 32 C42 24 36 18 28 18 Z" fill="white" opacity="0.15"/>
+  <path d="M28 22 C28 22 20 28 20 34 C20 38 24 42 28 42 C32 42 36 38 36 34 C36 28 28 22 28 22 Z" fill="white" opacity="0.9"/>
+  <line x1="28" y1="42" x2="28" y2="50" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <!-- Practice name -->
+  <text x="66" y="32" font-family="Sora, system-ui, sans-serif" font-size="18" font-weight="700" fill="#152A1E" letter-spacing="-0.3px">Zahnarztpraxis</text>
+  <text x="66" y="55" font-family="Sora, system-ui, sans-serif" font-size="22" font-weight="800" fill="#2E8B57" letter-spacing="-0.5px">Weber</text>
+</svg>

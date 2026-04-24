@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" width="320" height="72">
+  <defs>
+    <linearGradient id="sc-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B8364A"/>
+      <stop offset="100%" stop-color="#8E2438"/>
+    </linearGradient>
+  </defs>
+  <!-- Icon: star/asterisk for aesthetics -->
+  <rect x="4" y="12" width="48" height="48" rx="12" fill="url(#sc-grad)"/>
+  <path d="M28 19 L30 27 L38 24 L33 31 L40 36 L32 36 L30 44 L28 36 L20 38 L25 31 L18 26 L26 27 Z" fill="white" opacity="0.92"/>
+  <!-- Practice name -->
+  <text x="66" y="29" font-family="Sora, system-ui, sans-serif" font-size="17" font-weight="700" fill="#280E12" letter-spacing="-0.3px">Praxis Schneider</text>
+  <text x="66" y="52" font-family="Sora, system-ui, sans-serif" font-size="14" font-weight="600" fill="#B8364A" letter-spacing="-0.2px">Ästhetische Zahnmedizin Köln</text>
+</svg>

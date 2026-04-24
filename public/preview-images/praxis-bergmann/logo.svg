@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 72" width="290" height="72">
+  <defs>
+    <linearGradient id="bm-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D7377"/>
+      <stop offset="100%" stop-color="#085E62"/>
+    </linearGradient>
+  </defs>
+  <!-- Icon: shield + tooth -->
+  <rect x="4" y="12" width="48" height="48" rx="12" fill="url(#bm-grad)"/>
+  <path d="M28 20 L16 25 L16 36 C16 42 22 47 28 50 C34 47 40 42 40 36 L40 25 Z" fill="white" opacity="0.9"/>
+  <path d="M22 34 L26 38 L34 30" stroke="#0D7377" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Practice name -->
+  <text x="66" y="30" font-family="Sora, system-ui, sans-serif" font-size="17" font-weight="700" fill="#0A2424" letter-spacing="-0.3px">Zahnarztpraxis</text>
+  <text x="66" y="53" font-family="Sora, system-ui, sans-serif" font-size="22" font-weight="800" fill="#0D7377" letter-spacing="-0.5px">Bergmann</text>
+</svg>

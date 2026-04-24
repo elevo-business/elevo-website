@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 72" width="280" height="72">
+  <defs>
+    <linearGradient id="fg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2B7FBF"/>
+      <stop offset="100%" stop-color="#1A5E90"/>
+    </linearGradient>
+  </defs>
+  <!-- Icon: tooth silhouette -->
+  <g transform="translate(0, 8)">
+    <rect x="4" y="4" width="44" height="44" rx="10" fill="url(#fg-grad)"/>
+    <path d="M22 12 C18 12 14 16 14 20 C14 24 16 26 16 30 C16 34 17 40 22 40 C24 40 25 37 26 34 C27 37 28 40 30 40 C35 40 36 34 36 30 C36 26 38 24 38 20 C38 16 34 12 30 12 C28 12 27 14 26 16 C25 14 24 12 22 12 Z" fill="white" opacity="0.92"/>
+  </g>
+  <!-- Practice name -->
+  <text x="60" y="32" font-family="Sora, system-ui, sans-serif" font-size="18" font-weight="700" fill="#152336" letter-spacing="-0.3px">Zahnarztpraxis</text>
+  <text x="60" y="54" font-family="Sora, system-ui, sans-serif" font-size="22" font-weight="800" fill="#2B7FBF" letter-spacing="-0.5px">Fischer</text>
+</svg>
