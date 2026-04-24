@@ -1,0 +1,1014 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const ecoNodes = [
+  { key: 'sonne',   label: 'Sonne',            top: '5%',  left: '50%', color: '#EF9F27', borderColor: 'rgba(239,159,39,0.4)', bg: 'rgba(239,159,39,0.1)' },
+  { key: 'wasser',  label: 'Wasser',            top: '18%', left: '82%', color: '#378ADD', borderColor: 'rgba(55,138,221,0.4)',  bg: 'rgba(55,138,221,0.1)' },
+  { key: 'erde',    label: 'Erde',              top: '50%', left: '95%', color: '#A0845A', borderColor: 'rgba(160,132,90,0.4)',  bg: 'rgba(160,132,90,0.1)' },
+  { key: 'bienen',  label: 'Bienen',            top: '82%', left: '82%', color: '#EF9F27', borderColor: 'rgba(239,159,39,0.4)', bg: 'rgba(239,159,39,0.1)' },
+  { key: 'schafe',  label: 'Schafe',            top: '95%', left: '50%', color: '#9C9A8E', borderColor: 'rgba(156,154,142,0.35)', bg: 'rgba(156,154,142,0.08)' },
+  { key: 'duenger', label: 'Dünger',            top: '82%', left: '18%', color: '#7CB342', borderColor: 'rgba(124,179,66,0.4)',  bg: 'rgba(124,179,66,0.1)' },
+  { key: 'baum',    label: 'Baum',              top: '50%', left: '5%',  color: '#00A86B', borderColor: 'rgba(45,212,160,0.4)',  bg: 'rgba(0,168,107,0.1)' },
+  { key: 'co2',     label: 'CO₂',              top: '18%', left: '18%', color: '#1D9E75', borderColor: 'rgba(29,158,117,0.4)',  bg: 'rgba(29,158,117,0.1)' },
+];
+
+const ecoData = [
+  { title: 'Sonne',              color: '#EF9F27', next: 'Wasser',  desc: '2.200+ Sonnenstunden pro Jahr. Das Sonnenlicht treibt die Photosynthese — der Turbo für Paulownia-Wachstum.' },
+  { title: 'Wasser',             color: '#378ADD', next: 'Erde',    desc: 'Regen und gezielte Bewässerung. Die Höhenlage sorgt für ideale Niederschlagsmengen und natürliche Drainage.' },
+  { title: 'Erde',               color: '#A0845A', next: 'Bienen',  desc: 'Nährstoffreicher Boden mit pH 6,5. Wird durch natürlichen Dünger der Schafe ständig mit Nährstoffen versorgt.' },
+  { title: 'Bienen',             color: '#EF9F27', next: 'Schafe',  desc: '200 Bienenvölker auf der Plantage. Sie bestäuben die Paulownia-Blüten und stärken das gesamte Ökosystem.' },
+  { title: 'Schafe',             color: '#9C9A8E', next: 'Dünger',  desc: 'Schafe grasen zwischen den Baumreihen. Sie halten das Gras kurz und reduzieren den Maschineneinsatz.' },
+  { title: 'Natürlicher Dünger', color: '#7CB342', next: 'Baum',   desc: 'Die Schafe produzieren organischen Dünger. Keine Chemie — die Nährstoffe fließen zurück in den Boden.' },
+  { title: 'Paulownia-Baum',     color: '#00A86B', next: 'CO₂',    desc: 'Bis zu 5 Meter Wachstum pro Jahr. Nach 8–12 Jahren liefert jeder Baum ca. 1,1–1,4 m³ Edelholz.' },
+  { title: 'CO₂-Bindung',       color: '#1D9E75', next: 'Sonne',   desc: 'Jeder Baum bindet ca. 300 kg CO₂ pro Jahr. Ca. 360 Hektar = Millionen Kilogramm CO₂-Reduktion.' },
+];
+
+const ecoNodeIcons: Record<string, string> = {
+  sonne:   '<circle cx="12" cy="12" r="5"/><path d="M12 2v2m0 16v2M4.22 4.22l1.41 1.41m12.74 12.74 1.41 1.41M2 12h2m16 0h2M4.22 19.78l1.41-1.41m12.74-12.74 1.41-1.41" stroke-linecap="round"/>',
+  wasser:  '<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>',
+  erde:    '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',
+  bienen:  '<circle cx="12" cy="12" r="3"/><path d="M12 2a2 2 0 0 0-2 2v4a2 2 0 0 0 4 0V4a2 2 0 0 0-2-2zm0 18a2 2 0 0 1-2-2v-4a2 2 0 0 1 4 0v4a2 2 0 0 1-2 2zm8-8a2 2 0 0 1-2 2h-4a2 2 0 0 1 0-4h4a2 2 0 0 1 2 2zM4 12a2 2 0 0 0 2 2h4a2 2 0 0 0 0-4H6a2 2 0 0 0-2 2z"/>',
+  schafe:  '<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/>',
+  duenger: '<polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4-4.64 4.36A9 9 0 0 1 3.51 15"/>',
+  baum:    '<path d="M17 14l-5-8-5 8"/><path d="M12 6v14M9 20h6"/><path d="M5 14h14"/>',
+  co2:     '<path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>',
+};
+---
+
+<BaseLayout
+  title="Erlebniswelt — ELEVO | Webagentur Aachen"
+  description="Interaktive Demos direkt im Browser: Nährstoffkreislauf-Diagramm und Baumbesitzer-Konfigurator aus dem Greenchild-Projekt — nativ entwickelt von ELEVO."
+  canonical="https://elevo.solutions/erlebniswelt"
+>
+  <a href="#kreislauf" class="skip-link">Zum Hauptinhalt springen</a>
+  <Header />
+
+  <!-- Page Hero -->
+  <section class="erw-hero">
+    <div class="container">
+      <a href="/" class="erw-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Zurück zur Startseite
+      </a>
+      <div class="erw-hero-label">Live Demo</div>
+      <h1 class="erw-hero-title">Unsere Arbeit.<br><span class="accent">Direkt ausprobieren.</span></h1>
+      <p class="erw-hero-sub">Echte interaktive Features aus dem Greenchild-Projekt — nativ entwickelt, kein iframe. Testen Sie selbst, was wir bauen.</p>
+      <div class="erw-hero-badges">
+        <span class="erw-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Native Astro-Komponenten
+        </span>
+        <span class="erw-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Kein iframe / kein Plugin
+        </span>
+        <span class="erw-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Greenchild-Projekt
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- KREISLAUF-DIAGRAMM -->
+  <section id="kreislauf" class="section erw-section" aria-labelledby="kreislauf-heading">
+    <div class="container">
+      <header class="section-header">
+        <div class="section-label reveal">Greenchild · Visualisierung</div>
+        <h2 id="kreislauf-heading" class="reveal reveal-delay-1">Nährstoffkreislauf</h2>
+        <p class="reveal reveal-delay-2">Klicken Sie auf ein Element — oder starten Sie den automatischen Durchlauf.</p>
+      </header>
+
+      <div class="eco-outer reveal reveal-delay-1">
+        <div class="eco-controls-top">
+          <button class="eco-play-btn" id="ecoPlayBtn" aria-pressed="false">
+            <svg id="ecoPlayIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span id="ecoPlayLabel">Kreislauf starten</span>
+          </button>
+        </div>
+
+        <div class="eco-layout">
+          <div class="eco-wrap" role="group" aria-label="Ökosystem-Kreislauf Elemente">
+            <!-- SVG orbit -->
+            <svg class="eco-svg" viewBox="0 0 540 540" aria-hidden="true">
+              <circle cx="270" cy="270" r="210" fill="none" stroke="rgba(45,212,160,0.05)" stroke-width="40"/>
+              <circle cx="270" cy="270" r="205" fill="none" stroke="rgba(0,168,107,0.15)" stroke-width="28"/>
+              <circle cx="270" cy="270" r="205" fill="none" stroke="#00A86B" stroke-width="3" opacity="0.6"/>
+              <circle cx="270" cy="270" r="205" fill="none" class="eco-flow" stroke="rgba(45,212,160,0.2)" stroke-width="2"/>
+            </svg>
+
+            <!-- Orbit dot -->
+            <div class="eco-orbit" aria-hidden="true"><div class="eco-orbit-dot"></div></div>
+
+            <!-- Center -->
+            <div class="eco-center" aria-hidden="true">
+              <div class="eco-center-ring">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(45,212,160,0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M17 14l-5-8-5 8"/><path d="M12 6v14"/><path d="M9 20h6"/><path d="M5 14h14"/>
+                </svg>
+              </div>
+              <div class="eco-center-text">Ökosystem</div>
+            </div>
+
+            <!-- Eco nodes -->
+            {ecoNodes.map((node, i) => (
+              <button
+                class="eco-node"
+                style={`top:${node.top};left:${node.left};`}
+                data-idx={String(i)}
+                data-color={node.color}
+                data-bg={node.bg}
+                data-border={node.borderColor}
+                aria-label={node.label}
+              >
+                <div class="eco-icon" style={`background:${node.bg};border-color:${node.borderColor};`}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={node.color} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={ecoNodeIcons[node.key]}/>
+                </div>
+                <div class="eco-node-label">{node.label}</div>
+              </button>
+            ))}
+          </div>
+
+          <!-- Info box -->
+          <div class="eco-info-panel" id="ecoInfoPanel" aria-live="polite" aria-atomic="true">
+            <div class="eco-info-inner" id="ecoInfoInner">
+              <div class="eco-info-placeholder">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M15 15l-7-7m0 0h5.5m-5.5 0V13"/>
+                  <circle cx="12" cy="12" r="10"/>
+                </svg>
+                <p>Klicken Sie auf ein<br>Element im Kreislauf</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAUMBESITZER-KONFIGURATOR -->
+  <section id="konfigurator" class="section erw-section" aria-labelledby="konfigurator-heading">
+    <div class="container">
+      <header class="section-header">
+        <div class="section-label reveal">Greenchild · Rechner</div>
+        <h2 id="konfigurator-heading" class="reveal reveal-delay-1">Baumbesitzer-Konfigurator</h2>
+        <p class="reveal reveal-delay-2">Wie viele Paulownia-Bäume möchten Sie? Ziehen Sie den Slider — alle Werte aktualisieren sich live.</p>
+      </header>
+
+      <div class="konfig-box reveal reveal-delay-1">
+        <div class="konfig-count-wrap">
+          <div class="konfig-count" id="configCount">25</div>
+          <div class="konfig-count-label">Paulownia-Bäume</div>
+        </div>
+
+        <div class="konfig-slider-wrap">
+          <input
+            type="range"
+            min="25" max="800" value="25" step="25"
+            class="konfig-range"
+            id="configSlider"
+            aria-label="Anzahl Bäume auswählen"
+            aria-valuemin="25"
+            aria-valuemax="800"
+            aria-valuenow="25"
+          />
+          <div class="konfig-range-labels">
+            <span>25 Bäume</span>
+            <span>800 Bäume</span>
+          </div>
+        </div>
+
+        <!-- Forest visual -->
+        <div class="forest-visual" id="forestVisual" aria-hidden="true"></div>
+
+        <div class="konfig-results">
+          <div class="konfig-result-card">
+            <div class="konfig-result-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/>
+              </svg>
+            </div>
+            <div class="konfig-result-value" id="configPrice">6.225 €</div>
+            <div class="konfig-result-label">Kaufpreis</div>
+          </div>
+          <div class="konfig-result-card">
+            <div class="konfig-result-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div class="konfig-result-value"><span id="configArea">0,04</span> ha</div>
+            <div class="konfig-result-label">Fläche</div>
+          </div>
+          <div class="konfig-result-card">
+            <div class="konfig-result-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>
+              </svg>
+            </div>
+            <div class="konfig-result-value">ca. <span id="configCo2">7.525</span> kg</div>
+            <div class="konfig-result-label">CO₂ / Jahr</div>
+          </div>
+          <div class="konfig-result-card">
+            <div class="konfig-result-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 14l-5-8-5 8"/><path d="M12 6v14"/><path d="M9 20h6"/>
+              </svg>
+            </div>
+            <div class="konfig-result-value">ca. <span id="configVolume">34</span> m³</div>
+            <div class="konfig-result-label">Holz bei Reife</div>
+          </div>
+        </div>
+
+        <div class="konfig-market-box">
+          <div class="konfig-market-label">Marktwert des Holzes bei Reife</div>
+          <div class="konfig-market-value">
+            <span id="configMarketLow">57.330</span> – <span id="configMarketHigh">71.701</span> USD
+          </div>
+          <div class="konfig-market-note">Paulownia Qualität B (1.695–2.119 USD/m³). Marktpreise unterliegen Schwankungen. Keine Renditeversprechen.</div>
+        </div>
+
+        <div class="konfig-cta">
+          <a href="/#kontakt" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Projekt anfragen
+          </a>
+          <p class="konfig-cta-note">Unverbindlich · Kein Verkaufsdruck</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="section erw-bottom-cta">
+    <div class="container">
+      <div class="erw-bottom-cta-inner reveal">
+        <div class="section-label">Ihr Projekt</div>
+        <h2>Was können wir für Sie bauen?</h2>
+        <p>Diese Features entstanden in enger Zusammenarbeit mit Greenchild. Wir entwickeln auch für Sie individuelle Web-Anwendungen — persönlich und messbar.</p>
+        <a href="/#kontakt" class="btn-primary">
+          Gespräch vereinbaren
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* ===========================
+     Page Hero
+  =========================== */
+  .erw-hero {
+    padding: 120px 0 60px;
+    background: var(--bg-deep);
+  }
+
+  .erw-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-bottom: 32px;
+    transition: color var(--transition);
+  }
+
+  .erw-back:hover { color: var(--text-primary); }
+
+  .erw-hero-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .erw-hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+  }
+
+  .erw-hero-title .accent { color: var(--accent); }
+
+  .erw-hero-sub {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .erw-hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .erw-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    background: rgba(59, 130, 246, 0.08);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 20px;
+    color: var(--text-secondary);
+  }
+
+  .erw-badge svg { color: var(--accent); }
+
+  /* ===========================
+     Section wrapper
+  =========================== */
+  .erw-section { background: var(--bg-dark); }
+  .erw-section:nth-child(even) { background: var(--bg-deep); }
+
+  /* ===========================
+     Kreislauf — Eco Diagram
+  =========================== */
+  .eco-outer { max-width: 900px; margin: 0 auto; }
+
+  .eco-controls-top {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+
+  .eco-play-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    background: rgba(45, 212, 160, 0.1);
+    border: 1.5px solid rgba(45, 212, 160, 0.35);
+    border-radius: 40px;
+    color: #2DD4A0;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .eco-play-btn:hover {
+    background: rgba(45, 212, 160, 0.18);
+    border-color: rgba(45, 212, 160, 0.6);
+  }
+
+  .eco-play-btn.playing {
+    background: rgba(45, 212, 160, 0.9);
+    color: #05070E;
+    border-color: rgba(45, 212, 160, 0.9);
+  }
+
+  .eco-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  /* The circular diagram */
+  .eco-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+  }
+
+  .eco-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .eco-orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 410px;
+    height: 410px;
+    margin: -205px 0 0 -205px;
+    border-radius: 50%;
+    animation: orbitDot 25s linear infinite;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .eco-orbit-dot {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    margin-left: -8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #2DD4A0;
+    box-shadow: 0 0 16px rgba(45, 212, 160, 0.7), 0 0 40px rgba(45, 212, 160, 0.3);
+  }
+
+  .eco-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .eco-center-ring {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 8px;
+    border-radius: 50%;
+    background: rgba(0, 168, 107, 0.1);
+    border: 1.5px solid rgba(45, 212, 160, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .eco-center-text {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  /* Nodes */
+  .eco-node {
+    position: absolute;
+    z-index: 4;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition: transform 0.35s var(--transition);
+    background: none;
+    border: none;
+    padding: 0;
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  .eco-node:hover, .eco-node.active {
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+
+  .eco-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid;
+    transition: all 0.4s var(--transition);
+    margin: 0 auto;
+    backdrop-filter: blur(8px);
+  }
+
+  .eco-node.active .eco-icon {
+    box-shadow: 0 0 0 6px rgba(45, 212, 160, 0.12);
+    transform: scale(1.08);
+  }
+
+  .eco-node-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 5px;
+    white-space: nowrap;
+  }
+
+  .eco-node.active .eco-node-label {
+    color: #2DD4A0;
+    font-weight: 600;
+  }
+
+  /* Eco info panel */
+  .eco-info-panel {
+    flex: 1;
+    min-width: 0;
+    align-self: center;
+  }
+
+  .eco-info-inner {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    min-height: 160px;
+    transition: border-color var(--transition);
+  }
+
+  .eco-info-inner.active {
+    border-color: var(--border-strong);
+  }
+
+  .eco-info-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    color: var(--text-muted);
+    padding: 16px 0;
+  }
+
+  .eco-info-placeholder p {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .eco-info-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .eco-info-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .eco-info-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .eco-info-arrow {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-left: auto;
+  }
+
+  .eco-info-desc {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Animations */
+  @keyframes flowDash { to { stroke-dashoffset: -24; } }
+  @keyframes orbitDot { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  .eco-flow {
+    stroke-dasharray: 6 18;
+    animation: flowDash 2s linear infinite;
+  }
+
+  /* ===========================
+     Konfigurator
+  =========================== */
+  .konfig-box {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+  }
+
+  .konfig-count-wrap {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .konfig-count {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 800;
+    color: #2DD4A0;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+
+  .konfig-count-label {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  .konfig-slider-wrap {
+    margin-bottom: 24px;
+  }
+
+  .konfig-range {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, rgba(45, 212, 160, 0.5), rgba(59, 130, 246, 0.2));
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 8px;
+  }
+
+  .konfig-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #2DD4A0;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(45, 212, 160, 0.5);
+    border: 3px solid var(--bg-deep);
+    transition: transform 0.2s;
+  }
+
+  .konfig-range::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+
+  .konfig-range::-moz-range-thumb {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #2DD4A0;
+    cursor: pointer;
+    border: 3px solid var(--bg-deep);
+    box-shadow: 0 4px 16px rgba(45, 212, 160, 0.5);
+  }
+
+  .konfig-range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* Forest visual bars */
+  .forest-visual {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 72px;
+    margin-bottom: 28px;
+    padding: 0 4px;
+  }
+
+  .forest-bar {
+    flex: 1;
+    border-radius: 2px 2px 0 0;
+    background: rgba(45, 212, 160, 0.12);
+    height: 8px;
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s;
+  }
+
+  .forest-bar.active {
+    background: rgba(45, 212, 160, 0.55);
+  }
+
+  /* Result cards */
+  .konfig-results {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .konfig-result-card {
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 12px;
+    text-align: center;
+  }
+
+  .konfig-result-icon {
+    margin-bottom: 8px;
+    color: #2DD4A0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .konfig-result-value {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+
+  .konfig-result-label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* Market box */
+  .konfig-market-box {
+    background: rgba(45, 212, 160, 0.05);
+    border: 1px solid rgba(45, 212, 160, 0.2);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 28px;
+  }
+
+  .konfig-market-label {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .konfig-market-value {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2DD4A0;
+    margin-bottom: 6px;
+  }
+
+  .konfig-market-note {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .konfig-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .konfig-cta-note {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  /* ===========================
+     Bottom CTA
+  =========================== */
+  .erw-bottom-cta { background: var(--bg-deep); }
+
+  .erw-bottom-cta-inner {
+    max-width: 600px;
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .erw-bottom-cta-inner h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .erw-bottom-cta-inner p {
+    font-family: var(--font-body);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ===========================
+     Responsive
+  =========================== */
+  @media (max-width: 768px) {
+    .eco-layout {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .eco-wrap {
+      max-width: 320px;
+    }
+
+    .eco-orbit {
+      width: 310px;
+      height: 310px;
+      margin: -155px 0 0 -155px;
+    }
+
+    .eco-icon {
+      width: 44px;
+      height: 44px;
+    }
+
+    .eco-node-label {
+      font-size: 9.5px;
+    }
+
+    .eco-center-ring {
+      width: 52px;
+      height: 52px;
+    }
+
+    .konfig-results {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .konfig-box {
+      padding: 24px 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .eco-wrap {
+      max-width: 280px;
+    }
+
+    .eco-orbit {
+      width: 270px;
+      height: 270px;
+      margin: -135px 0 0 -135px;
+    }
+
+    .eco-icon {
+      width: 36px;
+      height: 36px;
+    }
+
+    .eco-node-label {
+      font-size: 8.5px;
+    }
+  }
+</style>
+
+<script>
+  // =====================
+  // Kreislauf Diagram
+  // =====================
+  (function () {
+    const ecoData = [
+      { title: 'Sonne',              color: '#EF9F27', next: 'Wasser',  desc: '2.200+ Sonnenstunden pro Jahr. Das Sonnenlicht treibt die Photosynthese — der Turbo für Paulownia-Wachstum.' },
+      { title: 'Wasser',             color: '#378ADD', next: 'Erde',    desc: 'Regen und gezielte Bewässerung. Die Höhenlage sorgt für ideale Niederschlagsmengen und natürliche Drainage.' },
+      { title: 'Erde',               color: '#A0845A', next: 'Bienen',  desc: 'Nährstoffreicher Boden mit pH 6,5. Wird durch natürlichen Dünger der Schafe ständig mit Nährstoffen versorgt.' },
+      { title: 'Bienen',             color: '#EF9F27', next: 'Schafe',  desc: '200 Bienenvölker auf der Plantage. Sie bestäuben die Paulownia-Blüten und stärken das gesamte Ökosystem.' },
+      { title: 'Schafe',             color: '#9C9A8E', next: 'Dünger',  desc: 'Schafe grasen zwischen den Baumreihen. Sie halten das Gras kurz und reduzieren den Maschineneinsatz.' },
+      { title: 'Natürlicher Dünger', color: '#7CB342', next: 'Baum',   desc: 'Die Schafe produzieren organischen Dünger. Keine Chemie — die Nährstoffe fließen zurück in den Boden.' },
+      { title: 'Paulownia-Baum',     color: '#00A86B', next: 'CO₂',    desc: 'Bis zu 5 Meter Wachstum pro Jahr. Nach 8–12 Jahren liefert jeder Baum ca. 1,1–1,4 m³ Edelholz.' },
+      { title: 'CO₂-Bindung',       color: '#1D9E75', next: 'Sonne',   desc: 'Jeder Baum bindet ca. 300 kg CO₂ pro Jahr. Ca. 360 Hektar = Millionen Kilogramm CO₂-Reduktion.' },
+    ];
+
+    const nodes = document.querySelectorAll<HTMLButtonElement>('.eco-node');
+    const infoInner = document.getElementById('ecoInfoInner') as HTMLElement;
+    const playBtn = document.getElementById('ecoPlayBtn') as HTMLButtonElement;
+    const playIcon = document.getElementById('ecoPlayIcon') as SVGElement;
+    const playLabel = document.getElementById('ecoPlayLabel') as HTMLElement;
+
+    let interval: ReturnType<typeof setInterval> | null = null;
+    let currentIdx = -1;
+
+    function showNode(i: number) {
+      currentIdx = i;
+      const d = ecoData[i];
+      nodes.forEach((n, j) => n.classList.toggle('active', j === i));
+      infoInner.classList.add('active');
+      infoInner.innerHTML = `
+        <div class="eco-info-head">
+          <div class="eco-info-dot" style="background:${d.color}"></div>
+          <div class="eco-info-title">${d.title}</div>
+          <div class="eco-info-arrow">→ ${d.next}</div>
+        </div>
+        <p class="eco-info-desc">${d.desc}</p>
+      `;
+    }
+
+    nodes.forEach((node, i) => {
+      node.addEventListener('click', () => {
+        if (interval) stopPlay();
+        showNode(i);
+      });
+    });
+
+    function startPlay() {
+      let i = currentIdx < 0 ? 0 : (currentIdx + 1) % ecoData.length;
+      showNode(i);
+      interval = setInterval(() => {
+        i = (i + 1) % ecoData.length;
+        showNode(i);
+      }, 4500);
+      playBtn.classList.add('playing');
+      playBtn.setAttribute('aria-pressed', 'true');
+      playLabel.textContent = 'Stoppen';
+      playIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+    }
+
+    function stopPlay() {
+      if (interval) clearInterval(interval);
+      interval = null;
+      playBtn.classList.remove('playing');
+      playBtn.setAttribute('aria-pressed', 'false');
+      playLabel.textContent = 'Kreislauf starten';
+      playIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+    }
+
+    playBtn.addEventListener('click', () => {
+      if (interval) stopPlay(); else startPlay();
+    });
+  })();
+
+  // =====================
+  // Konfigurator
+  // =====================
+  (function () {
+    const PRICE = 249, HA = 625, VOL = 1.37, CO2 = 301, MLO = 1695, MHI = 2119;
+    const BAR_COUNT = 56;
+
+    const slider = document.getElementById('configSlider') as HTMLInputElement;
+    const forestEl = document.getElementById('forestVisual') as HTMLElement;
+
+    // Build forest bars
+    for (let i = 0; i < BAR_COUNT; i++) {
+      const bar = document.createElement('div');
+      bar.className = 'forest-bar';
+      forestEl.appendChild(bar);
+    }
+
+    function el(id: string) { return document.getElementById(id)!; }
+
+    function fmt(n: number) { return n.toLocaleString('de-DE'); }
+
+    function update() {
+      const t = parseInt(slider.value);
+      const area = t / HA;
+      const vol = t * VOL;
+      const co2 = t * CO2;
+      const price = t * PRICE;
+
+      slider.setAttribute('aria-valuenow', String(t));
+      el('configCount').textContent = fmt(t);
+      el('configPrice').textContent = fmt(price) + ' €';
+      el('configArea').textContent = area.toFixed(2).replace('.', ',');
+      el('configCo2').textContent = fmt(Math.round(co2));
+      el('configVolume').textContent = fmt(Math.round(vol));
+      el('configMarketLow').textContent = fmt(Math.round(vol * MLO));
+      el('configMarketHigh').textContent = fmt(Math.round(vol * MHI));
+
+      const bars = forestEl.querySelectorAll('.forest-bar');
+      bars.forEach((b, i) => {
+        const active = i < Math.ceil((t / 800) * bars.length);
+        const bar = b as HTMLElement;
+        bar.classList.toggle('active', active);
+        if (active) {
+          bar.style.height = (20 + Math.random() * 52) + 'px';
+        } else {
+          bar.style.height = '8px';
+        }
+      });
+    }
+
+    slider.addEventListener('input', update);
+    update();
+  })();
+</script>
