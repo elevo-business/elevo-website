@@ -10,6 +10,11 @@
   --dim: #8AAFA5;
   --font-heading: 'Sora', sans-serif;
   --font-body: 'Outfit', sans-serif;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --btn-radius: 100px;
+  --btn-md-padding: 14px 28px;
+  --btn-md-font: 0.95rem;
 }
 
 .preview-badge {
