@@ -33,3 +33,39 @@
 .preview-btn-outline:hover {
   border-color: var(--accent);
 }
+
+/* Per-Practice Farbvarianten */
+[data-accent="blue"] {
+  --accent: #2563EB;
+  --accent-hover: #1D4ED8;
+  --accent-light: rgba(37, 99, 235, 0.12);
+  --accent-glow: rgba(37, 99, 235, 0.35);
+}
+
+[data-accent="teal"] {
+  --accent: #0D9488;
+  --accent-hover: #0B7A70;
+  --accent-light: rgba(13, 148, 136, 0.12);
+  --accent-glow: rgba(13, 148, 136, 0.35);
+}
+
+[data-accent="violet"] {
+  --accent: #7C3AED;
+  --accent-hover: #6D28D9;
+  --accent-light: rgba(124, 58, 237, 0.12);
+  --accent-glow: rgba(124, 58, 237, 0.35);
+}
+
+[data-accent="emerald"] {
+  --accent: #059669;
+  --accent-hover: #047857;
+  --accent-light: rgba(5, 150, 105, 0.12);
+  --accent-glow: rgba(5, 150, 105, 0.35);
+}
+
+[data-accent="orange"] {
+  --accent: #EA580C;
+  --accent-hover: #C2410C;
+  --accent-light: rgba(234, 88, 12, 0.12);
+  --accent-glow: rgba(234, 88, 12, 0.35);
+}
