@@ -1,0 +1,437 @@
+---
+interface Demo {
+  badge: string;
+  tabTitle: string;
+  description: string;
+  iframeUrl: string;
+  iframeTitle: string;
+  iframeHeight?: number;
+}
+
+interface Props {
+  demos: Demo[];
+}
+
+const { demos } = Astro.props;
+---
+
+<section id="erlebniswelt" class="section erlebniswelt-section" aria-labelledby="erlebniswelt-heading">
+  <div class="container">
+    <header class="section-header">
+      <div class="section-label reveal">Live erleben</div>
+      <h2 id="erlebniswelt-heading" class="reveal reveal-delay-1">Unsere Arbeit.<br>Direkt ausprobieren.</h2>
+      <p class="reveal reveal-delay-2">Kein Screenshot — echte interaktive Features aus unseren Projekten. Testen Sie selbst.</p>
+    </header>
+
+    <div class="erlebniswelt-layout reveal reveal-delay-1">
+      <!-- Vertikale Tab-Leiste (Desktop) / Pill-Row (Tablet) / Dropdown (Mobile) -->
+      <div class="erlebniswelt-tabs-wrap">
+        <!-- Mobile Dropdown -->
+        <label for="erlebniswelt-select" class="sr-only">Demo auswählen</label>
+        <select
+          id="erlebniswelt-select"
+          class="erlebniswelt-select"
+          aria-label="Demo auswählen"
+        >
+          {demos.map((demo, i) => (
+            <option value={String(i)}>{demo.tabTitle}</option>
+          ))}
+        </select>
+
+        <!-- Desktop/Tablet Tabs -->
+        <div
+          class="erlebniswelt-tabs"
+          role="tablist"
+          aria-label="Demo-Auswahl"
+        >
+          {demos.map((demo, i) => (
+            <button
+              class={`erlebniswelt-tab${i === 0 ? ' active' : ''}`}
+              role="tab"
+              aria-selected={i === 0 ? 'true' : 'false'}
+              aria-controls={`erlebniswelt-panel-${i}`}
+              id={`erlebniswelt-tab-${i}`}
+              data-index={String(i)}
+            >
+              <span class="erlebniswelt-tab-badge">{demo.badge}</span>
+              <span class="erlebniswelt-tab-title">{demo.tabTitle}</span>
+              <p class="erlebniswelt-tab-desc">{demo.description}</p>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- iframe Panels -->
+      <div class="erlebniswelt-panels">
+        {demos.map((demo, i) => {
+          const height = demo.iframeHeight ?? 560;
+          return (
+            <div
+              class={`erlebniswelt-panel${i === 0 ? ' active' : ''}`}
+              role="tabpanel"
+              id={`erlebniswelt-panel-${i}`}
+              aria-labelledby={`erlebniswelt-tab-${i}`}
+              hidden={i !== 0}
+            >
+              <div class="erlebniswelt-browser" style={`--panel-height: ${height}px`}>
+                <div class="erlebniswelt-bar">
+                  <div class="viewer-dots" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="viewer-url-wrap">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    <span class="viewer-url-text erlebniswelt-url-text">
+                      {demo.iframeUrl ? new URL(demo.iframeUrl).host : 'Demo in Kürze verfügbar'}
+                    </span>
+                  </div>
+                  {demo.iframeUrl && (
+                    <a
+                      class="viewer-open-btn"
+                      href={demo.iframeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${demo.tabTitle} in neuem Tab öffnen`}
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                      </svg>
+                    </a>
+                  )}
+                </div>
+
+                <div class="erlebniswelt-frame-wrap">
+                  {demo.iframeUrl ? (
+                    <iframe
+                      src={demo.iframeUrl}
+                      title={demo.iframeTitle}
+                      loading="lazy"
+                      class="erlebniswelt-iframe"
+                    ></iframe>
+                  ) : (
+                    <div class="erlebniswelt-placeholder" aria-label="Demo in Kürze verfügbar">
+                      <svg class="erlebniswelt-placeholder-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polygon points="10 8 16 12 10 16 10 8"/>
+                      </svg>
+                      <p class="erlebniswelt-placeholder-title">Demo in Kürze verfügbar</p>
+                      <p class="erlebniswelt-placeholder-sub">Wir bereiten etwas Interaktives vor.</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ===========================
+     Erlebniswelt Section
+  =========================== */
+  :root {
+    --erlebniswelt-tab-w: 240px;
+    --erlebniswelt-placeholder-bg: rgba(59, 130, 246, 0.04);
+    --erlebniswelt-placeholder-border: rgba(59, 130, 246, 0.18);
+  }
+
+  .erlebniswelt-layout {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  /* ---- Tab Sidebar ---- */
+  .erlebniswelt-tabs-wrap {
+    flex: 0 0 var(--erlebniswelt-tab-w);
+    width: var(--erlebniswelt-tab-w);
+  }
+
+  .erlebniswelt-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .erlebniswelt-tab {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 18px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-left: 3px solid transparent;
+    border-radius: var(--radius);
+    cursor: pointer;
+    text-align: left;
+    transition: background var(--transition), border-color var(--transition);
+    color: var(--text-secondary);
+  }
+
+  .erlebniswelt-tab:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .erlebniswelt-tab.active {
+    background: rgba(59, 130, 246, 0.12);
+    border-left-color: var(--accent);
+    color: var(--text-primary);
+  }
+
+  .erlebniswelt-tab-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: var(--font-body);
+    padding: 3px 10px;
+    background: rgba(59, 130, 246, 0.15);
+    border-radius: 20px;
+    color: var(--accent);
+    width: fit-content;
+  }
+
+  .erlebniswelt-tab-title {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: inherit;
+    transition: color var(--transition);
+  }
+
+  .erlebniswelt-tab.active .erlebniswelt-tab-title {
+    color: var(--text-primary);
+  }
+
+  .erlebniswelt-tab-desc {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Mobile select (hidden on Desktop/Tablet) */
+  .erlebniswelt-select {
+    display: none;
+  }
+
+  /* ---- Panel Area ---- */
+  .erlebniswelt-panels {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .erlebniswelt-panel {
+    display: block;
+  }
+
+  .erlebniswelt-panel[hidden] {
+    display: none;
+  }
+
+  /* ---- Browser Chrome ---- */
+  .erlebniswelt-browser {
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), var(--shadow-blue);
+  }
+
+  .erlebniswelt-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--bg-dark);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .erlebniswelt-frame-wrap {
+    position: relative;
+    height: var(--panel-height, 560px);
+    overflow: hidden;
+  }
+
+  .erlebniswelt-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* ---- Placeholder ---- */
+  .erlebniswelt-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 12px;
+    background: var(--erlebniswelt-placeholder-bg);
+    border: 2px dashed var(--erlebniswelt-placeholder-border);
+    margin: 16px;
+    border-radius: var(--radius);
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  .erlebniswelt-placeholder-icon {
+    color: var(--accent);
+    opacity: 0.6;
+  }
+
+  .erlebniswelt-placeholder-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .erlebniswelt-placeholder-sub {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  /* ---- Accessibility utility ---- */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* ===========================
+     Tablet (768–1024px): Pill-Row
+  =========================== */
+  @media (max-width: 1024px) {
+    .erlebniswelt-layout {
+      flex-direction: column;
+    }
+
+    .erlebniswelt-tabs-wrap {
+      flex: none;
+      width: 100%;
+    }
+
+    .erlebniswelt-tabs {
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 8px;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+
+    .erlebniswelt-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .erlebniswelt-tab {
+      flex: 0 0 auto;
+      border-left: none;
+      border-bottom: 3px solid transparent;
+      border-radius: var(--radius);
+      min-width: 160px;
+    }
+
+    .erlebniswelt-tab.active {
+      border-bottom-color: var(--accent);
+      border-left-color: transparent;
+    }
+  }
+
+  /* ===========================
+     Mobile (<768px): Dropdown
+  =========================== */
+  @media (max-width: 767px) {
+    .erlebniswelt-select {
+      display: block;
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      cursor: pointer;
+      margin-bottom: 16px;
+    }
+
+    .erlebniswelt-select:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .erlebniswelt-tabs {
+      display: none;
+    }
+
+    .erlebniswelt-frame-wrap {
+      height: var(--panel-height-mobile, 420px);
+    }
+  }
+</style>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.erlebniswelt-tab');
+  const panels = document.querySelectorAll<HTMLElement>('.erlebniswelt-panel');
+  const select = document.getElementById('erlebniswelt-select') as HTMLSelectElement | null;
+
+  function showPanel(index: number) {
+    tabs.forEach((tab, i) => {
+      const isActive = i === index;
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+    panels.forEach((panel, i) => {
+      const isActive = i === index;
+      panel.classList.toggle('active', isActive);
+      if (isActive) {
+        panel.removeAttribute('hidden');
+      } else {
+        panel.setAttribute('hidden', '');
+      }
+    });
+  }
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => showPanel(i));
+    tab.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        showPanel((i + 1) % tabs.length);
+        (tabs[(i + 1) % tabs.length] as HTMLButtonElement).focus();
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const prev = (i - 1 + tabs.length) % tabs.length;
+        showPanel(prev);
+        (tabs[prev] as HTMLButtonElement).focus();
+      }
+    });
+  });
+
+  if (select) {
+    select.addEventListener('change', () => {
+      showPanel(parseInt(select.value, 10));
+    });
+  }
+</script>
