@@ -94,6 +94,15 @@ const prospect: ProspectData = {
     services={prospect.services}
   />
 
+  <ZahnarztBeforeAfter
+    title="Vorher — Nachher"
+    subtitle="Ästhetische Ergebnisse, die für sich sprechen."
+    cases={[
+      { beforeSrc: '/preview-images/praxis-hoffmann/gallery-1.jpg', afterSrc: '/preview-images/praxis-hoffmann/gallery-2.jpg', label: 'Bleaching & Veneers' },
+      { beforeSrc: '/preview-images/praxis-hoffmann/gallery-3.jpg', afterSrc: '/preview-images/praxis-hoffmann/gallery-4.jpg', label: 'Komplettes Smile Design' },
+    ]}
+  />
+
   <ZahnarztAnxiety
     title="Ihr Wunschlächeln verdient kein schlechtes Gefühl"
     quote="Ästhetische Zahnmedizin beginnt mit einem offenen Gespräch — nicht mit dem Bohrer. Wir zeigen Ihnen erst digital, was möglich ist. Dann entscheiden Sie in Ruhe."
@@ -105,26 +114,6 @@ const prospect: ProspectData = {
       { icon: 'star', title: 'Transparente Kosten', desc: 'Schriftlicher Kostenplan vor Behandlungsbeginn. Kein Cent mehr als besprochen.' },
     ]}
     cta={{ text: 'Kostenlose Smile-Beratung buchen', href: '#kontakt' }}
-  />
-
-  <ZahnarztTimeline
-    title="Ihr Weg zum Traumlächeln"
-    subtitle="Strukturiert, transparent und mit Blick auf Ihre Wünsche."
-    steps={[
-      { num: 1, title: 'Smile-Analyse', desc: 'Umfassende Analyse Ihrer Zahnästhetik — mit digitaler Simulation Ihres künftigen Lächelns.', icon: 'search' },
-      { num: 2, title: 'Behandlungsplan', desc: 'Individueller Plan mit allen Behandlungsschritten und klarer Kostenübersicht — keine versteckten Kosten.', icon: 'calendar' },
-      { num: 3, title: 'Ästhetische Behandlung', desc: 'Präzise Umsetzung mit hochwertigen Materialien — für ein Ergebnis, das natürlich und strahlend wirkt.', icon: 'star' },
-      { num: 4, title: 'Langzeit-Schönheit', desc: 'Regelmäßige Prophylaxe und Kontrolle erhalten Ihr strahlendes Lächeln dauerhaft.', icon: 'check' },
-    ]}
-  />
-
-  <ZahnarztBeforeAfter
-    title="Vorher — Nachher"
-    subtitle="Ästhetische Ergebnisse, die für sich sprechen."
-    cases={[
-      { beforeSrc: '/preview-images/praxis-hoffmann/gallery-1.jpg', afterSrc: '/preview-images/praxis-hoffmann/gallery-2.jpg', label: 'Bleaching & Veneers' },
-      { beforeSrc: '/preview-images/praxis-hoffmann/gallery-3.jpg', afterSrc: '/preview-images/praxis-hoffmann/gallery-4.jpg', label: 'Komplettes Smile Design' },
-    ]}
   />
 
   <ZahnarztTeam
@@ -139,6 +128,17 @@ const prospect: ProspectData = {
       'Mitglied der Deutschen Gesellschaft für Zahnerhaltung',
     ]}
     cta={{ text: 'Team kennenlernen — Smile-Beratung buchen', href: '#kontakt' }}
+  />
+
+  <ZahnarztTimeline
+    title="Ihr Weg zum Traumlächeln"
+    subtitle="Strukturiert, transparent und mit Blick auf Ihre Wünsche."
+    steps={[
+      { num: 1, title: 'Smile-Analyse', desc: 'Umfassende Analyse Ihrer Zahnästhetik — mit digitaler Simulation Ihres künftigen Lächelns.', icon: 'search' },
+      { num: 2, title: 'Behandlungsplan', desc: 'Individueller Plan mit allen Behandlungsschritten und klarer Kostenübersicht — keine versteckten Kosten.', icon: 'calendar' },
+      { num: 3, title: 'Ästhetische Behandlung', desc: 'Präzise Umsetzung mit hochwertigen Materialien — für ein Ergebnis, das natürlich und strahlend wirkt.', icon: 'star' },
+      { num: 4, title: 'Langzeit-Schönheit', desc: 'Regelmäßige Prophylaxe und Kontrolle erhalten Ihr strahlendes Lächeln dauerhaft.', icon: 'check' },
+    ]}
   />
 
   <PreviewTestimonials

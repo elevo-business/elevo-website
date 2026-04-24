@@ -94,6 +94,20 @@ const prospect: ProspectData = {
     services={prospect.services}
   />
 
+  <ZahnarztTeam
+    name="Dr. Klaus Lehmann"
+    title="Zahnarzt & Implantologe, Düsseldorf-Stadtmitte"
+    bio="In 25 Jahren habe ich gelernt: Guter Zahnersatz verändert das Leben von Menschen. Wer wieder richtig kauen kann, wer wieder lachen mag — das ist mein Antrieb jeden Tag. Qualität ist keine Option, sie ist Grundvoraussetzung."
+    qualifications={[
+      'Approbierter Zahnarzt (Universität Düsseldorf)',
+      'Spezialisierung Implantologie (DGOI)',
+      'Fortbildungszertifikat Prothetik & CAD/CAM',
+      'Parodontologie-Zertifikat (DGP)',
+      'Mitglied der Deutschen Gesellschaft für Implantologie',
+    ]}
+    cta={{ text: 'Team kennenlernen — Beratungstermin buchen', href: '#kontakt' }}
+  />
+
   <ZahnarztAnxiety
     title="Implantate klingen groß — sind sie aber nicht"
     quote="Die meisten Patienten sagen nach der Behandlung: 'Ich dachte, es wäre schlimmer.' Moderne Implantologie ist schonend, planbar und nahezu schmerzfrei. Das Warten ist das Schlimmste."
@@ -107,17 +121,6 @@ const prospect: ProspectData = {
     cta={{ text: 'Unverbindlichen Beratungstermin vereinbaren', href: '#kontakt' }}
   />
 
-  <ZahnarztTimeline
-    title="Ihr Weg zum perfekten Zahnersatz"
-    subtitle="Strukturiert, transparent und auf Ihre individuelle Situation abgestimmt."
-    steps={[
-      { num: 1, title: 'Diagnostik & Planung', desc: 'Umfassende digitale Diagnostik mit 3D-Röntgen und CAD/CAM-Planung — präzise von Anfang an.', icon: 'search' },
-      { num: 2, title: 'Behandlungsplan', desc: 'Transparenter Plan mit detailliertem Kostenvoranschlag und Zeitplan — keine Überraschungen.', icon: 'calendar' },
-      { num: 3, title: 'Präzise Versorgung', desc: 'Implantation und prothetische Versorgung mit modernsten Methoden — auf höchstem handwerklichem Niveau.', icon: 'tooth' },
-      { num: 4, title: 'Nachsorge & Recall', desc: 'Strukturiertes Nachsorgeprogramm für dauerhaft erfolgreiche Implantate und Zahnersatz.', icon: 'check' },
-    ]}
-  />
-
   <ZahnarztBeforeAfter
     title="Unsere Ergebnisse"
     subtitle="Prothetik-Qualität, die überzeugt — funktionell und ästhetisch."
@@ -127,18 +130,15 @@ const prospect: ProspectData = {
     ]}
   />
 
-  <ZahnarztTeam
-    name="Dr. Klaus Lehmann"
-    title="Zahnarzt & Implantologe, Düsseldorf-Stadtmitte"
-    bio="In 25 Jahren habe ich gelernt: Guter Zahnersatz verändert das Leben von Menschen. Wer wieder richtig kauen kann, wer wieder lachen mag — das ist mein Antrieb jeden Tag. Qualität ist keine Option, sie ist Grundvoraussetzung."
-    qualifications={[
-      'Approbierter Zahnarzt (Universität Düsseldorf)',
-      'Spezialisierung Implantologie (DGOI)',
-      'Fortbildungszertifikat Prothetik & CAD/CAM',
-      'Parodontologie-Zertifikat (DGP)',
-      'Mitglied der Deutschen Gesellschaft für Implantologie',
+  <ZahnarztTimeline
+    title="Ihr Weg zum perfekten Zahnersatz"
+    subtitle="Strukturiert, transparent und auf Ihre individuelle Situation abgestimmt."
+    steps={[
+      { num: 1, title: 'Diagnostik & Planung', desc: 'Umfassende digitale Diagnostik mit 3D-Röntgen und CAD/CAM-Planung — präzise von Anfang an.', icon: 'search' },
+      { num: 2, title: 'Behandlungsplan', desc: 'Transparenter Plan mit detailliertem Kostenvoranschlag und Zeitplan — keine Überraschungen.', icon: 'calendar' },
+      { num: 3, title: 'Präzise Versorgung', desc: 'Implantation und prothetische Versorgung mit modernsten Methoden — auf höchstem handwerklichem Niveau.', icon: 'tooth' },
+      { num: 4, title: 'Nachsorge & Recall', desc: 'Strukturiertes Nachsorgeprogramm für dauerhaft erfolgreiche Implantate und Zahnersatz.', icon: 'check' },
     ]}
-    cta={{ text: 'Team kennenlernen — Beratungstermin buchen', href: '#kontakt' }}
   />
 
   <PreviewTestimonials

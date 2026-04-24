@@ -94,19 +94,6 @@ const prospect: ProspectData = {
     services={prospect.services}
   />
 
-  <ZahnarztAnxiety
-    title="Wir nehmen uns Zeit — auch für kleine Sorgen"
-    quote="Ein Kind, das den Zahnarzt nicht fürchtet, wird ein Erwachsener, der seine Zahngesundheit pflegt. Das ist mir wichtiger als jede Behandlung."
-    quoteAuthor="Dr. Andrea Schäfer"
-    trustPoints={[
-      { icon: 'heart', title: 'Spielerischer Erstkontakt', desc: 'Beim ersten Besuch schauen wir nur — kein Behandlungsstuhl, kein Instrument. Vertrauen braucht Zeit.' },
-      { icon: 'smile', title: 'Eltern dürfen dabei sein', desc: 'Immer. Denn ein Kind entspannt sich, wenn Mama oder Papa in der Nähe ist.' },
-      { icon: 'shield', title: 'Sanfte Betäubung für alle', desc: 'Oberflächenbetäubung vor jeder Injektion — für Kinder wie für Erwachsene.' },
-      { icon: 'check', title: 'Keine Hetze', desc: 'Wir planen ausreichend Zeit für jeden Patienten ein. Kein Zeitdruck, kein Stress.' },
-    ]}
-    cta={{ text: 'Familientermin vereinbaren', href: '#kontakt' }}
-  />
-
   <ZahnarztTimeline
     title="Ihr Besuch bei Dr. Schäfer"
     subtitle="Herzlich, verständlich und auf Ihre Familie abgestimmt."
@@ -125,6 +112,19 @@ const prospect: ProspectData = {
       { beforeSrc: '/preview-images/praxis-schaefer/gallery-1.jpg', afterSrc: '/preview-images/praxis-schaefer/gallery-2.jpg', label: 'Keramikfüllungen' },
       { beforeSrc: '/preview-images/praxis-schaefer/gallery-3.jpg', afterSrc: '/preview-images/praxis-schaefer/gallery-4.jpg', label: 'Zahnersatz & Kronen' },
     ]}
+  />
+
+  <ZahnarztAnxiety
+    title="Wir nehmen uns Zeit — auch für kleine Sorgen"
+    quote="Ein Kind, das den Zahnarzt nicht fürchtet, wird ein Erwachsener, der seine Zahngesundheit pflegt. Das ist mir wichtiger als jede Behandlung."
+    quoteAuthor="Dr. Andrea Schäfer"
+    trustPoints={[
+      { icon: 'heart', title: 'Spielerischer Erstkontakt', desc: 'Beim ersten Besuch schauen wir nur — kein Behandlungsstuhl, kein Instrument. Vertrauen braucht Zeit.' },
+      { icon: 'smile', title: 'Eltern dürfen dabei sein', desc: 'Immer. Denn ein Kind entspannt sich, wenn Mama oder Papa in der Nähe ist.' },
+      { icon: 'shield', title: 'Sanfte Betäubung für alle', desc: 'Oberflächenbetäubung vor jeder Injektion — für Kinder wie für Erwachsene.' },
+      { icon: 'check', title: 'Keine Hetze', desc: 'Wir planen ausreichend Zeit für jeden Patienten ein. Kein Zeitdruck, kein Stress.' },
+    ]}
+    cta={{ text: 'Familientermin vereinbaren', href: '#kontakt' }}
   />
 
   <ZahnarztTeam

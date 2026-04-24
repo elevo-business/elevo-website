@@ -88,12 +88,6 @@ const prospect: ProspectData = {
     </div>
   </div>
 
-  <ZahnarztServices
-    title="Unsere Leistungen für Ihre Familie"
-    subtitle="Von der Prophylaxe bis zum Zahnersatz — alles unter einem Dach in Hamburg-Altona."
-    services={prospect.services}
-  />
-
   <ZahnarztAnxiety
     title="Auch Kinder dürfen Bammel haben — wir nehmen ihn weg"
     quote="Jeder kleine Patient bekommt bei uns die Zeit, die er braucht. Kein Druck, kein Stuhl beim ersten Mal — nur kennenlernen. Das ist unser Versprechen an Kinder und Eltern."
@@ -107,6 +101,12 @@ const prospect: ProspectData = {
     cta={{ text: 'Familientermin vereinbaren', href: '#kontakt' }}
   />
 
+  <ZahnarztServices
+    title="Unsere Leistungen für Ihre Familie"
+    subtitle="Von der Prophylaxe bis zum Zahnersatz — alles unter einem Dach in Hamburg-Altona."
+    services={prospect.services}
+  />
+
   <ZahnarztTimeline
     title="Ihr Familienbesuch bei uns"
     subtitle="So einfach und angenehm kann ein Zahnarztbesuch sein."
@@ -115,15 +115,6 @@ const prospect: ProspectData = {
       { num: 2, title: 'Diagnose', desc: 'Sorgfältige Befunderhebung mit digitaler Röntgendiagnostik — wir erkennen Probleme frühzeitig und transparent.', icon: 'search' },
       { num: 3, title: 'Behandlungsplan', desc: 'Klarer, verständlicher Behandlungsplan mit Kostentransparenz — gemeinsam entscheiden wir, was am besten passt.', icon: 'calendar' },
       { num: 4, title: 'Behandlung', desc: 'Schonende, einfühlsame Behandlung in einer familiären Atmosphäre — präzise und in Ihrem Tempo.', icon: 'tooth' },
-    ]}
-  />
-
-  <ZahnarztBeforeAfter
-    title="Behandlungsergebnisse"
-    subtitle="Schöne, gesunde Zähne in jedem Alter."
-    cases={[
-      { beforeSrc: '/preview-images/praxis-bergmann/gallery-1.jpg', afterSrc: '/preview-images/praxis-bergmann/gallery-2.jpg', label: 'Füllungstherapie' },
-      { beforeSrc: '/preview-images/praxis-bergmann/gallery-3.jpg', afterSrc: '/preview-images/praxis-bergmann/gallery-4.jpg', label: 'Kronen & Zahnersatz' },
     ]}
   />
 
@@ -139,6 +130,15 @@ const prospect: ProspectData = {
       'Fortbildung Angstpatienten & Sedierung',
     ]}
     cta={{ text: 'Team kennenlernen — Termin buchen', href: '#kontakt' }}
+  />
+
+  <ZahnarztBeforeAfter
+    title="Behandlungsergebnisse"
+    subtitle="Schöne, gesunde Zähne in jedem Alter."
+    cases={[
+      { beforeSrc: '/preview-images/praxis-bergmann/gallery-1.jpg', afterSrc: '/preview-images/praxis-bergmann/gallery-2.jpg', label: 'Füllungstherapie' },
+      { beforeSrc: '/preview-images/praxis-bergmann/gallery-3.jpg', afterSrc: '/preview-images/praxis-bergmann/gallery-4.jpg', label: 'Kronen & Zahnersatz' },
+    ]}
   />
 
   <PreviewTestimonials
