@@ -1,0 +1,144 @@
+---
+import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
+import { zaehneImZentrumProfile } from '../../templates/config/zahnarzt-themes';
+import PreviewNav from '../../templates/sections/PreviewNav.astro';
+import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
+import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
+import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
+import ZahnarztCostCalc from '../../templates/sections/zahnarzt/ZahnarztCostCalc.astro';
+import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
+import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
+import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
+import type { ProspectData } from '../../templates/config/types';
+
+const prospect: ProspectData = {
+  name: 'Zähne im Zentrum',
+  tagline: 'Premium-Zahnmedizin – Theatinerstraße München',
+  location: 'München Theatinerstraße',
+  email: 'info@zaehne-im-zentrum.de',
+  phone: '+49 89 296777',
+  heroTitle: 'Höchste Ästhetik. Beste Lage.',
+  heroSubtitle: 'Mitten in Münchens Herz – direkt an der Theatinerstraße: Premium-Zahnmedizin mit dem Fokus auf höchste Ästhetik, schonende Implantologie und persönliche Betreuung. Für Menschen, die das Beste verdienen.',
+  services: [
+    { icon: 'smile', title: 'Ästhetische Zahnmedizin', description: 'Veneers, Vollkeramik und Smile-Design auf höchstem Niveau – Ihr Lächeln als Visitenkarte.' },
+    { icon: 'tooth', title: 'Implantologie', description: 'Schonend gesetzte Implantate mit modernster Technologie – dauerhaft und ästhetisch perfekt.' },
+    { icon: 'shield', title: 'Prophylaxe & Vorsorge', description: 'Individuelle Vorsorge und professionelle Zahnreinigung für nachhaltig gesunde Zähne.' },
+    { icon: 'check', title: 'Online-Terminbuchung', description: 'Ihren Wunschtermin bequem online reservieren – rund um die Uhr verfügbar.' },
+    { icon: 'star', title: 'Premium-Beratung', description: 'Zeit für Ihre Fragen, ehrliche Diagnosen, individuelle Lösungen – keine Fabrikmedizin.' },
+    { icon: 'grid', title: 'Vollkeramik-Versorgung', description: 'Hochwertigste Keramikrestaurationen auf internationalem Niveau – sichtbar und dauerhaft.' },
+  ],
+  stats: [
+    { value: 'Premium', label: 'Ästhetik & Implantologie' },
+    { value: 'Top-Lage', label: 'Theatinerstraße München' },
+    { value: '20+', label: 'Jahre Erfahrung' },
+  ],
+  testimonials: [
+    { text: 'Die Veneers sind ein absolutes Kunstwerk. Ich bin begeistert und bekomme ständig Komplimente.', author: 'Eva M.', role: 'Patientin, München-Schwabing' },
+    { text: 'Endlich eine Praxis, die Zeit für mich nimmt. Ausführliche Beratung, keine Hetze. Absolute Empfehlung.', author: 'Christian R.', role: 'Patient, München-Maxvorstadt' },
+    { text: 'Premium-Lage, Premium-Service. Mein Implantat sitzt perfekt und der Prozess war angenehm entspannt.', author: 'Dr. Monika K.', role: 'Patientin, München-Innenstadt' },
+  ],
+};
+---
+
+<PreviewLayout profile={zaehneImZentrumProfile} prospect={prospect}>
+  <PreviewNav
+    prospectName={prospect.name}
+    logo="https://www.zaehne-im-zentrum.de/assets/logo.svg"
+    ctaText="Termin buchen"
+    ctaHref="#kontakt"
+  />
+
+  <ZahnarztHero
+    title={prospect.heroTitle}
+    subtitle={prospect.heroSubtitle}
+    badge="Premium-Zahnarztpraxis München Theatinerstraße – Ästhetik & Implantologie"
+    ctaPrimary={{ text: 'Persönliches Gespräch buchen', href: '#kontakt' }}
+    ctaSecondary={{ text: 'Premium-Leistungen entdecken', href: '#leistungen' }}
+    imageSrc="https://www.zaehne-im-zentrum.de/assets/hero-praxis.jpg"
+    imageAlt="Zähne im Zentrum München – Premium-Zahnmedizin an der Theatinerstraße"
+    stats={prospect.stats}
+  />
+
+  <div class="zh-trust-bar" role="list" aria-label="Qualitätsmerkmale">
+    <div class="zh-trust-bar__inner">
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>20+ Jahre Erfahrung</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        <span>Theatinerstraße München</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        <span>Premium Vollkeramik</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        <span>Persönliche Beratung</span>
+      </div>
+    </div>
+  </div>
+
+  <ZahnarztServices
+    title="Unser Behandlungsspektrum"
+    subtitle="Ästhetische Zahnmedizin und Implantologie auf Premium-Niveau – mitten in München an der Theatinerstraße."
+    services={prospect.services}
+  />
+
+  <ZahnarztTimeline
+    title="Ihre Premium-Behandlung – individuell & persönlich"
+    subtitle="Keine Fabrikmedizin – Ihr Zahnarzt nimmt sich die Zeit, die Sie verdienen."
+    steps={[
+      { num: 1, title: 'Premium-Termin buchen', desc: 'Online reservieren für Ihr erstes Gespräch – keine Warteschleife, persönliche Betreuung.', icon: 'search' },
+      { num: 2, title: 'Ausführliche Beratung', desc: 'Zeit nehmen, zuhören, beraten – kein Stundentakt, kein Fabrikbetrieb, nur Sie.', icon: 'calendar' },
+      { num: 3, title: 'Behandlung auf Topniveau', desc: 'Veneers, Vollkeramik und Implantologie auf internationalem Standard an der Theatinerstraße.', icon: 'tooth' },
+      { num: 4, title: 'Langfristige Partnerschaft', desc: 'Regelmäßige Prophylaxe und persönliche Betreuung – Ihr Lächeln bleibt immer gepflegt.', icon: 'check' },
+    ]}
+  />
+
+  <PreviewTestimonials
+    title="Was Patienten über uns sagen"
+    testimonials={prospect.testimonials}
+  />
+
+  <ZahnarztCostCalc />
+
+  <PreviewCTA
+    title="Premium-Zahnmedizin an der Theatinerstraße"
+    subtitle="Für Menschen, die das Beste verdienen – buchen Sie Ihr persönliches Beratungsgespräch."
+    ctaText="Termin buchen"
+    ctaHref={`mailto:${prospect.email}`}
+    phone={prospect.phone}
+  />
+
+  <PreviewFooter
+    prospectName={prospect.name}
+    logo="https://www.zaehne-im-zentrum.de/assets/logo.svg"
+    email={prospect.email}
+    phone={prospect.phone}
+    location="Theatinerstraße 3, 80333 München"
+    year={2026}
+  />
+</PreviewLayout>
+
+<style>
+  .zh-trust-bar { background: linear-gradient(to bottom, var(--bg-deep, #0d1f1c), color-mix(in srgb, var(--accent, #0E8A7B) 4%, var(--bg-deep, #0d1f1c))); border-bottom: 1px solid rgba(14, 138, 123, 0.15); }
+  .zh-trust-bar__inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 24px; padding: 20px 48px; flex-wrap: wrap; }
+  .zh-trust-bar__item { display: flex; align-items: center; gap: 10px; font-family: var(--font-body, sans-serif); font-size: 0.875rem; font-weight: 500; color: var(--muted, #8aafa5); white-space: nowrap; }
+  .zh-trust-bar__item svg { color: var(--accent, #0E8A7B); flex-shrink: 0; }
+  .zh-trust-bar__divider { width: 1px; height: 24px; background: rgba(14, 138, 123, 0.2); flex-shrink: 0; }
+  @media (max-width: 768px) { .zh-trust-bar__inner { gap: 16px; padding: 16px 24px; } .zh-trust-bar__divider { display: none; } .zh-trust-bar__item { font-size: 0.8rem; } }
+  @media (max-width: 480px) { .zh-trust-bar__inner { justify-content: flex-start; gap: 12px; } .zh-trust-bar__item { flex: 1 1 calc(50% - 6px); min-width: 0; white-space: normal; } }
+</style>

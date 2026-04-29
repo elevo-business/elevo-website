@@ -401,6 +401,280 @@ export const praxisSchaeferProfile: BranchProfile = {
   tonality: 'Herzlich, nahbar, kompetent. Zahngesundheit mit Weitblick für Ihre ganze Familie.',
 };
 
+// ─── Outreach-Kampagne: Echte Praxen ───────────────────────────────────────
+
+// Apollonia Praxisklinik — 23 Zahnärzte, Düsseldorf (large multi-doctor practice)
+export const apolloniaProfile: BranchProfile = {
+  id: 'apollonia-zahnarzt',
+  name: 'Apollonia Praxisklinik — Düsseldorf',
+  colorScheme: {
+    accent: '#0066CC',
+    accentHover: '#0055AA',
+    bg: '#060E1A',
+    bgEl: '#0A1628',
+    surface: '#112040',
+    border: 'rgba(0,102,204,0.2)',
+    text: '#E0F0FF',
+    muted: '#6A90B0',
+    dim: '#3A6080',
+  },
+  typography: { heading: 'Sora', body: 'Outfit' },
+  sections: [
+    { type: 'hero', enabled: true },
+    { type: 'services', enabled: true },
+    { type: 'stats', enabled: true },
+    { type: 'testimonials', enabled: true },
+    { type: 'cta', enabled: true },
+  ],
+  imagery: { style: 'modern-digital', guidelines: 'Großes Praxiszentrum, 23 Zahnärzte, modernste Technik. Professionell und einladend.' },
+  tonality: 'Professionell, kompetent, vertrauenswürdig. Zahnmedizin auf höchstem Niveau – 23 Spezialisten unter einem Dach.',
+};
+
+// Zahnärzte Kö55 — 2 Standorte, Königsallee Düsseldorf
+export const zahnarztKoe55Profile: BranchProfile = {
+  id: 'zahnarzt-koe55',
+  name: 'Zahnärzte Kö55 — Königsallee Düsseldorf',
+  colorScheme: {
+    accent: '#546E7A',
+    accentHover: '#455A64',
+    bg: '#F8F9FA',
+    bgEl: '#F0F2F4',
+    surface: '#E2E6E8',
+    border: '#C4CDD2',
+    text: '#1A2429',
+    muted: '#4A5E68',
+    dim: '#7A8E98',
+  },
+  typography: { heading: 'Sora', body: 'Outfit' },
+  sections: [
+    { type: 'hero', enabled: true },
+    { type: 'services', enabled: true },
+    { type: 'stats', enabled: true },
+    { type: 'testimonials', enabled: true },
+    { type: 'cta', enabled: true },
+  ],
+  imagery: { style: 'modern-digital', guidelines: 'Premiumlage Königsallee, zwei elegante Standorte, professionell und hochwertig.' },
+  tonality: 'Exklusiv, zentral, zuverlässig. Zwei Standorte an der Kö – ein Team, eine Qualität.',
+};
+
+// Zahnarztpraxen im Stadttor — Digital, Medienhafen Düsseldorf
+export const zahnarztStadttorProfile: BranchProfile = {
+  id: 'zahnarzt-stadttor',
+  name: 'Zahnarztpraxen im Stadttor — Medienhafen',
+  colorScheme: {
+    accent: '#00BCD4',
+    accentHover: '#00A0B5',
+    bg: '#060E18',
+    bgEl: '#0A1622',
+    surface: '#101E30',
+    border: 'rgba(0,188,212,0.18)',
+    text: '#DDEEFF',
+    muted: '#5A8FAA',
+    dim: '#3A6A80',
+  },
+  typography: { heading: 'Sora', body: 'Outfit' },
+  sections: [
+    { type: 'hero', enabled: true },
+    { type: 'services', enabled: true },
+    { type: 'stats', enabled: true },
+    { type: 'testimonials', enabled: true },
+    { type: 'cta', enabled: true },
+  ],
+  imagery: { style: 'modern-digital', guidelines: 'Digitale Praxis im Medienhafen, papierlos, lange Öffnungszeiten. Modern und urban.' },
+  tonality: 'Digital, effizient, zukunftsorientiert. Die papierlose Praxis im Düsseldorfer Medienhafen.',
+};
+
+// LORA Zahnarztpraxis — Modern, Ästhetik, München-Schwabing
+export const loraZahnarztProfile: BranchProfile = {
+  id: 'lora-zahnarzt',
+  name: 'LORA Zahnarztpraxis — München-Schwabing',
+  colorScheme: {
+    accent: '#C8A97E',
+    accentHover: '#B8973E',
+    bg: '#12101A',
+    bgEl: '#1A1628',
+    surface: '#221E30',
+    border: 'rgba(200,169,126,0.2)',
+    text: '#F0EAE0',
+    muted: '#9A8870',
+    dim: '#6A5840',
+  },
+  typography: { heading: 'Sora', body: 'Outfit' },
+  sections: [
+    { type: 'hero', enabled: true },
+    { type: 'services', enabled: true },
+    { type: 'stats', enabled: true },
+    { type: 'testimonials', enabled: true },
+    { type: 'cta', enabled: true },
+  ],
+  imagery: { style: 'premium-aesthetic', guidelines: 'Moderne, ästhetische Praxis in Schwabing. Warm, einladend, professionell. Gold-Akzente.' },
+  tonality: 'Modern, herzlich, ästhetisch. Zahnmedizin, die begeistert – in München-Schwabing.',
+};
+
+// Quarree Dental — 30 Jahre, Hamburg-Wandsbek
+export const quarreeDentalProfile: BranchProfile = {
+  id: 'quarree-dental',
+  name: 'Quarree Dental — Hamburg-Wandsbek',
+  colorScheme: {
+    accent: '#1A3D5C',
+    accentHover: '#142F48',
+    bg: '#F5F8FC',
+    bgEl: '#EBF0F8',
+    surface: '#D8E2F0',
+    border: '#B0C4D8',
+    text: '#0E1E2E',
+    muted: '#3A5A78',
+    dim: '#6A8AAA',
+  },
+  typography: { heading: 'Sora', body: 'Outfit' },
+  sections: [
+    { type: 'hero', enabled: true },
+    { type: 'services', enabled: true },
+    { type: 'stats', enabled: true },
+    { type: 'testimonials', enabled: true },
+    { type: 'cta', enabled: true },
+  ],
+  imagery: { style: 'modern-digital', guidelines: 'Etablierte Hamburger Praxis, 30 Jahre Erfahrung, hanseatisch und vertrauenswürdig.' },
+  tonality: 'Erfahren, vertrauenswürdig, persönlich. Drei Jahrzehnte Qualität in Hamburg-Wandsbek.',
+};
+
+// ZahnWelt Berlin — Implantologie & Ästhetik, Berlin Mitte
+export const zahnweltBerlinProfile: BranchProfile = {
+  id: 'zahnwelt-berlin',
+  name: 'ZahnWelt Berlin — Berlin Mitte',
+  colorScheme: {
+    accent: '#00A896',
+    accentHover: '#008A7C',
+    bg: '#060F0E',
+    bgEl: '#0A1714',
+    surface: '#102018',
+    border: 'rgba(0,168,150,0.18)',
+    text: '#DFFAF6',
+    muted: '#5AA89E',
+    dim: '#3A7870',
+  },
+  typography: { heading: 'Sora', body: 'Outfit' },
+  sections: [
+    { type: 'hero', enabled: true },
+    { type: 'services', enabled: true },
+    { type: 'stats', enabled: true },
+    { type: 'testimonials', enabled: true },
+    { type: 'cta', enabled: true },
+  ],
+  imagery: { style: 'premium-aesthetic', guidelines: 'Berliner Implantologie-Spezialist, zentral am Alex, 25 Jahre Expertise. Premium und professionell.' },
+  tonality: 'Präzise, erfahren, zentral. Berlins Implantologie-Spezialist seit 1998 – am Alexanderplatz.',
+};
+
+// Dental21 Frankfurt — Digital, Netzwerk, Sachsenhausen
+export const dental21FrankfurtProfile: BranchProfile = {
+  id: 'dental21-frankfurt',
+  name: 'Dental21 — Frankfurt Sachsenhausen',
+  colorScheme: {
+    accent: '#1C5FA8',
+    accentHover: '#154E90',
+    bg: '#F5F8FE',
+    bgEl: '#EBF1FC',
+    surface: '#D8E3F8',
+    border: '#B0C8E8',
+    text: '#0A1830',
+    muted: '#3A5A88',
+    dim: '#6A8AB8',
+  },
+  typography: { heading: 'Sora', body: 'Outfit' },
+  sections: [
+    { type: 'hero', enabled: true },
+    { type: 'services', enabled: true },
+    { type: 'stats', enabled: true },
+    { type: 'testimonials', enabled: true },
+    { type: 'cta', enabled: true },
+  ],
+  imagery: { style: 'modern-digital', guidelines: 'Modernes Zahnarzt-Netzwerk, digital-first, Frankfurt Sachsenhausen. Effizient und zeitgemäß.' },
+  tonality: 'Digital, flexibel, modern. 24/7 online buchbar – Zahnmedizin nach Ihrem Takt in Frankfurt.',
+};
+
+// DENVITA Dentalzentrum — 700m², Köln Altstadt
+export const denvitaKoelnProfile: BranchProfile = {
+  id: 'denvita-koeln',
+  name: 'DENVITA Dentalzentrum — Köln Altstadt',
+  colorScheme: {
+    accent: '#2B4B8C',
+    accentHover: '#223C70',
+    bg: '#F6F8FC',
+    bgEl: '#ECF0F8',
+    surface: '#D8E0F0',
+    border: '#B0C0E0',
+    text: '#0E1830',
+    muted: '#3A4E70',
+    dim: '#6A7EA0',
+  },
+  typography: { heading: 'Sora', body: 'Outfit' },
+  sections: [
+    { type: 'hero', enabled: true },
+    { type: 'services', enabled: true },
+    { type: 'stats', enabled: true },
+    { type: 'testimonials', enabled: true },
+    { type: 'cta', enabled: true },
+  ],
+  imagery: { style: 'modern-digital', guidelines: 'Großes Dentalzentrum in Kölns Altstadt, eigenes Labor, professionell und umfassend.' },
+  tonality: 'Umfassend, kompetent, zentral. Kölns Dentalzentrum mit eigenem Labor – alles unter einem Dach.',
+};
+
+// Dr. Frentz & Kollegen — Sofortimplantologie, Stuttgart Hbf
+export const frentzStuttgartProfile: BranchProfile = {
+  id: 'frentz-stuttgart',
+  name: 'Dr. Frentz & Kollegen — Stuttgart Hbf',
+  colorScheme: {
+    accent: '#457B9D',
+    accentHover: '#3A6A8A',
+    bg: '#060E18',
+    bgEl: '#0A1622',
+    surface: '#101E30',
+    border: 'rgba(69,123,157,0.2)',
+    text: '#DDEEFF',
+    muted: '#5A8AAA',
+    dim: '#3A6A8A',
+  },
+  typography: { heading: 'Sora', body: 'Outfit' },
+  sections: [
+    { type: 'hero', enabled: true },
+    { type: 'services', enabled: true },
+    { type: 'stats', enabled: true },
+    { type: 'testimonials', enabled: true },
+    { type: 'cta', enabled: true },
+  ],
+  imagery: { style: 'premium-aesthetic', guidelines: 'Premium-Praxis am Stuttgarter Hbf, Sofortimplantologie, 25 Jahre Expertise. Dunkel und professionell.' },
+  tonality: 'Spezialisiert, präzise, zentral. Sofortimplantologie direkt am Stuttgarter Hauptbahnhof seit 1997.',
+};
+
+// Zähne im Zentrum — Premium Ästhetik, Theatinerstraße München
+export const zaehneImZentrumProfile: BranchProfile = {
+  id: 'zaehne-im-zentrum',
+  name: 'Zähne im Zentrum — München Theatinerstraße',
+  colorScheme: {
+    accent: '#B5855A',
+    accentHover: '#9E7248',
+    bg: '#120C08',
+    bgEl: '#1A1208',
+    surface: '#221808',
+    border: 'rgba(181,133,90,0.2)',
+    text: '#F0E8DC',
+    muted: '#9A7858',
+    dim: '#6A5038',
+  },
+  typography: { heading: 'Sora', body: 'Outfit' },
+  sections: [
+    { type: 'hero', enabled: true },
+    { type: 'services', enabled: true },
+    { type: 'stats', enabled: true },
+    { type: 'testimonials', enabled: true },
+    { type: 'cta', enabled: true },
+  ],
+  imagery: { style: 'premium-aesthetic', guidelines: 'Premium-Zahnarztpraxis an der Theatinerstraße München. Exklusiv, warm-gold, luxuriös.' },
+  tonality: 'Exklusiv, persönlich, höchste Qualität. Premium-Zahnmedizin an Münchens schönster Adresse.',
+};
+
+// ─── Bestehende Profile (unverändert) ───────────────────────────────────────
+
 // Praxis Schneider — Ästhetische Zahnmedizin, Köln-Innenstadt
 // Tiefes Karminrot: leidenschaftlich, auffallend, premium
 export const praxisSchneiderProfile: BranchProfile = {

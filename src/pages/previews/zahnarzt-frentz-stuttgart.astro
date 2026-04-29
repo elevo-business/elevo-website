@@ -1,0 +1,144 @@
+---
+import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
+import { frentzStuttgartProfile } from '../../templates/config/zahnarzt-themes';
+import PreviewNav from '../../templates/sections/PreviewNav.astro';
+import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
+import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
+import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
+import ZahnarztCostCalc from '../../templates/sections/zahnarzt/ZahnarztCostCalc.astro';
+import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
+import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
+import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
+import type { ProspectData } from '../../templates/config/types';
+
+const prospect: ProspectData = {
+  name: 'Dr. Frentz & Kollegen',
+  tagline: 'Sofortimplantologie – Stuttgart Hbf',
+  location: 'Stuttgart-Mitte',
+  email: 'info@frentz.de',
+  phone: '+49 711 6550000',
+  heroTitle: 'Ihr Zahnarzt direkt am Hauptbahnhof.',
+  heroSubtitle: 'Zentral am Stuttgarter Hauptbahnhof – Dr. Frentz & Kollegen bieten ästhetische Zahnmedizin, Implantologie und Prophylaxe auf höchstem Niveau. 4.6★ auf Google, Abendtermine Mo–Do bis 19:00 Uhr.',
+  services: [
+    { icon: 'smile', title: 'Ästhetische Zahnmedizin', description: 'Smile Design, Veneers und Bleaching – für ein Lächeln, das Sie täglich begeistert.' },
+    { icon: 'tooth', title: 'Sofort-Implantologie', description: 'Modernes Sofortimplantat-Verfahren – Zahn raus, Implantat rein. Schonend und effizient.' },
+    { icon: 'grid', title: 'Mikrochirurgie', description: 'Operationen unter dem Mikroskop für höchste Präzision und minimale Eingriffsgröße.' },
+    { icon: 'shield', title: 'Prophylaxe & Zahnreinigung', description: 'Individuelle Vorsorge für dauerhaft gesunde Zähne – professionell und schonend.' },
+    { icon: 'check', title: 'Abendtermine bis 19 Uhr', description: 'Mo–Do bis 19:00 Uhr – auf dem Weg zur Arbeit oder danach, direkt am Stuttgarter Hbf.' },
+    { icon: 'star', title: '25 Jahre Erfahrung', description: 'Seit 1997 in Stuttgart-Mitte – Vertrauen und Qualität durch Kontinuität und Expertise.' },
+  ],
+  stats: [
+    { value: '4.6★', label: 'Google Bewertung' },
+    { value: '25+', label: 'Jahre Erfahrung' },
+    { value: '300m', label: 'vom Stuttgarter Hbf' },
+  ],
+  testimonials: [
+    { text: 'Perfekte Lage direkt am Hbf – ich gehe nach der Arbeit schnell rein und bin danach gleich am Zug.', author: 'Hannah Z.', role: 'Patientin, Stuttgart-West' },
+    { text: 'Das Sofortimplantat war die beste Entscheidung. Innerhalb eines Tages war alles erledigt.', author: 'Bernd S.', role: 'Patient, Stuttgart-Degerloch' },
+    { text: 'Professionell, kompetent und trotzdem menschlich. Seit Jahren meine erste Wahl in Stuttgart.', author: 'Claudia F.', role: 'Patientin seit 2015' },
+  ],
+};
+---
+
+<PreviewLayout profile={frentzStuttgartProfile} prospect={prospect}>
+  <PreviewNav
+    prospectName={prospect.name}
+    logo="https://www.frentz.de/assets/logo-frentz.svg"
+    ctaText="Termin buchen"
+    ctaHref="#kontakt"
+  />
+
+  <ZahnarztHero
+    title={prospect.heroTitle}
+    subtitle={prospect.heroSubtitle}
+    badge="Zahnarztpraxis Stuttgart-Mitte – am Hauptbahnhof, Ästhetik & Sofortimplantat"
+    ctaPrimary={{ text: 'Jetzt Termin buchen', href: '#kontakt' }}
+    ctaSecondary={{ text: 'Sofortimplantologie entdecken', href: '#leistungen' }}
+    imageSrc="https://www.frentz.de/assets/hero-praxis.jpg"
+    imageAlt="Dr. Frentz & Kollegen Stuttgart – Zahnarzt am Hauptbahnhof"
+    stats={prospect.stats}
+  />
+
+  <div class="zh-trust-bar" role="list" aria-label="Qualitätsmerkmale">
+    <div class="zh-trust-bar__inner">
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        <span>4.6★ auf Google</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        <span>300m vom Stuttgarter Hbf</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>Sofortimplantologie</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+        </svg>
+        <span>Mo–Do bis 19 Uhr</span>
+      </div>
+    </div>
+  </div>
+
+  <ZahnarztServices
+    title="Unser Behandlungsspektrum"
+    subtitle="Ästhetik, Sofortimplantologie und Prophylaxe – 25 Jahre Erfahrung direkt am Stuttgarter Hauptbahnhof."
+    services={prospect.services}
+  />
+
+  <ZahnarztTimeline
+    title="Ihr Behandlungsweg – modern und effizient"
+    subtitle="Ob Sofortimplantat oder klassische Behandlung – wir planen mit Ihnen."
+    steps={[
+      { num: 1, title: 'Termin buchen – auch abends', desc: 'Online oder telefonisch – Mo–Do bis 19 Uhr, direkt am Stuttgarter Hbf.', icon: 'search' },
+      { num: 2, title: 'Diagnostik & Konzept', desc: 'Ausführliche Erstuntersuchung und digitale Planung für Ihr persönliches Behandlungskonzept.', icon: 'calendar' },
+      { num: 3, title: 'Sofortimplantat oder Klassisch', desc: 'Modernste Verfahren: Sofortimplantat in einer Sitzung oder schrittweise – Sie entscheiden.', icon: 'tooth' },
+      { num: 4, title: 'Nachsorge & Prophylaxe', desc: 'Regelmäßige Kontrolle und individuelle Prophylaxe für dauerhaft gesunde Zähne.', icon: 'check' },
+    ]}
+  />
+
+  <PreviewTestimonials
+    title="Was Patienten über uns sagen"
+    testimonials={prospect.testimonials}
+  />
+
+  <ZahnarztCostCalc />
+
+  <PreviewCTA
+    title="Direkt am Stuttgarter Hbf – Ihren Termin jetzt buchen"
+    subtitle="Auf dem Weg zur Arbeit oder danach – 25 Jahre Erfahrung in Ästhetik und Implantologie."
+    ctaText="Termin buchen"
+    ctaHref={`mailto:${prospect.email}`}
+    phone={prospect.phone}
+  />
+
+  <PreviewFooter
+    prospectName={prospect.name}
+    logo="https://www.frentz.de/assets/logo-frentz.svg"
+    email={prospect.email}
+    phone={prospect.phone}
+    location="Königstraße 2, 70173 Stuttgart"
+    year={2026}
+  />
+</PreviewLayout>
+
+<style>
+  .zh-trust-bar { background: linear-gradient(to bottom, var(--bg-deep, #0d1f1c), color-mix(in srgb, var(--accent, #0E8A7B) 4%, var(--bg-deep, #0d1f1c))); border-bottom: 1px solid rgba(14, 138, 123, 0.15); }
+  .zh-trust-bar__inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 24px; padding: 20px 48px; flex-wrap: wrap; }
+  .zh-trust-bar__item { display: flex; align-items: center; gap: 10px; font-family: var(--font-body, sans-serif); font-size: 0.875rem; font-weight: 500; color: var(--muted, #8aafa5); white-space: nowrap; }
+  .zh-trust-bar__item svg { color: var(--accent, #0E8A7B); flex-shrink: 0; }
+  .zh-trust-bar__divider { width: 1px; height: 24px; background: rgba(14, 138, 123, 0.2); flex-shrink: 0; }
+  @media (max-width: 768px) { .zh-trust-bar__inner { gap: 16px; padding: 16px 24px; } .zh-trust-bar__divider { display: none; } .zh-trust-bar__item { font-size: 0.8rem; } }
+  @media (max-width: 480px) { .zh-trust-bar__inner { justify-content: flex-start; gap: 12px; } .zh-trust-bar__item { flex: 1 1 calc(50% - 6px); min-width: 0; white-space: normal; } }
+</style>

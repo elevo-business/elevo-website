@@ -1,0 +1,207 @@
+---
+import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
+import { quarreeDentalProfile } from '../../templates/config/zahnarzt-themes';
+import PreviewNav from '../../templates/sections/PreviewNav.astro';
+import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
+import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
+import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
+import ZahnarztCostCalc from '../../templates/sections/zahnarzt/ZahnarztCostCalc.astro';
+import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
+import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
+import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
+import type { ProspectData } from '../../templates/config/types';
+
+const prospect: ProspectData = {
+  name: 'Quarree Dental',
+  tagline: '30 Jahre Erfahrung – Hamburg-Wandsbek',
+  location: 'Hamburg-Wandsbek',
+  email: 'praxis@quarree-dental.de',
+  phone: '040 68913400',
+  heroTitle: '30 Jahre Vertrauen. Ein Lächeln für alle.',
+  heroSubtitle: 'Seit über 30 Jahren bieten wir moderne Zahnmedizin mit persönlicher Betreuung: Prophylaxe, Implantologie und ästhetische Zahnheilkunde. 5.0★ auf Google – Hamburgs meistempfohlene Zahnarztpraxis.',
+  services: [
+    { icon: 'tooth', title: 'Implantologie', description: 'Hochwertige Zahnimplantate aus Titan – schonend gesetzt, dauerhaft stabil. Erfahrung seit 1998.' },
+    { icon: 'smile', title: 'Ästhetische Zahnmedizin', description: 'Bleaching, Veneers und Zahnkorrekturen für Ihr strahlendes Lächeln – individuell und schonend.' },
+    { icon: 'shield', title: 'Prophylaxe & Zahnreinigung', description: 'Gründliche Prophylaxe-Programme für langfristige Zahngesundheit und regelmäßige Kontrollen.' },
+    { icon: 'check', title: 'Zahnersatz & Prothetik', description: 'Kronversorgung, Brücken und Zahnersatz – passgenaue Lösungen für jede Situation.' },
+    { icon: 'star', title: 'Persönliche Betreuung', description: 'Inhabergeführte Praxis – kein anonymes Zentrum. Ihr Zahnarzt kennt Sie und Ihre Geschichte.' },
+    { icon: 'grid', title: 'Digitale Diagnostik', description: 'Modernste Technologie für präzise Diagnosen – bei aller Tradition immer auf dem neuesten Stand.' },
+  ],
+  stats: [
+    { value: '5.0★', label: 'Google Bewertung' },
+    { value: '30+', label: 'Jahre Erfahrung' },
+    { value: 'Seit 1998', label: 'Implantologie-Expertise' },
+  ],
+  testimonials: [
+    { text: 'Ich bin seit über 15 Jahren Patientin bei Quarree Dental. Das Team ist immer freundlich, die Behandlungen top.', author: 'Birgit H.', role: 'Patientin seit 2009' },
+    { text: 'Das Implantat sitzt perfekt und der Eingriff war nahezu schmerzlos. Absolut empfehlenswert!', author: 'Günter M.', role: 'Patient, Hamburg-Rahlstedt' },
+    { text: 'Familiäre Atmosphäre trifft auf modernste Medizin. Man kennt mich hier – und das merkt man.', author: 'Ina S.', role: 'Patientin, Hamburg-Wandsbek' },
+  ],
+};
+---
+
+<PreviewLayout profile={quarreeDentalProfile} prospect={prospect}>
+  <PreviewNav
+    prospectName={prospect.name}
+    logo="https://quarree-dental.de/wp-content/uploads/logo-quarree-dental.png"
+    ctaText="Termin buchen"
+    ctaHref="#kontakt"
+  />
+
+  <ZahnarztHero
+    title={prospect.heroTitle}
+    subtitle={prospect.heroSubtitle}
+    badge="Zahnarztpraxis Hamburg-Wandsbek – 30 Jahre, 5.0★"
+    ctaPrimary={{ text: 'Jetzt Termin buchen', href: '#kontakt' }}
+    ctaSecondary={{ text: 'Leistungen entdecken', href: '#leistungen' }}
+    imageSrc="https://quarree-dental.de/wp-content/uploads/header-praxis.jpg"
+    imageAlt="Quarree Dental – Zahnarztpraxis Hamburg-Wandsbek"
+    stats={prospect.stats}
+  />
+
+  <div class="zh-trust-bar" role="list" aria-label="Qualitätsmerkmale">
+    <div class="zh-trust-bar__inner">
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        <span>5.0★ auf Google</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <span>Inhabergeführte Praxis</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>Implantologie seit 1998</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+        </svg>
+        <span>30+ Jahre Erfahrung</span>
+      </div>
+    </div>
+  </div>
+
+  <ZahnarztServices
+    title="Unser Behandlungsspektrum"
+    subtitle="30 Jahre Erfahrung, modernste Technik – Quarree Dental Hamburg-Wandsbek."
+    services={prospect.services}
+  />
+
+  <ZahnarztTimeline
+    title="Ihr Weg zu uns – persönlich & bewährt"
+    subtitle="Vertrauen wächst über Zeit – und beginnt mit dem ersten Schritt."
+    steps={[
+      { num: 1, title: 'Termin online buchen', desc: 'Bequem den Wunschtermin online reservieren – auch abends von zu Hause.', icon: 'search' },
+      { num: 2, title: 'Persönlicher Befund', desc: '30+ Jahre Erfahrung: gründliche Untersuchung, ehrliche Einschätzung, individuelle Beratung.', icon: 'calendar' },
+      { num: 3, title: 'Vertraute Behandlung', desc: 'Ihr Zahnarzt kennt Sie und Ihre Geschichte – keine anonyme Massenabfertigung.', icon: 'tooth' },
+      { num: 4, title: 'Langfristige Betreuung', desc: 'Prophylaxe-Erinnerungen und Recall-Termine – Zahngesundheit als lebenslange Partnerschaft.', icon: 'check' },
+    ]}
+  />
+
+  <PreviewTestimonials
+    title="Was Patienten über uns sagen"
+    testimonials={prospect.testimonials}
+  />
+
+  <ZahnarztCostCalc />
+
+  <PreviewCTA
+    title="30 Jahre Qualität – jetzt Ihren Termin buchen"
+    subtitle="Hamburgs meistempfohlene Zahnarztpraxis ist nur einen Klick entfernt."
+    ctaText="Termin buchen"
+    ctaHref={`mailto:${prospect.email}`}
+    phone={prospect.phone}
+  />
+
+  <PreviewFooter
+    prospectName={prospect.name}
+    logo="https://quarree-dental.de/wp-content/uploads/logo-quarree-dental.png"
+    email={prospect.email}
+    phone={prospect.phone}
+    location="Quarree 4, 22041 Hamburg-Wandsbek"
+    year={2026}
+  />
+</PreviewLayout>
+
+<style>
+  .zh-trust-bar {
+    background: linear-gradient(
+      to bottom,
+      var(--bg-deep, #0d1f1c),
+      color-mix(in srgb, var(--accent, #0E8A7B) 4%, var(--bg-deep, #0d1f1c))
+    );
+    border-bottom: 1px solid rgba(14, 138, 123, 0.15);
+  }
+
+  .zh-trust-bar__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 20px 48px;
+    flex-wrap: wrap;
+  }
+
+  .zh-trust-bar__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body, sans-serif);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted, #8aafa5);
+    white-space: nowrap;
+  }
+
+  .zh-trust-bar__item svg {
+    color: var(--accent, #0E8A7B);
+    flex-shrink: 0;
+  }
+
+  .zh-trust-bar__divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(14, 138, 123, 0.2);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .zh-trust-bar__inner {
+      gap: 16px;
+      padding: 16px 24px;
+    }
+
+    .zh-trust-bar__divider {
+      display: none;
+    }
+
+    .zh-trust-bar__item {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .zh-trust-bar__inner {
+      justify-content: flex-start;
+      gap: 12px;
+    }
+
+    .zh-trust-bar__item {
+      flex: 1 1 calc(50% - 6px);
+      min-width: 0;
+      white-space: normal;
+    }
+  }
+</style>

@@ -1,0 +1,207 @@
+---
+import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
+import { loraZahnarztProfile } from '../../templates/config/zahnarzt-themes';
+import PreviewNav from '../../templates/sections/PreviewNav.astro';
+import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
+import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
+import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
+import ZahnarztCostCalc from '../../templates/sections/zahnarzt/ZahnarztCostCalc.astro';
+import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
+import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
+import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
+import type { ProspectData } from '../../templates/config/types';
+
+const prospect: ProspectData = {
+  name: 'LORA Zahnarztpraxis',
+  tagline: 'Modern, ästhetisch, München-Schwabing',
+  location: 'München-Schwabing',
+  email: 'support@heylora.com',
+  phone: '+49 89 158888990',
+  heroTitle: 'Zahnmedizin, die begeistert.',
+  heroSubtitle: 'LORA steht für moderne Zahnmedizin mit Herz: Online-Terminbuchung, ästhetische Behandlungen und ein Team, das sich Zeit nimmt. 4.8★ auf Google – weil Qualität und Wohlfühlen zusammengehören.',
+  services: [
+    { icon: 'check', title: 'Online-Terminbuchung', description: 'Termin buchen rund um die Uhr – in weniger als einer Minute, ohne Wartezeit am Telefon.' },
+    { icon: 'smile', title: 'Ästhetische Zahnmedizin', description: 'Bleaching, Veneers und Smile Design – für ein Lächeln, das Sie ausstrahlen lässt.' },
+    { icon: 'tooth', title: 'Kieferorthopädie', description: 'Moderne Zahnspangen und unsichtbare Aligner für Kinder und Erwachsene.' },
+    { icon: 'shield', title: 'Prophylaxe & Vorsorge', description: 'Professionelle Zahnreinigung und individuelle Vorsorge für langfristige Zahngesundheit.' },
+    { icon: 'star', title: 'Schmerzfreie Behandlung', description: 'Modernste Betäubungstechniken und einfühlsames Team – Zahnmedizin ohne Angst.' },
+    { icon: 'grid', title: 'Digitale Diagnostik', description: 'Modernste Technik von der Diagnose bis zur Behandlung – präzise und effizient.' },
+  ],
+  stats: [
+    { value: '4.8★', label: 'Google Bewertung' },
+    { value: 'Online', label: 'Termin in 60 Sek.' },
+    { value: '5', label: 'Fachbereiche' },
+  ],
+  testimonials: [
+    { text: 'Das Buchungssystem ist super einfach, das Team wahnsinnig freundlich. Endlich eine Praxis, bei der ich mich wohl fühle!', author: 'Laura M.', role: 'Patientin, München-Schwabing' },
+    { text: 'Die ästhetischen Behandlungen hier sind auf Topniveau. Veneers und Bleaching – ich bin begeistert vom Ergebnis.', author: 'Felix R.', role: 'Patient, München' },
+    { text: 'Kurze Wartezeiten, freundliches Personal, super Erklärungen. LORA ist meine Praxis für immer.', author: 'Sophie K.', role: 'Patientin, München-Maxvorstadt' },
+  ],
+};
+---
+
+<PreviewLayout profile={loraZahnarztProfile} prospect={prospect}>
+  <PreviewNav
+    prospectName={prospect.name}
+    logo="https://www.heylora.com/logo.svg"
+    ctaText="Termin buchen"
+    ctaHref="#kontakt"
+  />
+
+  <ZahnarztHero
+    title={prospect.heroTitle}
+    subtitle={prospect.heroSubtitle}
+    badge="Zahnarztpraxis München-Schwabing – Modern, ästhetisch, 4.8★"
+    ctaPrimary={{ text: 'Jetzt Termin buchen', href: '#kontakt' }}
+    ctaSecondary={{ text: 'Leistungen entdecken', href: '#leistungen' }}
+    imageSrc="https://www.heylora.com/images/hero.jpg"
+    imageAlt="LORA Zahnarztpraxis – München-Schwabing"
+    stats={prospect.stats}
+  />
+
+  <div class="zh-trust-bar" role="list" aria-label="Qualitätsmerkmale">
+    <div class="zh-trust-bar__inner">
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        <span>4.8★ auf Google</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+        </svg>
+        <span>Termin in 60 Sekunden</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>5 Fachbereiche unter einem Dach</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <span>Herzliches Team</span>
+      </div>
+    </div>
+  </div>
+
+  <ZahnarztServices
+    title="Unser Behandlungsspektrum"
+    subtitle="Ästhetisch, modern und herzlich – LORA Zahnarztpraxis München-Schwabing."
+    services={prospect.services}
+  />
+
+  <ZahnarztTimeline
+    title="Ihr Weg zur Traumpraxis"
+    subtitle="Einfach, schnell und persönlich – so wird Ihr Besuch bei LORA."
+    steps={[
+      { num: 1, title: 'Online buchen in 60 Sek.', desc: 'Ihren Wunschtermin digital buchen – rund um die Uhr, kein Telefonat nötig.', icon: 'search' },
+      { num: 2, title: 'Erstuntersuchung & Beratung', desc: 'Gründliche Untersuchung, ehrliche Diagnose und persönlicher Behandlungsplan.', icon: 'calendar' },
+      { num: 3, title: 'Schonende Behandlung', desc: 'Modern eingerichtete Praxis, einfühlsames Team – Zahnmedizin, die begeistert.', icon: 'tooth' },
+      { num: 4, title: 'Regelmäßige Prophylaxe', desc: 'Individuelle Recall-Programme halten Ihre Zahngesundheit dauerhaft auf hohem Niveau.', icon: 'check' },
+    ]}
+  />
+
+  <PreviewTestimonials
+    title="Was Patienten über uns sagen"
+    testimonials={prospect.testimonials}
+  />
+
+  <ZahnarztCostCalc />
+
+  <PreviewCTA
+    title="Ihr Lächeln verdient das Beste"
+    subtitle="Buchen Sie Ihren Termin online – in unter einer Minute, ohne Telefonwarteschleife."
+    ctaText="Termin buchen"
+    ctaHref={`mailto:${prospect.email}`}
+    phone={prospect.phone}
+  />
+
+  <PreviewFooter
+    prospectName={prospect.name}
+    logo="https://www.heylora.com/logo.svg"
+    email={prospect.email}
+    phone={prospect.phone}
+    location="Trautenwolfstraße 8, 80802 München"
+    year={2026}
+  />
+</PreviewLayout>
+
+<style>
+  .zh-trust-bar {
+    background: linear-gradient(
+      to bottom,
+      var(--bg-deep, #0d1f1c),
+      color-mix(in srgb, var(--accent, #0E8A7B) 4%, var(--bg-deep, #0d1f1c))
+    );
+    border-bottom: 1px solid rgba(14, 138, 123, 0.15);
+  }
+
+  .zh-trust-bar__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 20px 48px;
+    flex-wrap: wrap;
+  }
+
+  .zh-trust-bar__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body, sans-serif);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted, #8aafa5);
+    white-space: nowrap;
+  }
+
+  .zh-trust-bar__item svg {
+    color: var(--accent, #0E8A7B);
+    flex-shrink: 0;
+  }
+
+  .zh-trust-bar__divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(14, 138, 123, 0.2);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .zh-trust-bar__inner {
+      gap: 16px;
+      padding: 16px 24px;
+    }
+
+    .zh-trust-bar__divider {
+      display: none;
+    }
+
+    .zh-trust-bar__item {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .zh-trust-bar__inner {
+      justify-content: flex-start;
+      gap: 12px;
+    }
+
+    .zh-trust-bar__item {
+      flex: 1 1 calc(50% - 6px);
+      min-width: 0;
+      white-space: normal;
+    }
+  }
+</style>

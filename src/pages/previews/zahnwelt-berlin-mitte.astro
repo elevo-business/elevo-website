@@ -1,0 +1,144 @@
+---
+import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
+import { zahnweltBerlinProfile } from '../../templates/config/zahnarzt-themes';
+import PreviewNav from '../../templates/sections/PreviewNav.astro';
+import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
+import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
+import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
+import ZahnarztCostCalc from '../../templates/sections/zahnarzt/ZahnarztCostCalc.astro';
+import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
+import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
+import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
+import type { ProspectData } from '../../templates/config/types';
+
+const prospect: ProspectData = {
+  name: 'ZahnWelt Berlin',
+  tagline: 'Implantologie & Ästhetik seit 1998 – Berlin Mitte',
+  location: 'Berlin Mitte',
+  email: 'implantologie@zahnwelt-berlin.com',
+  phone: '+49 30 28045443',
+  heroTitle: 'Ihr Implantologe in Berlin Mitte.',
+  heroSubtitle: 'ZahnWelt Berlin vereint Implantologie, Ästhetik und Parodontologie unter einem Dach – zentral am Alexanderplatz, mit Öffnungszeiten bis 20:00 Uhr und über 25 Jahren Erfahrung.',
+  services: [
+    { icon: 'tooth', title: 'Implantologie', description: 'Präzise Implantate von erfahrenen Spezialisten – von der Beratung bis zur Eingliederung alles aus einer Hand.' },
+    { icon: 'smile', title: 'Ästhetische Zahnmedizin', description: 'Veneers, Bleaching und Keramikrestaurationen für Ihr perfektes Lächeln.' },
+    { icon: 'shield', title: 'Parodontologie', description: 'Professionelle Behandlung von Zahnfleischerkrankungen – schonend und nachhaltig.' },
+    { icon: 'check', title: 'Online-Terminbuchung', description: 'Buchen Sie Ihren Termin bequem online – auch außerhalb unserer Öffnungszeiten.' },
+    { icon: 'star', title: 'Abendtermine bis 20 Uhr', description: 'Mo–Do bis 20:00 Uhr – auch nach der Arbeit erreichbar, ohne Urlaub nehmen zu müssen.' },
+    { icon: 'grid', title: '3D-Diagnostik', description: 'Modernste Volumentomographie für präzise Implantatplanung und sichere Diagnosen.' },
+  ],
+  stats: [
+    { value: '25+', label: 'Jahre Erfahrung' },
+    { value: 'Bis 20 Uhr', label: 'Mo–Do geöffnet' },
+    { value: 'Mitte', label: 'Am Alexanderplatz' },
+  ],
+  testimonials: [
+    { text: 'Nach dem Implantat bin ich so dankbar, dass ich die Praxis gefunden habe. Alles perfekt erklärt, kein Stress.', author: 'Markus T.', role: 'Patient, Berlin-Mitte' },
+    { text: 'Die Öffnungszeiten bis 20 Uhr sind ein echter Game-Changer für Berufstätige. Top Praxis!', author: 'Julia W.', role: 'Patientin, Berlin-Friedrichshain' },
+    { text: 'Professionell, modern und trotzdem persönlich. Das Team nimmt sich immer Zeit.', author: 'Andreas B.', role: 'Patient seit 5 Jahren' },
+  ],
+};
+---
+
+<PreviewLayout profile={zahnweltBerlinProfile} prospect={prospect}>
+  <PreviewNav
+    prospectName={prospect.name}
+    logo="https://zahnwelt-berlin.com/wp-content/uploads/logo-zahnwelt.png"
+    ctaText="Termin buchen"
+    ctaHref="#kontakt"
+  />
+
+  <ZahnarztHero
+    title={prospect.heroTitle}
+    subtitle={prospect.heroSubtitle}
+    badge="Zahnarztpraxis Berlin Mitte – Implantologie seit 1998"
+    ctaPrimary={{ text: 'Jetzt Termin buchen', href: '#kontakt' }}
+    ctaSecondary={{ text: 'Leistungen entdecken', href: '#leistungen' }}
+    imageSrc="https://zahnwelt-berlin.com/wp-content/uploads/praxis-hero.jpg"
+    imageAlt="ZahnWelt Berlin – Implantologie & Ästhetik am Alexanderplatz"
+    stats={prospect.stats}
+  />
+
+  <div class="zh-trust-bar" role="list" aria-label="Qualitätsmerkmale">
+    <div class="zh-trust-bar__inner">
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        <span>25 Jahre Spezialisierung</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+        </svg>
+        <span>Mo–Do bis 20 Uhr</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        <span>Direkt am Alexanderplatz</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>Implantologie seit 1998</span>
+      </div>
+    </div>
+  </div>
+
+  <ZahnarztServices
+    title="Unser Behandlungsspektrum"
+    subtitle="Implantologie, Ästhetik und Parodontologie – alles aus einer Hand in Berlin Mitte."
+    services={prospect.services}
+  />
+
+  <ZahnarztTimeline
+    title="Ihr Weg zum Implantat – von der Beratung zur Eingliederung"
+    subtitle="Präzise geplant, schonend gesetzt – Ihre Behandlung in erfahrenen Händen."
+    steps={[
+      { num: 1, title: 'Online buchen bis 20 Uhr', desc: 'Abendtermin sichern: Mo–Do bis 20 Uhr – auch nach der Arbeit erreichbar.', icon: 'search' },
+      { num: 2, title: '3D-Diagnostik & Planung', desc: 'Digitale Volumentomographie und präzise Implantatplanung – für vorhersagbare Ergebnisse.', icon: 'calendar' },
+      { num: 3, title: 'Spezialisierte Behandlung', desc: '25 Jahre Erfahrung in Implantologie – Ihr Implantat sitzt dauerhaft und natürlich.', icon: 'tooth' },
+      { num: 4, title: 'Nachsorge & Kontrolle', desc: 'Regelmäßige Kontrolle und Prophylaxe sichern den langfristigen Behandlungserfolg.', icon: 'check' },
+    ]}
+  />
+
+  <PreviewTestimonials
+    title="Was Patienten über uns sagen"
+    testimonials={prospect.testimonials}
+  />
+
+  <ZahnarztCostCalc />
+
+  <PreviewCTA
+    title="Ihr Implantologe in Berlin Mitte – jetzt Termin buchen"
+    subtitle="Mo–Do bis 20 Uhr geöffnet – buchen Sie online, auch nach der Arbeit."
+    ctaText="Termin buchen"
+    ctaHref={`mailto:${prospect.email}`}
+    phone={prospect.phone}
+  />
+
+  <PreviewFooter
+    prospectName={prospect.name}
+    logo="https://zahnwelt-berlin.com/wp-content/uploads/logo-zahnwelt.png"
+    email={prospect.email}
+    phone={prospect.phone}
+    location="Rathausstraße 7, 10178 Berlin"
+    year={2026}
+  />
+</PreviewLayout>
+
+<style>
+  .zh-trust-bar { background: linear-gradient(to bottom, var(--bg-deep, #0d1f1c), color-mix(in srgb, var(--accent, #0E8A7B) 4%, var(--bg-deep, #0d1f1c))); border-bottom: 1px solid rgba(14, 138, 123, 0.15); }
+  .zh-trust-bar__inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 24px; padding: 20px 48px; flex-wrap: wrap; }
+  .zh-trust-bar__item { display: flex; align-items: center; gap: 10px; font-family: var(--font-body, sans-serif); font-size: 0.875rem; font-weight: 500; color: var(--muted, #8aafa5); white-space: nowrap; }
+  .zh-trust-bar__item svg { color: var(--accent, #0E8A7B); flex-shrink: 0; }
+  .zh-trust-bar__divider { width: 1px; height: 24px; background: rgba(14, 138, 123, 0.2); flex-shrink: 0; }
+  @media (max-width: 768px) { .zh-trust-bar__inner { gap: 16px; padding: 16px 24px; } .zh-trust-bar__divider { display: none; } .zh-trust-bar__item { font-size: 0.8rem; } }
+  @media (max-width: 480px) { .zh-trust-bar__inner { justify-content: flex-start; gap: 12px; } .zh-trust-bar__item { flex: 1 1 calc(50% - 6px); min-width: 0; white-space: normal; } }
+</style>

@@ -1,0 +1,144 @@
+---
+import PreviewLayout from '../../templates/layouts/PreviewLayout.astro';
+import { denvitaKoelnProfile } from '../../templates/config/zahnarzt-themes';
+import PreviewNav from '../../templates/sections/PreviewNav.astro';
+import ZahnarztHero from '../../templates/sections/zahnarzt/ZahnarztHero.astro';
+import ZahnarztServices from '../../templates/sections/zahnarzt/ZahnarztServices.astro';
+import ZahnarztTimeline from '../../templates/sections/zahnarzt/ZahnarztTimeline.astro';
+import ZahnarztCostCalc from '../../templates/sections/zahnarzt/ZahnarztCostCalc.astro';
+import PreviewTestimonials from '../../templates/sections/PreviewTestimonials.astro';
+import PreviewCTA from '../../templates/sections/PreviewCTA.astro';
+import PreviewFooter from '../../templates/sections/PreviewFooter.astro';
+import type { ProspectData } from '../../templates/config/types';
+
+const prospect: ProspectData = {
+  name: 'DENVITA Dentalzentrum',
+  tagline: '700m² Dentalzentrum – Köln Altstadt',
+  location: 'Köln Altstadt-Nord',
+  email: 'info@denvita.de',
+  phone: '0221 27243400',
+  heroTitle: 'Zahnmedizin auf über 700 m².',
+  heroSubtitle: 'DENVITA ist Kölns modernes Dentalzentrum direkt in der Altstadt-Nord: über 700 Quadratmeter, praxiseigenes Labor, Implantologie, Oralchirurgie und Online-Buchung – Mo–Sa geöffnet.',
+  services: [
+    { icon: 'grid', title: 'Eigenes Dentallabor', description: 'Zahnersatz aus dem praxiseigenen Labor – kürzere Wege, höhere Qualität und schnellere Ergebnisse.' },
+    { icon: 'tooth', title: 'Implantologie & Oralchirurgie', description: 'Spezialisierte Implantologen und Oralchirurgen für komplexe Fälle – alles unter einem Dach.' },
+    { icon: 'check', title: 'Online-Terminbuchung', description: 'Termin 24/7 online buchen – flexibel, einfach und ohne Telefonwarteschleife.' },
+    { icon: 'smile', title: 'Ästhetische Zahnmedizin', description: 'Bleaching, Veneers und kosmetische Korrekturen für Ihr individuelles Wohlfühl-Lächeln.' },
+    { icon: 'shield', title: 'Prophylaxe & Vorsorge', description: 'Professionelle Zahnreinigung und Recall-Programme für dauerhaft gesunde Zähne.' },
+    { icon: 'star', title: 'Mo–Sa geöffnet', description: 'Auch samstags bis 14:30 Uhr – flexible Termine für Berufstätige und Familien.' },
+  ],
+  stats: [
+    { value: '700m²', label: 'Praxisfläche' },
+    { value: 'Mo–Sa', label: '7:30–20:00 geöffnet' },
+    { value: '4.2★', label: 'Google Bewertung' },
+  ],
+  testimonials: [
+    { text: 'Das eigene Labor macht den Unterschied – meine Krone war schnell fertig und sitzt perfekt.', author: 'Renate G.', role: 'Patientin, Köln-Innenstadt' },
+    { text: 'Samstagsöffnung ist Gold wert. Endlich keine Urlaubstage mehr für den Zahnarzt.', author: 'Stefan V.', role: 'Patient, Köln-Ehrenfeld' },
+    { text: 'Modernes Zentrum, kompetentes Team – alles wurde ruhig und professionell erklärt.', author: 'Maria C.', role: 'Patientin, Köln' },
+  ],
+};
+---
+
+<PreviewLayout profile={denvitaKoelnProfile} prospect={prospect}>
+  <PreviewNav
+    prospectName={prospect.name}
+    logo="https://www.denvita.de/wp-content/uploads/logo-denvita.svg"
+    ctaText="Termin buchen"
+    ctaHref="#kontakt"
+  />
+
+  <ZahnarztHero
+    title={prospect.heroTitle}
+    subtitle={prospect.heroSubtitle}
+    badge="Dentalzentrum Köln – 700m², eigenes Labor"
+    ctaPrimary={{ text: 'Jetzt Termin buchen', href: '#kontakt' }}
+    ctaSecondary={{ text: 'Leistungen entdecken', href: '#leistungen' }}
+    imageSrc="https://www.denvita.de/wp-content/uploads/hero-praxis-koeln.jpg"
+    imageAlt="DENVITA Dentalzentrum Köln – 700m², eigenes Labor"
+    stats={prospect.stats}
+  />
+
+  <div class="zh-trust-bar" role="list" aria-label="Qualitätsmerkmale">
+    <div class="zh-trust-bar__inner">
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>700m² Praxisfläche</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        <span>Eigenes Dentallabor</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+        </svg>
+        <span>Mo–Sa geöffnet</span>
+      </div>
+      <div class="zh-trust-bar__divider" aria-hidden="true"></div>
+      <div class="zh-trust-bar__item" role="listitem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        <span>Köln Altstadt-Nord</span>
+      </div>
+    </div>
+  </div>
+
+  <ZahnarztServices
+    title="Unser Behandlungsspektrum"
+    subtitle="Implantologie, eigenes Labor und Ästhetik – Zahnmedizin auf höchstem Niveau in der Kölner Altstadt."
+    services={prospect.services}
+  />
+
+  <ZahnarztTimeline
+    title="Ihr Weg zum Wunschergebnis – mit Labor-Vorteil"
+    subtitle="Direkt vom Zahnarzt ins eigene Labor – kürzere Wege, schnellere Ergebnisse."
+    steps={[
+      { num: 1, title: 'Termin buchen – Mo bis Sa', desc: 'Auch samstags bis 14:30 Uhr: Online-Buchung für alle Behandlungen.', icon: 'search' },
+      { num: 2, title: 'Diagnose & Planung', desc: 'Ausführlicher Befund, transparente Kostenplanung und direkter Draht zum eigenen Labor.', icon: 'calendar' },
+      { num: 3, title: 'Behandlung mit Labor-Vorteil', desc: 'Praxiseigenes Labor: schnellere Restaurationen, bessere Passform, höchste Qualität.', icon: 'tooth' },
+      { num: 4, title: 'Nachsorge & Kontrolle', desc: 'Regelmäßige Prophylaxe und Recall sichern den langfristigen Erfolg.', icon: 'check' },
+    ]}
+  />
+
+  <PreviewTestimonials
+    title="Was Patienten über uns sagen"
+    testimonials={prospect.testimonials}
+  />
+
+  <ZahnarztCostCalc />
+
+  <PreviewCTA
+    title="Kölns Dentalzentrum – heute noch Termin buchen"
+    subtitle="Mo–Sa geöffnet, praxiseigenes Labor, zentrale Lage – Zahnmedizin auf höchstem Niveau in der Kölner Altstadt."
+    ctaText="Termin buchen"
+    ctaHref={`mailto:${prospect.email}`}
+    phone={prospect.phone}
+  />
+
+  <PreviewFooter
+    prospectName={prospect.name}
+    logo="https://www.denvita.de/wp-content/uploads/logo-denvita.svg"
+    email={prospect.email}
+    phone={prospect.phone}
+    location="Antonsgasse 1, 50667 Köln"
+    year={2026}
+  />
+</PreviewLayout>
+
+<style>
+  .zh-trust-bar { background: linear-gradient(to bottom, var(--bg-deep, #0d1f1c), color-mix(in srgb, var(--accent, #0E8A7B) 4%, var(--bg-deep, #0d1f1c))); border-bottom: 1px solid rgba(14, 138, 123, 0.15); }
+  .zh-trust-bar__inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 24px; padding: 20px 48px; flex-wrap: wrap; }
+  .zh-trust-bar__item { display: flex; align-items: center; gap: 10px; font-family: var(--font-body, sans-serif); font-size: 0.875rem; font-weight: 500; color: var(--muted, #8aafa5); white-space: nowrap; }
+  .zh-trust-bar__item svg { color: var(--accent, #0E8A7B); flex-shrink: 0; }
+  .zh-trust-bar__divider { width: 1px; height: 24px; background: rgba(14, 138, 123, 0.2); flex-shrink: 0; }
+  @media (max-width: 768px) { .zh-trust-bar__inner { gap: 16px; padding: 16px 24px; } .zh-trust-bar__divider { display: none; } .zh-trust-bar__item { font-size: 0.8rem; } }
+  @media (max-width: 480px) { .zh-trust-bar__inner { justify-content: flex-start; gap: 12px; } .zh-trust-bar__item { flex: 1 1 calc(50% - 6px); min-width: 0; white-space: normal; } }
+</style>
