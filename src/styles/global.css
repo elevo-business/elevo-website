@@ -1767,11 +1767,11 @@ section { position: relative; }
 .form-submit {
   width: 100%;
   background: var(--accent);
-  color: #fff;
+  color: var(--bg-deep);
   padding: var(--btn-md-padding);
   border-radius: var(--btn-radius);
   font-size: var(--btn-md-font);
-  font-weight: 500;
+  font-weight: 600;
   font-family: var(--font-body);
   border: none;
   cursor: pointer;
