@@ -78,7 +78,7 @@ const {
   }
   </script>
 
-  <!-- Google Ads + Consent Mode v2 -->
+  <!-- Google Ads + Consent Mode v2 (lazy-loaded fuer Performance, Consent-Default trotzdem sofort gesetzt) -->
   <script is:inline>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -91,8 +91,20 @@ const {
     });
     gtag('js', new Date());
     gtag('config', 'AW-18023151518');
+    (function(){
+      var src = 'https://www.googletagmanager.com/gtag/js?id=AW-18023151518';
+      var inject = function(){
+        var s = document.createElement('script');
+        s.async = true; s.src = src;
+        document.head.appendChild(s);
+      };
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(inject, { timeout: 4000 });
+      } else {
+        window.addEventListener('load', function(){ setTimeout(inject, 1500); });
+      }
+    })();
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18023151518"></script>
 </head>
 
 <body>
