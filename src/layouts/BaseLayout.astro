@@ -78,7 +78,15 @@ const {
   }
   </script>
 
-  <!-- Google Ads + Consent Mode v2 (lazy-loaded fuer Performance, Consent-Default trotzdem sofort gesetzt) -->
+  <!--
+    Google Ads + Consent Mode v2.
+    Consent-Default wird inline gesetzt (kein Netzwerk, ~0,5 KiB).
+    gtag.js selbst wird strikt POST-LCP geladen:
+      - frühestens nach `load`-Event (LCP fuer Text-Hero ist davor abgeschlossen)
+      - dann auf erste User-Interaktion ODER Hardcap 1500 ms nach `load`
+      - Consent-Grant via Cookie-Banner triggert sofortiges Laden (ueber `elevo:consent-granted` CustomEvent)
+    Vorher: requestIdleCallback feuerte auf 4G bereits ~2,6 s -> kollidierte mit LCP-Fenster.
+  -->
   <script is:inline>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -91,18 +99,45 @@ const {
     });
     gtag('js', new Date());
     gtag('config', 'AW-18023151518');
+
     (function(){
+      var injected = false;
       var src = 'https://www.googletagmanager.com/gtag/js?id=AW-18023151518';
-      var inject = function(){
+
+      function inject(){
+        if (injected) return;
+        injected = true;
         var s = document.createElement('script');
-        s.async = true; s.src = src;
+        s.async = true;
+        s.src = src;
         document.head.appendChild(s);
-      };
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(inject, { timeout: 4000 });
-      } else {
-        window.addEventListener('load', function(){ setTimeout(inject, 1500); });
       }
+
+      function armPostLoad(){
+        // LCP fuer den Text-Hero ist zum `load`-Zeitpunkt sicher abgeschlossen.
+        // Wir warten zusaetzlich auf erste User-Interaktion ODER Hardcap 1500 ms.
+        var hardcap = setTimeout(inject, 1500);
+
+        var events = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
+        function onInteract(){
+          events.forEach(function(e){ window.removeEventListener(e, onInteract, true); });
+          clearTimeout(hardcap);
+          // Kurze Idle-Pause, damit gtag-Fetch nicht mit Click-Handler-Arbeit konkurriert.
+          setTimeout(inject, 200);
+        }
+        events.forEach(function(e){
+          window.addEventListener(e, onInteract, { capture: true, passive: true });
+        });
+      }
+
+      if (document.readyState === 'complete') {
+        armPostLoad();
+      } else {
+        window.addEventListener('load', armPostLoad, { once: true });
+      }
+
+      // Consent-Grant via Cookie-Banner -> sofort laden, damit Conversion-Tracking ohne Wartezeit greift.
+      window.addEventListener('elevo:consent-granted', inject, { once: true });
     })();
   </script>
 </head>

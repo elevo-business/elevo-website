@@ -137,6 +137,12 @@ import Logo from './Logo.astro';
         'ad_personalization': prefs.marketing ? 'granted' : 'denied'
       });
     }
+    // gtag.js wird post-LCP / interaktionsgetriggert geladen.
+    // Sobald der User irgendeine Kategorie freigibt, soll gtag.js sofort ziehen,
+    // damit Conversion-Hits nach Einwilligung nicht auf den Hardcap warten.
+    if (prefs.statistics || prefs.marketing) {
+      window.dispatchEvent(new Event('elevo:consent-granted'));
+    }
   }
 
   function syncToggles(prefs: ConsentPrefs) {
