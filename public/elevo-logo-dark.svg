@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" role="img" aria-label="Elevo Logo (Dark Background)">
+  <title>Elevo – Logo (für dunkle Hintergründe)</title>
+  <!-- Icon -->
+  <g transform="translate(8 8)">
+    <path d="M12 36 L32 16 L52 36" fill="none" stroke="#3DD6C0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16 50 L32 34 L48 50" fill="none" stroke="#3DD6C0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.40"/>
+  </g>
+  <!-- Wordmark: Elevo -->
+  <text x="92" y="54"
+        font-family="'Inter','Helvetica Neue',Arial,sans-serif"
+        font-size="44"
+        font-weight="800"
+        fill="#FFFFFF"
+        letter-spacing="-1.2">Elevo</text>
+</svg>

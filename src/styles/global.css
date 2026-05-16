@@ -44,28 +44,30 @@
    CSS Custom Properties
 =========================== */
 :root {
-  --bg-deep: #05070E;
-  --bg-dark: #0A0E1A;
-  --bg-card: #0F1628;
-  --bg-card-hover: #141C35;
-  --accent: #3B82F6;
-  --accent-hover: #3569DE;
-  --accent-glow: rgba(59, 130, 246, 0.25);
-  --accent-glow-strong: rgba(59, 130, 246, 0.45);
-  --text-primary: #E2E8F0;
-  --text-secondary: #94A3B8;
-  --text-muted: #64748B;
-  --green: #10B981;
-  --orange: #F59E0B;
-  --danger: #EF4444;
-  --border: rgba(59, 130, 246, 0.15);
-  --border-strong: rgba(59, 130, 246, 0.3);
-  --font-heading: 'Sora', sans-serif;
-  --font-body: 'Outfit', sans-serif;
-  --radius: 12px;
+  /* Ink / Teal palette per Visual Direction v1 (Design Lead) */
+  --bg-deep: #08111B;
+  --bg-dark: #0D1B2A;
+  --bg-alt: #0B1622;
+  --bg-card: #14253A;
+  --bg-card-hover: #1A2D42;
+  --accent: #3DD6C0;
+  --accent-hover: #2EBFAB;
+  --accent-glow: rgba(61, 214, 192, 0.25);
+  --accent-glow-strong: rgba(61, 214, 192, 0.45);
+  --text-primary: #FFFFFF;
+  --text-secondary: #C9D7E4;
+  --text-muted: #8AAFC8;
+  --green: #3DD6C0;
+  --orange: #F4B860;
+  --danger: #FF6B6B;
+  --border: #243A55;
+  --border-strong: rgba(61, 214, 192, 0.35);
+  --font-heading: 'Sora', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Outfit', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --radius: 14px;
   --radius-lg: 20px;
   --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-  --shadow-blue: 0 0 40px rgba(59, 130, 246, 0.15);
+  --shadow-blue: 0 0 40px rgba(61, 214, 192, 0.18);
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   /* Button Sizing System */
   --btn-sm-padding: 10px 20px;
@@ -1765,11 +1767,11 @@ section { position: relative; }
 .form-submit {
   width: 100%;
   background: var(--accent);
-  color: #fff;
+  color: var(--bg-deep);
   padding: var(--btn-md-padding);
   border-radius: var(--btn-radius);
   font-size: var(--btn-md-font);
-  font-weight: 500;
+  font-weight: 600;
   font-family: var(--font-body);
   border: none;
   cursor: pointer;

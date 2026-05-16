@@ -1,4 +1,6 @@
-# ELEVO — elevo-astro
+# Elevo — elevo-astro
+
+> **Branding-Hinweis:** Logo und Marken-Wortmarke ist **Elevo** (ein Wort, keine Lücke, kein „ELE VO"/„Ele Vo"). Der rechtliche Entity-Name in Impressum/Datenschutz/Schema.org bleibt „ELEVO Solutions" (Einzelunternehmen). Für Title-Tags, OG-Tags und sichtbaren Text der Marketing-Seiten: **Elevo** verwenden.
 
 ## Setup
 - Runtime: Bun (>=22.12.0 Node compat)
@@ -20,14 +22,16 @@ src/
 public/         Fonts (Sora, Outfit woff2), Icons, Bilder
 ```
 
-## Brand CI (zwingend)
-- Primärfarbe: `--accent: #3B82F6` (Blue 500)
-- Hintergrund: `--bg-deep: #05070E` / `--bg-dark: #0A0E1A`
-- Text: `--text-primary: #E2E8F0` / `--text-secondary: #94A3B8`
-- Headings: Sora (400-800), Body: Outfit (300-600)
+## Brand CI (zwingend, Visual Direction v1 — Ink/Teal, ab ELE-600/ELE-597)
+- Akzent: `--accent: #3DD6C0` (Teal) — Hover: `#2EBFAB`
+- Hintergrund: `--bg-deep: #08111B` / `--bg-dark: #0D1B2A` (Ink) / `--bg-card: #14253A` (Surface 1)
+- Text: `--text-primary: #FFFFFF` / `--text-secondary: #C9D7E4` / `--text-muted: #8AAFC8`
+- Border: `--border: #243A55` / `--border-strong: rgba(61,214,192,0.35)`
+- Headings: Sora (mit Inter-Fallback), 400–800. Body: Outfit (mit Inter-Fallback), 300–600.
 - Alle Fonts self-hosted (DSGVO)
-- Border-Radius: 12px / 20px
+- Border-Radius: `--radius: 14px`
 - Transitions: `0.3s cubic-bezier(0.4, 0, 0.2, 1)`
+- Logo-Komponente: `src/components/Logo.astro` (wordmark „Elevo" + Echo-Chevron-Icon)
 
 ## Konventionen
 - Sprache Website: Deutsch (de)
@@ -47,7 +51,7 @@ public/         Fonts (Sora, Outfit woff2), Icons, Bilder
 
 ## SEO Rules
 - Jede Seite MUSS: einzigartigen title, meta description, canonical URL, OG tags haben
-- Title-Format: "Seitenname — ELEVO | Webagentur Aachen"
+- Title-Format: "Seitenname — Elevo" (Wortmarke; rechtliche Texte dürfen weiterhin „ELEVO Solutions" nennen)
 - Strukturierte Daten: Schema.org LocalBusiness für Hauptseiten
 - Sitemap automatisch via @astrojs/sitemap
 - Alt-Texte für alle Bilder (deutsch, beschreibend)
@@ -58,6 +62,8 @@ public/         Fonts (Sora, Outfit woff2), Icons, Bilder
 - Site-URL `https://elevo.solutions` in astro.config.mjs NICHT ändern
 - Output IMMER `static` — kein SSR aktivieren
 - Hosting: Coolify auf Netcup — keine anderen Provider ohne Board-Freigabe
+- **Pflicht-Gate**: Bei sichtbaren Marketing-Änderungen erst Staging (`relaunch.elevo.solutions` o.ä.) deployen, CEO Live-Look anfragen, dann Cut-over auf elevo.solutions.
+- **Preise**: Auf den sichtbaren Marketing-Seiten (`index.astro`, `leistungen.astro`, FAQ) dürfen KEINE EUR-Beträge/Preisranges stehen — Soft-CTA „Strategie-Gespräch" statt Preisanker (Hormozi-Style).
 
 ## Gotchas
 - Fonts NICHT von Google CDN laden (DSGVO-Verstoss)
