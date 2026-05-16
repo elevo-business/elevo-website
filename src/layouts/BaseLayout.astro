@@ -7,10 +7,10 @@ export interface Props {
 }
 
 const {
-  title = 'ELEVO — Digital Boutique | Websites, die Kunden bringen',
-  description = 'ELEVO — Digital Boutique. Websites, Prozessdigitalisierung und SEO & Ads für wachstumsorientierte Unternehmen im DACH-Raum. Messbare Ergebnisse, faire Preise.',
+  title = 'Elevo — Digitale Werkstatt für den deutschen Mittelstand',
+  description = 'Elevo baut Webseiten, die wie 10.000 Euro wirken — und Anfragen bringen, statt nur gut auszusehen. Premium-Webseiten, Performance- & SEO-Rettung, Conversion-Sites für den deutschen Mittelstand.',
   canonical = 'https://elevo.solutions/',
-  ogImage = 'https://elevo.solutions/social-preview.png',
+  ogImage = 'https://elevo.solutions/og-image-1200x630.svg',
 } = Astro.props;
 ---
 
@@ -21,9 +21,9 @@ const {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content={description}>
   <meta name="keywords" content="Digital Boutique, Webdesign DACH, SEO, Webentwicklung, Digitalagentur NRW, Website erstellen lassen, Prozessdigitalisierung KMU">
-  <meta name="author" content="ELEVO Solutions">
+  <meta name="author" content="Elevo">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#3B82F6">
+  <meta name="theme-color" content="#0D1B2A">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -32,7 +32,7 @@ const {
   <meta property="og:description" content={description}>
   <meta property="og:image" content={ogImage}>
   <meta property="og:locale" content="de_DE">
-  <meta property="og:site_name" content="ELEVO">
+  <meta property="og:site_name" content="Elevo">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -45,8 +45,9 @@ const {
   <link rel="canonical" href={canonical}>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/elevo-logo.png">
-  <meta name="apple-mobile-web-app-title" content="ELEVO">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" type="image/svg+xml" href="/apple-touch-icon-180.svg">
+  <meta name="apple-mobile-web-app-title" content="Elevo">
 
   <title>{title}</title>
 
@@ -59,8 +60,8 @@ const {
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "ELEVO",
-    "description": "ELEVO Digital Boutique — Websites, Prozessdigitalisierung und SEO & Ads",
+    "name": "Elevo",
+    "description": "Elevo — Digitale Werkstatt für den deutschen Mittelstand. Premium-Webseiten, Performance- & SEO-Rettung, Conversion-Sites.",
     "url": "https://elevo.solutions",
     "email": "hallo@elevo.solutions",
     "address": {
@@ -71,9 +72,8 @@ const {
       "addressRegion": "NRW",
       "addressCountry": "DE"
     },
-    "areaServed": ["Aachen", "NRW", "DACH"],
-    "priceRange": "€€€",
-    "knowsAbout": ["Webdesign", "SEO", "Prozessdigitalisierung", "Google Ads"],
+    "areaServed": ["Aachen", "NRW", "DACH", "DE"],
+    "knowsAbout": ["Webdesign", "SEO", "Prozessdigitalisierung", "Conversion-Webseiten"],
     "sameAs": []
   }
   </script>

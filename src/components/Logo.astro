@@ -1,0 +1,53 @@
+---
+export interface Props {
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  ariaLabel?: string;
+}
+const { size = 'md', href = '/', ariaLabel = 'Elevo Startseite' } = Astro.props;
+const dim = size === 'sm' ? 24 : size === 'lg' ? 36 : 28;
+---
+
+<a href={href} class={`logo-lockup logo-${size}`} aria-label={ariaLabel}>
+  <svg
+    class="logo-mark"
+    width={dim}
+    height={dim}
+    viewBox="0 0 64 64"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M12 36 L32 16 L52 36" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16 50 L32 34 L48 50" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+  </svg>
+  <span class="logo-word">Elevo</span>
+</a>
+
+<style>
+  .logo-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--accent, #3DD6C0);
+    text-decoration: none;
+    font-family: var(--font-heading, 'Inter', 'Sora', sans-serif);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    transition: opacity 0.2s ease;
+  }
+  .logo-lockup:hover { opacity: 0.88; }
+  .logo-mark {
+    flex: 0 0 auto;
+    color: var(--accent, #3DD6C0);
+  }
+  .logo-word {
+    color: var(--text-primary, #ffffff);
+    font-size: 1.35rem;
+  }
+  .logo-sm .logo-word { font-size: 1.15rem; }
+  .logo-lg .logo-word { font-size: 1.65rem; }
+  @media (max-width: 640px) {
+    .logo-word { font-size: 1.2rem; }
+  }
+</style>
