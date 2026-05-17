@@ -1,5 +1,8 @@
 ---
 import Logo from './Logo.astro';
+import LegalModal from './LegalModal.astro';
+import ImpressumContent from './legal/ImpressumContent.astro';
+import DatenschutzContent from './legal/DatenschutzContent.astro';
 ---
 
 <footer id="footer" role="contentinfo">
@@ -35,8 +38,8 @@ import Logo from './Logo.astro';
       <div>
         <p class="footer-col-title">Rechtliches</p>
         <ul class="footer-links">
-          <li><a href="/impressum">Impressum</a></li>
-          <li><a href="/datenschutz">Datenschutz</a></li>
+          <li><a href="/impressum" data-legal-open="legal-modal-impressum">Impressum</a></li>
+          <li><a href="/datenschutz" data-legal-open="legal-modal-datenschutz">Datenschutz</a></li>
           <li><a href="#" id="cookie-settings-link" aria-label="Cookie-Einstellungen anpassen">Cookie-Einstellungen</a></li>
         </ul>
         <p class="footer-col-title" style="margin-top:1.5rem;">Folgen Sie uns</p>
@@ -60,8 +63,8 @@ import Logo from './Logo.astro';
     <div class="footer-bottom">
       <p class="footer-legal">
         © <span id="year"></span> Elevo · Ahrstraße 6, 52511 Geilenkirchen ·
-        <a href="/impressum">Impressum</a> ·
-        <a href="/datenschutz">Datenschutz</a>
+        <a href="/impressum" data-legal-open="legal-modal-impressum">Impressum</a> ·
+        <a href="/datenschutz" data-legal-open="legal-modal-datenschutz">Datenschutz</a>
       </p>
     </div>
   </div>
@@ -74,6 +77,15 @@ import Logo from './Logo.astro';
     Gespräch buchen
   </a>
 </div>
+
+<!-- Legal Modals (Impressum + Datenschutz) -->
+<LegalModal id="legal-modal-impressum" labelledBy="anbieter" fallbackHref="/impressum">
+  <ImpressumContent />
+</LegalModal>
+
+<LegalModal id="legal-modal-datenschutz" labelledBy="ds-verantwortlicher" fallbackHref="/datenschutz">
+  <DatenschutzContent />
+</LegalModal>
 
 <!-- Cookie Banner -->
 <div id="cookie-banner" role="dialog" aria-modal="true" aria-labelledby="cookie-title">
@@ -226,5 +238,87 @@ import Logo from './Logo.astro';
       try { syncToggles(JSON.parse(raw) as ConsentPrefs); } catch {}
     }
     showBanner();
+  });
+
+  // ---------- Legal modals (Impressum, Datenschutz) ----------
+  // Footer links carry data-legal-open="<modal-id>". JS opens the modal in place;
+  // when JS fails or for crawlers the href remains a valid direct route (SEO + § 5 TMG).
+  let lastTrigger: HTMLElement | null = null;
+
+  function getFocusable(scope: HTMLElement): HTMLElement[] {
+    return Array.from(
+      scope.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter((el) => !el.hasAttribute('inert'));
+  }
+
+  function openLegalModal(modalId: string, trigger: HTMLElement | null) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+    lastTrigger = trigger;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.documentElement.classList.add('legal-modal-open');
+    const focusable = getFocusable(modal);
+    const target = modal.querySelector<HTMLElement>('.legal-modal-close') ?? focusable[0];
+    setTimeout(() => target?.focus(), 30);
+  }
+
+  function closeLegalModal(modal: HTMLElement) {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    if (!document.querySelector('.legal-modal.is-open')) {
+      document.documentElement.classList.remove('legal-modal-open');
+    }
+    lastTrigger?.focus?.();
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-legal-open]').forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      const modalId = trigger.getAttribute('data-legal-open');
+      if (!modalId) return;
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+      event.preventDefault();
+      openLegalModal(modalId, trigger);
+    });
+  });
+
+  document.querySelectorAll<HTMLElement>('.legal-modal').forEach((modal) => {
+    modal.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement | null;
+      if (target?.closest('[data-legal-close]')) {
+        closeLegalModal(modal);
+      }
+    });
+
+    modal.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key === 'Tab') {
+        const focusable = getFocusable(modal);
+        if (focusable.length === 0) {
+          event.preventDefault();
+          return;
+        }
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+  });
+
+  document.addEventListener('keydown', (event: KeyboardEvent) => {
+    if (event.key !== 'Escape') return;
+    const open = document.querySelector<HTMLElement>('.legal-modal.is-open');
+    if (open) {
+      event.preventDefault();
+      closeLegalModal(open);
+    }
   });
 </script>
