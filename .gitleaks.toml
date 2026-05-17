@@ -1,0 +1,35 @@
+title = "gitleaks config (ELE-734 standard, lightweight)"
+
+# Use upstream defaults, then scope-down the noise.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Project-scoped allowlist (lockfile noise, example env, generated bundles)"
+paths = [
+  '''(^|/)pnpm-lock\.yaml$''',
+  '''(^|/)package-lock\.json$''',
+  '''(^|/)yarn\.lock$''',
+  '''(^|/)bun\.lockb?$''',
+  '''(^|/)\.env\.example$''',
+  '''(^|/)dist/''',
+  '''(^|/)\.next/''',
+  '''(^|/)node_modules/''',
+]
+
+# Synthetic / placeholder tokens used in fixtures and docs.
+regexes = [
+  '''AKIAIOSFODNN7EXAMPLE''',
+  '''sk_test_[0-9A-Za-z]{1,}''',
+  '''pk_test_[0-9A-Za-z]{1,}''',
+  '''ghp_[A-Za-z0-9]{36}_EXAMPLE''',
+]
+# Stopwords match as case-insensitive substrings against the matched secret.
+# Synthetic test values must prefix with "test-" — see ELE-734 hub doc.
+stopwords = [
+  "example",
+  "placeholder",
+  "dummy",
+  "changeme",
+  "test-",
+]

@@ -1,0 +1,49 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 5
+    versioning-strategy: increase
+    labels:
+      - dependencies
+      - security
+    commit-message:
+      prefix: deps
+      include: scope
+    groups:
+      prod-deps:
+        dependency-type: production
+        applies-to: version-updates
+        update-types:
+          - minor
+          - patch
+      dev-deps:
+        dependency-type: development
+        applies-to: version-updates
+        update-types:
+          - minor
+          - patch
+      security-fixes:
+        applies-to: security-updates
+        patterns:
+          - "*"
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 3
+    labels:
+      - ci
+      - dependencies
+    commit-message:
+      prefix: ci
+      include: scope
