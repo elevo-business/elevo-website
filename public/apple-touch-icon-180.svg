@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="180" height="180" role="img" aria-label="Elevo Apple Touch Icon">
   <title>Elevo Apple Touch Icon 180</title>
-  <rect width="180" height="180" rx="40" fill="#0D1B2A"/>
+  <rect width="180" height="180" rx="40" fill="#0A0E1A"/>
   <g transform="translate(38 38)">
-    <path d="M12 60 L52 20 L92 60" fill="none" stroke="#3DD6C0" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M22 90 L52 60 L82 90" fill="none" stroke="#3DD6C0" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
+    <path d="M12 60 L52 20 L92 60" fill="none" stroke="#3B82F6" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M22 90 L52 60 L82 90" fill="none" stroke="#3B82F6" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
   </g>
 </svg>

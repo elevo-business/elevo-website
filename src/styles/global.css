@@ -44,30 +44,30 @@
    CSS Custom Properties
 =========================== */
 :root {
-  /* Ink / Teal palette per Visual Direction v1 (Design Lead) */
-  --bg-deep: #08111B;
-  --bg-dark: #0D1B2A;
-  --bg-alt: #0B1622;
-  --bg-card: #14253A;
-  --bg-card-hover: #1A2D42;
-  --accent: #3DD6C0;
-  --accent-hover: #2EBFAB;
-  --accent-glow: rgba(61, 214, 192, 0.25);
-  --accent-glow-strong: rgba(61, 214, 192, 0.45);
-  --text-primary: #FFFFFF;
-  --text-secondary: #C9D7E4;
-  --text-muted: #8AAFC8;
-  --green: #3DD6C0;
+  /* Schwarz-Blau-Palette (ELE-668 Revision v2: Vorgänger-CI wiederhergestellt) */
+  --bg-deep: #05070E;
+  --bg-dark: #0A0E1A;
+  --bg-alt: #080B14;
+  --bg-card: #0F1628;
+  --bg-card-hover: #14203A;
+  --accent: #3B82F6;
+  --accent-hover: #3569DE;
+  --accent-glow: rgba(59, 130, 246, 0.25);
+  --accent-glow-strong: rgba(59, 130, 246, 0.45);
+  --text-primary: #E8EEF7;
+  --text-secondary: #C2CFE3;
+  --text-muted: #8AA0BD;
+  --green: #3B82F6;
   --orange: #F4B860;
   --danger: #FF6B6B;
-  --border: #243A55;
-  --border-strong: rgba(61, 214, 192, 0.35);
+  --border: rgba(59, 130, 246, 0.18);
+  --border-strong: rgba(59, 130, 246, 0.42);
   --font-heading: 'Sora', 'Inter', 'Helvetica Neue', Arial, sans-serif;
   --font-body: 'Outfit', 'Inter', 'Helvetica Neue', Arial, sans-serif;
   --radius: 14px;
   --radius-lg: 20px;
   --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-  --shadow-blue: 0 0 40px rgba(61, 214, 192, 0.18);
+  --shadow-blue: 0 0 40px rgba(59, 130, 246, 0.22);
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   /* Button Sizing System */
   --btn-sm-padding: 10px 20px;
