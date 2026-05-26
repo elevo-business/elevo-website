@@ -39,7 +39,7 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
     Jetzt Anfrage senden
   </button>
   <p class="form-privacy-note">
-    Mit dem Absenden stimmst du unserer <a href="/datenschutz">Datenschutzerklärung</a> zu. Anonymisierte Nutzungsdaten werden nur mit deiner Cookie-Einwilligung an Google übermittelt.
+    Mit dem Absenden stimmst du unserer <a href="/datenschutz">Datenschutzerklärung</a> zu.
   </p>
   <div class="form-message" id="form-message" role="alert" aria-live="polite"></div>
 </form>
@@ -92,10 +92,6 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
         formMsg.className = 'form-message success';
         formMsg.textContent = '✓ Danke! Wir melden uns innerhalb von 24 Stunden.';
         form.reset();
-
-        if (typeof (window as any).gtag !== 'undefined') {
-          (window as any).gtag('event', 'conversion', { send_to: 'AW-18023151518/contact_form_submit' });
-        }
       } else {
         throw new Error('Server error');
       }

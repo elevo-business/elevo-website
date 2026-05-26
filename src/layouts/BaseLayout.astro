@@ -78,39 +78,6 @@ const {
   }
   </script>
 
-  <!--
-    Google Ads Conversion-Tracking + Consent Mode v2.
-    Consent-Default wird inline gesetzt (kein Netzwerk, ~0,5 KiB).
-    gtag.js wird ausschliesslich nach aktiver Einwilligung ueber das Cookie-Banner
-    geladen (CustomEvent `elevo:consent-granted`). Kein Pre-Consent-Loading,
-    keine Hardcap-Auto-Injection — Art. 6 Abs. 1 lit. a DSGVO + § 25 TTDSG.
-  -->
-  <script is:inline>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      'ad_storage': 'denied',
-      'analytics_storage': 'denied',
-      'ad_user_data': 'denied',
-      'ad_personalization': 'denied',
-      'wait_for_update': 500
-    });
-    gtag('js', new Date());
-    gtag('config', 'AW-18023151518');
-
-    (function(){
-      var injected = false;
-      function inject(){
-        if (injected) return;
-        injected = true;
-        var s = document.createElement('script');
-        s.async = true;
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18023151518';
-        document.head.appendChild(s);
-      }
-      window.addEventListener('elevo:consent-granted', inject, { once: true });
-    })();
-  </script>
 </head>
 
 <body>
