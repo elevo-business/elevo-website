@@ -79,13 +79,11 @@ const {
   </script>
 
   <!--
-    Google Ads + Consent Mode v2.
+    Google Ads Conversion-Tracking + Consent Mode v2.
     Consent-Default wird inline gesetzt (kein Netzwerk, ~0,5 KiB).
-    gtag.js selbst wird strikt POST-LCP geladen:
-      - frühestens nach `load`-Event (LCP fuer Text-Hero ist davor abgeschlossen)
-      - dann auf erste User-Interaktion ODER Hardcap 1500 ms nach `load`
-      - Consent-Grant via Cookie-Banner triggert sofortiges Laden (ueber `elevo:consent-granted` CustomEvent)
-    Vorher: requestIdleCallback feuerte auf 4G bereits ~2,6 s -> kollidierte mit LCP-Fenster.
+    gtag.js wird ausschliesslich nach aktiver Einwilligung ueber das Cookie-Banner
+    geladen (CustomEvent `elevo:consent-granted`). Kein Pre-Consent-Loading,
+    keine Hardcap-Auto-Injection — Art. 6 Abs. 1 lit. a DSGVO + § 25 TTDSG.
   -->
   <script is:inline>
     window.dataLayer = window.dataLayer || [];
@@ -102,41 +100,14 @@ const {
 
     (function(){
       var injected = false;
-      var src = 'https://www.googletagmanager.com/gtag/js?id=AW-18023151518';
-
       function inject(){
         if (injected) return;
         injected = true;
         var s = document.createElement('script');
         s.async = true;
-        s.src = src;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18023151518';
         document.head.appendChild(s);
       }
-
-      function armPostLoad(){
-        // LCP fuer den Text-Hero ist zum `load`-Zeitpunkt sicher abgeschlossen.
-        // Wir warten zusaetzlich auf erste User-Interaktion ODER Hardcap 1500 ms.
-        var hardcap = setTimeout(inject, 1500);
-
-        var events = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
-        function onInteract(){
-          events.forEach(function(e){ window.removeEventListener(e, onInteract, true); });
-          clearTimeout(hardcap);
-          // Kurze Idle-Pause, damit gtag-Fetch nicht mit Click-Handler-Arbeit konkurriert.
-          setTimeout(inject, 200);
-        }
-        events.forEach(function(e){
-          window.addEventListener(e, onInteract, { capture: true, passive: true });
-        });
-      }
-
-      if (document.readyState === 'complete') {
-        armPostLoad();
-      } else {
-        window.addEventListener('load', armPostLoad, { once: true });
-      }
-
-      // Consent-Grant via Cookie-Banner -> sofort laden, damit Conversion-Tracking ohne Wartezeit greift.
       window.addEventListener('elevo:consent-granted', inject, { once: true });
     })();
   </script>

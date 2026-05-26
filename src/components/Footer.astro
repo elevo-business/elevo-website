@@ -79,7 +79,8 @@ import Logo from './Logo.astro';
 <div id="cookie-banner" role="dialog" aria-modal="true" aria-labelledby="cookie-title">
   <p class="cookie-title" id="cookie-title">🍪 Cookies &amp; Datenschutz</p>
   <p class="cookie-text">
-    Wir verwenden Cookies für Statistik und Marketing. Wähle, welche du erlaubst.
+    Wir verwenden Cookies für Marketing-Messung (Google Ads Conversion-Tracking).
+    Du kannst frei entscheiden, ob du diese erlaubst.
     Mehr dazu in unserer <a href="/datenschutz">Datenschutzerklärung</a>.
   </p>
   <div class="cookie-toggles">
@@ -95,18 +96,8 @@ import Logo from './Logo.astro';
     </div>
     <div class="cookie-toggle-row">
       <div class="cookie-toggle-info">
-        <div class="cookie-toggle-label">Statistik</div>
-        <div class="cookie-toggle-desc">Google Analytics — anonyme Nutzungsanalyse</div>
-      </div>
-      <label class="cookie-toggle-switch" aria-label="Statistik-Cookies">
-        <input type="checkbox" id="toggle-statistics">
-        <span class="cookie-toggle-track"></span>
-      </label>
-    </div>
-    <div class="cookie-toggle-row">
-      <div class="cookie-toggle-info">
         <div class="cookie-toggle-label">Marketing</div>
-        <div class="cookie-toggle-desc">Google Ads — personalisierte Werbung</div>
+        <div class="cookie-toggle-desc">Google Ads — Conversion-Tracking unserer Anzeigen</div>
       </div>
       <label class="cookie-toggle-switch" aria-label="Marketing-Cookies">
         <input type="checkbox" id="toggle-marketing">
@@ -124,29 +115,27 @@ import Logo from './Logo.astro';
 <script>
   document.getElementById('year')!.textContent = String(new Date().getFullYear());
 
-  const COOKIE_KEY = 'elevo_consent_v2';
+  // v3 ersetzt v2 nach Entfernung des Statistik-Slots; v2-Einträge werden ignoriert,
+  // dadurch wird das Banner einmalig erneut angezeigt — gewollt, da das Schema geändert wurde.
+  const COOKIE_KEY = 'elevo_consent_v3';
 
-  interface ConsentPrefs { statistics: boolean; marketing: boolean; }
+  interface ConsentPrefs { marketing: boolean; }
 
   function applyConsent(prefs: ConsentPrefs) {
     if (typeof (window as any).gtag !== 'undefined') {
       (window as any).gtag('consent', 'update', {
-        'analytics_storage': prefs.statistics ? 'granted' : 'denied',
         'ad_storage': prefs.marketing ? 'granted' : 'denied',
         'ad_user_data': prefs.marketing ? 'granted' : 'denied',
         'ad_personalization': prefs.marketing ? 'granted' : 'denied'
       });
     }
-    // gtag.js wird post-LCP / interaktionsgetriggert geladen.
-    // Sobald der User irgendeine Kategorie freigibt, soll gtag.js sofort ziehen,
-    // damit Conversion-Hits nach Einwilligung nicht auf den Hardcap warten.
-    if (prefs.statistics || prefs.marketing) {
+    // gtag.js wird erst nach aktiver Einwilligung geladen — kein Pre-Consent-Loading.
+    if (prefs.marketing) {
       window.dispatchEvent(new Event('elevo:consent-granted'));
     }
   }
 
   function syncToggles(prefs: ConsentPrefs) {
-    (document.getElementById('toggle-statistics') as HTMLInputElement).checked = prefs.statistics;
     (document.getElementById('toggle-marketing') as HTMLInputElement).checked = prefs.marketing;
   }
 
@@ -173,7 +162,6 @@ import Logo from './Logo.astro';
 
   function getTogglePrefs(): ConsentPrefs {
     return {
-      statistics: (document.getElementById('toggle-statistics') as HTMLInputElement).checked,
       marketing: (document.getElementById('toggle-marketing') as HTMLInputElement).checked
     };
   }
@@ -198,16 +186,17 @@ import Logo from './Logo.astro';
       applyConsent(prefs);
       syncToggles(prefs);
     } catch {
-      applyConsent({ statistics: true, marketing: true });
-      syncToggles({ statistics: true, marketing: true });
+      // Parser-Fehler: niemals stillschweigend einwilligen — Banner erneut zeigen.
+      localStorage.removeItem(COOKIE_KEY);
+      showBanner();
     }
   } else {
     showBanner();
   }
 
   acceptBtn.addEventListener('click', () => {
-    syncToggles({ statistics: true, marketing: true });
-    saveConsent({ statistics: true, marketing: true });
+    syncToggles({ marketing: true });
+    saveConsent({ marketing: true });
   });
 
   saveBtn.addEventListener('click', () => {
@@ -215,8 +204,8 @@ import Logo from './Logo.astro';
   });
 
   declineBtn.addEventListener('click', () => {
-    syncToggles({ statistics: false, marketing: false });
-    saveConsent({ statistics: false, marketing: false });
+    syncToggles({ marketing: false });
+    saveConsent({ marketing: false });
   });
 
   settingsLink?.addEventListener('click', (e: Event) => {
