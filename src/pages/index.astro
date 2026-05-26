@@ -15,35 +15,94 @@ import '../styles/global.css';
 
   <Header />
 
+  <!-- Live-Vorschau Modal -->
+  <div id="ref-modal" class="ref-modal" role="dialog" aria-modal="true" aria-label="Website-Vorschau">
+    <div class="ref-modal-backdrop"></div>
+    <div class="ref-modal-window">
+      <div class="ref-modal-bar">
+        <div class="ref-modal-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="ref-modal-url-wrap">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="ref-modal-url" id="ref-modal-url"></span>
+        </div>
+        <div class="ref-modal-actions">
+          <a class="ref-modal-open" id="ref-modal-open-btn" href="#" target="_blank" rel="noopener" aria-label="In neuem Tab öffnen">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+          <button class="ref-modal-close" id="ref-modal-close" aria-label="Schließen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="ref-modal-frame-wrap">
+        <iframe id="ref-modal-frame" src="" title="" class="ref-modal-iframe" allow="fullscreen"></iframe>
+      </div>
+    </div>
+  </div>
+
   <main id="main">
 
     <!-- ===== HERO ===== -->
     <section id="hero" class="ev-hero" aria-labelledby="hero-heading">
       <div class="container">
-        <p class="ev-eyebrow">Digitalisierung · Prozessautomatisierung · Deutschland</p>
-        <h1 id="hero-heading" class="ev-hero-h1">
-          Ihr Betrieb läuft.<br>
-          <span class="ev-accent">Auch ohne dass Sie jeden Handgriff selbst machen.</span>
-        </h1>
-        <p class="ev-hero-sub">
-          Wir digitalisieren Ihre Abläufe und bauen die Automatisierung dahinter — Anfragen,
-          Angebote und Termine laufen von selbst. Festpreis, klare Ziele, in 4–6 Wochen einsatzbereit.
-        </p>
-        <div class="ev-hero-ctas">
-          <a href="#kontakt" class="ev-btn ev-btn-primary">
-            Erstgespräch anfragen
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="#angebot" class="ev-btn ev-btn-ghost">So funktioniert's</a>
-        </div>
-        <p class="ev-hero-trust">Festpreis vor Start · Ziele schriftlich · auf Deutsch</p>
+        <div class="ev-hero-grid">
+          <div class="ev-hero-copy">
+            <p class="ev-eyebrow">Digitalisierung · Prozessautomatisierung</p>
+            <h1 id="hero-heading" class="ev-hero-h1">
+              Ihr Betrieb läuft.<br>
+              <span class="ev-accent">Auch ohne dass Sie jeden Handgriff selbst machen.</span>
+            </h1>
+            <p class="ev-hero-sub">
+              Wir digitalisieren Ihre Abläufe — Anfragen, Angebote und Termine laufen von selbst.
+              Festpreis, klare Ziele, in 4–6 Wochen einsatzbereit.
+            </p>
+            <div class="ev-hero-ctas">
+              <a href="#kontakt" class="ev-btn ev-btn-primary">
+                Erstgespräch anfragen
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="#angebot" class="ev-btn ev-btn-ghost">So funktioniert's</a>
+            </div>
+            <p class="ev-hero-trust">Festpreis vor Start · Ziele schriftlich · auf Deutsch</p>
+          </div>
 
-        <ul class="ev-trustbar" role="list">
-          <li>Für inhabergeführte Unternehmen</li>
-          <li>In 4–6 Wochen einsatzbereit</li>
-          <li>Festpreis vor Start</li>
-          <li>Sitz in Deutschland</li>
-        </ul>
+          <div class="ev-hero-visual" aria-hidden="true">
+            <div class="ev-hv-browser">
+              <div class="ev-hv-bar">
+                <span class="ev-hv-dot ev-hv-dot--r"></span>
+                <span class="ev-hv-dot ev-hv-dot--y"></span>
+                <span class="ev-hv-dot ev-hv-dot--g"></span>
+                <span class="ev-hv-url">übersicht.elevo</span>
+              </div>
+              <div class="ev-hv-screen">
+                <div class="ev-hv-row">
+                  <span class="ev-hv-kpi"><b>24</b><i>Anfragen</i></span>
+                  <span class="ev-hv-kpi"><b>11</b><i>Termine</i></span>
+                  <span class="ev-hv-kpi"><b>9</b><i>Aufträge</i></span>
+                </div>
+                <div class="ev-hv-chart">
+                  <svg viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true">
+                    <polyline points="0,52 28,46 56,40 84,32 112,26 140,18 168,12 200,6" fill="none" stroke="currentColor" stroke-width="2.5"/>
+                    <polyline points="0,52 28,46 56,40 84,32 112,26 140,18 168,12 200,6 200,60 0,60" fill="currentColor" opacity="0.12" stroke="none"/>
+                  </svg>
+                </div>
+                <div class="ev-hv-list">
+                  <span class="ev-hv-li"><i></i><em class="ev-hv-tag ev-hv-tag--new">Neu</em></span>
+                  <span class="ev-hv-li"><i></i><em class="ev-hv-tag">Angebot</em></span>
+                  <span class="ev-hv-li"><i></i><em class="ev-hv-tag ev-hv-tag--won">Gewonnen</em></span>
+                </div>
+              </div>
+            </div>
+            <div class="ev-hv-badge ev-hv-badge--1">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Neue Anfrage
+            </div>
+            <div class="ev-hv-badge ev-hv-badge--2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
+              Termin gebucht
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -73,11 +132,9 @@ import '../styles/global.css';
       <div class="container">
         <p class="ev-eyebrow">Das Problem</p>
         <h2 id="problem-heading" class="ev-h2">Führen Sie Ihr Unternehmen — oder verwalten Sie es?</h2>
-        <p class="ev-section-sub">Drei Dinge hören wir in fast jedem Erstgespräch:</p>
         <div class="ev-grid-3">
           <article class="ev-diag-card">
             <div class="ev-diag-icon" aria-hidden="true">
-              <!-- Lucide: inbox -->
               <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
             </div>
             <h3>Anfragen versanden.</h3>
@@ -85,7 +142,6 @@ import '../styles/global.css';
           </article>
           <article class="ev-diag-card">
             <div class="ev-diag-icon" aria-hidden="true">
-              <!-- Lucide: clock -->
               <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <h3>Angebote kosten Stunden.</h3>
@@ -93,7 +149,6 @@ import '../styles/global.css';
           </article>
           <article class="ev-diag-card">
             <div class="ev-diag-icon" aria-hidden="true">
-              <!-- Lucide: user-cog -->
               <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="7" r="4"/><path d="M10.3 15H7a4 4 0 0 0-4 4v2"/><circle cx="19" cy="16" r="3"/><path d="M19 11v1M19 21v1M22.5 13.5l-.9.5M16.4 17l-.9.5M22.5 18.5l-.9-.5M16.4 16l-.9-.5"/></svg>
             </div>
             <h3>Alles hängt an Ihnen.</h3>
@@ -114,16 +169,31 @@ import '../styles/global.css';
             <p class="ev-offer-pitch">Ein System, das aus Anfragen planbar Aufträge macht — und Ihnen den Verwaltungs-Kram vom Tisch nimmt.</p>
             <span class="ev-offer-kpi">Komplett aufgebaut in 4–6 Wochen</span>
 
-            <div class="ev-offer-label">Was wir aufbauen</div>
-            <ul class="ev-offer-bonus" role="list">
-              <li>Wir schauen uns Ihre Abläufe an — wo Zeit verloren geht und Anfragen versanden</li>
-              <li>Wir zeichnen den Weg von der Anfrage bis zum fertigen Auftrag auf</li>
-              <li>Anfragen, Angebote, Termine und Nachfassen laufen ab dann von selbst</li>
-              <li>Alle Kundendaten an einem Ort — Schluss mit Excel und Zetteln</li>
-              <li>Ihre Webseite als sichtbare Front des Systems</li>
-              <li>Ihr Team wird geschult und bekommt eine einfache Anleitung</li>
-              <li>30 Tage Feinschliff nach dem Start — wir justieren nach, bis es sitzt</li>
-              <li>Datenschutz von Anfang an mitgedacht</li>
+            <ul class="ev-feat-grid" role="list">
+              <li class="ev-feat">
+                <span class="ev-feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></span>
+                Anfragen an einem Ort
+              </li>
+              <li class="ev-feat">
+                <span class="ev-feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+                Angebote in Minuten
+              </li>
+              <li class="ev-feat">
+                <span class="ev-feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+                Termine ohne Telefonieren
+              </li>
+              <li class="ev-feat">
+                <span class="ev-feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span>
+                Erinnerungen von selbst
+              </li>
+              <li class="ev-feat">
+                <span class="ev-feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg></span>
+                Alle Kundendaten gebündelt
+              </li>
+              <li class="ev-feat">
+                <span class="ev-feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                Ihr Team wird geschult
+              </li>
             </ul>
 
             <a href="#kontakt" class="ev-btn ev-btn-primary">
@@ -214,21 +284,25 @@ import '../styles/global.css';
         <h2 id="prozess-heading" class="ev-h2">Vom ersten Gespräch bis es läuft.</h2>
         <div class="prozess-steps">
           <div class="prozess-step">
+            <span class="ev-step-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
             <div class="step-num">01</div>
             <h3 class="step-title">Erstgespräch</h3>
             <p class="step-desc">30 Minuten. Wir hören zu und schauen uns Ihre Abläufe an. Kostenlos.</p>
           </div>
           <div class="prozess-step">
+            <span class="ev-step-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11H3v10h6zM21 3h-6v18h6zM15 7H9v14h6z"/></svg></span>
             <div class="step-num">02</div>
             <h3 class="step-title">Plan</h3>
             <p class="step-desc">Wir zeigen Ihnen, wo am meisten Zeit verloren geht — und was zuerst kommt.</p>
           </div>
           <div class="prozess-step">
+            <span class="ev-step-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
             <div class="step-num">03</div>
             <h3 class="step-title">Aufbau</h3>
             <p class="step-desc">Wir bauen Ihr System. Sie sehen jede Woche, wie weit wir sind.</p>
           </div>
           <div class="prozess-step">
+            <span class="ev-step-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
             <div class="step-num">04</div>
             <h3 class="step-title">Übergabe</h3>
             <p class="step-desc">Ihr Team wird geschult. Danach läuft es — wir justieren 30 Tage nach.</p>
@@ -265,59 +339,64 @@ import '../styles/global.css';
       </div>
     </section>
 
-    <!-- ===== KOMPETENZ / PROOF ===== -->
+    <!-- ===== KOMPETENZ / PROOF (LIVE-VORSCHAU) ===== -->
     <section id="kompetenz" class="ev-section" aria-labelledby="kompetenz-heading">
       <div class="container">
         <p class="ev-eyebrow">Sichtbare Arbeit</p>
-        <h2 id="kompetenz-heading" class="ev-h2">Was wir bauen, läuft —<br>und ist öffentlich zu sehen.</h2>
-        <p class="ev-section-sub">Jeder Eintrag verlinkt auf eine Live-Seite oder eine öffentlich erreichbare Vorschau. Kein Mock-up, kein Konzept-Bild — sondern Arbeit, die Sie selbst öffnen können.</p>
-
-        <ul class="ev-outcomes" role="list">
-          <li><strong>Vier</strong> sichtbare Arbeiten live im Netz</li>
-          <li>Schnell auf jedem Handy</li>
-          <li>Top-Bewertung bei Zugänglichkeit und Google-Bereitschaft</li>
-          <li>Datenschutz-konformes Setup standardmäßig</li>
-        </ul>
+        <h2 id="kompetenz-heading" class="ev-h2">Was wir bauen, läuft —<br>und ist live zu sehen.</h2>
+        <p class="ev-section-sub">Klicken Sie auf eine Vorschau — Sie öffnen die echte Seite direkt hier. Kein Mock-up, kein Konzept-Bild.</p>
 
         <div class="ev-proof-grid">
           <article class="ev-proof-card">
+            <button class="ev-proof-shot ref-modal-trigger" type="button"
+              data-url="https://greenchild-preview.elevo.solutions/de/"
+              data-label="GreenChild" data-display-url="greenchild-preview.elevo.solutions"
+              aria-label="GreenChild Website live ansehen">
+              <span class="ev-shot-bar" aria-hidden="true"><i></i><i></i><i></i><em>greenchild.eu</em></span>
+              <span class="ev-shot-body" aria-hidden="true"><span class="ev-shot-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></span><span class="ev-shot-cta">Live ansehen</span></span>
+            </button>
             <p class="ev-proof-tag">Markenwebseite · Sales-Magazin</p>
             <h3>GreenChild</h3>
-            <p>Markenwebseite, digitales Magazin, klarer Weg zum Termingespräch — inklusive interaktivem Kreislauf-Diagramm und Rechner. Seit Jahren im Einsatz, in einer Branche mit hohen Anforderungen.</p>
-            <a href="https://greenchild.eu" target="_blank" rel="noopener noreferrer" class="ev-proof-link">
-              greenchild.eu
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
+            <p>Markenwebseite mit Magazin, Rechner und klarem Weg zum Termin. Seit Jahren im Einsatz.</p>
           </article>
 
           <article class="ev-proof-card">
+            <button class="ev-proof-shot ref-modal-trigger" type="button"
+              data-url="https://thermae-preview.elevo.solutions"
+              data-label="Thermae 2000" data-display-url="thermae-preview.elevo.solutions"
+              aria-label="Thermae 2000 Website live ansehen">
+              <span class="ev-shot-bar" aria-hidden="true"><i></i><i></i><i></i><em>thermae-preview.elevo.solutions</em></span>
+              <span class="ev-shot-body" aria-hidden="true"><span class="ev-shot-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></span><span class="ev-shot-cta">Live ansehen</span></span>
+            </button>
             <p class="ev-proof-tag">Vorschau-Seite · Wellness</p>
             <h3>Thermae 2000</h3>
-            <p>Vollständige Vorschau-Webseite — neun Abschnitte, eigene Bildsprache, kompletter Marken-Transfer. Schnell auf jedem Handy, mit Top-Bewertung bei Zugänglichkeit und Google-Bereitschaft.</p>
-            <a href="https://thermae-preview.elevo.solutions" target="_blank" rel="noopener noreferrer" class="ev-proof-link">
-              thermae-preview.elevo.solutions
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
+            <p>Komplette Vorschau-Webseite mit eigener Bildsprache — schnell auf jedem Handy.</p>
           </article>
 
           <article class="ev-proof-card">
-            <p class="ev-proof-tag">Personalisierte Vorschauen · Praxen</p>
-            <h3>Zahnarzt-Vorschau-Serie</h3>
-            <p>Mehr als zehn personalisierte Vorschau-Webseiten für Zahnarztpraxen — jede mit echtem Logo, echten Bildern und der Farbwelt der Praxis. Mit klarem Weg zum Termin.</p>
-            <a href="/previews/apollo-zahnarzt/" target="_blank" rel="noopener noreferrer" class="ev-proof-link">
-              Apollonia Praxisklinik ansehen
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
+            <button class="ev-proof-shot ref-modal-trigger" type="button"
+              data-url="/previews/zahnarzt-koe55/"
+              data-label="Zahnärzte Kö55" data-display-url="elevo.solutions/previews/zahnarzt-koe55"
+              aria-label="Zahnärzte Kö55 Vorschau live ansehen">
+              <span class="ev-shot-bar" aria-hidden="true"><i></i><i></i><i></i><em>zahnarzt-koe55</em></span>
+              <span class="ev-shot-body" aria-hidden="true"><span class="ev-shot-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></span><span class="ev-shot-cta">Live ansehen</span></span>
+            </button>
+            <p class="ev-proof-tag">Personalisierte Vorschau · Praxis</p>
+            <h3>Zahnärzte Kö55</h3>
+            <p>Eine von über zehn Praxis-Vorschauen — echtes Logo, echte Bilder, klarer Weg zum Termin.</p>
           </article>
 
           <article class="ev-proof-card">
-            <p class="ev-proof-tag">Marken-Übersetzung Traditionsmarke</p>
-            <h3>Weihenstephan-Preview</h3>
-            <p>Eigenständige Test-Webseite für ein deutsches Traditionsunternehmen aus dem Getränke-Segment — eigene Bildsprache, eigener Aufbau, komplett auf dem Handy optimiert.</p>
-            <a href="https://weihenstephan-preview.elevo.solutions" target="_blank" rel="noopener noreferrer" class="ev-proof-link">
-              weihenstephan-preview.elevo.solutions
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
+            <button class="ev-proof-shot ref-modal-trigger" type="button"
+              data-url="https://weihenstephan-preview.elevo.solutions"
+              data-label="Weihenstephan" data-display-url="weihenstephan-preview.elevo.solutions"
+              aria-label="Weihenstephan Vorschau live ansehen">
+              <span class="ev-shot-bar" aria-hidden="true"><i></i><i></i><i></i><em>weihenstephan-preview.elevo.solutions</em></span>
+              <span class="ev-shot-body" aria-hidden="true"><span class="ev-shot-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></span><span class="ev-shot-cta">Live ansehen</span></span>
+            </button>
+            <p class="ev-proof-tag">Marken-Übersetzung · Traditionsmarke</p>
+            <h3>Weihenstephan</h3>
+            <p>Test-Webseite für eine deutsche Traditionsmarke — eigener Aufbau, komplett aufs Handy optimiert.</p>
           </article>
         </div>
       </div>
@@ -366,15 +445,13 @@ import '../styles/global.css';
               <path d="M12 36 L32 16 L52 36"/>
               <path d="M16 50 L32 34 L48 50" opacity="0.4"/>
             </svg>
-            <span class="ev-vision-wordmark">Elevo</span>
+            <span class="ev-vision-wordmark">ELEVO</span>
           </div>
           <div class="ev-vision-body">
             <p class="ev-eyebrow">Warum es Elevo gibt</p>
-            <h2 id="vision-heading" class="ev-h2">Die meisten Betriebe verlieren jeden Tag Zeit an Abläufe, die längst von selbst laufen könnten.</h2>
+            <h2 id="vision-heading" class="ev-h2">Eine schöne Webseite kann heute fast jeder bauen. Der Unterschied liegt in den Abläufen dahinter.</h2>
             <div class="ev-vision-text">
-              <p>Eine schöne Webseite kann heute fast jeder bauen. Der echte Unterschied liegt woanders: in den Abläufen dahinter. Genau dort gehen jeden Tag Stunden verloren — beim Sortieren von Anfragen, beim Schreiben von Angeboten, beim Hinterhertelefonieren.</p>
-              <p>Wir digitalisieren genau diese Abläufe. <strong>Nicht mit einem riesigen Projekt</strong>, das ein Jahr dauert, sondern Schritt für Schritt — mit dem, was Ihnen sofort am meisten Zeit zurückgibt.</p>
-              <p>Wir bauen das, was wir an Ihrer Stelle bauen würden — mit Anspruch an Qualität, klaren Zusagen und Arbeit, die hält.</p>
+              <p>Genau dort gehen jeden Tag Stunden verloren — beim Sortieren von Anfragen, beim Schreiben von Angeboten, beim Hinterhertelefonieren. Wir digitalisieren genau diese Abläufe. <strong>Nicht mit einem riesigen Projekt, das ein Jahr dauert</strong>, sondern Schritt für Schritt — mit dem, was Ihnen sofort am meisten Zeit zurückgibt.</p>
               <p class="ev-vision-close">Wenn das auch Ihre Vorstellung ist — sprechen wir uns einmal.</p>
             </div>
             <a href="#kontakt" class="ev-btn ev-btn-primary">Erstgespräch anfragen →</a>
@@ -394,7 +471,7 @@ import '../styles/global.css';
             liegt — und ob wir der richtige Partner sind. Wenn nicht, sagen wir Ihnen, wer es ist.
           </p>
           <a href="#kontakt" class="ev-btn ev-btn-primary ev-btn-xl">Erstgespräch anfragen</a>
-          <p class="ev-final-trust">Antwort innerhalb von 24 Stunden · Sitz in Deutschland · DSGVO-konform</p>
+          <p class="ev-final-trust">Antwort innerhalb von 24 Stunden · Persönlicher Ansprechpartner · DSGVO-konform</p>
         </div>
       </div>
     </section>
@@ -432,6 +509,55 @@ import '../styles/global.css';
   </main>
 
   <Footer />
+
+  <script>
+    const modal = document.getElementById('ref-modal') as HTMLElement;
+    const frame = document.getElementById('ref-modal-frame') as HTMLIFrameElement;
+    const urlDisplay = document.getElementById('ref-modal-url') as HTMLElement;
+    const openBtn = document.getElementById('ref-modal-open-btn') as HTMLAnchorElement;
+    const closeBtn = document.getElementById('ref-modal-close') as HTMLButtonElement;
+    const backdrop = modal?.querySelector('.ref-modal-backdrop') as HTMLElement;
+
+    let lastFocus: HTMLElement | null = null;
+
+    function openModal(url: string, label: string, displayUrl: string) {
+      lastFocus = document.activeElement as HTMLElement;
+      frame.src = url;
+      frame.title = label;
+      urlDisplay.textContent = displayUrl;
+      openBtn.href = url;
+      modal.classList.add('is-visible');
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(() => { modal.classList.add('is-open'); });
+      closeBtn.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.addEventListener('transitionend', () => {
+        modal.classList.remove('is-visible');
+        frame.src = '';
+        document.body.style.overflow = '';
+        lastFocus?.focus();
+      }, { once: true });
+    }
+
+    document.querySelectorAll<HTMLElement>('.ref-modal-trigger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const url = btn.dataset.url!;
+        const label = btn.dataset.label!;
+        const displayUrl = btn.dataset.displayUrl || url;
+        openModal(url, label, displayUrl);
+      });
+    });
+
+    closeBtn?.addEventListener('click', closeModal);
+    backdrop?.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-visible')) closeModal();
+    });
+  </script>
 </BaseLayout>
 
 <style is:global>
@@ -500,25 +626,31 @@ import '../styles/global.css';
   .ev-hero {
     padding-top: clamp(120px, 14vw, 180px);
     padding-bottom: clamp(80px, 10vw, 140px);
-    background: radial-gradient(ellipse at top, rgba(59,130,246,0.09) 0%, transparent 55%), var(--bg-dark);
+    background: radial-gradient(ellipse at top right, rgba(59,130,246,0.10) 0%, transparent 55%), var(--bg-dark);
     text-align: left;
+  }
+  .ev-hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
   }
   .ev-hero-h1 {
     font-family: var(--font-heading);
     font-weight: 900;
-    font-size: clamp(2.1rem, 5.4vw, 4.6rem);
+    font-size: clamp(2.1rem, 4.6vw, 3.9rem);
     line-height: 1.06;
     letter-spacing: -0.035em;
     color: var(--text-primary);
     margin: 0 0 24px;
-    max-width: 20ch;
+    max-width: 18ch;
   }
   .ev-hero-sub {
     color: var(--text-secondary);
-    font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+    font-size: clamp(1.05rem, 1.5vw, 1.25rem);
     line-height: 1.55;
-    max-width: 60ch;
-    margin: 0 0 36px;
+    max-width: 52ch;
+    margin: 0 0 32px;
   }
   .ev-hero-ctas {
     display: flex;
@@ -529,34 +661,122 @@ import '../styles/global.css';
   .ev-hero-trust {
     color: var(--text-muted);
     font-size: 0.9rem;
-    margin: 0 0 40px;
-  }
-  .ev-trustbar {
-    list-style: none;
-    padding: 22px 24px;
     margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px 28px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: rgba(15, 22, 40, 0.6);
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    font-weight: 500;
   }
-  .ev-trustbar li {
+
+  /* Hero Visual */
+  .ev-hero-visual {
+    position: relative;
+    padding: 10px;
+  }
+  .ev-hv-browser {
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(8,11,20,0.95);
+    border: 1px solid var(--border-strong);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 0 60px rgba(59,130,246,0.10);
+  }
+  .ev-hv-bar {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
+    padding: 11px 14px;
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
-  .ev-trustbar li::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex: 0 0 auto;
+  .ev-hv-dot { width: 9px; height: 9px; border-radius: 50%; }
+  .ev-hv-dot--r { background: #FF5F57; }
+  .ev-hv-dot--y { background: #FEBC2E; }
+  .ev-hv-dot--g { background: #28C840; }
+  .ev-hv-url {
+    margin-left: 12px;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  }
+  .ev-hv-screen {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .ev-hv-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .ev-hv-kpi {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+  }
+  .ev-hv-kpi b {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    line-height: 1;
+  }
+  .ev-hv-kpi i {
+    font-style: normal;
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+  .ev-hv-chart { color: var(--accent); }
+  .ev-hv-chart svg { width: 100%; height: 64px; display: block; }
+  .ev-hv-list { display: flex; flex-direction: column; gap: 8px; }
+  .ev-hv-li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 8px;
+  }
+  .ev-hv-li i {
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.08);
+  }
+  .ev-hv-tag {
+    font-style: normal;
+    font-size: 0.64rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 999px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.06);
+  }
+  .ev-hv-tag--new { color: var(--accent); background: rgba(59,130,246,0.14); }
+  .ev-hv-tag--won { color: #34D399; background: rgba(52,211,153,0.14); }
+  .ev-hv-badge {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border-radius: 999px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    color: var(--text-primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+    animation: ev-float 4s ease-in-out infinite;
+  }
+  .ev-hv-badge svg { width: 16px; height: 16px; color: var(--accent); }
+  .ev-hv-badge--1 { top: 14px; left: -22px; }
+  .ev-hv-badge--2 { bottom: 28px; right: -18px; animation-delay: 1.5s; }
+  @keyframes ev-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ev-hv-badge { animation: none; }
   }
 
   /* Buttons */
@@ -610,7 +830,7 @@ import '../styles/global.css';
     display: flex;
     flex-direction: column;
     gap: 6px;
-    padding: 24px 24px;
+    padding: 24px;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -692,13 +912,13 @@ import '../styles/global.css';
   .ev-offer-pitch {
     color: var(--text-primary);
     font-weight: 600;
-    margin: 0 0 20px;
+    margin: 0 0 18px;
     line-height: 1.4;
     font-size: 1.15rem;
   }
   .ev-offer-kpi {
     display: inline-block;
-    margin: 0 0 24px;
+    margin: 0 0 26px;
     padding: 6px 14px;
     border-radius: 999px;
     background: rgba(59,130,246,0.10);
@@ -707,36 +927,38 @@ import '../styles/global.css';
     font-size: 0.85rem;
     font-weight: 600;
   }
-  .ev-offer-label {
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-size: 0.72rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-  .ev-offer-bonus {
+
+  /* Feature-Icon-Grid (statt Textwand) */
+  .ev-feat-grid {
     list-style: none;
     padding: 0;
-    margin: 0 0 28px;
+    margin: 0 0 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 20px;
   }
-  .ev-offer-bonus li {
-    position: relative;
-    padding-left: 26px;
-    color: var(--text-secondary);
-    font-size: 0.98rem;
-    line-height: 1.5;
-    margin-bottom: 12px;
+  .ev-feat {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-primary);
+    font-size: 0.96rem;
+    font-weight: 500;
+    line-height: 1.3;
   }
-  .ev-offer-bonus li::before {
-    content: '+';
-    position: absolute;
-    left: 0;
-    top: -1px;
+  .ev-feat-ico {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    background: rgba(59,130,246,0.10);
+    border: 1px solid rgba(59,130,246,0.26);
     color: var(--accent);
-    font-weight: 800;
-    font-size: 1.1rem;
   }
+  .ev-feat-ico svg { width: 20px; height: 20px; }
 
   /* Dashboard-Mock */
   .ev-dash {
@@ -847,14 +1069,8 @@ import '../styles/global.css';
     background: rgba(255,255,255,0.06);
     white-space: nowrap;
   }
-  .ev-dash-status--new {
-    color: var(--accent);
-    background: rgba(59,130,246,0.14);
-  }
-  .ev-dash-status--won {
-    color: #34D399;
-    background: rgba(52,211,153,0.14);
-  }
+  .ev-dash-status--new { color: var(--accent); background: rgba(59,130,246,0.14); }
+  .ev-dash-status--won { color: #34D399; background: rgba(52,211,153,0.14); }
 
   /* Automations-Flow */
   .ev-flow-wrap {
@@ -918,6 +1134,16 @@ import '../styles/global.css';
   }
   .ev-flow-arrow svg { width: 26px; height: 26px; }
 
+  /* Ablauf-Icons */
+  .ev-step-ico {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .ev-step-ico svg { width: 30px; height: 30px; }
+
   /* Vorher / Nachher */
   .ev-ba {
     display: grid;
@@ -971,27 +1197,7 @@ import '../styles/global.css';
     font-weight: 700;
   }
 
-  /* Proof / Kompetenz */
-  .ev-outcomes {
-    list-style: none;
-    padding: 18px 24px;
-    margin: 0 0 40px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 14px 28px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: rgba(15, 22, 40, 0.5);
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-  }
-  .ev-outcomes li::before {
-    content: '✓';
-    color: var(--accent);
-    font-weight: 800;
-    margin-right: 10px;
-  }
-  .ev-outcomes strong { color: var(--text-primary); }
+  /* Proof / Kompetenz mit Live-Vorschau */
   .ev-proof-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1001,42 +1207,106 @@ import '../styles/global.css';
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 26px 24px;
+    padding: 16px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .ev-proof-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 32px rgba(59,130,246,0.12);
+    transform: translateY(-2px);
+  }
+  .ev-proof-shot {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg-dark);
+    cursor: pointer;
+    margin-bottom: 18px;
+    transition: border-color 0.2s ease;
+  }
+  .ev-proof-shot:hover { border-color: var(--accent); }
+  .ev-shot-bar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .ev-shot-bar i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.18); }
+  .ev-shot-bar i:nth-child(1) { background: #FF5F57; }
+  .ev-shot-bar i:nth-child(2) { background: #FEBC2E; }
+  .ev-shot-bar i:nth-child(3) { background: #28C840; }
+  .ev-shot-bar em {
+    margin-left: 10px;
+    font-style: normal;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .ev-shot-body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 150px;
+    background:
+      radial-gradient(ellipse at 50% 40%, rgba(59,130,246,0.14), transparent 70%),
+      linear-gradient(135deg, rgba(59,130,246,0.06) 0%, rgba(15,23,42,0.3) 100%);
+  }
+  .ev-shot-play {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--bg-dark);
+    box-shadow: 0 8px 24px rgba(59,130,246,0.4);
+    transition: transform 0.2s ease;
+  }
+  .ev-shot-play svg { width: 22px; height: 22px; margin-left: 2px; }
+  .ev-proof-shot:hover .ev-shot-play { transform: scale(1.08); }
+  .ev-shot-cta {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
   }
   .ev-proof-tag {
     color: var(--accent);
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 700;
     margin: 0 0 8px;
+    padding: 0 8px;
   }
   .ev-proof-card h3 {
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     color: var(--text-primary);
-    margin: 0 0 12px;
+    margin: 0 0 8px;
     letter-spacing: -0.02em;
+    padding: 0 8px;
   }
-  .ev-proof-card p {
+  .ev-proof-card > p {
     color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.55;
-    margin: 0 0 16px;
-  }
-  .ev-proof-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 600;
     font-size: 0.92rem;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.15s ease;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0 8px 8px;
   }
-  .ev-proof-link:hover { border-bottom-color: var(--accent); }
 
   /* Garantie */
   .ev-guarantee {
@@ -1106,13 +1376,13 @@ import '../styles/global.css';
     font-family: var(--font-heading);
     font-weight: 900;
     font-size: 1.8rem;
-    letter-spacing: -0.03em;
+    letter-spacing: 0.04em;
     color: var(--text-primary);
   }
   .ev-vision-body .ev-h2 { max-width: 32ch; }
   .ev-vision-text p {
     color: var(--text-secondary);
-    font-size: 1.02rem;
+    font-size: 1.05rem;
     line-height: 1.65;
     margin: 0 0 18px;
     max-width: 64ch;
@@ -1186,8 +1456,103 @@ import '../styles/global.css';
   }
   .ev-kontakt-list a:hover { border-bottom-color: var(--accent); }
 
+  /* ===== Live-Vorschau Modal ===== */
+  .ref-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    pointer-events: none;
+  }
+  .ref-modal.is-visible { display: flex; pointer-events: auto; }
+  .ref-modal.is-open .ref-modal-backdrop { opacity: 1; }
+  .ref-modal.is-open .ref-modal-window { opacity: 1; transform: scale(1) translateY(0); }
+  .ref-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(5, 7, 14, 0.88);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .ref-modal-window {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    height: min(85vh, 800px);
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6), var(--shadow-blue);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.96) translateY(16px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .ref-modal-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    background: var(--bg-dark);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .ref-modal-dots { display: flex; gap: 6px; flex-shrink: 0; }
+  .ref-modal-dots span { width: 10px; height: 10px; border-radius: 50%; background: var(--text-muted); opacity: 0.5; }
+  .ref-modal-dots span:nth-child(1) { background: var(--danger); opacity: 0.8; }
+  .ref-modal-dots span:nth-child(2) { background: var(--orange); opacity: 0.8; }
+  .ref-modal-dots span:nth-child(3) { background: var(--green); opacity: 0.8; }
+  .ref-modal-url-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 10px;
+    min-width: 0;
+  }
+  .ref-modal-url-wrap svg { flex-shrink: 0; color: var(--green); }
+  .ref-modal-url {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ref-modal-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .ref-modal-open, .ref-modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+    text-decoration: none;
+  }
+  .ref-modal-open:hover { background: var(--accent-glow); color: var(--accent); border-color: var(--accent); }
+  .ref-modal-close:hover { background: rgba(239,68,68,0.15); color: var(--danger); border-color: rgba(239,68,68,0.4); }
+  .ref-modal-frame-wrap { flex: 1; overflow: hidden; position: relative; }
+  .ref-modal-iframe { width: 100%; height: 100%; border: none; display: block; }
+
   /* ===== Responsive ===== */
   @media (max-width: 980px) {
+    .ev-hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .ev-hero-h1 { max-width: 22ch; }
     .ev-system { grid-template-columns: 1fr; gap: 36px; }
     .ev-system-visual { order: -1; }
   }
@@ -1200,10 +1565,19 @@ import '../styles/global.css';
   @media (max-width: 760px) {
     .ev-proofbar { grid-template-columns: 1fr; }
     .ev-ba { grid-template-columns: 1fr; }
+    .ev-feat-grid { grid-template-columns: 1fr; }
     .ev-flow { flex-direction: column; }
     .ev-flow-node { flex-direction: row; justify-content: flex-start; text-align: left; }
     .ev-flow-label { max-width: none; }
     .ev-flow-arrow { transform: rotate(90deg); align-self: center; padding: 4px 0; }
+    .ev-hv-badge--1 { left: 0; }
+    .ev-hv-badge--2 { right: 0; }
+  }
+  @media (max-width: 640px) {
+    .ref-modal { padding: 8px; }
+    .ref-modal-window { height: 90vh; border-radius: var(--radius); }
+    .ref-modal-bar { padding: 8px 12px; }
+    .ref-modal-dots { display: none; }
   }
   @media (max-width: 520px) {
     .ev-hero-ctas { flex-direction: column; align-items: stretch; }
