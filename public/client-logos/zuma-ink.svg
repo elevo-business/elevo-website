@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 56" width="200" height="56">
+  <!-- Decorative accent: three angled gold lines -->
+  <g opacity="0.95">
+    <rect x="2" y="11" width="28" height="3.5" rx="1.75" fill="#B8923F" transform="rotate(-12 16 12.75)"/>
+    <rect x="4" y="21" width="22" height="3" rx="1.5" fill="#B8923F" opacity="0.7" transform="rotate(-12 15 22.5)"/>
+    <rect x="6" y="30" width="16" height="2.5" rx="1.25" fill="#B8923F" opacity="0.4" transform="rotate(-12 14 31.25)"/>
+  </g>
+  <!-- ZUMA wordmark (dark ink for light backgrounds) -->
+  <text x="44" y="25" font-family="Georgia,'Times New Roman',serif" font-size="21" font-weight="700" fill="#16202E" letter-spacing="6">ZUMA</text>
+  <!-- Separator -->
+  <rect x="44" y="30.5" width="148" height="0.75" fill="#B8923F" opacity="0.6"/>
+  <!-- LOUNGE subtitle -->
+  <text x="45" y="43" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="8.5" font-weight="400" fill="#6E6149" letter-spacing="6.5">LOUNGE</text>
+</svg>
