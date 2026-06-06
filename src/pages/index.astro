@@ -9,14 +9,13 @@ import '../styles/global.css';
 // FAQ-Inhalte fuer JSON-LD synchron mit FAQ.astro halten.
 // Diese Liste speist nur das Structured-Data-Markup (kein sichtbarer Output).
 const faqEntries = [
-  { q: 'Was macht Elevo eigentlich genau?', a: 'Wir entwickeln digitale Systeme für inhabergeführte Unternehmen: Wir bauen Ihre Website, richten Ihr CRM ein und verbinden beides mit den Tools, die Sie schon nutzen — Kalender, E-Mail, Buchhaltung, Telefonie. Statt drei Insellösungen entsteht ein zusammenhängendes System, in dem Anfragen, Angebote und Termine sauber zwischen den Systemen fließen.' },
-  { q: 'Wie verbinde ich meine Website mit meinem CRM — zum Beispiel Pipedrive, HubSpot oder OnOffice?', a: 'Wir binden Ihre Website über echte Schnittstellen (API oder Webhooks) an Ihr CRM an — kein Copy-und-Paste, keine doppelte Pflege. Eine Anfrage aus dem Formular landet direkt als neuer Kontakt in Pipedrive, HubSpot, OnOffice oder einem anderen System, inklusive Tags, Quelle und Folgeaufgaben. Wenn ein Tool keine offene Schnittstelle hat, lösen wir die Brücke meist über Zapier oder Make.' },
-  { q: 'Wie lange dauert es, bis das System läuft?', a: 'In der Regel vier bis sechs Wochen vom Kick-off bis zur produktiven Übergabe. Eine reine Website ohne tiefere Integration ist oft in zwei bis vier Wochen live; sobald CRM-Einrichtung, Datenimport und mehrere Automatisierungen dazukommen, sind sechs Wochen realistisch. Sie sehen jede Woche, wie weit wir sind.' },
-  { q: 'Was kostet ein digitales System bei Elevo?', a: 'Jedes Projekt bekommt einen Festpreis, der vor Start schriftlich steht — keine offenen Stundenzettel, keine Überraschungen nach hinten raus. Der Preis hängt vom Umfang ab: reine Website, Website plus CRM-Einrichtung, oder ein komplettes System mit Automatisierungen. Im 30-minütigen Erstgespräch klären wir Ihren Bedarf und Sie bekommen ein konkretes Angebot.' },
-  { q: 'Müssen wir unsere bestehenden Tools alle ersetzen?', a: 'Nein, im Gegenteil. Wir docken an, was Sie schon erfolgreich nutzen — OnOffice, Pipedrive, HubSpot, Google Workspace, Microsoft 365, DATEV, Calendly und vieles mehr. Erst wenn ein Tool wirklich nicht mehr passt, schlagen wir eine saubere Alternative vor und übernehmen die Migration mit Datenexport, Import und Schulung.' },
-  { q: 'Wie kann ich Anfragen über meine Website automatisieren?', a: 'Ein typischer Ablauf bei uns: Eine Anfrage kommt über das Formular rein, landet sofort als Kontakt im CRM, der Interessent bekommt automatisch eine Bestätigung, der zuständige Mitarbeiter eine Aufgabe — und ein passendes Angebot lässt sich auf Knopfdruck als PDF generieren. Termine bucht der Kunde selbst über einen Online-Kalender, Erinnerungen laufen per E-Mail oder SMS. So sparen Sie jede Woche mehrere Stunden Tipparbeit.' },
-  { q: 'Was ist der Unterschied zu einer klassischen Webagentur?', a: 'Eine klassische Agentur liefert die Website und ist danach raus — was hinter dem Formular passiert, ist nicht ihr Thema. Wir denken vom Geschäftsergebnis her: die Website ist nur die sichtbare Front eines Systems, das Anfragen aufnimmt, Daten weiterreicht und Aufgaben auslöst. Designer können kein Backend, IT-Dienstleister kein Design — wir beides, und ein Gründer mit Vertriebs-Hintergrund sorgt dafür, dass aus Aufwand Umsatz wird.' },
-  { q: 'Wer steckt hinter Elevo?', a: 'Elevo ist die digitale Werkstatt von Mert E., Gründer von ELEVO Solutions in Geilenkirchen (NRW). Hintergrund: Vertrieb und Webentwicklung in Personalunion. Sie sprechen während des Projekts direkt mit dem, der baut — kein Account-Manager, kein verlängerter Arm. Antwort auf Anfragen innerhalb von 24 Stunden, DSGVO-konform, Server in Deutschland.' },
+  { q: 'Brauche ich überhaupt ein CRM-System für meinen Betrieb?', a: 'Wenn Sie mehr als eine Handvoll Anfragen im Monat haben, Termine koordinieren oder Angebote nachverfolgen müssen — ja. Wer ohne CRM arbeitet, verliert Zeit in Tabellen, doppelter Pflege und vergessenen Rückmeldungen. Ein gut eingerichtetes CRM holt Anfragen automatisch von der Website ab, ordnet sie Mitarbeitern zu und erinnert daran, wenn etwas liegen bleibt. Für inhabergeführte Betriebe rechnet sich das meist innerhalb weniger Monate über die eingesparten Stunden.' },
+  { q: 'Lohnt sich eine eigene Website oder reicht ein Baukasten wie Wix oder Jimdo?', a: 'Für eine reine Visitenkarte mit Telefonnummer und Öffnungszeiten reicht ein Baukasten. Sobald die Website Anfragen sauber in ein CRM weitergeben, mit Kalendern reden oder Angebote auslösen soll, stoßen Wix, Jimdo & Co. an Grenzen — die Schnittstellen fehlen oder sind nur über teure Add-ons buchbar. Eine individuell entwickelte Website kostet einmalig mehr, dafür gehören die Daten und die Logik Ihnen, und sie wächst mit Ihrem Geschäft mit.' },
+  { q: 'Wie verbinde ich meine Website mit Pipedrive, HubSpot oder OnOffice?', a: 'Über echte Schnittstellen — API oder Webhook. Eine Anfrage aus dem Formular landet direkt als neuer Kontakt im CRM, mit Tags, Quelle und Folgeaufgaben für den richtigen Mitarbeiter. Pipedrive, HubSpot und OnOffice haben dokumentierte Schnittstellen, die sich sauber anbinden lassen. Wo es keine native API gibt, übernimmt eine Zwischenschicht (Zapier, Make oder ein eigener kleiner Endpoint) die Brücke. Wichtig: keine doppelte Pflege, keine Daten in zwei Systemen.' },
+  { q: 'Wie viel Zeit spart Automatisierung wirklich im Alltag?', a: 'Realistisch zwischen fünf und fünfzehn Stunden pro Woche bei einem Betrieb mit fünf bis fünfzehn Mitarbeitern. Den größten Hebel haben drei Stellen: Anfragen automatisch ins CRM (keine händische Tipparbeit mehr), Bestätigungs- und Erinnerungs-E-Mails (kein Nachfassen-Verdruss) und Angebote per Klick statt 30 Minuten Word-Datei. Wer telefonisch viele Termine vereinbart, gewinnt zusätzlich Zeit durch Online-Buchung.' },
+  { q: 'Was kostet eine professionell entwickelte Website mit CRM-Anbindung?', a: 'Der Preis hängt am Umfang: reine Website, Website plus CRM-Einrichtung, oder ein komplettes System mit mehreren Automatisierungen. Wir arbeiten ausschließlich mit Festpreisen, die vor Projektstart schriftlich stehen — keine offenen Stundenzettel, keine Nachforderungen. Im 30-minütigen Erstgespräch klären wir Ihren Bedarf, und Sie bekommen anschließend ein konkretes Angebot inklusive Liefertermin.' },
+  { q: 'Ich nutze schon Pipedrive, OnOffice oder Microsoft 365 — muss ich das ersetzen?', a: 'Nein. Wir docken an, was Sie schon erfolgreich nutzen — Pipedrive, HubSpot, OnOffice, Google Workspace, Microsoft 365, DATEV, Calendly und mehr. Der Mehrwert entsteht meist genau aus der Verbindung: das CRM kennt die Termine im Kalender, die Buchhaltung kennt die Aufträge aus dem CRM, die Website kennt die Verfügbarkeiten. Tauschen lohnt nur, wenn ein bestehendes Tool die Anforderungen wirklich nicht erfüllt — dann übernehmen wir Datenexport, Import und Schulung.' },
+  { q: 'Wie lange dauert die Einführung eines CRM-Systems mit Website-Anbindung?', a: 'Vier bis sechs Wochen vom Kick-off bis zum produktiven Einsatz, wenn die Anforderungen sauber stehen. Eine schlanke Website ohne CRM-Tiefe ist oft in zwei bis vier Wochen live; volle Integration mit Datenimport aus einem Altsystem und mehreren Automatisierungen braucht eher sechs. Jede Woche sehen Sie, wo das Projekt steht — keine Black-Box, keine Verzögerungen ohne Erklärung.' },
 ];
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -446,10 +445,10 @@ const faqSchema = {
           <figure class="ev-vision-portrait">
             <picture>
               <source type="image/webp" srcset="/team/mert-800.webp 1x, /team/mert-1600.webp 2x">
-              <img src="/team/mert-1200.jpg" alt="Mert E., Gründer von Elevo" width="280" height="350" loading="lazy" decoding="async">
+              <img src="/team/mert-1200.jpg" alt="Mert Efecelik, Gründer von Elevo" width="280" height="350" loading="lazy" decoding="async">
             </picture>
             <figcaption>
-              <strong>Mert E.</strong>
+              <strong>Mert Efecelik</strong>
               <span>Gründer · Elevo Solutions</span>
             </figcaption>
           </figure>
@@ -836,9 +835,9 @@ const faqSchema = {
     border: 1.5px solid transparent;
     cursor: pointer;
   }
-  .ev-btn-primary { background: var(--accent); color: var(--bg-dark); }
+  .ev-btn-primary { background: var(--accent); color: var(--text-primary); }
   .ev-btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
-  .ev-btn-ghost { background: transparent; color: var(--accent); border-color: var(--accent); }
+  .ev-btn-ghost { background: transparent; color: var(--text-primary); border-color: var(--accent); }
   .ev-btn-ghost:hover { background: rgba(59,130,246,0.1); }
   .ev-btn-block { display: flex; justify-content: center; width: 100%; margin-top: 4px; }
   .ev-btn-xl { padding: 20px 44px; font-size: 1.08rem; }
