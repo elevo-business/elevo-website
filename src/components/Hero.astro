@@ -121,12 +121,13 @@ const {
   // Typed text animation (activates only if #typed-text element exists)
   const typedEl = document.getElementById('typed-text');
   if (typedEl) {
+    const el = typedEl;
     const words = ['verkaufen.', 'konvertieren.', 'begeistern.', 'wachsen.'];
     let wi = 0, ci = 0, deleting = false;
 
     function typeEffect() {
       const word = words[wi];
-      typedEl.textContent = deleting ? word.slice(0, ci--) : word.slice(0, ci++);
+      el.textContent = deleting ? word.slice(0, ci--) : word.slice(0, ci++);
       let delay = deleting ? 60 : 100;
       if (!deleting && ci > word.length) { delay = 2000; deleting = true; }
       else if (deleting && ci < 0) { deleting = false; wi = (wi + 1) % words.length; ci = 0; delay = 300; }

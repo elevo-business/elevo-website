@@ -270,7 +270,7 @@ const casesSchema = {
 
   <Footer />
 
-  <script type="application/ld+json" set:html={JSON.stringify(casesSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(casesSchema)} />
 
   <script>
     const modal = document.getElementById('ref-modal') as HTMLElement;
