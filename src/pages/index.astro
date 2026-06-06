@@ -3,7 +3,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ContactForm from '../components/ContactForm.astro';
+import FAQ from '../components/FAQ.astro';
 import '../styles/global.css';
+
+// FAQ-Inhalte fuer JSON-LD synchron mit FAQ.astro halten.
+// Diese Liste speist nur das Structured-Data-Markup (kein sichtbarer Output).
+const faqEntries = [
+  { q: 'Was macht Elevo eigentlich genau?', a: 'Wir entwickeln digitale Systeme für inhabergeführte Unternehmen: Wir bauen Ihre Website, richten Ihr CRM ein und verbinden beides mit den Tools, die Sie schon nutzen — Kalender, E-Mail, Buchhaltung, Telefonie. Statt drei Insellösungen entsteht ein zusammenhängendes System, in dem Anfragen, Angebote und Termine sauber zwischen den Systemen fließen.' },
+  { q: 'Wie verbinde ich meine Website mit meinem CRM — zum Beispiel Pipedrive, HubSpot oder OnOffice?', a: 'Wir binden Ihre Website über echte Schnittstellen (API oder Webhooks) an Ihr CRM an — kein Copy-und-Paste, keine doppelte Pflege. Eine Anfrage aus dem Formular landet direkt als neuer Kontakt in Pipedrive, HubSpot, OnOffice oder einem anderen System, inklusive Tags, Quelle und Folgeaufgaben. Wenn ein Tool keine offene Schnittstelle hat, lösen wir die Brücke meist über Zapier oder Make.' },
+  { q: 'Wie lange dauert es, bis das System läuft?', a: 'In der Regel vier bis sechs Wochen vom Kick-off bis zur produktiven Übergabe. Eine reine Website ohne tiefere Integration ist oft in zwei bis vier Wochen live; sobald CRM-Einrichtung, Datenimport und mehrere Automatisierungen dazukommen, sind sechs Wochen realistisch. Sie sehen jede Woche, wie weit wir sind.' },
+  { q: 'Was kostet ein digitales System bei Elevo?', a: 'Jedes Projekt bekommt einen Festpreis, der vor Start schriftlich steht — keine offenen Stundenzettel, keine Überraschungen nach hinten raus. Der Preis hängt vom Umfang ab: reine Website, Website plus CRM-Einrichtung, oder ein komplettes System mit Automatisierungen. Im 30-minütigen Erstgespräch klären wir Ihren Bedarf und Sie bekommen ein konkretes Angebot.' },
+  { q: 'Müssen wir unsere bestehenden Tools alle ersetzen?', a: 'Nein, im Gegenteil. Wir docken an, was Sie schon erfolgreich nutzen — OnOffice, Pipedrive, HubSpot, Google Workspace, Microsoft 365, DATEV, Calendly und vieles mehr. Erst wenn ein Tool wirklich nicht mehr passt, schlagen wir eine saubere Alternative vor und übernehmen die Migration mit Datenexport, Import und Schulung.' },
+  { q: 'Wie kann ich Anfragen über meine Website automatisieren?', a: 'Ein typischer Ablauf bei uns: Eine Anfrage kommt über das Formular rein, landet sofort als Kontakt im CRM, der Interessent bekommt automatisch eine Bestätigung, der zuständige Mitarbeiter eine Aufgabe — und ein passendes Angebot lässt sich auf Knopfdruck als PDF generieren. Termine bucht der Kunde selbst über einen Online-Kalender, Erinnerungen laufen per E-Mail oder SMS. So sparen Sie jede Woche mehrere Stunden Tipparbeit.' },
+  { q: 'Was ist der Unterschied zu einer klassischen Webagentur?', a: 'Eine klassische Agentur liefert die Website und ist danach raus — was hinter dem Formular passiert, ist nicht ihr Thema. Wir denken vom Geschäftsergebnis her: die Website ist nur die sichtbare Front eines Systems, das Anfragen aufnimmt, Daten weiterreicht und Aufgaben auslöst. Designer können kein Backend, IT-Dienstleister kein Design — wir beides, und ein Gründer mit Vertriebs-Hintergrund sorgt dafür, dass aus Aufwand Umsatz wird.' },
+  { q: 'Wer steckt hinter Elevo?', a: 'Elevo ist die digitale Werkstatt von Mert E., Gründer von ELEVO Solutions in Geilenkirchen (NRW). Hintergrund: Vertrieb und Webentwicklung in Personalunion. Sie sprechen während des Projekts direkt mit dem, der baut — kein Account-Manager, kein verlängerter Arm. Antwort auf Anfragen innerhalb von 24 Stunden, DSGVO-konform, Server in Deutschland.' },
+];
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqEntries.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
 ---
 
 <BaseLayout
@@ -420,14 +443,16 @@ import '../styles/global.css';
     <section id="warum" class="ev-section ev-section-alt" aria-labelledby="vision-heading">
       <div class="container">
         <div class="ev-vision">
-          <div class="ev-vision-mark" aria-hidden="true">
-            <svg width="120" height="120" viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M13 32 L32 14 L51 32" fill="none" stroke="currentColor" stroke-width="6"/>
-              <path d="M21 39 L32 28 L43 39" fill="none" stroke="#A9C8F4" stroke-width="6"/>
-              <line x1="24" y1="47" x2="40" y2="47" stroke="#A9C8F4" stroke-width="6"/>
-            </svg>
-            <span class="ev-vision-wordmark">ELEVO</span>
-          </div>
+          <figure class="ev-vision-portrait">
+            <picture>
+              <source type="image/webp" srcset="/team/mert-800.webp 1x, /team/mert-1600.webp 2x">
+              <img src="/team/mert-1200.jpg" alt="Mert E., Gründer von Elevo" width="280" height="350" loading="lazy" decoding="async">
+            </picture>
+            <figcaption>
+              <strong>Mert E.</strong>
+              <span>Gründer · Elevo Solutions</span>
+            </figcaption>
+          </figure>
           <div class="ev-vision-body">
             <p class="ev-eyebrow">Warum es Elevo gibt</p>
             <h2 id="vision-heading" class="ev-h2">Designer können kein Backend. IT kein Design. Wir beides.</h2>
@@ -440,6 +465,10 @@ import '../styles/global.css';
         </div>
       </div>
     </section>
+
+    <!-- ===== FAQ ===== -->
+    <FAQ />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
     <!-- ===== FINAL CTA ===== -->
     <section id="final-cta" class="ev-section" aria-labelledby="finalcta-heading">
@@ -1282,23 +1311,39 @@ import '../styles/global.css';
   }
 
   /* Vision */
-  .ev-vision { display: grid; grid-template-columns: minmax(220px, 280px) 1fr; gap: 56px; align-items: start; }
-  .ev-vision-mark {
+  .ev-vision { display: grid; grid-template-columns: minmax(240px, 300px) 1fr; gap: 56px; align-items: start; }
+  .ev-vision-portrait {
+    margin: 0;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 40px 28px;
-    text-align: center;
-    color: var(--accent);
+    overflow: hidden;
   }
-  .ev-vision-wordmark {
+  .ev-vision-portrait picture { display: block; }
+  .ev-vision-portrait img {
     display: block;
-    margin-top: 18px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+  .ev-vision-portrait figcaption {
+    padding: 16px 20px 18px;
+    border-top: 1px solid var(--border);
+  }
+  .ev-vision-portrait figcaption strong {
+    display: block;
     font-family: var(--font-heading);
-    font-weight: 900;
-    font-size: 1.8rem;
-    letter-spacing: 0.04em;
     color: var(--text-primary);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+  }
+  .ev-vision-portrait figcaption span {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.85rem;
   }
   .ev-vision-body .ev-h2 { max-width: 34ch; }
   .ev-vision-text p {
@@ -1452,7 +1497,7 @@ import '../styles/global.css';
   }
   @media (max-width: 880px) {
     .ev-vision { grid-template-columns: 1fr; gap: 32px; }
-    .ev-vision-mark { padding: 32px 20px; }
+    .ev-vision-portrait { max-width: 320px; }
     .ev-kontakt-grid { grid-template-columns: 1fr; gap: 32px; }
     .ev-guarantee { grid-template-columns: 1fr; gap: 20px; text-align: left; padding: 32px 26px; }
   }

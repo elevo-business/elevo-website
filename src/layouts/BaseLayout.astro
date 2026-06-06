@@ -20,7 +20,6 @@ const {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content={description}>
-  <meta name="keywords" content="Digitale Systeme, CRM-Anbindung, Prozessautomatisierung, Webentwicklung, OnOffice Anbindung, Pipedrive Integration, Online-Terminbuchung, Anfragen automatisieren">
   <meta name="author" content="Elevo">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0A0E1A">
@@ -73,8 +72,57 @@ const {
       "addressRegion": "NRW",
       "addressCountry": "DE"
     },
-    "areaServed": ["DE", "AT", "CH"],
-    "knowsAbout": ["Digitale Systeme", "Webentwicklung", "CRM-Anbindung", "Prozessautomatisierung", "Online-Terminbuchung", "OnOffice-Integration", "Pipedrive-Integration"],
+    "areaServed": [
+      { "@type": "AdministrativeArea", "name": "Nordrhein-Westfalen" },
+      { "@type": "City", "name": "Geilenkirchen" },
+      { "@type": "City", "name": "Heinsberg" },
+      { "@type": "City", "name": "Aachen" },
+      { "@type": "City", "name": "Düren" },
+      { "@type": "City", "name": "Mönchengladbach" },
+      { "@type": "City", "name": "Köln" },
+      { "@type": "Country", "name": "Deutschland" },
+      { "@type": "Country", "name": "Österreich" },
+      { "@type": "Country", "name": "Schweiz" }
+    ],
+    "knowsAbout": ["Digitale Systeme", "Webentwicklung", "CRM-Einrichtung", "CRM-Integration", "Pipedrive", "HubSpot", "OnOffice", "Prozessautomatisierung", "Zapier", "Make", "Online-Terminbuchung", "Schnittstellen-Entwicklung"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Digitale Systeme für inhabergeführte Unternehmen",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Website-Entwicklung",
+            "description": "Individuell entwickelte Unternehmens-Websites — kein Baukasten, schnell auf Mobile und Desktop, direkt an CRM und Formulare angebunden."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "CRM-Einrichtung und Integration",
+            "description": "Einrichtung von CRM-Systemen wie Pipedrive, HubSpot oder OnOffice und Anbindung über echte Schnittstellen an die bestehende Infrastruktur, damit Daten sauber zwischen den Systemen fließen."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Prozessautomatisierung",
+            "description": "Automatisierung von Anfragen, Angeboten, Terminen und Erinnerungen über Zapier, Make oder eigene Schnittstellen — damit wiederkehrende Aufgaben von selbst laufen."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Laufende Betreuung und Weiterentwicklung",
+            "description": "Wartung, Hosting, Sicherheits-Updates und kontinuierliche Verbesserung des digitalen Systems nach dem Launch."
+          }
+        }
+      ]
+    },
     "sameAs": []
   }
   </script>
