@@ -1,0 +1,379 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Mert E.',
+  jobTitle: 'Gründer',
+  worksFor: {
+    '@type': 'ProfessionalService',
+    name: 'Elevo',
+    url: 'https://elevo.solutions',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Geilenkirchen',
+    addressRegion: 'NRW',
+    addressCountry: 'DE',
+  },
+  knowsAbout: [
+    'Webentwicklung',
+    'CRM-Einrichtung',
+    'Schnittstellen-Entwicklung',
+    'Pipedrive',
+    'HubSpot',
+    'OnOffice',
+    'Zapier',
+    'Make',
+    'Prozessautomatisierung',
+  ],
+  image: 'https://elevo.solutions/team/mert-1200.jpg',
+  url: 'https://elevo.solutions/ueber-uns',
+};
+---
+
+<BaseLayout
+  title="Über uns — Mert E., Gründer von Elevo"
+  description="Hinter Elevo steht ein Mensch, kein Callcenter. Mert E., Gründer von Elevo Solutions aus Geilenkirchen, entwickelt digitale Systeme für inhabergeführte Unternehmen — Website, CRM und Automatisierung aus einer Hand."
+  canonical="https://elevo.solutions/ueber-uns"
+>
+  <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+
+  <Header />
+
+  <main id="main">
+    <!-- ===== Intro / Portrait ===== -->
+    <section class="ev-section about-intro" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="about-grid">
+          <figure class="about-portrait">
+            <picture>
+              <source type="image/webp" srcset="/team/mert-800.webp 1x, /team/mert-1600.webp 2x">
+              <img src="/team/mert-1200.jpg" alt="Mert E., Gründer von Elevo Solutions" width="420" height="525" loading="eager" decoding="async" fetchpriority="high">
+            </picture>
+            <figcaption>
+              <strong>Mert E.</strong>
+              <span>Gründer · Elevo Solutions · Geilenkirchen</span>
+            </figcaption>
+          </figure>
+
+          <div class="about-intro-body">
+            <p class="ev-eyebrow">Über uns</p>
+            <h1 id="about-heading" class="ev-hero-h1">
+              Hinter Elevo steht ein Mensch.<br>
+              <span class="ev-accent">Kein Callcenter.</span>
+            </h1>
+            <p class="about-lead">
+              Ich bin Mert, Gründer von Elevo Solutions aus Geilenkirchen. Ich baue
+              digitale Systeme für inhabergeführte Unternehmen — Website, CRM und
+              Automatisierung in einem Stück, statt drei Inseln, die per Hand
+              verbunden werden.
+            </p>
+            <p class="about-lead">
+              Während des Projekts sprechen Sie direkt mit mir — kein
+              Account-Manager dazwischen, kein verlängerter Arm einer Agentur.
+              Festpreis vor Start, vier bis sechs Wochen bis das System läuft,
+              Antwort auf Anfragen innerhalb von 24 Stunden.
+            </p>
+
+            <ul class="about-facts" role="list">
+              <li><span aria-hidden="true">📍</span> Geilenkirchen, NRW</li>
+              <li><span aria-hidden="true">⏱</span> 4–6 Wochen bis Launch</li>
+              <li><span aria-hidden="true">💶</span> Festpreis vor Start</li>
+              <li><span aria-hidden="true">🔒</span> DSGVO-konform, Server in DE</li>
+            </ul>
+
+            <div class="about-ctas">
+              <a href="/kontakt" class="ev-btn ev-btn-primary">Erstgespräch anfragen →</a>
+              <a href="/referenzen" class="ev-btn ev-btn-ghost">Referenzen ansehen</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Wofür Elevo steht ===== -->
+    <section class="ev-section ev-section-alt" aria-labelledby="why-heading">
+      <div class="container">
+        <p class="ev-eyebrow">Wofür Elevo steht</p>
+        <h2 id="why-heading" class="ev-h2">Designer können kein Backend. IT kein Design. Wir beides.</h2>
+        <div class="about-prose">
+          <p>
+            Zwischen hübschen Websites ohne Substanz und Technik ohne Gespür fürs
+            Geschäft klafft eine Lücke. Die meisten Anbieter setzen sich auf eine
+            der beiden Seiten — Agenturen liefern das Sichtbare, IT-Dienstleister
+            das, was niemand sieht. Was hinter dem Formular passiert, ist
+            entweder kosmetisch oder gar nicht da.
+          </p>
+          <p>
+            Genau dort arbeitet Elevo. Design auf Agentur-Niveau, echte
+            technische Tiefe, und ein Gründer mit Vertriebs-Hintergrund, der
+            weiß, wie aus Aufwand Umsatz wird. Eine Anfrage soll nicht in einem
+            Postfach landen — sie soll durch ein System laufen, das Kunden,
+            Angebote und Termine miteinander verknüpft.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Wie ich arbeite (Werte) ===== -->
+    <section class="ev-section" aria-labelledby="values-heading">
+      <div class="container">
+        <p class="ev-eyebrow">Wie ich arbeite</p>
+        <h2 id="values-heading" class="ev-h2">Vier Versprechen, die ich vor jedem Projekt schriftlich gebe.</h2>
+
+        <div class="about-values">
+          <article class="about-value">
+            <div class="about-value-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg>
+            </div>
+            <h3>Festpreis vor Start</h3>
+            <p>Sie wissen vor der ersten Code-Zeile, was das Projekt kostet. Keine offenen Stundenzettel, keine Überraschungen nach hinten raus.</p>
+          </article>
+
+          <article class="about-value">
+            <div class="about-value-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h3>Ein Ansprechpartner</h3>
+            <p>Vom Erstgespräch bis zur Übergabe sprechen Sie mit der gleichen Person — der, die Ihr System baut.</p>
+          </article>
+
+          <article class="about-value">
+            <div class="about-value-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <h3>Ziele schriftlich</h3>
+            <p>Was am Ende erreicht sein soll, halten wir vorher fest. Wird es nicht erreicht, arbeiten wir auf unsere Kosten nach.</p>
+          </article>
+
+          <article class="about-value">
+            <div class="about-value-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <h3>DSGVO-konform</h3>
+            <p>Server in Deutschland, self-hosted Fonts, kein Tracking ohne Einwilligung. Was unter der Haube läuft, halten wir auch rechtlich sauber.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Kompetenzen ===== -->
+    <section class="ev-section ev-section-alt" aria-labelledby="skills-heading">
+      <div class="container">
+        <p class="ev-eyebrow">Woran ich arbeite</p>
+        <h2 id="skills-heading" class="ev-h2">Womit ich täglich umgehe.</h2>
+        <p class="ev-section-sub">Statt einer langen Tool-Liste hier die Felder, in denen ich zu Hause bin — und in denen die meisten Projekte für inhabergeführte Unternehmen liegen.</p>
+
+        <div class="about-skills">
+          <div class="about-skill">
+            <h3>Webentwicklung</h3>
+            <p>Individuell entwickelte Unternehmens-Websites — kein Baukasten, kein Page-Builder. Schnell auf Mobile und Desktop, sauber auf Lighthouse, an Formular und CRM direkt angebunden.</p>
+          </div>
+          <div class="about-skill">
+            <h3>CRM-Einrichtung &amp; Integration</h3>
+            <p>Pipedrive, HubSpot, OnOffice und weitere — eingerichtet, sauber strukturiert und über echte Schnittstellen mit der bestehenden Infrastruktur verbunden.</p>
+          </div>
+          <div class="about-skill">
+            <h3>Prozessautomatisierung</h3>
+            <p>Anfragen, Angebote, Termine, Erinnerungen — über Zapier, Make oder eigene Schnittstellen. Was sich wiederholt, läuft danach von selbst.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="ev-section" aria-labelledby="about-cta-heading">
+      <div class="container">
+        <div class="ev-final">
+          <p class="ev-eyebrow">Sprechen wir</p>
+          <h2 id="about-cta-heading" class="ev-h2">30 Minuten, ehrlich, kein Verkaufsdruck.</h2>
+          <p class="ev-final-sub">
+            Erzählen Sie mir, wo bei Ihnen die Zeit verloren geht. Ich höre zu,
+            schaue mir Ihre Abläufe an und sage Ihnen, wo der größte Hebel
+            liegt — und ob ich der richtige Partner für Sie bin.
+          </p>
+          <a href="/kontakt" class="ev-btn ev-btn-primary ev-btn-xl">Erstgespräch anfragen</a>
+          <p class="ev-final-trust">Antwort innerhalb von 24 Stunden · fester Ansprechpartner · DSGVO-konform</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+</BaseLayout>
+
+<style>
+  .about-intro { padding-top: clamp(48px, 8vh, 96px); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(280px, 420px) 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .about-portrait {
+    margin: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .about-portrait picture { display: block; }
+  .about-portrait img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+  .about-portrait figcaption {
+    padding: 18px 22px 20px;
+    border-top: 1px solid var(--border);
+  }
+  .about-portrait figcaption strong {
+    display: block;
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+  }
+  .about-portrait figcaption span {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .about-intro-body .ev-hero-h1 { margin: 12px 0 24px; }
+  .about-lead {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.65;
+    margin: 0 0 18px;
+    max-width: 60ch;
+  }
+
+  .about-facts {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .about-facts li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border-radius: 999px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+  }
+
+  .about-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .about-prose {
+    max-width: 760px;
+    margin: 8px 0 0;
+  }
+  .about-prose p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin: 0 0 18px;
+  }
+  .about-prose p:last-child { margin-bottom: 0; }
+
+  .about-values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+    margin-top: 24px;
+  }
+  .about-value {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 26px 24px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .about-value:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .about-value-ico {
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(61,214,192,0.10);
+    border: 1px solid rgba(61,214,192,0.30);
+    margin-bottom: 16px;
+  }
+  .about-value-ico svg { width: 22px; height: 22px; }
+  .about-value h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .about-value p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .about-skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .about-skill {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 26px;
+  }
+  .about-skill h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    margin: 0 0 10px;
+    letter-spacing: -0.015em;
+  }
+  .about-skill p {
+    color: var(--text-secondary);
+    font-size: 0.97rem;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  @media (max-width: 880px) {
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-portrait { max-width: 360px; }
+    .about-lead { font-size: 1.02rem; }
+  }
+</style>

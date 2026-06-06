@@ -460,7 +460,10 @@ const faqSchema = {
               <p>Zwischen hübschen Websites ohne Substanz und Technik ohne Gespür fürs Geschäft klafft eine Lücke. Genau dort arbeiten wir: Design auf Agentur-Niveau, echte technische Tiefe — und ein Gründer mit Vertriebs-Hintergrund, der weiß, wie aus Aufwand Umsatz wird.</p>
               <p class="ev-vision-close">Klingt das nach Ihrer Vorstellung? Dann sprechen wir uns einmal.</p>
             </div>
-            <a href="#kontakt" class="ev-btn ev-btn-primary">Erstgespräch anfragen →</a>
+            <div class="ev-vision-ctas">
+              <a href="#kontakt" class="ev-btn ev-btn-primary">Erstgespräch anfragen →</a>
+              <a href="/ueber-uns" class="ev-btn ev-btn-ghost">Mehr über mich →</a>
+            </div>
           </div>
         </div>
       </div>
@@ -1355,6 +1358,7 @@ const faqSchema = {
   }
   .ev-vision-text strong { color: var(--text-primary); }
   .ev-vision-close { color: var(--text-primary) !important; font-weight: 600; }
+  .ev-vision-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
 
   /* Final CTA */
   .ev-final {
