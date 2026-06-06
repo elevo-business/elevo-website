@@ -23,11 +23,11 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
     <label class="form-label" for="service">Interessiert an</label>
     <select class="form-select" id="service" name="service">
       <option value="">Leistung auswählen...</option>
-      <option value="website">Website &amp; Webentwicklung</option>
-      <option value="seo">SEO &amp; Google Ads</option>
-      <option value="prozess">Prozessdigitalisierung</option>
-      <option value="alles">Komplettpaket</option>
-      <option value="beratung">Erstberatung</option>
+      <option value="website">Website</option>
+      <option value="crm">CRM-Einrichtung &amp; Integration</option>
+      <option value="automatisierung">Prozessautomatisierung</option>
+      <option value="system">Komplettes System (Website + CRM + Automatisierung)</option>
+      <option value="beratung">Erstgespräch / Strategie-Beratung</option>
     </select>
   </div>
   <div class="form-group">
@@ -39,7 +39,7 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
     Jetzt Anfrage senden
   </button>
   <p class="form-privacy-note">
-    Mit dem Absenden stimmst du unserer <a href="/datenschutz">Datenschutzerklärung</a> zu. Anonymisierte Nutzungsdaten werden nur mit deiner Cookie-Einwilligung an Google übermittelt.
+    Mit dem Absenden stimmen Sie unserer <a href="/datenschutz">Datenschutzerklärung</a> zu. Conversion-Tracking läuft nur, wenn Sie im Cookie-Banner eingewilligt haben.
   </p>
   <div class="form-message" id="form-message" role="alert" aria-live="polite"></div>
 </form>
@@ -69,6 +69,7 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
     if (!name || !email || !message) {
       formMsg.className = 'form-message error';
       formMsg.textContent = 'Bitte füllen Sie alle Pflichtfelder aus.';
+      formMsg.focus?.();
       return;
     }
 
@@ -101,7 +102,7 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
       }
     } catch {
       formMsg.className = 'form-message error';
-      formMsg.textContent = 'Etwas ist schiefgelaufen. Schreib uns direkt: hallo@elevo.solutions';
+      formMsg.textContent = 'Etwas ist schiefgelaufen. Schreiben Sie uns direkt: hallo@elevo.solutions';
     }
 
     submitBtn.disabled = false;
