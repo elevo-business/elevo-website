@@ -192,3 +192,24 @@
     }
   }
 </style>
+
+<script>
+  // Eigener Reveal-Observer fuer die FAQ — damit die Section auch auf Seiten
+  // ohne Hero (z.B. der Startseite) sichtbar wird. Idempotent: bereits sichtbare
+  // Elemente werden uebersprungen, ein Hero-Observer auf der gleichen Seite
+  // setzt .visible einfach doppelt (kein Effekt).
+  const faqSection = document.getElementById('faq');
+  if (faqSection) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    faqSection
+      .querySelectorAll('.reveal, .reveal-left, .reveal-right')
+      .forEach((el) => io.observe(el));
+  }
+</script>
