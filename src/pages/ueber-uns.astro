@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import '../styles/ev-system.css';
 
 const personSchema = {
   '@context': 'https://schema.org',
@@ -147,31 +148,8 @@ const personSchema = {
       </div>
     </section>
 
-    <!-- ===== Kompetenzen ===== -->
-    <section class="ev-section ev-section-alt" aria-labelledby="skills-heading">
-      <div class="container">
-        <p class="ev-eyebrow">Woran ich arbeite</p>
-        <h2 id="skills-heading" class="ev-h2">Drei Felder, die ich täglich umsetze.</h2>
-
-        <div class="about-skills">
-          <div class="about-skill">
-            <h3>Webentwicklung</h3>
-            <p>Individuell entwickelte Unternehmens-Websites — kein Baukasten, kein Page-Builder. Schnell auf Mobile und Desktop, sauber auf Lighthouse, an Formular und CRM direkt angebunden.</p>
-          </div>
-          <div class="about-skill">
-            <h3>CRM-Einrichtung &amp; Integration</h3>
-            <p>Pipedrive, HubSpot, OnOffice und weitere — eingerichtet, sauber strukturiert und über echte Schnittstellen mit der bestehenden Infrastruktur verbunden.</p>
-          </div>
-          <div class="about-skill">
-            <h3>Prozessautomatisierung</h3>
-            <p>Anfragen, Angebote, Termine, Erinnerungen — über Zapier, Make oder eigene Schnittstellen. Was sich wiederholt, läuft danach von selbst.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ===== CTA ===== -->
-    <section class="ev-section" aria-labelledby="about-cta-heading">
+    <section class="ev-section ev-section-alt" aria-labelledby="about-cta-heading">
       <div class="container">
         <div class="ev-final">
           <p class="ev-eyebrow">Sprechen wir</p>
@@ -225,7 +203,7 @@ const personSchema = {
     color: var(--text-primary);
     font-size: 1.1rem;
     font-weight: 700;
-    letter-spacing: -0.01em;
+    letter-spacing: normal;
     margin-bottom: 2px;
   }
   .about-portrait figcaption span {
