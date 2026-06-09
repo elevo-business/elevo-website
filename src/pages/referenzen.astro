@@ -2,8 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Hero from '../components/Hero.astro';
 import '../styles/global.css';
+import '../styles/ev-system.css';
 
 const cases = [
   {
@@ -14,16 +14,16 @@ const cases = [
     location: 'Geilenkirchen',
   },
   {
-    name: 'ZUMA Lounge',
-    url: 'https://zuma-lounge.de',
-    description: 'Lounge & Event-Location — überarbeitete Kontaktseite, Conversion-Optimierung und Google-Ads-Kampagnen für Veranstaltungs-Anfragen. Ergebnis: 62 % mehr Buchungen in drei Monaten Messzeitraum.',
-    industry: 'Hospitality & Events',
-  },
-  {
     name: 'Greenchild',
     url: 'https://greenchild-preview.elevo.solutions/de/',
     description: 'Komplette Web-Plattform mit DE/EN-Lokalisierung, individuellem Produkt-Konfigurator und digitalen Onboarding-Flows. Ergebnis: von Konzept zu Launch in drei Wochen.',
     industry: 'Landwirtschaft & Nachhaltigkeit',
+  },
+  {
+    name: 'BrandsMarketingLab',
+    url: 'https://brandsmarketinglab.de',
+    description: 'Komplette Marken-Website für eine Social-Media-Agentur — klare Positionierung, Ergebnis-Showcase und eine durchgehende Lead-Strecke. Live unter brandsmarketinglab.de.',
+    industry: 'Social-Media-Agentur',
   },
 ];
 
@@ -53,10 +53,10 @@ const casesSchema = {
 
 <BaseLayout
   title="Referenzen — Elevo"
-  description="Echte Ergebnisse aus echten Projekten — dreifach mehr Reservierungen, 62 % mehr Buchungen, von Null zum Launch in drei Wochen. Drei Referenzkunden im Detail."
+  description="Echte Projekte, die Sie live öffnen können — dreifach mehr Reservierungen, von null zum Launch in drei Wochen und eine komplette Marken-Website. Direkt im Fenster, nicht als Screenshot."
   canonical="https://elevo.solutions/referenzen"
 >
-  <a href="#hero" class="skip-link">Zum Hauptinhalt springen</a>
+  <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
 
   <!-- iFrame Modal -->
   <div id="ref-modal" class="ref-modal" role="dialog" aria-modal="true" aria-label="Website-Vorschau">
@@ -93,180 +93,249 @@ const casesSchema = {
 
   <Header />
 
-  <Hero
-    badge="Referenzen"
-    title='<span class="line">Messbare Ergebnisse.</span><span class="line accent">Echte Kunden.</span>'
-    subtitle="Keine Versprechen — echte Zahlen aus echten Projekten. Mehrere davon können Sie hier direkt live öffnen."
-    ctaText="Projekt besprechen"
-    ctaHref="/kontakt"
-    secondaryCtaText="Unsere Leistungen"
-    secondaryCtaHref="/leistungen"
-  />
-
-  <!-- Trusted By -->
-  <section id="trusted" aria-label="Unsere Kunden">
-    <div class="container">
-      <p class="trusted-label">Vertrauen uns bereits</p>
-      <div class="trusted-track" role="list" aria-label="Referenzkunden">
-        <span class="trusted-item" role="listitem">Greenchild</span>
-        <span class="trusted-item" role="listitem">Akropolis Geilenkirchen</span>
-        <span class="trusted-item" role="listitem">ZUMA Lounge</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Referenzen Showcase -->
-  <section id="results" class="section" aria-labelledby="results-heading">
-    <div class="container">
-      <header class="section-header">
-        <div class="section-label reveal">Unsere Arbeit</div>
-        <h2 id="results-heading" class="reveal reveal-delay-1">Von 0 auf Wachstum.<br>Projekt für Projekt.</h2>
-        <p class="reveal reveal-delay-2">Jedes Projekt hat eine Geschichte — hier sind die Zahlen dahinter.</p>
-      </header>
-
-      <ul class="ref-cards-grid" role="list">
-
-        <!-- Akropolis Geilenkirchen -->
-        <li class="ref-card reveal" aria-labelledby="ref-card-ak-heading">
-          <div class="ref-card-top">
-            <div class="ref-card-logo-wrap">
-              <img src="/client-logos/akropolis.jpg" alt="Akropolis Geilenkirchen Logo" class="ref-card-logo" loading="lazy" decoding="async" width="110" height="36">
-            </div>
-            <span class="case-tag">Restaurant · Geilenkirchen</span>
-          </div>
-          <h3 id="ref-card-ak-heading" class="ref-card-title">Akropolis Geilenkirchen</h3>
-          <p class="ref-card-desc">Griechisches Restaurant in Geilenkirchen. Nach dem Website-Relaunch: dreifach mehr Tischreservierungen über die Webseite.</p>
-          <dl class="ref-card-details">
-            <div class="ref-detail">
-              <dt>Ausgangslage</dt>
-              <dd>Veraltete Online-Präsenz, kein klarer Reservierungsweg für Gäste, Speisekarte schwer lesbar auf dem Handy.</dd>
-            </div>
-            <div class="ref-detail">
-              <dt>Was wir gebaut haben</dt>
-              <dd>Kompletter Website-Relaunch: schnell, mobil-optimiert, mit klarer Speisekarte und prominentem Reservierungs-Pfad in jeder Section.</dd>
-            </div>
-            <div class="ref-detail">
-              <dt>Stack</dt>
-              <dd>Static-Site-Generator · Mobile-First-Design · individuelles Reservierungs-Formular</dd>
-            </div>
-          </dl>
-          <div class="ref-card-metric green">
-            <span class="ref-card-metric-val">+3×</span>
-            <span class="ref-card-metric-label">mehr Tischreservierungen nach Relaunch</span>
-          </div>
-          <div class="ref-card-services">Webdesign · Mobile-First · Reservierungs-Pfad</div>
-          <button
-            class="ref-card-link ref-modal-trigger"
-            data-url="https://akropolis-geilenkirchen.com"
-            data-label="Akropolis Geilenkirchen"
-            data-display-url="akropolis-geilenkirchen.com"
-            aria-label="Akropolis Geilenkirchen Website im Modal ansehen"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            Website live ansehen
-          </button>
-        </li>
-
-        <!-- ZUMA Lounge -->
-        <li class="ref-card reveal" aria-labelledby="ref-card-zuma-heading">
-          <div class="ref-card-top">
-            <div class="ref-card-logo-wrap">
-              <img src="/client-logos/zuma.svg" alt="ZUMA Lounge Logo" class="ref-card-logo" loading="lazy" decoding="async" width="110" height="36">
-            </div>
-            <span class="case-tag">Hospitality &amp; Events</span>
-          </div>
-          <h3 id="ref-card-zuma-heading" class="ref-card-title">ZUMA Lounge</h3>
-          <p class="ref-card-desc">62 % mehr Buchungen durch eine optimierte Kontaktseite, Google-Werbekampagnen und verbesserte Nutzerführung — in nur 3 Monaten messbar.</p>
-          <dl class="ref-card-details">
-            <div class="ref-detail">
-              <dt>Ausgangslage</dt>
-              <dd>Die bestehende Kontaktseite konvertierte schwach, viele Veranstaltungs-Anfragen versickerten in einem unklaren Standard-Formular.</dd>
-            </div>
-            <div class="ref-detail">
-              <dt>Was wir gebaut haben</dt>
-              <dd>Conversion-optimierte Kontakt- und Buchungsseite mit klarer Nutzerführung, strukturierten Event-Anfragen und ergänzenden Google-Ads-Kampagnen auf eventbezogene Suchen.</dd>
-            </div>
-            <div class="ref-detail">
-              <dt>Stack</dt>
-              <dd>Kontaktseiten-Redesign · Conversion-Optimierung · Google Ads</dd>
-            </div>
-          </dl>
-          <div class="ref-card-metric green">
-            <span class="ref-card-metric-val">+62%</span>
-            <span class="ref-card-metric-label">mehr Buchungen in 3 Monaten</span>
-          </div>
-          <div class="ref-card-services">Kontaktseite · Google Ads · Optimierung</div>
-          <div class="ref-card-domain">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            zuma-lounge.de
-          </div>
-        </li>
-
-        <!-- Greenchild -->
-        <li class="ref-card reveal" aria-labelledby="ref-card-gc-heading">
-          <div class="ref-card-top">
-            <div class="ref-card-logo-wrap">
-              <img src="/client-logos/greenchild.png" alt="Greenchild Logo" class="ref-card-logo" loading="lazy" decoding="async" width="110" height="36">
-            </div>
-            <span class="case-tag">Landwirtschaft &amp; Nachhaltigkeit</span>
-          </div>
-          <h3 id="ref-card-gc-heading" class="ref-card-title">Greenchild</h3>
-          <p class="ref-card-desc">Von 0 auf Launch in 3 Wochen: vollständige Web-Plattform mit Konfigurator, DE/EN-Lokalisierung und digitalen Onboarding-Flows.</p>
-          <dl class="ref-card-details">
-            <div class="ref-detail">
-              <dt>Ausgangslage</dt>
-              <dd>Marken-Launch ohne digitale Basis — Plattform, Mehrsprachigkeit und produktspezifische Konfigurator-Logik mussten unter Zeitdruck aus dem Nichts entstehen.</dd>
-            </div>
-            <div class="ref-detail">
-              <dt>Was wir gebaut haben</dt>
-              <dd>Komplette Web-Plattform mit DE/EN-Lokalisierung, individuellem Produkt-Konfigurator und digitalen Onboarding-Flows für Kunden und Partner.</dd>
-            </div>
-            <div class="ref-detail">
-              <dt>Stack</dt>
-              <dd>Web-Plattform · i18n DE/EN · Konfigurator-Logik · Onboarding-Flows</dd>
-            </div>
-          </dl>
-          <div class="ref-card-metric">
-            <span class="ref-card-metric-val">0→1</span>
-            <span class="ref-card-metric-label">Von 0 auf Launch in 3 Wochen</span>
-          </div>
-          <div class="ref-card-services">Web-Plattform · DE/EN · Konfigurator</div>
-          <button
-            class="ref-card-link ref-modal-trigger"
-            data-url="https://greenchild-preview.elevo.solutions/de/"
-            data-label="Greenchild"
-            data-display-url="greenchild-preview.elevo.solutions"
-            aria-label="Greenchild Website im Modal ansehen"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            Website live ansehen
-          </button>
-        </li>
-
-      </ul>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section" aria-labelledby="cta-ref-heading" style="background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-deep) 100%);">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-label reveal">Ihr Projekt</div>
-        <h2 id="cta-ref-heading" class="reveal reveal-delay-1">Das nächste Ergebnis<br>könnte Ihres sein.</h2>
-        <p class="reveal reveal-delay-2">Kostenloses Erstgespräch — unverbindlich, konkret und auf den Punkt.</p>
-        <div class="hero-ctas reveal reveal-delay-3" style="margin-top: 32px;">
-          <a href="/kontakt" class="btn-primary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            Jetzt Gespräch vereinbaren
+  <main id="main">
+    <!-- ===== HERO ===== -->
+    <section class="ev-page-hero" aria-labelledby="ref-hero-heading">
+      <div class="container">
+        <p class="ev-eyebrow">Referenzen</p>
+        <h1 id="ref-hero-heading" class="ev-hero-h1">
+          Messbare Ergebnisse.<br>
+          <span class="ev-accent">Live nachprüfbar.</span>
+        </h1>
+        <p class="ev-hero-sub">
+          Keine Versprechen, keine gestellten Screenshots — echte Projekte, die Sie direkt
+          im Fenster öffnen können. Klicken Sie hinein.
+        </p>
+        <div class="ev-hero-ctas">
+          <a href="/kontakt" class="ev-btn ev-btn-primary">
+            Erstgespräch anfragen
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="/leistungen" class="btn-secondary">
-            Unsere Leistungen
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+          <a href="/leistungen" class="ev-btn ev-btn-ghost">Unsere Leistungen</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- ===== LIVE-SHOWCASE (iFrames) ===== -->
+    <section id="live" class="ev-section ev-section-alt" aria-labelledby="live-heading">
+      <div class="container">
+        <p class="ev-eyebrow">Echte Projekte</p>
+        <h2 id="live-heading" class="ev-h2">Sehen Sie selbst — live, nicht als Bild.</h2>
+        <p class="ev-section-sub">Drei Projekte direkt im Fenster. Klicken Sie hinein und öffnen Sie die echte Seite.</p>
+
+        <div class="ev-ref-grid">
+          <article class="ev-ref-card">
+            <div class="ev-ref-frame">
+              <div class="ev-ref-bar" aria-hidden="true"><i></i><i></i><i></i><em>akropolis-geilenkirchen.com</em></div>
+              <div class="ev-ref-embed">
+                <iframe src="https://akropolis-geilenkirchen.com" title="Akropolis Geilenkirchen" loading="lazy" tabindex="-1" referrerpolicy="no-referrer"></iframe>
+                <button class="ev-ref-overlay ref-modal-trigger" type="button"
+                  data-url="https://akropolis-geilenkirchen.com"
+                  data-label="Akropolis Geilenkirchen" data-display-url="akropolis-geilenkirchen.com"
+                  aria-label="Akropolis Geilenkirchen live öffnen">
+                  <span class="ev-ref-open"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>Live öffnen</span>
+                </button>
+              </div>
+            </div>
+            <div class="ev-ref-meta">
+              <span class="ev-ref-metric">+3×</span>
+              <div class="ev-ref-text">
+                <h3>Akropolis Geilenkirchen</h3>
+                <p>mehr Reservierungen · Restaurant</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="ev-ref-card">
+            <div class="ev-ref-frame">
+              <div class="ev-ref-bar" aria-hidden="true"><i></i><i></i><i></i><em>greenchild.eu</em></div>
+              <div class="ev-ref-embed">
+                <iframe src="https://greenchild-preview.elevo.solutions/de/" title="GreenChild" loading="lazy" tabindex="-1" referrerpolicy="no-referrer"></iframe>
+                <button class="ev-ref-overlay ref-modal-trigger" type="button"
+                  data-url="https://greenchild-preview.elevo.solutions/de/"
+                  data-label="GreenChild" data-display-url="greenchild.eu">
+                  <span class="ev-ref-open"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>Live öffnen</span>
+                </button>
+              </div>
+            </div>
+            <div class="ev-ref-meta">
+              <span class="ev-ref-metric">3 Wo.</span>
+              <div class="ev-ref-text">
+                <h3>GreenChild</h3>
+                <p>von null bis live · Marken-Plattform</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="ev-ref-card">
+            <div class="ev-ref-frame">
+              <div class="ev-ref-bar" aria-hidden="true"><i></i><i></i><i></i><em>brandsmarketinglab.de</em></div>
+              <div class="ev-ref-embed">
+                <iframe src="https://brandsmarketinglab.de" title="BrandsMarketingLab" loading="lazy" tabindex="-1" referrerpolicy="no-referrer"></iframe>
+                <button class="ev-ref-overlay ref-modal-trigger" type="button"
+                  data-url="https://brandsmarketinglab.de"
+                  data-label="BrandsMarketingLab" data-display-url="brandsmarketinglab.de">
+                  <span class="ev-ref-open"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>Live öffnen</span>
+                </button>
+              </div>
+            </div>
+            <div class="ev-ref-meta">
+              <span class="ev-ref-metric">Live</span>
+              <div class="ev-ref-text">
+                <h3>BrandsMarketingLab</h3>
+                <p>Marken-Website · Social-Media-Agentur</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== DEEP DIVE ===== -->
+    <section id="results" class="ev-section" aria-labelledby="results-heading">
+      <div class="container">
+        <p class="ev-eyebrow">Im Detail</p>
+        <h2 id="results-heading" class="ev-h2">Was hinter den Projekten steckt.</h2>
+        <p class="ev-section-sub">Jedes Projekt hat eine Geschichte — hier sind Ausgangslage, Umsetzung und Ergebnis.</p>
+
+        <ul class="ref-cards-grid" role="list">
+
+          <!-- Akropolis Geilenkirchen -->
+          <li class="ref-card reveal" aria-labelledby="ref-card-ak-heading">
+            <div class="ref-card-top">
+              <div class="ref-card-logo-wrap">
+                <img src="/client-logos/akropolis.jpg" alt="Akropolis Geilenkirchen Logo" class="ref-card-logo" loading="lazy" decoding="async" width="110" height="36">
+              </div>
+              <span class="case-tag">Restaurant · Geilenkirchen</span>
+            </div>
+            <h3 id="ref-card-ak-heading" class="ref-card-title">Akropolis Geilenkirchen</h3>
+            <p class="ref-card-desc">Griechisches Restaurant in Geilenkirchen. Nach dem Website-Relaunch: dreifach mehr Tischreservierungen über die Webseite.</p>
+            <dl class="ref-card-details">
+              <div class="ref-detail">
+                <dt>Ausgangslage</dt>
+                <dd>Veraltete Online-Präsenz, kein klarer Reservierungsweg für Gäste, Speisekarte schwer lesbar auf dem Handy.</dd>
+              </div>
+              <div class="ref-detail">
+                <dt>Was wir gebaut haben</dt>
+                <dd>Kompletter Website-Relaunch: schnell, mobil-optimiert, mit klarer Speisekarte und prominentem Reservierungs-Pfad in jeder Section.</dd>
+              </div>
+              <div class="ref-detail">
+                <dt>Stack</dt>
+                <dd>Static-Site-Generator · Mobile-First-Design · individuelles Reservierungs-Formular</dd>
+              </div>
+            </dl>
+            <div class="ref-card-metric green">
+              <span class="ref-card-metric-val">+3×</span>
+              <span class="ref-card-metric-label">mehr Tischreservierungen nach Relaunch</span>
+            </div>
+            <div class="ref-card-services">Webdesign · Mobile-First · Reservierungs-Pfad</div>
+            <button
+              class="ref-card-link ref-modal-trigger"
+              data-url="https://akropolis-geilenkirchen.com"
+              data-label="Akropolis Geilenkirchen"
+              data-display-url="akropolis-geilenkirchen.com"
+              aria-label="Akropolis Geilenkirchen Website im Modal ansehen"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Website live ansehen
+            </button>
+          </li>
+
+          <!-- Greenchild -->
+          <li class="ref-card reveal" aria-labelledby="ref-card-gc-heading">
+            <div class="ref-card-top">
+              <div class="ref-card-logo-wrap">
+                <img src="/client-logos/greenchild.png" alt="Greenchild Logo" class="ref-card-logo" loading="lazy" decoding="async" width="110" height="36">
+              </div>
+              <span class="case-tag">Landwirtschaft &amp; Nachhaltigkeit</span>
+            </div>
+            <h3 id="ref-card-gc-heading" class="ref-card-title">Greenchild</h3>
+            <p class="ref-card-desc">Von 0 auf Launch in 3 Wochen: vollständige Web-Plattform mit Konfigurator, DE/EN-Lokalisierung und digitalen Onboarding-Flows.</p>
+            <dl class="ref-card-details">
+              <div class="ref-detail">
+                <dt>Ausgangslage</dt>
+                <dd>Marken-Launch ohne digitale Basis — Plattform, Mehrsprachigkeit und produktspezifische Konfigurator-Logik mussten unter Zeitdruck aus dem Nichts entstehen.</dd>
+              </div>
+              <div class="ref-detail">
+                <dt>Was wir gebaut haben</dt>
+                <dd>Komplette Web-Plattform mit DE/EN-Lokalisierung, individuellem Produkt-Konfigurator und digitalen Onboarding-Flows für Kunden und Partner.</dd>
+              </div>
+              <div class="ref-detail">
+                <dt>Stack</dt>
+                <dd>Web-Plattform · i18n DE/EN · Konfigurator-Logik · Onboarding-Flows</dd>
+              </div>
+            </dl>
+            <div class="ref-card-metric">
+              <span class="ref-card-metric-val">0→1</span>
+              <span class="ref-card-metric-label">Von 0 auf Launch in 3 Wochen</span>
+            </div>
+            <div class="ref-card-services">Web-Plattform · DE/EN · Konfigurator</div>
+            <button
+              class="ref-card-link ref-modal-trigger"
+              data-url="https://greenchild-preview.elevo.solutions/de/"
+              data-label="Greenchild"
+              data-display-url="greenchild-preview.elevo.solutions"
+              aria-label="Greenchild Website im Modal ansehen"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Website live ansehen
+            </button>
+          </li>
+
+          <!-- BrandsMarketingLab -->
+          <li class="ref-card reveal" aria-labelledby="ref-card-bml-heading">
+            <div class="ref-card-top">
+              <div class="ref-card-logo-wrap">
+                <img src="/client-logos/bml-white.png" alt="BrandsMarketingLab Logo" class="ref-card-logo" loading="lazy" decoding="async" width="36" height="36">
+              </div>
+              <span class="case-tag">Social-Media-Agentur</span>
+            </div>
+            <h3 id="ref-card-bml-heading" class="ref-card-title">BrandsMarketingLab</h3>
+            <p class="ref-card-desc">Komplette Marken-Website für eine Social-Media-Agentur — klare Positionierung, ein Ergebnis-Showcase mit echten Cases und eine Lead-Strecke, die Anfragen bündelt.</p>
+            <dl class="ref-card-details">
+              <div class="ref-detail">
+                <dt>Was wir gebaut haben</dt>
+                <dd>Marken-Website mit klarer Positionierung, Leistungs- und Ergebnis-Showcase sowie einer durchgehenden Lead-Strecke — schnell, mobil und sauber strukturiert.</dd>
+              </div>
+              <div class="ref-detail">
+                <dt>Fokus</dt>
+                <dd>Aus Aufmerksamkeit werden Anfragen: Die Seite führt Besucher gezielt von der Story zum Kontakt.</dd>
+              </div>
+            </dl>
+            <div class="ref-card-metric">
+              <span class="ref-card-metric-val">Live</span>
+              <span class="ref-card-metric-label">Jetzt online unter brandsmarketinglab.de</span>
+            </div>
+            <div class="ref-card-services">Marken-Website · Mobile-First · Lead-Strecke</div>
+            <button
+              class="ref-card-link ref-modal-trigger"
+              data-url="https://brandsmarketinglab.de"
+              data-label="BrandsMarketingLab"
+              data-display-url="brandsmarketinglab.de"
+              aria-label="BrandsMarketingLab Website im Modal ansehen"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Website live ansehen
+            </button>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="ev-section ev-section-alt" aria-labelledby="cta-ref-heading">
+      <div class="container">
+        <div class="ev-final">
+          <p class="ev-eyebrow">Ihr Projekt</p>
+          <h2 id="cta-ref-heading" class="ev-h2">Das nächste Ergebnis könnte Ihres sein.</h2>
+          <p class="ev-final-sub">Kostenloses Erstgespräch — unverbindlich, konkret und auf den Punkt.</p>
+          <a href="/kontakt" class="ev-btn ev-btn-primary ev-btn-xl">Erstgespräch anfragen</a>
+          <p class="ev-final-trust">Antwort innerhalb von 24 Stunden · fester Ansprechpartner · DSGVO-konform</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <Footer />
 

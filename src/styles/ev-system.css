@@ -25,19 +25,6 @@
     font-size: 0.78rem;
     font-weight: 700;
     margin: 0 0 18px;
-    position: relative;
-    padding-left: 22px;
-  }
-  .ev-eyebrow::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 14px;
-    height: 2px;
-    background: var(--accent);
-    border-radius: 1px;
   }
 
   .ev-h2 {
@@ -58,6 +45,16 @@
     margin: 0 0 48px;
   }
   .ev-accent { color: var(--accent); }
+
+  /* SUBPAGE HERO (Leistungen, Referenzen, Kontakt) */
+  .ev-page-hero {
+    padding-top: clamp(128px, 16vw, 200px);
+    padding-bottom: clamp(48px, 7vw, 88px);
+    background: radial-gradient(ellipse at top right, rgba(59,130,246,0.10) 0%, transparent 55%), var(--bg-dark);
+  }
+  .ev-page-hero .ev-hero-h1 { max-width: 20ch; margin-bottom: 20px; }
+  .ev-page-hero .ev-hero-sub { max-width: 60ch; }
+  .ev-page-hero .ev-hero-ctas { margin-top: 32px; }
 
   /* HERO */
   .ev-hero {

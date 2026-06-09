@@ -2,8 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Hero from '../components/Hero.astro';
 import '../styles/global.css';
+import '../styles/ev-system.css';
 ---
 
 <BaseLayout
@@ -11,28 +11,39 @@ import '../styles/global.css';
   description="Website, CRM und Automatisierung aus einer Hand — ein digitales System für inhabergeführte Unternehmen im Raum Aachen und Geilenkirchen. Entwickelt, verbunden und automatisiert."
   canonical="https://elevo.solutions/leistungen"
 >
-  <a href="#hero" class="skip-link">Zum Hauptinhalt springen</a>
+  <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
 
   <Header />
 
-  <Hero
-    badge="Leistungen"
-    title='<span class="line">Ein System.</span><span class="line accent">Aus einer Hand.</span>'
-    subtitle="Entwickelt, verbunden, automatisiert — damit bei Ihnen zusammenläuft, was zusammengehört."
-    ctaText="Projekt besprechen"
-    ctaHref="/kontakt"
-    secondaryCtaText="Unsere Referenzen"
-    secondaryCtaHref="/referenzen"
-    showVisual={true}
-  />
+  <main id="main">
+    <!-- ===== HERO ===== -->
+    <section class="ev-page-hero" aria-labelledby="leistungen-hero-heading">
+      <div class="container">
+        <p class="ev-eyebrow">Leistungen</p>
+        <h1 id="leistungen-hero-heading" class="ev-hero-h1">
+          Ein System.<br>
+          <span class="ev-accent">Aus einer Hand.</span>
+        </h1>
+        <p class="ev-hero-sub">
+          Entwickelt, verbunden, automatisiert — damit bei Ihnen zusammenläuft, was zusammengehört.
+        </p>
+        <div class="ev-hero-ctas">
+          <a href="/kontakt" class="ev-btn ev-btn-primary">
+            Projekt besprechen
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/referenzen" class="ev-btn ev-btn-ghost">Unsere Referenzen</a>
+        </div>
+      </div>
+    </section>
 
   <!-- Leistungen -->
-  <section id="leistungen" class="section" aria-labelledby="leistungen-heading">
+  <section id="leistungen" class="ev-section" aria-labelledby="leistungen-heading">
     <div class="container">
-      <header class="section-header">
-        <div class="section-label reveal">Was wir bauen</div>
-        <h2 id="leistungen-heading" class="reveal reveal-delay-1">Ein System statt<br>Insellösungen.</h2>
-        <p class="reveal reveal-delay-2">Keine Insellösungen. Was wir bauen, greift ineinander — entwickelt, verbunden und automatisiert, alles aus einer Hand.</p>
+      <header style="margin-bottom: 40px;">
+        <p class="ev-eyebrow reveal">Was wir bauen</p>
+        <h2 id="leistungen-heading" class="ev-h2 reveal reveal-delay-1">Ein System statt Insellösungen.</h2>
+        <p class="ev-section-sub reveal reveal-delay-2">Keine Insellösungen. Was wir bauen, greift ineinander — entwickelt, verbunden und automatisiert, alles aus einer Hand.</p>
       </header>
 
       <div class="services-grid">
@@ -246,12 +257,12 @@ import '../styles/global.css';
   </section>
 
   <!-- Prozess -->
-  <section id="prozess" class="section" aria-labelledby="prozess-heading">
+  <section id="prozess" class="ev-section ev-section-alt" aria-labelledby="prozess-heading">
     <div class="container">
-      <header class="section-header">
-        <div class="section-label reveal">Ablauf</div>
-        <h2 id="prozess-heading" class="reveal reveal-delay-1">Vom ersten Gespräch<br>bis es läuft.</h2>
-        <p class="reveal reveal-delay-2">Kein Chaos, kein Rätselraten — unser Ablauf ist klar, schnell und transparent. Festpreis vor Start, Ziele schriftlich.</p>
+      <header style="margin-bottom: 40px;">
+        <p class="ev-eyebrow reveal">Ablauf</p>
+        <h2 id="prozess-heading" class="ev-h2 reveal reveal-delay-1">Vom ersten Gespräch bis es läuft.</h2>
+        <p class="ev-section-sub reveal reveal-delay-2">Kein Chaos, kein Rätselraten — unser Ablauf ist klar, schnell und transparent. Festpreis vor Start, Ziele schriftlich.</p>
       </header>
 
       <div class="prozess-steps" role="list">
@@ -280,22 +291,18 @@ import '../styles/global.css';
   </section>
 
   <!-- CTA -->
-  <section class="section" aria-labelledby="cta-heading" style="background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-dark) 100%);">
+  <section class="ev-section" aria-labelledby="cta-heading">
     <div class="container">
-      <div class="section-header">
-        <div class="section-label reveal">Bereit?</div>
-        <h2 id="cta-heading" class="reveal reveal-delay-1">Lassen Sie uns über<br>Ihr Projekt sprechen.</h2>
-        <p class="reveal reveal-delay-2">Kostenloses Erstgespräch — 30 Minuten, kein Verkaufsdruck.</p>
-        <div class="hero-ctas reveal reveal-delay-3" style="margin-top: 32px;">
-          <a href="/kontakt" class="btn-primary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            Jetzt Gespräch vereinbaren
-          </a>
-        </div>
-        <p class="reveal reveal-delay-3" style="margin-top: 18px; color: var(--text-muted); font-size: 0.9rem;">Antwort innerhalb von 24 Stunden · fester Ansprechpartner · DSGVO-konform</p>
+      <div class="ev-final">
+        <p class="ev-eyebrow">Bereit?</p>
+        <h2 id="cta-heading" class="ev-h2">Lassen Sie uns über Ihr Projekt sprechen.</h2>
+        <p class="ev-final-sub">Kostenloses Erstgespräch — 30 Minuten, kein Verkaufsdruck.</p>
+        <a href="/kontakt" class="ev-btn ev-btn-primary ev-btn-xl">Jetzt Gespräch vereinbaren</a>
+        <p class="ev-final-trust">Antwort innerhalb von 24 Stunden · fester Ansprechpartner · DSGVO-konform</p>
       </div>
     </div>
   </section>
+  </main>
 
   <Footer />
 </BaseLayout>
