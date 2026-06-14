@@ -9,21 +9,21 @@ const cases = [
   {
     name: 'Akropolis Geilenkirchen',
     url: 'https://akropolis-geilenkirchen.com',
-    description: 'Griechisches Restaurant in Geilenkirchen — kompletter Website-Relaunch mit klarem Reservierungspfad und sauberer Standort-Darstellung. Ergebnis: dreifach mehr Tischreservierungen über die Webseite.',
-    industry: 'Restaurant',
+    description: 'Lokale Marke mit Reichweite, aber zu wenig Buchungen — Conversion-Website mit klarem Reservierungspfad, der aus Besuchern echte Reservierungen macht. Ergebnis: dreifach mehr Reservierungen über die Seite.',
+    industry: 'Lokale Marke',
     location: 'Geilenkirchen',
   },
   {
     name: 'Greenchild',
     url: 'https://greenchild-preview.elevo.solutions/de/',
-    description: 'Komplette Web-Plattform mit DE/EN-Lokalisierung, individuellem Produkt-Konfigurator und digitalen Onboarding-Flows. Ergebnis: von Konzept zu Launch in drei Wochen.',
-    industry: 'Landwirtschaft & Nachhaltigkeit',
+    description: 'In 3 Wochen von null auf live — ein Klienten-Gewinnungs-System, das direkt in Woche 1 fünf warme, qualifizierte Anfragen brachte (vorher null). Aus Besuchern wurden gebuchte Anfragen.',
+    industry: 'Klienten-Gewinnungs-System',
   },
   {
     name: 'BrandsMarketingLab',
     url: 'https://brandsmarketinglab.de',
-    description: 'Komplette Marken-Website für eine Social-Media-Agentur — klare Positionierung, Ergebnis-Showcase und eine durchgehende Lead-Strecke. Live unter brandsmarketinglab.de.',
-    industry: 'Social-Media-Agentur',
+    description: 'Conversion-Website für eine Marketing-Agentur — klare Positionierung und eine durchgehende Strecke, die Besucher in gebuchte Anfragen verwandelt. Live unter brandsmarketinglab.de.',
+    industry: 'Marketing-Agentur',
   },
 ];
 
@@ -32,7 +32,7 @@ const casesSchema = {
   '@type': 'CollectionPage',
   name: 'Referenzen — Elevo',
   url: 'https://elevo.solutions/referenzen',
-  description: 'Echte Projekte mit messbaren Ergebnissen — drei Referenzkunden von Elevo Solutions.',
+  description: 'Echte Klienten-Gewinnungs-Systeme mit messbaren Ergebnissen — aus Besuchern werden gebuchte Anfragen.',
   mainEntity: {
     '@type': 'ItemList',
     itemListElement: cases.map((c, i) => ({
@@ -52,8 +52,8 @@ const casesSchema = {
 ---
 
 <BaseLayout
-  title="Referenzen — Elevo"
-  description="Echte Projekte, die Sie live öffnen können — dreifach mehr Reservierungen, von null zum Launch in drei Wochen und eine komplette Marken-Website. Direkt im Fenster, nicht als Screenshot."
+  title="Ergebnisse — Elevo"
+  description="Vom Klick zum Klienten: echte Klienten-Gewinnungs-Systeme, die du live öffnen kannst — fünf warme Anfragen in Woche 1, dreifach mehr Reservierungen, in 14 Tagen live. Wir verwandeln die Besucher, die du schon hast, in gebuchte Anfragen."
   canonical="https://elevo.solutions/referenzen"
 >
   <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
@@ -97,18 +97,18 @@ const casesSchema = {
     <!-- ===== HERO ===== -->
     <section class="ev-page-hero" aria-labelledby="ref-hero-heading">
       <div class="container">
-        <p class="ev-eyebrow">Referenzen</p>
+        <p class="ev-eyebrow">Ergebnisse</p>
         <h1 id="ref-hero-heading" class="ev-hero-h1">
-          Messbare Ergebnisse.<br>
+          Aus Besuchern werden Klienten.<br>
           <span class="ev-accent">Live nachprüfbar.</span>
         </h1>
         <p class="ev-hero-sub">
-          Keine Versprechen, keine gestellten Screenshots — echte Projekte, die Sie direkt
-          im Fenster öffnen können. Klicken Sie hinein.
+          Keine Versprechen, keine gestellten Screenshots — echte Klienten-Gewinnungs-Systeme,
+          die aus deinen Besuchern gebuchte Anfragen machen. Öffne sie direkt im Fenster und klick dich rein.
         </p>
         <div class="ev-hero-ctas">
           <a href="/kontakt" class="ev-btn ev-btn-primary">
-            Erstgespräch anfragen
+            Funnel-Check sichern
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="/leistungen" class="ev-btn ev-btn-ghost">Unsere Leistungen</a>
@@ -119,9 +119,9 @@ const casesSchema = {
     <!-- ===== LIVE-SHOWCASE (iFrames) ===== -->
     <section id="live" class="ev-section ev-section-alt" aria-labelledby="live-heading">
       <div class="container">
-        <p class="ev-eyebrow">Echte Projekte</p>
-        <h2 id="live-heading" class="ev-h2">Sehen Sie selbst — live, nicht als Bild.</h2>
-        <p class="ev-section-sub">Drei Projekte direkt im Fenster. Klicken Sie hinein und öffnen Sie die echte Seite.</p>
+        <p class="ev-eyebrow">Echte Systeme</p>
+        <h2 id="live-heading" class="ev-h2">Sieh selbst — live, nicht als Bild.</h2>
+        <p class="ev-section-sub">Drei Systeme direkt im Fenster. Klick dich rein und öffne die echte Seite.</p>
 
         <div class="ev-ref-grid">
           <article class="ev-ref-card">
@@ -141,7 +141,7 @@ const casesSchema = {
               <span class="ev-ref-metric">+3×</span>
               <div class="ev-ref-text">
                 <h3>Akropolis Geilenkirchen</h3>
-                <p>mehr Reservierungen · Restaurant</p>
+                <p>mehr Reservierungen · Lokale Marke</p>
               </div>
             </div>
           </article>
@@ -159,10 +159,10 @@ const casesSchema = {
               </div>
             </div>
             <div class="ev-ref-meta">
-              <span class="ev-ref-metric">3 Wo.</span>
+              <span class="ev-ref-metric">5</span>
               <div class="ev-ref-text">
                 <h3>GreenChild</h3>
-                <p>von null bis live · Marken-Plattform</p>
+                <p>warme Anfragen in Woche 1 · Klienten-System</p>
               </div>
             </div>
           </article>
@@ -183,7 +183,7 @@ const casesSchema = {
               <span class="ev-ref-metric">Live</span>
               <div class="ev-ref-text">
                 <h3>BrandsMarketingLab</h3>
-                <p>Marken-Website · Social-Media-Agentur</p>
+                <p>Conversion-Website · Marketing-Agentur</p>
               </div>
             </div>
           </article>
@@ -195,8 +195,8 @@ const casesSchema = {
     <section id="results" class="ev-section" aria-labelledby="results-heading">
       <div class="container">
         <p class="ev-eyebrow">Im Detail</p>
-        <h2 id="results-heading" class="ev-h2">Was hinter den Projekten steckt.</h2>
-        <p class="ev-section-sub">Jedes Projekt hat eine Geschichte — hier sind Ausgangslage, Umsetzung und Ergebnis.</p>
+        <h2 id="results-heading" class="ev-h2">Was hinter den Systemen steckt.</h2>
+        <p class="ev-section-sub">Jedes System hat eine Geschichte — hier sind Ausgangslage, Umsetzung und Ergebnis.</p>
 
         <ul class="ref-cards-grid" role="list">
 
@@ -206,29 +206,29 @@ const casesSchema = {
               <div class="ref-card-logo-wrap">
                 <img src="/client-logos/akropolis.jpg" alt="Akropolis Geilenkirchen Logo" class="ref-card-logo" loading="lazy" decoding="async" width="110" height="36">
               </div>
-              <span class="case-tag">Restaurant · Geilenkirchen</span>
+              <span class="case-tag">Lokale Marke · Geilenkirchen</span>
             </div>
             <h3 id="ref-card-ak-heading" class="ref-card-title">Akropolis Geilenkirchen</h3>
-            <p class="ref-card-desc">Griechisches Restaurant in Geilenkirchen. Nach dem Website-Relaunch: dreifach mehr Tischreservierungen über die Webseite.</p>
+            <p class="ref-card-desc">Lokale Marke mit Reichweite, aber zu wenig Buchungen. Nach dem Conversion-Relaunch: dreifach mehr Reservierungen über die Seite.</p>
             <dl class="ref-card-details">
               <div class="ref-detail">
                 <dt>Ausgangslage</dt>
-                <dd>Veraltete Online-Präsenz, kein klarer Reservierungsweg für Gäste, Speisekarte schwer lesbar auf dem Handy.</dd>
+                <dd>Reichweite war da, aber die Besucher buchten nicht — kein klarer Pfad zur Reservierung, alles schwer bedienbar auf dem Handy.</dd>
               </div>
               <div class="ref-detail">
                 <dt>Was wir gebaut haben</dt>
-                <dd>Kompletter Website-Relaunch: schnell, mobil-optimiert, mit klarer Speisekarte und prominentem Reservierungs-Pfad in jeder Section.</dd>
+                <dd>Eine verkaufsstarke Conversion-Website: schnell, mobil-optimiert, mit einem prominenten Reservierungs-Pfad in jeder Section, der aus Besuchern echte Buchungen macht.</dd>
               </div>
               <div class="ref-detail">
-                <dt>Stack</dt>
-                <dd>Static-Site-Generator · Mobile-First-Design · individuelles Reservierungs-Formular</dd>
+                <dt>System</dt>
+                <dd>Conversion-Website · Mobile-First · automatische Reservierungsstrecke · Tracking</dd>
               </div>
             </dl>
             <div class="ref-card-metric green">
               <span class="ref-card-metric-val">+3×</span>
-              <span class="ref-card-metric-label">mehr Tischreservierungen nach Relaunch</span>
+              <span class="ref-card-metric-label">mehr Reservierungen nach dem Relaunch</span>
             </div>
-            <div class="ref-card-services">Webdesign · Mobile-First · Reservierungs-Pfad</div>
+            <div class="ref-card-services">Conversion-Website · Mobile-First · Reservierungsstrecke</div>
             <button
               class="ref-card-link ref-modal-trigger"
               data-url="https://akropolis-geilenkirchen.com"
@@ -247,29 +247,29 @@ const casesSchema = {
               <div class="ref-card-logo-wrap">
                 <img src="/client-logos/greenchild.png" alt="Greenchild Logo" class="ref-card-logo" loading="lazy" decoding="async" width="110" height="36">
               </div>
-              <span class="case-tag">Landwirtschaft &amp; Nachhaltigkeit</span>
+              <span class="case-tag">Klienten-Gewinnungs-System · in 14 Tagen live</span>
             </div>
             <h3 id="ref-card-gc-heading" class="ref-card-title">Greenchild</h3>
-            <p class="ref-card-desc">Von 0 auf Launch in 3 Wochen: vollständige Web-Plattform mit Konfigurator, DE/EN-Lokalisierung und digitalen Onboarding-Flows.</p>
+            <p class="ref-card-desc">In 3 Wochen von null auf live — und schon in Woche 1 fünf warme, qualifizierte Anfragen (vorher null). Aus Besuchern wurden gebuchte Anfragen.</p>
             <dl class="ref-card-details">
               <div class="ref-detail">
                 <dt>Ausgangslage</dt>
-                <dd>Marken-Launch ohne digitale Basis — Plattform, Mehrsprachigkeit und produktspezifische Konfigurator-Logik mussten unter Zeitdruck aus dem Nichts entstehen.</dd>
+                <dd>Start bei null: keine Seite, kein Pfad zur Anfrage. Reichweite sollte entstehen, aber es gab nichts, das daraus gebuchte Erstgespräche macht.</dd>
               </div>
               <div class="ref-detail">
                 <dt>Was wir gebaut haben</dt>
-                <dd>Komplette Web-Plattform mit DE/EN-Lokalisierung, individuellem Produkt-Konfigurator und digitalen Onboarding-Flows für Kunden und Partner.</dd>
+                <dd>Ein komplettes Klienten-Gewinnungs-System: verkaufsstarke Conversion-Website, automatische Terminbuchung, Follow-up-Automatisierung und Tracking — in 14 Tagen live.</dd>
               </div>
               <div class="ref-detail">
-                <dt>Stack</dt>
-                <dd>Web-Plattform · i18n DE/EN · Konfigurator-Logik · Onboarding-Flows</dd>
+                <dt>System</dt>
+                <dd>Conversion-Website · automatische Terminbuchung · Follow-up-Automatisierung · Tracking</dd>
               </div>
             </dl>
             <div class="ref-card-metric">
-              <span class="ref-card-metric-val">0→1</span>
-              <span class="ref-card-metric-label">Von 0 auf Launch in 3 Wochen</span>
+              <span class="ref-card-metric-val">5</span>
+              <span class="ref-card-metric-label">warme Anfragen in Woche 1 (vorher null)</span>
             </div>
-            <div class="ref-card-services">Web-Plattform · DE/EN · Konfigurator</div>
+            <div class="ref-card-services">Conversion-Website · Terminbuchung · Follow-up</div>
             <button
               class="ref-card-link ref-modal-trigger"
               data-url="https://greenchild-preview.elevo.solutions/de/"
@@ -291,15 +291,15 @@ const casesSchema = {
               <span class="case-tag">Social-Media-Agentur</span>
             </div>
             <h3 id="ref-card-bml-heading" class="ref-card-title">BrandsMarketingLab</h3>
-            <p class="ref-card-desc">Komplette Marken-Website für eine Social-Media-Agentur — klare Positionierung, ein Ergebnis-Showcase mit echten Cases und eine Lead-Strecke, die Anfragen bündelt.</p>
+            <p class="ref-card-desc">Conversion-Website für eine Marketing-Agentur — klare Positionierung und eine durchgehende Strecke, die aus Besuchern gebuchte Anfragen macht.</p>
             <dl class="ref-card-details">
               <div class="ref-detail">
                 <dt>Was wir gebaut haben</dt>
-                <dd>Marken-Website mit klarer Positionierung, Leistungs- und Ergebnis-Showcase sowie einer durchgehenden Lead-Strecke — schnell, mobil und sauber strukturiert.</dd>
+                <dd>Eine verkaufsstarke Conversion-Website mit klarer Positionierung, Ergebnis-Showcase und einer durchgehenden Strecke zur Anfrage — schnell, mobil und sauber strukturiert.</dd>
               </div>
               <div class="ref-detail">
                 <dt>Fokus</dt>
-                <dd>Aus Aufmerksamkeit werden Anfragen: Die Seite führt Besucher gezielt von der Story zum Kontakt.</dd>
+                <dd>Aus Besuchern werden gebuchte Anfragen: Die Seite führt deine Interessenten gezielt von der Story zum Erstgespräch.</dd>
               </div>
             </dl>
             <div class="ref-card-metric">
@@ -327,10 +327,10 @@ const casesSchema = {
     <section class="ev-section ev-section-alt" aria-labelledby="cta-ref-heading">
       <div class="container">
         <div class="ev-final">
-          <p class="ev-eyebrow">Ihr Projekt</p>
-          <h2 id="cta-ref-heading" class="ev-h2">Das nächste Ergebnis könnte Ihres sein.</h2>
-          <p class="ev-final-sub">Kostenloses Erstgespräch — unverbindlich, konkret und auf den Punkt.</p>
-          <a href="/kontakt" class="ev-btn ev-btn-primary ev-btn-xl">Erstgespräch anfragen</a>
+          <p class="ev-eyebrow">Dein System</p>
+          <h2 id="cta-ref-heading" class="ev-h2">Das nächste Ergebnis könnte deins sein.</h2>
+          <p class="ev-final-sub">In 14 Tagen live. Keine qualifizierte Anfrage in 30 Tagen nach Launch? Wir arbeiten kostenlos weiter, bis du sie hast.</p>
+          <a href="/kontakt" class="ev-btn ev-btn-primary ev-btn-xl">Kostenloser Funnel-Check</a>
           <p class="ev-final-trust">Antwort innerhalb von 24 Stunden · fester Ansprechpartner · DSGVO-konform</p>
         </div>
       </div>

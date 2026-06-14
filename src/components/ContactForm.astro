@@ -7,49 +7,49 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
   <input type="hidden" name="_ts" id="form-ts" value="">
   <div class="form-row">
     <div class="form-group">
-      <label class="form-label" for="name">Ihr Name *</label>
+      <label class="form-label" for="name">Dein Name *</label>
       <input class="form-input" type="text" id="name" name="name" placeholder="Max Mustermann" required autocomplete="name">
     </div>
     <div class="form-group">
-      <label class="form-label" for="company">Unternehmen</label>
-      <input class="form-input" type="text" id="company" name="company" placeholder="Muster GmbH" autocomplete="organization">
+      <label class="form-label" for="company">Coaching / Marke</label>
+      <input class="form-input" type="text" id="company" name="company" placeholder="z. B. dein Coaching-Business" autocomplete="organization">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group">
       <label class="form-label" for="email">E-Mail-Adresse *</label>
-      <input class="form-input" type="email" id="email" name="email" placeholder="max@mustergmbh.de" required autocomplete="email">
+      <input class="form-input" type="email" id="email" name="email" placeholder="max@dein-coaching.de" required autocomplete="email">
     </div>
     <div class="form-group">
-      <label class="form-label" for="phone">Telefon <span class="form-label-optional">(optional)</span></label>
+      <label class="form-label" for="phone">Telefon / WhatsApp <span class="form-label-optional">(optional)</span></label>
       <input class="form-input" type="tel" id="phone" name="phone" placeholder="Für einen schnellen Rückruf" autocomplete="tel" inputmode="tel">
     </div>
   </div>
   <div class="form-group">
-    <label class="form-label" for="service">Interessiert an</label>
+    <label class="form-label" for="service">Worum geht's?</label>
     <select class="form-select" id="service" name="service">
-      <option value="">Leistung auswählen...</option>
-      <option value="website">Website</option>
-      <option value="crm">CRM-Einrichtung &amp; Integration</option>
-      <option value="automatisierung">Prozessautomatisierung</option>
-      <option value="system">Komplettes System (Website + CRM + Automatisierung)</option>
-      <option value="beratung">Erstgespräch / Strategie-Beratung</option>
+      <option value="">Bitte wählen...</option>
+      <option value="funnel-check">Kostenloser Funnel-Check</option>
+      <option value="system">Das 14-Tage Klienten-System</option>
+      <option value="website">Conversion-Website</option>
+      <option value="automatisierung">Terminbuchung &amp; Follow-up-Automatisierung</option>
+      <option value="sonstiges">Etwas anderes</option>
     </select>
   </div>
   <div class="form-group">
-    <label class="form-label" for="message">Ihr Projekt *</label>
-    <textarea class="form-textarea" id="message" name="message" placeholder="Beschreiben Sie kurz Ihr Projekt und Ihre Ziele..." required autocomplete="off"></textarea>
+    <label class="form-label" for="message">Erzähl uns kurz von deinem Angebot *</label>
+    <textarea class="form-textarea" id="message" name="message" placeholder="Was bietest du an, wie viel Reichweite hast du schon, und was ist dein Ziel?" required autocomplete="off"></textarea>
   </div>
   <button type="submit" class="form-submit" id="submit-btn">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-    Jetzt Anfrage senden
+    Funnel-Check anfragen
   </button>
   <p class="form-assurance">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
     Kostenlos &amp; unverbindlich · Antwort innerhalb von 24 Stunden
   </p>
   <p class="form-privacy-note">
-    Mit dem Absenden stimmen Sie unserer <a href="/datenschutz">Datenschutzerklärung</a> zu. Conversion-Tracking läuft nur, wenn Sie im Cookie-Banner eingewilligt haben.
+    Mit dem Absenden stimmst du unserer <a href="/datenschutz">Datenschutzerklärung</a> zu. Conversion-Tracking läuft nur, wenn du im Cookie-Banner eingewilligt hast.
   </p>
   <div class="form-message" id="form-message" role="alert" aria-live="polite"></div>
 </form>
@@ -100,13 +100,13 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
 
     if (!name || !email || !message) {
       formMsg.className = 'form-message error';
-      formMsg.textContent = 'Bitte füllen Sie alle Pflichtfelder aus.';
+      formMsg.textContent = 'Bitte füll alle Pflichtfelder aus.';
       return;
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       formMsg.className = 'form-message error';
-      formMsg.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
+      formMsg.textContent = 'Bitte gib eine gültige E-Mail-Adresse ein.';
       return;
     }
 
@@ -133,10 +133,10 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
       }
     } catch {
       formMsg.className = 'form-message error';
-      formMsg.textContent = 'Etwas ist schiefgelaufen. Schreiben Sie uns direkt: hallo@elevo.solutions';
+      formMsg.textContent = 'Etwas ist schiefgelaufen. Schreib uns direkt: hallo@elevo.solutions';
     }
 
     submitBtn.disabled = false;
-    submitBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Jetzt Anfrage senden';
+    submitBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Funnel-Check anfragen';
   });
 </script>

@@ -902,3 +902,227 @@
     .ev-final { padding: 40px 22px; }
     .ev-calc-result-rows { grid-template-columns: 1fr; }
   }
+
+  /* ============================================================ */
+  /* === Relaunch: Vom Klick zum Klienten (Coaches & Berater) === */
+  /* ============================================================ */
+
+  /* Animierte Kennzahlen-Leiste (Hero) */
+  .ev-statband {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 56px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .ev-statband .ev-stat {
+    background: var(--bg-card);
+    padding: 26px 22px;
+    text-align: left;
+  }
+  .ev-statband .ev-stat-num {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    line-height: 1;
+  }
+  .ev-statband .ev-stat-num.is-accent { color: var(--accent); }
+  .ev-statband .ev-stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    line-height: 1.35;
+  }
+
+  /* Trust-Marquee */
+  .ev-marquee {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    background: var(--bg-alt);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .ev-marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 48px;
+    animation: ev-marquee 42s linear infinite;
+  }
+  .ev-marquee:hover .ev-marquee-track { animation-play-state: paused; }
+  .ev-marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 48px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .ev-marquee-item::after {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.7;
+  }
+  @keyframes ev-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) { .ev-marquee-track { animation: none; } }
+
+  /* Das System — 4-Bausteine-Stack */
+  .ev-stack {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 8px;
+  }
+  .ev-stack-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px 30px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .ev-stack-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 34px rgba(59,130,246,0.14);
+    transform: translateY(-3px);
+  }
+  .ev-stack-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .ev-stack-no {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--bg-deep);
+    background: var(--accent);
+    width: 38px; height: 38px;
+    border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1; flex-shrink: 0;
+    box-shadow: 0 6px 18px var(--accent-glow);
+  }
+  .ev-stack-ico {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px;
+    color: var(--accent);
+  }
+  .ev-stack-ico svg { width: 26px; height: 26px; }
+  .ev-stack-card h3 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin: 0 0 8px;
+    letter-spacing: -0.015em;
+  }
+  .ev-stack-card > p {
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    line-height: 1.6;
+    margin: 0 0 18px;
+    max-width: 42ch;
+  }
+  .ev-stack-feats { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .ev-stack-feats li {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 0.92rem; color: var(--text-secondary);
+  }
+  .ev-stack-feats li svg {
+    width: 17px; height: 17px; flex-shrink: 0; margin-top: 2px;
+    color: var(--accent);
+  }
+  .ev-stack-note {
+    margin-top: 26px;
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.98rem; font-weight: 600; color: var(--text-primary);
+    background: rgba(59,130,246,0.08);
+    border: 1px solid var(--border-strong);
+    padding: 13px 22px; border-radius: 999px;
+  }
+  .ev-stack-note svg { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; }
+
+  /* Knappheits-Pille */
+  .ev-scarcity {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--font-heading);
+    font-size: 0.82rem; font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(59,130,246,0.10);
+    border: 1px solid var(--border-strong);
+    padding: 8px 16px; border-radius: 999px;
+    margin-bottom: 22px;
+  }
+  .ev-scarcity .ev-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow-strong);
+    animation: ev-blink 2.2s infinite;
+  }
+  @keyframes ev-blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  @media (prefers-reduced-motion: reduce) { .ev-scarcity .ev-dot { animation: none; } }
+
+  /* Sticky Mobile-CTA */
+  .ev-mcta { display: none; }
+  @media (max-width: 768px) {
+    .ev-mcta {
+      display: flex; gap: 10px;
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 9000;
+      padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+      background: rgba(5,7,14,0.94);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      transform: translateY(140%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .ev-mcta.is-visible { transform: translateY(0); }
+    .ev-mcta-btn {
+      flex: 1;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 52px; border-radius: 999px;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.98rem; line-height: 1;
+      text-decoration: none;
+    }
+    .ev-mcta-btn svg { width: 18px; height: 18px; }
+    .ev-mcta-primary { background: var(--accent); color: #fff; }
+    .ev-mcta-ghost {
+      flex: 0 0 52px; padding: 0;
+      background: var(--bg-card); color: var(--text-primary);
+      border: 1px solid var(--border-strong);
+    }
+    body { padding-bottom: 72px; }
+  }
+
+  /* Responsive Anpassungen Relaunch */
+  @media (max-width: 760px) {
+    .ev-statband { grid-template-columns: 1fr 1fr; }
+    .ev-stack { grid-template-columns: 1fr; }
+    .ev-marquee-item { font-size: 1rem; gap: 36px; }
+    .ev-marquee-track { gap: 36px; }
+  }
+  @media (max-width: 460px) {
+    .ev-statband { grid-template-columns: 1fr; }
+    .ev-statband .ev-stat {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 14px;
+    }
+    .ev-statband .ev-stat-label { margin-top: 0; text-align: right; }
+  }
+
+  /* Desktop-Float-CTA auf Mobile ausblenden — dort übernimmt die .ev-mcta-Leiste */
+  @media (max-width: 768px) {
+    #float-cta { display: none !important; }
+  }
