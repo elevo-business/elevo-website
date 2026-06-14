@@ -14,6 +14,10 @@ const {
   ogImage = 'https://elevo.solutions/og-image.jpg',
   noindex = false,
 } = Astro.props;
+
+// Meta-Pixel-ID (nicht geheim, identisch zur Dataset-ID des CAPI-Servers).
+// Override zur Build-Zeit via PUBLIC_META_PIXEL_ID möglich.
+const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID ?? '2057474564840133';
 ---
 
 <!DOCTYPE html>
@@ -203,6 +207,94 @@ const {
       // Consent-Grant via Cookie-Banner -> sofort laden, damit Conversion-Tracking ohne Wartezeit greift.
       window.addEventListener('elevo:consent-granted', inject, { once: true });
     })();
+  </script>
+
+  <!--
+    Meta-Pixel + Conversions-API-Bridge.
+    - fbq-Stub wird sofort definiert (kein Netzwerk), damit Lead-Events
+      gepuffert werden können.
+    - Das eigentliche fbevents.js wird DSGVO-konform erst nach Marketing-Consent
+      geladen (Event `elevo:consent-granted`) — vorher kein Drittanbieter-Request.
+    - window.elevoMeta stellt den Formularen einen Helfer bereit: erzeugt eine
+      gemeinsame event_id, feuert das Browser-Lead-Event und liefert fbp/fbc für
+      das server-seitige CAPI-Event (Deduplizierung über die event_id).
+  -->
+  <script define:vars={{ metaPixelId }}>
+    // Standard Meta-Pixel-Stub — OHNE automatischen Script-Load.
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window);
+
+    var CONSENT_KEY = 'elevo_consent_v2';
+
+    function hasMarketingConsent() {
+      try {
+        var raw = localStorage.getItem(CONSENT_KEY);
+        if (!raw) return false;
+        return JSON.parse(raw).marketing === true;
+      } catch (e) { return false; }
+    }
+
+    function getCookie(name) {
+      var m = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+      return m ? decodeURIComponent(m.pop()) : '';
+    }
+
+    // _fbc aus Cookie oder — falls noch nicht gesetzt — aus fbclid in der URL.
+    function getFbc() {
+      var fbc = getCookie('_fbc');
+      if (fbc) return fbc;
+      var m = location.search.match(/[?&]fbclid=([^&]+)/);
+      if (m) return 'fb.1.' + Date.now() + '.' + decodeURIComponent(m[1]);
+      return '';
+    }
+
+    function newEventId() {
+      if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+      return 'ev-' + Date.now() + '-' + Math.random().toString(36).slice(2);
+    }
+
+    var pixelLoaded = false;
+    function loadPixel() {
+      if (!metaPixelId || pixelLoaded) return;
+      pixelLoaded = true;
+      var t = document.createElement('script');
+      t.async = true;
+      t.src = 'https://connect.facebook.net/en_US/fbevents.js';
+      document.head.appendChild(t);
+      fbq('init', metaPixelId);
+      fbq('track', 'PageView');
+    }
+
+    window.elevoMeta = {
+      hasConsent: hasMarketingConsent,
+      getFbp: function () { return getCookie('_fbp'); },
+      getFbc: getFbc,
+      // VOR dem Request: erzeugt event_id + sammelt fbp/fbc, die im POST an die
+      // API mitgeschickt werden (server-seitiges CAPI-Event). Gibt null zurück,
+      // wenn kein Marketing-Consent vorliegt — dann kein Meta-Event, weder
+      // Browser noch Server.
+      leadData: function () {
+        if (!hasMarketingConsent()) return null;
+        return {
+          metaEventId: newEventId(),
+          fbp: getCookie('_fbp'),
+          fbc: getFbc(),
+          eventSourceUrl: location.href
+        };
+      },
+      // NACH Server-Erfolg: feuert das Browser-Lead-Event mit derselben
+      // event_id → Meta dedupliziert Browser- und Server-Event.
+      fireLead: function (eventId, customData) {
+        if (!hasMarketingConsent() || !window.fbq) return;
+        fbq('track', 'Lead', customData || {}, eventId ? { eventID: eventId } : undefined);
+      }
+    };
+
+    // Pixel erst nach Consent laden. Bereits gespeicherter Consent löst über
+    // den Footer-Banner `elevo:consent-granted` aus.
+    window.addEventListener('elevo:consent-granted', loadPixel);
+    if (hasMarketingConsent()) loadPixel();
   </script>
 </head>
 
