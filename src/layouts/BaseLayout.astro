@@ -12,6 +12,11 @@ const {
   canonical = 'https://elevo.solutions/',
   ogImage = 'https://elevo.solutions/og-image.jpg',
 } = Astro.props;
+
+// Meta-Pixel-ID zur Build-Zeit aus der Env (PUBLIC_*) — muss mit der
+// META_PIXEL_ID-Env-Var des CAPI-Containers (api/contact.php) übereinstimmen.
+// Leer ⇒ Pixel wird nicht initialisiert (no-op).
+const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID ?? '';
 ---
 
 <!DOCTYPE html>
@@ -210,9 +215,8 @@ const {
     api/contact.php (bzw. der Coolify-Env-Var) übereinstimmen.
     fbevents.js wird post-LCP geladen; PageView wird über die fbq-Queue gepuffert.
   -->
-  <script is:inline>
-    // 👉 HIER die Meta-Pixel-ID (= Dataset-ID aus dem Events Manager) eintragen:
-    var META_PIXEL_ID = '';
+  <script define:vars={{ metaPixelId }}>
+    var META_PIXEL_ID = metaPixelId || '';
 
     if (META_PIXEL_ID) {
       (function (f, b, e, v) {
