@@ -113,11 +113,22 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
     submitBtn.disabled = true;
     submitBtn.textContent = 'Wird gesendet...';
 
+    // Meta-Dedup: dieselbe event_id an Browser-Pixel UND serverseitige CAPI geben.
+    const cookie = (n: string): string => {
+      const m = document.cookie.match('(^|;)\\s*' + n + '\\s*=\\s*([^;]+)');
+      return m ? m.pop()! : '';
+    };
+    const eventId = 'lead.' + Date.now() + '.' + Math.random().toString(36).slice(2, 10);
+
     try {
       const res = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, phone, company, service, message, source: 'elevo.solutions' })
+        body: JSON.stringify({
+          name, email, phone, company, service, message, source: 'elevo.solutions',
+          event_id: eventId, event_source_url: location.href,
+          fbp: cookie('_fbp'), fbc: cookie('_fbc')
+        })
       });
 
       if (res.ok) {
@@ -127,6 +138,10 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
 
         if (typeof (window as any).gtag !== 'undefined') {
           (window as any).gtag('event', 'conversion', { send_to: 'AW-18023151518/contact_form_submit' });
+        }
+        // Meta Browser-Pixel: 'Lead' mit eventID → dedupliziert mit dem CAPI-Event.
+        if (typeof (window as any).fbq !== 'undefined') {
+          (window as any).fbq('track', 'Lead', { content_name: service || 'Kontaktformular' }, { eventID: eventId });
         }
       } else {
         throw new Error('Server error');
