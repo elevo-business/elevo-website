@@ -398,6 +398,8 @@ const avgPct = Math.round((avgNum / 5) * 100);
 
         const orig = btn.textContent;
         btn.disabled = true; btn.textContent = 'Wird gesendet …';
+        // Meta: event_id + fbp/fbc VOR dem Request (nur mit Consent) → CAPI-Dedup.
+        const lead = (window as any).elevoMeta?.leadData?.() ?? null;
         try {
           const res = await fetch(apiUrl, {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -407,16 +409,19 @@ const avgPct = Math.round((avgNum / 5) * 100);
               website, company: website,
               service: 'funnel-check', source: 'funnel-check',
               message: `Funnel-Check-Anfrage über die Landingpage. Webseite: ${website}`,
+              ...(lead ?? {}),
             }),
           });
           if (!res.ok) throw new Error('bad');
           msg.className = 'form-message success';
           msg.textContent = '✓ Danke! Wähl jetzt direkt deinen Termin.';
           ff.reset(); if (tsEl) tsEl.value = String(Date.now());
-          // Meta-Conversion (schließt die Tracking-Lücke der iframe-Buchung)
+          // Google-Ads-Conversion (schließt die Tracking-Lücke der iframe-Buchung)
           if (typeof (window as any).gtag !== 'undefined') {
             (window as any).gtag('event', 'conversion', { send_to: 'AW-18023151518/contact_form_submit' });
           }
+          // Meta Browser-Pixel mit derselben event_id wie das CAPI-Event.
+          if (lead) (window as any).elevoMeta?.fireLead?.(lead.metaEventId, { content_name: 'funnel-check' });
           const step = document.getElementById('lp-booking-step');
           if (step) { step.hidden = false; step.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
         } catch {
