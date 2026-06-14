@@ -10,10 +10,10 @@ import '../styles/ev-system.css';
 // Pipedrive an. Leichte Qualifizierung (Name, E-Mail, "Was machst du?") als Scheduler-Frage.
 const SCHEDULER_URL = import.meta.env.PUBLIC_PIPEDRIVE_SCHEDULER_URL ?? '';
 
-// Lead-Endpoint: nimmt die Formulardaten entgegen und legt server-seitig (mit
-// dem Pipedrive-API-Token, NICHT im Browser) eine Person + Lead in Pipedrive an.
-// Endpoint-Code liegt im neukunden-Repo (src/neukunden/web.py).
-const LEAD_API_URL = import.meta.env.PUBLIC_LEAD_API_URL ?? 'https://api.elevo.solutions/api/lead';
+// Formular postet an die bereits bestehende Kontakt-/Lead-API (api.elevo.solutions) —
+// dieselbe, die das Kontaktformular nutzt. Sie legt die Anfrage server-seitig
+// (Pipedrive-Token NICHT im Browser) als Lead in Pipedrive an.
+const LEAD_API_URL = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solutions/api/contact';
 
 // Google-Profil-Link (für "Auf Google ansehen"). Exakten Profil-Link via ENV setzen.
 const GOOGLE_PROFILE_URL = import.meta.env.PUBLIC_GOOGLE_PROFILE_URL ?? 'https://www.google.com/search?q=ELEVO+Solutions+Rezensionen';
@@ -401,7 +401,13 @@ const avgPct = Math.round((avgNum / 5) * 100);
         try {
           const res = await fetch(apiUrl, {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ firstName, lastName, email, website, source: 'funnel-check' }),
+            body: JSON.stringify({
+              name: `${firstName} ${lastName}`.trim(),
+              firstName, lastName, email,
+              website, company: website,
+              service: 'funnel-check', source: 'funnel-check',
+              message: `Funnel-Check-Anfrage über die Landingpage. Webseite: ${website}`,
+            }),
           });
           if (!res.ok) throw new Error('bad');
           msg.className = 'form-message success';
