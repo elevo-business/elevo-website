@@ -10,6 +10,11 @@ import '../styles/ev-system.css';
 // Buchungslink verschickt Pipedrive anschließend per Workflow-Automation per E-Mail.
 const LEAD_API_URL = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solutions/api/contact';
 
+// Pipedrive-Scheduler (mit Google-Kalender verbunden). Wird NACH dem Absenden
+// im Erfolgs-Screen eingeblendet, damit der Prospect direkt bucht. Bei Bedarf
+// per ENV austauschen, ohne Code-Änderung.
+const SCHEDULER_URL = import.meta.env.PUBLIC_PIPEDRIVE_SCHEDULER_URL ?? 'https://elevo.pipedrive.com/scheduler/zXDL7Lhq/funnel-check';
+
 
 // Google-Profil-Link (für "Auf Google ansehen"). Exakten Profil-Link via ENV setzen.
 const GOOGLE_PROFILE_URL = import.meta.env.PUBLIC_GOOGLE_PROFILE_URL ?? 'https://www.google.com/search?q=ELEVO+Solutions+Rezensionen';
@@ -285,8 +290,11 @@ const avgPct = Math.round((avgNum / 5) * 100);
             <div class="lp-form-success-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
-            <h3>Check dein Postfach!</h3>
-            <p>Wir haben dir gerade deinen persönlichen Buchungslink per E-Mail geschickt. Wähl dort einfach deinen Slot — falls nichts ankommt, schau kurz im Spam-Ordner oder schreib uns an <a href="mailto:hallo@elevo.solutions">hallo@elevo.solutions</a>.</p>
+            <h3>Geschafft — wähl jetzt deinen Termin.</h3>
+            <p>Such dir unten direkt einen freien Slot aus. Die Bestätigung kommt sofort per E-Mail. Falls gerade nichts passt, melden wir uns bei dir.</p>
+            <div class="lp-scheduler">
+              <iframe id="ff-scheduler" data-src={SCHEDULER_URL} title="Funnel-Check Termin buchen" loading="lazy" allow="fullscreen" allowfullscreen></iframe>
+            </div>
           </div>
 
           <ul class="lp-termin-trust" role="list">
@@ -404,17 +412,20 @@ const avgPct = Math.round((avgNum / 5) * 100);
             body: JSON.stringify({
               name: `${firstName} ${lastName}`.trim(),
               firstName, lastName, email,
-              website, company: website,
+              website,
               service: 'funnel-check', source: 'funnel-check',
               message: `Funnel-Check-Anfrage über die Landingpage.\nWebseite: ${website}\nGrößter Engpass: ${engpass}`,
               ...(lead ?? {}),
             }),
           });
           if (!res.ok) throw new Error('bad');
-          // Formular ausblenden, Erfolgs-Hinweis zeigen (Buchungslink kommt per Mail).
+          // Formular ausblenden, Erfolgs-Screen mit Kalender zeigen.
           ff.hidden = true;
           success.hidden = false;
-          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // Scheduler-iframe erst jetzt laden (lädt nicht für jeden Seitenbesucher).
+          const sched = document.getElementById('ff-scheduler') as HTMLIFrameElement | null;
+          if (sched && sched.dataset.src && !sched.src) sched.src = sched.dataset.src;
+          success.scrollIntoView({ behavior: 'smooth', block: 'start' });
           // Google-Ads-Conversion
           if (typeof (window as any).gtag !== 'undefined') {
             (window as any).gtag('event', 'conversion', { send_to: 'AW-18023151518/contact_form_submit' });
@@ -482,6 +493,8 @@ const avgPct = Math.round((avgNum / 5) * 100);
 
   .lp-termin { max-width: 820px; margin: 0 auto; text-align: center; }
   .lp-termin .ev-h2 { margin-left: auto; margin-right: auto; }
+  .lp-scheduler { margin: 28px 0 0; border: 1px solid var(--border-strong); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-card); }
+  .lp-scheduler iframe { width: 100%; min-height: 720px; border: 0; display: block; }
   .lp-form { max-width: 620px; margin: 32px auto 8px; text-align: left; }
   .lp-form .form-submit { width: 100%; justify-content: center; margin-top: 4px; }
   .lp-form-success { max-width: 620px; margin: 32px auto 8px; padding: 40px 30px; text-align: center; background: var(--bg-card); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); }
