@@ -5,11 +5,22 @@ import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import '../styles/ev-system.css';
 
-// Pipedrive Scheduler: Buchungs-Link hier oder via ENV (PUBLIC_PIPEDRIVE_SCHEDULER_URL) setzen.
-// Der Scheduler erzeugt beim Buchen automatisch einen Google-Meet-Link und legt die
-// Activity/den Lead direkt in Pipedrive an. Qualifizierung (leicht, 3 Felder: Name,
-// E-Mail, „Was machst du?") wird als Frage im Scheduler konfiguriert.
+// Pipedrive Scheduler: Buchungs-Link hier oder via ENV (PUBLIC_PIPEDRIVE_SCHEDULER_URL).
+// Erzeugt beim Buchen automatisch einen Google-Meet-Link und legt Activity/Lead in
+// Pipedrive an. Leichte Qualifizierung (Name, E-Mail, "Was machst du?") als Scheduler-Frage.
 const SCHEDULER_URL = import.meta.env.PUBLIC_PIPEDRIVE_SCHEDULER_URL ?? '';
+
+// Google-Profil-Link (für "Auf Google ansehen").
+const GOOGLE_PROFILE_URL = import.meta.env.PUBLIC_GOOGLE_PROFILE_URL ?? '';
+
+// ⚠️ PLATZHALTER — durch ECHTE Google-Rezensionen ersetzen (Text, Name, Sterne, Datum).
+// Keine erfundenen Bewertungen live schalten.
+const reviews = [
+  { name: 'Sandra K.', initial: 'S', rating: 5, date: 'vor 2 Wochen', text: 'Mert hat unsere Seite in zwei Wochen umgebaut. Die ersten Anfragen kamen schneller als erwartet, Kommunikation top, alles aus einer Hand.' },
+  { name: 'Tobias M.', initial: 'T', rating: 5, date: 'vor 1 Monat', text: 'Endlich eine Seite, die nicht nur schön ist, sondern Anfragen bringt. Sehr professionell und schnell umgesetzt.' },
+  { name: 'Yasemin A.', initial: 'Y', rating: 5, date: 'vor 1 Monat', text: 'Ehrliche Beratung ohne Verkaufsdruck. Klare Empfehlung für Coaches, die mehr aus ihrer Reichweite holen wollen.' },
+];
+const avgRating = (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).toFixed(1).replace('.', ',');
 ---
 
 <BaseLayout
@@ -20,7 +31,6 @@ const SCHEDULER_URL = import.meta.env.PUBLIC_PIPEDRIVE_SCHEDULER_URL ?? '';
 >
   <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
 
-  <!-- Minimaler, ablenkungsfreier Header (eine Aktion) -->
   <header class="lp-header">
     <div class="container lp-header-inner">
       <Logo size="md" />
@@ -30,7 +40,7 @@ const SCHEDULER_URL = import.meta.env.PUBLIC_PIPEDRIVE_SCHEDULER_URL ?? '';
 
   <main id="main">
 
-    <!-- ===== HERO (Message-Match zur Ad) ===== -->
+    <!-- ===== HERO ===== -->
     <section class="ev-hero lp-hero" aria-labelledby="lp-hero-heading">
       <div class="container">
         <div class="ev-hero-grid">
@@ -56,18 +66,9 @@ const SCHEDULER_URL = import.meta.env.PUBLIC_PIPEDRIVE_SCHEDULER_URL ?? '';
           <aside class="lp-getcard" aria-label="Das bekommst du im Funnel-Check">
             <p class="lp-getcard-title">Das nimmst du mit:</p>
             <ul class="lp-getcard-list" role="list">
-              <li>
-                <span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
-                Wo auf deiner Seite Anfragen verloren gehen
-              </li>
-              <li>
-                <span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
-                Ein konkreter Plan, was du ändern musst
-              </li>
-              <li>
-                <span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
-                Ehrlich: ob das 14-Tage-System zu dir passt
-              </li>
+              <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Wo auf deiner Seite Anfragen verloren gehen</li>
+              <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Ein konkreter Plan, was du ändern musst</li>
+              <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Ehrlich: ob das 14-Tage-System zu dir passt</li>
             </ul>
             <a href="#termin" class="ev-btn ev-btn-ghost lp-getcard-cta">Termin wählen →</a>
             <p class="lp-getcard-note">Garantie aufs System: keine Anfrage in 30 Tagen? Kostet dich nichts.</p>
@@ -76,7 +77,7 @@ const SCHEDULER_URL = import.meta.env.PUBLIC_PIPEDRIVE_SCHEDULER_URL ?? '';
       </div>
     </section>
 
-    <!-- ===== PROBLEM (Pains – Message-Match zur Ad) ===== -->
+    <!-- ===== PROBLEM (Pains) ===== -->
     <section class="ev-section ev-section-alt" aria-labelledby="lp-problem-heading">
       <div class="container">
         <p class="ev-eyebrow">Kommt dir bekannt vor?</p>
@@ -88,13 +89,49 @@ const SCHEDULER_URL = import.meta.env.PUBLIC_PIPEDRIVE_SCHEDULER_URL ?? '';
         </div>
         <p class="ev-section-sub" style="margin-top:28px;">
           Das liegt selten an deinem Angebot. Es liegt an der Strecke dahinter — dem Weg vom
-          Besucher zum gebuchten Termin. Genau die schauen wir uns im Funnel-Check an.
+          Besucher zum gebuchten Termin. Wie teuer dich das wird, rechne kurz nach:
         </p>
       </div>
     </section>
 
-    <!-- ===== MECHANISMUS: Vom Klick zum Klienten ===== -->
-    <section class="ev-section" aria-labelledby="lp-mech-heading">
+    <!-- ===== RECHNER ===== -->
+    <section class="ev-section" aria-labelledby="lp-calc-heading">
+      <div class="container">
+        <p class="ev-eyebrow">Rechne nach</p>
+        <h2 id="lp-calc-heading" class="ev-h2">Wie viele Anfragen kostet dich deine Conversion?</h2>
+        <p class="ev-section-sub">Stell deine Zahlen ein. Der Rechner zeigt, wie viele Anfragen jedes Jahr durch niedrige Conversion und ineffiziente Abläufe verloren gehen — bei gleicher Reichweite.</p>
+
+        <div class="ev-calc">
+          <div class="ev-calc-inputs">
+            <div class="ev-calc-field">
+              <div class="ev-calc-field-head"><label for="calc-visitors">Besucher pro Monat</label><output id="calc-visitors-out" class="ev-calc-val">2.500</output></div>
+              <input type="range" id="calc-visitors" class="ev-range" min="200" max="20000" step="100" value="2500">
+            </div>
+            <div class="ev-calc-field">
+              <div class="ev-calc-field-head"><label for="calc-rate">Aktuelle Anfrage-Rate</label><output id="calc-rate-out" class="ev-calc-val">1,5&nbsp;%</output></div>
+              <input type="range" id="calc-rate" class="ev-range" min="0.5" max="6" step="0.5" value="1.5">
+            </div>
+            <div class="ev-calc-field">
+              <div class="ev-calc-field-head"><label for="calc-close">Abschlussquote im Erstgespräch</label><output id="calc-close-out" class="ev-calc-val">30&nbsp;%</output></div>
+              <input type="range" id="calc-close" class="ev-range" min="10" max="80" step="5" value="30">
+            </div>
+          </div>
+          <div class="ev-calc-result">
+            <p class="ev-calc-result-label">Anfragen, die du pro Jahr verschenkst</p>
+            <p class="ev-calc-result-num" id="calc-lost">270</p>
+            <div class="ev-calc-result-rows">
+              <div class="ev-calc-stat"><strong id="calc-extra-clients">81</strong><span>zusätzliche Klienten / Jahr</span></div>
+              <div class="ev-calc-stat"><strong id="calc-extra-month">23</strong><span>Mehr-Anfragen / Monat</span></div>
+            </div>
+            <a href="#termin" class="ev-btn ev-btn-primary ev-btn-block">Deine Zahlen im Funnel-Check besprechen</a>
+            <p class="ev-calc-note">Überschlägige Rechnung auf Basis einer 2–3-fach besseren Conversion durch eine optimierte Strecke. Deine echten Werte schauen wir uns im Funnel-Check an.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MECHANISMUS ===== -->
+    <section class="ev-section ev-section-alt" aria-labelledby="lp-mech-heading">
       <div class="container">
         <p class="ev-eyebrow">Der Mechanismus</p>
         <h2 id="lp-mech-heading" class="ev-h2">Vom Klick zum Klienten — automatisch.</h2>
@@ -112,8 +149,8 @@ const SCHEDULER_URL = import.meta.env.PUBLIC_PIPEDRIVE_SCHEDULER_URL ?? '';
       </div>
     </section>
 
-    <!-- ===== SOCIAL PROOF (gehört auf die LP) ===== -->
-    <section class="ev-section ev-section-alt" aria-labelledby="lp-proof-heading">
+    <!-- ===== SOCIAL PROOF: Case ===== -->
+    <section class="ev-section" aria-labelledby="lp-proof-heading">
       <div class="container">
         <p class="ev-eyebrow">Echtes Ergebnis</p>
         <h2 id="lp-proof-heading" class="ev-h2">3 Wochen von null auf live. 5 Anfragen in Woche 1.</h2>
@@ -138,7 +175,45 @@ const SCHEDULER_URL = import.meta.env.PUBLIC_PIPEDRIVE_SCHEDULER_URL ?? '';
       </div>
     </section>
 
-    <!-- ===== GARANTIE (Message-Match zur Ad) ===== -->
+    <!-- ===== SOCIAL PROOF: Google-Bewertungen ===== -->
+    <section class="ev-section ev-section-alt" aria-labelledby="lp-reviews-heading">
+      <div class="container">
+        <div class="lp-reviews-head">
+          <span class="lp-g" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="34" height="34"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15A11 11 0 0 0 2.18 7.06L5.84 9.9C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+          </span>
+          <div>
+            <p class="ev-eyebrow" style="margin-bottom:8px;">Google Bewertungen</p>
+            <div class="lp-rating">
+              <span class="lp-rating-num">{avgRating}</span>
+              <span class="lp-stars" aria-hidden="true">★★★★★</span>
+              <span class="lp-rating-count">· {reviews.length} Rezensionen</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lp-reviews">
+          {reviews.map((r) => (
+            <article class="lp-review">
+              <div class="lp-review-top">
+                <span class="lp-avatar">{r.initial}</span>
+                <div class="lp-review-who"><strong>{r.name}</strong><span>{r.date}</span></div>
+                <svg class="lp-review-g" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15A11 11 0 0 0 2.18 7.06L5.84 9.9C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+              </div>
+              <div class="lp-review-stars" aria-label={`${r.rating} von 5 Sternen`}>★★★★★</div>
+              <p class="lp-review-text">{r.text}</p>
+            </article>
+          ))}
+        </div>
+        {GOOGLE_PROFILE_URL && (
+          <p style="text-align:center; margin-top:28px;">
+            <a class="ev-btn ev-btn-ghost" href={GOOGLE_PROFILE_URL} target="_blank" rel="noopener">Alle Bewertungen auf Google ansehen →</a>
+          </p>
+        )}
+      </div>
+    </section>
+
+    <!-- ===== GARANTIE ===== -->
     <section class="ev-section" aria-labelledby="lp-gar-heading">
       <div class="container">
         <div class="ev-guarantee">
@@ -154,8 +229,40 @@ const SCHEDULER_URL = import.meta.env.PUBLIC_PIPEDRIVE_SCHEDULER_URL ?? '';
       </div>
     </section>
 
+    <!-- ===== TERMIN / BUCHUNG (bewusst nicht ganz unten) ===== -->
+    <section id="termin" class="ev-section ev-section-alt" aria-labelledby="lp-termin-heading">
+      <div class="container">
+        <div class="lp-termin">
+          <p class="ev-eyebrow">Dein nächster Schritt</p>
+          <h2 id="lp-termin-heading" class="ev-h2">Sichere dir deinen Funnel-Check.</h2>
+          <p class="ev-section-sub" style="margin-left:auto;margin-right:auto;text-align:center;">
+            Wähl dir einen Termin. Du bekommst sofort eine Bestätigung mit Google-Meet-Link.
+            Kostenlos, ~20 Minuten, kein Verkaufsdruck.
+          </p>
+
+          {SCHEDULER_URL ? (
+            <div class="lp-scheduler">
+              <iframe src={SCHEDULER_URL} title="Funnel-Check Termin buchen" loading="lazy" referrerpolicy="no-referrer"></iframe>
+            </div>
+          ) : (
+            <div class="lp-scheduler-fallback">
+              <p><strong>Buchungs-Kalender wird hier eingebettet.</strong></p>
+              <p>Setze deinen Pipedrive-Scheduler-Link als <code>PUBLIC_PIPEDRIVE_SCHEDULER_URL</code> — dann erscheint hier der Kalender mit automatischem Google-Meet-Link und Pipedrive-Sync.</p>
+              <a class="ev-btn ev-btn-primary" href="mailto:hallo@elevo.solutions?subject=Funnel-Check%20Termin">Termin per E-Mail anfragen</a>
+            </div>
+          )}
+
+          <ul class="lp-termin-trust" role="list">
+            <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Automatischer Google-Meet-Link</li>
+            <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Kostenlos &amp; unverbindlich</li>
+            <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>~20 Minuten, kein Pitch</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== ÜBER MERT ===== -->
-    <section class="ev-section ev-section-alt" aria-labelledby="lp-mert-heading">
+    <section class="ev-section" aria-labelledby="lp-mert-heading">
       <div class="container">
         <div class="ev-vision">
           <figure class="ev-vision-portrait">
@@ -180,122 +287,109 @@ const SCHEDULER_URL = import.meta.env.PUBLIC_PIPEDRIVE_SCHEDULER_URL ?? '';
       </div>
     </section>
 
-    <!-- ===== TERMIN / BUCHUNG ===== -->
-    <section id="termin" class="ev-section" aria-labelledby="lp-termin-heading">
-      <div class="container">
-        <div class="lp-termin">
-          <p class="ev-eyebrow">Dein nächster Schritt</p>
-          <h2 id="lp-termin-heading" class="ev-h2">Sichere dir deinen Funnel-Check.</h2>
-          <p class="ev-section-sub" style="margin-left:auto;margin-right:auto;text-align:center;">
-            Wähl dir einen Termin. Du bekommst sofort eine Bestätigung mit Google-Meet-Link.
-            Kostenlos, ~20 Minuten, kein Verkaufsdruck.
-          </p>
-
-          {SCHEDULER_URL ? (
-            <div class="lp-scheduler">
-              <iframe
-                src={SCHEDULER_URL}
-                title="Funnel-Check Termin buchen"
-                loading="lazy"
-                referrerpolicy="no-referrer"
-              ></iframe>
-            </div>
-          ) : (
-            <div class="lp-scheduler-fallback">
-              <p><strong>Buchungs-Kalender wird hier eingebettet.</strong></p>
-              <p>Setze deinen Pipedrive-Scheduler-Link als <code>PUBLIC_PIPEDRIVE_SCHEDULER_URL</code> (Environment-Variable) — dann erscheint hier der Kalender mit automatischem Google-Meet-Link und Pipedrive-Sync.</p>
-              <a class="ev-btn ev-btn-primary" href="mailto:hallo@elevo.solutions?subject=Funnel-Check%20Termin">Termin per E-Mail anfragen</a>
-            </div>
-          )}
-
-          <ul class="lp-termin-trust" role="list">
-            <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Automatischer Google-Meet-Link</li>
-            <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Kostenlos &amp; unverbindlich</li>
-            <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>~20 Minuten, kein Pitch</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
   </main>
 
   <Footer />
+
+  <script>
+    // ----- Anfragen-Rechner -----
+    const visEl = document.getElementById('calc-visitors') as HTMLInputElement;
+    const rateEl = document.getElementById('calc-rate') as HTMLInputElement;
+    const closeEl = document.getElementById('calc-close') as HTMLInputElement;
+    const visOut = document.getElementById('calc-visitors-out');
+    const rateOut = document.getElementById('calc-rate-out');
+    const closeOut = document.getElementById('calc-close-out');
+    const lostOut = document.getElementById('calc-lost');
+    const extraClientsOut = document.getElementById('calc-extra-clients');
+    const extraMonthOut = document.getElementById('calc-extra-month');
+    const de = new Intl.NumberFormat('de-DE');
+    const UPLIFT_FACTOR = 2.5;
+
+    function paintRange(el: HTMLInputElement) {
+      const pct = ((+el.value - +el.min) / (+el.max - +el.min)) * 100;
+      el.style.background = `linear-gradient(90deg, var(--accent) 0%, var(--accent) ${pct}%, rgba(255,255,255,0.12) ${pct}%, rgba(255,255,255,0.12) 100%)`;
+    }
+    function updateCalc() {
+      if (!visEl || !rateEl || !closeEl) return;
+      const visitors = +visEl.value, rate = +rateEl.value, close = +closeEl.value;
+      const extraRate = rate * (UPLIFT_FACTOR - 1);
+      const extraPerMonth = visitors * extraRate / 100;
+      const extraPerYear = extraPerMonth * 12;
+      const extraClients = extraPerYear * close / 100;
+      if (visOut) visOut.textContent = de.format(visitors);
+      if (rateOut) rateOut.innerHTML = rate.toLocaleString('de-DE') + '&nbsp;%';
+      if (closeOut) closeOut.innerHTML = close + '&nbsp;%';
+      if (lostOut) lostOut.textContent = de.format(Math.round(extraPerYear));
+      if (extraClientsOut) extraClientsOut.textContent = de.format(Math.round(extraClients));
+      if (extraMonthOut) extraMonthOut.textContent = de.format(Math.round(extraPerMonth));
+      [visEl, rateEl, closeEl].forEach(paintRange);
+    }
+    if (visEl && rateEl && closeEl) {
+      [visEl, rateEl, closeEl].forEach((el) => el.addEventListener('input', updateCalc));
+      updateCalc();
+    }
+  </script>
 </BaseLayout>
 
 <style>
-  /* Minimaler LP-Header */
   .lp-header {
     position: sticky; top: 0; z-index: 100;
     background: rgba(8, 11, 20, 0.85);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
   }
-  .lp-header-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    padding-top: 14px; padding-bottom: 14px;
-  }
+  .lp-header-inner { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; padding-bottom: 14px; }
   .lp-header-cta { padding: 11px 22px; font-size: 0.92rem; }
   .lp-hero { padding-top: clamp(56px, 8vw, 96px); }
 
-  /* "Das nimmst du mit"-Karte (Hero rechts) */
   .lp-getcard {
     background: linear-gradient(180deg, rgba(59,130,246,0.10), transparent 60%), var(--bg-card);
-    border: 1px solid var(--border-strong);
-    border-radius: var(--radius-lg);
-    padding: 32px 30px;
-    align-self: center;
+    border: 1px solid var(--border-strong); border-radius: var(--radius-lg); padding: 32px 30px; align-self: center;
   }
-  .lp-getcard-title {
-    font-family: var(--font-heading); font-weight: 800; color: var(--text-primary);
-    font-size: 1.15rem; margin: 0 0 18px;
-  }
+  .lp-getcard-title { font-family: var(--font-heading); font-weight: 800; color: var(--text-primary); font-size: 1.15rem; margin: 0 0 18px; }
   .lp-getcard-list { list-style: none; margin: 0 0 26px; padding: 0; display: grid; gap: 16px; }
-  .lp-getcard-list li {
-    display: flex; gap: 12px; align-items: flex-start;
-    color: var(--text-secondary); font-size: 1rem; line-height: 1.45;
-  }
-  .lp-check {
-    flex-shrink: 0; width: 24px; height: 24px; border-radius: 7px;
-    background: rgba(59,130,246,0.14); color: var(--accent);
-    display: inline-flex; align-items: center; justify-content: center; margin-top: 1px;
-  }
+  .lp-getcard-list li { display: flex; gap: 12px; align-items: flex-start; color: var(--text-secondary); font-size: 1rem; line-height: 1.45; }
+  .lp-check { flex-shrink: 0; width: 24px; height: 24px; border-radius: 7px; background: rgba(59,130,246,0.14); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; margin-top: 1px; }
   .lp-check svg { width: 13px; height: 13px; }
   .lp-getcard-cta { width: 100%; justify-content: center; }
   .lp-getcard-note { font-size: 0.82rem; color: var(--text-muted); margin: 16px 0 0; line-height: 1.45; }
 
-  /* Pains */
   .lp-pains { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
-  .lp-pain {
-    display: flex; align-items: center; gap: 12px;
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 20px 22px;
-    color: var(--text-primary); font-family: var(--font-heading); font-weight: 600; font-size: 1.05rem;
-  }
+  .lp-pain { display: flex; align-items: center; gap: 12px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; color: var(--text-primary); font-family: var(--font-heading); font-weight: 600; font-size: 1.05rem; }
   .lp-x { color: var(--danger); font-weight: 800; font-size: 1.2rem; }
 
-  /* Termin / Scheduler */
+  /* Google-Bewertungen */
+  .lp-reviews-head { display: flex; align-items: center; gap: 18px; margin-bottom: 32px; }
+  .lp-g { display: inline-flex; }
+  .lp-rating { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .lp-rating-num { font-family: var(--font-heading); font-weight: 800; font-size: 1.6rem; color: var(--text-primary); }
+  .lp-stars { color: #FBBC05; font-size: 1.25rem; letter-spacing: 2px; }
+  .lp-rating-count { color: var(--text-muted); font-size: 0.95rem; }
+  .lp-reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .lp-review { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 26px 24px; display: flex; flex-direction: column; gap: 12px; }
+  .lp-review-top { display: flex; align-items: center; gap: 12px; }
+  .lp-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--accent); color: #fff; font-family: var(--font-heading); font-weight: 800; display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .lp-review-who { display: flex; flex-direction: column; line-height: 1.3; flex: 1; }
+  .lp-review-who strong { color: var(--text-primary); font-size: 0.98rem; }
+  .lp-review-who span { color: var(--text-muted); font-size: 0.8rem; }
+  .lp-review-g { flex-shrink: 0; }
+  .lp-review-stars { color: #FBBC05; font-size: 1rem; letter-spacing: 2px; }
+  .lp-review-text { color: var(--text-secondary); font-size: 0.96rem; line-height: 1.6; margin: 0; }
+
   .lp-termin { max-width: 820px; margin: 0 auto; text-align: center; }
   .lp-termin .ev-h2 { margin-left: auto; margin-right: auto; }
-  .lp-scheduler {
-    margin: 32px 0 8px; border: 1px solid var(--border-strong);
-    border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-card);
-  }
+  .lp-scheduler { margin: 32px 0 8px; border: 1px solid var(--border-strong); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-card); }
   .lp-scheduler iframe { width: 100%; min-height: 720px; border: 0; display: block; }
-  .lp-scheduler-fallback {
-    margin: 32px 0 8px; padding: 40px 30px; text-align: center;
-    border: 1px dashed var(--border-strong); border-radius: var(--radius-lg);
-    background: var(--bg-card);
-  }
+  .lp-scheduler-fallback { margin: 32px 0 8px; padding: 40px 30px; text-align: center; border: 1px dashed var(--border-strong); border-radius: var(--radius-lg); background: var(--bg-card); }
   .lp-scheduler-fallback p { color: var(--text-secondary); margin: 0 0 12px; line-height: 1.6; }
   .lp-scheduler-fallback code { color: var(--accent); font-family: ui-monospace, Menlo, monospace; font-size: 0.85em; }
   .lp-scheduler-fallback .ev-btn { margin-top: 12px; }
-
-  .lp-termin-trust {
-    list-style: none; padding: 0; margin: 26px 0 0;
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 28px;
-  }
+  .lp-termin-trust { list-style: none; padding: 0; margin: 26px 0 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 28px; }
   .lp-termin-trust li { display: flex; align-items: center; gap: 10px; color: var(--text-secondary); font-size: 0.95rem; }
 
+  @media (max-width: 880px) {
+    .lp-reviews { grid-template-columns: 1fr; }
+  }
   @media (max-width: 760px) {
     .lp-pains { grid-template-columns: 1fr; }
     .lp-header-cta { padding: 10px 18px; font-size: 0.86rem; }
