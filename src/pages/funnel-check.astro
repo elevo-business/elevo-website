@@ -10,17 +10,19 @@ import '../styles/ev-system.css';
 // Pipedrive an. Leichte Qualifizierung (Name, E-Mail, "Was machst du?") als Scheduler-Frage.
 const SCHEDULER_URL = import.meta.env.PUBLIC_PIPEDRIVE_SCHEDULER_URL ?? '';
 
-// Google-Profil-Link (für "Auf Google ansehen").
-const GOOGLE_PROFILE_URL = import.meta.env.PUBLIC_GOOGLE_PROFILE_URL ?? '';
+// Google-Profil-Link (für "Auf Google ansehen"). Exakten Profil-Link via ENV setzen.
+const GOOGLE_PROFILE_URL = import.meta.env.PUBLIC_GOOGLE_PROFILE_URL ?? 'https://www.google.com/search?q=ELEVO+Solutions+Rezensionen';
 
-// ⚠️ PLATZHALTER — durch ECHTE Google-Rezensionen ersetzen (Text, Name, Sterne, Datum).
-// Keine erfundenen Bewertungen live schalten.
+// Echte Google-Rezensionen (ELEVO Solutions, 4,7 ★ · 3 Rezensionen).
+// Texte gekürzt auf den im Profil sichtbaren Teil — bei Bedarf durch Volltext ersetzen.
 const reviews = [
-  { name: 'Sandra K.', initial: 'S', rating: 5, date: 'vor 2 Wochen', text: 'Mert hat unsere Seite in zwei Wochen umgebaut. Die ersten Anfragen kamen schneller als erwartet, Kommunikation top, alles aus einer Hand.' },
-  { name: 'Tobias M.', initial: 'T', rating: 5, date: 'vor 1 Monat', text: 'Endlich eine Seite, die nicht nur schön ist, sondern Anfragen bringt. Sehr professionell und schnell umgesetzt.' },
-  { name: 'Yasemin A.', initial: 'Y', rating: 5, date: 'vor 1 Monat', text: 'Ehrliche Beratung ohne Verkaufsdruck. Klare Empfehlung für Coaches, die mehr aus ihrer Reichweite holen wollen.' },
+  { name: 'Sahil Nayar', initial: 'S', rating: 5, date: 'vor einer Woche', text: 'Wir sind sehr zufrieden mit der Zusammenarbeit. Vom Erstgespräch bis hin zur Umsetzung verlief alles unkompliziert und vor allem super schnell.' },
+  { name: 'Miguel Römgens', initial: 'M', rating: 4, date: 'vor einer Woche', text: 'Wir hatten vorher eine Website von vor zehn Jahren, die auf dem Handy kaum lesbar war. Elevo hat in knapp zwei Wochen etwas komplett Neues gebaut.' },
+  { name: 'Dorian Azemi', initial: 'D', rating: 5, date: 'vor einer Woche', text: 'Top Arbeit. Schnell, professionell und überraschend unkompliziert.' },
 ];
-const avgRating = (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).toFixed(1).replace('.', ',');
+const avgNum = reviews.reduce((s, r) => s + r.rating, 0) / reviews.length;
+const avgRating = avgNum.toFixed(1).replace('.', ',');
+const avgPct = Math.round((avgNum / 5) * 100);
 ---
 
 <BaseLayout
@@ -178,6 +180,8 @@ const avgRating = (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).t
     <!-- ===== SOCIAL PROOF: Google-Bewertungen ===== -->
     <section class="ev-section ev-section-alt" aria-labelledby="lp-reviews-heading">
       <div class="container">
+        <p class="ev-eyebrow">Was Kunden sagen</p>
+        <h2 id="lp-reviews-heading" class="ev-h2" style="margin-bottom:28px;">Echte Bewertungen. Keine Versprechen.</h2>
         <div class="lp-reviews-head">
           <span class="lp-g" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="34" height="34"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15A11 11 0 0 0 2.18 7.06L5.84 9.9C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
@@ -186,7 +190,7 @@ const avgRating = (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).t
             <p class="ev-eyebrow" style="margin-bottom:8px;">Google Bewertungen</p>
             <div class="lp-rating">
               <span class="lp-rating-num">{avgRating}</span>
-              <span class="lp-stars" aria-hidden="true">★★★★★</span>
+              <span class="lp-starbar" style={`--pct:${avgPct}%`} aria-hidden="true"></span>
               <span class="lp-rating-count">· {reviews.length} Rezensionen</span>
             </div>
           </div>
@@ -200,7 +204,7 @@ const avgRating = (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).t
                 <div class="lp-review-who"><strong>{r.name}</strong><span>{r.date}</span></div>
                 <svg class="lp-review-g" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15A11 11 0 0 0 2.18 7.06L5.84 9.9C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
               </div>
-              <div class="lp-review-stars" aria-label={`${r.rating} von 5 Sternen`}>★★★★★</div>
+              <div class="lp-review-stars" aria-label={`${r.rating} von 5 Sternen`}>{'★'.repeat(r.rating)}<span class="lp-star-empty">{'★'.repeat(5 - r.rating)}</span></div>
               <p class="lp-review-text">{r.text}</p>
             </article>
           ))}
@@ -363,7 +367,10 @@ const avgRating = (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).t
   .lp-g { display: inline-flex; }
   .lp-rating { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .lp-rating-num { font-family: var(--font-heading); font-weight: 800; font-size: 1.6rem; color: var(--text-primary); }
-  .lp-stars { color: #FBBC05; font-size: 1.25rem; letter-spacing: 2px; }
+  .lp-starbar { position: relative; display: inline-block; font-size: 1.25rem; line-height: 1; letter-spacing: 2px; }
+  .lp-starbar::before { content: '★★★★★'; color: rgba(255,255,255,0.18); }
+  .lp-starbar::after { content: '★★★★★'; color: #FBBC05; position: absolute; left: 0; top: 0; width: var(--pct, 100%); overflow: hidden; white-space: nowrap; }
+  .lp-star-empty { color: rgba(255,255,255,0.18); }
   .lp-rating-count { color: var(--text-muted); font-size: 0.95rem; }
   .lp-reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .lp-review { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 26px 24px; display: flex; flex-direction: column; gap: 12px; }
