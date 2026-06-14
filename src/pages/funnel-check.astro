@@ -8,7 +8,7 @@ import '../styles/ev-system.css';
 // Pipedrive Scheduler: Buchungs-Link hier oder via ENV (PUBLIC_PIPEDRIVE_SCHEDULER_URL).
 // Erzeugt beim Buchen automatisch einen Google-Meet-Link und legt Activity/Lead in
 // Pipedrive an. Leichte Qualifizierung (Name, E-Mail, "Was machst du?") als Scheduler-Frage.
-const SCHEDULER_URL = import.meta.env.PUBLIC_PIPEDRIVE_SCHEDULER_URL ?? '';
+const SCHEDULER_URL = import.meta.env.PUBLIC_PIPEDRIVE_SCHEDULER_URL ?? 'https://elevo.pipedrive.com/scheduler/zXDL7Lhq/funnel-check';
 
 // Formular postet an die bereits bestehende Kontakt-/Lead-API (api.elevo.solutions) —
 // dieselbe, die das Kontaktformular nutzt. Sie legt die Anfrage server-seitig
@@ -286,7 +286,7 @@ const avgPct = Math.round((avgNum / 5) * 100);
             <p class="lp-booking-lead">Stark — wähl jetzt direkt deinen Termin:</p>
             {SCHEDULER_URL ? (
               <div class="lp-scheduler">
-                <iframe src={SCHEDULER_URL} title="Funnel-Check Termin buchen" loading="lazy" referrerpolicy="no-referrer"></iframe>
+                <iframe src={SCHEDULER_URL} title="Funnel-Check Termin buchen" loading="lazy" allow="fullscreen" allowfullscreen></iframe>
               </div>
             ) : (
               <div class="lp-scheduler-fallback">
