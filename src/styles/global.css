@@ -1923,14 +1923,17 @@ section { position: relative; }
 
 .cookie-btns { display: flex; gap: 10px; flex-wrap: wrap; }
 
+/* "Alle akzeptieren" = Primaeraktion: volle Breite, oben, visuell fuehrend.
+   "Auswahl speichern" + "Nur notwendige" teilen sich gleichwertig die zweite
+   Reihe — beide bleiben sichtbare Ein-Klick-Buttons (wirksame Einwilligung). */
 .cookie-accept {
-  flex: 1;
+  flex: 1 1 100%;
   background: var(--accent);
   color: #fff;
-  padding: 10px 16px;
+  padding: 13px 16px;
   border-radius: var(--btn-radius);
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.92rem;
+  font-weight: 600;
   font-family: var(--font-body);
   transition: background var(--transition);
 }
@@ -1938,13 +1941,13 @@ section { position: relative; }
 .cookie-accept:hover { background: var(--accent-hover); }
 
 .cookie-save {
-  flex: 1;
+  flex: 1 1 0;
   background: transparent;
   border: 1px solid var(--accent);
   color: var(--accent);
-  padding: 10px 16px;
+  padding: 9px 16px;
   border-radius: var(--btn-radius);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-family: var(--font-body);
   transition: background var(--transition), color var(--transition);
 }
@@ -1952,13 +1955,13 @@ section { position: relative; }
 .cookie-save:hover { background: var(--accent); color: #fff; }
 
 .cookie-decline {
-  flex: 1;
+  flex: 1 1 0;
   background: transparent;
   border: 1px solid var(--border);
   color: var(--text-secondary);
-  padding: 10px 16px;
+  padding: 9px 16px;
   border-radius: var(--btn-radius);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-family: var(--font-body);
   transition: border-color var(--transition), color var(--transition);
 }
