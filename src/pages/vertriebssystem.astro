@@ -373,9 +373,11 @@ const year = new Date().getFullYear();
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
             <h3>Geschafft. Wähl jetzt deinen Termin.</h3>
-            <p>Such dir unten einen freien Slot in meinem Kalender aus. Die Bestätigung kommt sofort per E-Mail. Falls gerade nichts passt, melden wir uns bei dir.</p>
-            <div class="lp-scheduler" id="lf-calendly" data-url={CALENDLY_URL}></div>
-            <p class="lp-cal-fallback">Kalender lädt nicht? <a href={CALENDLY_URL} target="_blank" rel="noopener">Hier im neuen Tab öffnen</a></p>
+            <p>Such dir einen freien Slot in meinem Kalender aus. Die Bestätigung kommt sofort per E-Mail. Falls das Fenster nicht von selbst aufgeht, klick einfach den Button.</p>
+            <div class="lp-scheduler-cta">
+              <button type="button" class="lp-btn lp-btn-primary lp-btn-lg" id="lf-open-cal" data-url={CALENDLY_URL}>Freien Termin auswählen</button>
+            </div>
+            <p class="lp-cal-fallback">Fenster öffnet nicht? <a href={CALENDLY_URL} target="_blank" rel="noopener">Hier im neuen Tab öffnen</a></p>
           </div>
 
           <ul class="lp-termin-trust" role="list">
@@ -493,29 +495,27 @@ const year = new Date().getFullYear();
       updateCalc();
     }
 
-    // ----- Calendly Inline-Widget (Kalender-Sync + Prefill) -----
-    // Laedt erst nach dem Absenden des Formulars (aktive Buchungsabsicht) und
-    // fuellt Name/E-Mail/Telefon/Engpass vor -> kein doppeltes Eintippen.
-    function openCalendly(data: { firstName: string; lastName: string; email: string; phone: string; engpass: string; }) {
-      const el = document.getElementById('lf-calendly');
-      if (!el) return;
-      const url = el.dataset.url;
-      if (!url) return;
-      const prefill = {
-        name: `${data.firstName} ${data.lastName}`.trim(),
-        email: data.email,
-        // a1/a2 entsprechen den benutzerdefinierten Fragen im Calendly-Event
-        // (Reihenfolge im Event-Setup: 1 = Telefon, 2 = groesster Zeitfresser).
-        customAnswers: { a1: data.phone, a2: data.engpass },
-      };
-      function init() {
-        const C = (window as any).Calendly;
-        if (C && typeof C.initInlineWidget === 'function') {
-          el!.innerHTML = '';
-          C.initInlineWidget({ url, parentElement: el, prefill });
-        }
-      }
-      if ((window as any).Calendly) { init(); return; }
+    // ----- Calendly Popup (Kalender-Sync + Prefill) -----
+    // Popup wird von Calendly selbst gerendert (responsive, kein Inline-Layout-
+    // Problem). Oeffnet nach dem Absenden automatisch und ist per Button erneut
+    // aufrufbar. Prefill (Name/E-Mail/Telefon/Engpass) ueber URL-Parameter.
+    let calUrl = '';
+
+    function buildCalendlyUrl(base: string, data: { firstName: string; lastName: string; email: string; phone: string; engpass: string; }) {
+      try {
+        const u = new URL(base);
+        u.searchParams.set('name', `${data.firstName} ${data.lastName}`.trim());
+        u.searchParams.set('email', data.email);
+        // a1/a2 = benutzerdefinierte Fragen im Calendly-Event
+        // (Reihenfolge im Event: 1 = Telefon, 2 = groesster Zeitfresser).
+        u.searchParams.set('a1', data.phone);
+        u.searchParams.set('a2', data.engpass);
+        return u.toString();
+      } catch { return base; }
+    }
+
+    function withCalendly(cb: () => void) {
+      if ((window as any).Calendly) { cb(); return; }
       if (!document.getElementById('calendly-widget-css')) {
         const link = document.createElement('link');
         link.id = 'calendly-widget-css';
@@ -531,8 +531,19 @@ const year = new Date().getFullYear();
         s.async = true;
         document.head.appendChild(s);
       }
-      s.addEventListener('load', init, { once: true });
+      s.addEventListener('load', cb, { once: true });
     }
+
+    function openCalendlyPopup() {
+      if (!calUrl) return;
+      withCalendly(() => {
+        const C = (window as any).Calendly;
+        if (C && typeof C.initPopupWidget === 'function') C.initPopupWidget({ url: calUrl });
+      });
+    }
+
+    // Button im Erfolgs-Screen oeffnet das Popup (erneut).
+    document.getElementById('lf-open-cal')?.addEventListener('click', openCalendlyPopup);
 
     // ----- Lead-Formular -> Pipedrive (server-seitig) -> Calendly -----
     const lf = document.getElementById('lead-form') as HTMLFormElement | null;
@@ -569,8 +580,11 @@ const year = new Date().getFullYear();
         // Fehler beim CRM-Sync niemals die eigentliche Terminbuchung.
         lf.hidden = true;
         success.hidden = false;
-        openCalendly({ firstName, lastName, email, phone, engpass });
         success.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Calendly-Popup mit Prefill vorbereiten und automatisch oeffnen.
+        const calBase = (document.getElementById('lf-open-cal') as HTMLElement | null)?.dataset.url || '';
+        calUrl = buildCalendlyUrl(calBase, { firstName, lastName, email, phone, engpass });
+        openCalendlyPopup();
 
         // Conversion-Tracking
         if (typeof (window as any).gtag !== 'undefined') {
@@ -791,16 +805,16 @@ const year = new Date().getFullYear();
   .lp-calc-note { font-size: 0.78rem; opacity: 0.85; margin: 14px 0 0; line-height: 1.5; }
 
   /* Termin / Buchung */
-  .lp-termin { max-width: 1040px; margin: 0 auto; text-align: center; }
+  .lp-termin { max-width: 760px; margin: 0 auto; text-align: center; }
   .lp-termin .lp-h2 { margin-left: auto; margin-right: auto; }
-  .lp-termin .lp-sub { max-width: 720px; }
+  .lp-scheduler-cta { margin-top: 28px; }
   .lp-scheduler { margin: 28px 0 0; border: 1px solid var(--border-strong); border-radius: 16px; overflow: hidden; background: #fff; min-height: 700px; }
   .lp-scheduler iframe { width: 100%; min-height: 700px; border: 0; display: block; }
   .lp-cal-fallback { font-size: 0.85rem; color: var(--text-muted); margin: 12px 0 0; }
   .lp-cal-fallback a { color: var(--accent); }
   .lp-form { max-width: 600px; margin: 30px auto 8px; text-align: left; }
   .lp-form .form-submit { margin-top: 4px; }
-  .lp-form-success { max-width: 1000px; margin: 30px auto 8px; padding: 38px 30px; text-align: center; background: #fff; border: 1px solid var(--border-strong); border-radius: 16px; }
+  .lp-form-success { max-width: 640px; margin: 30px auto 8px; padding: 38px 30px; text-align: center; background: #fff; border: 1px solid var(--border-strong); border-radius: 16px; }
   .lp-form-success-icon { width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%; background: rgba(37, 99, 235, 0.10); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; }
   .lp-form-success-icon svg { width: 26px; height: 26px; }
   .lp-form-success h3 { font-family: var(--font-heading); color: var(--text-primary); font-size: 1.3rem; margin: 0 0 12px; }
