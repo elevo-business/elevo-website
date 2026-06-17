@@ -1,0 +1,152 @@
+---
+// Eigenständiger Cookie-Consent-Banner (Opt-in).
+// Markup + Logik sind identisch zum Banner in Footer.astro, aber als
+// wiederverwendbare Komponente — für Seiten OHNE die große Footer-Komponente
+// (z. B. Landingpages). Die Styles kommen aus global.css (#cookie-banner ...).
+//
+// Beim Marketing-Opt-in wird `elevo:consent-granted` dispatcht. BaseLayout
+// hört darauf und lädt dann Meta-Pixel (inkl. PageView/LPV) sowie gtag.js.
+// WICHTIG: Diese Komponente nur EINMAL pro Seite einbinden und NICHT zusammen
+// mit <Footer /> (der bereits einen identischen Banner enthält) — sonst
+// kollidieren die Element-IDs.
+---
+
+<!-- Cookie Banner -->
+<div id="cookie-banner" role="dialog" aria-modal="true" aria-labelledby="cookie-title">
+  <p class="cookie-title" id="cookie-title">🍪 Cookies &amp; Datenschutz</p>
+  <p class="cookie-text">
+    Mit deiner Zustimmung messen wir anonym, wie gut unsere Werbung funktioniert (Google Ads &amp; Meta).
+    Das hilft uns, dir relevantere Inhalte zu zeigen. Du entscheidest — jederzeit änderbar.
+    Mehr dazu in unserer <a href="/datenschutz">Datenschutzerklärung</a>.
+  </p>
+  <div class="cookie-toggles">
+    <div class="cookie-toggle-row">
+      <div class="cookie-toggle-info">
+        <div class="cookie-toggle-label">Notwendig</div>
+        <div class="cookie-toggle-desc">Technisch erforderlich, immer aktiv</div>
+      </div>
+      <label class="cookie-toggle-switch" aria-label="Notwendige Cookies (immer aktiv)">
+        <input type="checkbox" id="toggle-necessary" checked disabled>
+        <span class="cookie-toggle-track"></span>
+      </label>
+    </div>
+    <div class="cookie-toggle-row">
+      <div class="cookie-toggle-info">
+        <div class="cookie-toggle-label">Marketing</div>
+        <div class="cookie-toggle-desc">Google Ads &amp; Meta — Conversion-Tracking für Werbeanzeigen</div>
+      </div>
+      <label class="cookie-toggle-switch" aria-label="Marketing-Cookies">
+        <input type="checkbox" id="toggle-marketing">
+        <span class="cookie-toggle-track"></span>
+      </label>
+    </div>
+  </div>
+  <div class="cookie-btns">
+    <button class="cookie-accept" id="cookie-accept">Alle akzeptieren</button>
+    <button class="cookie-save" id="cookie-save">Auswahl speichern</button>
+    <button class="cookie-decline" id="cookie-decline">Nur notwendige</button>
+  </div>
+</div>
+
+<script>
+  const COOKIE_KEY = 'elevo_consent_v2';
+
+  interface ConsentPrefs { marketing: boolean; }
+
+  function applyConsent(prefs: ConsentPrefs) {
+    if (typeof (window as any).gtag !== 'undefined') {
+      (window as any).gtag('consent', 'update', {
+        'analytics_storage': 'denied',
+        'ad_storage': prefs.marketing ? 'granted' : 'denied',
+        'ad_user_data': prefs.marketing ? 'granted' : 'denied',
+        'ad_personalization': prefs.marketing ? 'granted' : 'denied'
+      });
+    }
+    // Sobald Marketing freigegeben wird, lädt BaseLayout Meta-Pixel + gtag.js
+    // (PageView/LPV feuert dann sofort).
+    if (prefs.marketing) {
+      window.dispatchEvent(new Event('elevo:consent-granted'));
+    }
+  }
+
+  function syncToggles(prefs: ConsentPrefs) {
+    (document.getElementById('toggle-marketing') as HTMLInputElement).checked = prefs.marketing;
+  }
+
+  function saveConsent(prefs: ConsentPrefs) {
+    localStorage.setItem(COOKIE_KEY, JSON.stringify(prefs));
+    applyConsent(prefs);
+    hideBanner();
+  }
+
+  const banner = document.getElementById('cookie-banner')!;
+  const acceptBtn = document.getElementById('cookie-accept')!;
+  const saveBtn = document.getElementById('cookie-save')!;
+  const declineBtn = document.getElementById('cookie-decline')!;
+  const settingsLink = document.getElementById('cookie-settings-link');
+
+  function showBanner() {
+    banner.classList.add('show');
+    setTimeout(() => acceptBtn.focus(), 50);
+  }
+
+  function hideBanner() {
+    banner.classList.remove('show');
+  }
+
+  function getTogglePrefs(): ConsentPrefs {
+    return {
+      marketing: (document.getElementById('toggle-marketing') as HTMLInputElement).checked
+    };
+  }
+
+  // Focus trap
+  banner.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key !== 'Tab') return;
+    const focusable = Array.from(banner.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], input:not([disabled])'));
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  const storedRaw = localStorage.getItem(COOKIE_KEY);
+  if (storedRaw) {
+    try {
+      const prefs = JSON.parse(storedRaw) as ConsentPrefs;
+      applyConsent(prefs);
+      syncToggles(prefs);
+    } catch {
+      applyConsent({ marketing: true });
+      syncToggles({ marketing: true });
+    }
+  } else {
+    showBanner();
+  }
+
+  acceptBtn.addEventListener('click', () => {
+    syncToggles({ marketing: true });
+    saveConsent({ marketing: true });
+  });
+
+  saveBtn.addEventListener('click', () => {
+    saveConsent(getTogglePrefs());
+  });
+
+  declineBtn.addEventListener('click', () => {
+    syncToggles({ marketing: false });
+    saveConsent({ marketing: false });
+  });
+
+  settingsLink?.addEventListener('click', (e: Event) => {
+    e.preventDefault();
+    const raw = localStorage.getItem(COOKIE_KEY);
+    if (raw) {
+      try { syncToggles(JSON.parse(raw) as ConsentPrefs); } catch {}
+    }
+    showBanner();
+  });
+</script>
