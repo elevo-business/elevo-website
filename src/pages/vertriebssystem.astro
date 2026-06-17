@@ -791,15 +791,16 @@ const year = new Date().getFullYear();
   .lp-calc-note { font-size: 0.78rem; opacity: 0.85; margin: 14px 0 0; line-height: 1.5; }
 
   /* Termin / Buchung */
-  .lp-termin { max-width: 760px; margin: 0 auto; text-align: center; }
+  .lp-termin { max-width: 1040px; margin: 0 auto; text-align: center; }
   .lp-termin .lp-h2 { margin-left: auto; margin-right: auto; }
+  .lp-termin .lp-sub { max-width: 720px; }
   .lp-scheduler { margin: 28px 0 0; border: 1px solid var(--border-strong); border-radius: 16px; overflow: hidden; background: #fff; min-height: 700px; }
   .lp-scheduler iframe { width: 100%; min-height: 700px; border: 0; display: block; }
   .lp-cal-fallback { font-size: 0.85rem; color: var(--text-muted); margin: 12px 0 0; }
   .lp-cal-fallback a { color: var(--accent); }
   .lp-form { max-width: 600px; margin: 30px auto 8px; text-align: left; }
   .lp-form .form-submit { margin-top: 4px; }
-  .lp-form-success { max-width: 760px; margin: 30px auto 8px; padding: 38px 30px; text-align: center; background: #fff; border: 1px solid var(--border-strong); border-radius: 16px; }
+  .lp-form-success { max-width: 1000px; margin: 30px auto 8px; padding: 38px 30px; text-align: center; background: #fff; border: 1px solid var(--border-strong); border-radius: 16px; }
   .lp-form-success-icon { width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%; background: rgba(37, 99, 235, 0.10); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; }
   .lp-form-success-icon svg { width: 26px; height: 26px; }
   .lp-form-success h3 { font-family: var(--font-heading); color: var(--text-primary); font-size: 1.3rem; margin: 0 0 12px; }
@@ -850,6 +851,7 @@ const year = new Date().getFullYear();
     .lp-pains, .lp-wins, .lp-ref-steps { grid-template-columns: 1fr; }
     .lp-ref-head { grid-template-columns: 1fr; gap: 18px; }
     .lp-ref-result { text-align: left; }
+    .lp-scheduler, .lp-scheduler iframe { min-height: 880px; }
     .lp-vision { grid-template-columns: 1fr; gap: 26px; }
     .lp-vision-portrait { max-width: 200px; }
     .lp-guarantee { flex-direction: column; gap: 18px; }
