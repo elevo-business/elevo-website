@@ -5,6 +5,9 @@ export interface Props {
   canonical?: string;
   ogImage?: string;
   noindex?: boolean;
+  /** Feuert PageView fuer alle Besucher (ausser aktiv abgelehnt) — fuer
+   *  LPV-optimierte Ad-Landingpages. Lead-Event bleibt consent-gated. */
+  eagerPageView?: boolean;
 }
 
 const {
@@ -13,6 +16,7 @@ const {
   canonical = 'https://elevo.solutions/',
   ogImage = 'https://elevo.solutions/og-image.jpg',
   noindex = false,
+  eagerPageView = false,
 } = Astro.props;
 
 // Meta-Pixel-ID (nicht geheim, identisch zur Dataset-ID des CAPI-Servers).
@@ -219,7 +223,7 @@ const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID ?? '2057474564840133';
       gemeinsame event_id, feuert das Browser-Lead-Event und liefert fbp/fbc für
       das server-seitige CAPI-Event (Deduplizierung über die event_id).
   -->
-  <script define:vars={{ metaPixelId }}>
+  <script define:vars={{ metaPixelId, eagerPageView }}>
     // Standard Meta-Pixel-Stub — OHNE automatischen Script-Load.
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -291,10 +295,28 @@ const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID ?? '2057474564840133';
       }
     };
 
-    // Pixel erst nach Consent laden. Bereits gespeicherter Consent löst über
-    // den Footer-Banner `elevo:consent-granted` aus.
+    // Pixel nach Consent laden. Bereits gespeicherter Consent löst über
+    // den Cookie-Banner `elevo:consent-granted` aus.
     window.addEventListener('elevo:consent-granted', loadPixel);
-    if (hasMarketingConsent()) loadPixel();
+
+    function hasDeclinedMarketing() {
+      try {
+        var raw = localStorage.getItem(CONSENT_KEY);
+        if (!raw) return false;
+        return JSON.parse(raw).marketing === false;
+      } catch (e) { return false; }
+    }
+
+    if (hasMarketingConsent()) {
+      // Voll: Pixel + PageView + (spaeter) Lead inkl. Advanced Matching/Cookies.
+      loadPixel();
+    } else if (eagerPageView && !hasDeclinedMarketing()) {
+      // LPV-optimierte Ad-LP: PageView fuer alle feuern, die nicht aktiv
+      // abgelehnt haben, damit der (neue) Pixel LPV-Signal bekommt. Das
+      // Lead-Event + Advanced Matching (E-Mail/Telefon, fbp/fbc) bleiben
+      // weiterhin hinter dem Opt-in (leadData()/fireLead() pruefen Consent).
+      loadPixel();
+    }
   </script>
 </head>
 
