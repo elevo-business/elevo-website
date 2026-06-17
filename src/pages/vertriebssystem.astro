@@ -8,10 +8,12 @@ import '../styles/global.css';
 // legt Person + Lead/Deal + Notiz (mit allen Antworten) in Pipedrive an.
 const LEAD_API_URL = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solutions/api/contact';
 
-// Reine Terminbuchung mit Kalender-Sync (freie Slots aus dem verbundenen
-// Kalender). Wird NACH dem Absenden eingeblendet, mit den bereits erfassten
-// Kundendaten vorausgefuellt. Per ENV austauschbar.
-const SCHEDULER_URL = import.meta.env.PUBLIC_VERTRIEBSSYSTEM_SCHEDULER_URL ?? 'https://termin.elevo.solutions';
+// Terminbuchung via Calendly-Inline-Widget. Calendly ist mit dem Google-
+// Kalender verbunden (zeigt nur freie Slots, Kunde bucht selbst) und wird NACH
+// dem Formular geladen, mit den bereits erfassten Daten vorausgefuellt
+// (Prefill -> kein doppeltes Eintippen).
+// Per ENV setzen: PUBLIC_CALENDLY_URL = https://calendly.com/<account>/<event>
+const CALENDLY_URL = import.meta.env.PUBLIC_CALENDLY_URL ?? 'https://calendly.com/elevo-solutions/erstgespraech';
 
 // Google-Profil-Link. Exakten Profil-Link via ENV setzen.
 const GOOGLE_PROFILE_URL = import.meta.env.PUBLIC_GOOGLE_PROFILE_URL ?? 'https://www.google.com/search?q=ELEVO+Solutions+Rezensionen';
@@ -372,9 +374,7 @@ const year = new Date().getFullYear();
             </div>
             <h3>Geschafft. Wähl jetzt deinen Termin.</h3>
             <p>Such dir unten einen freien Slot in meinem Kalender aus. Die Bestätigung kommt sofort per E-Mail. Falls gerade nichts passt, melden wir uns bei dir.</p>
-            <div class="lp-scheduler">
-              <iframe id="lf-scheduler" data-src={SCHEDULER_URL} title="Freien Termin buchen" loading="lazy" allow="fullscreen" allowfullscreen></iframe>
-            </div>
+            <div class="lp-scheduler" id="lf-calendly" data-url={CALENDLY_URL}></div>
           </div>
 
           <ul class="lp-termin-trust" role="list">
@@ -492,7 +492,48 @@ const year = new Date().getFullYear();
       updateCalc();
     }
 
-    // ----- Lead-Formular -> Pipedrive (server-seitig) -> reine Terminbuchung -----
+    // ----- Calendly Inline-Widget (Kalender-Sync + Prefill) -----
+    // Laedt erst nach dem Absenden des Formulars (aktive Buchungsabsicht) und
+    // fuellt Name/E-Mail/Telefon/Engpass vor -> kein doppeltes Eintippen.
+    function openCalendly(data: { firstName: string; lastName: string; email: string; phone: string; engpass: string; }) {
+      const el = document.getElementById('lf-calendly');
+      if (!el) return;
+      const url = el.dataset.url;
+      if (!url) return;
+      const prefill = {
+        name: `${data.firstName} ${data.lastName}`.trim(),
+        email: data.email,
+        // a1/a2 entsprechen den benutzerdefinierten Fragen im Calendly-Event
+        // (Reihenfolge im Event-Setup: 1 = Telefon, 2 = groesster Zeitfresser).
+        customAnswers: { a1: data.phone, a2: data.engpass },
+      };
+      function init() {
+        const C = (window as any).Calendly;
+        if (C && typeof C.initInlineWidget === 'function') {
+          el!.innerHTML = '';
+          C.initInlineWidget({ url, parentElement: el, prefill });
+        }
+      }
+      if ((window as any).Calendly) { init(); return; }
+      if (!document.getElementById('calendly-widget-css')) {
+        const link = document.createElement('link');
+        link.id = 'calendly-widget-css';
+        link.rel = 'stylesheet';
+        link.href = 'https://assets.calendly.com/assets/external/widget.css';
+        document.head.appendChild(link);
+      }
+      let s = document.getElementById('calendly-widget-js') as HTMLScriptElement | null;
+      if (!s) {
+        s = document.createElement('script');
+        s.id = 'calendly-widget-js';
+        s.src = 'https://assets.calendly.com/assets/external/widget.js';
+        s.async = true;
+        document.head.appendChild(s);
+      }
+      s.addEventListener('load', init, { once: true });
+    }
+
+    // ----- Lead-Formular -> Pipedrive (server-seitig) -> Calendly -----
     const lf = document.getElementById('lead-form') as HTMLFormElement | null;
     if (lf) {
       const tsEl = document.getElementById('lead-ts') as HTMLInputElement;
@@ -537,22 +578,9 @@ const year = new Date().getFullYear();
           // Formular ausblenden, Erfolgs-Screen mit reiner Terminbuchung zeigen.
           lf.hidden = true;
           success.hidden = false;
-          // Kalender-iframe erst jetzt laden, mit bereits erfassten Daten vorausgefuellt
-          // (Kunde muss im Buchungsschritt nichts noch einmal eingeben).
-          const sched = document.getElementById('lf-scheduler') as HTMLIFrameElement | null;
-          if (sched && sched.dataset.src && !sched.src) {
-            let url = sched.dataset.src;
-            try {
-              const u = new URL(sched.dataset.src);
-              u.searchParams.set('name', `${firstName} ${lastName}`.trim());
-              u.searchParams.set('email', email);
-              u.searchParams.set('firstName', firstName);
-              u.searchParams.set('lastName', lastName);
-              u.searchParams.set('phone', phone);
-              url = u.toString();
-            } catch { /* Fallback: unveraenderte URL */ }
-            sched.src = url;
-          }
+          // Calendly erst jetzt laden, vorausgefuellt mit den erfassten Daten
+          // (Kalender-Sync + freie Slots + kein doppeltes Eintippen).
+          openCalendly({ firstName, lastName, email, phone, engpass });
           success.scrollIntoView({ behavior: 'smooth', block: 'start' });
           // Google-Ads-Conversion
           if (typeof (window as any).gtag !== 'undefined') {
@@ -769,8 +797,8 @@ const year = new Date().getFullYear();
   /* Termin / Buchung */
   .lp-termin { max-width: 760px; margin: 0 auto; text-align: center; }
   .lp-termin .lp-h2 { margin-left: auto; margin-right: auto; }
-  .lp-scheduler { margin: 28px 0 0; border: 1px solid var(--border-strong); border-radius: 16px; overflow: hidden; background: #fff; }
-  .lp-scheduler iframe { width: 100%; min-height: 720px; border: 0; display: block; }
+  .lp-scheduler { margin: 28px 0 0; border: 1px solid var(--border-strong); border-radius: 16px; overflow: hidden; background: #fff; min-height: 700px; }
+  .lp-scheduler iframe { width: 100%; min-height: 700px; border: 0; display: block; }
   .lp-form { max-width: 600px; margin: 30px auto 8px; text-align: left; }
   .lp-form .form-submit { margin-top: 4px; }
   .lp-form-success { max-width: 760px; margin: 30px auto 8px; padding: 38px 30px; text-align: center; background: #fff; border: 1px solid var(--border-strong); border-radius: 16px; }
