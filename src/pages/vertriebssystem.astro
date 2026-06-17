@@ -375,6 +375,7 @@ const year = new Date().getFullYear();
             <h3>Geschafft. Wähl jetzt deinen Termin.</h3>
             <p>Such dir unten einen freien Slot in meinem Kalender aus. Die Bestätigung kommt sofort per E-Mail. Falls gerade nichts passt, melden wir uns bei dir.</p>
             <div class="lp-scheduler" id="lf-calendly" data-url={CALENDLY_URL}></div>
+            <p class="lp-cal-fallback">Kalender lädt nicht? <a href={CALENDLY_URL} target="_blank" rel="noopener">Hier im neuen Tab öffnen</a></p>
           </div>
 
           <ul class="lp-termin-trust" role="list">
@@ -559,40 +560,35 @@ const year = new Date().getFullYear();
           msg.className = 'form-message error'; msg.textContent = 'Bitte gib eine gültige E-Mail-Adresse ein.'; return;
         }
 
-        const orig = btn.textContent;
         btn.disabled = true; btn.textContent = 'Wird gesendet …';
-        // Meta: event_id + fbp/fbc VOR dem Request (nur mit Consent) -> CAPI-Dedup.
+        // Meta: event_id + fbp/fbc (nur mit Consent) -> CAPI-Dedup.
         const lead = (window as any).elevoMeta?.leadData?.() ?? null;
-        try {
-          const res = await fetch(apiUrl, {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              name: `${firstName} ${lastName}`.trim(),
-              firstName, lastName, email, phone,
-              service: 'vertriebssystem', source: 'vertriebssystem',
-              message: `Erstgespräch-Anfrage über die Vertriebssystem-Landingpage.\nTelefon: ${phone}\nZeitfresser/Engpass: ${engpass}`,
-              ...(lead ?? {}),
-            }),
-          });
-          if (!res.ok) throw new Error('bad');
-          // Formular ausblenden, Erfolgs-Screen mit reiner Terminbuchung zeigen.
-          lf.hidden = true;
-          success.hidden = false;
-          // Calendly erst jetzt laden, vorausgefuellt mit den erfassten Daten
-          // (Kalender-Sync + freie Slots + kein doppeltes Eintippen).
-          openCalendly({ firstName, lastName, email, phone, engpass });
-          success.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // Google-Ads-Conversion
-          if (typeof (window as any).gtag !== 'undefined') {
-            (window as any).gtag('event', 'conversion', { send_to: 'AW-18023151518/contact_form_submit' });
-          }
-          // Meta Browser-Pixel mit derselben event_id wie das CAPI-Event.
-          if (lead) (window as any).elevoMeta?.fireLead?.(lead.metaEventId, { content_name: 'vertriebssystem' });
-        } catch {
-          msg.className = 'form-message error';
-          msg.textContent = 'Etwas ist schiefgelaufen. Schreib uns direkt: hallo@elevo.solutions';
-          btn.disabled = false; btn.textContent = orig || 'Erstgespräch sichern';
+
+        // Booking hat Prioritaet: Erfolgs-Screen + Calendly SOFORT zeigen,
+        // unabhaengig davon, ob die Lead-API antwortet. So blockiert ein
+        // Fehler beim CRM-Sync niemals die eigentliche Terminbuchung.
+        lf.hidden = true;
+        success.hidden = false;
+        openCalendly({ firstName, lastName, email, phone, engpass });
+        success.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Conversion-Tracking
+        if (typeof (window as any).gtag !== 'undefined') {
+          (window as any).gtag('event', 'conversion', { send_to: 'AW-18023151518/contact_form_submit' });
         }
+        if (lead) (window as any).elevoMeta?.fireLead?.(lead.metaEventId, { content_name: 'vertriebssystem' });
+
+        // Lead an Pipedrive (best effort, blockiert die Buchung nicht).
+        fetch(apiUrl, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: `${firstName} ${lastName}`.trim(),
+            firstName, lastName, email, phone,
+            service: 'vertriebssystem', source: 'vertriebssystem',
+            message: `Erstgespräch-Anfrage über die Vertriebssystem-Landingpage.\nTelefon: ${phone}\nZeitfresser/Engpass: ${engpass}`,
+            ...(lead ?? {}),
+          }),
+        }).catch(() => { /* CRM-Sync fehlgeschlagen; Buchung laeuft trotzdem */ });
       });
     }
   </script>
@@ -799,6 +795,8 @@ const year = new Date().getFullYear();
   .lp-termin .lp-h2 { margin-left: auto; margin-right: auto; }
   .lp-scheduler { margin: 28px 0 0; border: 1px solid var(--border-strong); border-radius: 16px; overflow: hidden; background: #fff; min-height: 700px; }
   .lp-scheduler iframe { width: 100%; min-height: 700px; border: 0; display: block; }
+  .lp-cal-fallback { font-size: 0.85rem; color: var(--text-muted); margin: 12px 0 0; }
+  .lp-cal-fallback a { color: var(--accent); }
   .lp-form { max-width: 600px; margin: 30px auto 8px; text-align: left; }
   .lp-form .form-submit { margin-top: 4px; }
   .lp-form-success { max-width: 760px; margin: 30px auto 8px; padding: 38px 30px; text-align: center; background: #fff; border: 1px solid var(--border-strong); border-radius: 16px; }
