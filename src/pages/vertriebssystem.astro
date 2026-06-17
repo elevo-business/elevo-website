@@ -344,15 +344,9 @@ const year = new Date().getFullYear();
                 <input class="form-input" type="text" id="lf-lastName" name="lastName" placeholder="Mustermann" required autocomplete="family-name">
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label" for="lf-email">E-Mail-Adresse *</label>
-                <input class="form-input" type="email" id="lf-email" name="email" placeholder="max@dein-unternehmen.de" required autocomplete="email">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="lf-phone">Telefonnummer *</label>
-                <input class="form-input" type="tel" id="lf-phone" name="phone" placeholder="+49 …" required autocomplete="tel" inputmode="tel">
-              </div>
+            <div class="form-group">
+              <label class="form-label" for="lf-email">E-Mail-Adresse *</label>
+              <input class="form-input" type="email" id="lf-email" name="email" placeholder="max@dein-unternehmen.de" required autocomplete="email">
             </div>
             <div class="form-group">
               <label class="form-label" for="lf-engpass">Welche Prozesse fressen bei euch am meisten Zeit? *</label>
@@ -510,8 +504,8 @@ const year = new Date().getFullYear();
         if (ts && Date.now() - parseInt(ts, 10) < 1500) return;
 
         const firstName = val('firstName'), lastName = val('lastName'), email = val('email'),
-              phone = val('phone'), engpass = val('engpass');
-        if (!firstName || !lastName || !email || !phone || !engpass) {
+              engpass = val('engpass');
+        if (!firstName || !lastName || !email || !engpass) {
           msg.className = 'form-message error'; msg.textContent = 'Bitte füll alle Felder aus.'; return;
         }
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -527,9 +521,9 @@ const year = new Date().getFullYear();
             method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               name: `${firstName} ${lastName}`.trim(),
-              firstName, lastName, email, phone,
+              firstName, lastName, email,
               service: 'vertriebssystem', source: 'vertriebssystem',
-              message: `Erstgespräch-Anfrage über die Vertriebssystem-Landingpage.\nTelefon: ${phone}\nZeitfresser/Engpass: ${engpass}`,
+              message: `Erstgespräch-Anfrage über die Vertriebssystem-Landingpage.\nZeitfresser/Engpass: ${engpass}`,
               ...(lead ?? {}),
             }),
           });
@@ -548,7 +542,6 @@ const year = new Date().getFullYear();
               u.searchParams.set('email', email);
               u.searchParams.set('firstName', firstName);
               u.searchParams.set('lastName', lastName);
-              u.searchParams.set('phone', phone);
               url = u.toString();
             } catch { /* Fallback: unveraenderte URL */ }
             sched.src = url;
