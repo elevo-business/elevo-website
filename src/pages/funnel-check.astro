@@ -352,7 +352,7 @@ const avgPct = Math.round((avgNum / 5) * 100);
 
     function paintRange(el: HTMLInputElement) {
       const pct = ((+el.value - +el.min) / (+el.max - +el.min)) * 100;
-      el.style.background = `linear-gradient(90deg, var(--accent) 0%, var(--accent) ${pct}%, rgba(255,255,255,0.12) ${pct}%, rgba(255,255,255,0.12) 100%)`;
+      el.style.background = `linear-gradient(90deg, var(--accent) 0%, var(--accent) ${pct}%, rgba(26,31,43,0.12) ${pct}%, rgba(26,31,43,0.12) 100%)`;
     }
     function updateCalc() {
       if (!visEl || !rateEl || !closeEl) return;
@@ -446,7 +446,7 @@ const avgPct = Math.round((avgNum / 5) * 100);
 <style>
   .lp-header {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(8, 11, 20, 0.85);
+    background: rgba(250, 247, 240, 0.85);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
   }
@@ -476,9 +476,9 @@ const avgPct = Math.round((avgNum / 5) * 100);
   .lp-rating { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .lp-rating-num { font-family: var(--font-heading); font-weight: 800; font-size: 1.6rem; color: var(--text-primary); }
   .lp-starbar { position: relative; display: inline-block; font-size: 1.25rem; line-height: 1; letter-spacing: 2px; }
-  .lp-starbar::before { content: '★★★★★'; color: rgba(255,255,255,0.18); }
+  .lp-starbar::before { content: '★★★★★'; color: rgba(26,31,43,0.18); }
   .lp-starbar::after { content: '★★★★★'; color: #FBBC05; position: absolute; left: 0; top: 0; width: var(--pct, 100%); overflow: hidden; white-space: nowrap; }
-  .lp-star-empty { color: rgba(255,255,255,0.18); }
+  .lp-star-empty { color: rgba(26,31,43,0.18); }
   .lp-rating-count { color: var(--text-muted); font-size: 0.95rem; }
   .lp-reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .lp-review { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 26px 24px; display: flex; flex-direction: column; gap: 12px; }

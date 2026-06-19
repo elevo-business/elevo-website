@@ -313,9 +313,9 @@ const ecoNodeIcons: Record<string, string> = {
           <div class="dataviz-line-wrap" role="img" aria-label="Google-Ranking verbessert von Platz 18 auf Platz 1">
             <svg viewBox="0 0 300 120" class="dataviz-line-svg" aria-hidden="true">
               <!-- Grid -->
-              <line x1="0" y1="24" x2="300" y2="24" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-              <line x1="0" y1="60" x2="300" y2="60" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-              <line x1="0" y1="96" x2="300" y2="96" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+              <line x1="0" y1="24" x2="300" y2="24" stroke="rgba(26,31,43,0.08)" stroke-width="1"/>
+              <line x1="0" y1="60" x2="300" y2="60" stroke="rgba(26,31,43,0.08)" stroke-width="1"/>
+              <line x1="0" y1="96" x2="300" y2="96" stroke="rgba(26,31,43,0.08)" stroke-width="1"/>
               <!-- Labels -->
               <text x="304" y="28" class="dataviz-axis-label">#1</text>
               <text x="304" y="64" class="dataviz-axis-label">#10</text>
@@ -348,7 +348,7 @@ const ecoNodeIcons: Record<string, string> = {
           </div>
           <div class="dataviz-donut-wrap" role="img" aria-label="Page Speed Score 94 von 100">
             <svg viewBox="0 0 120 120" class="dataviz-donut-svg" aria-hidden="true">
-              <circle cx="60" cy="60" r="48" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="14"/>
+              <circle cx="60" cy="60" r="48" fill="none" stroke="rgba(26,31,43,0.08)" stroke-width="14"/>
               <circle cx="60" cy="60" r="48" fill="none" stroke="#2DD4A0" stroke-width="14"
                 stroke-dasharray="301.6" stroke-dashoffset="301.6"
                 stroke-linecap="round"
@@ -591,7 +591,7 @@ const ecoNodeIcons: Record<string, string> = {
 
   .eco-play-btn.playing {
     background: rgba(45, 212, 160, 0.9);
-    color: #05070E;
+    color: var(--text-primary);
     border-color: rgba(45, 212, 160, 0.9);
   }
 
@@ -669,7 +669,7 @@ const ecoNodeIcons: Record<string, string> = {
     font-family: var(--font-body);
     font-size: 10px;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.15em;
   }
@@ -715,7 +715,7 @@ const ecoNodeIcons: Record<string, string> = {
     font-family: var(--font-body);
     font-size: 11px;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-secondary);
     margin-top: 5px;
     white-space: nowrap;
   }
@@ -1130,7 +1130,7 @@ const ecoNodeIcons: Record<string, string> = {
   .particles-stat {
     font-family: var(--font-body);
     font-size: 11px;
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--text-muted);
   }
 
   .particles-num {
@@ -1274,7 +1274,7 @@ const ecoNodeIcons: Record<string, string> = {
   .dataviz-axis-label {
     font-family: var(--font-body);
     font-size: 9px;
-    fill: rgba(255, 255, 255, 0.25);
+    fill: rgba(26, 31, 43, 0.4);
   }
 
   .dataviz-line-path {
@@ -1387,7 +1387,7 @@ const ecoNodeIcons: Record<string, string> = {
 
   .threed-card:hover {
     border-color: var(--border-strong);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), var(--shadow-blue);
+    box-shadow: 0 20px 60px rgba(26, 31, 43, 0.10), var(--shadow-blue);
   }
 
   .threed-card-accent {
@@ -1397,7 +1397,7 @@ const ecoNodeIcons: Record<string, string> = {
 
   .threed-card-accent:hover {
     border-color: rgba(59, 130, 246, 0.5);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(59, 130, 246, 0.15);
+    box-shadow: 0 20px 60px rgba(26, 31, 43, 0.10), 0 0 40px rgba(59, 130, 246, 0.15);
   }
 
   .threed-card-inner {
@@ -1474,7 +1474,7 @@ const ecoNodeIcons: Record<string, string> = {
     transition: color var(--transition);
   }
 
-  .threed-cta-link:hover { color: #60A5FA; }
+  .threed-cta-link:hover { color: var(--accent-hover); }
 
   /* Shine overlay */
   .threed-card-shine {
@@ -1482,7 +1482,7 @@ const ecoNodeIcons: Record<string, string> = {
     inset: 0;
     border-radius: var(--radius-lg);
     pointer-events: none;
-    background: radial-gradient(circle at var(--shine-x, 50%) var(--shine-y, 50%), rgba(255,255,255,0.06) 0%, transparent 60%);
+    background: radial-gradient(circle at var(--shine-x, 50%) var(--shine-y, 50%), rgba(26,31,43,0.05) 0%, transparent 60%);
     z-index: 1;
     opacity: 0;
     transition: opacity 0.3s;

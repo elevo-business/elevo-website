@@ -729,7 +729,7 @@ const faqSchema = {
     function paintRange(el: HTMLInputElement) {
       const pct = ((+el.value - +el.min) / (+el.max - +el.min)) * 100;
       el.style.background =
-        `linear-gradient(90deg, var(--accent) 0%, var(--accent) ${pct}%, rgba(255,255,255,0.12) ${pct}%, rgba(255,255,255,0.12) 100%)`;
+        `linear-gradient(90deg, var(--accent) 0%, var(--accent) ${pct}%, rgba(26,31,43,0.12) ${pct}%, rgba(26,31,43,0.12) 100%)`;
     }
 
     // Optimierte Strecke schafft erfahrungsgemaess das 2,5-fache der Anfrage-Rate.
