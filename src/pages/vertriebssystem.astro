@@ -25,13 +25,13 @@ const year = new Date().getFullYear();
   <header class="lp-header">
     <div class="lp-wrap lp-header-inner">
       <Logo size="md" />
-      <button type="button" class="lp-btn lp-btn-primary lp-header-cta" data-open-booking>Erstgespräch sichern</button>
+      <button type="button" class="lp-btn lp-btn-primary lp-header-cta" data-scroll-booking>Erstgespräch sichern</button>
     </div>
   </header>
 
   <main id="main">
 
-    <!-- ===== HERO (Buchung ganz oben) ===== -->
+    <!-- ===== HERO mit sichtbarem Formular ===== -->
     <section class="lp-section lp-hero" aria-labelledby="lp-hero-heading">
       <div class="lp-wrap">
         <div class="lp-hero-grid">
@@ -45,25 +45,58 @@ const year = new Date().getFullYear();
               Für Dienstleister, die mehr Zeit mit Kunden statt mit Verwaltung verbringen wollen.
               Wir bauen dir das fertige System, du fasst nichts Technisches an.
             </p>
-            <div class="lp-hero-ctas">
-              <button type="button" class="lp-btn lp-btn-primary lp-btn-lg" data-open-booking>
-                Kostenloses Erstgespräch sichern
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
-            </div>
-            <p class="lp-hero-trust">Kostenlos · ca. 15 Minuten · kein Pitch · nur 3 Plätze/Monat</p>
+            <ul class="lp-hero-bullets" role="list">
+              <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Dateneingabe, Dokumente und Nachfassen laufen automatisch</li>
+              <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Done-for-you, in 14 Tagen live</li>
+              <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Steht es nicht in 14 Tagen, zahlst du erst, wenn es läuft</li>
+            </ul>
           </div>
 
-          <aside class="lp-getcard" aria-label="Das baut Elevo dir">
-            <p class="lp-getcard-title">Das baut Elevo dir:</p>
-            <ul class="lp-getcard-list" role="list">
-              <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Dateneingabe und Lead-Anreicherung laufen automatisch</li>
-              <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Dokumente und Angebote in Minuten statt Stunden</li>
-              <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Nachfassen passiert von selbst, kein Lead versickert</li>
-              <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Routineaufgaben übernimmt das System, ihr berät</li>
-            </ul>
-            <button type="button" class="lp-btn lp-btn-primary lp-getcard-cta" data-open-booking>Jetzt Termin wählen</button>
-            <p class="lp-getcard-note">14 Tage live. Sonst zahlst du erst, wenn es steht.</p>
+          <!-- Sichtbares Buchungs-Formular -->
+          <aside class="lp-bookcard" id="booking" aria-label="Kostenloses Erstgespräch sichern">
+            <div id="lf-step-form">
+              <p class="lp-bookcard-eyebrow">Kostenloses Erstgespräch</p>
+              <h2 class="lp-bookcard-title">Sichere dir deinen Termin.</h2>
+              <p class="lp-bookcard-sub">Kurz deine Daten, dann öffnet sich direkt mein Kalender.</p>
+
+              <form class="contact-form lp-form" id="lead-form" novalidate data-api-url={LEAD_API_URL}>
+                <input type="text" name="_hp" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+                <input type="hidden" name="_ts" id="lead-ts" value="">
+                <div class="form-group">
+                  <label class="form-label" for="lf-name">Name *</label>
+                  <input class="form-input" type="text" id="lf-name" name="name" placeholder="Max Mustermann" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lf-email">E-Mail-Adresse *</label>
+                  <input class="form-input" type="email" id="lf-email" name="email" placeholder="max@dein-unternehmen.de" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lf-phone">Telefonnummer *</label>
+                  <input class="form-input" type="tel" id="lf-phone" name="phone" placeholder="+49 …" required autocomplete="tel" inputmode="tel">
+                </div>
+                <button type="submit" class="form-submit lp-btn lp-btn-primary lp-btn-block lp-btn-lg" id="lf-submit">Weiter zum Kalender</button>
+                <p class="form-privacy-note">
+                  Mit dem Absenden stimmst du unserer <a href="/datenschutz">Datenschutzerklärung</a> zu.
+                </p>
+                <div class="form-message" id="lf-message" role="alert" aria-live="polite"></div>
+              </form>
+
+              <ul class="lp-bookcard-trust" role="list">
+                <li>Kostenlos</li><li>ca. 15 Min.</li><li>kein Pitch</li><li>nur 3 Plätze/Monat</li>
+              </ul>
+            </div>
+
+            <div class="lp-form-success" id="lf-success" hidden>
+              <div class="lp-form-success-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <h3>Geschafft. Wähl jetzt deinen Termin.</h3>
+              <p>Such dir einen freien Slot in meinem Kalender aus. Falls das Fenster nicht von selbst aufgeht, klick den Button.</p>
+              <div class="lp-scheduler-cta">
+                <button type="button" class="lp-btn lp-btn-primary lp-btn-lg lp-btn-block" id="lf-open-cal" data-url={CALENDLY_URL}>Freien Termin auswählen</button>
+              </div>
+              <p class="lp-cal-fallback">Fenster öffnet nicht? <a href={CALENDLY_URL} target="_blank" rel="noopener">Hier im neuen Tab öffnen</a></p>
+            </div>
           </aside>
         </div>
       </div>
@@ -85,7 +118,7 @@ const year = new Date().getFullYear();
           Handarbeit übernimmt. In ca. 15 Minuten zeigen wir dir, wie das bei dir aussieht.
         </p>
         <div class="lp-center-cta">
-          <button type="button" class="lp-btn lp-btn-primary lp-btn-lg" data-open-booking>Kostenloses Erstgespräch sichern</button>
+          <button type="button" class="lp-btn lp-btn-primary lp-btn-lg" data-scroll-booking>Kostenloses Erstgespräch sichern</button>
         </div>
       </div>
     </section>
@@ -222,7 +255,7 @@ const year = new Date().getFullYear();
             <h2 id="lp-mert-heading" class="lp-h2 lp-h2-tight">Andere erklären dir, wie es geht. Wir bauen es dir.</h2>
             <p class="lp-vision-text">Im Erstgespräch schauen wir gemeinsam auf eure Abläufe und zeigen dir, welche manuellen Prozesse sich automatisieren lassen. Ob wir danach zusammenarbeiten, entscheidest du in Ruhe.</p>
             <p class="lp-vision-close">Done-for-you statt Kurs. Zum Festpreis, in 14 Tagen.</p>
-            <button type="button" class="lp-btn lp-btn-primary lp-btn-lg" data-open-booking>Kostenloses Erstgespräch sichern</button>
+            <button type="button" class="lp-btn lp-btn-primary lp-btn-lg" data-scroll-booking>Kostenloses Erstgespräch sichern</button>
             <p class="lp-hero-trust" style="margin-top:14px;">Kostenlos · ca. 15 Minuten · kein Pitch</p>
           </div>
         </div>
@@ -243,70 +276,15 @@ const year = new Date().getFullYear();
     </div>
   </footer>
 
-  <!-- ===== STICKY CTA (mobil dauerhaft sichtbar) ===== -->
+  <!-- Sticky CTA (mobil dauerhaft sichtbar) -->
   <div class="lp-sticky-cta">
-    <button type="button" class="lp-btn lp-btn-primary lp-btn-block" data-open-booking>Kostenloses Erstgespräch sichern</button>
-  </div>
-
-  <!-- ===== BUCHUNGS-MODAL (1 Tap von jedem CTA) ===== -->
-  <div class="lp-modal" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title" hidden>
-    <div class="lp-modal-backdrop" data-close></div>
-    <div class="lp-modal-card">
-      <button class="lp-modal-close" type="button" aria-label="Schließen" data-close>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-      </button>
-
-      <div id="lf-step-form">
-        <p class="lp-eyebrow">Kostenloses Erstgespräch</p>
-        <h2 id="booking-modal-title" class="lp-modal-title">Nur kurz deine Daten, dann wählst du deinen Termin.</h2>
-        <p class="lp-modal-sub">Danach öffnet sich direkt mein Kalender. Kostenlos, ca. 15 Minuten, kein Pitch.</p>
-
-        <form class="contact-form lp-form" id="lead-form" novalidate data-api-url={LEAD_API_URL}>
-          <input type="text" name="_hp" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
-          <input type="hidden" name="_ts" id="lead-ts" value="">
-          <div class="form-group">
-            <label class="form-label" for="lf-name">Name *</label>
-            <input class="form-input" type="text" id="lf-name" name="name" placeholder="Max Mustermann" required autocomplete="name">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="lf-email">E-Mail-Adresse *</label>
-            <input class="form-input" type="email" id="lf-email" name="email" placeholder="max@dein-unternehmen.de" required autocomplete="email">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="lf-phone">Telefonnummer *</label>
-            <input class="form-input" type="tel" id="lf-phone" name="phone" placeholder="+49 …" required autocomplete="tel" inputmode="tel">
-          </div>
-          <button type="submit" class="form-submit lp-btn lp-btn-primary lp-btn-block" id="lf-submit">Weiter zum Kalender</button>
-          <p class="form-privacy-note">
-            Mit dem Absenden stimmst du unserer <a href="/datenschutz">Datenschutzerklärung</a> zu.
-          </p>
-          <div class="form-message" id="lf-message" role="alert" aria-live="polite"></div>
-        </form>
-      </div>
-
-      <div class="lp-form-success" id="lf-success" hidden>
-        <div class="lp-form-success-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <h3>Geschafft. Wähl jetzt deinen Termin.</h3>
-        <p>Such dir einen freien Slot in meinem Kalender aus. Falls das Fenster nicht von selbst aufgeht, klick den Button.</p>
-        <div class="lp-scheduler-cta">
-          <button type="button" class="lp-btn lp-btn-primary lp-btn-lg" id="lf-open-cal" data-url={CALENDLY_URL}>Freien Termin auswählen</button>
-        </div>
-        <p class="lp-cal-fallback">Fenster öffnet nicht? <a href={CALENDLY_URL} target="_blank" rel="noopener">Hier im neuen Tab öffnen</a></p>
-      </div>
-    </div>
+    <button type="button" class="lp-btn lp-btn-primary lp-btn-block" data-scroll-booking>Kostenloses Erstgespräch sichern</button>
   </div>
 
   <CookieBanner />
 
   <script>
-    // ===== Buchungs-Modal =====
-    const modal = document.getElementById('booking-modal');
-    let lastFocus: HTMLElement | null = null;
-
-    // FormStart-Event: feuert, wenn der Nutzer die Buchung oeffnet (gelandet ->
-    // Formular gestartet). Custom-Event fuer Meta + Google.
+    // FormStart-Event (gelandet -> Formular gestartet) fuer Meta + Google.
     let formStarted = false;
     function fireFormStart() {
       if (formStarted) return;
@@ -319,29 +297,20 @@ const year = new Date().getFullYear();
       }
     }
 
-    function openBooking() {
-      if (!modal) return;
-      lastFocus = document.activeElement as HTMLElement;
-      modal.hidden = false;
-      document.body.style.overflow = 'hidden';
+    // CTAs scrollen zum sichtbaren Formular und fokussieren es.
+    function scrollToBooking() {
+      const card = document.getElementById('booking');
+      const name = document.getElementById('lf-name') as HTMLInputElement | null;
+      if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => { if (name && !(document.getElementById('lf-step-form') as HTMLElement)?.hidden) name.focus(); }, 420);
       fireFormStart();
-      const first = document.getElementById('lf-name') as HTMLInputElement | null;
-      setTimeout(() => first && first.focus(), 40);
     }
-    function closeBooking() {
-      if (!modal) return;
-      modal.hidden = true;
-      document.body.style.overflow = '';
-      if (lastFocus && lastFocus.focus) lastFocus.focus();
-    }
-
-    document.querySelectorAll('[data-open-booking]').forEach((b) => {
-      b.addEventListener('click', (e) => { e.preventDefault(); openBooking(); });
+    document.querySelectorAll('[data-scroll-booking]').forEach((b) => {
+      b.addEventListener('click', (e) => { e.preventDefault(); scrollToBooking(); });
     });
-    modal?.querySelectorAll('[data-close]').forEach((b) => b.addEventListener('click', closeBooking));
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal && !modal.hidden) closeBooking();
-    });
+    // FormStart auch, wenn der Nutzer direkt ins Formular tippt.
+    document.getElementById('lf-name')?.addEventListener('focus', fireFormStart, { once: true });
+    document.getElementById('lf-email')?.addEventListener('focus', fireFormStart, { once: true });
 
     // ===== Calendly Popup (Kalender-Sync + Prefill) =====
     let calUrl = '';
@@ -358,8 +327,7 @@ const year = new Date().getFullYear();
       if ((window as any).Calendly) { cb(); return; }
       if (!document.getElementById('calendly-widget-css')) {
         const link = document.createElement('link');
-        link.id = 'calendly-widget-css';
-        link.rel = 'stylesheet';
+        link.id = 'calendly-widget-css'; link.rel = 'stylesheet';
         link.href = 'https://assets.calendly.com/assets/external/widget.css';
         document.head.appendChild(link);
       }
@@ -420,13 +388,11 @@ const year = new Date().getFullYear();
         calUrl = buildCalendlyUrl((document.getElementById('lf-open-cal') as HTMLElement)?.dataset.url || '', fullName, email, phone);
         openCalendlyPopup();
 
-        // Conversion-Tracking
         if (typeof (window as any).gtag !== 'undefined') {
           (window as any).gtag('event', 'conversion', { send_to: 'AW-18023151518/contact_form_submit' });
         }
         if (lead) (window as any).elevoMeta?.fireLead?.(lead.metaEventId, { content_name: 'vertriebssystem' });
 
-        // Lead an Pipedrive (best effort, blockiert die Buchung nicht).
         fetch(apiUrl, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -472,36 +438,49 @@ const year = new Date().getFullYear();
 
   .lp-section { padding: clamp(48px, 7vw, 84px) 0; }
   .lp-section-alt { background: #F6F8FB; }
-  .lp-hero { padding-top: clamp(40px, 6vw, 72px); }
+  .lp-hero { padding-top: clamp(36px, 5vw, 60px); }
 
   .lp-eyebrow { font-family: var(--font-heading); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
-  .lp-h1 { font-family: var(--font-heading); font-weight: 800; font-size: clamp(2rem, 4.4vw, 3.2rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--text-primary); margin: 0 0 22px; }
+  .lp-h1 { font-family: var(--font-heading); font-weight: 800; font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--text-primary); margin: 0 0 20px; }
   .lp-accent { color: var(--accent); }
   .lp-h2 { font-family: var(--font-heading); font-weight: 800; font-size: clamp(1.5rem, 2.8vw, 2.1rem); line-height: 1.18; letter-spacing: -0.01em; color: var(--text-primary); margin: 0 0 18px; }
   .lp-h2-tight { margin-bottom: 24px; }
-  .lp-sub { font-size: 1.08rem; line-height: 1.65; color: var(--text-secondary); max-width: 760px; margin: 0; }
+  .lp-sub { font-size: 1.06rem; line-height: 1.6; color: var(--text-secondary); max-width: 760px; margin: 0; }
   .lp-sub-tight { margin-top: 24px; }
 
   .lp-btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; font-family: var(--font-heading); font-weight: 700; font-size: 1rem; padding: 14px 26px; border-radius: 12px; border: 1px solid transparent; cursor: pointer; text-decoration: none; transition: background var(--transition), border-color var(--transition), transform var(--transition); }
   .lp-btn-primary { background: var(--accent); color: #fff; box-shadow: 0 6px 18px rgba(37,99,235,0.22); }
   .lp-btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
-  .lp-btn-ghost { background: #fff; color: var(--accent); border-color: var(--border-strong); }
   .lp-btn-lg { padding: 16px 30px; font-size: 1.05rem; }
   .lp-btn-block { width: 100%; }
   .lp-center-cta { text-align: center; margin-top: 28px; }
 
-  .lp-hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center; }
-  .lp-hero-ctas { margin: 28px 0 14px; }
+  .lp-hero-grid { display: grid; grid-template-columns: 1fr 420px; gap: 44px; align-items: start; }
+  .lp-hero-bullets { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 13px; }
+  .lp-hero-bullets li { display: flex; gap: 12px; align-items: flex-start; color: var(--text-secondary); font-size: 1rem; line-height: 1.45; }
   .lp-hero-trust { font-size: 0.92rem; color: var(--text-muted); margin: 0; }
-
-  .lp-getcard { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 30px 28px; box-shadow: 0 12px 40px rgba(15,30,60,0.06); }
-  .lp-getcard-title { font-family: var(--font-heading); font-weight: 800; color: var(--text-primary); font-size: 1.12rem; margin: 0 0 18px; }
-  .lp-getcard-list { list-style: none; margin: 0 0 24px; padding: 0; display: grid; gap: 15px; }
-  .lp-getcard-list li { display: flex; gap: 12px; align-items: flex-start; color: var(--text-secondary); font-size: 0.98rem; line-height: 1.45; }
   .lp-check { flex-shrink: 0; width: 24px; height: 24px; border-radius: 7px; background: rgba(37,99,235,0.10); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; margin-top: 1px; }
   .lp-check svg { width: 13px; height: 13px; }
-  .lp-getcard-cta { width: 100%; }
-  .lp-getcard-note { font-size: 0.82rem; color: var(--text-muted); margin: 14px 0 0; line-height: 1.45; text-align: center; }
+
+  /* Sichtbares Buchungs-Formular */
+  .lp-bookcard { background: #fff; border: 1px solid var(--border-strong); border-radius: 18px; padding: 28px 26px; box-shadow: 0 18px 50px rgba(15,30,60,0.10); position: sticky; top: 88px; }
+  .lp-bookcard-eyebrow { font-family: var(--font-heading); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px; }
+  .lp-bookcard-title { font-family: var(--font-heading); font-weight: 800; color: var(--text-primary); font-size: 1.35rem; margin: 0 0 6px; }
+  .lp-bookcard-sub { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5; margin: 0 0 20px; }
+  .lp-form .form-group { margin-bottom: 14px; }
+  .lp-form .form-submit { margin-top: 6px; }
+  .lp-bookcard-trust { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: center; margin: 16px 0 0; padding: 0; }
+  .lp-bookcard-trust li { position: relative; color: var(--text-muted); font-size: 0.82rem; padding-left: 16px; }
+  .lp-bookcard-trust li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 800; }
+
+  .lp-form-success { text-align: center; }
+  .lp-form-success-icon { width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%; background: rgba(37,99,235,0.10); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; }
+  .lp-form-success-icon svg { width: 26px; height: 26px; }
+  .lp-form-success h3 { font-family: var(--font-heading); color: var(--text-primary); font-size: 1.2rem; margin: 0 0 10px; }
+  .lp-form-success p { color: var(--text-secondary); line-height: 1.55; margin: 0; font-size: 0.95rem; }
+  .lp-scheduler-cta { margin-top: 20px; }
+  .lp-cal-fallback { font-size: 0.83rem; color: var(--text-muted); margin: 12px 0 0; }
+  .lp-cal-fallback a { color: var(--accent); }
 
   .lp-pains { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 8px; }
   .lp-pain { display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; color: var(--text-primary); font-family: var(--font-heading); font-weight: 600; font-size: 1rem; }
@@ -567,34 +546,12 @@ const year = new Date().getFullYear();
   .lp-footer-nav a:hover { color: var(--accent); }
   .lp-footer-copy { color: var(--text-muted); font-size: 0.88rem; margin: 0; }
 
-  /* Sticky CTA (mobil) */
   .lp-sticky-cta { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 80; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: rgba(255,255,255,0.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--border); }
   .lp-sticky-cta .lp-btn { padding: 15px 20px; }
 
-  /* Buchungs-Modal */
-  .lp-modal { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px; }
-  .lp-modal[hidden] { display: none; }
-  .lp-modal-backdrop { position: absolute; inset: 0; background: rgba(8,17,30,0.55); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
-  .lp-modal-card { position: relative; z-index: 1; width: 100%; max-width: 480px; max-height: 92vh; overflow-y: auto; background: #fff; border-radius: 18px; padding: 34px 30px; box-shadow: 0 24px 70px rgba(8,17,30,0.35); }
-  .lp-modal-close { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 10px; border: none; background: #F1F4F9; color: var(--text-secondary); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
-  .lp-modal-close:hover { background: #E5EAF2; }
-  .lp-modal-title { font-family: var(--font-heading); font-weight: 800; color: var(--text-primary); font-size: 1.3rem; line-height: 1.22; margin: 0 0 10px; }
-  .lp-modal-sub { color: var(--text-secondary); font-size: 0.96rem; line-height: 1.55; margin: 0 0 22px; }
-  .lp-form .form-group { margin-bottom: 16px; }
-  .lp-form .form-submit { margin-top: 6px; }
-
-  .lp-form-success { text-align: center; }
-  .lp-form-success-icon { width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%; background: rgba(37,99,235,0.10); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; }
-  .lp-form-success-icon svg { width: 26px; height: 26px; }
-  .lp-form-success h3 { font-family: var(--font-heading); color: var(--text-primary); font-size: 1.25rem; margin: 0 0 12px; }
-  .lp-form-success p { color: var(--text-secondary); line-height: 1.6; margin: 0; }
-  .lp-scheduler-cta { margin-top: 22px; }
-  .lp-scheduler-cta .lp-btn { width: 100%; }
-  .lp-cal-fallback { font-size: 0.85rem; color: var(--text-muted); margin: 14px 0 0; }
-  .lp-cal-fallback a { color: var(--accent); }
-
   @media (max-width: 980px) {
-    .lp-hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    .lp-hero-grid { grid-template-columns: 1fr; gap: 28px; }
+    .lp-bookcard { position: static; }
     .lp-flow { flex-wrap: wrap; }
     .lp-flow-arrow { transform: rotate(90deg); margin: 0 auto; }
     .lp-flow-node { flex: 1 1 100%; flex-direction: row; text-align: left; }
