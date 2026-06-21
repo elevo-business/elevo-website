@@ -4,35 +4,18 @@ import Logo from '../components/Logo.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import '../styles/global.css';
 
-// Lead-Formular postet an die bestehende Kontakt-/Lead-API (api.elevo.solutions):
-// legt Person + Lead/Deal + Notiz (mit allen Antworten) in Pipedrive an.
+// Lead-Formular -> Pipedrive (api.elevo.solutions).
 const LEAD_API_URL = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solutions/api/contact';
 
-// Terminbuchung via Calendly-Inline-Widget. Calendly ist mit dem Google-
-// Kalender verbunden (zeigt nur freie Slots, Kunde bucht selbst) und wird NACH
-// dem Formular geladen, mit den bereits erfassten Daten vorausgefuellt
-// (Prefill -> kein doppeltes Eintippen).
-// Per ENV setzen: PUBLIC_CALENDLY_URL = https://calendly.com/<account>/<event>
+// Calendly (Kalender-Sync, freie Slots, Prefill). Per ENV: PUBLIC_CALENDLY_URL.
 const CALENDLY_URL = import.meta.env.PUBLIC_CALENDLY_URL ?? 'https://calendly.com/hey-elevo/30min';
 
-// Google-Profil-Link. Exakten Profil-Link via ENV setzen.
-const GOOGLE_PROFILE_URL = import.meta.env.PUBLIC_GOOGLE_PROFILE_URL ?? 'https://www.google.com/search?q=ELEVO+Solutions+Rezensionen';
-
-// Echte Google-Rezensionen (ELEVO Solutions, 4,7 Sterne, 3 Rezensionen).
-const reviews = [
-  { name: 'Sahil Nayar', initial: 'S', rating: 5, date: 'vor einer Woche', text: 'Wir sind sehr zufrieden mit der Zusammenarbeit. Vom Erstgespräch bis hin zur Umsetzung verlief alles unkompliziert und vor allem super schnell.' },
-  { name: 'Miguel Römgens', initial: 'M', rating: 4, date: 'vor einer Woche', text: 'Wir hatten vorher eine Website von vor zehn Jahren, die auf dem Handy kaum lesbar war. Elevo hat in knapp zwei Wochen etwas komplett Neues gebaut.' },
-  { name: 'Dorian Azemi', initial: 'D', rating: 5, date: 'vor einer Woche', text: 'Top Arbeit. Schnell, professionell und überraschend unkompliziert.' },
-];
-const avgNum = reviews.reduce((s, r) => s + r.rating, 0) / reviews.length;
-const avgRating = avgNum.toFixed(1).replace('.', ',');
-const avgPct = Math.round((avgNum / 5) * 100);
 const year = new Date().getFullYear();
 ---
 
 <BaseLayout
   title="Das 14-Tage-Vertriebssystem für Dienstleister — Elevo"
-  description="Automatisiere die manuellen Prozesse, die dich und dein Team jede Woche Stunden kosten. In 14 Tagen, done-for-you. Sichere dir dein kostenloses telefonisches Erstgespräch."
+  description="Automatisiere die manuellen Prozesse, die dich und dein Team jede Woche Stunden kosten. In 14 Tagen, done-for-you. Sichere dir dein kostenloses Erstgespräch."
   canonical="https://elevo.solutions/vertriebssystem"
   noindex={true}
   eagerPageView={true}
@@ -42,13 +25,13 @@ const year = new Date().getFullYear();
   <header class="lp-header">
     <div class="lp-wrap lp-header-inner">
       <Logo size="md" />
-      <a href="#termin" class="lp-btn lp-btn-primary lp-header-cta">Erstgespräch sichern</a>
+      <button type="button" class="lp-btn lp-btn-primary lp-header-cta" data-open-booking>Erstgespräch sichern</button>
     </div>
   </header>
 
   <main id="main">
 
-    <!-- ===== HERO ===== -->
+    <!-- ===== HERO (Buchung ganz oben) ===== -->
     <section class="lp-section lp-hero" aria-labelledby="lp-hero-heading">
       <div class="lp-wrap">
         <div class="lp-hero-grid">
@@ -63,12 +46,12 @@ const year = new Date().getFullYear();
               Wir bauen dir das fertige System, du fasst nichts Technisches an.
             </p>
             <div class="lp-hero-ctas">
-              <a href="#termin" class="lp-btn lp-btn-primary lp-btn-lg">
+              <button type="button" class="lp-btn lp-btn-primary lp-btn-lg" data-open-booking>
                 Kostenloses Erstgespräch sichern
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
+              </button>
             </div>
-            <p class="lp-hero-trust">Kostenlos · ca. 15 Minuten am Telefon · kein Pitch</p>
+            <p class="lp-hero-trust">Kostenlos · ca. 15 Minuten · kein Pitch · nur 3 Plätze/Monat</p>
           </div>
 
           <aside class="lp-getcard" aria-label="Das baut Elevo dir">
@@ -79,7 +62,7 @@ const year = new Date().getFullYear();
               <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Nachfassen passiert von selbst, kein Lead versickert</li>
               <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Routineaufgaben übernimmt das System, ihr berät</li>
             </ul>
-            <a href="#termin" class="lp-btn lp-btn-ghost lp-getcard-cta">Termin wählen</a>
+            <button type="button" class="lp-btn lp-btn-primary lp-getcard-cta" data-open-booking>Jetzt Termin wählen</button>
             <p class="lp-getcard-note">14 Tage live. Sonst zahlst du erst, wenn es steht.</p>
           </aside>
         </div>
@@ -98,47 +81,17 @@ const year = new Date().getFullYear();
           <div class="lp-pain"><span class="lp-x" aria-hidden="true">✕</span>Nachfassen geht unter, Anfragen verpuffen</div>
         </div>
         <p class="lp-sub lp-sub-tight">
-          Solange das so läuft, ist dein Wachstum gedeckelt. Du kannst nicht mehr Kunden annehmen,
-          weil die Verwaltung dich und dein Team schon jetzt auffrisst. Rechne kurz nach, was dich
-          die Handarbeit kostet.
+          Solange das so läuft, ist dein Wachstum gedeckelt. Wir bauen dir das System, das diese
+          Handarbeit übernimmt. In ca. 15 Minuten zeigen wir dir, wie das bei dir aussieht.
         </p>
-      </div>
-    </section>
-
-    <!-- ===== RECHNER (Zeit) ===== -->
-    <section class="lp-section" aria-labelledby="lp-calc-heading">
-      <div class="lp-wrap">
-        <p class="lp-eyebrow">Rechne nach</p>
-        <h2 id="lp-calc-heading" class="lp-h2">Wie viele Stunden kostet euch die Handarbeit jedes Jahr?</h2>
-        <p class="lp-sub">Stell deine Zahlen ein. Der Rechner zeigt, wie viel Zeit ihr jedes Jahr zurückholt, wenn die Routineaufgaben automatisch laufen.</p>
-
-        <div class="lp-calc">
-          <div class="lp-calc-inputs">
-            <div class="lp-calc-field">
-              <div class="lp-calc-field-head"><label for="calc-hours">Stunden pro Woche für manuelle Prozesse (du und dein Team)</label><output id="calc-hours-out" class="lp-calc-val">10 h</output></div>
-              <input type="range" id="calc-hours" class="lp-range" min="2" max="60" step="1" value="10">
-            </div>
-            <div class="lp-calc-field">
-              <div class="lp-calc-field-head"><label for="calc-share">Anteil Routineaufgaben (automatisierbar)</label><output id="calc-share-out" class="lp-calc-val">70 %</output></div>
-              <input type="range" id="calc-share" class="lp-range" min="30" max="90" step="5" value="70">
-            </div>
-          </div>
-          <div class="lp-calc-result">
-            <p class="lp-calc-result-label">Stunden, die ihr pro Jahr zurückholt</p>
-            <p class="lp-calc-result-num" id="calc-back">364</p>
-            <div class="lp-calc-result-rows">
-              <div class="lp-calc-stat"><strong id="calc-days">46</strong><span>Arbeitstage / Jahr zurück</span></div>
-              <div class="lp-calc-stat"><strong id="calc-month">30</strong><span>Stunden / Monat zurück</span></div>
-            </div>
-            <a href="#termin" class="lp-btn lp-btn-primary lp-btn-block">Zahlen im Erstgespräch durchrechnen</a>
-            <p class="lp-calc-note">Überschlägige Rechnung. Zurückgeholte Zeit gleich Stunden pro Woche mal automatisierbarer Anteil mal 52, ein Arbeitstag gleich 8 Stunden. Eure echten Prozesse schauen wir uns im Erstgespräch an.</p>
-          </div>
+        <div class="lp-center-cta">
+          <button type="button" class="lp-btn lp-btn-primary lp-btn-lg" data-open-booking>Kostenloses Erstgespräch sichern</button>
         </div>
       </div>
     </section>
 
     <!-- ===== MECHANISMUS ===== -->
-    <section class="lp-section lp-section-alt" aria-labelledby="lp-mech-heading">
+    <section class="lp-section" aria-labelledby="lp-mech-heading">
       <div class="lp-wrap">
         <p class="lp-eyebrow">Der Mechanismus</p>
         <h2 id="lp-mech-heading" class="lp-h2">Was dich Stunden kostet, läuft in Minuten.</h2>
@@ -151,32 +104,15 @@ const year = new Date().getFullYear();
           <div class="lp-flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
           <div class="lp-flow-node"><span class="lp-flow-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg></span><span class="lp-flow-label">Nachfassen läuft, während ihr berät</span></div>
         </div>
-        <p class="lp-flow-caption">Ihr fasst nichts Technisches an. Ihr berät, das System macht den Rest. Die Live-Demo zeigen wir dir im Erstgespräch.</p>
       </div>
     </section>
 
-    <!-- ===== ERGEBNIS / STATUS ===== -->
-    <section class="lp-section" aria-labelledby="lp-wins-heading">
-      <div class="lp-wrap">
-        <p class="lp-eyebrow">Das Ergebnis</p>
-        <h2 id="lp-wins-heading" class="lp-h2">Weniger Verwaltung. Mehr Kunden. Endlich Feierabend.</h2>
-        <div class="lp-wins">
-          <div class="lp-win"><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Stunden pro Woche zurück, für dich und dein Team</div>
-          <div class="lp-win"><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Wachstum nicht mehr durch Admin gedeckelt</div>
-          <div class="lp-win"><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Seriöser, moderner Auftritt</div>
-          <div class="lp-win"><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Feierabend, weil das System die Arbeit macht</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== REFERENZEN / CASES ===== -->
+    <!-- ===== REFERENZEN / PROOF ===== -->
     <section class="lp-section lp-section-alt" aria-labelledby="lp-proof-heading">
       <div class="lp-wrap">
         <p class="lp-eyebrow">Referenzen</p>
         <h2 id="lp-proof-heading" class="lp-h2">So sieht dein System in der Praxis aus.</h2>
-        <p class="lp-sub">Zwei Unternehmen, zwei Engpässe, einmal komplett automatisiert. Genau diese Bausteine bauen wir auch für dich.</p>
 
-        <!-- Case 1: Greenchild -->
         <article class="lp-ref">
           <div class="lp-ref-head">
             <div class="lp-ref-logo lp-ref-logo-light">
@@ -186,47 +122,23 @@ const year = new Date().getFullYear();
               <span class="lp-ref-tag">Finanzdienstleister</span>
               <p class="lp-ref-situation">Leads und Dokumente liefen über Handarbeit. Zeit ging verloren, das Nachfassen blieb liegen.</p>
             </div>
-            <div class="lp-ref-result">
-              <strong>100 %</strong>
-              <span>automatisiert, vom Lead bis zur Erinnerung</span>
-            </div>
+            <div class="lp-ref-result"><strong>100 %</strong><span>automatisiert, vom Lead bis zur Erinnerung</span></div>
           </div>
-
           <p class="lp-ref-label">Was wir für Greenchild automatisiert haben</p>
           <div class="lp-ref-steps">
-            <div class="lp-ref-step">
-              <span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg></span>
-              <span>Leadgenerierung läuft automatisch</span>
-            </div>
-            <div class="lp-ref-step">
-              <span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15h6"/></svg></span>
-              <span>Dokumente werden automatisch erstellt</span>
-            </div>
-            <div class="lp-ref-step">
-              <span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
-              <span>Vertrieb wird bei jedem Lead sofort benachrichtigt</span>
-            </div>
-            <div class="lp-ref-step">
-              <span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
-              <span>Alle Daten landen zentral im CRM, Zugriff für jeden</span>
-            </div>
-            <div class="lp-ref-step">
-              <span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg></span>
-              <span>Follow-up-E-Mails gehen automatisch raus</span>
-            </div>
-            <div class="lp-ref-step">
-              <span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
-              <span>Erinnerungs-E-Mails laufen automatisch</span>
-            </div>
+            <div class="lp-ref-step"><span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg></span><span>Leadgenerierung läuft automatisch</span></div>
+            <div class="lp-ref-step"><span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15h6"/></svg></span><span>Dokumente werden automatisch erstellt</span></div>
+            <div class="lp-ref-step"><span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span><span>Vertrieb wird bei jedem Lead sofort benachrichtigt</span></div>
+            <div class="lp-ref-step"><span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span><span>Alle Daten landen zentral im CRM</span></div>
+            <div class="lp-ref-step"><span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg></span><span>Follow-up-E-Mails gehen automatisch raus</span></div>
+            <div class="lp-ref-step"><span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><span>Erinnerungs-E-Mails laufen automatisch</span></div>
           </div>
-
           <div class="lp-ref-bridge">
             <span class="lp-ref-bridge-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             <p><strong>Für dich heißt das:</strong> dieselbe Kette für deine Leads. Reinkommen, anreichern, Vertrieb benachrichtigen, nachfassen, erinnern. Alles automatisch, du berätst nur noch, statt zu tippen.</p>
           </div>
         </article>
 
-        <!-- Case 2: BML -->
         <article class="lp-ref">
           <div class="lp-ref-head">
             <div class="lp-ref-logo lp-ref-logo-dark">
@@ -236,28 +148,14 @@ const year = new Date().getFullYear();
               <span class="lp-ref-tag">Social-Media-Agentur</span>
               <p class="lp-ref-situation">Anfragen kamen rein, aber das Sortieren und Weiterleiten ans Vertriebsteam kostete jeden Tag Zeit.</p>
             </div>
-            <div class="lp-ref-result">
-              <strong>2x</strong>
-              <span>Kapazität des Teams, ohne mehr Arbeit</span>
-            </div>
+            <div class="lp-ref-result"><strong>2x</strong><span>Kapazität des Teams, ohne mehr Arbeit</span></div>
           </div>
-
           <p class="lp-ref-label">Was wir für Brands Marketing Lab gebaut haben</p>
           <div class="lp-ref-steps lp-ref-steps-3">
-            <div class="lp-ref-step">
-              <span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M3 9h18"/><path d="M9 21h6"/><path d="M12 17v4"/></svg></span>
-              <span>Vollautomatisierte Website gebaut</span>
-            </div>
-            <div class="lp-ref-step">
-              <span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51 15.42 17.49"/><path d="M15.41 6.51 8.59 10.49"/></svg></span>
-              <span>Anfragen werden automatisch zum Vertrieb geleitet</span>
-            </div>
-            <div class="lp-ref-step">
-              <span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
-              <span>Kein manuelles Sortieren mehr, Team frei fürs Wesentliche</span>
-            </div>
+            <div class="lp-ref-step"><span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M3 9h18"/><path d="M9 21h6"/><path d="M12 17v4"/></svg></span><span>Vollautomatisierte Website gebaut</span></div>
+            <div class="lp-ref-step"><span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51 15.42 17.49"/><path d="M15.41 6.51 8.59 10.49"/></svg></span><span>Anfragen werden automatisch zum Vertrieb geleitet</span></div>
+            <div class="lp-ref-step"><span class="lp-ref-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span><span>Kein manuelles Sortieren mehr</span></div>
           </div>
-
           <div class="lp-ref-bridge">
             <span class="lp-ref-bridge-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             <p><strong>Für dich heißt das:</strong> deine Anfragen kommen vorsortiert beim richtigen Menschen an. Dein Team schafft das Doppelte, ohne länger zu arbeiten.</p>
@@ -266,48 +164,8 @@ const year = new Date().getFullYear();
       </div>
     </section>
 
-    <!-- ===== SOCIAL PROOF: Google-Bewertungen ===== -->
-    <section class="lp-section" aria-labelledby="lp-reviews-heading">
-      <div class="lp-wrap">
-        <p class="lp-eyebrow">Was Kunden sagen</p>
-        <h2 id="lp-reviews-heading" class="lp-h2 lp-h2-tight">Echte Bewertungen. Keine Versprechen.</h2>
-        <div class="lp-reviews-head">
-          <span class="lp-g" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="34" height="34"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15A11 11 0 0 0 2.18 7.06L5.84 9.9C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
-          </span>
-          <div>
-            <p class="lp-eyebrow lp-eyebrow-tight">Google Bewertungen</p>
-            <div class="lp-rating">
-              <span class="lp-rating-num">{avgRating}</span>
-              <span class="lp-starbar" style={`--pct:${avgPct}%`} aria-hidden="true"></span>
-              <span class="lp-rating-count">· {reviews.length} Rezensionen</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="lp-reviews">
-          {reviews.map((r) => (
-            <article class="lp-review">
-              <div class="lp-review-top">
-                <span class="lp-avatar">{r.initial}</span>
-                <div class="lp-review-who"><strong>{r.name}</strong><span>{r.date}</span></div>
-                <svg class="lp-review-g" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15A11 11 0 0 0 2.18 7.06L5.84 9.9C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
-              </div>
-              <div class="lp-review-stars" aria-label={`${r.rating} von 5 Sternen`}>{'★'.repeat(r.rating)}<span class="lp-star-empty">{'★'.repeat(5 - r.rating)}</span></div>
-              <p class="lp-review-text">{r.text}</p>
-            </article>
-          ))}
-        </div>
-        {GOOGLE_PROFILE_URL && (
-          <p class="lp-center-cta">
-            <a class="lp-btn lp-btn-ghost" href={GOOGLE_PROFILE_URL} target="_blank" rel="noopener">Alle Bewertungen auf Google ansehen</a>
-          </p>
-        )}
-      </div>
-    </section>
-
-    <!-- ===== GARANTIE + VERKNAPPUNG ===== -->
-    <section class="lp-section lp-section-alt" aria-labelledby="lp-gar-heading">
+    <!-- ===== GARANTIE ===== -->
+    <section class="lp-section" aria-labelledby="lp-gar-heading">
       <div class="lp-wrap">
         <div class="lp-guarantee">
           <div class="lp-guarantee-ico" aria-hidden="true">
@@ -322,75 +180,7 @@ const year = new Date().getFullYear();
       </div>
     </section>
 
-    <!-- ===== TERMIN / BUCHUNG ===== -->
-    <section id="termin" class="lp-section" aria-labelledby="lp-termin-heading">
-      <div class="lp-wrap">
-        <div class="lp-termin">
-          <p class="lp-eyebrow">Dein nächster Schritt</p>
-          <h2 id="lp-termin-heading" class="lp-h2">Sichere dir dein kostenloses Erstgespräch.</h2>
-          <p class="lp-sub lp-sub-center">
-            Trag kurz deine Daten ein. Direkt danach wählst du einen freien Termin in meinem Kalender
-            für ein telefonisches Erstgespräch. In ca. 15 Minuten zeigen wir dir, wie euer System
-            aussehen würde. Kostenlos, kein Pitch. Diesen Monat nur 3 Plätze.
-          </p>
-
-          <form class="contact-form lp-form" id="lead-form" novalidate data-api-url={LEAD_API_URL}>
-            <input type="text" name="_hp" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
-            <input type="hidden" name="_ts" id="lead-ts" value="">
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label" for="lf-firstName">Vorname *</label>
-                <input class="form-input" type="text" id="lf-firstName" name="firstName" placeholder="Max" required autocomplete="given-name">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="lf-lastName">Nachname *</label>
-                <input class="form-input" type="text" id="lf-lastName" name="lastName" placeholder="Mustermann" required autocomplete="family-name">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label" for="lf-email">E-Mail-Adresse *</label>
-                <input class="form-input" type="email" id="lf-email" name="email" placeholder="max@dein-unternehmen.de" required autocomplete="email">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="lf-phone">Telefonnummer *</label>
-                <input class="form-input" type="tel" id="lf-phone" name="phone" placeholder="+49 …" required autocomplete="tel" inputmode="tel">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="lf-engpass">Welche Prozesse fressen bei euch am meisten Zeit? *</label>
-              <textarea class="form-textarea" id="lf-engpass" name="engpass" placeholder="z. B. Dateneingabe in mehrere Systeme, Angebote von Hand, Nachfassen geht unter, abends noch Nachbereitung …" required></textarea>
-            </div>
-            <button type="submit" class="form-submit lp-btn lp-btn-primary lp-btn-block" id="lf-submit">Erstgespräch sichern</button>
-            <p class="form-privacy-note">
-              Mit dem Absenden stimmst du unserer <a href="/datenschutz">Datenschutzerklärung</a> zu.
-              Conversion-Tracking läuft nur nach Einwilligung im Cookie-Banner.
-            </p>
-            <div class="form-message" id="lf-message" role="alert" aria-live="polite"></div>
-          </form>
-
-          <div class="lp-form-success" id="lf-success" hidden>
-            <div class="lp-form-success-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <h3>Geschafft. Wähl jetzt deinen Termin.</h3>
-            <p>Such dir einen freien Slot in meinem Kalender aus. Die Bestätigung kommt sofort per E-Mail. Falls das Fenster nicht von selbst aufgeht, klick einfach den Button.</p>
-            <div class="lp-scheduler-cta">
-              <button type="button" class="lp-btn lp-btn-primary lp-btn-lg" id="lf-open-cal" data-url={CALENDLY_URL}>Freien Termin auswählen</button>
-            </div>
-            <p class="lp-cal-fallback">Fenster öffnet nicht? <a href={CALENDLY_URL} target="_blank" rel="noopener">Hier im neuen Tab öffnen</a></p>
-          </div>
-
-          <ul class="lp-termin-trust" role="list">
-            <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Telefonisches Erstgespräch</li>
-            <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Kostenlos und unverbindlich</li>
-            <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>ca. 15 Minuten, kein Pitch</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== FAQ ===== -->
+    <!-- ===== FAQ (gekürzt) ===== -->
     <section class="lp-section lp-section-alt" aria-labelledby="lp-faq-heading">
       <div class="lp-wrap">
         <p class="lp-eyebrow">Klartext vor dem Erstgespräch</p>
@@ -398,33 +188,25 @@ const year = new Date().getFullYear();
         <div class="lp-faq" role="list">
           <details class="lp-faq-item" role="listitem">
             <summary class="lp-faq-q"><span>Muss ich technisch fit sein oder selbst etwas bauen?</span><span class="lp-faq-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-            <div class="lp-faq-a"><p>Nein. Wir bauen alles done-for-you. Copy, Technik und Automatisierung. Ihr liefert nur die Infos zu eurem Geschäft, den Rest übernehmen wir. Ihr fasst nichts Technisches an.</p></div>
+            <div class="lp-faq-a"><p>Nein. Wir bauen alles done-for-you. Copy, Technik und Automatisierung. Ihr liefert nur die Infos, den Rest übernehmen wir.</p></div>
           </details>
           <details class="lp-faq-item" role="listitem">
-            <summary class="lp-faq-q"><span>Wie lange dauert es, bis das System läuft?</span><span class="lp-faq-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+            <summary class="lp-faq-q"><span>Wie lange dauert es?</span><span class="lp-faq-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
             <div class="lp-faq-a"><p>14 Tage bis live, nicht drei Monate. Steht es nicht rechtzeitig, zahlst du erst, wenn es läuft.</p></div>
           </details>
           <details class="lp-faq-item" role="listitem">
             <summary class="lp-faq-q"><span>Was kostet das?</span><span class="lp-faq-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-            <div class="lp-faq-a"><p>Zum Festpreis, der vorher feststeht. Keine laufenden Überraschungen. Was für euren Umfang sinnvoll ist, klären wir im kostenlosen Erstgespräch, sobald wir eure Prozesse kennen.</p></div>
+            <div class="lp-faq-a"><p>Zum Festpreis, der vorher feststeht. Was für euren Umfang sinnvoll ist, klären wir im kostenlosen Erstgespräch.</p></div>
           </details>
           <details class="lp-faq-item" role="listitem">
             <summary class="lp-faq-q"><span>Was ist mit DSGVO und unseren Kundendaten?</span><span class="lp-faq-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-            <div class="lp-faq-a"><p>DSGVO-konform ist Standard. EU-Hosting, Auftragsverarbeitungsvertrag und self-hosted Fonts. Eure Kundendaten bleiben in eurer Hand.</p></div>
-          </details>
-          <details class="lp-faq-item" role="listitem">
-            <summary class="lp-faq-q"><span>Was, wenn es bei uns nicht klappt?</span><span class="lp-faq-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-            <div class="lp-faq-a"><p>Wir garantieren Tempo und Qualität. 14 Tage live, sonst zahlst du erst, wenn es steht. Und wir holen euch nachweislich Zeit aus den manuellen Prozessen zurück.</p></div>
-          </details>
-          <details class="lp-faq-item" role="listitem">
-            <summary class="lp-faq-q"><span>Für wen ist das gedacht?</span><span class="lp-faq-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-            <div class="lp-faq-a"><p>Für Dienstleister, die zu viel Zeit mit Verwaltung statt mit Kunden verlieren. Dateneingabe, Nachbereitung, Angebote, Nachfassen. Wenn euer Wachstum gerade durch Handarbeit gedeckelt ist, seid ihr richtig.</p></div>
+            <div class="lp-faq-a"><p>DSGVO-konform ist Standard. EU-Hosting, Auftragsverarbeitungsvertrag und self-hosted Fonts. Eure Daten bleiben in eurer Hand.</p></div>
           </details>
         </div>
       </div>
     </section>
 
-    <!-- ===== ÜBER MERT ===== -->
+    <!-- ===== ÜBER MERT + FINAL CTA ===== -->
     <section class="lp-section" aria-labelledby="lp-mert-heading">
       <div class="lp-wrap">
         <div class="lp-vision">
@@ -438,9 +220,10 @@ const year = new Date().getFullYear();
           <div class="lp-vision-body">
             <p class="lp-eyebrow">Wer dich berät</p>
             <h2 id="lp-mert-heading" class="lp-h2 lp-h2-tight">Andere erklären dir, wie es geht. Wir bauen es dir.</h2>
-            <p class="lp-vision-text">Im Erstgespräch schauen wir gemeinsam auf eure Abläufe und zeigen dir, welche manuellen Prozesse sich automatisieren lassen. Und wie euer System konkret aussehen würde. Ob wir danach zusammenarbeiten, entscheidest du in Ruhe.</p>
+            <p class="lp-vision-text">Im Erstgespräch schauen wir gemeinsam auf eure Abläufe und zeigen dir, welche manuellen Prozesse sich automatisieren lassen. Ob wir danach zusammenarbeiten, entscheidest du in Ruhe.</p>
             <p class="lp-vision-close">Done-for-you statt Kurs. Zum Festpreis, in 14 Tagen.</p>
-            <a href="#termin" class="lp-btn lp-btn-primary">Erstgespräch sichern</a>
+            <button type="button" class="lp-btn lp-btn-primary lp-btn-lg" data-open-booking>Kostenloses Erstgespräch sichern</button>
+            <p class="lp-hero-trust" style="margin-top:14px;">Kostenlos · ca. 15 Minuten · kein Pitch</p>
           </div>
         </div>
       </div>
@@ -460,61 +243,117 @@ const year = new Date().getFullYear();
     </div>
   </footer>
 
+  <!-- ===== STICKY CTA (mobil dauerhaft sichtbar) ===== -->
+  <div class="lp-sticky-cta">
+    <button type="button" class="lp-btn lp-btn-primary lp-btn-block" data-open-booking>Kostenloses Erstgespräch sichern</button>
+  </div>
+
+  <!-- ===== BUCHUNGS-MODAL (1 Tap von jedem CTA) ===== -->
+  <div class="lp-modal" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title" hidden>
+    <div class="lp-modal-backdrop" data-close></div>
+    <div class="lp-modal-card">
+      <button class="lp-modal-close" type="button" aria-label="Schließen" data-close>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+
+      <div id="lf-step-form">
+        <p class="lp-eyebrow">Kostenloses Erstgespräch</p>
+        <h2 id="booking-modal-title" class="lp-modal-title">Nur kurz deine Daten, dann wählst du deinen Termin.</h2>
+        <p class="lp-modal-sub">Danach öffnet sich direkt mein Kalender. Kostenlos, ca. 15 Minuten, kein Pitch.</p>
+
+        <form class="contact-form lp-form" id="lead-form" novalidate data-api-url={LEAD_API_URL}>
+          <input type="text" name="_hp" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+          <input type="hidden" name="_ts" id="lead-ts" value="">
+          <div class="form-group">
+            <label class="form-label" for="lf-name">Name *</label>
+            <input class="form-input" type="text" id="lf-name" name="name" placeholder="Max Mustermann" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lf-email">E-Mail-Adresse *</label>
+            <input class="form-input" type="email" id="lf-email" name="email" placeholder="max@dein-unternehmen.de" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lf-phone">Telefonnummer *</label>
+            <input class="form-input" type="tel" id="lf-phone" name="phone" placeholder="+49 …" required autocomplete="tel" inputmode="tel">
+          </div>
+          <button type="submit" class="form-submit lp-btn lp-btn-primary lp-btn-block" id="lf-submit">Weiter zum Kalender</button>
+          <p class="form-privacy-note">
+            Mit dem Absenden stimmst du unserer <a href="/datenschutz">Datenschutzerklärung</a> zu.
+          </p>
+          <div class="form-message" id="lf-message" role="alert" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <div class="lp-form-success" id="lf-success" hidden>
+        <div class="lp-form-success-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Geschafft. Wähl jetzt deinen Termin.</h3>
+        <p>Such dir einen freien Slot in meinem Kalender aus. Falls das Fenster nicht von selbst aufgeht, klick den Button.</p>
+        <div class="lp-scheduler-cta">
+          <button type="button" class="lp-btn lp-btn-primary lp-btn-lg" id="lf-open-cal" data-url={CALENDLY_URL}>Freien Termin auswählen</button>
+        </div>
+        <p class="lp-cal-fallback">Fenster öffnet nicht? <a href={CALENDLY_URL} target="_blank" rel="noopener">Hier im neuen Tab öffnen</a></p>
+      </div>
+    </div>
+  </div>
+
   <CookieBanner />
 
   <script>
-    // ----- Zeit-Rechner -----
-    const hoursEl = document.getElementById('calc-hours') as HTMLInputElement;
-    const shareEl = document.getElementById('calc-share') as HTMLInputElement;
-    const hoursOut = document.getElementById('calc-hours-out');
-    const shareOut = document.getElementById('calc-share-out');
-    const backOut = document.getElementById('calc-back');
-    const daysOut = document.getElementById('calc-days');
-    const monthOut = document.getElementById('calc-month');
-    const de = new Intl.NumberFormat('de-DE');
+    // ===== Buchungs-Modal =====
+    const modal = document.getElementById('booking-modal');
+    let lastFocus: HTMLElement | null = null;
 
-    function paintRange(el: HTMLInputElement) {
-      const pct = ((+el.value - +el.min) / (+el.max - +el.min)) * 100;
-      el.style.background = `linear-gradient(90deg, var(--accent) 0%, var(--accent) ${pct}%, #E3E8EF ${pct}%, #E3E8EF 100%)`;
-    }
-    function updateCalc() {
-      if (!hoursEl || !shareEl) return;
-      const hours = +hoursEl.value, share = +shareEl.value;
-      const backPerWeek = hours * share / 100;
-      const backPerYear = backPerWeek * 52;
-      const backPerMonth = backPerYear / 12;
-      const daysBack = backPerYear / 8;
-      if (hoursOut) hoursOut.textContent = hours + ' h';
-      if (shareOut) shareOut.textContent = share + ' %';
-      if (backOut) backOut.textContent = de.format(Math.round(backPerYear));
-      if (daysOut) daysOut.textContent = de.format(Math.round(daysBack));
-      if (monthOut) monthOut.textContent = de.format(Math.round(backPerMonth));
-      [hoursEl, shareEl].forEach(paintRange);
-    }
-    if (hoursEl && shareEl) {
-      [hoursEl, shareEl].forEach((el) => el.addEventListener('input', updateCalc));
-      updateCalc();
+    // FormStart-Event: feuert, wenn der Nutzer die Buchung oeffnet (gelandet ->
+    // Formular gestartet). Custom-Event fuer Meta + Google.
+    let formStarted = false;
+    function fireFormStart() {
+      if (formStarted) return;
+      formStarted = true;
+      if (typeof (window as any).fbq === 'function') {
+        (window as any).fbq('trackCustom', 'FormStart', { content_name: 'vertriebssystem' });
+      }
+      if (typeof (window as any).gtag === 'function') {
+        (window as any).gtag('event', 'form_start', { send_to: 'AW-18023151518' });
+      }
     }
 
-    // ----- Calendly Popup (Kalender-Sync + Prefill) -----
-    // Popup wird von Calendly selbst gerendert (responsive, kein Inline-Layout-
-    // Problem). Oeffnet nach dem Absenden automatisch und ist per Button erneut
-    // aufrufbar. Prefill (Name/E-Mail/Telefon/Engpass) ueber URL-Parameter.
+    function openBooking() {
+      if (!modal) return;
+      lastFocus = document.activeElement as HTMLElement;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      fireFormStart();
+      const first = document.getElementById('lf-name') as HTMLInputElement | null;
+      setTimeout(() => first && first.focus(), 40);
+    }
+    function closeBooking() {
+      if (!modal) return;
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    document.querySelectorAll('[data-open-booking]').forEach((b) => {
+      b.addEventListener('click', (e) => { e.preventDefault(); openBooking(); });
+    });
+    modal?.querySelectorAll('[data-close]').forEach((b) => b.addEventListener('click', closeBooking));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && !modal.hidden) closeBooking();
+    });
+
+    // ===== Calendly Popup (Kalender-Sync + Prefill) =====
     let calUrl = '';
-
-    function buildCalendlyUrl(base: string, data: { firstName: string; lastName: string; email: string; phone: string; engpass: string; }) {
+    function buildCalendlyUrl(base: string, fullName: string, email: string, phone: string) {
       try {
         const u = new URL(base);
-        u.searchParams.set('name', `${data.firstName} ${data.lastName}`.trim());
-        u.searchParams.set('email', data.email);
-        // a1/a2 = benutzerdefinierte Fragen im Calendly-Event
-        // (Reihenfolge im Event: 1 = Telefon, 2 = groesster Zeitfresser).
-        u.searchParams.set('a1', data.phone);
-        u.searchParams.set('a2', data.engpass);
+        u.searchParams.set('name', fullName);
+        u.searchParams.set('email', email);
+        u.searchParams.set('a1', phone); // benutzerdefinierte Frage 1 = Telefon
         return u.toString();
       } catch { return base; }
     }
-
     function withCalendly(cb: () => void) {
       if ((window as any).Calendly) { cb(); return; }
       if (!document.getElementById('calendly-widget-css')) {
@@ -534,7 +373,6 @@ const year = new Date().getFullYear();
       }
       s.addEventListener('load', cb, { once: true });
     }
-
     function openCalendlyPopup() {
       if (!calUrl) return;
       withCalendly(() => {
@@ -542,17 +380,16 @@ const year = new Date().getFullYear();
         if (C && typeof C.initPopupWidget === 'function') C.initPopupWidget({ url: calUrl });
       });
     }
-
-    // Button im Erfolgs-Screen oeffnet das Popup (erneut).
     document.getElementById('lf-open-cal')?.addEventListener('click', openCalendlyPopup);
 
-    // ----- Lead-Formular -> Pipedrive (server-seitig) -> Calendly -----
+    // ===== Lead-Formular -> Pipedrive -> Calendly =====
     const lf = document.getElementById('lead-form') as HTMLFormElement | null;
     if (lf) {
       const tsEl = document.getElementById('lead-ts') as HTMLInputElement;
       if (tsEl) tsEl.value = String(Date.now());
       const btn = document.getElementById('lf-submit') as HTMLButtonElement;
       const msg = document.getElementById('lf-message')!;
+      const stepForm = document.getElementById('lf-step-form')!;
       const success = document.getElementById('lf-success')!;
       const apiUrl = lf.dataset.apiUrl!;
       const val = (n: string) => (lf.elements.namedItem(n) as HTMLInputElement)?.value.trim() ?? '';
@@ -561,30 +398,26 @@ const year = new Date().getFullYear();
         e.preventDefault();
         if ((lf.elements.namedItem('_hp') as HTMLInputElement)?.value) return; // honeypot
         const ts = (lf.elements.namedItem('_ts') as HTMLInputElement)?.value;
-        if (ts && Date.now() - parseInt(ts, 10) < 1500) return;
+        if (ts && Date.now() - parseInt(ts, 10) < 1200) return;
 
-        const firstName = val('firstName'), lastName = val('lastName'), email = val('email'),
-              phone = val('phone'), engpass = val('engpass');
-        if (!firstName || !lastName || !email || !phone || !engpass) {
+        const fullName = val('name'), email = val('email'), phone = val('phone');
+        if (!fullName || !email || !phone) {
           msg.className = 'form-message error'; msg.textContent = 'Bitte füll alle Felder aus.'; return;
         }
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
           msg.className = 'form-message error'; msg.textContent = 'Bitte gib eine gültige E-Mail-Adresse ein.'; return;
         }
+        const parts = fullName.split(/\s+/);
+        const firstName = parts.shift() || fullName;
+        const lastName = parts.join(' ');
 
-        btn.disabled = true; btn.textContent = 'Wird gesendet …';
-        // Meta: event_id + fbp/fbc (nur mit Consent) -> CAPI-Dedup.
+        btn.disabled = true; btn.textContent = 'Einen Moment …';
         const lead = (window as any).elevoMeta?.leadData?.() ?? null;
 
-        // Booking hat Prioritaet: Erfolgs-Screen + Calendly SOFORT zeigen,
-        // unabhaengig davon, ob die Lead-API antwortet. So blockiert ein
-        // Fehler beim CRM-Sync niemals die eigentliche Terminbuchung.
-        lf.hidden = true;
+        // Booking-Prio: Erfolgs-Screen + Calendly sofort, unabhaengig von der API.
+        stepForm.hidden = true;
         success.hidden = false;
-        success.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        // Calendly-Popup mit Prefill vorbereiten und automatisch oeffnen.
-        const calBase = (document.getElementById('lf-open-cal') as HTMLElement | null)?.dataset.url || '';
-        calUrl = buildCalendlyUrl(calBase, { firstName, lastName, email, phone, engpass });
+        calUrl = buildCalendlyUrl((document.getElementById('lf-open-cal') as HTMLElement)?.dataset.url || '', fullName, email, phone);
         openCalendlyPopup();
 
         // Conversion-Tracking
@@ -597,10 +430,9 @@ const year = new Date().getFullYear();
         fetch(apiUrl, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            name: `${firstName} ${lastName}`.trim(),
-            firstName, lastName, email, phone,
+            name: fullName, firstName, lastName, email, phone,
             service: 'vertriebssystem', source: 'vertriebssystem',
-            message: `Erstgespräch-Anfrage über die Vertriebssystem-Landingpage.\nTelefon: ${phone}\nZeitfresser/Engpass: ${engpass}`,
+            message: `Erstgespräch-Anfrage über die Vertriebssystem-Landingpage.\nTelefon: ${phone}`,
             ...(lead ?? {}),
           }),
         }).catch(() => { /* CRM-Sync fehlgeschlagen; Buchung laeuft trotzdem */ });
@@ -610,139 +442,86 @@ const year = new Date().getFullYear();
 </BaseLayout>
 
 <style is:global>
-  /* Helle, schlichte Landingpage. Tokens nur fuer diese Route ueberschrieben,
-     CSS wird ausschliesslich auf /vertriebssystem ausgeliefert. */
+  /* Helle, schlichte Ad-Landingpage. Tokens nur fuer diese Route. */
   html body {
-    --bg-deep: #FFFFFF;
-    --bg-dark: #FFFFFF;
-    --bg-alt: #F6F8FB;
-    --bg-card: #FFFFFF;
-    --bg-card-hover: #F0F4FA;
-    --accent: #2563EB;
-    --accent-hover: #1D4ED8;
-    --accent-glow: rgba(37, 99, 235, 0.18);
-    --accent-glow-strong: rgba(37, 99, 235, 0.28);
+    --bg-deep: #FFFFFF; --bg-dark: #FFFFFF; --bg-alt: #F6F8FB; --bg-card: #FFFFFF; --bg-card-hover: #F0F4FA;
+    --accent: #2563EB; --accent-hover: #1D4ED8; --accent-glow: rgba(37,99,235,0.18); --accent-glow-strong: rgba(37,99,235,0.28);
     --green: #16A34A;
-    --text-primary: #0B1220;
-    --text-secondary: #41506A;
-    --text-muted: #6B7787;
-    --border: #E3E8EF;
-    --border-strong: #CBD5E3;
-    --danger: #DC2626;
-    --shadow: 0 12px 40px rgba(15, 30, 60, 0.06);
-    background: #FFFFFF;
-    color: #0B1220;
-    font-weight: 400;
+    --text-primary: #0B1220; --text-secondary: #41506A; --text-muted: #6B7787;
+    --border: #E3E8EF; --border-strong: #CBD5E3; --danger: #DC2626;
+    --shadow: 0 12px 40px rgba(15,30,60,0.06);
+    background: #FFFFFF; color: #0B1220; font-weight: 400;
   }
-  /* Formular hell halten (sonst dunkle Card aus dem globalen Theme) */
-  body .contact-form {
-    background: #FFFFFF;
-    border: 1px solid var(--border);
-    box-shadow: 0 12px 40px rgba(15, 30, 60, 0.06);
-  }
-  body .form-input,
-  body .form-textarea {
-    background: #FFFFFF;
-    color: #0B1220;
-    border: 1px solid #D8DFEA;
-  }
-  body .form-input::placeholder,
-  body .form-textarea::placeholder { color: #9AA7B5; }
-  body .form-input:focus,
-  body .form-textarea:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
-    background: #FFFFFF;
-  }
+  body .contact-form { background: #FFFFFF; border: none; padding: 0; }
+  body .form-input, body .form-textarea { background: #FFFFFF; color: #0B1220; border: 1px solid #D8DFEA; }
+  body .form-input::placeholder, body .form-textarea::placeholder { color: #9AA7B5; }
+  body .form-input:focus, body .form-textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,0.12); background: #FFFFFF; }
   body .form-label { color: #1F2A3A; font-weight: 600; }
   body .form-privacy-note { color: #6B7787; }
   body .form-privacy-note a, body .form-message a { color: var(--accent); }
-  /* Logo auf weissem Header durchgehend in Akzentfarbe (statt hellblauem Echo) */
-  body .lp-header .logo-mark path,
-  body .lp-header .logo-mark line,
-  body .lp-footer .logo-mark path,
-  body .lp-footer .logo-mark line { stroke: var(--accent); }
+  body .lp-header .logo-mark path, body .lp-header .logo-mark line,
+  body .lp-footer .logo-mark path, body .lp-footer .logo-mark line { stroke: var(--accent); }
 </style>
 
 <style>
   .lp-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
-  /* Header */
-  .lp-header {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
-  }
+  .lp-header { position: sticky; top: 0; z-index: 90; background: rgba(255,255,255,0.9); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
   .lp-header-inner { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; padding-bottom: 14px; }
   .lp-header-cta { padding: 11px 22px; font-size: 0.92rem; }
 
-  /* Sections */
-  .lp-section { padding: clamp(56px, 8vw, 92px) 0; }
+  .lp-section { padding: clamp(48px, 7vw, 84px) 0; }
   .lp-section-alt { background: #F6F8FB; }
-  .lp-hero { padding-top: clamp(48px, 7vw, 80px); }
+  .lp-hero { padding-top: clamp(40px, 6vw, 72px); }
 
   .lp-eyebrow { font-family: var(--font-heading); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
-  .lp-eyebrow-tight { margin-bottom: 6px; }
   .lp-h1 { font-family: var(--font-heading); font-weight: 800; font-size: clamp(2rem, 4.4vw, 3.2rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--text-primary); margin: 0 0 22px; }
   .lp-accent { color: var(--accent); }
   .lp-h2 { font-family: var(--font-heading); font-weight: 800; font-size: clamp(1.5rem, 2.8vw, 2.1rem); line-height: 1.18; letter-spacing: -0.01em; color: var(--text-primary); margin: 0 0 18px; }
   .lp-h2-tight { margin-bottom: 24px; }
   .lp-sub { font-size: 1.08rem; line-height: 1.65; color: var(--text-secondary); max-width: 760px; margin: 0; }
-  .lp-sub-tight { margin-top: 28px; }
-  .lp-sub-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .lp-sub-tight { margin-top: 24px; }
 
-  /* Buttons */
   .lp-btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; font-family: var(--font-heading); font-weight: 700; font-size: 1rem; padding: 14px 26px; border-radius: 12px; border: 1px solid transparent; cursor: pointer; text-decoration: none; transition: background var(--transition), border-color var(--transition), transform var(--transition); }
-  .lp-btn-primary { background: var(--accent); color: #fff; box-shadow: 0 6px 18px rgba(37, 99, 235, 0.22); }
+  .lp-btn-primary { background: var(--accent); color: #fff; box-shadow: 0 6px 18px rgba(37,99,235,0.22); }
   .lp-btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
   .lp-btn-ghost { background: #fff; color: var(--accent); border-color: var(--border-strong); }
-  .lp-btn-ghost:hover { border-color: var(--accent); }
   .lp-btn-lg { padding: 16px 30px; font-size: 1.05rem; }
   .lp-btn-block { width: 100%; }
   .lp-center-cta { text-align: center; margin-top: 28px; }
 
-  /* Hero */
   .lp-hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center; }
   .lp-hero-ctas { margin: 28px 0 14px; }
   .lp-hero-trust { font-size: 0.92rem; color: var(--text-muted); margin: 0; }
 
-  .lp-getcard { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 30px 28px; box-shadow: 0 12px 40px rgba(15, 30, 60, 0.06); }
+  .lp-getcard { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 30px 28px; box-shadow: 0 12px 40px rgba(15,30,60,0.06); }
   .lp-getcard-title { font-family: var(--font-heading); font-weight: 800; color: var(--text-primary); font-size: 1.12rem; margin: 0 0 18px; }
   .lp-getcard-list { list-style: none; margin: 0 0 24px; padding: 0; display: grid; gap: 15px; }
   .lp-getcard-list li { display: flex; gap: 12px; align-items: flex-start; color: var(--text-secondary); font-size: 0.98rem; line-height: 1.45; }
-  .lp-check { flex-shrink: 0; width: 24px; height: 24px; border-radius: 7px; background: rgba(37, 99, 235, 0.10); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .lp-check { flex-shrink: 0; width: 24px; height: 24px; border-radius: 7px; background: rgba(37,99,235,0.10); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; margin-top: 1px; }
   .lp-check svg { width: 13px; height: 13px; }
   .lp-getcard-cta { width: 100%; }
-  .lp-getcard-note { font-size: 0.82rem; color: var(--text-muted); margin: 14px 0 0; line-height: 1.45; }
+  .lp-getcard-note { font-size: 0.82rem; color: var(--text-muted); margin: 14px 0 0; line-height: 1.45; text-align: center; }
 
-  /* Pains */
   .lp-pains { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 8px; }
   .lp-pain { display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; color: var(--text-primary); font-family: var(--font-heading); font-weight: 600; font-size: 1rem; }
   .lp-x { color: var(--danger); font-weight: 800; font-size: 1.1rem; flex-shrink: 0; }
 
-  /* Mechanismus */
-  .lp-flow { display: flex; align-items: stretch; gap: 10px; margin-top: 26px; flex-wrap: nowrap; }
+  .lp-flow { display: flex; align-items: stretch; gap: 10px; margin-top: 26px; }
   .lp-flow-node { flex: 1; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 22px 18px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-  .lp-flow-ico { width: 46px; height: 46px; border-radius: 12px; background: rgba(37, 99, 235, 0.10); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; }
+  .lp-flow-ico { width: 46px; height: 46px; border-radius: 12px; background: rgba(37,99,235,0.10); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; }
   .lp-flow-ico svg { width: 22px; height: 22px; }
   .lp-flow-label { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.4; }
   .lp-flow-arrow { display: flex; align-items: center; color: var(--border-strong); flex: 0 0 auto; }
   .lp-flow-arrow svg { width: 22px; height: 22px; }
-  .lp-flow-caption { text-align: center; color: var(--text-muted); font-size: 0.95rem; margin: 22px 0 0; }
 
-  /* Ergebnis */
-  .lp-wins { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 8px; }
-  .lp-win { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; color: var(--text-primary); font-family: var(--font-heading); font-weight: 600; font-size: 1rem; }
-
-  /* Referenzen / Cases */
-  .lp-ref { background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: clamp(24px, 3vw, 40px); box-shadow: 0 12px 40px rgba(15, 30, 60, 0.05); margin-top: 28px; }
+  .lp-ref { background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: clamp(24px, 3vw, 40px); box-shadow: 0 12px 40px rgba(15,30,60,0.05); margin-top: 28px; }
   .lp-ref-head { display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: center; padding-bottom: 26px; border-bottom: 1px solid var(--border); }
   .lp-ref-logo { display: inline-flex; align-items: center; justify-content: center; height: 66px; padding: 0 24px; border-radius: 14px; }
   .lp-ref-logo img { max-height: 34px; width: auto; display: block; }
   .lp-ref-logo-light { background: #F3F6FB; border: 1px solid var(--border); }
   .lp-ref-logo-dark { background: #0B1220; }
-  .lp-ref-tag { display: inline-block; font-family: var(--font-heading); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); background: rgba(37, 99, 235, 0.08); padding: 5px 12px; border-radius: 999px; margin-bottom: 12px; }
+  .lp-ref-tag { display: inline-block; font-family: var(--font-heading); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); background: rgba(37,99,235,0.08); padding: 5px 12px; border-radius: 999px; margin-bottom: 12px; }
   .lp-ref-situation { color: var(--text-secondary); margin: 0; line-height: 1.55; font-size: 0.98rem; }
   .lp-ref-result { text-align: center; flex-shrink: 0; }
   .lp-ref-result strong { display: block; font-family: var(--font-heading); font-weight: 800; font-size: 2.6rem; color: var(--accent); line-height: 1; }
@@ -750,80 +529,19 @@ const year = new Date().getFullYear();
   .lp-ref-label { font-family: var(--font-heading); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 26px 0 16px; }
   .lp-ref-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   .lp-ref-step { display: flex; align-items: center; gap: 14px; background: #F8FAFD; border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
-  .lp-ref-ico { flex-shrink: 0; width: 42px; height: 42px; border-radius: 11px; background: rgba(37, 99, 235, 0.10); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; }
+  .lp-ref-ico { flex-shrink: 0; width: 42px; height: 42px; border-radius: 11px; background: rgba(37,99,235,0.10); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; }
   .lp-ref-ico svg { width: 21px; height: 21px; }
   .lp-ref-step span:last-child { font-size: 0.92rem; color: var(--text-primary); font-weight: 500; line-height: 1.38; }
-  .lp-ref-bridge { display: flex; gap: 14px; align-items: flex-start; margin-top: 24px; background: rgba(37, 99, 235, 0.06); border: 1px solid rgba(37, 99, 235, 0.18); border-radius: 12px; padding: 18px 22px; }
+  .lp-ref-bridge { display: flex; gap: 14px; align-items: flex-start; margin-top: 24px; background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.18); border-radius: 12px; padding: 18px 22px; }
   .lp-ref-bridge-ico { flex-shrink: 0; color: var(--accent); margin-top: 2px; }
   .lp-ref-bridge p { margin: 0; color: var(--text-secondary); line-height: 1.55; font-size: 0.98rem; }
   .lp-ref-bridge strong { color: var(--text-primary); }
 
-  /* Google-Bewertungen */
-  .lp-reviews-head { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
-  .lp-g { display: inline-flex; }
-  .lp-rating { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .lp-rating-num { font-family: var(--font-heading); font-weight: 800; font-size: 1.5rem; color: var(--text-primary); }
-  .lp-starbar { position: relative; display: inline-block; font-size: 1.2rem; line-height: 1; letter-spacing: 2px; }
-  .lp-starbar::before { content: '★★★★★'; color: #D8DFEA; }
-  .lp-starbar::after { content: '★★★★★'; color: #FBBC05; position: absolute; left: 0; top: 0; width: var(--pct, 100%); overflow: hidden; white-space: nowrap; }
-  .lp-star-empty { color: #D8DFEA; }
-  .lp-rating-count { color: var(--text-muted); font-size: 0.92rem; }
-  .lp-reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .lp-review { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 24px 22px; display: flex; flex-direction: column; gap: 12px; }
-  .lp-review-top { display: flex; align-items: center; gap: 12px; }
-  .lp-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--accent); color: #fff; font-family: var(--font-heading); font-weight: 800; display: inline-flex; align-items: center; justify-content: center; font-size: 1.05rem; flex-shrink: 0; }
-  .lp-review-who { display: flex; flex-direction: column; line-height: 1.3; flex: 1; }
-  .lp-review-who strong { color: var(--text-primary); font-size: 0.96rem; }
-  .lp-review-who span { color: var(--text-muted); font-size: 0.8rem; }
-  .lp-review-g { flex-shrink: 0; }
-  .lp-review-stars { color: #FBBC05; font-size: 1rem; letter-spacing: 2px; }
-  .lp-review-text { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0; }
-
-  /* Garantie */
   .lp-guarantee { display: flex; gap: 24px; align-items: flex-start; background: #fff; border: 1px solid var(--border-strong); border-radius: 18px; padding: 34px 32px; }
-  .lp-guarantee-ico { flex-shrink: 0; width: 64px; height: 64px; border-radius: 14px; background: rgba(37, 99, 235, 0.10); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; }
+  .lp-guarantee-ico { flex-shrink: 0; width: 64px; height: 64px; border-radius: 14px; background: rgba(37,99,235,0.10); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; }
   .lp-guarantee-text { color: var(--text-secondary); line-height: 1.65; margin: 0; }
   .lp-guarantee-text strong { color: var(--text-primary); }
 
-  /* Range Slider */
-  .lp-calc { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px; align-items: start; }
-  .lp-calc-inputs { display: grid; gap: 28px; background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 30px 28px; }
-  .lp-calc-field-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; gap: 12px; }
-  .lp-calc-field-head label { font-size: 0.95rem; color: var(--text-secondary); font-weight: 500; line-height: 1.3; }
-  .lp-calc-val { font-family: var(--font-heading); font-weight: 800; color: var(--accent); font-size: 1.05rem; white-space: nowrap; }
-  .lp-range { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 999px; background: #E3E8EF; outline: none; }
-  .lp-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 3px solid #fff; box-shadow: 0 1px 5px rgba(15, 30, 60, 0.25); }
-  .lp-range::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 3px solid #fff; box-shadow: 0 1px 5px rgba(15, 30, 60, 0.25); }
-  .lp-calc-result { background: var(--accent); color: #fff; border-radius: 16px; padding: 30px 28px; text-align: center; }
-  .lp-calc-result-label { font-size: 0.95rem; opacity: 0.9; margin: 0 0 6px; }
-  .lp-calc-result-num { font-family: var(--font-heading); font-weight: 800; font-size: 3.4rem; line-height: 1; margin: 0 0 18px; }
-  .lp-calc-result-rows { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
-  .lp-calc-stat { background: rgba(255, 255, 255, 0.14); border-radius: 12px; padding: 14px 10px; }
-  .lp-calc-stat strong { display: block; font-family: var(--font-heading); font-size: 1.5rem; }
-  .lp-calc-stat span { font-size: 0.82rem; opacity: 0.9; }
-  .lp-calc-result .lp-btn-primary { background: #fff; color: var(--accent); box-shadow: none; }
-  .lp-calc-result .lp-btn-primary:hover { background: #EEF3FF; }
-  .lp-calc-note { font-size: 0.78rem; opacity: 0.85; margin: 14px 0 0; line-height: 1.5; }
-
-  /* Termin / Buchung */
-  .lp-termin { max-width: 760px; margin: 0 auto; text-align: center; }
-  .lp-termin .lp-h2 { margin-left: auto; margin-right: auto; }
-  .lp-scheduler-cta { margin-top: 28px; }
-  .lp-scheduler { margin: 28px 0 0; border: 1px solid var(--border-strong); border-radius: 16px; overflow: hidden; background: #fff; min-height: 700px; }
-  .lp-scheduler iframe { width: 100%; min-height: 700px; border: 0; display: block; }
-  .lp-cal-fallback { font-size: 0.85rem; color: var(--text-muted); margin: 12px 0 0; }
-  .lp-cal-fallback a { color: var(--accent); }
-  .lp-form { max-width: 600px; margin: 30px auto 8px; text-align: left; }
-  .lp-form .form-submit { margin-top: 4px; }
-  .lp-form-success { max-width: 640px; margin: 30px auto 8px; padding: 38px 30px; text-align: center; background: #fff; border: 1px solid var(--border-strong); border-radius: 16px; }
-  .lp-form-success-icon { width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%; background: rgba(37, 99, 235, 0.10); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; }
-  .lp-form-success-icon svg { width: 26px; height: 26px; }
-  .lp-form-success h3 { font-family: var(--font-heading); color: var(--text-primary); font-size: 1.3rem; margin: 0 0 12px; }
-  .lp-form-success p { color: var(--text-secondary); line-height: 1.6; margin: 0; }
-  .lp-termin-trust { list-style: none; padding: 0; margin: 24px 0 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 26px; }
-  .lp-termin-trust li { display: flex; align-items: center; gap: 10px; color: var(--text-secondary); font-size: 0.93rem; }
-
-  /* FAQ */
   .lp-faq { display: grid; gap: 12px; max-width: 800px; }
   .lp-faq-item { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
   .lp-faq-q { display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer; padding: 19px 22px; font-family: var(--font-heading); font-weight: 600; color: var(--text-primary); font-size: 1.02rem; list-style: none; }
@@ -833,7 +551,6 @@ const year = new Date().getFullYear();
   .lp-faq-a { padding: 0 22px 20px; }
   .lp-faq-a p { color: var(--text-secondary); line-height: 1.65; margin: 0; }
 
-  /* Ueber Mert */
   .lp-vision { display: grid; grid-template-columns: 240px 1fr; gap: 40px; align-items: center; }
   .lp-vision-portrait { margin: 0; }
   .lp-vision-portrait img { width: 100%; height: auto; border-radius: 16px; display: block; }
@@ -843,33 +560,56 @@ const year = new Date().getFullYear();
   .lp-vision-text { color: var(--text-secondary); line-height: 1.65; margin: 0 0 14px; }
   .lp-vision-close { color: var(--text-primary); font-family: var(--font-heading); font-weight: 700; margin: 0 0 22px; }
 
-  /* Footer */
-  .lp-footer { border-top: 1px solid var(--border); padding: 28px 0; }
+  .lp-footer { border-top: 1px solid var(--border); padding: 28px 0 96px; }
   .lp-footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
-  .lp-footer-nav { display: flex; gap: 22px; }
+  .lp-footer-nav { display: flex; gap: 22px; flex-wrap: wrap; }
   .lp-footer-nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.92rem; }
   .lp-footer-nav a:hover { color: var(--accent); }
   .lp-footer-copy { color: var(--text-muted); font-size: 0.88rem; margin: 0; }
 
+  /* Sticky CTA (mobil) */
+  .lp-sticky-cta { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 80; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: rgba(255,255,255,0.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--border); }
+  .lp-sticky-cta .lp-btn { padding: 15px 20px; }
+
+  /* Buchungs-Modal */
+  .lp-modal { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .lp-modal[hidden] { display: none; }
+  .lp-modal-backdrop { position: absolute; inset: 0; background: rgba(8,17,30,0.55); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+  .lp-modal-card { position: relative; z-index: 1; width: 100%; max-width: 480px; max-height: 92vh; overflow-y: auto; background: #fff; border-radius: 18px; padding: 34px 30px; box-shadow: 0 24px 70px rgba(8,17,30,0.35); }
+  .lp-modal-close { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 10px; border: none; background: #F1F4F9; color: var(--text-secondary); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+  .lp-modal-close:hover { background: #E5EAF2; }
+  .lp-modal-title { font-family: var(--font-heading); font-weight: 800; color: var(--text-primary); font-size: 1.3rem; line-height: 1.22; margin: 0 0 10px; }
+  .lp-modal-sub { color: var(--text-secondary); font-size: 0.96rem; line-height: 1.55; margin: 0 0 22px; }
+  .lp-form .form-group { margin-bottom: 16px; }
+  .lp-form .form-submit { margin-top: 6px; }
+
+  .lp-form-success { text-align: center; }
+  .lp-form-success-icon { width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%; background: rgba(37,99,235,0.10); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; }
+  .lp-form-success-icon svg { width: 26px; height: 26px; }
+  .lp-form-success h3 { font-family: var(--font-heading); color: var(--text-primary); font-size: 1.25rem; margin: 0 0 12px; }
+  .lp-form-success p { color: var(--text-secondary); line-height: 1.6; margin: 0; }
+  .lp-scheduler-cta { margin-top: 22px; }
+  .lp-scheduler-cta .lp-btn { width: 100%; }
+  .lp-cal-fallback { font-size: 0.85rem; color: var(--text-muted); margin: 14px 0 0; }
+  .lp-cal-fallback a { color: var(--accent); }
+
   @media (max-width: 980px) {
-    .lp-hero-grid { grid-template-columns: 1fr; gap: 36px; }
+    .lp-hero-grid { grid-template-columns: 1fr; gap: 32px; }
     .lp-flow { flex-wrap: wrap; }
     .lp-flow-arrow { transform: rotate(90deg); margin: 0 auto; }
     .lp-flow-node { flex: 1 1 100%; flex-direction: row; text-align: left; }
-    .lp-calc { grid-template-columns: 1fr; }
   }
   @media (max-width: 860px) {
-    .lp-reviews { grid-template-columns: 1fr; }
     .lp-ref-steps { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 720px) {
-    .lp-pains, .lp-wins, .lp-ref-steps { grid-template-columns: 1fr; }
+    .lp-pains, .lp-ref-steps { grid-template-columns: 1fr; }
     .lp-ref-head { grid-template-columns: 1fr; gap: 18px; }
     .lp-ref-result { text-align: left; }
-    .lp-scheduler, .lp-scheduler iframe { min-height: 880px; }
     .lp-vision { grid-template-columns: 1fr; gap: 26px; }
     .lp-vision-portrait { max-width: 200px; }
     .lp-guarantee { flex-direction: column; gap: 18px; }
-    .lp-header-cta { padding: 10px 18px; font-size: 0.85rem; }
+    .lp-header-cta { display: none; }
+    .lp-sticky-cta { display: block; }
   }
 </style>
