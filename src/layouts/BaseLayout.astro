@@ -22,6 +22,11 @@ const {
 // Meta-Pixel-ID (nicht geheim, identisch zur Dataset-ID des CAPI-Servers).
 // Override zur Build-Zeit via PUBLIC_META_PIXEL_ID möglich.
 const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID ?? '2057474564840133';
+
+// GA4 Measurement-ID (G-XXXXXXXXXX). Per ENV PUBLIC_GA4_ID setzen. Leer = aus.
+// Nutzt denselben gtag-Loader wie Google Ads; Consent Mode v2 gilt (analytics
+// erst nach "Statistik"-Einwilligung mit Cookies, vorher cookielose Pings).
+const ga4Id = import.meta.env.PUBLIC_GA4_ID ?? '';
 ---
 
 <!DOCTYPE html>
@@ -211,6 +216,14 @@ const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID ?? '2057474564840133';
       // Consent-Grant via Cookie-Banner -> sofort laden, damit Conversion-Tracking ohne Wartezeit greift.
       window.addEventListener('elevo:consent-granted', inject, { once: true });
     })();
+  </script>
+
+  <!-- GA4 (nutzt denselben gtag-Loader + Consent Mode v2). analytics_storage ist
+       per Default 'denied' -> bis zur "Statistik"-Einwilligung cookielose Pings. -->
+  <script define:vars={{ ga4Id }}>
+    if (ga4Id && typeof gtag === 'function') {
+      gtag('config', ga4Id, { anonymize_ip: true });
+    }
   </script>
 
   <!--

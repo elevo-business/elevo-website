@@ -108,6 +108,16 @@ import DatenschutzContent from './legal/DatenschutzContent.astro';
     </div>
     <div class="cookie-toggle-row">
       <div class="cookie-toggle-info">
+        <div class="cookie-toggle-label">Statistik</div>
+        <div class="cookie-toggle-desc">Anonyme Reichweitenmessung mit Google Analytics</div>
+      </div>
+      <label class="cookie-toggle-switch" aria-label="Statistik-Cookies">
+        <input type="checkbox" id="toggle-analytics">
+        <span class="cookie-toggle-track"></span>
+      </label>
+    </div>
+    <div class="cookie-toggle-row">
+      <div class="cookie-toggle-info">
         <div class="cookie-toggle-label">Marketing</div>
         <div class="cookie-toggle-desc">Google Ads &amp; Meta — Conversion-Tracking für Werbeanzeigen</div>
       </div>
@@ -129,27 +139,28 @@ import DatenschutzContent from './legal/DatenschutzContent.astro';
 
   const COOKIE_KEY = 'elevo_consent_v2';
 
-  interface ConsentPrefs { marketing: boolean; }
+  interface ConsentPrefs { marketing: boolean; analytics: boolean; }
 
   function applyConsent(prefs: ConsentPrefs) {
     if (typeof (window as any).gtag !== 'undefined') {
       (window as any).gtag('consent', 'update', {
-        'analytics_storage': 'denied',
+        'analytics_storage': prefs.analytics ? 'granted' : 'denied',
         'ad_storage': prefs.marketing ? 'granted' : 'denied',
         'ad_user_data': prefs.marketing ? 'granted' : 'denied',
         'ad_personalization': prefs.marketing ? 'granted' : 'denied'
       });
     }
     // gtag.js wird post-LCP / interaktionsgetriggert geladen.
-    // Sobald Marketing freigegeben wird, soll gtag.js sofort ziehen,
-    // damit Conversion-Hits nach Einwilligung nicht auf den Hardcap warten.
-    if (prefs.marketing) {
+    // Sobald Marketing oder Statistik freigegeben wird, soll gtag.js sofort
+    // ziehen, damit Hits nach Einwilligung nicht auf den Hardcap warten.
+    if (prefs.marketing || prefs.analytics) {
       window.dispatchEvent(new Event('elevo:consent-granted'));
     }
   }
 
   function syncToggles(prefs: ConsentPrefs) {
     (document.getElementById('toggle-marketing') as HTMLInputElement).checked = prefs.marketing;
+    (document.getElementById('toggle-analytics') as HTMLInputElement).checked = prefs.analytics;
   }
 
   function saveConsent(prefs: ConsentPrefs) {
@@ -175,7 +186,8 @@ import DatenschutzContent from './legal/DatenschutzContent.astro';
 
   function getTogglePrefs(): ConsentPrefs {
     return {
-      marketing: (document.getElementById('toggle-marketing') as HTMLInputElement).checked
+      marketing: (document.getElementById('toggle-marketing') as HTMLInputElement).checked,
+      analytics: (document.getElementById('toggle-analytics') as HTMLInputElement).checked
     };
   }
 
@@ -195,20 +207,22 @@ import DatenschutzContent from './legal/DatenschutzContent.astro';
   const storedRaw = localStorage.getItem(COOKIE_KEY);
   if (storedRaw) {
     try {
-      const prefs = JSON.parse(storedRaw) as ConsentPrefs;
+      const raw = JSON.parse(storedRaw);
+      // Rueckwaertskompatibel: aelterer Consent kannte nur "marketing".
+      const prefs: ConsentPrefs = { marketing: raw.marketing === true, analytics: raw.analytics === true };
       applyConsent(prefs);
       syncToggles(prefs);
     } catch {
-      applyConsent({ marketing: true });
-      syncToggles({ marketing: true });
+      applyConsent({ marketing: true, analytics: true });
+      syncToggles({ marketing: true, analytics: true });
     }
   } else {
     showBanner();
   }
 
   acceptBtn.addEventListener('click', () => {
-    syncToggles({ marketing: true });
-    saveConsent({ marketing: true });
+    syncToggles({ marketing: true, analytics: true });
+    saveConsent({ marketing: true, analytics: true });
   });
 
   saveBtn.addEventListener('click', () => {
@@ -216,8 +230,8 @@ import DatenschutzContent from './legal/DatenschutzContent.astro';
   });
 
   declineBtn.addEventListener('click', () => {
-    syncToggles({ marketing: false });
-    saveConsent({ marketing: false });
+    syncToggles({ marketing: false, analytics: false });
+    saveConsent({ marketing: false, analytics: false });
   });
 
   settingsLink?.addEventListener('click', (e: Event) => {
