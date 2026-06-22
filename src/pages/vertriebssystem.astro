@@ -70,10 +70,6 @@ const year = new Date().getFullYear();
                   <label class="form-label" for="lf-email">E-Mail-Adresse *</label>
                   <input class="form-input" type="email" id="lf-email" name="email" placeholder="max@dein-unternehmen.de" required autocomplete="email">
                 </div>
-                <div class="form-group">
-                  <label class="form-label" for="lf-phone">Telefonnummer *</label>
-                  <input class="form-input" type="tel" id="lf-phone" name="phone" placeholder="+49 …" required autocomplete="tel" inputmode="tel">
-                </div>
                 <button type="submit" class="form-submit lp-btn lp-btn-primary lp-btn-block lp-btn-lg" id="lf-submit">Weiter zum Kalender</button>
                 <p class="form-privacy-note">
                   Mit dem Absenden stimmst du unserer <a href="/datenschutz">Datenschutzerklärung</a> zu.
@@ -314,12 +310,11 @@ const year = new Date().getFullYear();
 
     // ===== Calendly Popup (Kalender-Sync + Prefill) =====
     let calUrl = '';
-    function buildCalendlyUrl(base: string, fullName: string, email: string, phone: string) {
+    function buildCalendlyUrl(base: string, fullName: string, email: string) {
       try {
         const u = new URL(base);
         u.searchParams.set('name', fullName);
         u.searchParams.set('email', email);
-        u.searchParams.set('a1', phone); // benutzerdefinierte Frage 1 = Telefon
         return u.toString();
       } catch { return base; }
     }
@@ -368,8 +363,8 @@ const year = new Date().getFullYear();
         const ts = (lf.elements.namedItem('_ts') as HTMLInputElement)?.value;
         if (ts && Date.now() - parseInt(ts, 10) < 1200) return;
 
-        const fullName = val('name'), email = val('email'), phone = val('phone');
-        if (!fullName || !email || !phone) {
+        const fullName = val('name'), email = val('email');
+        if (!fullName || !email) {
           msg.className = 'form-message error'; msg.textContent = 'Bitte füll alle Felder aus.'; return;
         }
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -385,7 +380,7 @@ const year = new Date().getFullYear();
         // Booking-Prio: Erfolgs-Screen + Calendly sofort, unabhaengig von der API.
         stepForm.hidden = true;
         success.hidden = false;
-        calUrl = buildCalendlyUrl((document.getElementById('lf-open-cal') as HTMLElement)?.dataset.url || '', fullName, email, phone);
+        calUrl = buildCalendlyUrl((document.getElementById('lf-open-cal') as HTMLElement)?.dataset.url || '', fullName, email);
         openCalendlyPopup();
 
         if (typeof (window as any).gtag !== 'undefined') {
@@ -396,9 +391,9 @@ const year = new Date().getFullYear();
         fetch(apiUrl, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            name: fullName, firstName, lastName, email, phone,
+            name: fullName, firstName, lastName, email,
             service: 'vertriebssystem', source: 'vertriebssystem',
-            message: `Erstgespräch-Anfrage über die Vertriebssystem-Landingpage.\nTelefon: ${phone}`,
+            message: 'Erstgespräch-Anfrage über die Vertriebssystem-Landingpage.',
             ...(lead ?? {}),
           }),
         }).catch(() => { /* CRM-Sync fehlgeschlagen; Buchung laeuft trotzdem */ });
