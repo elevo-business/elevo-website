@@ -42,16 +42,18 @@ const year = new Date().getFullYear();
           </h1>
           <p class="lp-sub">
             Für Dienstleister, die mehr Zeit mit Kunden statt mit Verwaltung verbringen wollen.
-            Sieh im kurzen Video, wie es funktioniert, und sichere dir rechts deinen Termin.
+            Im kurzen Video erfährst du, wie es funktioniert.
           </p>
         </div>
         <div class="lp-hero-grid">
           <div class="lp-vsl">
-            <video id="lp-vsl-video" class="lp-vsl-video" src="/vsl/hero-vsl.mp4" muted autoplay playsinline preload="metadata" controls></video>
-            <button type="button" class="lp-vsl-unmute" id="lp-vsl-unmute" aria-label="Ton einschalten und von vorne abspielen">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-              Ton an
-            </button>
+            <div class="lp-vsl-box">
+              <video id="lp-vsl-video" class="lp-vsl-video" src="/vsl/hero-vsl.mp4" muted autoplay playsinline webkit-playsinline preload="metadata" controls></video>
+              <button type="button" class="lp-vsl-play" id="lp-vsl-play" aria-label="Video mit Ton abspielen">
+                <span class="lp-vsl-play-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg></span>
+                <span class="lp-vsl-play-label">Mit Ton ansehen</span>
+              </button>
+            </div>
           </div>
 
           <!-- Sichtbares Buchungs-Formular -->
@@ -318,18 +320,38 @@ const year = new Date().getFullYear();
     document.getElementById('lf-name')?.addEventListener('focus', fireFormStart, { once: true });
     document.getElementById('lf-email')?.addEventListener('focus', fireFormStart, { once: true });
 
-    // VSL: "Ton an" -> entstummen und von vorne abspielen.
+    // VSL. Browser blocken Autoplay MIT Ton, und Mobile startet ohne Geste oft
+    // gar nicht. Loesung: stumm autoplay versuchen (Desktop), und beim ersten
+    // Tap/Klick zuverlaessig MIT Ton von vorne starten (Geste = erlaubt).
     const vsl = document.getElementById('lp-vsl-video') as HTMLVideoElement | null;
-    const vslUnmute = document.getElementById('lp-vsl-unmute') as HTMLElement | null;
-    vslUnmute?.addEventListener('click', () => {
+    const vslPlay = document.getElementById('lp-vsl-play') as HTMLElement | null;
+
+    function vslSoundOn() {
       if (!vsl) return;
       vsl.muted = false;
+      vsl.volume = 1;
       vsl.currentTime = 0;
-      vsl.play().catch(() => {});
-      vslUnmute.style.display = 'none';
-    });
+      const p = vsl.play();
+      if (p && (p as any).catch) (p as Promise<void>).catch(() => {});
+      if (vslPlay) vslPlay.style.display = 'none';
+    }
+
+    // Stummer Autoplay-Versuch (v. a. Desktop). Schlaegt mobil oft fehl -> egal,
+    // der Play-Button/erste Tap startet es dann.
+    if (vsl) { const p = vsl.play(); if (p && (p as any).catch) (p as Promise<void>).catch(() => {}); }
+
+    vslPlay?.addEventListener('click', (e) => { e.stopPropagation(); vslSoundOn(); });
+
+    // Erster Tap/Klick irgendwo startet das Video mit Ton (falls noch stumm/pausiert).
+    const vslEvents = ['pointerdown', 'touchstart', 'keydown'];
+    function vslFirstInteract() {
+      if (vsl && vsl.muted) vslSoundOn();
+      vslEvents.forEach((ev) => window.removeEventListener(ev, vslFirstInteract, true));
+    }
+    if (vsl) vslEvents.forEach((ev) => window.addEventListener(ev, vslFirstInteract, { capture: true, passive: true }));
+
     vsl?.addEventListener('volumechange', () => {
-      if (vsl && !vsl.muted && vslUnmute) vslUnmute.style.display = 'none';
+      if (vsl && !vsl.muted && vslPlay) vslPlay.style.display = 'none';
     });
 
     // ===== Calendly Popup (Kalender-Sync + Prefill) =====
@@ -477,11 +499,13 @@ const year = new Date().getFullYear();
   .lp-hero-head { max-width: 860px; margin: 0 0 30px; }
   .lp-hero-grid { display: grid; grid-template-columns: 1fr 420px; gap: 44px; align-items: start; }
 
-  /* VSL-Player */
-  .lp-vsl { position: relative; display: flex; justify-content: center; align-items: flex-start; }
-  .lp-vsl-video { max-width: 100%; width: auto; height: auto; max-height: 560px; border-radius: 16px; background: #000; box-shadow: 0 18px 50px rgba(15,30,60,0.18); display: block; }
-  .lp-vsl-unmute { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border: none; border-radius: 999px; background: rgba(11,18,32,0.82); color: #fff; font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; cursor: pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow: 0 4px 16px rgba(0,0,0,0.3); transition: background var(--transition); }
-  .lp-vsl-unmute:hover { background: var(--accent); }
+  /* VSL-Player (Hochformat 9:16, feste Box -> immer sichtbar, auch ohne Metadaten) */
+  .lp-vsl { display: flex; justify-content: center; }
+  .lp-vsl-box { position: relative; width: 100%; max-width: 330px; aspect-ratio: 9 / 16; margin: 0 auto; border-radius: 16px; overflow: hidden; background: #000; box-shadow: 0 18px 50px rgba(15,30,60,0.18); }
+  .lp-vsl-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; background: #000; }
+  .lp-vsl-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); display: inline-flex; flex-direction: column; align-items: center; gap: 8px; padding: 0; border: none; background: transparent; color: #fff; font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; cursor: pointer; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+  .lp-vsl-play-ico { width: 64px; height: 64px; border-radius: 50%; background: rgba(37,99,235,0.92); display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.4); transition: background var(--transition), transform var(--transition); }
+  .lp-vsl-play:hover .lp-vsl-play-ico { background: var(--accent); transform: scale(1.06); }
   .lp-hero-bullets { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 13px; }
   .lp-hero-bullets li { display: flex; gap: 12px; align-items: flex-start; color: var(--text-secondary); font-size: 1rem; line-height: 1.45; }
   .lp-hero-trust { font-size: 0.92rem; color: var(--text-muted); margin: 0; }
@@ -578,7 +602,7 @@ const year = new Date().getFullYear();
   @media (max-width: 980px) {
     .lp-hero-grid { grid-template-columns: 1fr; gap: 28px; }
     .lp-bookcard { position: static; }
-    .lp-vsl-video { max-height: 56vh; }
+    .lp-vsl-box { max-width: 280px; }
     .lp-flow { flex-wrap: wrap; }
     .lp-flow-arrow { transform: rotate(90deg); margin: 0 auto; }
     .lp-flow-node { flex: 1 1 100%; flex-direction: row; text-align: left; }
