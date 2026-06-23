@@ -6,7 +6,7 @@ RUN bun install --frozen-lockfile
 # Build) zwangsweise. Ohne das hat Coolify/BuildKit den gesamten Build aus dem
 # Cache genommen (15-Sekunden-Build) und das alte dist ohne Video ausgeliefert.
 # Bei jeder relevanten Aenderung den Wert hochzaehlen.
-ARG CACHEBUST=2026-06-23-vsl-v5
+ARG CACHEBUST=2026-06-23-vsl-v6-team
 RUN echo "cachebust=${CACHEBUST}"
 COPY . .
 RUN bun run build && \
