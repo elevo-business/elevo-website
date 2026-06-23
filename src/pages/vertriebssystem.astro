@@ -34,22 +34,24 @@ const year = new Date().getFullYear();
     <!-- ===== HERO mit sichtbarem Formular ===== -->
     <section class="lp-section lp-hero" aria-labelledby="lp-hero-heading">
       <div class="lp-wrap">
+        <div class="lp-hero-head">
+          <p class="lp-eyebrow">Das 14-Tage-Vertriebssystem für Dienstleister</p>
+          <h1 id="lp-hero-heading" class="lp-h1">
+            Automatisiere die manuellen Prozesse, die dich und dein Team jede Woche
+            <span class="lp-accent">Stunden kosten.</span> In 14 Tagen.
+          </h1>
+          <p class="lp-sub">
+            Für Dienstleister, die mehr Zeit mit Kunden statt mit Verwaltung verbringen wollen.
+            Sieh im kurzen Video, wie es funktioniert, und sichere dir rechts deinen Termin.
+          </p>
+        </div>
         <div class="lp-hero-grid">
-          <div class="lp-hero-copy">
-            <p class="lp-eyebrow">Das 14-Tage-Vertriebssystem für Dienstleister</p>
-            <h1 id="lp-hero-heading" class="lp-h1">
-              Automatisiere die manuellen Prozesse, die dich und dein Team jede Woche
-              <span class="lp-accent">Stunden kosten.</span> In 14 Tagen.
-            </h1>
-            <p class="lp-sub">
-              Für Dienstleister, die mehr Zeit mit Kunden statt mit Verwaltung verbringen wollen.
-              Wir bauen dir das fertige System, du fasst nichts Technisches an.
-            </p>
-            <ul class="lp-hero-bullets" role="list">
-              <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Dateneingabe, Dokumente und Nachfassen laufen automatisch</li>
-              <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Done-for-you, in 14 Tagen live</li>
-              <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Steht es nicht in 14 Tagen, zahlst du erst, wenn es läuft</li>
-            </ul>
+          <div class="lp-vsl">
+            <video id="lp-vsl-video" class="lp-vsl-video" src="/vsl/hero-vsl.mp4" muted autoplay playsinline preload="metadata" controls></video>
+            <button type="button" class="lp-vsl-unmute" id="lp-vsl-unmute" aria-label="Ton einschalten und von vorne abspielen">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+              Ton an
+            </button>
           </div>
 
           <!-- Sichtbares Buchungs-Formular -->
@@ -316,6 +318,20 @@ const year = new Date().getFullYear();
     document.getElementById('lf-name')?.addEventListener('focus', fireFormStart, { once: true });
     document.getElementById('lf-email')?.addEventListener('focus', fireFormStart, { once: true });
 
+    // VSL: "Ton an" -> entstummen und von vorne abspielen.
+    const vsl = document.getElementById('lp-vsl-video') as HTMLVideoElement | null;
+    const vslUnmute = document.getElementById('lp-vsl-unmute') as HTMLElement | null;
+    vslUnmute?.addEventListener('click', () => {
+      if (!vsl) return;
+      vsl.muted = false;
+      vsl.currentTime = 0;
+      vsl.play().catch(() => {});
+      vslUnmute.style.display = 'none';
+    });
+    vsl?.addEventListener('volumechange', () => {
+      if (vsl && !vsl.muted && vslUnmute) vslUnmute.style.display = 'none';
+    });
+
     // ===== Calendly Popup (Kalender-Sync + Prefill) =====
     let calUrl = '';
     function buildCalendlyUrl(base: string, fullName: string, email: string) {
@@ -458,7 +474,14 @@ const year = new Date().getFullYear();
   .lp-btn-block { width: 100%; }
   .lp-center-cta { text-align: center; margin-top: 28px; }
 
+  .lp-hero-head { max-width: 860px; margin: 0 0 30px; }
   .lp-hero-grid { display: grid; grid-template-columns: 1fr 420px; gap: 44px; align-items: start; }
+
+  /* VSL-Player */
+  .lp-vsl { position: relative; display: flex; justify-content: center; align-items: flex-start; }
+  .lp-vsl-video { max-width: 100%; width: auto; height: auto; max-height: 560px; border-radius: 16px; background: #000; box-shadow: 0 18px 50px rgba(15,30,60,0.18); display: block; }
+  .lp-vsl-unmute { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border: none; border-radius: 999px; background: rgba(11,18,32,0.82); color: #fff; font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; cursor: pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow: 0 4px 16px rgba(0,0,0,0.3); transition: background var(--transition); }
+  .lp-vsl-unmute:hover { background: var(--accent); }
   .lp-hero-bullets { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 13px; }
   .lp-hero-bullets li { display: flex; gap: 12px; align-items: flex-start; color: var(--text-secondary); font-size: 1rem; line-height: 1.45; }
   .lp-hero-trust { font-size: 0.92rem; color: var(--text-muted); margin: 0; }
@@ -555,6 +578,7 @@ const year = new Date().getFullYear();
   @media (max-width: 980px) {
     .lp-hero-grid { grid-template-columns: 1fr; gap: 28px; }
     .lp-bookcard { position: static; }
+    .lp-vsl-video { max-height: 56vh; }
     .lp-flow { flex-wrap: wrap; }
     .lp-flow-arrow { transform: rotate(90deg); margin: 0 auto; }
     .lp-flow-node { flex: 1 1 100%; flex-direction: row; text-align: left; }
