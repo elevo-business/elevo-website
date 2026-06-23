@@ -48,8 +48,10 @@ const year = new Date().getFullYear();
         <div class="lp-hero-grid">
           <div class="lp-vsl">
             <div class="lp-vsl-box">
-              <video id="lp-vsl-video" class="lp-vsl-video" src="/vsl/hero-vsl.mp4" muted autoplay loop playsinline webkit-playsinline preload="metadata"></video>
-              <button type="button" class="lp-vsl-play" id="lp-vsl-play" aria-label="Video mit Ton abspielen">
+              <video id="lp-vsl-video" class="lp-vsl-video" poster="/team/mert-1200.jpg" playsinline webkit-playsinline autoplay muted loop preload="metadata">
+                <source src="/vsl/hero-vsl.mp4" type="video/mp4">
+              </video>
+              <button type="button" class="lp-vsl-play" id="lp-vsl-play" aria-label="Mit Ton ansehen">
                 <span class="lp-vsl-play-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg></span>
                 <span class="lp-vsl-play-label">Mit Ton ansehen</span>
               </button>
@@ -320,41 +322,20 @@ const year = new Date().getFullYear();
     document.getElementById('lf-name')?.addEventListener('focus', fireFormStart, { once: true });
     document.getElementById('lf-email')?.addEventListener('focus', fireFormStart, { once: true });
 
-    // VSL. Browser blocken Autoplay MIT Ton, und Mobile startet ohne Geste oft
-    // gar nicht. Loesung: stumm autoplay versuchen (Desktop), und beim ersten
-    // Tap/Klick zuverlaessig MIT Ton von vorne starten (Geste = erlaubt).
+    // VSL (Muster aus greenchild, erprobt): stumm autoplay im Loop, Klick auf
+    // Button oder Video aktiviert den Ton und blendet native Controls ein.
     const vsl = document.getElementById('lp-vsl-video') as HTMLVideoElement | null;
     const vslPlay = document.getElementById('lp-vsl-play') as HTMLElement | null;
-
-    function vslSoundOn() {
+    function vslUnmute() {
       if (!vsl) return;
       vsl.muted = false;
-      vsl.volume = 1;
-      vsl.loop = false;        // VSL nicht mehr loopen, sobald mit Ton geschaut wird
-      vsl.controls = true;     // ab jetzt native Steuerung (pausieren/scrubben)
-      vsl.currentTime = 0;
-      const p = vsl.play();
-      if (p && (p as any).catch) (p as Promise<void>).catch(() => {});
-      if (vslPlay) vslPlay.style.display = 'none';
+      vsl.loop = false;
+      vsl.setAttribute('controls', 'controls');
+      if (vsl.paused) { const p = vsl.play(); if (p && (p as any).catch) (p as Promise<void>).catch(() => {}); }
+      if (vslPlay) vslPlay.classList.add('hidden');
     }
-
-    // Stummer Autoplay-Versuch (v. a. Desktop). Schlaegt mobil oft fehl -> egal,
-    // der Play-Button/erste Tap startet es dann.
-    if (vsl) { const p = vsl.play(); if (p && (p as any).catch) (p as Promise<void>).catch(() => {}); }
-
-    vslPlay?.addEventListener('click', (e) => { e.stopPropagation(); vslSoundOn(); });
-
-    // Erster Tap/Klick irgendwo startet das Video mit Ton (falls noch stumm/pausiert).
-    const vslEvents = ['pointerdown', 'touchstart', 'keydown'];
-    function vslFirstInteract() {
-      if (vsl && vsl.muted) vslSoundOn();
-      vslEvents.forEach((ev) => window.removeEventListener(ev, vslFirstInteract, true));
-    }
-    if (vsl) vslEvents.forEach((ev) => window.addEventListener(ev, vslFirstInteract, { capture: true, passive: true }));
-
-    vsl?.addEventListener('volumechange', () => {
-      if (vsl && !vsl.muted && vslPlay) vslPlay.style.display = 'none';
-    });
+    vslPlay?.addEventListener('click', vslUnmute);
+    vsl?.addEventListener('click', () => { if (vsl.muted) vslUnmute(); });
 
     // ===== Calendly Popup (Kalender-Sync + Prefill) =====
     let calUrl = '';
@@ -508,6 +489,8 @@ const year = new Date().getFullYear();
   .lp-vsl-play { position: absolute; z-index: 3; left: 50%; top: 50%; transform: translate(-50%,-50%); display: inline-flex; flex-direction: column; align-items: center; gap: 8px; padding: 0; border: none; background: transparent; color: #fff; font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; cursor: pointer; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
   .lp-vsl-play-ico { width: 64px; height: 64px; border-radius: 50%; background: rgba(37,99,235,0.92); display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.4); transition: background var(--transition), transform var(--transition); }
   .lp-vsl-play:hover .lp-vsl-play-ico { background: var(--accent); transform: scale(1.06); }
+  .lp-vsl-play { transition: opacity 0.3s ease; }
+  .lp-vsl-play.hidden { opacity: 0; pointer-events: none; }
   .lp-hero-bullets { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 13px; }
   .lp-hero-bullets li { display: flex; gap: 12px; align-items: flex-start; color: var(--text-secondary); font-size: 1rem; line-height: 1.45; }
   .lp-hero-trust { font-size: 0.92rem; color: var(--text-muted); margin: 0; }
