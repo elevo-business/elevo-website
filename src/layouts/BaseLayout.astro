@@ -27,6 +27,10 @@ const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID ?? '2057474564840133';
 // Nutzt denselben gtag-Loader wie Google Ads; Consent Mode v2 gilt (analytics
 // erst nach "Statistik"-Einwilligung mit Cookies, vorher cookielose Pings).
 const ga4Id = import.meta.env.PUBLIC_GA4_ID ?? 'G-YWCBRRJR0N';
+
+// Microsoft Clarity (Heatmaps/Session-Recording = Statistik). Per ENV
+// PUBLIC_CLARITY_ID. Laedt erst nach "Statistik"-Einwilligung (DSGVO).
+const clarityId = import.meta.env.PUBLIC_CLARITY_ID ?? 'xbi2du3vxx';
 ---
 
 <!DOCTYPE html>
@@ -224,6 +228,28 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID ?? 'G-YWCBRRJR0N';
     if (ga4Id && typeof gtag === 'function') {
       gtag('config', ga4Id, { anonymize_ip: true });
     }
+  </script>
+
+  <!-- Microsoft Clarity (Statistik) — laedt erst nach "Statistik"-Einwilligung. -->
+  <script define:vars={{ clarityId }}>
+    (function () {
+      if (!clarityId) return;
+      var loaded = false;
+      function loadClarity() {
+        if (loaded) return; loaded = true;
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", clarityId);
+      }
+      function hasAnalyticsConsent() {
+        try { var raw = localStorage.getItem('elevo_consent_v2'); return raw ? JSON.parse(raw).analytics === true : false; }
+        catch (e) { return false; }
+      }
+      if (hasAnalyticsConsent()) loadClarity();
+      window.addEventListener('elevo:analytics-granted', loadClarity, { once: true });
+    })();
   </script>
 
   <!--

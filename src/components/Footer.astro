@@ -156,6 +156,10 @@ import DatenschutzContent from './legal/DatenschutzContent.astro';
     if (prefs.marketing || prefs.analytics) {
       window.dispatchEvent(new Event('elevo:consent-granted'));
     }
+    // Statistik separat: triggert Microsoft Clarity (laedt nur mit Statistik-Consent).
+    if (prefs.analytics) {
+      window.dispatchEvent(new Event('elevo:analytics-granted'));
+    }
   }
 
   function syncToggles(prefs: ConsentPrefs) {
