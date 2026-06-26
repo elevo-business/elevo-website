@@ -345,8 +345,8 @@ body.rx .ev-hv-badge {
   animation: rx-float 5s ease-in-out infinite;
 }
 body.rx .ev-hv-badge svg { width: 16px; height: 16px; color: var(--accent); }
-body.rx .ev-hv-badge--1 { left: -18px; bottom: 38px; }
-body.rx .ev-hv-badge--2 { right: -14px; top: 30px; animation-delay: 1.4s; }
+body.rx .ev-hv-badge--1 { left: -18px; right: auto; bottom: 38px; top: auto; }
+body.rx .ev-hv-badge--2 { right: -14px; left: auto; top: 30px; bottom: auto; animation-delay: 1.4s; }
 @keyframes rx-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
 
 /* ---------- 8. Statband ---------- */
