@@ -282,14 +282,55 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_ID ?? 'xbi2du3vxx';
       var m = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
       return m ? decodeURIComponent(m.pop()) : '';
     }
+    function setCookie(name, value, days) {
+      var secure = location.protocol === 'https:' ? ';Secure' : '';
+      document.cookie = name + '=' + encodeURIComponent(value) + ';path=/;max-age=' + (days * 86400) + ';SameSite=Lax' + secure;
+    }
 
-    // _fbc aus Cookie oder — falls noch nicht gesetzt — aus fbclid in der URL.
+    var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+
+    function qp(name) {
+      var m = location.search.match(new RegExp('[?&]' + name + '=([^&]+)'));
+      return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : '';
+    }
+
+    // Klick-ID + UTM beim ersten Aufruf erfassen und PERSISTIEREN, damit sie den
+    // gesamten Funnel ueberleben (LP -> Formular -> Calendly -> Danke). _fbc im
+    // Meta-Format: fb.1.<unix_ms>.<fbclid>. Zusaetzlich eine stabile external_id
+    // (_eid) fuer bessere Cross-Event-Match-Quality. Laeuft im selben Kontext,
+    // in dem auch der Pixel geladen wird (Marketing-Consent bzw. eager-PageView).
+    function captureAttribution() {
+      var fbclid = qp('fbclid');
+      if (fbclid && !getCookie('_fbc')) {
+        setCookie('_fbc', 'fb.1.' + Date.now() + '.' + fbclid, 90);
+      }
+      var attr = {};
+      try { attr = JSON.parse(getCookie('elevo_attr') || '{}'); } catch (e) { attr = {}; }
+      if (fbclid && !attr.fbclid) attr.fbclid = fbclid;
+      UTM_KEYS.forEach(function (k) { var v = qp(k); if (v && !attr[k]) attr[k] = v; });
+      if (Object.keys(attr).length) setCookie('elevo_attr', JSON.stringify(attr), 90);
+      if (!getCookie('_eid')) {
+        setCookie('_eid', (window.crypto && crypto.randomUUID ? crypto.randomUUID() : 'eid-' + Date.now() + '-' + Math.random().toString(36).slice(2)), 180);
+      }
+    }
+
+    function getStoredAttr() {
+      try { return JSON.parse(getCookie('elevo_attr') || '{}'); } catch (e) { return {}; }
+    }
+
+    // _fbc aus Cookie oder — falls noch nicht gesetzt — aus fbclid (URL/Store).
     function getFbc() {
       var fbc = getCookie('_fbc');
       if (fbc) return fbc;
-      var m = location.search.match(/[?&]fbclid=([^&]+)/);
-      if (m) return 'fb.1.' + Date.now() + '.' + decodeURIComponent(m[1]);
+      var fbclid = qp('fbclid') || getStoredAttr().fbclid;
+      if (fbclid) return 'fb.1.' + Date.now() + '.' + fbclid;
       return '';
+    }
+
+    function getUtm() {
+      var attr = getStoredAttr(); var out = {};
+      UTM_KEYS.forEach(function (k) { var v = qp(k) || attr[k]; if (v) out[k] = v; });
+      return out;
     }
 
     function newEventId() {
@@ -301,6 +342,7 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_ID ?? 'xbi2du3vxx';
     function loadPixel() {
       if (!metaPixelId || pixelLoaded) return;
       pixelLoaded = true;
+      captureAttribution();
       var t = document.createElement('script');
       t.async = true;
       t.src = 'https://connect.facebook.net/en_US/fbevents.js';
@@ -313,17 +355,26 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_ID ?? 'xbi2du3vxx';
       hasConsent: hasMarketingConsent,
       getFbp: function () { return getCookie('_fbp'); },
       getFbc: getFbc,
-      // VOR dem Request: erzeugt event_id + sammelt fbp/fbc, die im POST an die
-      // API mitgeschickt werden (server-seitiges CAPI-Event). Gibt null zurück,
-      // wenn kein Marketing-Consent vorliegt — dann kein Meta-Event, weder
-      // Browser noch Server.
+      getUtm: getUtm,
+      getExternalId: function () { return getCookie('_eid'); },
+      getAttr: getStoredAttr,
+      // VOR dem Request: erzeugt event_id + sammelt alle Match-/Attributions-
+      // Parameter (fbp/fbc/fbclid/UTM/external_id), die im POST an die API
+      // mitgeschickt werden (server-seitiges CAPI-Event mit DERSELBEN event_id).
+      // Gibt null zurueck, wenn kein Marketing-Consent vorliegt — dann kein
+      // Meta-Event, weder Browser noch Server.
       leadData: function () {
         if (!hasMarketingConsent()) return null;
         return {
           metaEventId: newEventId(),
           fbp: getCookie('_fbp'),
           fbc: getFbc(),
-          eventSourceUrl: location.href
+          fbclid: getStoredAttr().fbclid || qp('fbclid') || '',
+          externalId: getCookie('_eid'),
+          utm: getUtm(),
+          actionSource: 'website',
+          eventSourceUrl: location.href,
+          eventTime: Math.floor(Date.now() / 1000)
         };
       },
       // NACH Server-Erfolg: feuert das Browser-Lead-Event mit derselben

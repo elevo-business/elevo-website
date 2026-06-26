@@ -361,6 +361,22 @@ const year = new Date().getFullYear();
         const u = new URL(base);
         u.searchParams.set('name', fullName);
         u.searchParams.set('email', email);
+        const em = (window as any).elevoMeta;
+        if (em) {
+          // UTM 1:1 an Calendly weiterreichen -> landet im Webhook unter
+          // payload.tracking.* und damit im CRM (Attribution bleibt erhalten).
+          const utm = em.getUtm ? em.getUtm() : {};
+          Object.keys(utm).forEach((k) => u.searchParams.set(k, utm[k]));
+          // Klick-IDs in salesforce_uuid packen (fbc~fbp~external_id). Calendly
+          // reicht dieses Feld im Webhook mit -> die CRM-Automation kann daraus
+          // serverseitig das Schedule/Lead-CAPI-Event korrekt attribuieren.
+          const pack = [
+            em.getFbc ? em.getFbc() : '',
+            em.getFbp ? em.getFbp() : '',
+            em.getExternalId ? em.getExternalId() : '',
+          ].join('~');
+          if (pack.replace(/~/g, '')) u.searchParams.set('salesforce_uuid', pack);
+        }
         return u.toString();
       } catch { return base; }
     }
