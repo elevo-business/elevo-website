@@ -8,6 +8,8 @@ export interface Props {
   /** Feuert PageView fuer alle Besucher (ausser aktiv abgelehnt) — fuer
    *  LPV-optimierte Ad-Landingpages. Lead-Event bleibt consent-gated. */
   eagerPageView?: boolean;
+  /** Optionale CSS-Klasse(n) auf <body> — z.B. fuer seiten-spezifische Themes/Scopes. */
+  bodyClass?: string;
 }
 
 const {
@@ -17,6 +19,7 @@ const {
   ogImage = 'https://elevo.solutions/og-image.jpg',
   noindex = false,
   eagerPageView = false,
+  bodyClass = '',
 } = Astro.props;
 
 // Meta-Pixel-ID (nicht geheim, identisch zur Dataset-ID des CAPI-Servers).
@@ -410,7 +413,7 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_ID ?? 'xbi2du3vxx';
   </script>
 </head>
 
-<body>
+<body class={bodyClass}>
   <slot />
 </body>
 </html>

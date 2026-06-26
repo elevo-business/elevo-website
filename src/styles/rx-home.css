@@ -1,0 +1,849 @@
+/* =====================================================================
+   rx-home.css — Boutique/Tech Redesign der Startseite (Minimal-Weiß)
+   Vollständig gescoped unter body.rx → keine Wirkung auf andere Seiten.
+   Strategie: neue Design-Tokens überschreiben + gezielte Klassen-Refinements.
+   Alle JS-Hooks (.reveal, [data-count], #calc-*, .ref-modal-trigger,
+   #ev-marquee-track, #ev-mcta) bleiben unverändert.
+   ===================================================================== */
+
+/* ---------- 1. Design-Tokens (überschreiben global :root nur auf der Home) ---------- */
+body.rx {
+  --bg-deep: #FFFFFF;
+  --bg-dark: #FFFFFF;
+  --bg-alt: #F6F7F9;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F6F7F9;
+
+  --ink: #0A0C10;
+  --ink-2: #4B535F;
+  --ink-3: #8A929E;
+  --text-primary: #0A0C10;
+  --text-secondary: #4B535F;
+  --text-muted: #8A929E;
+
+  --line: rgba(10, 12, 16, 0.08);
+  --line-2: rgba(10, 12, 16, 0.14);
+  --border: rgba(10, 12, 16, 0.08);
+  --border-strong: rgba(10, 12, 16, 0.16);
+
+  --accent: #2563EB;
+  --accent-hover: #1D4FD7;
+  --accent-soft: rgba(37, 99, 235, 0.08);
+  --accent-glow: rgba(37, 99, 235, 0.10);
+  --accent-glow-strong: rgba(37, 99, 235, 0.16);
+  --violet: #7C5CFF;
+
+  --radius: 16px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(10, 12, 16, 0.04), 0 1px 3px rgba(10, 12, 16, 0.04);
+  --shadow: 0 2px 4px rgba(10, 12, 16, 0.03), 0 14px 40px -18px rgba(10, 12, 16, 0.16);
+  --shadow-lg: 0 4px 8px rgba(10, 12, 16, 0.04), 0 30px 70px -24px rgba(10, 12, 16, 0.22);
+  --shadow-blue: 0 18px 50px -20px rgba(37, 99, 235, 0.30);
+  --ease: cubic-bezier(0.16, 0.84, 0.44, 1);
+
+  background: var(--bg-dark);
+  color: var(--text-secondary);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Feines Film-Grain über der ganzen Seite — taktiler Premium-Look */
+body.rx::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- 2. Layout & Rhythmus ---------- */
+body.rx .container { max-width: 1160px; padding: 0 28px; }
+
+body.rx .ev-section { padding: clamp(80px, 11vw, 148px) 0; position: relative; }
+body.rx .ev-section + .ev-section { border-top: 1px solid var(--line); }
+body.rx .ev-section-alt { background: var(--bg-alt); }
+
+/* Section-Intro mittig & luftig */
+body.rx .ev-section > .container > .ev-eyebrow,
+body.rx .ev-section > .container > .ev-h2,
+body.rx .ev-section > .container > .ev-section-sub { text-align: center; }
+body.rx .ev-section > .container > .ev-h2 { margin: 14px auto 0; max-width: 18ch; }
+body.rx .ev-section > .container > .ev-section-sub { margin: 18px auto 0; max-width: 60ch; }
+body.rx .ev-section > .container > .ev-eyebrow { justify-content: center; }
+
+/* ---------- 3. Typografie ---------- */
+body.rx .ev-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+body.rx .ev-eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.6;
+}
+
+body.rx .ev-h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+
+body.rx .ev-section-sub {
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.65;
+  color: var(--ink-2);
+  font-weight: 300;
+}
+
+body.rx .ev-accent { color: var(--accent); }
+
+/* ---------- 4. Buttons ---------- */
+body.rx .ev-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.98rem;
+  letter-spacing: -0.01em;
+  padding: 15px 26px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  transition: transform 0.35s var(--ease), background 0.3s var(--ease),
+              box-shadow 0.35s var(--ease), border-color 0.3s var(--ease), color 0.3s var(--ease);
+  cursor: pointer;
+}
+body.rx .ev-btn svg { width: 16px; height: 16px; }
+
+/* Primär = Ink-Schwarz (Boutique-Signatur) */
+body.rx .ev-btn-primary {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+  box-shadow: 0 1px 2px rgba(10, 12, 16, 0.18), 0 12px 28px -14px rgba(10, 12, 16, 0.5);
+}
+body.rx .ev-btn-primary:hover {
+  background: #1b1f27;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(10, 12, 16, 0.2), 0 22px 44px -16px rgba(10, 12, 16, 0.55);
+}
+
+/* Ghost = Hairline */
+body.rx .ev-btn-ghost {
+  background: #fff;
+  color: var(--ink);
+  border-color: var(--line-2);
+}
+body.rx .ev-btn-ghost:hover {
+  background: var(--bg-alt);
+  border-color: var(--ink);
+  transform: translateY(-2px);
+}
+
+body.rx .ev-btn-block { width: 100%; justify-content: center; }
+body.rx .ev-btn-xl { padding: 18px 38px; font-size: 1.06rem; }
+
+/* ---------- 5. Reveal-on-Scroll ---------- */
+body.rx .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  will-change: opacity, transform;
+}
+body.rx .reveal.visible { opacity: 1; transform: none; }
+body.rx .reveal-delay-1 { transition-delay: 0.08s; }
+body.rx .reveal-delay-2 { transition-delay: 0.16s; }
+body.rx .reveal-delay-3 { transition-delay: 0.24s; }
+body.rx .reveal-delay-4 { transition-delay: 0.32s; }
+
+/* ---------- 6. Header / Nav ---------- */
+body.rx #nav { padding: 18px 0; }
+body.rx #nav.scrolled {
+  background: rgba(255, 255, 255, 0.72);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--line);
+}
+body.rx .nav-links a { color: var(--ink-2); font-weight: 500; }
+body.rx .nav-links a:hover { color: var(--ink); }
+body.rx .nav-links a::after { background: var(--accent); }
+body.rx .nav-cta {
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+}
+body.rx .nav-cta:hover { background: #1b1f27; box-shadow: 0 12px 26px -14px rgba(10,12,16,0.6); }
+body.rx .logo-word { color: var(--ink); }
+body.rx .logo-lockup { color: var(--accent); }
+
+/* ---------- 7. HERO ---------- */
+body.rx #hero {
+  padding: clamp(130px, 16vw, 190px) 0 clamp(70px, 9vw, 110px);
+  overflow: hidden;
+}
+/* Aurora-Mesh hinter dem Hero */
+body.rx #hero::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 120%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(40% 50% at 18% 8%, rgba(37, 99, 235, 0.14), transparent 60%),
+    radial-gradient(38% 48% at 88% 0%, rgba(124, 92, 255, 0.12), transparent 60%),
+    radial-gradient(45% 40% at 70% 35%, rgba(37, 99, 235, 0.06), transparent 65%);
+  filter: blur(8px);
+}
+/* Auslaufendes Hairline-Grid */
+body.rx #hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(10, 12, 16, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 12, 16, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 35%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 35%, #000 20%, transparent 75%);
+}
+body.rx #hero .container { position: relative; z-index: 1; }
+
+body.rx .ev-hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: clamp(40px, 6vw, 80px);
+}
+body.rx .ev-hero-copy { text-align: left; }
+body.rx .ev-hero-copy .ev-eyebrow { justify-content: flex-start; }
+
+body.rx .ev-hero-h1 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2.7rem, 5.6vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  color: var(--ink);
+  margin: 22px 0 0;
+}
+body.rx .ev-hero-sub {
+  font-size: clamp(1.08rem, 1.5vw, 1.28rem);
+  line-height: 1.62;
+  color: var(--ink-2);
+  font-weight: 300;
+  max-width: 46ch;
+  margin: 22px 0 0;
+}
+body.rx .ev-hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+body.rx .ev-hero-trust {
+  margin-top: 22px;
+  font-size: 0.86rem;
+  color: var(--ink-3);
+  letter-spacing: 0.01em;
+}
+
+/* Hero-Visual: Glas-Browser */
+body.rx .ev-hero-visual { position: relative; }
+body.rx .ev-hv-browser {
+  position: relative;
+  background: rgba(255, 255, 255, 0.75);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--line-2);
+  border-radius: 18px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+body.rx .ev-hv-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.6);
+}
+body.rx .ev-hv-dot { width: 10px; height: 10px; border-radius: 50%; }
+body.rx .ev-hv-dot--r { background: #FF5F57; }
+body.rx .ev-hv-dot--y { background: #FEBC2E; }
+body.rx .ev-hv-dot--g { background: #28C840; }
+body.rx .ev-hv-url {
+  margin-left: 8px;
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  font-family: var(--font-body);
+}
+body.rx .ev-hv-screen { padding: 22px; }
+body.rx .ev-hv-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+body.rx .ev-hv-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 14px;
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+body.rx .ev-hv-kpi b { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--ink); letter-spacing: -0.03em; }
+body.rx .ev-hv-kpi i { font-style: normal; font-size: 0.68rem; color: var(--ink-3); }
+body.rx .ev-hv-chart { margin: 18px 0 16px; color: var(--accent); height: 64px; }
+body.rx .ev-hv-chart svg { width: 100%; height: 100%; display: block; }
+body.rx .ev-hv-list { display: flex; flex-direction: column; gap: 9px; }
+body.rx .ev-hv-li { display: flex; align-items: center; gap: 10px; }
+body.rx .ev-hv-li i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex: none; }
+body.rx .ev-hv-tag {
+  font-style: normal;
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 4px 12px;
+}
+body.rx .ev-hv-tag--new { color: var(--accent); background: var(--accent-soft); border-color: transparent; }
+body.rx .ev-hv-tag--won { color: #0E9F6E; background: rgba(16, 185, 129, 0.10); border-color: transparent; }
+
+/* Schwebende Chips */
+body.rx .ev-hv-badge {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow);
+  animation: rx-float 5s ease-in-out infinite;
+}
+body.rx .ev-hv-badge svg { width: 16px; height: 16px; color: var(--accent); }
+body.rx .ev-hv-badge--1 { left: -18px; bottom: 38px; }
+body.rx .ev-hv-badge--2 { right: -14px; top: 30px; animation-delay: 1.4s; }
+@keyframes rx-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+
+/* ---------- 8. Statband ---------- */
+body.rx .ev-statband {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: clamp(54px, 7vw, 84px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+body.rx .ev-stat { padding: 26px 24px; }
+body.rx .ev-stat + .ev-stat { border-left: 1px solid var(--line); }
+body.rx .ev-stat-num {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  line-height: 1;
+}
+body.rx .ev-stat-num.is-accent { color: var(--accent); }
+body.rx .ev-stat-label { margin-top: 8px; font-size: 0.85rem; color: var(--ink-3); }
+
+/* ---------- 9. Marquee ---------- */
+body.rx .ev-marquee {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 22px 0;
+  background: var(--bg-alt);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+body.rx .ev-marquee-item {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink-3);
+}
+body.rx .ev-marquee-item::after { color: var(--accent); opacity: 0.5; }
+
+/* ---------- 10. Karten-Grundstil (Problem / Diagnose) ---------- */
+body.rx .ev-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: clamp(40px, 5vw, 60px);
+}
+body.rx .ev-diag-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 34px 30px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.3s var(--ease);
+}
+body.rx .ev-diag-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--line-2); }
+body.rx .ev-diag-icon {
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  margin-bottom: 22px;
+}
+body.rx .ev-diag-icon svg { width: 26px; height: 26px; }
+body.rx .ev-diag-card h3 { font-family: var(--font-heading); font-size: 1.22rem; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 10px; }
+body.rx .ev-diag-card p { font-size: 0.96rem; line-height: 1.6; color: var(--ink-2); }
+
+/* ---------- 11. Mechanismus / Flow ---------- */
+body.rx .ev-system-lead { max-width: 760px; margin: 24px auto 0; text-align: center; }
+body.rx .ev-system-lead p { font-size: 1.15rem; line-height: 1.7; color: var(--ink-2); }
+body.rx .ev-system-lead strong { color: var(--ink); font-weight: 600; }
+
+body.rx .ev-flow-wrap { margin-top: clamp(46px, 6vw, 72px); }
+body.rx .ev-flow-caption { text-align: center; color: var(--ink-3); font-size: 0.9rem; margin-bottom: 28px; }
+body.rx .ev-flow {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+body.rx .ev-flow-node {
+  flex: 1 1 0;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  padding: 26px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+body.rx .ev-flow-node:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+body.rx .ev-flow-ico {
+  width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 13px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+body.rx .ev-flow-ico svg { width: 24px; height: 24px; }
+body.rx .ev-flow-label { font-size: 0.9rem; font-weight: 500; color: var(--ink); line-height: 1.4; }
+body.rx .ev-flow-arrow { display: flex; align-items: center; color: var(--ink-3); }
+body.rx .ev-flow-arrow svg { width: 22px; height: 22px; }
+
+/* ---------- 12. System-Bento (4 Bausteine) ---------- */
+body.rx .ev-stack {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: clamp(44px, 6vw, 64px);
+}
+body.rx .ev-stack-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 34px 32px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.3s var(--ease);
+}
+/* dezenter Verlauf in der Ecke */
+body.rx .ev-stack-card::before {
+  content: "";
+  position: absolute;
+  top: -40%; right: -20%;
+  width: 60%; height: 80%;
+  background: radial-gradient(circle, var(--accent-soft), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+  pointer-events: none;
+}
+body.rx .ev-stack-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--line-2); }
+body.rx .ev-stack-card:hover::before { opacity: 1; }
+/* erste Kachel = große Bento-Kachel */
+body.rx .ev-stack-card:first-child { grid-column: 1 / -1; }
+body.rx .ev-stack-card:first-child .ev-stack-feats { columns: 2; column-gap: 30px; }
+body.rx .ev-stack-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+body.rx .ev-stack-no {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: var(--radius-pill);
+  padding: 5px 12px;
+}
+body.rx .ev-stack-ico {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 12px;
+  background: var(--ink);
+  color: #fff;
+}
+body.rx .ev-stack-ico svg { width: 22px; height: 22px; }
+body.rx .ev-stack-card h3 { font-family: var(--font-heading); font-size: 1.32rem; font-weight: 700; color: var(--ink); letter-spacing: -0.025em; margin-bottom: 12px; }
+body.rx .ev-stack-card > p { font-size: 0.98rem; line-height: 1.62; color: var(--ink-2); margin-bottom: 22px; }
+body.rx .ev-stack-feats { display: flex; flex-direction: column; gap: 11px; }
+body.rx .ev-stack-feats li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.92rem; color: var(--ink-2); break-inside: avoid; }
+body.rx .ev-stack-feats li svg { width: 16px; height: 16px; color: var(--accent); flex: none; margin-top: 3px; }
+body.rx .ev-stack-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 6px;
+  padding: 11px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+body.rx .ev-stack-note svg { width: 17px; height: 17px; color: #fff; }
+
+/* ---------- 13. Rechner ---------- */
+body.rx .ev-calc {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 22px;
+  margin-top: clamp(44px, 6vw, 64px);
+  align-items: stretch;
+}
+body.rx .ev-calc-inputs {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 34px 32px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+}
+body.rx .ev-calc-field-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; }
+body.rx .ev-calc-field-head label { font-size: 0.92rem; color: var(--ink-2); font-weight: 500; }
+body.rx .ev-calc-val { font-family: var(--font-heading); font-weight: 700; font-size: 1.05rem; color: var(--ink); }
+body.rx .ev-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 40%, rgba(10,12,16,0.10) 40%, rgba(10,12,16,0.10) 100%);
+  outline: none;
+}
+body.rx .ev-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--line-2);
+  box-shadow: 0 2px 6px rgba(10,12,16,0.18);
+  cursor: pointer;
+  transition: transform 0.2s var(--ease);
+}
+body.rx .ev-range::-webkit-slider-thumb:hover { transform: scale(1.12); }
+body.rx .ev-range::-moz-range-thumb {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--line-2);
+  box-shadow: 0 2px 6px rgba(10,12,16,0.18);
+  cursor: pointer;
+}
+body.rx .ev-calc-result {
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 38px 34px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+body.rx .ev-calc-result::before {
+  content: "";
+  position: absolute;
+  inset: -50% 30% auto -10%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(37,99,235,0.45), transparent 60%);
+  pointer-events: none;
+}
+body.rx .ev-calc-result > * { position: relative; z-index: 1; }
+body.rx .ev-calc-result-label { font-size: 0.9rem; color: rgba(255,255,255,0.65); }
+body.rx .ev-calc-result-num {
+  font-family: var(--font-heading);
+  font-size: clamp(2.6rem, 5vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin: 8px 0 22px;
+  color: #fff;
+}
+body.rx .ev-calc-result-rows { display: flex; gap: 26px; margin-bottom: 26px; }
+body.rx .ev-calc-stat { display: flex; flex-direction: column; gap: 3px; }
+body.rx .ev-calc-stat strong { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: #fff; }
+body.rx .ev-calc-stat span { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+body.rx .ev-calc-result .ev-btn-primary {
+  background: #fff; color: var(--ink); border-color: #fff;
+}
+body.rx .ev-calc-result .ev-btn-primary:hover { background: #eef1f6; }
+body.rx .ev-calc-note { font-size: 0.78rem; color: rgba(255,255,255,0.55); margin-top: 16px; line-height: 1.5; }
+
+/* ---------- 14. Prozess-Timeline ---------- */
+body.rx .prozess-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: clamp(44px, 6vw, 64px);
+  position: relative;
+}
+body.rx .prozess-steps::before {
+  content: "";
+  position: absolute;
+  top: 26px; left: 12%; right: 12%;
+  height: 1px;
+  background: var(--line-2);
+}
+body.rx .prozess-step { text-align: center; position: relative; padding: 0 8px; }
+body.rx .ev-step-ico {
+  position: relative;
+  z-index: 1;
+  width: 52px; height: 52px;
+  margin: 0 auto 18px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--line-2);
+  color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+body.rx .ev-step-ico svg { width: 22px; height: 22px; }
+body.rx .step-num { font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; color: var(--ink-3); margin-bottom: 8px; }
+body.rx .step-title { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 8px; }
+body.rx .step-desc { font-size: 0.9rem; line-height: 1.55; color: var(--ink-2); }
+
+/* ---------- 15. Referenzen ---------- */
+body.rx .ev-ref-logos { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 36px; margin: clamp(36px, 5vw, 52px) 0; }
+body.rx .ev-ref-logo { background: none; border: 0; padding: 0; height: auto; min-width: 0; box-shadow: none; }
+body.rx .ev-ref-logo-img { filter: grayscale(1) brightness(0); opacity: 0.4; transition: opacity 0.3s var(--ease); }
+body.rx .ev-ref-logo:hover .ev-ref-logo-img { opacity: 0.7; }
+
+body.rx .ev-ref-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+body.rx .ev-ref-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.3s var(--ease);
+}
+body.rx .ev-ref-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--line-2); }
+body.rx .ev-ref-frame { position: relative; }
+body.rx .ev-ref-bar { display: flex; align-items: center; gap: 6px; padding: 11px 14px; border-bottom: 1px solid var(--line); background: var(--bg-alt); }
+body.rx .ev-ref-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--line-2); }
+body.rx .ev-ref-bar i:nth-child(1) { background: #FF5F57; }
+body.rx .ev-ref-bar i:nth-child(2) { background: #FEBC2E; }
+body.rx .ev-ref-bar i:nth-child(3) { background: #28C840; }
+body.rx .ev-ref-bar em { margin-left: 8px; font-style: normal; font-size: 0.72rem; color: var(--ink-3); }
+body.rx .ev-ref-overlay { background: rgba(10, 12, 16, 0.04); }
+body.rx .ev-ref-overlay:hover { background: rgba(10, 12, 16, 0.10); }
+body.rx .ev-ref-open { background: var(--ink); color: #fff; border-radius: var(--radius-pill); }
+body.rx .ev-ref-meta { display: flex; align-items: center; gap: 14px; padding: 20px 22px; border-top: 1px solid var(--line); }
+body.rx .ev-ref-metric { font-family: var(--font-heading); font-size: 1.7rem; font-weight: 800; color: var(--accent); letter-spacing: -0.03em; line-height: 1; }
+body.rx .ev-ref-text h3 { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+body.rx .ev-ref-text p { font-size: 0.84rem; color: var(--ink-3); margin-top: 2px; }
+
+/* ---------- 16. Garantie-Band ---------- */
+body.rx .ev-guarantee {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 36px;
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: clamp(36px, 5vw, 56px);
+}
+body.rx .ev-guarantee-ico {
+  width: 84px; height: 84px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 20px;
+  background: var(--ink);
+  color: #fff;
+  flex: none;
+}
+body.rx .ev-guarantee-ico svg { width: 42px; height: 42px; }
+body.rx .ev-guarantee-body .ev-eyebrow { justify-content: flex-start; margin-bottom: 10px; }
+body.rx .ev-guarantee-body .ev-h2 { text-align: left; margin: 0 0 12px; max-width: none; }
+body.rx .ev-guarantee-body p { font-size: 1.02rem; line-height: 1.65; color: var(--ink-2); }
+
+/* ---------- 17. Gründer / Vision ---------- */
+body.rx .ev-vision { display: grid; grid-template-columns: minmax(240px, 300px) 1fr; gap: clamp(36px, 5vw, 64px); align-items: center; }
+body.rx .ev-vision-portrait { margin: 0; }
+body.rx .ev-vision-portrait img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+body.rx .ev-vision-portrait figcaption { margin-top: 14px; display: flex; flex-direction: column; gap: 2px; }
+body.rx .ev-vision-portrait figcaption strong { font-family: var(--font-heading); color: var(--ink); font-size: 0.98rem; }
+body.rx .ev-vision-portrait figcaption span { font-size: 0.82rem; color: var(--ink-3); }
+body.rx .ev-vision-body .ev-eyebrow { justify-content: flex-start; margin-bottom: 10px; }
+body.rx .ev-vision-body .ev-h2 { text-align: left; margin: 0 0 18px; max-width: none; }
+body.rx .ev-vision-text p { font-size: 1.04rem; line-height: 1.7; color: var(--ink-2); margin-bottom: 14px; }
+body.rx .ev-vision-close { color: var(--ink); font-weight: 500; }
+body.rx .ev-vision-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 24px; }
+
+/* ---------- 18. Final-CTA ---------- */
+body.rx .ev-final {
+  position: relative;
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 72px) clamp(32px, 5vw, 56px);
+  background: var(--ink);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+body.rx .ev-final::before {
+  content: "";
+  position: absolute;
+  inset: -60% 20% auto -20%;
+  height: 140%;
+  background: radial-gradient(circle, rgba(37,99,235,0.5), transparent 60%);
+  pointer-events: none;
+}
+body.rx .ev-final > * { position: relative; z-index: 1; }
+body.rx .ev-final .ev-h2 { color: #fff; text-align: center; margin: 18px auto 0; }
+body.rx .ev-final-sub { color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.6; margin: 16px auto 28px; max-width: 52ch; }
+body.rx .ev-final .ev-btn-primary { background: #fff; color: var(--ink); border-color: #fff; }
+body.rx .ev-final .ev-btn-primary:hover { background: #eef1f6; }
+body.rx .ev-final-trust { color: rgba(255,255,255,0.55); font-size: 0.84rem; margin-top: 18px; }
+body.rx .ev-scarcity {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+body.rx .ev-scarcity .ev-dot { width: 7px; height: 7px; border-radius: 50%; background: #4ADE80; animation: rx-blink 2.2s infinite; }
+@keyframes rx-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+/* ---------- 19. Kontakt ---------- */
+body.rx .ev-kontakt-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(36px, 5vw, 64px); align-items: start; }
+body.rx .ev-kontakt-grid .ev-eyebrow { justify-content: flex-start; }
+body.rx .ev-kontakt-grid .ev-h2 { text-align: left; margin: 14px 0 0; max-width: none; }
+body.rx .ev-kontakt-grid .ev-section-sub { text-align: left; margin: 16px 0 0; }
+body.rx .ev-kontakt-list { margin-top: 30px; display: flex; flex-direction: column; gap: 18px; }
+body.rx .ev-kontakt-list li { display: flex; flex-direction: column; gap: 4px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+body.rx .ev-kontakt-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
+body.rx .ev-kontakt-list a, body.rx .ev-kontakt-list li > span:last-child { color: var(--ink); font-size: 1.02rem; }
+body.rx .ev-kontakt-list a:hover { color: var(--accent); }
+body.rx .ev-kontakt-form {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: clamp(28px, 4vw, 40px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- 20. Sticky Mobile-CTA ---------- */
+body.rx .ev-mcta {
+  background: rgba(255,255,255,0.82);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--line);
+}
+body.rx .ev-mcta-primary { background: var(--ink); color: #fff; border-radius: var(--radius-pill); }
+body.rx .ev-mcta-ghost { border: 1px solid var(--line-2); color: var(--ink); border-radius: 50%; }
+
+/* ---------- 21. Live-Modal (Light-Touch) ---------- */
+body.rx .ref-modal-backdrop { background: rgba(10, 12, 16, 0.5); }
+body.rx .ref-modal-window { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+
+/* ---------- 22. Responsive ---------- */
+@media (max-width: 980px) {
+  body.rx .ev-hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  body.rx .ev-hero-visual { max-width: 520px; }
+  body.rx .ev-calc { grid-template-columns: 1fr; }
+  body.rx .ev-statband { grid-template-columns: repeat(2, 1fr); }
+  body.rx .ev-stat:nth-child(3) { border-left: 0; }
+  body.rx .ev-stat:nth-child(odd) { border-left: 0; }
+  body.rx .ev-statband .ev-stat { border-top: 1px solid var(--line); }
+  body.rx .ev-statband .ev-stat:nth-child(1),
+  body.rx .ev-statband .ev-stat:nth-child(2) { border-top: 0; }
+  body.rx .ev-statband .ev-stat:nth-child(2) { border-left: 1px solid var(--line); }
+  body.rx .ev-statband .ev-stat:nth-child(4) { border-left: 1px solid var(--line); }
+  body.rx .ev-grid-3 { grid-template-columns: 1fr; }
+  body.rx .ev-stack { grid-template-columns: 1fr; }
+  body.rx .ev-stack-card:first-child .ev-stack-feats { columns: 1; }
+  body.rx .ev-ref-grid { grid-template-columns: 1fr; }
+  body.rx .prozess-steps { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
+  body.rx .prozess-steps::before { display: none; }
+  body.rx .ev-guarantee { grid-template-columns: 1fr; text-align: center; }
+  body.rx .ev-guarantee-ico { margin: 0 auto; }
+  body.rx .ev-guarantee-body .ev-eyebrow { justify-content: center; }
+  body.rx .ev-guarantee-body .ev-h2 { text-align: center; }
+  body.rx .ev-vision { grid-template-columns: 1fr; }
+  body.rx .ev-vision-portrait { max-width: 280px; }
+  body.rx .ev-kontakt-grid { grid-template-columns: 1fr; }
+  body.rx .ev-flow-arrow { transform: rotate(90deg); }
+}
+
+@media (max-width: 540px) {
+  body.rx .container { padding: 0 20px; }
+  body.rx .ev-statband { grid-template-columns: 1fr; }
+  body.rx .ev-statband .ev-stat { border-left: 0 !important; }
+  body.rx .ev-statband .ev-stat + .ev-stat { border-top: 1px solid var(--line); }
+  body.rx .prozess-steps { grid-template-columns: 1fr; }
+  body.rx .ev-hv-badge--1 { left: 0; }
+  body.rx .ev-hv-badge--2 { right: 0; }
+  body.rx .ev-calc-result-rows { flex-direction: column; gap: 16px; }
+}
+
+/* ---------- 23. Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  body.rx .reveal { opacity: 1; transform: none; transition: none; }
+  body.rx .ev-hv-badge { animation: none; }
+}
