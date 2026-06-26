@@ -4,12 +4,14 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import '../styles/ev-system.css';
+import '../styles/rx-theme.css';
 ---
 
 <BaseLayout
   title="Leistungen — Elevo"
-  description="Das 14-Tage Klienten-System für Coaches & Berater: verkaufsstarke Website, automatische Terminbuchung, Follow-up-Automatisierung und Tracking — done-for-you. Aus deinen Besuchern werden gebuchte Anfragen."
+  description="Das 14-Tage Klienten-System für Coaches & Berater: verkaufsstarke Website, automatische Terminbuchung, Follow-up und Tracking — plus Automatisierung & Prozessoptimierung, die manuelle Abläufe von selbst laufen lässt. Done-for-you. Aus deinen Besuchern werden gebuchte Anfragen, aus Stunden werden Minuten."
   canonical="https://elevo.solutions/leistungen"
+  bodyClass="rx"
 >
   <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
 
@@ -252,6 +254,144 @@ import '../styles/ev-system.css';
             <a href="/kontakt" class="service-cta">Funnel-Check <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </article>
+
+        <article class="service-card reveal reveal-delay-3">
+          <div class="service-illustration" aria-hidden="true">
+            <svg viewBox="0 0 280 100" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Ambient glow -->
+              <ellipse cx="140" cy="52" rx="98" ry="34" style="fill: var(--accent-glow)" opacity="0.4"/>
+              <!-- Left: stacked manual documents -->
+              <rect x="20" y="26" width="46" height="40" rx="5" fill="rgba(148,163,184,0.10)" style="stroke: var(--border)" stroke-width="1"/>
+              <rect x="16" y="32" width="46" height="40" rx="5" style="fill: var(--bg-deep); stroke: var(--border-strong)" stroke-width="1.5"/>
+              <line x1="23" y1="42" x2="55" y2="42" style="stroke: var(--border-strong)" stroke-width="1.5"/>
+              <line x1="23" y1="49" x2="55" y2="49" fill="none" style="stroke: var(--border)" stroke-width="1.5"/>
+              <line x1="23" y1="56" x2="46" y2="56" fill="none" style="stroke: var(--border)" stroke-width="1.5"/>
+              <!-- Arrow into hub -->
+              <line x1="68" y1="52" x2="104" y2="52" style="stroke: var(--border-strong)" stroke-width="1.5" stroke-dasharray="4,4"/>
+              <polygon points="102,48 102,56 110,52" style="fill: var(--accent)"/>
+              <!-- Central automation hub (gear) -->
+              <circle cx="140" cy="52" r="26" fill="rgba(59,130,246,0.06)" style="stroke: var(--accent)" stroke-width="1.5"/>
+              <circle cx="140" cy="52" r="11" fill="none" style="stroke: var(--accent)" stroke-width="2"/>
+              <circle cx="140" cy="52" r="4" style="fill: var(--accent)"/>
+              <rect x="137.5" y="35" width="5" height="6" rx="1.5" style="fill: var(--accent)"/>
+              <rect x="137.5" y="63" width="5" height="6" rx="1.5" style="fill: var(--accent)"/>
+              <rect x="123" y="49.5" width="6" height="5" rx="1.5" style="fill: var(--accent)"/>
+              <rect x="151" y="49.5" width="6" height="5" rx="1.5" style="fill: var(--accent)"/>
+              <rect x="126" y="38" width="5" height="5" rx="1.5" transform="rotate(45 128.5 40.5)" style="fill: var(--accent)" opacity="0.7"/>
+              <rect x="149" y="60" width="5" height="5" rx="1.5" transform="rotate(45 151.5 62.5)" style="fill: var(--accent)" opacity="0.7"/>
+              <!-- Arrow out -->
+              <line x1="170" y1="52" x2="200" y2="52" style="stroke: var(--border-strong)" stroke-width="1.5" stroke-dasharray="4,4"/>
+              <polygon points="198,48 198,56 206,52" style="fill: var(--green)"/>
+              <!-- Right outputs -->
+              <rect x="212" y="20" width="30" height="20" rx="4" fill="rgba(59,130,246,0.08)" style="stroke: var(--accent)" stroke-width="1.3"/>
+              <line x1="217" y1="27" x2="237" y2="27" style="stroke: var(--accent)" stroke-width="1.3" opacity="0.7"/>
+              <line x1="217" y1="33" x2="231" y2="33" style="stroke: var(--accent)" stroke-width="1.3" opacity="0.45"/>
+              <rect x="212" y="46" width="30" height="20" rx="4" fill="rgba(16,185,129,0.08)" style="stroke: var(--green)" stroke-width="1.3"/>
+              <polyline points="218,56 223,61 236,49" fill="none" style="stroke: var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="212" y="72" width="30" height="14" rx="4" fill="rgba(59,130,246,0.06)" style="stroke: var(--accent)" stroke-width="1.3" opacity="0.7"/>
+              <circle cx="219" cy="79" r="2.4" style="fill: var(--accent)" opacity="0.7"/>
+              <line x1="225" y1="79" x2="237" y2="79" style="stroke: var(--accent)" stroke-width="1.3" opacity="0.5"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Automatisierung &amp; Prozessoptimierung</h3>
+          <p class="service-desc">Zeitfressende, manuelle Abläufe werden zu Prozessen, die von selbst laufen. Aus Stunden werden Minuten — du gewinnst Zeit zurück für das, was zählt: deine Kunden.</p>
+          <ul class="service-features" aria-label="Enthaltene Leistungen">
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Einmal erfassen — automatisch überall übernommen</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Fertige Dokumente &amp; Angebote in Minuten</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Buchung, Erinnerung &amp; Follow-up laufen von selbst</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Eine zentrale, immer aktuelle Datenquelle</li>
+            <li class="service-feature"><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Stunden Verwaltung zurück — Zeit für deine Kunden</li>
+          </ul>
+          <div class="service-price">
+            <div><div class="service-price-note">Done-for-you · Zeitspar-Garantie</div></div>
+            <a href="/kontakt" class="service-cta">Analyse sichern <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AUTOMATISIERUNG & PROZESSOPTIMIERUNG ===== -->
+  <section id="automatisierung" class="ev-section ev-section-alt" aria-labelledby="auto-heading">
+    <div class="container">
+      <header>
+        <p class="ev-eyebrow reveal">Automatisierung &amp; Prozessoptimierung</p>
+        <h2 id="auto-heading" class="ev-h2 reveal reveal-delay-1">Aus manuell wird automatisch.</h2>
+        <p class="ev-section-sub reveal reveal-delay-2">Wir verwandeln zeitfressende, manuelle Abläufe in Prozesse, die von selbst laufen. Aus Stunden werden Minuten — du gewinnst Zeit zurück für das, was zählt.</p>
+      </header>
+
+      <div class="auto-table reveal">
+        <div class="auto-row">
+          <span class="auto-from">Daten von Hand in mehrere Systeme tippen</span>
+          <span class="auto-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <span class="auto-to">Einmal erfassen, automatisch überall übernommen</span>
+        </div>
+        <div class="auto-row">
+          <span class="auto-from">Dokumente und Angebote manuell erstellen</span>
+          <span class="auto-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <span class="auto-to">Fertige Dokumente in Minuten</span>
+        </div>
+        <div class="auto-row">
+          <span class="auto-from">Termine per Mail hin und her abstimmen</span>
+          <span class="auto-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <span class="auto-to">Buchung &amp; Erinnerung laufen automatisch</span>
+        </div>
+        <div class="auto-row">
+          <span class="auto-from">Nachfassen und Wiedervorlagen gehen unter</span>
+          <span class="auto-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <span class="auto-to">Follow-up passiert von selbst</span>
+        </div>
+        <div class="auto-row">
+          <span class="auto-from">Informationen liegen an mehreren Orten</span>
+          <span class="auto-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <span class="auto-to">Eine zentrale, immer aktuelle Quelle</span>
+        </div>
+        <div class="auto-row">
+          <span class="auto-from">Stunden gehen für Verwaltung verloren</span>
+          <span class="auto-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <span class="auto-to">Zeit zurück für deine Kunden</span>
+        </div>
+      </div>
+
+      <div class="auto-badges reveal">
+        <span class="auto-badge">Done-for-you</span>
+        <span class="auto-badge">In 14 Tagen live</span>
+        <span class="auto-badge">Zeitspar-Garantie</span>
+      </div>
+
+      <h3 class="auto-cases-head reveal">Bereits umgesetzt.</h3>
+      <div class="auto-cases">
+        <article class="auto-case reveal">
+          <span class="auto-case-tag">Finanzbranche</span>
+          <span class="auto-case-name">Greenchild</span>
+          <span class="auto-case-url">greenchild.eu</span>
+          <span class="auto-case-proc-label">Automatisierte Prozesse</span>
+          <p class="auto-case-proc">Angebotserstellung, vertriebsoptimiertes Leadmanagement, Backoffice-Prozesse</p>
+          <div class="auto-case-metric"><strong>5 Std.</strong><span>pro Woche zurück</span></div>
+        </article>
+        <article class="auto-case reveal reveal-delay-1">
+          <span class="auto-case-tag">Marketing-Agentur</span>
+          <span class="auto-case-name" style="margin-bottom:16px;">BrandsMarketingLab</span>
+          <span class="auto-case-proc-label">Automatisierte Prozesse</span>
+          <p class="auto-case-proc">Onboarding, Reporting, Fulfillment-Prozesse</p>
+          <div class="auto-case-metric"><strong>1 Tag</strong><span>pro Woche für den CEO</span></div>
+        </article>
+        <article class="auto-case reveal reveal-delay-2">
+          <span class="auto-case-tag">Burnout-Coaching</span>
+          <span class="auto-case-name">Dina Römgens</span>
+          <span class="auto-case-url">dina-roemgens.com</span>
+          <span class="auto-case-proc-label">Automatisierte Prozesse</span>
+          <p class="auto-case-proc">Terminbuchung, Angebotserstellung, Klienten-Dokumente, gesamter Sales-Prozess</p>
+          <div class="auto-case-metric"><strong>Mehr Kunden</strong><span>bei gleicher Anzahl Leads</span></div>
+        </article>
+      </div>
+
+      <div class="auto-cta reveal">
+        <p><strong>Was lässt sich bei dir automatisieren?</strong> Das finden wir gemeinsam heraus — konkret für deine Abläufe, in einer kostenlosen Analyse.</p>
+        <a href="/kontakt" class="ev-btn ev-btn-primary">
+          Kostenlose Analyse sichern
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
     </div>
   </section>
