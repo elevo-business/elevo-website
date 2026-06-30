@@ -76,6 +76,10 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_ID ?? 'xbi2du3vxx';
   <link rel="preload" as="font" href="/fonts/Sora-latin.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="/fonts/Outfit-latin.woff2" type="font/woff2" crossorigin>
 
+  <!-- No-JS-Fallback: Reveal-Inhalte sind ohne JavaScript sofort sichtbar
+       (Scroll-Animationen sind reine Progressive Enhancement). -->
+  <noscript><style>.reveal,.reveal-left,.reveal-right{opacity:1!important;transform:none!important}</style></noscript>
+
   <!-- Structured Data: LocalBusiness -->
   <script type="application/ld+json" is:inline>
   {
