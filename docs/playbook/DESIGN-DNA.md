@@ -1,21 +1,31 @@
-# DESIGN-DNA — Elevo
+# DESIGN-DNA — Elevo (v2, From-Scratch-Build nach Playbook §2)
 
-> Nach §2 des WEBSITEQUALITYPLAYBOOK. Hinweis: Dieses Repositioning ist ein
-> **Copy-/Positionierungs-Umbau auf bestehendem Design** (rx-theme), kein
-> visueller Neubau. Die DNA dokumentiert den Ist-Zustand des Eigenauftritts,
-> damit künftige Änderungen ihr folgen.
+> Neuer Ansatz. Eigenständiges Design — **kein** Re-Skin des alten Cremeweiß-Themes,
+> **keine** Kopie der Referenz (Scribble: hell, Serif/Fraunces, Index-Numerals + §).
+> Divergenz-Engine durchlaufen; Distanz-Check unten.
 
-- **Typo-System:** Display **Sora** (400–800), Body **Outfit** (300–600), beide self-hosted; Inter-Fallback. — Große, fette Display-Headlines + ruhiger Body.
-- **Farbstrategie:** rx-Theme (hell/„Papier") + ein Signal-Akzent (Teal/Blau) für CTAs & Eyebrows; Tokens als CSS Custom Properties in `global.css`/`rx-theme.css`. — Begründung: hochwertig, ruhig, Premium-Anmutung; Akzent lenkt auf Wachstumsgespräch.
-- **Layout-Archetyp:** Zentriert-erhöht mit klaren Sektionen; Hero mit Browser-/Dashboard-Mockup.
-- **SIGNATURE-DEVICE:** **Die nummerierte Wachstums-Treppe** — Stufen `01 / 02 / 03` (Fundament · Autorität · Skalierung) als wiederkehrendes, merkbares Element über Home, Leistungen, Mechanismus-Flow und Print-Badge. Genau eines, konsequent.
-- **Bewegung:** zurückhaltend (Reveal-on-Scroll, Count-up); Progressive Enhancement, mit No-JS- und reduced-motion-Fallback.
-- **Bildwelt:** Produkt-/Referenz-Screenshots live im iframe, Magazin-Cover als Foto/Render.
-- **Dichte:** luftig, sektionsweise rhythmisiert.
-- **Voice-Archetyp:** selbstbewusst-klar (Hormozi-direkt).
+## Achsen
+- **Typo-System:** Grotesk-Display (**Sora**, sehr groß, eng) + Grotesk-Text (**Outfit**) + **Monospace-Akzent** (System-Mono) für Eyebrows, Stufen-Indizes und Kennzahlen. → technisch-präzise, selbstbewusst. *(Scribble = Serif-Display → bewusst anders.)*
+- **Farbstrategie:** **Dark-first Ink + Teal-Glow.** `--bg-deep #070D16`, `--bg-card #111E30`, Akzent Teal `#3DD6C0`. → entspricht der dokumentierten Marken-CI (CLAUDE.md „Ink/Teal"), die nie umgesetzt war. *(Scribble = helles Papier; aktuelle Live-Seite = Creme-hell → bewusst anders.)*
+- **Layout-Archetyp:** Asymmetrisch, **links-bündiger** Editorial-Grid mit überdimensionierter Display-Typo. *(Kein zentrierter „KI-Default"-Hero.)*
+- **SIGNATURE-DEVICE (genau eines):** **„Die Wachstumstreppe"** — ein aufsteigendes Stufen-/Treppen-Motiv. Die 3 Stufen (Fundament · Autorität · Skalierung) sitzen sichtbar auf **ansteigenden Stufen**; eine aufsteigende Linie verbindet sie und zieht sich als Leitmotiv durch Hero, Mechanismus und Sektions-Übergänge. Mono-Indizes `01 02 03`. → ownable, direkt aus der Hormozi-Stufen-Positionierung abgeleitet. *(Scribble nutzt Index-Numerals + §-Marginalien → bewusst anders.)*
+- **Bewegung:** zurückhaltend (Reveal); die Treppen-Linie „wächst" beim Scrollen. Reduced-Motion- + No-JS-sicher.
+- **Bildwelt:** typografisch + Treppen-Motiv + echte Magazin-Cover + Live-iFrames der Referenzen. Kein Stock.
+- **Dichte:** strukturiert, großzügig; editoriale Verdichtung in Stat-/Proof-Blöcken.
+- **Voice:** selbstbewusst · klar · hochwertig (Hormozi-direkt).
 
-## Distanz-/Eigenständigkeits-Check
-- Anti-Default (§7): Das Offer ist **keine** generische „3 Icon-Karten"-Aufzählung, sondern eine erzählte Treppe in Stufen mit Beweis-Kennzahl (25 Leads) und Print-Showcase zum Anfassen.
+## Distanz-Check vs. Referenz (Scribble) — ≥3 Achsen anders ✓
+1. Typo: Grotesk+Mono ↔ Serif (Fraunces)
+2. Farbe: Dark Ink/Teal ↔ helles Papier
+3. Signature: aufsteigende Treppe ↔ Index-Numerals + §
+4. Layout-Detail: Stufen-Motiv statt Marginalien
 
-## Der mutige Move (Brief §G)
-- Offer in **Stufen** framen statt als Leistungs-Menü — und echte Print-Deliverables (anonymisierte Magazine) als Beweis direkt durchblätterbar machen.
+## Anti-„KI-gebaut" (§7)
+Kein zentrierter Hero mit zwei Pill-Buttons + 3 gleiche Icon-Karten. Stattdessen:
+links-bündige Riesen-Typo, Mono-Labels, **ein** konsequentes Signature-Device,
+ungleiche/ansteigende Karten, echte Kennzahl (25 Leads) statt Floskel.
+
+## SEO-Lehren aus der Referenz (übernommen, nicht das Design)
+- `geo.region`/`geo.placename`-Meta, `og:image:width/height`, Canonical.
+- JSON-LD-Graph: ProfessionalService + **WebSite** + **BreadcrumbList** + **FAQPage**.
+- FAQ-Überschriften = echte Suchsätze; Sitemap via `@astrojs/sitemap`.

@@ -1,4 +1,18 @@
-# QA-Gauntlet — Elevo Repositioning (§6 WEBSITEQUALITYPLAYBOOK)
+# QA-Gauntlet — Elevo v2 (From-Scratch-Build, §6 WEBSITEQUALITYPLAYBOOK)
+
+## v2 — Neue Startseite (Dark Ink/Teal, Signature „Wachstumstreppe")
+- [x] Build fehlerfrei (43 Seiten).
+- [x] **0 horizontaler Overflow** bei 320/360/390/414/768/1024/1280/1920 px.
+- [x] Keine code-relevanten Konsolenfehler (nur externe iFrame-Quellen in der Sandbox nicht erreichbar — live ok; „Live öffnen"-Link als Fallback).
+- [x] **No-JS:** 0 unsichtbare Reveal-Elemente (`<noscript>`-Fallback greift).
+- [x] Reduced-Motion: Reveal + Treppen-Animation + Puls deaktiviert.
+- [x] SEO erweitert (Lehre aus Referenz): geo-Meta, `og:image:width/height`, WebSite-JSON-LD zusätzlich zu ProfessionalService + FAQPage.
+- [x] Eigenständige DNA: Distanz-Check ≥3 Achsen vs. Referenz erfüllt (siehe DESIGN-DNA.md); ein Signature-Device („Wachstumstreppe") konsequent über Hero + 3-Stufen-Sektion.
+- [~] **Offen:** Unterseiten (leistungen/referenzen/ueber-uns/kontakt) tragen noch das vorherige helle Design — Migration auf die v2-DNA als nächster Schritt (nach Richtungs-Freigabe).
+
+---
+
+# QA-Gauntlet — Elevo Repositioning (vorherige Iteration)
 
 Geprüft am Build des Repositionings (Astro static, `bun run build`, 43 Seiten).
 Automatisiert via Chromium (playwright-core), Seiten: `/`, `/leistungen`,
