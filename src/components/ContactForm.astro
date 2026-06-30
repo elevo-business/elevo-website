@@ -11,14 +11,14 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
       <input class="form-input" type="text" id="name" name="name" placeholder="Max Mustermann" required autocomplete="name">
     </div>
     <div class="form-group">
-      <label class="form-label" for="company">Coaching / Marke</label>
-      <input class="form-input" type="text" id="company" name="company" placeholder="z. B. dein Coaching-Business" autocomplete="organization">
+      <label class="form-label" for="company">Unternehmen / Marke</label>
+      <input class="form-input" type="text" id="company" name="company" placeholder="z. B. dein Unternehmen" autocomplete="organization">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group">
       <label class="form-label" for="email">E-Mail-Adresse *</label>
-      <input class="form-input" type="email" id="email" name="email" placeholder="max@dein-coaching.de" required autocomplete="email">
+      <input class="form-input" type="email" id="email" name="email" placeholder="max@dein-unternehmen.de" required autocomplete="email">
     </div>
     <div class="form-group">
       <label class="form-label" for="phone">Telefon / WhatsApp <span class="form-label-optional">(optional)</span></label>
@@ -29,20 +29,20 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
     <label class="form-label" for="service">Worum geht's?</label>
     <select class="form-select" id="service" name="service">
       <option value="">Bitte wählen...</option>
-      <option value="funnel-check">Kostenloser Funnel-Check</option>
-      <option value="system">Das 14-Tage Klienten-System</option>
-      <option value="website">Conversion-Website</option>
-      <option value="automatisierung">Terminbuchung &amp; Follow-up-Automatisierung</option>
+      <option value="funnel-check">Kostenloses Wachstumsgespräch</option>
+      <option value="website">Hochwertige Website (Fundament)</option>
+      <option value="print">Premium-Printmedien (Autorität)</option>
+      <option value="ad-funnel">Ad-Funnel (Skalierung)</option>
       <option value="sonstiges">Etwas anderes</option>
     </select>
   </div>
   <div class="form-group">
-    <label class="form-label" for="message">Erzähl uns kurz von deinem Angebot *</label>
-    <textarea class="form-textarea" id="message" name="message" placeholder="Was bietest du an, wie viel Reichweite hast du schon, und was ist dein Ziel?" required autocomplete="off"></textarea>
+    <label class="form-label" for="message">Erzähl uns kurz von deinem Unternehmen *</label>
+    <textarea class="form-textarea" id="message" name="message" placeholder="Was bietest du an, wo steht dein Unternehmen gerade, und was ist dein Ziel?" required autocomplete="off"></textarea>
   </div>
   <button type="submit" class="form-submit" id="submit-btn">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-    Funnel-Check anfragen
+    Wachstumsgespräch anfragen
   </button>
   <p class="form-assurance">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
@@ -143,6 +143,6 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
     }
 
     submitBtn.disabled = false;
-    submitBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Funnel-Check anfragen';
+    submitBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Wachstumsgespräch anfragen';
   });
 </script>
