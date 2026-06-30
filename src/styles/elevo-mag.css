@@ -1,0 +1,289 @@
+/* =====================================================================
+   Elevo — Editorial-Magazin (Flagship). Warm Paper · Ink · Vermilion.
+   Display: Instrument Serif (self-hosted). Body: Outfit. Labels: Mono.
+   Scoped unter body.mag — Token-Override flippt die geteilte Chrome.
+   Signature-Device: der vermillion „Faden" (Spine) + Editorial-Folios.
+   ===================================================================== */
+
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/InstrumentSerif-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/InstrumentSerif-Italic-latin.woff2") format("woff2");
+}
+
+body.mag {
+  --paper: #F7F3EA;
+  --paper-2: #FCF9F2;
+  --panel: #EEE7D8;
+  --ink: #17130C;
+  --ink-2: #4C453A;
+  --muted: #8E8475;
+  --line: rgba(23, 19, 12, 0.14);
+  --line-strong: rgba(23, 19, 12, 0.30);
+  --accent: #D8431F;
+  --accent-deep: #B23316;
+  --accent-soft: rgba(216, 67, 31, 0.10);
+
+  --serif: "Instrument Serif", "Georgia", "Times New Roman", serif;
+  --sans: "Outfit", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Legacy-Chrome-Tokens (global.css) auf die Editorial-Palette mappen */
+  --bg-deep: var(--paper);
+  --bg-dark: var(--paper);
+  --bg-alt: var(--panel);
+  --bg-card: var(--paper-2);
+  --bg-card-hover: var(--panel);
+  --accent-hover: var(--accent-deep);
+  --accent-glow: var(--accent-soft);
+  --text-primary: var(--ink);
+  --text-secondary: var(--ink-2);
+  --text-muted: var(--muted);
+  --border: var(--line);
+  --border-strong: var(--line-strong);
+  --font-heading: var(--serif);
+  --font-body: var(--sans);
+
+  background: var(--paper);
+  color: var(--ink-2);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  /* warmes Papier-Korn (sehr subtil) */
+  background-image:
+    radial-gradient(140% 120% at 100% 0%, rgba(216, 67, 31, 0.04), transparent 55%);
+}
+
+body.mag ::selection { background: var(--accent); color: #FFF6F2; }
+body.mag :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* ---------- Chrome auf Editorial-Hell umstellen ---------- */
+body.mag #nav { background: rgba(247, 243, 234, 0.82); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+body.mag #nav.scrolled { background: rgba(247, 243, 234, 0.94); }
+body.mag .nav-links a { color: var(--ink-2); }
+body.mag .nav-links a:hover { color: var(--ink); }
+body.mag .nav-cta { background: var(--ink); color: var(--paper); border-radius: 2px; }
+body.mag .nav-cta:hover { background: var(--accent); }
+body.mag .mobile-menu { background: var(--paper-2); }
+body.mag #progress-bar { background: var(--accent); }
+body.mag #cookie-banner { background: var(--paper-2); border: 1px solid var(--line-strong); color: var(--ink-2); }
+body.mag .float-btn { background: var(--ink); color: var(--paper); }
+body.mag .float-btn:hover { background: var(--accent); }
+
+/* =====================================================================
+   Editorial-Primitives
+   ===================================================================== */
+body.mag .mag-wrap { width: min(1240px, 90vw); margin-inline: auto; }
+body.mag .mag-measure { max-width: 38rem; }
+body.mag .mag-rule { border: 0; height: 1px; background: var(--line); margin: 0; }
+body.mag .mag-section { padding: clamp(72px, 12vh, 150px) 0; position: relative; }
+
+body.mag .mag-folio {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex; align-items: baseline; gap: 14px;
+  margin: 0 0 26px;
+}
+body.mag .mag-folio b { color: var(--ink); font-weight: 700; }
+body.mag .mag-folio::after { content: ""; flex: 1; height: 1px; background: var(--line); align-self: center; }
+
+body.mag .mag-h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.3rem, 5.6vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0 0 26px;
+  text-wrap: balance;
+}
+body.mag .mag-h2 em { font-style: italic; color: var(--accent); }
+body.mag .mag-body { font-family: var(--sans); font-size: 1.08rem; line-height: 1.72; color: var(--ink-2); }
+body.mag .mag-body p { margin: 0 0 1.1em; }
+body.mag .mag-body strong { color: var(--ink); font-weight: 600; }
+body.mag .mag-lede { font-size: clamp(1.16rem, 1.9vw, 1.5rem); line-height: 1.55; color: var(--ink); font-family: var(--sans); font-weight: 300; }
+
+/* ---------- Links / Buttons ---------- */
+body.mag .mag-btn {
+  display: inline-flex; align-items: center; gap: 11px;
+  font-family: var(--sans); font-weight: 600; font-size: 1rem;
+  padding: 15px 28px; border-radius: 2px; border: 1px solid var(--ink);
+  text-decoration: none; cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+body.mag .mag-btn svg { width: 17px; height: 17px; transition: transform 0.25s ease; }
+body.mag .mag-btn-primary { background: var(--ink); color: var(--paper); }
+body.mag .mag-btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+body.mag .mag-btn-primary:hover svg { transform: translateX(4px); }
+body.mag .mag-link {
+  font-family: var(--sans); font-weight: 600; color: var(--ink); text-decoration: none;
+  border-bottom: 2px solid var(--accent); padding-bottom: 2px;
+}
+body.mag .mag-link:hover { color: var(--accent); }
+
+/* ---------- Der Faden (Signature-Spine) ---------- */
+body.mag .mag-spine {
+  position: fixed; left: max(18px, calc((100vw - min(1240px, 90vw)) / 2 - 26px)); top: 0; bottom: 0;
+  width: 1px; background: var(--line); z-index: 40; pointer-events: none;
+}
+body.mag .mag-spine::before {
+  content: ""; position: absolute; left: -1px; top: 0; width: 3px; height: var(--spine, 0%);
+  background: var(--accent); transition: height 0.2s linear;
+}
+body.mag .mag-spine span {
+  position: absolute; top: 50%; left: -7px; transform: rotate(180deg); writing-mode: vertical-rl;
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted);
+}
+@media (max-width: 1100px) { body.mag .mag-spine { display: none; } }
+
+/* =====================================================================
+   HERO — Editorial, links-bündig, bleeding serif
+   ===================================================================== */
+body.mag .mag-hero { padding: clamp(130px, 20vh, 220px) 0 clamp(40px, 7vh, 80px); }
+body.mag .mag-hero-kicker { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin: 0 0 28px; }
+body.mag .mag-hero-kicker b { color: var(--accent); font-weight: 700; }
+body.mag .mag-hero h1 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(3rem, 9vw, 7.4rem);
+  line-height: 0.95; letter-spacing: -0.02em; color: var(--ink); margin: 0;
+  text-wrap: balance;
+}
+body.mag .mag-hero h1 em { font-style: italic; color: var(--accent); }
+body.mag .mag-hero-grid { display: grid; grid-template-columns: 1fr; gap: clamp(34px, 5vw, 60px); }
+body.mag .mag-hero-foot { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: end; margin-top: clamp(34px, 5vw, 56px); padding-top: 32px; border-top: 1px solid var(--line); }
+body.mag .mag-hero-dek { font-size: clamp(1.1rem, 1.7vw, 1.4rem); line-height: 1.5; color: var(--ink); font-weight: 300; max-width: 40ch; }
+body.mag .mag-hero-dek b { font-weight: 600; }
+body.mag .mag-hero-ctas { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 26px; }
+/* Hero-Kennzahl als editoriales Element statt Mockup */
+body.mag .mag-hero-figure { text-align: right; }
+body.mag .mag-hero-figure .num { font-family: var(--serif); font-size: clamp(4.5rem, 11vw, 9rem); line-height: 0.8; color: var(--accent); letter-spacing: -0.02em; }
+body.mag .mag-hero-figure .cap { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.1em; color: var(--muted); margin-top: 14px; line-height: 1.5; }
+
+/* =====================================================================
+   CHAPTER (generisch) — Folio + Serif-Titel + Editorial-Body, hairline
+   ===================================================================== */
+body.mag .mag-chapter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(36px, 6vw, 80px); align-items: start; }
+@media (max-width: 900px) { body.mag .mag-chapter-grid { grid-template-columns: 1fr; gap: 28px; } }
+
+/* Problem-Liste editorial (keine Boxen) */
+body.mag .mag-list { margin-top: 8px; }
+body.mag .mag-list-item { display: grid; grid-template-columns: auto 1fr; gap: 22px; padding: 26px 0; border-top: 1px solid var(--line); }
+body.mag .mag-list-item:last-child { border-bottom: 1px solid var(--line); }
+body.mag .mag-list-item .mk { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); padding-top: 6px; }
+body.mag .mag-list-item h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.4rem, 2.6vw, 2rem); color: var(--ink); margin: 0 0 8px; line-height: 1.1; }
+body.mag .mag-list-item p { font-size: 1rem; line-height: 1.66; color: var(--ink-2); margin: 0; max-width: 52ch; }
+
+/* =====================================================================
+   STUFEN — editoriale Liste mit Margin-Numeralen (Signature)
+   ===================================================================== */
+body.mag .mag-stufe { display: grid; grid-template-columns: clamp(70px, 9vw, 132px) 1fr; gap: clamp(20px, 4vw, 56px); padding: clamp(34px, 5vw, 56px) 0; border-top: 1px solid var(--line); align-items: start; }
+body.mag .mag-stufe:last-child { border-bottom: 1px solid var(--line); }
+body.mag .mag-stufe-num { font-family: var(--serif); font-size: clamp(3rem, 7vw, 6rem); line-height: 0.8; color: var(--ink); position: relative; }
+body.mag .mag-stufe-num span { display: block; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-top: 14px; }
+body.mag .mag-stufe-body h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.8rem, 3.6vw, 2.9rem); color: var(--ink); margin: 0 0 12px; line-height: 1.04; }
+body.mag .mag-stufe-body h3 em { font-style: italic; color: var(--accent); }
+body.mag .mag-stufe-body .lead { font-size: clamp(1.04rem, 1.5vw, 1.2rem); line-height: 1.6; color: var(--ink-2); margin: 0 0 18px; max-width: 54ch; }
+body.mag .mag-stufe-feats { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px 26px; }
+body.mag .mag-stufe-feats li { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.02em; color: var(--ink-2); display: flex; align-items: center; gap: 8px; }
+body.mag .mag-stufe-feats li::before { content: "—"; color: var(--accent); }
+@media (max-width: 640px) { body.mag .mag-stufe { grid-template-columns: 1fr; gap: 10px; } }
+
+/* =====================================================================
+   PULL-QUOTE — Storytelling-Beat
+   ===================================================================== */
+body.mag .mag-quote { padding: clamp(60px, 10vh, 120px) 0; }
+body.mag .mag-quote blockquote { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 5.2vw, 4rem); line-height: 1.12; color: var(--ink); letter-spacing: -0.01em; max-width: 22ch; }
+body.mag .mag-quote blockquote em { font-style: italic; color: var(--accent); }
+body.mag .mag-quote cite { display: block; margin-top: 28px; font-family: var(--mono); font-style: normal; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+/* =====================================================================
+   PROOF — editoriale Referenz-Zeilen
+   ===================================================================== */
+body.mag .mag-proof-row { display: grid; grid-template-columns: clamp(90px, 12vw, 160px) 1fr auto; gap: clamp(18px, 3vw, 48px); align-items: center; padding: clamp(26px, 4vw, 40px) 0; border-top: 1px solid var(--line); text-decoration: none; transition: background 0.25s ease; }
+body.mag .mag-proof-row:last-of-type { border-bottom: 1px solid var(--line); }
+body.mag .mag-proof-row:hover { background: var(--paper-2); }
+body.mag .mag-proof-metric { font-family: var(--serif); font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 0.85; color: var(--accent); }
+body.mag .mag-proof-mid h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.4rem, 2.6vw, 2rem); color: var(--ink); margin: 0 0 4px; }
+body.mag .mag-proof-mid p { font-size: 0.96rem; color: var(--ink-2); margin: 0; max-width: 46ch; }
+body.mag .mag-proof-go { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; }
+body.mag .mag-proof-go svg { width: 15px; height: 15px; color: var(--accent); }
+@media (max-width: 720px) { body.mag .mag-proof-row { grid-template-columns: 1fr; gap: 8px; } body.mag .mag-proof-go { display: none; } }
+
+/* =====================================================================
+   PRINT — Magazine als editoriale Figuren
+   ===================================================================== */
+body.mag .mag-print { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); margin-top: 8px; }
+body.mag .mag-print figure { margin: 0; }
+body.mag .mag-print a.cover { display: block; position: relative; overflow: hidden; box-shadow: 0 30px 60px rgba(23,19,12,0.22); transition: transform 0.4s cubic-bezier(0.2,0.7,0.2,1); }
+body.mag .mag-print a.cover:hover { transform: translateY(-6px) rotate(-0.6deg); }
+body.mag .mag-print a.cover img { width: 100%; height: auto; display: block; }
+body.mag .mag-print figcaption { margin-top: 18px; }
+body.mag .mag-print figcaption .t { font-family: var(--serif); font-size: 1.5rem; color: var(--ink); display: block; }
+body.mag .mag-print figcaption .d { font-size: 0.98rem; color: var(--ink-2); line-height: 1.6; margin: 8px 0 14px; max-width: 44ch; }
+body.mag .mag-print figcaption .a { display: flex; gap: 22px; }
+@media (max-width: 720px) { body.mag .mag-print { grid-template-columns: 1fr; gap: 44px; } }
+
+/* =====================================================================
+   GUARANTEE / CTA / KONTAKT
+   ===================================================================== */
+body.mag .mag-guarantee { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 70px); align-items: center; }
+body.mag .mag-guarantee .big { font-family: var(--serif); font-size: clamp(2rem, 4.6vw, 3.4rem); line-height: 1.05; color: var(--ink); margin: 0; }
+body.mag .mag-guarantee .big em { font-style: italic; color: var(--accent); }
+@media (max-width: 820px) { body.mag .mag-guarantee { grid-template-columns: 1fr; gap: 22px; } }
+
+body.mag .mag-cta { text-align: center; }
+body.mag .mag-cta .scar { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); display: inline-flex; gap: 9px; align-items: center; margin-bottom: 26px; }
+body.mag .mag-cta .scar .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+body.mag .mag-cta h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.6rem, 7vw, 5.6rem); line-height: 0.98; color: var(--ink); margin: 0 0 22px; }
+body.mag .mag-cta h2 em { font-style: italic; color: var(--accent); }
+body.mag .mag-cta p.sub { font-size: 1.12rem; line-height: 1.6; color: var(--ink-2); max-width: 46ch; margin: 0 auto 30px; }
+body.mag .mag-cta .trust { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.05em; color: var(--muted); margin-top: 18px; }
+
+body.mag .mag-kontakt { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(30px, 5vw, 70px); align-items: start; }
+body.mag .mag-kontakt-list { list-style: none; padding: 0; margin: 22px 0 0; }
+body.mag .mag-kontakt-list li { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); font-size: 0.98rem; }
+body.mag .mag-kontakt-list li:last-child { border-bottom: 1px solid var(--line); }
+body.mag .mag-kontakt-list .k { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+body.mag .mag-kontakt-list a { color: var(--accent); text-decoration: none; }
+@media (max-width: 820px) { body.mag .mag-kontakt { grid-template-columns: 1fr; gap: 26px; } }
+
+/* FAQ-Komponente editorial einfärben */
+body.mag .faq-section { background: var(--panel) !important; }
+body.mag .faq-item { background: var(--paper-2); border-color: var(--line); border-radius: 2px; }
+body.mag .faq-item[open], body.mag .faq-item:hover { border-color: var(--line-strong); }
+body.mag .faq-item[open] { box-shadow: none; }
+body.mag .faq-question { font-family: var(--serif); font-weight: 400; font-size: 1.3rem; color: var(--ink); }
+body.mag .faq-item[open] .faq-question, body.mag .faq-item[open] .faq-icon { color: var(--accent); }
+body.mag .faq-answer p { color: var(--ink-2); }
+body.mag .ev-eyebrow { font-family: var(--mono); color: var(--accent); letter-spacing: 0.16em; }
+body.mag #faq .ev-h2 { font-family: var(--serif); font-weight: 400; color: var(--ink); letter-spacing: -0.01em; }
+body.mag #faq .ev-section-sub { color: var(--ink-2); }
+
+/* Footer editorial */
+body.mag #footer { background: var(--paper); border-top: 1px solid var(--line-strong); color: var(--ink-2); }
+body.mag .footer-col-title { color: var(--ink); font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; }
+body.mag .footer-links a, body.mag .footer-tagline { color: var(--ink-2); }
+body.mag .footer-links a:hover { color: var(--accent); }
+body.mag .footer-legal, body.mag .footer-legal a { color: var(--muted); }
+
+/* =====================================================================
+   Reveal (PE) — No-JS via <noscript>-Fallback in BaseLayout
+   ===================================================================== */
+body.mag .reveal, body.mag .mag-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(0.2,0.7,0.2,1), transform 0.8s cubic-bezier(0.2,0.7,0.2,1); }
+body.mag .reveal.visible, body.mag .mag-reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  body.mag .reveal, body.mag .mag-reveal { opacity: 1 !important; transform: none !important; transition: none; }
+  body.mag .mag-spine::before { transition: none; }
+}

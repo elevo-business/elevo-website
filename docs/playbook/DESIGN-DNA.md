@@ -1,31 +1,29 @@
-# DESIGN-DNA — Elevo (v2, From-Scratch-Build nach Playbook §2)
+# DESIGN-DNA — Elevo (Flagship „Editorial-Magazin")
 
-> Neuer Ansatz. Eigenständiges Design — **kein** Re-Skin des alten Cremeweiß-Themes,
-> **keine** Kopie der Referenz (Scribble: hell, Serif/Fraunces, Index-Numerals + §).
-> Divergenz-Engine durchlaufen; Distanz-Check unten.
+> Maximal hochwertiger Eigenauftritt nach WEBSITEQUALITYPLAYBOOK §2.
+> Ziel: nicht als „mit-KI-gebaut" erkennbar; Niveau von Award-/Studio-Sites.
+> Bewusst divergent von der Referenz (Scribble: hell, Serif, Index-Numerals + §)
+> und vom früheren hellen Baukasten-Theme.
 
 ## Achsen
-- **Typo-System:** Grotesk-Display (**Sora**, sehr groß, eng) + Grotesk-Text (**Outfit**) + **Monospace-Akzent** (System-Mono) für Eyebrows, Stufen-Indizes und Kennzahlen. → technisch-präzise, selbstbewusst. *(Scribble = Serif-Display → bewusst anders.)*
-- **Farbstrategie:** **Dark-first Ink + Teal-Glow.** `--bg-deep #070D16`, `--bg-card #111E30`, Akzent Teal `#3DD6C0`. → entspricht der dokumentierten Marken-CI (CLAUDE.md „Ink/Teal"), die nie umgesetzt war. *(Scribble = helles Papier; aktuelle Live-Seite = Creme-hell → bewusst anders.)*
-- **Layout-Archetyp:** Asymmetrisch, **links-bündiger** Editorial-Grid mit überdimensionierter Display-Typo. *(Kein zentrierter „KI-Default"-Hero.)*
-- **SIGNATURE-DEVICE (genau eines):** **„Die Wachstumstreppe"** — ein aufsteigendes Stufen-/Treppen-Motiv. Die 3 Stufen (Fundament · Autorität · Skalierung) sitzen sichtbar auf **ansteigenden Stufen**; eine aufsteigende Linie verbindet sie und zieht sich als Leitmotiv durch Hero, Mechanismus und Sektions-Übergänge. Mono-Indizes `01 02 03`. → ownable, direkt aus der Hormozi-Stufen-Positionierung abgeleitet. *(Scribble nutzt Index-Numerals + §-Marginalien → bewusst anders.)*
-- **Bewegung:** zurückhaltend (Reveal); die Treppen-Linie „wächst" beim Scrollen. Reduced-Motion- + No-JS-sicher.
-- **Bildwelt:** typografisch + Treppen-Motiv + echte Magazin-Cover + Live-iFrames der Referenzen. Kein Stock.
-- **Dichte:** strukturiert, großzügig; editoriale Verdichtung in Stat-/Proof-Blöcken.
-- **Voice:** selbstbewusst · klar · hochwertig (Hormozi-direkt).
+- **Typo-System:** **Instrument Serif** (self-hosted, latin reg+italic) als überdimensionierte Editorial-Display-Schrift, **Outfit** für Lauftext, **System-Monospace** für Folios/Labels/Kennzahlen-Captions. Hoher Stil-Kontrast Serif↔Mono = Magazin-Anmutung.
+- **Farbstrategie:** **Warmes Papier** (`#F7F3EA`) + tiefes **Ink** (`#17130C`) + **ein** sattes Akzent-**Vermilion** (`#D8431F`). Kein Tech-Blau, kein Verlauf-Blob. Editorial, warm, teuer.
+- **Layout-Archetyp:** Asymmetrischer Editorial-Grid, **Hairlines statt Boxen** (keine „3 Icon-Karten"), großzügige Margins, bleedende Riesen-Serif, Margin-Numerale.
+- **SIGNATURE-DEVICE (genau eines):** **„Der Faden"** — eine fixe vermillionfarbene Spine-Linie am linken Rand, die mit dem Scroll-Fortschritt mitwächst, plus rotiertes Mono-Label „ELEVO — AUSGABE 01 · WACHSTUM". Die Seite liest sich als **Magazin-Ausgabe mit Kapiteln** (Folios 01–05). *(Anders als Scribble: kein §, keine Index-Pills.)*
+- **Bewegung:** zurückhaltend (Reveal); der Faden zieht mit dem Scroll. Reduced-Motion- + No-JS-sicher.
+- **Bildwelt:** typografisch getrieben; Magazin-Cover als gekippte Editorial-Figuren; Live-Referenzen als Textzeilen mit Riesen-Kennzahl statt Screenshots.
+- **Voice:** Storytelling, „du", konkret, selbstbewusst, anti-floskel — szenischer Einstieg, klare Conversion.
 
-## Distanz-Check vs. Referenz (Scribble) — ≥3 Achsen anders ✓
-1. Typo: Grotesk+Mono ↔ Serif (Fraunces)
-2. Farbe: Dark Ink/Teal ↔ helles Papier
-3. Signature: aufsteigende Treppe ↔ Index-Numerals + §
-4. Layout-Detail: Stufen-Motiv statt Marginalien
+## Distanz-Check (≥3 Achsen anders als Referenz) ✓
+Typo (Instrument Serif/Mono ↔ Fraunces), Signature (Faden/Kapitel ↔ §/Index-Numerals), Akzent (Vermilion ↔ —), Layout (Hairline-Editorial ↔ Karten).
 
-## Anti-„KI-gebaut" (§7)
-Kein zentrierter Hero mit zwei Pill-Buttons + 3 gleiche Icon-Karten. Stattdessen:
-links-bündige Riesen-Typo, Mono-Labels, **ein** konsequentes Signature-Device,
-ungleiche/ansteigende Karten, echte Kennzahl (25 Leads) statt Floskel.
+## Anti-„KI-gebaut" (§7) — bewusst eingesetzt
+Bleed-Serif, echte typografische Hierarchie, Hairlines statt Boxen, ein konsequentes Signature-Device, Margin-Numerale, Pull-Quote, Mono-Marginalien, szenisches Copywriting statt Floskeln. Kein zentrierter Hero, keine Pill-Karten-Reihe, keine Emoji.
 
-## SEO-Lehren aus der Referenz (übernommen, nicht das Design)
-- `geo.region`/`geo.placename`-Meta, `og:image:width/height`, Canonical.
-- JSON-LD-Graph: ProfessionalService + **WebSite** + **BreadcrumbList** + **FAQPage**.
-- FAQ-Überschriften = echte Suchsätze; Sitemap via `@astrojs/sitemap`.
+## Umsetzung
+- `src/styles/elevo-mag.css` — self-contained, gescoped unter `body.mag`; Legacy-Chrome-Tokens werden auf die Editorial-Palette gemappt (Header/Footer/Cookie übernehmen sie).
+- Schrift self-hosted in `public/fonts/InstrumentSerif*.woff2` (einmalig geladen, DSGVO-konform), Preload nur auf der Startseite (`preloadSerif`).
+
+## Nächste Schritte (vom User freigegeben: „Erst Home, Rest danach")
+- Unterseiten in dieselbe Editorial-DNA migrieren.
+- Detaillierte **/faq**-Seite (suchsatz-optimiert, FAQPage-Schema) + **/magazin** mit SEO-Artikeln (BlogPosting-Schema).

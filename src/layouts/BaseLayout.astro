@@ -10,6 +10,8 @@ export interface Props {
   eagerPageView?: boolean;
   /** Optionale CSS-Klasse(n) auf <body> — z.B. fuer seiten-spezifische Themes/Scopes. */
   bodyClass?: string;
+  /** Preload der Editorial-Display-Schrift (nur Seiten, die sie above-the-fold nutzen). */
+  preloadSerif?: boolean;
 }
 
 const {
@@ -20,6 +22,7 @@ const {
   noindex = false,
   eagerPageView = false,
   bodyClass = '',
+  preloadSerif = false,
 } = Astro.props;
 
 // Meta-Pixel-ID (nicht geheim, identisch zur Dataset-ID des CAPI-Servers).
@@ -83,6 +86,7 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_ID ?? 'xbi2du3vxx';
   <!-- Fonts (self-hosted, DSGVO-konform) -->
   <link rel="preload" as="font" href="/fonts/Sora-latin.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="/fonts/Outfit-latin.woff2" type="font/woff2" crossorigin>
+  {preloadSerif && <link rel="preload" as="font" href="/fonts/InstrumentSerif-latin.woff2" type="font/woff2" crossorigin />}
 
   <!-- No-JS-Fallback: Reveal-Inhalte sind ohne JavaScript sofort sichtbar
        (Scroll-Animationen sind reine Progressive Enhancement). -->
