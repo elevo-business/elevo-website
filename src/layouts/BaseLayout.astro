@@ -86,6 +86,7 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_ID ?? 'xbi2du3vxx';
   <!-- Fonts (self-hosted, DSGVO-konform) -->
   <link rel="preload" as="font" href="/fonts/Sora-latin.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="/fonts/Outfit-latin.woff2" type="font/woff2" crossorigin>
+  {preloadSerif && <link rel="preload" as="font" href="/fonts/BricolageGrotesque-latin.woff2" type="font/woff2" crossorigin />}
   {preloadSerif && <link rel="preload" as="font" href="/fonts/InstrumentSerif-latin.woff2" type="font/woff2" crossorigin />}
 
   <!-- No-JS-Fallback: Reveal-Inhalte sind ohne JavaScript sofort sichtbar

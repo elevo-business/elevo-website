@@ -9,27 +9,26 @@ import '../styles/ev-system.css';
 import '../styles/elevo-mag.css';
 
 const faqEntries = [
-  { q: 'Für wen ist Elevo gedacht?', a: 'Für aufstrebende Unternehmen im DACH-Raum mit einem guten Angebot, die wachsen wollen — und merken, dass ihr Auftritt da noch nicht mithält. Du hast Substanz, aber online wirkt es austauschbar, Anfragen kommen eher zufällig als planbar. Genau da setzen wir an: hochwertiger Auftritt, klare Positionierung, planbare Anfragen.' },
-  { q: 'Müssen wir gleich alle drei Stufen buchen?', a: 'Nein. Wachstum passiert in Stufen, nicht alles auf einmal. Wir starten dort, wo dein größter Hebel liegt — meist beim Fundament, einer hochwertigen Website. Darauf bauen Autorität (Premium-Printmedien) und Skalierung (Ad-Funnel) auf. Du gehst die nächste Stufe erst, wenn die vorherige trägt. Wo du gerade stehst, klären wir im Wachstumsgespräch.' },
-  { q: 'Was kostet eine hochwertige Website bei Elevo?', a: 'Der Preis hängt von der Stufe und vom Umfang ab und steht als Festpreis fest, bevor wir starten — inklusive Liefertermin. Wir hängen keine Preisschilder an die Wand, weil jedes Unternehmen anders wächst. Im kostenlosen Wachstumsgespräch schauen wir uns deine Ausgangslage an und machen dir ein konkretes Angebot.' },
-  { q: 'Wie schnell sehe ich Ergebnisse?', a: 'Wir arbeiten done-for-you mit festem Liefertermin — kein Monatelang-Warten. Wie schnell Anfragen kommen, hängt von der Stufe ab: Beim Ad-Funnel von GreenChild waren es 25 qualifizierte Leads im ersten Monat. Was bei dir realistisch ist, sagen wir dir ehrlich vorab.' },
-  { q: 'Müssen wir technisch fit sein oder selbst etwas bauen?', a: 'Nein. Das ist komplett done-for-you. Du gibst uns die Infos zu deinem Unternehmen, wir liefern Website, Werbetexte, Printmedien und Funnel — fertig aufgesetzt. Auf Wunsch betreuen und optimieren wir danach weiter, damit dein Wachstum nicht stehenbleibt.' },
-  { q: 'Und wenn es nicht funktioniert?', a: 'Dann ist es unser Risiko, nicht deins. Der Preis steht vorher als Festpreis schriftlich fest, der Liefertermin ebenso. Liefert eine Stufe nicht, was wir vorher zugesagt haben, arbeiten wir nach, bis es sitzt — ohne Nachforderung.' },
-  { q: 'Lohnt sich ein gedrucktes Kundenmagazin überhaupt noch?', a: 'Gerade weil alle nur noch digital sind, wirkt hochwertiger Print stärker als je zuvor. Eine E-Mail ist in Sekunden gelöscht, ein gutes Magazin liegt wochenlang auf dem Schreibtisch und baut Vertrauen auf, während du längst weg bist. Für GreenChild und HEKO Voice haben wir genau solche Magazine gebaut.' },
-  { q: 'Ihr habt verschiedene Branchen gemacht — passt das zu uns?', a: 'Ja. Das Prinzip bleibt gleich, egal ob Edelholz, Bürotechnik oder Gastronomie: sichtbar werden, hochwertig wirken, planbar Anfragen gewinnen. GreenChild (Website, Magazin, Ad-Funnel mit 25 qualifizierten Leads im 1. Monat), HEKO Voice (Premium-Magazin) und Akropolis (rund 3× mehr Reservierungen) sind drei sehr unterschiedliche Beispiele für denselben Mechanismus.' },
+  { q: 'Was kostet eine professionelle Website?', a: 'Sie kostet so viel, wie das Ergebnis wert ist, das sie liefern soll. Der Preis hängt an Strategie, Umfang und Handwerk — nicht an einer Schablone. Eine Visitenkarten-Seite ist günstig; eine, die planbar Anfragen bringt, ist eine Investition mit Rendite. Den Festpreis nennen wir vorab im Wachstumsgespräch.' },
+  { q: 'Wie bekomme ich mehr Anfragen über meine Website?', a: 'Selten über mehr Besucher — meist über eine Seite, die verkauft. Drei Dinge entscheiden: in fünf Sekunden klar, was du tust; sichtbarer Beweis, dass du es kannst; und genau ein leichter nächster Schritt. Werbung lohnt erst, wenn die Seite Besucher zuverlässig in Anfragen verwandelt.' },
+  { q: 'Lohnt sich ein gedrucktes Kundenmagazin überhaupt noch?', a: 'Gerade weil fast alle nur noch digital werben, wirkt hochwertiger Print stärker denn je. Eine E-Mail ist in Sekunden gelöscht, ein gutes Magazin liegt wochenlang auf dem Schreibtisch und baut Vertrauen auf, bevor das erste Gespräch beginnt. Für GreenChild und HEKO Voice haben wir genau das gebaut.' },
+  { q: 'Sollte ich zuerst in eine Website oder in Werbung investieren?', a: 'Zuerst in die Seite. Werbung verstärkt nur, was schon da ist — steht da eine Visitenkarte, verstärkt sie deinen Misserfolg, bloß teurer. Erst wenn die Seite aus Besuchern Anfragen macht, wird bezahlte Reichweite zum Hebel statt zum Fass ohne Boden.' },
+  { q: 'Müssen wir gleich alles auf einmal machen?', a: 'Nein. Website, Printmedien und Werbung sind drei Handwerke, kein Pflicht-Paket. Wir starten dort, wo bei dir der größte Hebel liegt, und erweitern erst, wenn es sich lohnt. Was das bei dir ist, sagen wir dir ehrlich vorab — ohne dir etwas aufzuschwatzen.' },
+  { q: 'Und wenn es nicht funktioniert?', a: 'Dann ist es unser Risiko, nicht deins. Der Preis steht vorher als Festpreis fest, der Liefertermin ebenso. Liefert eine Arbeit nicht, was wir zugesagt haben, arbeiten wir nach — bis es sitzt. Keine Nachforderung, kein Kleingedrucktes.' },
+  { q: 'Für wen arbeitet Elevo — und für wen nicht?', a: 'Für aufstrebende Unternehmen im DACH-Raum mit einem guten Angebot, das online noch nicht so wirkt, wie es ist. Weniger passend sind wir, wenn nur die billigste Umsetzung ohne Ergebnis-Anspruch gesucht wird — dann gibt es schnellere Baukästen.' },
 ];
 const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqEntries.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) };
 
 const proof = [
-  { metric: '25', name: 'GreenChild', note: 'Qualifizierte Anfragen im ersten Monat — über Website, Magazin und Ad-Funnel.', url: 'https://greenchild-preview.elevo.solutions/de/' },
-  { metric: '3×', name: 'Akropolis', note: 'Mehr Reservierungen, nachdem aus der Visitenkarten-Seite eine Verkaufsseite wurde.', url: 'https://akropolis-geilenkirchen.com' },
-  { metric: 'Live', name: 'BrandsMarketingLab', note: 'Conversion-Website für eine Agentur, die selbst Marken baut — die Messlatte lag hoch.', url: 'https://elevo-business.github.io/bml/index.html' },
+  { metric: '25', name: 'GreenChild', note: 'Qualifizierte Anfragen im ersten Monat — Website, Magazin und Werbung griffen ineinander.', url: 'https://greenchild-preview.elevo.solutions/de/' },
+  { metric: '3×', name: 'Akropolis', note: 'Mehr Reservierungen. Gleiche Küche, gleiche Stadt — eine Seite, die endlich ihren Job machte.', url: 'https://akropolis-geilenkirchen.com' },
+  { metric: 'Live', name: 'BrandsMarketingLab', note: 'Eine Conversion-Website für eine Agentur, die selbst Marken baut. Die Messlatte lag hoch.', url: 'https://elevo-business.github.io/bml/index.html' },
 ];
 ---
 
 <BaseLayout
-  title="Elevo — Digitaler Wachstumspartner für aufstrebende Unternehmen"
-  description="Du bist besser, als deine Website ahnen lässt. Elevo macht aufstrebende Unternehmen sichtbar — hochwertige Website, Premium-Printmedien und Ad-Funnel, die planbar Anfragen bringen. In drei Stufen, done-for-you, aus dem DACH-Raum."
+  title="Elevo — Sichtbarkeit ist kein Zufall. Digitaler Wachstumspartner."
+  description="Du verlierst keine Kunden an bessere Anbieter — nur an sichtbarere. Elevo macht aufstrebende Unternehmen unübersehbar: Website & SEO, Premium-Printmedien und Werbung, die Anfragen bringt. Aus dem DACH-Raum."
   canonical="https://elevo.solutions/"
   bodyClass="mag"
   preloadSerif={true}
@@ -37,120 +36,112 @@ const proof = [
   <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
   <Header />
 
-  <!-- Signature: der Faden -->
-  <div class="mag-spine" id="mag-spine" aria-hidden="true"><span>Elevo — Ausgabe 01 · Wachstum</span></div>
-
   <main id="main">
-    <!-- ============ HERO ============ -->
+    <!-- ============ MASTHEAD + HERO ============ -->
     <section id="hero" class="mag-hero" aria-labelledby="hero-h">
       <div class="mag-wrap">
-        <div class="mag-hero-grid">
-          <p class="mag-hero-kicker reveal">Elevo <b>·</b> Digitaler Wachstumspartner <b>·</b> Geilenkirchen</p>
-          <h1 id="hero-h" class="reveal">Großwerden passiert<br>in Stufen.<br><em>Wir bauen sie.</em></h1>
+        <div class="mag-masthead">
+          <div class="mag-masthead-row">
+            <span class="c">Elevo</span>
+            <span class="hide-sm">Digitaler Wachstumspartner</span>
+            <span>Geilenkirchen · DACH</span>
+          </div>
+        </div>
+        <div style="padding-top:clamp(40px,7vh,90px);">
+          <h1 id="hero-h" class="reveal">Du verlierst keine Kunden an bessere Anbieter.<br>Nur an <span class="ser">sichtbarere</span>.</h1>
         </div>
         <div class="mag-hero-foot">
           <div class="reveal">
-            <p class="mag-hero-dek">Wir sind der Wachstumspartner für Unternehmen, die <b>mehr können, als man ihnen online ansieht.</b> Schritt für Schritt machen wir aus einem guten Angebot eine Marke, an der niemand vorbeikommt.</p>
+            <p class="mag-hero-dek">Wir machen Unternehmen <b>unübersehbar</b>, die mehr können, als man ihnen ansieht. Bis der richtige Kunde dich findet, sich erinnert — und von selbst anfragt.</p>
             <div class="mag-hero-ctas">
-              <a href="#kontakt" class="mag-btn mag-btn-primary">Kostenloses Wachstumsgespräch
+              <a href="#kontakt" class="mag-btn">Kostenloses Wachstumsgespräch
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-              <a href="#system" class="mag-link">So arbeiten wir</a>
+              <a href="#machen" class="mag-textlink">Was wir machen</a>
             </div>
           </div>
-          <div class="mag-hero-figure reveal">
-            <div class="num">25</div>
-            <div class="cap">qualifizierte Anfragen, die GreenChild im<br>ersten Monat bekam. Vorher: Mundpropaganda<br>und auf den nächsten Anruf hoffen.</div>
+          <div class="mag-hero-aside reveal">
+            <span class="big">Zuletzt gebaut</span>
+            GreenChild — 25 qualifizierte Anfragen im 1. Monat.<br>
+            Akropolis — rund 3× mehr Reservierungen.<br>
+            HEKO Voice — ein Magazin, das niemand wegwirft.
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ 01 — DAS PROBLEM ============ -->
+    <!-- ============ PROBLEM ============ -->
     <section id="problem" class="mag-section" aria-labelledby="problem-h">
       <div class="mag-wrap">
-        <div class="mag-chapter-grid">
+        <div class="mag-split">
           <div class="reveal">
-            <p class="mag-folio"><b>01</b> Das Problem</p>
-            <h2 id="problem-h" class="mag-h2">Nicht das schwächere Angebot verliert. Das <em>unsichtbare</em>.</h2>
+            <p class="mag-label">Das Teure, das keiner ausspricht</p>
+            <h2 id="problem-h" class="mag-h2">Nicht das schwächere Angebot verliert. Das <i>unsichtbare</i>.</h2>
           </div>
           <div class="mag-body reveal">
-            <p>Du kennst diesen Moment wahrscheinlich. Ein Wettbewerber — fachlich schwächer, das weißt du genau — zieht an dir vorbei. Mehr Anfragen, bessere Kunden, höhere Preise. Nicht, weil er mehr kann. Sondern weil er online mehr danach aussieht.</p>
-            <p>Das ist der teure Teil, den kaum jemand ausspricht: Online entscheidet sich in zwei, drei Sekunden, ob du teuer wirkst oder beliebig. Und meistens entscheidet es sich gegen die, die es am wenigsten verdient haben.</p>
+            <p>Du kennst den Moment: Ein Wettbewerber — fachlich schwächer, das weißt du genau — zieht an dir vorbei. Mehr Anfragen, bessere Kunden, höhere Preise. Nicht, weil er mehr kann. Sondern weil er online mehr danach aussieht.</p>
+            <p>Online entscheidet sich in zwei, drei Sekunden, ob du teuer wirkst oder beliebig. Und meistens entscheidet es sich gegen die, die es am wenigsten verdient haben. An drei Stellen passiert das:</p>
           </div>
         </div>
-
-        <div class="mag-list reveal">
-          <div class="mag-list-item">
-            <span class="mk">01</span>
-            <div><h3>Dein Auftritt verrät dein Niveau nicht</h3><p>Die Seite sieht aus wie tausend andere. Wer in zwei Sekunden Premium erwartet und Baukasten findet, ist wieder weg — und erinnert sich an nichts.</p></div>
-          </div>
-          <div class="mag-list-item">
-            <span class="mk">02</span>
-            <div><h3>Anfragen kommen nach Wetterlage</h3><p>Mal Hochbetrieb, mal Funkstille. Empfehlungen tragen dich, aber du kannst nicht steuern, wann der nächste gute Kunde anklopft. Planen lässt sich so nichts.</p></div>
-          </div>
-          <div class="mag-list-item">
-            <span class="mk">03</span>
-            <div><h3>Fremde haben keinen Grund, dir zu vertrauen</h3><p>Wer dich nicht kennt, vergleicht über den Preis. Es fehlt das, was Vertrauen schafft, bevor das erste Wort fällt — und genau daran scheitern die guten Angebote.</p></div>
-          </div>
+        <div class="reveal" style="margin-top:18px;">
+          <div class="mag-list-item"><span class="n">01</span><div><h3>Dein Auftritt verrät dein Niveau nicht</h3><p>Die Seite sieht aus wie tausend andere. Wer in zwei Sekunden Premium erwartet und Baukasten findet, ist wieder weg — und merkt sich nichts.</p></div></div>
+          <div class="mag-list-item"><span class="n">02</span><div><h3>Anfragen kommen nach Wetterlage</h3><p>Mal Hochbetrieb, mal Funkstille. Empfehlungen tragen dich, aber du kannst nicht steuern, wann der nächste gute Kunde anklopft. Planen lässt sich so nichts.</p></div></div>
+          <div class="mag-list-item"><span class="n">03</span><div><h3>Fremde haben keinen Grund, dir zu vertrauen</h3><p>Wer dich nicht kennt, vergleicht über den Preis. Es fehlt das, was Vertrauen schafft, bevor das erste Wort fällt — und genau daran scheitern die guten Angebote.</p></div></div>
         </div>
       </div>
     </section>
 
-    <!-- ============ 02 — DER ANSATZ (3 Stufen) ============ -->
-    <section id="system" class="mag-section" aria-labelledby="system-h" style="background:var(--panel);">
+    <!-- ============ DREI HANDWERKE (kein Ladder) ============ -->
+    <section id="machen" class="mag-section" aria-labelledby="machen-h" style="background:var(--panel);">
       <div class="mag-wrap">
-        <p class="mag-folio reveal"><b>02</b> Der Ansatz</p>
-        <h2 id="system-h" class="mag-h2 reveal" style="max-width:18ch;">Wir verkaufen keine Einzelteile. Wir bauen eine <em>Treppe</em>.</h2>
-        <p class="mag-lede reveal mag-measure" style="margin-bottom:8px;">Andere bauen dir eine Website und sind weg. Wir denken in Stufen, die aufeinander aufbauen — und gehen jede erst, wenn die darunter trägt. Du steigst dort ein, wo dein größter Hebel liegt.</p>
-
-        <div style="margin-top:40px;">
-          <div class="mag-stufe reveal">
-            <div class="mag-stufe-num">01<span>Fundament</span></div>
-            <div class="mag-stufe-body">
-              <h3>Erst wirst du <em>gesehen</em>.</h3>
-              <p class="lead">Eine Website, die dein Angebot so hochwertig zeigt, wie es ist — bei Google gefunden, in Sekunden geladen, mit Texten, die nicht beschreiben, sondern verkaufen.</p>
-              <ul class="mag-stufe-feats"><li>SEO &amp; Auffindbarkeit</li><li>Verkaufsstarke Werbetexte</li><li>Premium-Design, das sofort lädt</li></ul>
-            </div>
+        <div class="mag-tri-head">
+          <div class="reveal">
+            <p class="mag-label">Was wir machen</p>
+            <h2 id="machen-h" class="mag-h2">Drei Handwerke. Ein Ziel: <i>unübersehbar</i>.</h2>
           </div>
-          <div class="mag-stufe reveal">
-            <div class="mag-stufe-num">02<span>Autorität</span></div>
-            <div class="mag-stufe-body">
-              <h3>Dann wirst du <em>geglaubt</em>.</h3>
-              <p class="lead">Hochwertige Printmedien, die in der Hand bleiben und dich vom Anbieter zur Marke machen. Für GreenChild und HEKO Voice haben wir Magazine gebaut, die niemand wegwirft.</p>
-              <ul class="mag-stufe-feats"><li>Kundenmagazine</li><li>Premium-Direktmailings</li><li>Redaktion bis Druckvorlage</li></ul>
-            </div>
+          <p class="mag-body reveal">Andere verkaufen dir ein Gewerk und verschwinden. Wir verbinden drei — und richten alle auf dieselbe Frage aus: Wird daraus eine Anfrage? Du musst nicht alles auf einmal nehmen. Du startest dort, wo es bei dir am meisten bringt.</p>
+        </div>
+        <div class="mag-tri reveal">
+          <div class="mag-craft">
+            <div class="verb">Gefunden<br>werden.</div>
+            <span class="what">Website · SEO · Copy</span>
+            <p>Eine Website, die dein Angebot so hochwertig zeigt, wie es ist — bei Google auffindbar, in Sekunden geladen, mit Texten, die nicht beschreiben, sondern verkaufen.</p>
+            <ul><li>Auffindbar statt versteckt</li><li>Texte, die anfragen lassen</li><li>Schnell auf jedem Gerät</li></ul>
           </div>
-          <div class="mag-stufe reveal">
-            <div class="mag-stufe-num">03<span>Skalierung</span></div>
-            <div class="mag-stufe-body">
-              <h3>Dann kommst du ins <em>Skalieren</em>.</h3>
-              <p class="lead">Wenn das Fundament steht, drehen wir auf: Werbe-Funnel auf Meta &amp; Google, die planbar qualifizierte Anfragen liefern — sauber gemessen. Bei GreenChild waren es 25 im ersten Monat.</p>
-              <ul class="mag-stufe-feats"><li>Ad-Funnel die konvertieren</li><li>Planbare Anfragen</li><li>Tracking statt Bauchgefühl</li></ul>
-            </div>
+          <div class="mag-craft">
+            <div class="verb">Erinnert<br>werden.</div>
+            <span class="what">Printmedien · Magazine</span>
+            <p>Etwas, das in der Hand bleibt. Hochwertige Magazine, die den Schreibtisch überleben und aus einem Anbieter eine Marke machen — wie für GreenChild und HEKO Voice.</p>
+            <ul><li>Kundenmagazine mit Tiefe</li><li>Direktmailings statt Wegwerf-Flyer</li><li>Redaktion bis Druckvorlage</li></ul>
+          </div>
+          <div class="mag-craft">
+            <div class="verb">Nachgefragt<br>werden.</div>
+            <span class="what">Werbung · Funnel</span>
+            <p>Wenn der Auftritt trägt, holen wir gezielt die Richtigen: Werbe-Funnel auf Meta &amp; Google, die planbar qualifizierte Anfragen bringen — sauber gemessen, nicht geraten.</p>
+            <ul><li>Anzeigen, die zum Angebot passen</li><li>Planbare Anfragen statt Zufall</li><li>Zahlen statt Bauchgefühl</li></ul>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ============ PULL-QUOTE ============ -->
-    <section class="mag-quote" aria-hidden="false">
+    <section class="mag-quote">
       <div class="mag-wrap reveal">
-        <blockquote>Ein schöner Auftritt ist Kosmetik. Ein Auftritt, der <em>verkauft</em>, ist ein Vermögenswert.</blockquote>
-        <cite>— Die Überzeugung hinter jedem Elevo-Projekt</cite>
+        <blockquote>Es gibt keine <b>unbekannten</b> Marktführer.</blockquote>
+        <cite>— Warum es Elevo gibt</cite>
       </div>
     </section>
 
-    <!-- ============ 03 — BEWEISE ============ -->
+    <!-- ============ BEWEISE ============ -->
     <section id="referenzen" class="mag-section" aria-labelledby="ref-h">
       <div class="mag-wrap">
-        <div class="mag-chapter-grid">
+        <div class="mag-split">
           <div class="reveal">
-            <p class="mag-folio"><b>03</b> Beweise</p>
-            <h2 id="ref-h" class="mag-h2">Zahlen, die man <em>anklicken</em> kann.</h2>
+            <p class="mag-label">Beweise</p>
+            <h2 id="ref-h" class="mag-h2">Zahlen, die man <i>anklicken</i> kann.</h2>
           </div>
           <div class="mag-body reveal"><p>Keine Mockups, keine gestellten Screenshots. Drei echte Projekte — öffne sie im Tab und klick dich rein. Was zählt, steht links: das Ergebnis.</p></div>
         </div>
-        <div style="margin-top:36px;">
+        <div style="margin-top:30px;">
           {proof.map((r) => (
             <a class="mag-proof-row reveal" href={r.url} target="_blank" rel="noopener" aria-label={`${r.name} live öffnen`}>
               <span class="mag-proof-metric">{r.metric}</span>
@@ -162,28 +153,28 @@ const proof = [
       </div>
     </section>
 
-    <!-- ============ 04 — PRINTMEDIEN ============ -->
+    <!-- ============ PRINTMEDIEN ============ -->
     <section id="print" class="mag-section" aria-labelledby="print-h" style="background:var(--panel);">
       <div class="mag-wrap">
-        <div class="mag-chapter-grid">
+        <div class="mag-split">
           <div class="reveal">
-            <p class="mag-folio"><b>04</b> Drucksachen, die bleiben</p>
-            <h2 id="print-h" class="mag-h2">Was digital fehlt, schafft <em>Papier</em>.</h2>
+            <p class="mag-label">Drucksachen, die bleiben</p>
+            <h2 id="print-h" class="mag-h2">Was digital fehlt, schafft <i>Papier</i>.</h2>
           </div>
-          <div class="mag-body reveal"><p>Eine E-Mail ist in drei Sekunden gelöscht. Ein hochwertiges Magazin liegt wochenlang auf dem Schreibtisch — und arbeitet für dich, während du längst aus dem Termin raus bist. Zwei Stücke, die wir gebaut haben (die persönlichen Ansprechpartner-Daten haben wir für die Vorschau durch Platzhalter ersetzt):</p></div>
+          <div class="mag-body reveal"><p>Eine E-Mail ist in drei Sekunden gelöscht. Ein hochwertiges Magazin liegt wochenlang auf dem Schreibtisch — und arbeitet für dich, während du längst aus dem Termin raus bist. Zwei Stücke, die wir gebaut haben (Ansprechpartner-Daten für die Vorschau anonymisiert):</p></div>
         </div>
-        <div class="mag-print" style="margin-top:44px;">
-          <figure class="reveal">
+        <div class="mag-print reveal" style="margin-top:44px;">
+          <figure>
             <a class="cover" href="/magazine/greenchild-info-magazin.pdf" target="_blank" rel="noopener" aria-label="GreenChild Info-Magazin als PDF öffnen">
               <picture><source type="image/webp" srcset="/magazine/greenchild-info-cover.webp"><img src="/magazine/greenchild-info-cover.jpg" alt="Titelseite des GreenChild Info-Magazins über Edelholz als Sachwert" width="380" height="534" loading="lazy" decoding="async"></picture>
             </a>
-            <figcaption><span class="t">GreenChild — Info-Magazin</span><span class="d">15 Seiten über Edelholz als Sachwert. Teil des Wachstums-Systems, dessen Funnel 25 Anfragen im ersten Monat brachte.</span><span class="a"><a class="mag-link" href="/magazine/greenchild-info-magazin.pdf" target="_blank" rel="noopener">Ansehen</a><a class="mag-link" href="/magazine/greenchild-info-magazin.pdf" download>Download</a></span></figcaption>
+            <figcaption><span class="t">GreenChild — Info-Magazin</span><span class="d">15 Seiten, die ein erklärungsbedürftiges Investment vom Setzling bis zur Wertentwicklung durcherzählen.</span><span class="a"><a class="mag-textlink" href="/magazine/greenchild-info-magazin.pdf" target="_blank" rel="noopener">Ansehen</a><a class="mag-textlink" href="/magazine/greenchild-info-magazin.pdf" download>Download</a></span></figcaption>
           </figure>
-          <figure class="reveal">
+          <figure>
             <a class="cover" href="/magazine/heko-voice-magazin.pdf" target="_blank" rel="noopener" aria-label="HEKO Voice Magazin als PDF öffnen">
               <picture><source type="image/webp" srcset="/magazine/heko-voice-cover.webp"><img src="/magazine/heko-voice-cover.jpg" alt="Titelseite des HEKO Voice Magazins über moderne Telefonie" width="380" height="534" loading="lazy" decoding="async"></picture>
             </a>
-            <figcaption><span class="t">HEKO Voice — Magazin</span><span class="d">Ein Direktmailing, das nicht nach Werbung aussieht, sondern nach einer Marke, die man ernst nimmt.</span><span class="a"><a class="mag-link" href="/magazine/heko-voice-magazin.pdf" target="_blank" rel="noopener">Ansehen</a><a class="mag-link" href="/magazine/heko-voice-magazin.pdf" download>Download</a></span></figcaption>
+            <figcaption><span class="t">HEKO Voice — Magazin</span><span class="d">Ein Direktmailing, das nicht nach Werbung aussieht, sondern nach einer Marke, die man ernst nimmt.</span><span class="a"><a class="mag-textlink" href="/magazine/heko-voice-magazin.pdf" target="_blank" rel="noopener">Ansehen</a><a class="mag-textlink" href="/magazine/heko-voice-magazin.pdf" download>Download</a></span></figcaption>
           </figure>
         </div>
       </div>
@@ -193,10 +184,8 @@ const proof = [
     <section id="garantie" class="mag-section" aria-labelledby="gar-h">
       <div class="mag-wrap">
         <div class="mag-guarantee reveal">
-          <p class="big" id="gar-h">Unser Risiko.<br><em>Nicht deins.</em></p>
-          <div class="mag-body">
-            <p>Jede Stufe kommt zum Festpreis, der vorher schriftlich feststeht — mit festem Liefertermin, ohne offene Stundenzettel. Und liefert eine Stufe nicht, was wir vorher zugesagt haben, arbeiten wir nach, bis es sitzt. Keine Nachforderung, kein Kleingedrucktes.</p>
-          </div>
+          <p class="big" id="gar-h">Unser Risiko.<br><i>Nicht deins.</i></p>
+          <div class="mag-body"><p>Jede Arbeit kommt zum Festpreis, der vorher schriftlich feststeht — mit festem Liefertermin, ohne offene Stundenzettel. Und liefert sie nicht, was wir zugesagt haben, arbeiten wir nach, bis es sitzt. Keine Nachforderung, kein Kleingedrucktes.</p></div>
         </div>
       </div>
     </section>
@@ -206,27 +195,29 @@ const proof = [
     <!-- ============ FAQ ============ -->
     <FAQ />
     <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+    <div class="mag-wrap" style="text-align:center;padding-bottom:clamp(40px,6vh,72px);margin-top:-10px;">
+      <a class="mag-textlink" href="/faq">Alle Fragen &amp; ehrliche Antworten →</a>
+    </div>
 
     <!-- ============ CTA ============ -->
-    <section id="final-cta" class="mag-section" aria-labelledby="cta-h">
+    <section id="final-cta" class="mag-section" style="background:var(--panel);" aria-labelledby="cta-h">
       <div class="mag-wrap mag-cta reveal">
         <span class="scar"><span class="dot"></span>Nur 3 Projekte pro Monat</span>
-        <h2 id="cta-h">Lass uns über dein <em>Wachstum</em> reden.</h2>
-        <p class="sub">Kostenlos und unverbindlich. Wir schauen uns deinen Auftritt an, zeigen dir deinen größten Hebel — und welche Stufe dich am schnellsten weiterbringt.</p>
-        <a href="#kontakt" class="mag-btn mag-btn-primary">Wachstumsgespräch sichern
+        <h2 id="cta-h">Lass uns dich <i>unübersehbar</i> machen.</h2>
+        <p class="sub">Kostenlos und unverbindlich. Wir schauen uns deinen Auftritt an und sagen dir ehrlich, wo dein größter Hebel liegt — Klartext, kein Pitch.</p>
+        <a href="#kontakt" class="mag-btn">Wachstumsgespräch sichern
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         <p class="trust">Antwort innerhalb von 24 Stunden · kein Verkaufsdruck · DSGVO-konform</p>
       </div>
     </section>
 
     <!-- ============ KONTAKT ============ -->
-    <section id="kontakt" class="mag-section" style="padding-top:0;" aria-labelledby="kontakt-h">
+    <section id="kontakt" class="mag-section" aria-labelledby="kontakt-h">
       <div class="mag-wrap">
-        <hr class="mag-rule" style="margin-bottom:clamp(48px,8vh,90px);" />
         <div class="mag-kontakt">
           <div class="reveal">
-            <p class="mag-folio"><b>05</b> Kontakt</p>
-            <h2 id="kontakt-h" class="mag-h2">Schreib uns. Wir<br>antworten <em>persönlich</em>.</h2>
+            <p class="mag-label">Kontakt</p>
+            <h2 id="kontakt-h" class="mag-h2">Schreib uns. Wir<br>antworten <i>persönlich</i>.</h2>
             <ul class="mag-kontakt-list">
               <li><span class="k">E-Mail</span><a href="mailto:hallo@elevo.solutions">hallo@elevo.solutions</a></li>
               <li><span class="k">Für wen</span><span>Aufstrebende Unternehmen, DACH</span></li>
@@ -243,22 +234,10 @@ const proof = [
 
   <script>
     document.body.classList.add('js');
-    // Reveal
     const rev = Array.from(document.querySelectorAll('.reveal'));
     if (rev.length && 'IntersectionObserver' in window) {
-      const o = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); o.unobserve(e.target); } }), { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+      const o = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); o.unobserve(e.target); } }), { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
       rev.forEach(el => o.observe(el));
     } else { rev.forEach(el => el.classList.add('visible')); }
-    // Faden / Spine — Scroll-Fortschritt
-    const spine = document.getElementById('mag-spine');
-    if (spine) {
-      const onScroll = () => {
-        const h = document.documentElement;
-        const p = h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight);
-        spine.style.setProperty('--spine', (p * 100).toFixed(1) + '%');
-      };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    }
   </script>
 </BaseLayout>

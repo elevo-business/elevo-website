@@ -1,29 +1,28 @@
-# DESIGN-DNA — Elevo (Flagship „Editorial-Magazin")
+# DESIGN-DNA — Elevo (Flagship „Dossier")
 
-> Maximal hochwertiger Eigenauftritt nach WEBSITEQUALITYPLAYBOOK §2.
-> Ziel: nicht als „mit-KI-gebaut" erkennbar; Niveau von Award-/Studio-Sites.
-> Bewusst divergent von der Referenz (Scribble: hell, Serif, Index-Numerals + §)
-> und vom früheren hellen Baukasten-Theme.
+> Iteration nach Feedback: Copy auf Award-Niveau, klare Differenzierung von der
+> Referenz (Scribble: hell, Serif/Fraunces, Index-Numerals + §) und Verzicht auf
+> das als „pushy/generisch" empfundene Stufen-/Treppen-Framing.
 
 ## Achsen
-- **Typo-System:** **Instrument Serif** (self-hosted, latin reg+italic) als überdimensionierte Editorial-Display-Schrift, **Outfit** für Lauftext, **System-Monospace** für Folios/Labels/Kennzahlen-Captions. Hoher Stil-Kontrast Serif↔Mono = Magazin-Anmutung.
-- **Farbstrategie:** **Warmes Papier** (`#F7F3EA`) + tiefes **Ink** (`#17130C`) + **ein** sattes Akzent-**Vermilion** (`#D8431F`). Kein Tech-Blau, kein Verlauf-Blob. Editorial, warm, teuer.
-- **Layout-Archetyp:** Asymmetrischer Editorial-Grid, **Hairlines statt Boxen** (keine „3 Icon-Karten"), großzügige Margins, bleedende Riesen-Serif, Margin-Numerale.
-- **SIGNATURE-DEVICE (genau eines):** **„Der Faden"** — eine fixe vermillionfarbene Spine-Linie am linken Rand, die mit dem Scroll-Fortschritt mitwächst, plus rotiertes Mono-Label „ELEVO — AUSGABE 01 · WACHSTUM". Die Seite liest sich als **Magazin-Ausgabe mit Kapiteln** (Folios 01–05). *(Anders als Scribble: kein §, keine Index-Pills.)*
-- **Bewegung:** zurückhaltend (Reveal); der Faden zieht mit dem Scroll. Reduced-Motion- + No-JS-sicher.
-- **Bildwelt:** typografisch getrieben; Magazin-Cover als gekippte Editorial-Figuren; Live-Referenzen als Textzeilen mit Riesen-Kennzahl statt Screenshots.
-- **Voice:** Storytelling, „du", konkret, selbstbewusst, anti-floskel — szenischer Einstieg, klare Conversion.
+- **Typo-System:** **Bricolage Grotesque** (variabel, self-hosted) als charaktervolle Grotesk-Display — bewusst KEINE Serif-Editorial-Folie wie Scribble. **Instrument Serif** nur als sparsamer Italic-Akzent (einzelne Wörter, Pull-Quotes) für Spannung. **Outfit** Body, **System-Mono** für Masthead/Labels/Meta.
+- **Farbstrategie:** **near-monochrom Bone + Ink**, ein **elektrischer Cobalt-Akzent (#1E27E6)** extrem sparsam (Labels, Links, ein Markierungs-Unterstrich). Die Zurückhaltung = Galerie-/Award-Anmutung statt Tech-Bunt.
+- **Layout-Archetyp:** Editorial-Zeitung. **Masthead-Zeile** statt Standard-Hero, Hairlines statt Boxen, Triptychon mit harten Trennlinien, Riesen-Grotesk-Headlines.
+- **SIGNATURE / Konzept:** **Aphorismus-Hero** („Du verlierst keine Kunden an bessere Anbieter. Nur an *sichtbarere*.") + Masthead-Identität. Der Hero ist copy-getrieben und einzigartig, kein Mockup, keine Kennzahl-Kachel.
+- **Offer-Framing (NEU, kein Ladder):** „**Drei Handwerke. Ein Ziel: unübersehbar.**" — Gefunden / Erinnert / Nachgefragt werden als **gleichwertiges Triptychon**, ergebnis-geframed statt „Stufe 01 → kauf die nächste".
+- **Voice:** Award-Copy nach `COPY-VOICE.md` — szenisch, Standpunkt pro Block, konkret, anti-Floskel, „du".
 
-## Distanz-Check (≥3 Achsen anders als Referenz) ✓
-Typo (Instrument Serif/Mono ↔ Fraunces), Signature (Faden/Kapitel ↔ §/Index-Numerals), Akzent (Vermilion ↔ —), Layout (Hairline-Editorial ↔ Karten).
+## Distanz-Check vs. Scribble (≥3 Achsen anders) ✓
+Display Grotesk statt Serif · Masthead/Zeitung statt §-Magazin · near-monochrom+Cobalt statt warmem Creme · Aphorismus-Hero statt „Wachstumspartner für kleine Unternehmen"-Aufmacher.
 
-## Anti-„KI-gebaut" (§7) — bewusst eingesetzt
-Bleed-Serif, echte typografische Hierarchie, Hairlines statt Boxen, ein konsequentes Signature-Device, Margin-Numerale, Pull-Quote, Mono-Marginalien, szenisches Copywriting statt Floskeln. Kein zentrierter Hero, keine Pill-Karten-Reihe, keine Emoji.
+## SEO (Top-Niveau, nach erfolgreichen Studien: Intent + Helpful Content + E-E-A-T)
+- Eigene **/faq**-Seite: Überschriften = echte Suchsätze, 40–55-Wort-Snippet-Antwort zuerst, thematisch gruppiert, **FAQPage**- + **BreadcrumbList**-Schema.
+- **/magazin** + 3 Tiefe-Artikel (echte Suchintention): „was kostet eine professionelle website", „lohnt sich ein kundenmagazin", „mehr anfragen über die website". Je **BlogPosting**- + **BreadcrumbList**-Schema, Answer-Snippet oben, interne Verlinkung, E-E-A-T über echte Projekte (GreenChild/Akropolis/HEKO).
+- Index als **ItemList**-Schema. BaseLayout: WebSite-Schema, geo-Meta, og:image-Maße.
 
-## Umsetzung
-- `src/styles/elevo-mag.css` — self-contained, gescoped unter `body.mag`; Legacy-Chrome-Tokens werden auf die Editorial-Palette gemappt (Header/Footer/Cookie übernehmen sie).
-- Schrift self-hosted in `public/fonts/InstrumentSerif*.woff2` (einmalig geladen, DSGVO-konform), Preload nur auf der Startseite (`preloadSerif`).
+## Assets
+- Fonts self-hosted (DSGVO): `public/fonts/BricolageGrotesque-latin.woff2`, `InstrumentSerif*-latin.woff2`. Preload auf Editorial-Seiten via `preloadSerif`.
+- `src/styles/elevo-mag.css` (scoped `body.mag`) trägt Home, FAQ, Magazin & Artikel.
 
-## Nächste Schritte (vom User freigegeben: „Erst Home, Rest danach")
-- Unterseiten in dieselbe Editorial-DNA migrieren.
-- Detaillierte **/faq**-Seite (suchsatz-optimiert, FAQPage-Schema) + **/magazin** mit SEO-Artikeln (BlogPosting-Schema).
+## Offen / nächster Schritt
+Unterseiten (leistungen/referenzen/ueber-uns/kontakt) noch im alten Design → in die Dossier-DNA migrieren. Cobalt-Akzent ist ein Token (1 Stelle) — leicht zu retunen, falls gewünscht.

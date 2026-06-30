@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import '../../styles/global.css';
+import '../../styles/ev-system.css';
+import '../../styles/elevo-mag.css';
+import { articles } from '../../data/articles.js';
+
+export function getStaticPaths() {
+  return articles.map((a) => ({ params: { slug: a.slug }, props: { article: a } }));
+}
+const { article } = Astro.props;
+const url = `https://elevo.solutions/magazin/${article.slug}`;
+const dateLabel = new Date(article.datePublished).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' });
+const others = articles.filter((a) => a.slug !== article.slug).slice(0, 2);
+
+const blogSchema = {
+  '@context': 'https://schema.org', '@type': 'BlogPosting',
+  headline: article.title, description: article.metaDescription,
+  datePublished: article.datePublished, dateModified: article.datePublished,
+  inLanguage: 'de-DE', mainEntityOfPage: url,
+  keywords: article.tags.join(', '),
+  author: { '@type': 'Organization', name: 'Elevo', url: 'https://elevo.solutions' },
+  publisher: { '@type': 'Organization', name: 'Elevo', url: 'https://elevo.solutions', logo: { '@type': 'ImageObject', url: 'https://elevo.solutions/elevo-logo.png' } },
+};
+const breadcrumbSchema = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Start', item: 'https://elevo.solutions/' },
+    { '@type': 'ListItem', position: 2, name: 'Magazin', item: 'https://elevo.solutions/magazin' },
+    { '@type': 'ListItem', position: 3, name: article.title, item: url },
+  ],
+};
+---
+
+<BaseLayout title={article.metaTitle + ' — Elevo Magazin'} description={article.metaDescription} canonical={url} bodyClass="mag" preloadSerif={true}>
+  <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+  <Header />
+  <main id="main">
+    <section class="mag-pagehero">
+      <div class="mag-wrap" style="max-width:46rem;">
+        <p class="mag-breadcrumb"><a href="/">Start</a> / <a href="/magazin">Magazin</a></p>
+        <h1>{article.title}</h1>
+        <p class="sub">{article.dek}</p>
+        <p class="mag-breadcrumb" style="margin-top:22px;">{dateLabel} · {article.readingTime} Lesezeit · {article.tags.join(' · ')}</p>
+      </div>
+    </section>
+
+    <article class="article mag-wrap" set:html={article.body}></article>
+
+    <div class="mag-wrap" style="max-width:46rem;">
+      <div class="article-cta">
+        <h3>Sehen wir uns deinen Fall an?</h3>
+        <p>Kostenloses Wachstumsgespräch — wir sagen dir ehrlich, wo dein größter Hebel liegt. Kein Pitch.</p>
+        <a class="mag-btn" href="/kontakt">Wachstumsgespräch sichern
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+
+      <h2 style="font-family:var(--display);font-weight:700;letter-spacing:-0.02em;color:var(--ink);margin:clamp(48px,8vh,90px) 0 8px;font-size:1.5rem;">Weiterlesen</h2>
+      <div class="blog-grid">
+        {others.map((a) => (
+          <a class="blog-row" href={`/magazin/${a.slug}`}>
+            <span class="ix">→</span>
+            <span><h2>{a.title}</h2><p>{a.dek}</p></span>
+            <span class="meta">{a.readingTime}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+  <Footer />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(blogSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+</BaseLayout>

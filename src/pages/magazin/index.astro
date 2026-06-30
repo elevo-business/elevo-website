@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import '../../styles/global.css';
+import '../../styles/ev-system.css';
+import '../../styles/elevo-mag.css';
+import { articles } from '../../data/articles.js';
+
+const itemList = {
+  '@context': 'https://schema.org', '@type': 'ItemList',
+  name: 'Elevo Magazin', itemListElement: articles.map((a, i) => ({
+    '@type': 'ListItem', position: i + 1, url: `https://elevo.solutions/magazin/${a.slug}`, name: a.title,
+  })),
+};
+const breadcrumb = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Start', item: 'https://elevo.solutions/' },
+    { '@type': 'ListItem', position: 2, name: 'Magazin', item: 'https://elevo.solutions/magazin' },
+  ],
+};
+---
+
+<BaseLayout
+  title="Magazin — Klartext zu Website, Sichtbarkeit & Wachstum | Elevo"
+  description="Ehrliche Texte für aufstrebende Unternehmen: Was eine Website wirklich kostet, wie du mehr Anfragen bekommst und ob sich Print noch lohnt. Ohne Floskeln."
+  canonical="https://elevo.solutions/magazin"
+  bodyClass="mag"
+  preloadSerif={true}
+>
+  <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+  <Header />
+  <main id="main">
+    <section class="mag-pagehero">
+      <div class="mag-wrap">
+        <p class="mag-breadcrumb"><a href="/">Start</a> / Magazin</p>
+        <h1>Klartext statt <i>Floskeln</i>.</h1>
+        <p class="sub">Was wir über Sichtbarkeit, Anfragen und Wachstum gelernt haben — aus echten Projekten, ohne Agentur-Geschwätz.</p>
+      </div>
+    </section>
+
+    <section class="mag-section" style="padding-top:clamp(36px,5vh,60px);">
+      <div class="mag-wrap">
+        <div class="blog-grid">
+          {articles.map((a, i) => (
+            <a class="blog-row" href={`/magazin/${a.slug}`}>
+              <span class="ix">{String(i + 1).padStart(2, '0')}</span>
+              <span><h2>{a.title}</h2><p>{a.dek}</p></span>
+              <span class="meta">{a.readingTime}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(itemList)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumb)} />
+</BaseLayout>
