@@ -434,7 +434,7 @@ const avgPct = Math.round((avgNum / 5) * 100);
           if (lead) (window as any).elevoMeta?.fireLead?.(lead.metaEventId, { content_name: 'funnel-check' });
         } catch {
           msg.className = 'form-message error';
-          msg.textContent = 'Etwas ist schiefgelaufen. Schreib uns direkt: hallo@elevo.solutions';
+          msg.textContent = 'Etwas ist schiefgelaufen. Schreib uns direkt: hey@elevo.solutions';
           btn.disabled = false; btn.textContent = orig || 'Wachstumsgespräch sichern →';
         }
       });

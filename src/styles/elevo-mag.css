@@ -166,6 +166,29 @@ body.mag .mag-proof-go { font-family: var(--mono); font-size: 0.72rem; letter-sp
 body.mag .mag-proof-go svg { width: 15px; height: 15px; color: var(--accent); }
 @media (max-width: 720px) { body.mag .mag-proof-row { grid-template-columns: auto 1fr; gap: 16px 20px; } body.mag .mag-proof-go { display: none; } }
 
+/* ---------- Live-Referenzen (iFrame-Embeds + Original-Logos) ---------- */
+body.mag .mag-refgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+body.mag .mag-ref { border: 1px solid var(--line); background: var(--bone-2); display: flex; flex-direction: column; transition: border-color .25s, transform .25s; }
+body.mag .mag-ref:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+body.mag .mag-ref-frame { position: relative; }
+body.mag .mag-ref-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; border-bottom: 1px solid var(--line); background: var(--panel); }
+body.mag .mag-ref-bar i { width: 8px; height: 8px; border-radius: 50%; background: var(--line-strong); opacity: .55; }
+body.mag .mag-ref-bar em { font-family: var(--mono); font-style: normal; font-size: 0.66rem; letter-spacing: 0.03em; color: var(--muted); margin-left: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+body.mag .mag-ref-embed { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--bone); }
+body.mag .mag-ref-embed iframe { position: absolute; top: 0; left: 0; width: 250%; height: 250%; transform: scale(0.4); transform-origin: 0 0; border: 0; pointer-events: none; }
+body.mag .mag-ref-open { position: absolute; inset: 0; display: grid; place-items: center; text-decoration: none; opacity: 0; background: rgba(23,19,12,0); transition: opacity .25s, background .25s; }
+body.mag .mag-ref:hover .mag-ref-open { opacity: 1; background: rgba(23,19,12,0.42); }
+body.mag .mag-ref-open span { display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: var(--bone); font-family: var(--sans); font-weight: 600; font-size: 0.85rem; padding: 11px 18px; }
+body.mag .mag-ref-open span svg { width: 15px; height: 15px; }
+body.mag .mag-ref-meta { padding: 18px; border-top: 1px solid var(--line); }
+body.mag .mag-ref-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 13px; }
+body.mag .mag-ref-logo { display: inline-flex; align-items: center; height: 28px; background: var(--ink); border-radius: 3px; padding: 0 10px; }
+body.mag .mag-ref-logo img { max-height: 15px; width: auto; display: block; }
+body.mag .mag-ref-metric { font-family: var(--display); font-weight: 800; font-size: 1.8rem; color: var(--accent); letter-spacing: -0.03em; line-height: 1; }
+body.mag .mag-ref-meta h3 { font-family: var(--display); font-weight: 700; font-size: 1.15rem; color: var(--ink); margin: 0 0 5px; letter-spacing: -0.01em; }
+body.mag .mag-ref-meta p { font-size: 0.9rem; color: var(--ink-2); margin: 0; line-height: 1.55; }
+@media (max-width: 900px) { body.mag .mag-refgrid { grid-template-columns: 1fr; max-width: 460px; } }
+
 /* ---------- Print figures ---------- */
 body.mag .mag-print { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); }
 body.mag .mag-print figure { margin: 0; }

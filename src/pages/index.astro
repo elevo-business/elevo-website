@@ -15,20 +15,20 @@ const faqEntries = [
   { q: 'Sollte ich zuerst in eine Website oder in Werbung investieren?', a: 'Zuerst in die Seite. Werbung verstärkt nur, was schon da ist — steht da eine Visitenkarte, verstärkt sie deinen Misserfolg, bloß teurer. Erst wenn die Seite aus Besuchern Anfragen macht, wird bezahlte Reichweite zum Hebel statt zum Fass ohne Boden.' },
   { q: 'Müssen wir gleich alles auf einmal machen?', a: 'Nein. Website, Printmedien und Werbung sind drei Handwerke, kein Pflicht-Paket. Wir starten dort, wo bei dir der größte Hebel liegt, und erweitern erst, wenn es sich lohnt. Was das bei dir ist, sagen wir dir ehrlich vorab — ohne dir etwas aufzuschwatzen.' },
   { q: 'Und wenn es nicht funktioniert?', a: 'Dann ist es unser Risiko, nicht deins. Der Preis steht vorher als Festpreis fest, der Liefertermin ebenso. Liefert eine Arbeit nicht, was wir zugesagt haben, arbeiten wir nach — bis es sitzt. Keine Nachforderung, kein Kleingedrucktes.' },
-  { q: 'Für wen arbeitet Elevo — und für wen nicht?', a: 'Für aufstrebende Unternehmen im DACH-Raum mit einem guten Angebot, das online noch nicht so wirkt, wie es ist. Weniger passend sind wir, wenn nur die billigste Umsetzung ohne Ergebnis-Anspruch gesucht wird — dann gibt es schnellere Baukästen.' },
+  { q: 'Für wen arbeitet Elevo — und für wen nicht?', a: 'Für aufstrebende Unternehmen mit einem guten Angebot, das online noch nicht so wirkt, wie es ist. Weniger passend sind wir, wenn nur die billigste Umsetzung ohne Ergebnis-Anspruch gesucht wird — dann gibt es schnellere Baukästen.' },
 ];
 const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqEntries.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) };
 
 const proof = [
-  { metric: '25', name: 'GreenChild', note: 'Qualifizierte Anfragen im ersten Monat — Website, Magazin und Werbung griffen ineinander.', url: 'https://greenchild-preview.elevo.solutions/de/' },
-  { metric: '3×', name: 'Akropolis', note: 'Mehr Reservierungen. Gleiche Küche, gleiche Stadt — eine Seite, die endlich ihren Job machte.', url: 'https://akropolis-geilenkirchen.com' },
-  { metric: 'Live', name: 'BrandsMarketingLab', note: 'Eine Conversion-Website für eine Agentur, die selbst Marken baut. Die Messlatte lag hoch.', url: 'https://elevo-business.github.io/bml/index.html' },
+  { metric: '25', name: 'GreenChild', note: 'Qualifizierte Anfragen im ersten Monat — Website, Magazin und Werbung griffen ineinander.', url: 'https://greenchild-preview.elevo.solutions/de/', logo: '/client-logos/greenchild.png', display: 'greenchild.eu' },
+  { metric: '3×', name: 'Akropolis', note: 'Mehr Reservierungen. Gleiche Küche, gleiche Stadt — eine Seite, die endlich ihren Job machte.', url: 'https://akropolis-geilenkirchen.com', logo: '/client-logos/akropolis-mark.png', display: 'akropolis-geilenkirchen.com' },
+  { metric: 'Live', name: 'BrandsMarketingLab', note: 'Conversion-Website für eine Agentur, die selbst Marken baut. Die Messlatte lag hoch.', url: 'https://elevo-business.github.io/bml/index.html', logo: '/client-logos/bml-white.png', display: 'elevo-business.github.io/bml' },
 ];
 ---
 
 <BaseLayout
   title="Elevo — Dein digitaler Wachstumspartner für planbares Wachstum"
-  description="Elevo ist dein digitaler Wachstumspartner: hochwertige Website, Premium-Printmedien und Werbung, die zusammen planbar Anfragen und Kunden bringen. Für aufstrebende Unternehmen im DACH-Raum, die wachsen wollen — nicht nur online existieren."
+  description="Elevo ist dein digitaler Wachstumspartner: hochwertige Website, Premium-Printmedien und Werbung, die zusammen planbar Anfragen und Kunden bringen. Für aufstrebende Unternehmen, die wachsen wollen — nicht nur online existieren."
   canonical="https://elevo.solutions/"
   bodyClass="mag"
   preloadSerif={true}
@@ -44,7 +44,7 @@ const proof = [
           <div class="mag-masthead-row">
             <span class="c">Elevo</span>
             <span class="hide-sm">Digitaler Wachstumspartner</span>
-            <span>Geilenkirchen · DACH</span>
+            <span>hey@elevo.solutions</span>
           </div>
         </div>
         <div style="padding-top:clamp(40px,7vh,90px);">
@@ -139,15 +139,29 @@ const proof = [
             <p class="mag-label">Beweise</p>
             <h2 id="ref-h" class="mag-h2">Zahlen, die man <i>anklicken</i> kann.</h2>
           </div>
-          <div class="mag-body reveal"><p>Keine Mockups, keine gestellten Screenshots. Drei echte Projekte — öffne sie im Tab und klick dich rein. Was zählt, steht links: das Ergebnis.</p></div>
+          <div class="mag-body reveal"><p>Keine Mockups, keine gestellten Screenshots. Drei echte Projekte — live im Fenster. Klick dich rein oder öffne sie im Tab.</p></div>
         </div>
-        <div style="margin-top:30px;">
+        <div class="mag-refgrid">
           {proof.map((r) => (
-            <a class="mag-proof-row reveal" href={r.url} target="_blank" rel="noopener" aria-label={`${r.name} live öffnen`}>
-              <span class="mag-proof-metric">{r.metric}</span>
-              <span class="mag-proof-mid"><h3>{r.name}</h3><p>{r.note}</p></span>
-              <span class="mag-proof-go">Live öffnen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-            </a>
+            <article class="mag-ref reveal">
+              <div class="mag-ref-frame">
+                <div class="mag-ref-bar" aria-hidden="true"><i></i><i></i><i></i><em>{r.display}</em></div>
+                <div class="mag-ref-embed">
+                  <iframe src={r.url} title={`${r.name} — Live-Vorschau`} loading="lazy" tabindex="-1" referrerpolicy="no-referrer"></iframe>
+                  <a class="mag-ref-open" href={r.url} target="_blank" rel="noopener" aria-label={`${r.name} live in neuem Tab öffnen`}>
+                    <span>Live öffnen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+                  </a>
+                </div>
+              </div>
+              <div class="mag-ref-meta">
+                <div class="mag-ref-top">
+                  <span class="mag-ref-logo"><img src={r.logo} alt={`${r.name} Logo`} loading="lazy" decoding="async" /></span>
+                  <span class="mag-ref-metric">{r.metric}</span>
+                </div>
+                <h3>{r.name}</h3>
+                <p>{r.note}</p>
+              </div>
+            </article>
           ))}
         </div>
       </div>
@@ -219,8 +233,8 @@ const proof = [
             <p class="mag-label">Kontakt</p>
             <h2 id="kontakt-h" class="mag-h2">Schreib uns. Wir<br>antworten <i>persönlich</i>.</h2>
             <ul class="mag-kontakt-list">
-              <li><span class="k">E-Mail</span><a href="mailto:hallo@elevo.solutions">hallo@elevo.solutions</a></li>
-              <li><span class="k">Für wen</span><span>Aufstrebende Unternehmen, DACH</span></li>
+              <li><span class="k">E-Mail</span><a href="mailto:hey@elevo.solutions">hey@elevo.solutions</a></li>
+              <li><span class="k">Für wen</span><span>Aufstrebende Unternehmen</span></li>
               <li><span class="k">Antwort</span><span>Innerhalb von 24 Stunden</span></li>
             </ul>
           </div>
