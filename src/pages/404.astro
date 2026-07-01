@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import '../styles/ev-system.css';
+import '../styles/elevo-mag.css';
+---
+
+<BaseLayout
+  title="Seite nicht gefunden (404) — Elevo"
+  description="Diese Seite gibt es nicht (mehr). Zurück zur Startseite oder direkt ins Wachstumsgespräch."
+  canonical="https://elevo.solutions/404"
+  bodyClass="mag"
+  preloadSerif={true}
+  noindex={true}
+>
+  <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+  <Header />
+  <main id="main">
+    <section class="mag-pagehero">
+      <div class="mag-wrap" style="max-width:52rem;">
+        <p class="mag-breadcrumb"><a href="/">Start</a> / 404</p>
+        <h1>Diese Seite haben wir <i>nicht</i> gefunden.</h1>
+        <p class="sub">Der Link ist veraltet oder es hat sich ein Tippfehler eingeschlichen. Kein Grund umzukehren — hier geht es weiter.</p>
+        <div class="mag-404-links" style="margin-top:clamp(28px,4vh,44px);display:flex;flex-wrap:wrap;gap:14px;">
+          <a class="mag-btn" href="/">Zur Startseite
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a class="mag-btn mag-btn--ghost" href="/kontakt">Wachstumsgespräch</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mag-section" style="padding-top:0;">
+      <div class="mag-wrap" style="max-width:52rem;">
+        <hr class="mag-rule" style="margin-bottom:clamp(32px,5vh,56px);" />
+        <p class="mag-label">Vielleicht suchst du das</p>
+        <ul class="mag-404-nav" style="list-style:none;padding:0;margin:0;display:grid;gap:2px;">
+          <li><a class="mag-textlink" href="/#machen">Was wir machen — Website, Print & Werbung</a></li>
+          <li><a class="mag-textlink" href="/#referenzen">Ergebnisse & Referenzen</a></li>
+          <li><a class="mag-textlink" href="/magazin">Magazin — Artikel zu Website, SEO & Anfragen</a></li>
+          <li><a class="mag-textlink" href="/faq">Häufige Fragen</a></li>
+          <li><a class="mag-textlink" href="/werbeagentur-aachen">Region Aachen</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .mag-404-nav li { border-top: 1px solid var(--border, rgba(17,17,16,0.12)); }
+  .mag-404-nav li:last-child { border-bottom: 1px solid var(--border, rgba(17,17,16,0.12)); }
+  .mag-404-nav a { display: block; padding: 16px 0; font-family: var(--display); font-size: 1.05rem; }
+</style>
