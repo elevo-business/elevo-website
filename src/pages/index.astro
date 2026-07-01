@@ -7,16 +7,9 @@ import FAQ from '../components/FAQ.astro';
 import '../styles/global.css';
 import '../styles/ev-system.css';
 import '../styles/elevo-mag.css';
+import { homeFaq } from '../data/homeFaq.js';
 
-const faqEntries = [
-  { q: 'Was kostet eine professionelle Website?', a: 'Sie kostet so viel, wie das Ergebnis wert ist, das sie liefern soll. Der Preis hängt an Strategie, Umfang und Handwerk — nicht an einer Schablone. Eine Visitenkarten-Seite ist günstig; eine, die planbar Anfragen bringt, ist eine Investition mit Rendite. Den Festpreis nennen wir vorab im Wachstumsgespräch.' },
-  { q: 'Wie bekomme ich mehr Anfragen über meine Website?', a: 'Selten über mehr Besucher — meist über eine Seite, die verkauft. Drei Dinge entscheiden: in fünf Sekunden klar, was du tust; sichtbarer Beweis, dass du es kannst; und genau ein leichter nächster Schritt. Werbung lohnt erst, wenn die Seite Besucher zuverlässig in Anfragen verwandelt.' },
-  { q: 'Lohnt sich ein gedrucktes Kundenmagazin überhaupt noch?', a: 'Gerade weil fast alle nur noch digital werben, wirkt hochwertiger Print stärker denn je. Eine E-Mail ist in Sekunden gelöscht, ein gutes Magazin liegt wochenlang auf dem Schreibtisch und baut Vertrauen auf, bevor das erste Gespräch beginnt. Für GreenChild und HEKO Voice haben wir genau das gebaut.' },
-  { q: 'Sollte ich zuerst in eine Website oder in Werbung investieren?', a: 'Zuerst in die Seite. Werbung verstärkt nur, was schon da ist — steht da eine Visitenkarte, verstärkt sie deinen Misserfolg, bloß teurer. Erst wenn die Seite aus Besuchern Anfragen macht, wird bezahlte Reichweite zum Hebel statt zum Fass ohne Boden.' },
-  { q: 'Müssen wir gleich alles auf einmal machen?', a: 'Nein. Website, Printmedien und Werbung sind drei Handwerke, kein Pflicht-Paket. Wir starten dort, wo bei dir der größte Hebel liegt, und erweitern erst, wenn es sich lohnt. Was das bei dir ist, sagen wir dir ehrlich vorab — ohne dir etwas aufzuschwatzen.' },
-  { q: 'Und wenn es nicht funktioniert?', a: 'Dann ist es unser Risiko, nicht deins. Der Preis steht vorher als Festpreis fest, der Liefertermin ebenso. Liefert eine Arbeit nicht, was wir zugesagt haben, arbeiten wir nach — bis es sitzt. Keine Nachforderung, kein Kleingedrucktes.' },
-  { q: 'Für wen arbeitet Elevo — und für wen nicht?', a: 'Für aufstrebende Unternehmen mit einem guten Angebot, das online noch nicht so wirkt, wie es ist. Weniger passend sind wir, wenn nur die billigste Umsetzung ohne Ergebnis-Anspruch gesucht wird — dann gibt es schnellere Baukästen.' },
-];
+const faqEntries = homeFaq;
 const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqEntries.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) };
 
 const proof = [
@@ -27,8 +20,8 @@ const proof = [
 ---
 
 <BaseLayout
-  title="Elevo — Dein digitaler Wachstumspartner für planbares Wachstum"
-  description="Elevo ist dein digitaler Wachstumspartner: hochwertige Website, Premium-Printmedien und Werbung, die zusammen planbar Anfragen und Kunden bringen. Für aufstrebende Unternehmen, die wachsen wollen — nicht nur online existieren."
+  title="Elevo — Digitaler Wachstumspartner: Website, SEO & Werbung"
+  description="Dein digitaler Wachstumspartner: hochwertige Website mit SEO, Kundenmagazine und Werbung (Google & Meta), die planbar mehr Anfragen bringen. Website erstellen lassen von einem Partner, der dich wachsen lässt — für aufstrebende Unternehmen."
   canonical="https://elevo.solutions/"
   bodyClass="mag"
   preloadSerif={true}
@@ -120,6 +113,11 @@ const proof = [
             <ul><li>Anzeigen, die zum Angebot passen</li><li>Planbare Anfragen statt Zufall</li><li>Zahlen statt Bauchgefühl</li></ul>
           </div>
         </div>
+        <p class="mag-body reveal" style="margin-top:32px;font-size:0.95rem;">
+          Tiefer einsteigen? <a class="mag-textlink" href="/magazin/was-kostet-eine-professionelle-website">Was eine Website kostet</a> ·
+          <a class="mag-textlink" href="/magazin/mehr-anfragen-ueber-die-website">Mehr Anfragen über die Website</a> ·
+          <a class="mag-textlink" href="/magazin/lohnt-sich-ein-kundenmagazin">Lohnt sich ein Kundenmagazin</a>
+        </p>
       </div>
     </section>
 
@@ -207,7 +205,7 @@ const proof = [
     <hr class="mag-rule mag-wrap" />
 
     <!-- ============ FAQ ============ -->
-    <FAQ />
+    <FAQ entries={faqEntries} />
     <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
     <div class="mag-wrap" style="text-align:center;padding-bottom:clamp(40px,6vh,72px);margin-top:-10px;">
       <a class="mag-textlink" href="/faq">Alle Fragen &amp; ehrliche Antworten →</a>
