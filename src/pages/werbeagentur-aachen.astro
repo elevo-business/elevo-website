@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm.astro';
+import '../styles/global.css';
+import '../styles/ev-system.css';
+import '../styles/elevo-mag.css';
+
+const url = 'https://elevo.solutions/werbeagentur-aachen';
+const towns = ['Aachen', 'Würselen', 'Herzogenrath', 'Eschweiler', 'Alsdorf', 'Stolberg', 'Baesweiler', 'Düren', 'Heinsberg', 'Geilenkirchen'];
+
+const localFaq = [
+  { q: 'Was kostet eine Website in Aachen?', a: 'Es gibt keinen Pauschalpreis — er hängt davon ab, was die Seite leisten soll. Eine einfache Visitenkarten-Seite ist günstig, eine Website, die in Aachen gefunden wird und planbar Anfragen bringt, ist eine Investition mit Rendite. Den Festpreis nennen wir vorab im kostenlosen Wachstumsgespräch, sobald dein Ziel klar ist.' },
+  { q: 'Seid ihr eine Werbeagentur aus Aachen?', a: 'Wir sitzen in der Region Aachen (Raum Geilenkirchen/Städteregion) und betreuen Unternehmen in Aachen und Umgebung. Statt reiner Werbeagentur sind wir dein digitaler Wachstumspartner: Website & SEO, Printmedien und Werbung aus einer Hand — mit einem Ziel, mehr Anfragen.' },
+  { q: 'Macht ihr auch SEO, damit man uns in Aachen bei Google findet?', a: 'Ja. Wir bauen Websites von Grund auf suchmaschinenfreundlich und optimieren sie auf die Suchbegriffe, die deine Kunden in Aachen und der Region tatsächlich eingeben — plus ein gepflegtes Google-Unternehmensprofil. So wirst du lokal gefunden, dauerhaft statt nur solange Werbung läuft.' },
+  { q: 'Betreut ihr auch Unternehmen außerhalb von Aachen?', a: 'Ja. Die Region Aachen ist unsere Heimat, aber der Großteil der Zusammenarbeit läuft digital — wir arbeiten deutschlandweit. Für Strategie und Print treffen wir uns gern vor Ort in Aachen und Umgebung oder per Video.' },
+];
+
+const localBusiness = {
+  '@context': 'https://schema.org', '@type': 'ProfessionalService',
+  '@id': 'https://elevo.solutions/#elevo',
+  name: 'Elevo — Digitaler Wachstumspartner', url,
+  description: 'Werbeagentur & digitaler Wachstumspartner für die Region Aachen: Webdesign & SEO, Kundenmagazine und Werbung (Google & Meta), die planbar Anfragen bringen.',
+  email: 'hey@elevo.solutions', image: 'https://elevo.solutions/og-image.jpg',
+  address: { '@type': 'PostalAddress', streetAddress: 'Ahrstraße 6', postalCode: '52511', addressLocality: 'Geilenkirchen', addressRegion: 'NRW', addressCountry: 'DE' },
+  geo: { '@type': 'GeoCoordinates', latitude: 50.7753, longitude: 6.0839 },
+  areaServed: towns.map((t) => ({ '@type': 'City', name: t })),
+  knowsAbout: ['Webdesign Aachen', 'Website erstellen lassen Aachen', 'SEO Aachen', 'Werbeagentur Aachen', 'Google Ads Aachen', 'Kundenmagazin', 'Leadgenerierung'],
+};
+const breadcrumb = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+  { '@type': 'ListItem', position: 1, name: 'Start', item: 'https://elevo.solutions/' },
+  { '@type': 'ListItem', position: 2, name: 'Region Aachen', item: url },
+] };
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: localFaq.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) };
+---
+
+<BaseLayout
+  title="Werbeagentur Aachen — Webdesign, SEO & Werbung | Elevo"
+  description="Werbeagentur & digitaler Wachstumspartner für die Region Aachen: Website erstellen lassen, SEO, Kundenmagazine und Werbung (Google & Meta), die planbar Anfragen bringen. Kostenloses Wachstumsgespräch."
+  canonical={url}
+  bodyClass="mag"
+  preloadSerif={true}
+>
+  <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+  <Header />
+  <main id="main">
+    <section class="mag-pagehero">
+      <div class="mag-wrap">
+        <p class="mag-breadcrumb"><a href="/">Start</a> / Region Aachen</p>
+        <h1>Werbeagentur für Aachen? Wir bauen dein <i>Wachstum</i>.</h1>
+        <p class="sub">Website, SEO, Printmedien und Werbung für Unternehmen in Aachen und der Städteregion — aus einer Hand, mit einem Ziel: planbar mehr Anfragen.</p>
+      </div>
+    </section>
+
+    <section class="mag-section" style="padding-top:clamp(40px,6vh,72px);">
+      <div class="mag-wrap">
+        <div class="mag-split">
+          <div class="reveal">
+            <p class="mag-label">Aus der Region, für die Region</p>
+            <h2 class="mag-h2">Sichtbar in Aachen — nicht nur online <i>vorhanden</i>.</h2>
+          </div>
+          <div class="mag-body reveal">
+            <p>In Aachen gibt es viele, die eine Website bauen. Weit weniger bauen dir etwas, das dich in der Region <strong>findbar macht und Anfragen bringt</strong>. Genau das ist unser Job: Wir sind dein digitaler Wachstumspartner im Raum Aachen — von <strong>Webdesign und SEO</strong> über <strong>Kundenmagazine</strong> bis zu <strong>Werbung auf Google &amp; Meta</strong>.</p>
+            <p>Ob Dienstleister, Handwerk mit Anspruch, Kanzlei, Praxis, Gastronomie oder Hersteller — wir sorgen dafür, dass dich die richtigen Leute in Aachen finden, dir vertrauen und anfragen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mag-section" style="background:var(--panel);padding-top:clamp(48px,7vh,90px);padding-bottom:clamp(48px,7vh,90px);">
+      <div class="mag-wrap">
+        <p class="mag-label reveal">Was wir für Unternehmen in Aachen machen</p>
+        <div class="mag-tri reveal">
+          <div class="mag-craft">
+            <div class="verb">Website &amp;<br>SEO Aachen.</div>
+            <span class="what">Website erstellen lassen</span>
+            <p>Eine hochwertige, schnelle Website, die bei Google in Aachen gefunden wird und Besucher in Anfragen verwandelt — mit verkaufsstarken Texten statt Baukasten-Floskeln.</p>
+            <ul><li>Lokale SEO für Aachen &amp; Umgebung</li><li>Google-Unternehmensprofil</li><li>Texte, die anfragen lassen</li></ul>
+          </div>
+          <div class="mag-craft">
+            <div class="verb">Print &amp;<br>Magazine.</div>
+            <span class="what">Kundenmagazin · Print</span>
+            <p>Hochwertige Printmedien und Kundenmagazine, die in der Region liegen bleiben und aus einem Anbieter eine Marke machen — Vertrauen, das digital fehlt.</p>
+            <ul><li>Kundenmagazine mit Tiefe</li><li>Direktmailings statt Wegwerf-Flyer</li><li>Redaktion bis Druckvorlage</li></ul>
+          </div>
+          <div class="mag-craft">
+            <div class="verb">Werbung,<br>die zieht.</div>
+            <span class="what">Google &amp; Meta Ads</span>
+            <p>Werbe-Funnel auf Google &amp; Meta, die gezielt Menschen in Aachen und der Region ansprechen und planbar qualifizierte Anfragen bringen — sauber gemessen.</p>
+            <ul><li>Regional ausgespielte Anzeigen</li><li>Planbare Anfragen statt Zufall</li><li>Zahlen statt Bauchgefühl</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mag-section">
+      <div class="mag-wrap">
+        <div class="mag-split">
+          <div class="reveal">
+            <p class="mag-label">Einzugsgebiet</p>
+            <h2 class="mag-h2">Für Aachen und die <i>Städteregion</i>.</h2>
+          </div>
+          <div class="mag-body reveal">
+            <p>Wir arbeiten für Unternehmen in {towns.slice(0, -1).join(', ')} und {towns[towns.length - 1]} — und darüber hinaus deutschlandweit. Ergebnisse aus der Region kannst du dir live ansehen: <a class="mag-textlink" href="/#referenzen">unsere Referenzen</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mag-section" style="padding-top:0;">
+      <div class="mag-wrap" style="max-width:54rem;">
+        <hr class="mag-rule" style="margin-bottom:clamp(40px,6vh,72px);" />
+        <p class="mag-label">Häufige Fragen aus der Region</p>
+        {localFaq.map((it) => (
+          <div class="faqp-q">
+            <h3>{it.q}</h3>
+            <p>{it.a}</p>
+          </div>
+        ))}
+        <div class="article-cta" style="margin-top:clamp(40px,6vh,72px);">
+          <h3>Wachstumsgespräch — kostenlos &amp; unverbindlich</h3>
+          <p>Erzähl uns, wo du in Aachen stehst. Wir sagen dir ehrlich, wo dein größter Hebel liegt — kein Pitch.</p>
+          <a class="mag-btn" href="#kontakt">Wachstumsgespräch sichern
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt" class="mag-section" style="background:var(--panel);">
+      <div class="mag-wrap">
+        <div class="mag-kontakt">
+          <div class="reveal">
+            <p class="mag-label">Kontakt</p>
+            <h2 class="mag-h2">Sprich mit deinem Wachstumspartner in <i>Aachen</i>.</h2>
+            <ul class="mag-kontakt-list">
+              <li><span class="k">E-Mail</span><a href="mailto:hey@elevo.solutions">hey@elevo.solutions</a></li>
+              <li><span class="k">Region</span><span>Aachen &amp; Städteregion · deutschlandweit</span></li>
+              <li><span class="k">Antwort</span><span>Innerhalb von 24 Stunden</span></li>
+            </ul>
+          </div>
+          <div class="reveal"><ContactForm /></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(localBusiness)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumb)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+  <script>
+    document.body.classList.add('js');
+    const rev = Array.from(document.querySelectorAll('.reveal'));
+    if (rev.length && 'IntersectionObserver' in window) {
+      const o = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); o.unobserve(e.target); } }), { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+      rev.forEach(el => o.observe(el));
+    } else { rev.forEach(el => el.classList.add('visible')); }
+  </script>
+</BaseLayout>
