@@ -1,8 +1,6 @@
 ---
 import Logo from './Logo.astro';
 import LegalModal from './LegalModal.astro';
-import ImpressumContent from './legal/ImpressumContent.astro';
-import DatenschutzContent from './legal/DatenschutzContent.astro';
 ---
 
 <footer id="footer" role="contentinfo">
@@ -79,14 +77,10 @@ import DatenschutzContent from './legal/DatenschutzContent.astro';
   </a>
 </div>
 
-<!-- Legal Modals (Impressum + Datenschutz) -->
-<LegalModal id="legal-modal-impressum" labelledBy="anbieter" fallbackHref="/impressum">
-  <ImpressumContent />
-</LegalModal>
-
-<LegalModal id="legal-modal-datenschutz" labelledBy="ds-verantwortlicher" fallbackHref="/datenschutz">
-  <DatenschutzContent />
-</LegalModal>
+<!-- Legal Modals (Impressum + Datenschutz) — Inhalt wird beim Öffnen von der
+     jeweiligen Seite nachgeladen, damit der Rechtstext nicht jede Seite aufbläht. -->
+<LegalModal id="legal-modal-impressum" label="Impressum" fallbackHref="/impressum" />
+<LegalModal id="legal-modal-datenschutz" label="Datenschutzerklärung" fallbackHref="/datenschutz" />
 
 <!-- Cookie Banner -->
 <div id="cookie-banner" role="dialog" aria-modal="true" aria-labelledby="cookie-title">
@@ -273,6 +267,34 @@ import DatenschutzContent from './legal/DatenschutzContent.astro';
     setTimeout(() => target?.focus(), 30);
   }
 
+  // Rechtstext lazy nachladen: hält Impressum/Datenschutz aus dem HTML aller
+  // Seiten heraus (Content-Fokus für SEO/GEO, eine h1 pro Seite).
+  async function ensureLegalContent(modal: HTMLElement): Promise<boolean> {
+    if (modal.dataset.legalLoaded === 'true') return true;
+    const href = modal.getAttribute('data-fallback-href');
+    const body = modal.querySelector<HTMLElement>('[data-legal-body]');
+    if (!href || !body) return false;
+    try {
+      const res = await fetch(href, { credentials: 'same-origin' });
+      if (!res.ok) return false;
+      const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+      const content = doc.querySelector('.legal-content');
+      if (!content) return false;
+      // Nur eine h1 pro Dokument — die Überschrift der Quellseite wird im Modal zur h2.
+      content.querySelectorAll('h1').forEach((h) => {
+        const h2 = doc.createElement('h2');
+        h2.className = 'legal-modal-title';
+        h2.innerHTML = h.innerHTML;
+        h.replaceWith(h2);
+      });
+      body.replaceChildren(content);
+      modal.dataset.legalLoaded = 'true';
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   function closeLegalModal(modal: HTMLElement) {
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
@@ -290,6 +312,10 @@ import DatenschutzContent from './legal/DatenschutzContent.astro';
       if (!modal) return;
       event.preventDefault();
       openLegalModal(modalId, trigger);
+      void ensureLegalContent(modal).then((ok) => {
+        // Laden fehlgeschlagen → regulär zur Seite navigieren (Pflichtangaben § 5 TMG).
+        if (!ok) window.location.href = modal.getAttribute('data-fallback-href') ?? '/impressum';
+      });
     });
   });
 

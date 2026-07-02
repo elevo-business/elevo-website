@@ -1,12 +1,12 @@
 ---
 interface Props {
   id: string;
-  labelledBy: string;
+  label: string;
   fallbackHref: string;
   closeLabel?: string;
 }
 
-const { id, labelledBy, fallbackHref, closeLabel = 'Schließen' } = Astro.props;
+const { id, label, fallbackHref, closeLabel = 'Schließen' } = Astro.props;
 ---
 
 <div
@@ -14,7 +14,7 @@ const { id, labelledBy, fallbackHref, closeLabel = 'Schließen' } = Astro.props;
   id={id}
   role="dialog"
   aria-modal="true"
-  aria-labelledby={labelledBy}
+  aria-label={label}
   aria-hidden="true"
   data-fallback-href={fallbackHref}
 >
@@ -31,8 +31,8 @@ const { id, labelledBy, fallbackHref, closeLabel = 'Schließen' } = Astro.props;
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
     </button>
-    <div class="legal-modal-scroll">
-      <slot />
+    <div class="legal-modal-scroll" data-legal-body>
+      <p class="legal-modal-loading">Wird geladen …</p>
     </div>
   </div>
 </div>
@@ -141,5 +141,66 @@ const { id, labelledBy, fallbackHref, closeLabel = 'Schließen' } = Astro.props;
 
   :global(html.legal-modal-open) {
     overflow: hidden;
+  }
+
+  .legal-modal-loading {
+    color: var(--text-secondary, #C9D7E4);
+    font-size: 0.95rem;
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  /* Der Rechtstext wird erst beim Öffnen per fetch von /impressum bzw. /datenschutz
+     geladen (spart ~70 % HTML-Gewicht pro Seite, 1-h1-Regel bleibt gewahrt).
+     Die Styles der Quellseiten sind dort gescoped und fehlen hier — deshalb global. */
+  :global(.legal-modal-scroll .legal-content) {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  :global(.legal-modal-scroll .legal-content .legal-modal-title) {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin-bottom: 40px;
+    color: var(--text-primary, #FFFFFF);
+  }
+
+  :global(.legal-modal-scroll .legal-content section) {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border, #243A55);
+  }
+
+  :global(.legal-modal-scroll .legal-content section:last-child) {
+    border-bottom: none;
+  }
+
+  :global(.legal-modal-scroll .legal-content h2:not(.legal-modal-title)),
+  :global(.legal-modal-scroll .legal-content h3) {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary, #FFFFFF);
+    margin-bottom: 12px;
+  }
+
+  :global(.legal-modal-scroll .legal-content p),
+  :global(.legal-modal-scroll .legal-content li) {
+    font-size: 0.95rem;
+    color: var(--text-secondary, #C9D7E4);
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+
+  :global(.legal-modal-scroll .legal-content ul) {
+    padding-left: 1.2em;
+    margin-bottom: 12px;
+  }
+
+  :global(.legal-modal-scroll .legal-content p:last-child) {
+    margin-bottom: 0;
+  }
+
+  :global(.legal-modal-scroll .legal-content a) {
+    color: var(--accent, #3DD6C0);
+    transition: color var(--transition, 0.3s);
   }
 </style>

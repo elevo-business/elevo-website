@@ -17,17 +17,9 @@ const localFaq = [
   { q: 'Betreut ihr auch Unternehmen außerhalb von Aachen?', a: 'Ja. Die Region Aachen ist unsere Heimat, aber der Großteil der Zusammenarbeit läuft digital — wir arbeiten deutschlandweit. Für Strategie und Print treffen wir uns gern vor Ort in Aachen und Umgebung oder per Video.' },
 ];
 
-const localBusiness = {
-  '@context': 'https://schema.org', '@type': 'ProfessionalService',
-  '@id': 'https://elevo.solutions/#elevo',
-  name: 'Elevo — Digitaler Wachstumspartner', url,
-  description: 'Werbeagentur & digitaler Wachstumspartner für die Region Aachen: Webdesign & SEO, Kundenmagazine und Werbung (Google & Meta), die planbar Anfragen bringen.',
-  email: 'hey@elevo.solutions', image: 'https://elevo.solutions/og-image.jpg',
-  address: { '@type': 'PostalAddress', streetAddress: 'Ahrstraße 6', postalCode: '52511', addressLocality: 'Geilenkirchen', addressRegion: 'NRW', addressCountry: 'DE' },
-  geo: { '@type': 'GeoCoordinates', latitude: 50.7753, longitude: 6.0839 },
-  areaServed: towns.map((t) => ({ '@type': 'City', name: t })),
-  knowsAbout: ['Webdesign Aachen', 'Website erstellen lassen Aachen', 'SEO Aachen', 'Werbeagentur Aachen', 'Google Ads Aachen', 'Kundenmagazin', 'Leadgenerierung'],
-};
+// ProfessionalService-Schema kommt zentral aus BaseLayout (@id #elevo, inkl. geo,
+// areaServed und lokalen knowsAbout-Begriffen) — hier kein zweites Exemplar,
+// sonst konkurrieren zwei Entitäten um dieselbe @id.
 const breadcrumb = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
   { '@type': 'ListItem', position: 1, name: 'Start', item: 'https://elevo.solutions/' },
   { '@type': 'ListItem', position: 2, name: 'Region Aachen', item: url },
@@ -37,7 +29,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
 
 <BaseLayout
   title="Werbeagentur Aachen — Webdesign, SEO & Werbung | Elevo"
-  description="Werbeagentur & digitaler Wachstumspartner für die Region Aachen: Website erstellen lassen, SEO, Kundenmagazine und Werbung (Google & Meta), die planbar Anfragen bringen. Kostenloses Wachstumsgespräch."
+  description="Werbeagentur & Wachstumspartner für Aachen: Website erstellen lassen, SEO, Print und Google-/Meta-Werbung, die Anfragen bringen. Kostenloses Erstgespräch."
   canonical={url}
   bodyClass="mag"
   preloadSerif={true}
@@ -145,7 +137,6 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
     </section>
   </main>
   <Footer />
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(localBusiness)} />
   <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumb)} />
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
   <script>
