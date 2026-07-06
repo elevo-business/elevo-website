@@ -1,0 +1,52 @@
+name: Deploy (Coolify)
+
+# Automatischer Produktions-Deploy: Jeder Push auf main baut die Seite als
+# Qualitäts-Gate und triggert danach den Coolify-Deploy per Webhook.
+# Benötigte Repo-Secrets (Settings → Secrets and variables → Actions):
+#   COOLIFY_WEBHOOK_URL  — Deploy-Webhook der App (Coolify: App → Webhooks)
+#   COOLIFY_API_TOKEN    — API-Token mit deploy-Berechtigung (Coolify: Keys & Tokens)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  build-gate:
+    name: Build-Gate (bun run build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Dependencies installieren
+        run: bun install --frozen-lockfile
+
+      - name: Build muss fehlerfrei durchlaufen
+        run: bun run build
+
+  trigger-coolify:
+    name: Coolify-Deploy anstoßen
+    needs: build-gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy-Webhook aufrufen
+        env:
+          WEBHOOK_URL: ${{ secrets.COOLIFY_WEBHOOK_URL }}
+          API_TOKEN: ${{ secrets.COOLIFY_API_TOKEN }}
+        run: |
+          if [ -z "$WEBHOOK_URL" ] || [ -z "$API_TOKEN" ]; then
+            echo "::error::COOLIFY_WEBHOOK_URL oder COOLIFY_API_TOKEN fehlt in den Repo-Secrets."
+            exit 1
+          fi
+          response=$(curl -fsS --retry 3 --retry-delay 5 \
+            -H "Authorization: Bearer $API_TOKEN" \
+            "$WEBHOOK_URL")
+          echo "Coolify-Antwort: $response"
