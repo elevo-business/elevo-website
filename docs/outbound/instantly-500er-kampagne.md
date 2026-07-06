@@ -1,46 +1,71 @@
-# Instantly-Kampagne: Das 500-€-Einstiegsprojekt (Immobilienmakler)
+# Instantly-Kampagne: Das 500-€-Einstiegsprojekt (Physiotherapie-Praxen)
 
 > Kalt-E-Mail-Kampagne für das 500-€-Website-Offer, geframt als Einstieg in eine
-> Wachstumspartnerschaft — nicht als Billig-Angebot. **Reine Text-E-Mails, keine
-> Preview-Websites, keine Links.** Drei Sequenzen à 3 E-Mails zum A/B/C-Test.
-> Version 2 (ersetzt GaLaBau-Ansatz). Stand: Juli 2026.
+> Wachstumspartnerschaft. **Reine Text-E-Mails, keine Previews, keine Links.**
+> Drei Sequenzen à 3 E-Mails zum A/B/C-Test.
+> Version 3 — Branchenwahl nach Kaufsignal-Recherche (Juli 2026).
 
 ---
 
-## 1. Branchen-Entscheidung: Immobilienmakler (kleine, inhabergeführte Büros)
+## 1. Branchen-Recherche: Warum Physiotherapie gewonnen hat
 
-Anforderung: digital offene Branche, kleine Unternehmen ansprechbar, 500 € als
-No-Brainer, großer adressierbarer Markt, ohne Preview-Aufwand pitchbar.
+Geprüft wurden Coaches/Berater, Steuerberater, Pflegedienste, Beauty/Kosmetik,
+Immobilienmakler (verworfen: etablierte Spezialagenturen, keine Referenzen),
+GaLaBau (verworfen: geringe digitale Offenheit) und Physiotherapie.
 
-| Kriterium | Immobilienmakler | Coaches/Berater | Küchenstudios | Kosmetik/Beauty |
-|---|---|---|---|---|
-| Digital offen? | **Sehr** — Leads sind ihr Geschäftsmodell, zahlen bereits monatlich für Portale | Sehr, aber übersättigt mit Funnel-Agentur-Pitches | Mittel | Mittel (Instagram-nativ, aber Buchungs-Apps decken viel ab) |
-| Liest der Entscheider die Mail? | **Ja** (Inhaber, meist 1–5 Personen) | Ja | Ja | Ja |
-| Wert eines Neukunden | **Alleinauftrag = 10.000–20.000 € Provision** | 2–10k, aber oft knappe Kassen | 20–50k Küche | 500–2.000 LTV |
-| Marktgröße DE | **Zehntausende Büros, überwiegend Kleinstbetriebe** | groß, aber diffus | ~8.000 | groß, kleinteilig |
-| Versteht „Website → Anfragen" sofort? | **Ja — denken bereits in Leads** | ja | teilweise | teilweise |
-| Elevo-Upsell-Pfad | **Perfekt:** Eigentümer-Lead-Funnel (Google/Meta = GreenChild-Beweis), Farming-**Print-Magazine** | Ads | Ads | Ads |
+### Kaufsignale im Vergleich
 
-**Entscheidung: Immobilienmakler.** Kein anderes Segment denkt so selbstverständlich
-in Anfragen und Marketing-Ausgaben — und keins passt besser zum vollen
-Elevo-Stack (Website → Ad-Funnel → Print-Farming). Ein einziger Alleinauftrag
-zahlt das Einstiegsprojekt zwanzigfach; diese Rechnung muss man Maklern nicht
-erklären.
+**Coaches/Berater (verworfen):**
+- Nur ~9.000 Business-Coaches in DE (RAUEN-Marktanalyse); Aufträge kommen primär über Empfehlungen
+- **Über 250 Dienstleister buhlen bereits um Coaches** — das am stärksten überpitchte Segment überhaupt; Kalt-E-Mails an Coaches treffen auf antrainierte Ignoranz
+- Privatkunden-Coaches haben oft keine Budgets für Agenturen
 
-**Die Kern-Insight, die die ganze Kampagne trägt (und die kaum eine
-Webagentur pitcht):**
+**Steuerberater (verworfen):** Digitalisierungsdruck real, aber der brennende
+Schmerz ist Personal (nur ~40 % der offenen Stellen besetzbar), nicht
+Mandanten — viele Kanzleien nehmen gar keine neuen Mandanten an. Konservativ,
+langsame Entscheidungen, 500 € kann dort Seriositäts-Zweifel wecken.
 
-> **Makler-Websites sind für Käufer gebaut (Exposés, Suchfilter). Geld verdient
-> der Makler aber beim Verkäufer — und der sucht auf der Website etwas völlig
-> anderes: Beweise, dass dieser Makler sein Haus zum besten Preis verkauft.**
+**Pflegedienste (verworfen):** Recruiting-Schmerz riesig, aber von
+Social-Recruiting-Agenturen totgepitcht; Recruiting-Positionierung passt nicht
+zu Elevos Wachstums-/Anfragen-Story.
 
-Damit verkaufen wir keine „Website" (davon bekommt jeder Makler drei Pitches
-pro Woche), sondern die Schließung der Verkäufer-Lücke.
+**Physiotherapie (GEWINNER) — die dokumentierten Kaufsignale:**
 
-**Zielliste:** Inhabergeführte Maklerbüros 1–10 Personen, keine Franchise-Zentralen
-(Engel & Völkers, RE/MAX etc. entscheiden zentral). Quellen: IVD-Mitgliederverzeichnis,
-Portal-Profile, Google Maps je Stadt. Deutschlandweit — das Offer braucht keine
-regionale Nähe.
+| Signal | Wert | Quelle |
+|---|---|---|
+| Praxen setzen auf Selbstzahlerangebote | **82,8 % — plus 13,2 Prozentpunkte in einem Jahr** | Eckdatenstudie Physiotherapie 2025 |
+| Umsatz pro Selbstzahler-Behandlung vs. Kasse | **1,5–2,3×** | Eckdatenstudie/Branchenanalysen |
+| Selbstzahler-Marktvolumen | ~1,4 Mrd. €, wachsend | Eckdatenstudie 2025 |
+| Anzahl Praxen | 35.000–50.000 (überwiegend Einzelunternehmen → Inhaber liest die Mail) | BGW/listflix |
+| Ø Jahresumsatz pro Praxis | ~267.000 € → 500 € ist trivial | Eckdatenstudie |
+| Geplante Investitionen der Branche 2025 | ~300 Mio. € | Eckdatenstudie |
+| Patienten informieren sich online vor Terminbuchung | 77 % | Branchenstudien 2025 |
+| Patienten finden Praxis über lokale Google-Suche | 42 % | Branchenstudien 2025 |
+
+**Die entscheidende Marktlücke:** Zwei Drittel der Praxen haben einen
+Selbstzahler-Bereich, aber **kaum eine bewirbt ihn aktiv auf ihrer Website** —
+die meisten Praxis-Websites sprechen nur Kassenpatienten an. Die Branche baut
+also gerade massenhaft einen neuen Umsatzzweig auf (Kaufsignal!), dem das
+wichtigste Verkaufswerkzeug fehlt (unsere Lücke!).
+
+**Warum die Branche strukturell passt:**
+- Kassenpatienten kommen per Rezept von allein (Wartelisten!) — das Problem ist
+  nicht Auslastung, sondern **Marge**. Selbstzahler sind die strategische
+  Antwort der gesamten Branche, und Selbstzahler kommen nicht per Verordnung,
+  sondern per Überzeugung → genau dafür ist eine Website da.
+- Weniger überpitcht: Es gibt Physio-Marketing-Agenturen, aber als
+  Retainer-Anbieter — ein 500-€-Einstieg ohne Risiko ist dort differenziert.
+- **Referenz vorhanden:** Federleicht (Dina Römgens) ist Gesundheitscoaching —
+  ehrlich als „Gesundheitsbereich" zitierbar. Dazu GreenChild-Funnel als
+  Anfragen-Beweis.
+- Erweiterbar auf Osteopathie, Ergotherapie, Logopädie, Heilpraktiker
+  (identische Logik) — Gesamtmarkt weit über 60.000 Praxen.
+
+**Zielliste:** Inhabergeführte Physiotherapie-Praxen, 1–15 Mitarbeiter,
+deutschlandweit. Quellen: listflix-Branchendaten, Google Maps je Stadt,
+Verbandsverzeichnisse (VPT/IFK-Mitgliederlisten), Impressums-E-Mails.
+Priorisieren: Praxen, deren Website erkennbar veraltet ist / keinen
+Selbstzahler-Bereich zeigt (30-Sekunden-Check beim Listenbau).
 
 ---
 
@@ -49,47 +74,46 @@ regionale Nähe.
 1. **Nie „günstige Website" — immer „Einstiegsprojekt".** „Der Preis ist bewusst
    niedrig, weil wir zeigen wollen, wie wir arbeiten, bevor Sie uns Größeres
    anvertrauen. Die erste Arbeit ist unsere Bewerbung."
-2. **Nicht Website verkaufen — Anfragen verkaufen.** Konkret: Eigentümer-Anfragen
-   (Bewertung/Erstgespräch), nicht Käufer-Klicks.
-3. **Value in der Mail selbst:** Jede Sequenz eröffnet mit einer Insight, die der
-   Leser behalten kann, auch wenn er nie antwortet. Das unterscheidet uns von
-   „Ihre Website ist veraltet"-Spam.
-4. **Eine E-Mail = ein Gedanke = ein Reply-CTA.** Keine Links, keine Anhänge,
-   keine Kalender-Buttons — Antworten ist die einzige Handlung.
-5. **Beweis dosieren:** GreenChild-Funnel (25 qualifizierte Anfragen im 1. Monat)
-   als Wachstums-Beweis in Mail 2, nie in Mail 1. Print-Farming als Makler-
-   spezifischer Upsell-Teaser.
-6. **Risiko-Umkehr spät ausspielen:** Festpreis + Liefertermin schriftlich +
-   Nacharbeit-Garantie gehören in Mail 3 und ins Reply — nicht alles in Mail 1.
+2. **Nicht Website verkaufen — den Selbstzahler-Umsatz verkaufen.** Die Website
+   ist das Werkzeug; das Ergebnis: aus Website-Besuchern werden
+   Selbstzahler-Termine.
+3. **Value in der Mail selbst:** Jede Mail 1 enthält eine Zahl/Insight, die der
+   Inhaber behält, auch wenn er nie antwortet (82,8 %, 2,3×, 77 %).
+4. **Eine E-Mail = ein Gedanke = ein Reply-CTA.** Null Links, null Bilder,
+   null Anhänge.
+5. **Beweis dosiert in Mail 2:** Federleicht (Gesundheitsbereich) + GreenChild
+   (25 qualifizierte Anfragen im 1. Monat). Nie in Mail 1.
+6. **HWG-Sauberkeit:** Wir texten Praxis-Websites ohne Heilversprechen —
+   im Reply-Gespräch als Kompetenzbeweis nutzen, nicht in der Kaltmail.
 
 ---
 
-## 3. Sequenz A — „Die Verkäufer-Lücke" (Haupt-Angle)
+## 3. Sequenz A — „Die Selbstzahler-Lücke" (Haupt-Angle)
 
 ### A1 — Tag 0
-**Betreff (A/B):** `Ihre Website spricht die Falschen an` / `Käufer klicken. Verkäufer zahlen.`
+**Betreff (A/B):** `Ihre Website spricht die Falschen an` / `Rezept-Patienten kommen von allein`
 
 ```
 Guten Tag {{anrede}} {{lastName}},
 
-eine Beobachtung aus vielen Makler-Websites: Fast alle sind für Käufer
-gebaut — Exposés, Suchfilter, Objektgalerien. Dabei kommen Käufer von
-ganz allein, sobald das Objekt stimmt.
+eine Beobachtung aus vielen Physiopraxis-Websites: Fast alle sind für
+Kassenpatienten gebaut — Leistungsliste, Öffnungszeiten, „Rezept
+mitbringen". Dabei kommen Kassenpatienten sowieso. Ihre Warteliste
+beweist es.
 
-Ihr Geld verdienen Sie beim Verkäufer. Und der sucht auf Ihrer Website
-etwas völlig anderes: Beweise, dass Sie sein Haus zum besten Preis
-verkaufen. Verkaufserfolge. Echte Stimmen. Einen einfachen Weg zur
-ersten Einschätzung.
+Das Problem ist nicht Ihre Auslastung. Es ist, womit sie gefüllt ist:
+Kassensätze. Deshalb bauen gerade 8 von 10 Praxen Selbstzahler-Angebote
+auf — Prävention, Personal Training, Kurse. Nur: Ein Selbstzahler kommt
+nicht per Verordnung. Er muss überzeugt werden, bevor er anruft. Und
+zwar dort, wo er Sie vergleicht: auf Ihrer Website.
 
-Deshalb eine ehrliche Frage: Wie viele Eigentümer haben im letzten
-Monat über Ihre Website eine Bewertung oder ein Gespräch angefragt?
-Wenn die Antwort „kaum welche" lautet, liegt das selten an Ihrer
-Region — meistens ist die Seite schlicht für die falsche Zielgruppe
-gebaut.
+Ehrliche Frage: Wie viele Selbstzahler-Termine hat Ihre Website im
+letzten Monat gebracht? Wenn die Antwort „keine Ahnung" oder „kaum
+welche" ist — genau dafür gibt es uns.
 
-Genau solche Websites bauen wir: Seiten, die aus Besuchern Anfragen
-machen. Wie das für {{companyName}} aussähe, erkläre ich Ihnen in
-drei Sätzen — eine kurze Antwort genügt.
+Wir bauen Websites, die aus Besuchern zahlende Kunden machen. Wie das
+für {{companyName}} aussähe, erkläre ich in drei Sätzen. Eine kurze
+Antwort genügt.
 
 Mert Efe Celik
 Elevo · Digitaler Wachstumspartner
@@ -101,21 +125,24 @@ Elevo · Digitaler Wachstumspartner
 ```
 Guten Tag {{anrede}} {{lastName}},
 
-kurzer Nachtrag zu meiner letzten Mail — und Butter bei die Fische:
+kurzer Nachtrag, mit Zahlen:
 
-Wir bauen Ihnen eine Website mit einem einzigen Ziel: dass Eigentümer
-Sie kontaktieren. Klare Positionierung, Verkaufsbeweise an der
-richtigen Stelle, eine Anfrage-Strecke, die man ohne Nachdenken
-bedienen kann.
+Eine Selbstzahler-Behandlung bringt das 1,5- bis 2,3-Fache einer
+Kassenbehandlung — bei derselben Stunde Ihrer Zeit. Der Hebel liegt
+also nicht in mehr Terminen, sondern in besseren.
 
-Als Einstiegsprojekt kostet das 500 € — Festpreis, Texte inklusive,
-fertig online. Das ist kein Kampfpreis: Wir verdienen unser Geld mit
-dem, was danach kommt, falls Sie mit uns wachsen wollen. Unsere
-Werbekampagnen haben einem Kunden zuletzt 25 qualifizierte Anfragen
-im ersten Monat gebracht. Das Einstiegsprojekt ist unsere Bewerbung
-für genau diese Zusammenarbeit.
+Genau dafür bauen wir Ihnen die Website: Ihre Selbstzahler-Angebote
+sichtbar und überzeugend, Vertrauen auf den ersten Blick, ein
+Anfrageweg ohne Hürden. Als Einstiegsprojekt: 500 € Festpreis,
+Texte inklusive, fertig online.
 
-Ein einziger Alleinauftrag zahlt das zwanzigfach zurück.
+Warum so günstig? Weil wir langfristige Partner suchen, keine
+Einmal-Projekte. Wir haben u. a. für eine Gesundheitscoachin gebaut
+und für einen Kunden Werbekampagnen gefahren, die 25 qualifizierte
+Anfragen im ersten Monat brachten. Das Einstiegsprojekt ist unsere
+Bewerbung — danach entscheiden Sie, ob mehr daraus wird.
+
+Zwei Selbstzahler-Kunden, und die Seite hat sich bezahlt.
 Lohnt ein 15-Minuten-Gespräch?
 
 Mert
@@ -129,14 +156,13 @@ Guten Tag {{anrede}} {{lastName}},
 
 letzte Mail, versprochen.
 
-Vielleicht laufen Empfehlungen und Farming bei Ihnen so gut, dass Sie
-keine Website brauchen, die Verkäufer überzeugt. Dann: aufrichtigen
-Glückwunsch.
+Vielleicht ist Ihre Praxis so voll, dass Selbstzahler gerade kein
+Thema sind. Verständlich — nur: Volle Praxis heißt bei Kassensätzen
+nicht automatisch gesunde Praxis. Das wissen Sie besser als ich.
 
-Ein Gedanke bleibt trotzdem: Auch jeder Eigentümer, der über eine
-Empfehlung von Ihnen hört, googelt Sie, bevor er anruft. Ihre Website
-entscheidet mit, ob aus der Empfehlung ein Mandat wird — oder ein
-Anruf beim Kollegen.
+Ein Gedanke zum Behalten: 77 % Ihrer künftigen Patienten schauen
+sich Ihre Website an, bevor sie anrufen. Die Frage ist nur, ob die
+Seite dabei für Sie arbeitet — oder bloß existiert.
 
 Falls Sie das anpacken wollen: Festpreis, Liefertermin und unsere
 Zusage bekommen Sie schriftlich — liefert die Seite nicht, was wir
@@ -148,28 +174,29 @@ Mert
 
 ---
 
-## 4. Sequenz B — „Die Portal-Rechnung" (Unabhängigkeits-Angle)
+## 4. Sequenz B — „Der Abend-Vergleich" (Vertrauens-Angle)
 
 ### B1 — Tag 0
-**Betreff (A/B):** `die Rechnung, die jeder Makler kennt` / `Sichtbarkeit zur Miete`
+**Betreff (A/B):** `der Vergleich, den Sie nie sehen` / `20:30 Uhr, drei Praxen, ein Anruf`
 
 ```
 Guten Tag {{anrede}} {{lastName}},
 
-eine Rechnung, die jeder Makler kennt: Monat für Monat fließt Geld an
-die großen Portale — für Sichtbarkeit auf fremdem Boden, direkt neben
-Ihren Wettbewerbern, zu Preisen, die jedes Jahr steigen.
+so entscheidet sich heute, wer morgen bei Ihnen anruft:
 
-Und der einzige Ort im Netz, der wirklich Ihnen gehört — Ihre
-Website? Bei den meisten Büros ist sie eine digitale Visitenkarte:
-Man kann nachschauen, dass es Sie gibt. Mehr passiert dort nicht.
+Es ist Abend. Jemand hat Rückenschmerzen, eine Empfehlung von der
+Nachbarin und ein Handy. Er googelt — und vergleicht drei Praxen.
+Ihre ist eine davon. 77 von 100 machen das so, bevor sie zum
+Hörer greifen.
 
-Wir helfen kleinen und mittleren Maklerbüros, sich ein Stück
-unabhängiger zu machen: mit einer Website, die selbst Anfragen
-erzeugt — vor allem von Eigentümern, nicht nur von Käufern.
-Ihr eigener Kanal. Keine Miete an Dritte.
+In diesen dreißig Sekunden gewinnt nicht die Praxis mit den besten
+Händen. Sondern die, deren Website sofort zeigt: Hier wird mir
+geholfen, diesen Menschen vertraue ich, so einfach bekomme ich
+einen Termin.
 
-Wie das funktioniert, erkläre ich in zwei Sätzen — Antwort genügt.
+Wie {{companyName}} in diesem Abend-Vergleich abschneidet, sage
+ich Ihnen gern — ehrlich, kostenlos, per Mail. Antworten Sie
+einfach mit „gerne".
 
 Mert Efe Celik
 Elevo · Digitaler Wachstumspartner
@@ -181,21 +208,21 @@ Elevo · Digitaler Wachstumspartner
 ```
 Guten Tag {{anrede}} {{lastName}},
 
-versprochen waren zwei Sätze, hier sind sie:
+was im Abend-Vergleich gewinnt, ist kein Geheimnis: echte Gesichter
+statt Stockfotos, klare Angebote statt Leistungslisten im
+Fachjargon — und ein Termin, den man ohne Anruf anfragen kann.
+Gerade bei Selbstzahler-Angeboten, wo der Patient frei wählt,
+entscheidet das über Ihren Umsatz.
 
-Wir bauen Websites, die Besucher in Anfragen verwandeln — mit klarer
-Positionierung, Vertrauensbeweisen und einer Anfrage-Strecke, die
-Eigentümer tatsächlich benutzen. Als Einstiegsprojekt kostet das
-500 € Festpreis, Texte inklusive, fertig online.
+Genau solche Websites bauen wir. Als Einstiegsprojekt: 500 €
+Festpreis, Texte inklusive, fertig online. Der Preis ist bewusst
+niedrig — wir wollen zeigen, wie wir arbeiten, bevor Sie uns
+Größeres anvertrauen. Für einen Kunden brachte der nächste Schritt
+danach 25 qualifizierte Anfragen im ersten Monat. Aber das ist
+Schritt zwei.
 
-Warum so günstig? Weil wir langfristige Partner suchen, keine
-Einmal-Projekte. Danach — nur wenn Sie wollen — kommt das, womit
-wir wirklich wachsen: Werbekampagnen, die einem Kunden zuletzt
-25 qualifizierte Anfragen im ersten Monat gebracht haben. Oder
-hochwertige Print-Magazine fürs Farming, die in den Briefkästen
-Ihres Einzugsgebiets nicht untergehen wie der zwanzigste Flyer.
-
-Erst die Arbeit, dann das Vertrauen. Sprechen wir 15 Minuten?
+15 Minuten am Telefon, und Sie wissen, ob das für {{companyName}}
+passt. Wann erreiche ich Sie am besten?
 
 Mert
 ```
@@ -206,15 +233,15 @@ Mert
 ```
 Guten Tag {{anrede}} {{lastName}},
 
-dritte und letzte Mail. Es gibt zwei Möglichkeiten:
+dritte und letzte Mail. Zwei Möglichkeiten:
 
-Kein Interesse — völlig in Ordnung, Sie hören nicht mehr von mir.
+Kein Interesse — in Ordnung, Sie hören nicht mehr von mir.
 
-Oder keine Zeit — verständlich, deshalb ist das Einstiegsprojekt so
-gebaut: Von Ihnen brauchen wir insgesamt etwa eine Stunde. Ein
-Gespräch am Anfang, ein Feedback am Ende. Konzept, Texte, Design,
-Technik — machen wir. Maximales Ergebnis, minimaler Aufwand auf
-Ihrer Seite.
+Oder keine Zeit — verständlich bei vollem Terminplan. Deshalb ist
+das Einstiegsprojekt so gebaut: Von Ihnen brauchen wir insgesamt
+etwa eine Stunde. Ein Gespräch am Anfang, ein Feedback am Ende.
+Konzept, Texte, Design, Technik — machen wir, während Sie
+behandeln.
 
 Ein „okay" genügt, und ich schicke Ihnen drei Terminvorschläge.
 
@@ -223,28 +250,30 @@ Mert
 
 ---
 
-## 5. Sequenz C — „Der Sofa-Vergleich" (Empfehlungs-Angle)
+## 5. Sequenz C — „Das Rezept-Fundament" (Unabhängigkeits-Angle)
 
 ### C1 — Tag 0
-**Betreff (A/B):** `was Ihre letzte Empfehlung gegoogelt hat` / `der Vergleich, den Sie nie sehen`
+**Betreff (A/B):** `Ihr Umsatz hängt am Verordnungsblock` / `was passiert, wenn weniger Rezepte kommen?`
 
 ```
 Guten Tag {{anrede}} {{lastName}},
 
-„Wir leben von Empfehlungen" — sagt fast jeder gute Makler. Stimmt.
-Aber kaum einer bedenkt, was zwischen Empfehlung und Anruf passiert:
+eine unbequeme Frage: Wie viel Ihres Umsatzes entsteht, weil ein
+Arzt ein Rezept ausstellt — und wie viel, weil sich jemand aktiv
+für {{companyName}} entschieden hat?
 
-Der Eigentümer googelt Sie. Abends, auf dem Sofa, neben zwei anderen
-Namen, die ihm ebenfalls empfohlen wurden. Er vergleicht drei
-Websites — und ruft einen an.
+Bei den meisten Praxen ist die Antwort unangenehm eindeutig. Das
+Geschäft hängt am Verordnungsblock anderer Leute und an Kassensätzen,
+über die andere verhandeln. Deshalb bauen 8 von 10 Praxen gerade ein
+zweites Standbein auf: Selbstzahler-Angebote, bei denen Sie Preis
+und Auslastung selbst bestimmen.
 
-In diesem Moment gewinnt nicht, wer tatsächlich die meisten
-Abschlüsse hat. Sondern wessen Website in dreißig Sekunden beweist:
-Der verkauft mein Haus zum besten Preis.
+Nur braucht dieses Standbein einen eigenen Kanal. Selbstzahler
+werden nicht überwiesen — sie suchen, vergleichen und entscheiden
+online.
 
-Wie {{companyName}} in diesem Sofa-Vergleich abschneidet, sage ich
-Ihnen gern — ehrlich, kostenlos, per Mail. Antworten Sie einfach
-mit „gerne".
+Wir bauen Websites, die genau diese Entscheidung gewinnen. Wie das
+für Ihre Praxis aussähe: drei Sätze, eine kurze Antwort genügt.
 
 Mert Efe Celik
 Elevo · Digitaler Wachstumspartner
@@ -256,20 +285,18 @@ Elevo · Digitaler Wachstumspartner
 ```
 Guten Tag {{anrede}} {{lastName}},
 
-was im Sofa-Vergleich gewinnt, ist kein Geheimnis: echte
-Verkaufsgeschichten statt „50 Jahre Erfahrung", Gesichter statt
-Stockfotos — und ein Angebot, das ein Eigentümer sofort annehmen
-kann, etwa eine fundierte Ersteinschätzung seiner Immobilie.
+die versprochenen drei Sätze:
 
-Genau solche Websites bauen wir. Als Einstiegsprojekt: 500 €
-Festpreis, Texte inklusive, fertig online. Der Preis ist bewusst
-niedrig — nicht weil die Arbeit wenig wert wäre, sondern weil wir
-zeigen wollen, wie wir arbeiten, bevor Sie uns Größeres anvertrauen.
-Was danach möglich ist, zeigt eine unserer Kampagnen: 25
-qualifizierte Anfragen im ersten Monat. Aber das ist Schritt zwei.
+Wir bauen Ihnen eine Website, die Ihre Selbstzahler-Angebote so
+präsentiert, dass Menschen sie verstehen, ihnen vertrauen und
+anfragen — statt einer digitalen Visitenkarte mit Leistungsliste.
+Als Einstiegsprojekt kostet das 500 € Festpreis, Texte inklusive,
+fertig online. Danach entscheiden Sie, ob wir gemeinsam weitergehen —
+etwa mit Kampagnen wie der, die einem Kunden 25 qualifizierte
+Anfragen im ersten Monat gebracht hat.
 
-15 Minuten am Telefon, und Sie wissen, ob das für {{companyName}}
-passt. Wann erreiche ich Sie?
+Das waren die drei Sätze. Der Rest ist ein 15-Minuten-Gespräch:
+Wann passt es Ihnen?
 
 Mert
 ```
@@ -282,13 +309,12 @@ Guten Tag {{anrede}} {{lastName}},
 
 bevor ich die Akte schließe, ein letzter Gedanke:
 
-Der nächste Alleinauftrag, der Ihnen entgeht, wird sich nicht melden
-und absagen. Der Eigentümer ruft einfach den anderen an — den mit
-der Website, die ihn überzeugt hat. Das Tückische an diesem Verlust:
-Sie sehen ihn nie.
+Der nächste Selbstzahler, der Ihnen entgeht, sagt nicht ab. Er
+bucht einfach woanders — bei der Praxis, deren Website ihn
+überzeugt hat. Das Tückische an diesem Verlust: Sie sehen ihn nie.
 
 Wenn wir das ändern sollen: Eine Antwort genügt.
-Wenn nicht: Danke für Ihre Zeit — und gute Abschlüsse.
+Wenn nicht: Danke für Ihre Zeit — und weiterhin volle Bücher.
 
 Mert
 ```
@@ -299,33 +325,34 @@ Mert
 
 - **Struktur:** 3 Kampagnen (A/B/C), Liste dritteln. Nach 200–300 Sends pro
   Angle Reply-Raten vergleichen, Gewinner skalieren. Hypothese: A gewinnt
-  (schärfste Insight), C holt die „Empfehlungs-stolzen" Büros ab.
-- **Variablen:** `{{anrede}}` (Inhalt „Herr"/„Frau"!), `{{lastName}}`, `{{companyName}}`.
-  Bewusst wenige — die Personalisierung liegt in der Branchen-Präzision, nicht
-  in Mail-Merge-Spielereien.
-- **Versand:** Mo–Do 7:30–10:30, max. 25–30/Tag/Postfach, 2–3 Wochen Warm-up,
-  SPF/DKIM/DMARC prüfen.
-- **Deliverability-Vorteil dieser Version:** **Null Links, null Bilder, null
-  Anhänge** in allen neun Mails — bestmögliche Zustellbarkeit. Opt-out als
-  Satz („kein Interesse genügt"), kein Abmelde-Footer.
-- **Rechtlicher Hinweis:** B2B-Kaltakquise per E-Mail ist in DE UWG-Grauzone.
-  Nur geschäftliche Adressen, Ablehnungen sofort und dauerhaft austragen.
+  (schärfste Zahlen-Insight), B holt die „wir sind doch voll"-Praxen ab.
+- **Variablen:** `{{anrede}}` („Herr"/„Frau"!), `{{lastName}}`, `{{companyName}}`
+  (= Praxisname, ggf. gekürzt: „Physiotherapie Müller" → „Ihre Praxis" testen).
+- **Versand:** Mo–Do 7:00–8:30 oder 12:30–14:00 (Behandlungspausen!),
+  max. 25–30/Tag/Postfach, 2–3 Wochen Warm-up, SPF/DKIM/DMARC.
+- **Deliverability:** Null Links, null Bilder, null Anhänge in allen neun
+  Mails. Opt-out als Satz, kein Abmelde-Footer.
+- **Rechtlich:** B2B-Kaltakquise per E-Mail = UWG-Grauzone; nur
+  Praxis-Adressen (Impressum), Ablehnungen sofort und dauerhaft austragen.
 
 ## 7. Reply-Playbook
 
 | Reply | Antwort-Kern |
 |---|---|
-| „Was ist der Haken bei 500 €?" | Kein Haken, ein Kalkül: Das Einstiegsprojekt ist unsere Bewerbung. Wir verdienen, wenn Sie danach mit uns wachsen (Eigentümer-Funnel, Farming-Print). Festpreis + Liefertermin schriftlich, Nacharbeit-Garantie. |
-| „Wir leben von Empfehlungen" | „Perfekt — Empfehlungen googeln Sie, bevor sie anrufen. Die Website entscheidet, ob aus der Empfehlung ein Mandat wird. Sie muss nichts erzeugen, nur nichts verlieren." |
-| „ImmoScout reicht uns" | „Fürs Verkaufen ja. Fürs Einkaufen von Mandaten nicht — dort stehen Sie neben jedem Wettbewerber. Die eigene Seite ist der einzige Kanal ohne Vergleichsliste daneben." |
-| „Haben schon eine Website" | „Die Frage ist nicht ob, sondern was sie einbringt: Wie viele Eigentümer-Anfragen kamen letzten Monat darüber?" → ehrlicher Kurz-Check per Mail. |
-| „Keine Zeit" | „Deshalb: eine Stunde Ihrer Zeit insgesamt. Gespräch am Anfang, Feedback am Ende — den Rest machen wir." |
-| „Zu teuer" | Rechnung: 1 Alleinauftrag ≈ 20–40× der Investition. Wenn 500 € die Hürde sind → höflich disqualifizieren (kein Fit). |
+| „Wir sind voll / Warteliste" | „Voll mit Kassensätzen. Der Hebel ist nicht mehr Termine, sondern bessere: Selbstzahler bringen das Doppelte pro Stunde. Die Website entscheidet, ob Sie die bekommen." |
+| „Was ist der Haken bei 500 €?" | Kein Haken, ein Kalkül: Einstiegsprojekt = unsere Bewerbung. Wir verdienen, wenn Sie danach mit uns wachsen (Kampagnen, Google-Profil). Festpreis + Liefertermin schriftlich, Nacharbeit-Garantie. |
+| „Haben schon eine Website" | „Die Frage ist, was sie einbringt: Wie viele Selbstzahler-Anfragen kamen letzten Monat darüber?" → kostenloser Kurz-Check per Mail. |
+| „Doctolib reicht uns" | „Doctolib verwaltet Termine von Menschen, die sich schon entschieden haben. Die Website überzeugt die, die noch vergleichen — das ist der Schritt davor." |
+| „Dürfen wir überhaupt werben?" (HWG) | „Sachliche Information ist erlaubt, Heilversprechen nicht — genau so texten wir. Das ist einer der Gründe, eine Praxis-Website nicht vom Baukasten machen zu lassen." |
+| „Keine Zeit" | „Eine Stunde Ihrer Zeit insgesamt: Gespräch am Anfang, Feedback am Ende. Den Rest machen wir, während Sie behandeln." |
+| „Zu teuer" | Rechnung: 2 Selbstzahler-Kunden ≈ Website bezahlt. Wenn 500 € die Hürde sind → höflich disqualifizieren. |
 
 ## 8. Ehrliche Erwartungswerte
 
-Kalt-E-Mail B2B, saubere Liste, präzise Branchen-Insight: **2–6 % Reply-Rate**,
-davon ⅓–½ positiv. 1.000 Kontakte → realistisch 8–20 ernsthafte Gespräche →
-**3–8 Einstiegsprojekte**. Der eigentliche Gewinn liegt im Upsell-Pfad:
-Eigentümer-Lead-Funnel und Farming-Magazine sind bei Maklern natürliche
-nächste Schritte — genau Elevos Kerngeschäft.
+Kalt-E-Mail an Praxisinhaber, saubere Liste, Zahlen-gestützte Insight:
+**2–6 % Reply-Rate**, davon ⅓–½ positiv. 1.000 Praxen → realistisch 8–20
+ernsthafte Gespräche → **3–8 Einstiegsprojekte**. Upsell-Pfad: lokale
+Google-Ads für Selbstzahler-Angebote (GreenChild-Playbook), Google-Profil-
+Pflege, später Print (Praxis-Flyer/Patientenmagazin). Erweiterung auf
+Osteopathie/Ergotherapie/Logopädie mit identischer Sequenz-Logik möglich —
+nur Zahlen und Vokabular tauschen.
