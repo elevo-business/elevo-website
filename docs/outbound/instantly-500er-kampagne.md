@@ -1,170 +1,178 @@
-# Instantly-Kampagne: Das 500-€-Einstiegsprojekt (GaLaBau)
+# Instantly-Kampagne: Das 500-€-Einstiegsprojekt (Immobilienmakler)
 
 > Kalt-E-Mail-Kampagne für das 500-€-Website-Offer, geframt als Einstieg in eine
-> Wachstumspartnerschaft — nicht als Billig-Angebot. Drei Sequenzen à 3 E-Mails
-> zum A/B/C-Test. Stand: Juli 2026.
+> Wachstumspartnerschaft — nicht als Billig-Angebot. **Reine Text-E-Mails, keine
+> Preview-Websites, keine Links.** Drei Sequenzen à 3 E-Mails zum A/B/C-Test.
+> Version 2 (ersetzt GaLaBau-Ansatz). Stand: Juli 2026.
 
 ---
 
-## 1. Branchen-Entscheidung: Garten- und Landschaftsbau (GaLaBau)
+## 1. Branchen-Entscheidung: Immobilienmakler (kleine, inhabergeführte Büros)
 
-**Warum GaLaBau und nicht Zahnärzte** (für beide existieren Preview-Templates):
+Anforderung: digital offene Branche, kleine Unternehmen ansprechbar, 500 € als
+No-Brainer, großer adressierbarer Markt, ohne Preview-Aufwand pitchbar.
 
-| Kriterium | GaLaBau | Zahnärzte |
-|---|---|---|
-| Wer liest die E-Mail? | Inhaber selbst | Rezeption (Gatekeeper) |
-| Wirkung von „500 € Festpreis" | No-Brainer (Angebote sonst 3–6k) | Wirkt unseriös (Erwartung 5–10k) |
-| Ein Neukunde ist wert | 5.000–50.000 € Projektvolumen | hoch, aber Praxen sind übersättigt mit Agentur-Pitches |
-| Website-Qualität im Markt | überwiegend veraltet | mittelmäßig bis gut |
-| Upsell-Pfad | Google-Profil, Saison-Ads, Magazin | schwierig (HWG-Werberecht) |
+| Kriterium | Immobilienmakler | Coaches/Berater | Küchenstudios | Kosmetik/Beauty |
+|---|---|---|---|---|
+| Digital offen? | **Sehr** — Leads sind ihr Geschäftsmodell, zahlen bereits monatlich für Portale | Sehr, aber übersättigt mit Funnel-Agentur-Pitches | Mittel | Mittel (Instagram-nativ, aber Buchungs-Apps decken viel ab) |
+| Liest der Entscheider die Mail? | **Ja** (Inhaber, meist 1–5 Personen) | Ja | Ja | Ja |
+| Wert eines Neukunden | **Alleinauftrag = 10.000–20.000 € Provision** | 2–10k, aber oft knappe Kassen | 20–50k Küche | 500–2.000 LTV |
+| Marktgröße DE | **Zehntausende Büros, überwiegend Kleinstbetriebe** | groß, aber diffus | ~8.000 | groß, kleinteilig |
+| Versteht „Website → Anfragen" sofort? | **Ja — denken bereits in Leads** | ja | teilweise | teilweise |
+| Elevo-Upsell-Pfad | **Perfekt:** Eigentümer-Lead-Funnel (Google/Meta = GreenChild-Beweis), Farming-**Print-Magazine** | Ads | Ads | Ads |
 
-**Wichtig fürs Framing:** Ein einziger vermittelter Auftrag zahlt beim GaLaBau-Betrieb
-die Website hundertfach — deshalb funktioniert „Website, die Anfragen bringt" hier
-als Rechnung, nicht als Behauptung.
+**Entscheidung: Immobilienmakler.** Kein anderes Segment denkt so selbstverständlich
+in Anfragen und Marketing-Ausgaben — und keins passt besser zum vollen
+Elevo-Stack (Website → Ad-Funnel → Print-Farming). Ein einziger Alleinauftrag
+zahlt das Einstiegsprojekt zwanzigfach; diese Rechnung muss man Maklern nicht
+erklären.
 
-**Saison-Realität (Juli):** Hochsaison — Betriebe sind voll. Das ist kein Gegenargument,
-sondern Teil der Copy (siehe B3/C3): „Wenn im Herbst die Anfragen dünner werden…"
-Wer jetzt sät, erntet die Abschlüsse im Spätsommer/Herbst, wenn Planungszeit beginnt.
+**Die Kern-Insight, die die ganze Kampagne trägt (und die kaum eine
+Webagentur pitcht):**
 
-**Zielliste:** Inhabergeführte GaLaBau-/Gartenbau-Betriebe, 3–30 Mitarbeiter,
-NRW-Fokus (Städteregion Aachen, Heinsberg, Düren als Kern für Sequenz C),
-Website vorhanden aber >4 Jahre alt / nicht mobiltauglich / ohne klare Anfrage-Strecke.
+> **Makler-Websites sind für Käufer gebaut (Exposés, Suchfilter). Geld verdient
+> der Makler aber beim Verkäufer — und der sucht auf der Website etwas völlig
+> anderes: Beweise, dass dieser Makler sein Haus zum besten Preis verkauft.**
 
----
+Damit verkaufen wir keine „Website" (davon bekommt jeder Makler drei Pitches
+pro Woche), sondern die Schließung der Verkäufer-Lücke.
 
-## 2. Framing-Prinzipien (aus Positionierung + Hormozi)
-
-1. **Nie „günstige Website".** Immer: **Einstiegsprojekt**. Der Preis ist niedrig,
-   weil wir langfristige Partner suchen und mit Arbeit überzeugen statt mit PowerPoint.
-   „Die erste Arbeit ist unsere Bewerbung."
-2. **Nicht Website verkaufen — Anfragen verkaufen.** Die Website ist das Werkzeug,
-   das Ergebnis ist: aus Besuchern werden Interessenten. Beweise: Akropolis
-   (Gastronomie, Region), GreenChild (25 qualifizierte Anfragen im ersten Monat
-   über unseren Funnel), Federleicht, Brands Marketing Lab.
-3. **Beweis vor Behauptung.** Sequenz A liefert den Beweis in der Inbox
-   (fertige Preview). Sequenzen B/C liefern Insight + Case.
-4. **Eine E-Mail = ein Gedanke = ein CTA.** Reply-basierte CTAs („Antwort genügt"),
-   keine Kalender-Links in E-Mail 1.
-5. **Risiko-Umkehr dosieren:** Festpreis + Liefertermin schriftlich + Nacharbeit-Garantie —
-   aber erst in E-Mail 3 bzw. im Reply ausspielen, nicht alles in Mail 1 verschießen.
+**Zielliste:** Inhabergeführte Maklerbüros 1–10 Personen, keine Franchise-Zentralen
+(Engel & Völkers, RE/MAX etc. entscheiden zentral). Quellen: IVD-Mitgliederverzeichnis,
+Portal-Profile, Google Maps je Stadt. Deutschlandweit — das Offer braucht keine
+regionale Nähe.
 
 ---
 
-## 3. Sequenz A — „Der Entwurf" (Preview-Angle, unser bewährter Türöffner)
+## 2. Framing-Prinzipien
 
-**Für:** Prospects, für die vorher eine Preview generiert wurde (Template-System,
-~20–30 Min/Prospect). Höchste Reply-Rate, geringste Skalierung. Custom-Variablen:
-`{{previewLink}}`, `{{personalHook}}`, `{{deadline}}` (14 Tage nach Versand).
+1. **Nie „günstige Website" — immer „Einstiegsprojekt".** „Der Preis ist bewusst
+   niedrig, weil wir zeigen wollen, wie wir arbeiten, bevor Sie uns Größeres
+   anvertrauen. Die erste Arbeit ist unsere Bewerbung."
+2. **Nicht Website verkaufen — Anfragen verkaufen.** Konkret: Eigentümer-Anfragen
+   (Bewertung/Erstgespräch), nicht Käufer-Klicks.
+3. **Value in der Mail selbst:** Jede Sequenz eröffnet mit einer Insight, die der
+   Leser behalten kann, auch wenn er nie antwortet. Das unterscheidet uns von
+   „Ihre Website ist veraltet"-Spam.
+4. **Eine E-Mail = ein Gedanke = ein Reply-CTA.** Keine Links, keine Anhänge,
+   keine Kalender-Buttons — Antworten ist die einzige Handlung.
+5. **Beweis dosieren:** GreenChild-Funnel (25 qualifizierte Anfragen im 1. Monat)
+   als Wachstums-Beweis in Mail 2, nie in Mail 1. Print-Farming als Makler-
+   spezifischer Upsell-Teaser.
+6. **Risiko-Umkehr spät ausspielen:** Festpreis + Liefertermin schriftlich +
+   Nacharbeit-Garantie gehören in Mail 3 und ins Reply — nicht alles in Mail 1.
+
+---
+
+## 3. Sequenz A — „Die Verkäufer-Lücke" (Haupt-Angle)
 
 ### A1 — Tag 0
-**Betreff (A/B):** `Ihre neue Startseite ist fertig, {{companyName}}` / `Wir haben etwas für Sie gebaut`
+**Betreff (A/B):** `Ihre Website spricht die Falschen an` / `Käufer klicken. Verkäufer zahlen.`
 
 ```
 Guten Tag {{anrede}} {{lastName}},
 
-wir haben ungefragt etwas gebaut, das Ihnen gehört: einen Entwurf für die
-neue Startseite von {{companyName}}. Kostenlos, ohne Bedingung — hier ist er:
+eine Beobachtung aus vielen Makler-Websites: Fast alle sind für Käufer
+gebaut — Exposés, Suchfilter, Objektgalerien. Dabei kommen Käufer von
+ganz allein, sobald das Objekt stimmt.
 
-{{previewLink}}
+Ihr Geld verdienen Sie beim Verkäufer. Und der sucht auf Ihrer Website
+etwas völlig anderes: Beweise, dass Sie sein Haus zum besten Preis
+verkaufen. Verkaufserfolge. Echte Stimmen. Einen einfachen Weg zur
+ersten Einschätzung.
 
-Warum? {{personalHook}} Ihre Arbeit hat uns überzeugt. Ihre Website
-verkauft sie nicht.
+Deshalb eine ehrliche Frage: Wie viele Eigentümer haben im letzten
+Monat über Ihre Website eine Bewertung oder ein Gespräch angefragt?
+Wenn die Antwort „kaum welche" lautet, liegt das selten an Ihrer
+Region — meistens ist die Seite schlicht für die falsche Zielgruppe
+gebaut.
 
-Wir sind Elevo aus der Städteregion Aachen und bauen Websites mit einem
-einzigen Ziel: aus Besuchern Anfragen machen. Zuletzt unter anderem für
-ein Restaurant aus der Region und für ein Startup, dem unser Funnel
-25 qualifizierte Anfragen im ersten Monat gebracht hat.
-
-Wenn Ihnen der Entwurf gefällt, bauen wir die komplette Website fertig —
-Texte, Technik, online: 500 € Festpreis. Das ist kein Kampfpreis, sondern
-unser Einstiegsprojekt. Wir wollen zeigen, wie wir arbeiten, bevor Sie
-uns Größeres anvertrauen.
-
-Einen Blick wert?
+Genau solche Websites bauen wir: Seiten, die aus Besuchern Anfragen
+machen. Wie das für {{companyName}} aussähe, erkläre ich Ihnen in
+drei Sätzen — eine kurze Antwort genügt.
 
 Mert Efe Celik
-Elevo · Städteregion Aachen
+Elevo · Digitaler Wachstumspartner
 ```
 
-*Beispiel für `{{personalHook}}`:* „Ihre Referenz-Gärten auf Facebook sind stark —
-auf Ihrer Website findet man sie erst nach vier Klicks."
-
 ### A2 — Tag 3 (gleicher Thread)
-**Betreff:** `Re:` (Thread-Reply)
+**Betreff:** `Re:`
 
 ```
 Guten Tag {{anrede}} {{lastName}},
 
-kurz nachgefasst — haben Sie den Entwurf gesehen?
+kurzer Nachtrag zu meiner letzten Mail — und Butter bei die Fische:
 
-{{previewLink}}
+Wir bauen Ihnen eine Website mit einem einzigen Ziel: dass Eigentümer
+Sie kontaktieren. Klare Positionierung, Verkaufsbeweise an der
+richtigen Stelle, eine Anfrage-Strecke, die man ohne Nachdenken
+bedienen kann.
 
-Ein Gedanke dazu: Die meisten GaLaBau-Websites zeigen schöne Gärten.
-Aber wer zum ersten Mal auf Ihrer Seite landet, stellt drei Fragen:
-Machen die genau das, was ich brauche? Kann ich denen vertrauen?
-Und wie komme ich unkompliziert ins Gespräch?
+Als Einstiegsprojekt kostet das 500 € — Festpreis, Texte inklusive,
+fertig online. Das ist kein Kampfpreis: Wir verdienen unser Geld mit
+dem, was danach kommt, falls Sie mit uns wachsen wollen. Unsere
+Werbekampagnen haben einem Kunden zuletzt 25 qualifizierte Anfragen
+im ersten Monat gebracht. Das Einstiegsprojekt ist unsere Bewerbung
+für genau diese Zusammenarbeit.
 
-Jede Frage, die offen bleibt, kostet eine Anfrage. Genau darauf ist
-der Entwurf gebaut.
-
-Wenn es gerade nicht passt: Ein kurzes „kein Bedarf" genügt, dann
-sind Sie mich los.
+Ein einziger Alleinauftrag zahlt das zwanzigfach zurück.
+Lohnt ein 15-Minuten-Gespräch?
 
 Mert
 ```
 
 ### A3 — Tag 8 (gleicher Thread)
-**Betreff:** `bevor der Entwurf offline geht`
+**Betreff:** `letzte Mail von mir`
 
 ```
 Guten Tag {{anrede}} {{lastName}},
 
-wir halten jeden Entwurf 14 Tage online, danach räumen wir auf —
-Ihrer geht am {{deadline}} vom Netz.
+letzte Mail, versprochen.
 
-Kein Drama: Wenn die Website für {{companyName}} gerade keine
-Priorität hat, ist das völlig in Ordnung.
+Vielleicht laufen Empfehlungen und Farming bei Ihnen so gut, dass Sie
+keine Website brauchen, die Verkäufer überzeugt. Dann: aufrichtigen
+Glückwunsch.
 
-Falls doch, antworten Sie einfach mit „interessant". Sie bekommen
-dann drei Terminvorschläge für 15 Minuten — und von uns den Festpreis
-(500 €), den Liefertermin und unsere Zusage schriftlich: Liefert die
-Seite nicht, was wir versprochen haben, arbeiten wir nach, bis es sitzt.
+Ein Gedanke bleibt trotzdem: Auch jeder Eigentümer, der über eine
+Empfehlung von Ihnen hört, googelt Sie, bevor er anruft. Ihre Website
+entscheidet mit, ob aus der Empfehlung ein Mandat wird — oder ein
+Anruf beim Kollegen.
+
+Falls Sie das anpacken wollen: Festpreis, Liefertermin und unsere
+Zusage bekommen Sie schriftlich — liefert die Seite nicht, was wir
+versprochen haben, arbeiten wir nach, bis es sitzt. Eine kurze
+Antwort genügt, den Rest mache ich.
 
 Mert
 ```
 
 ---
 
-## 4. Sequenz B — „Der stille Vertriebler" (Insight-Angle, skaliert ohne Preview)
-
-**Für:** Die breite Liste. Kein Vorlauf pro Prospect nötig. E-Mail 1 verkauft
-nicht das Offer, sondern einen kostenlosen 3-Punkte-Teardown → maximale Replies,
-Offer kommt in Mail 2.
+## 4. Sequenz B — „Die Portal-Rechnung" (Unabhängigkeits-Angle)
 
 ### B1 — Tag 0
-**Betreff (A/B):** `die drei Fragen, die {{companyName}} Aufträge kosten` / `wer Sie googelt, entscheidet in Sekunden`
+**Betreff (A/B):** `die Rechnung, die jeder Makler kennt` / `Sichtbarkeit zur Miete`
 
 ```
 Guten Tag {{anrede}} {{lastName}},
 
-eine unbequeme Wahrheit über Websites im Garten- und Landschaftsbau:
-Die meisten sind digitale Visitenkarten. Man kann nachschauen, dass es
-Sie gibt — mehr passiert dort nicht.
+eine Rechnung, die jeder Makler kennt: Monat für Monat fließt Geld an
+die großen Portale — für Sichtbarkeit auf fremdem Boden, direkt neben
+Ihren Wettbewerbern, zu Preisen, die jedes Jahr steigen.
 
-Dabei googelt Sie heute fast jeder größere Auftrag, bevor er anruft.
-Und entscheidet in Sekunden: Machen die genau das, was ich brauche?
-Wirken die vertrauenswürdig? Wie frage ich an? Bleibt eine dieser
-Fragen offen, geht der Auftrag zum Wettbewerber — und Sie erfahren
-es nie.
+Und der einzige Ort im Netz, der wirklich Ihnen gehört — Ihre
+Website? Bei den meisten Büros ist sie eine digitale Visitenkarte:
+Man kann nachschauen, dass es Sie gibt. Mehr passiert dort nicht.
 
-Mein Angebot, ohne Haken: Ich schaue mir Ihre Website an und schicke
-Ihnen die drei Stellen, an denen Sie Anfragen verlieren. Kostenlos,
-per E-Mail, kein Termin nötig.
+Wir helfen kleinen und mittleren Maklerbüros, sich ein Stück
+unabhängiger zu machen: mit einer Website, die selbst Anfragen
+erzeugt — vor allem von Eigentümern, nicht nur von Käufern.
+Ihr eigener Kanal. Keine Miete an Dritte.
 
-Antworten Sie einfach mit „gerne".
+Wie das funktioniert, erkläre ich in zwei Sätzen — Antwort genügt.
 
 Mert Efe Celik
-Elevo · Websites, die aus Besuchern Anfragen machen
+Elevo · Digitaler Wachstumspartner
 ```
 
 ### B2 — Tag 3 (gleicher Thread)
@@ -173,79 +181,73 @@ Elevo · Websites, die aus Besuchern Anfragen machen
 ```
 Guten Tag {{anrede}} {{lastName}},
 
-vielleicht war meine letzte Mail zu abstrakt. Konkret:
+versprochen waren zwei Sätze, hier sind sie:
 
-Sie würden keinen Garten auf verdichtetem Boden anlegen — erst der
-Unterbau, dann die Bepflanzung. Genauso bauen wir Websites: erst die
-Struktur, die Besucher zu einer Anfrage führt, dann das Schöne.
-Für ein Startup hat diese Arbeitsweise zuletzt 25 qualifizierte
-Anfragen im ersten Monat gebracht.
+Wir bauen Websites, die Besucher in Anfragen verwandeln — mit klarer
+Positionierung, Vertrauensbeweisen und einer Anfrage-Strecke, die
+Eigentümer tatsächlich benutzen. Als Einstiegsprojekt kostet das
+500 € Festpreis, Texte inklusive, fertig online.
 
-Und weil „Agentur" oft nach fünfstelligen Angeboten klingt: Unser
-Einstiegsprojekt — komplette Website, Texte inklusive, fertig
-online — kostet 500 € Festpreis. Danach entscheiden Sie, ob mehr
-daraus wird. So gewinnen wir Kunden: mit Arbeit statt mit Versprechen.
+Warum so günstig? Weil wir langfristige Partner suchen, keine
+Einmal-Projekte. Danach — nur wenn Sie wollen — kommt das, womit
+wir wirklich wachsen: Werbekampagnen, die einem Kunden zuletzt
+25 qualifizierte Anfragen im ersten Monat gebracht haben. Oder
+hochwertige Print-Magazine fürs Farming, die in den Briefkästen
+Ihres Einzugsgebiets nicht untergehen wie der zwanzigste Flyer.
 
-Lohnt ein kurzes Gespräch? Antwort genügt.
+Erst die Arbeit, dann das Vertrauen. Sprechen wir 15 Minuten?
 
 Mert
 ```
 
 ### B3 — Tag 8 (gleicher Thread)
-**Betreff:** `letzte Mail — und ein Satz zum Merken`
+**Betreff:** `kein Interesse — oder keine Zeit?`
 
 ```
 Guten Tag {{anrede}} {{lastName}},
 
-dritte und letzte Mail, versprochen.
+dritte und letzte Mail. Es gibt zwei Möglichkeiten:
 
-Wahrscheinlich sind Sie mitten in der Saison und mit Aufträgen voll —
-dann ist jetzt schlicht der falsche Moment, das verstehe ich.
+Kein Interesse — völlig in Ordnung, Sie hören nicht mehr von mir.
 
-Eine Bitte trotzdem: Merken Sie sich einen Satz. Wenn im Herbst die
-Anfragen dünner werden, liegt das selten an der Jahreszeit — meistens
-an einer Website, die Besucher nicht in Anfragen verwandelt.
+Oder keine Zeit — verständlich, deshalb ist das Einstiegsprojekt so
+gebaut: Von Ihnen brauchen wir insgesamt etwa eine Stunde. Ein
+Gespräch am Anfang, ein Feedback am Ende. Konzept, Texte, Design,
+Technik — machen wir. Maximales Ergebnis, minimaler Aufwand auf
+Ihrer Seite.
 
-Wenn Sie das dann angehen wollen: Diese Adresse funktioniert das
-ganze Jahr.
+Ein „okay" genügt, und ich schicke Ihnen drei Terminvorschläge.
 
-Beste Grüße aus der Städteregion Aachen,
 Mert
 ```
 
 ---
 
-## 5. Sequenz C — „Aus der Region" (Lokal-Angle für NRW-Teilliste)
-
-**Für:** Prospects im Umkreis ~50 km (Städteregion Aachen, Kreis Heinsberg, Düren).
-Vertrauens-Hebel: Nähe + regionale Referenzen. Custom-Variable: `{{city}}`.
+## 5. Sequenz C — „Der Sofa-Vergleich" (Empfehlungs-Angle)
 
 ### C1 — Tag 0
-**Betreff (A/B):** `{{city}}: Wer „Gartenbau" googelt, findet wen?` / `ein Vorschlag von nebenan`
+**Betreff (A/B):** `was Ihre letzte Empfehlung gegoogelt hat` / `der Vergleich, den Sie nie sehen`
 
 ```
 Guten Tag {{anrede}} {{lastName}},
 
-machen Sie einmal den Test: Googeln Sie „Gartenbau {{city}}".
-Wer dort oben steht und überzeugt, bekommt die Anfragen. Wer mit
-einer veralteten Website dasteht, verliert sie an den Nächstbesten —
-bei Auftragswerten, für die sich jeder verlorene Klick rechnet.
+„Wir leben von Empfehlungen" — sagt fast jeder gute Makler. Stimmt.
+Aber kaum einer bedenkt, was zwischen Empfehlung und Anruf passiert:
 
-Wir sind Elevo aus der Städteregion Aachen — keine anonyme
-Online-Agentur. Für Unternehmen aus der Region haben wir Websites,
-Magazine und Werbekampagnen gebaut, vom Restaurant bis zum Startup
-mit 25 qualifizierten Anfragen im ersten Monat.
+Der Eigentümer googelt Sie. Abends, auf dem Sofa, neben zwei anderen
+Namen, die ihm ebenfalls empfohlen wurden. Er vergleicht drei
+Websites — und ruft einen an.
 
-Unser Einstieg für Betriebe von hier: die komplette neue Website
-für 500 € Festpreis. Nicht, weil sie wenig wert ist — sondern weil
-wir in der Region langfristige Partner suchen und lieber mit Arbeit
-überzeugen als mit Hochglanz-Präsentationen.
+In diesem Moment gewinnt nicht, wer tatsächlich die meisten
+Abschlüsse hat. Sondern wessen Website in dreißig Sekunden beweist:
+Der verkauft mein Haus zum besten Preis.
 
-15 Minuten am Telefon und Sie wissen, ob sich das für {{companyName}}
-lohnt. Wann passt es Ihnen?
+Wie {{companyName}} in diesem Sofa-Vergleich abschneidet, sage ich
+Ihnen gern — ehrlich, kostenlos, per Mail. Antworten Sie einfach
+mit „gerne".
 
 Mert Efe Celik
-Elevo · Städteregion Aachen
+Elevo · Digitaler Wachstumspartner
 ```
 
 ### C2 — Tag 4 (gleicher Thread)
@@ -254,40 +256,40 @@ Elevo · Städteregion Aachen
 ```
 Guten Tag {{anrede}} {{lastName}},
 
-nur ein kurzer Nachtrag, warum ich ausgerechnet Ihnen schreibe:
+was im Sofa-Vergleich gewinnt, ist kein Geheimnis: echte
+Verkaufsgeschichten statt „50 Jahre Erfahrung", Gesichter statt
+Stockfotos — und ein Angebot, das ein Eigentümer sofort annehmen
+kann, etwa eine fundierte Ersteinschätzung seiner Immobilie.
 
-Im GaLaBau entscheidet Vertrauen. Ihre Kunden geben mehrere tausend
-Euro aus, ohne das Ergebnis vorher zu sehen — deshalb prüfen sie
-Sie vorher online. Eine Website, die Referenzen, Handschrift und
-einen klaren Weg zur Anfrage zeigt, ist dort kein Schmuck. Sie ist
-Ihr fleißigster Mitarbeiter: arbeitet nachts, am Wochenende und
-in der Hochsaison.
+Genau solche Websites bauen wir. Als Einstiegsprojekt: 500 €
+Festpreis, Texte inklusive, fertig online. Der Preis ist bewusst
+niedrig — nicht weil die Arbeit wenig wert wäre, sondern weil wir
+zeigen wollen, wie wir arbeiten, bevor Sie uns Größeres anvertrauen.
+Was danach möglich ist, zeigt eine unserer Kampagnen: 25
+qualifizierte Anfragen im ersten Monat. Aber das ist Schritt zwei.
 
-Falls Sie sich fragen, wie so etwas bei uns aussieht: Ich schicke
-Ihnen gern zwei Beispiele aus der Region — ein kurzes „zeigen"
-genügt.
+15 Minuten am Telefon, und Sie wissen, ob das für {{companyName}}
+passt. Wann erreiche ich Sie?
 
 Mert
 ```
 
 ### C3 — Tag 9 (gleicher Thread)
-**Betreff:** `kein Bedarf in {{city}}?`
+**Betreff:** `Akte {{companyName}}`
 
 ```
 Guten Tag {{anrede}} {{lastName}},
 
-ich schließe die Akte {{companyName}} — vorher ein letztes,
-ehrliches Angebot:
+bevor ich die Akte schließe, ein letzter Gedanke:
 
-Das Einstiegsprojekt (komplette Website, 500 € Festpreis, Liefertermin
-schriftlich) vergeben wir bewusst nur an eine Handvoll Betriebe
-gleichzeitig, weil jede Seite bei uns von Hand entsteht. Aktuell ist
-Platz frei.
+Der nächste Alleinauftrag, der Ihnen entgeht, wird sich nicht melden
+und absagen. Der Eigentümer ruft einfach den anderen an — den mit
+der Website, die ihn überzeugt hat. Das Tückische an diesem Verlust:
+Sie sehen ihn nie.
 
-Wenn Sie den nicht brauchen: alles gut, Sie hören nicht mehr von mir.
-Wenn doch — eine kurze Antwort reicht, den Rest mache ich.
+Wenn wir das ändern sollen: Eine Antwort genügt.
+Wenn nicht: Danke für Ihre Zeit — und gute Abschlüsse.
 
-Beste Grüße aus der Städteregion,
 Mert
 ```
 
@@ -295,32 +297,35 @@ Mert
 
 ## 6. Instantly-Setup
 
-- **Struktur:** 3 separate Kampagnen (A/B/C), Liste dritteln — nach 200–300
-  Sends pro Angle die Reply-Raten vergleichen, Gewinner skalieren.
-- **Variablen:** `{{anrede}}` (Inhalt „Herr"/„Frau"!), `{{lastName}}`, `{{companyName}}`,
-  `{{city}}`, plus A: `{{previewLink}}`, `{{personalHook}}`, `{{deadline}}`.
-- **Versand:** Mo–Do 7:30–10:30 (Inhaber lesen früh), max. 25–30/Tag/Postfach,
-  2–3 Wochen Warm-up vor Vollast, SPF/DKIM/DMARC prüfen.
-- **Deliverability:** Reiner Text, keine Bilder, keine Signatur-Logos. Sequenzen B/C:
-  null Links (Preview-Link nur in A — der IST das Offer). Opt-out als Satz
-  („kein Bedarf genügt"), kein Abmelde-Link-Footer.
+- **Struktur:** 3 Kampagnen (A/B/C), Liste dritteln. Nach 200–300 Sends pro
+  Angle Reply-Raten vergleichen, Gewinner skalieren. Hypothese: A gewinnt
+  (schärfste Insight), C holt die „Empfehlungs-stolzen" Büros ab.
+- **Variablen:** `{{anrede}}` (Inhalt „Herr"/„Frau"!), `{{lastName}}`, `{{companyName}}`.
+  Bewusst wenige — die Personalisierung liegt in der Branchen-Präzision, nicht
+  in Mail-Merge-Spielereien.
+- **Versand:** Mo–Do 7:30–10:30, max. 25–30/Tag/Postfach, 2–3 Wochen Warm-up,
+  SPF/DKIM/DMARC prüfen.
+- **Deliverability-Vorteil dieser Version:** **Null Links, null Bilder, null
+  Anhänge** in allen neun Mails — bestmögliche Zustellbarkeit. Opt-out als
+  Satz („kein Interesse genügt"), kein Abmelde-Footer.
 - **Rechtlicher Hinweis:** B2B-Kaltakquise per E-Mail ist in DE UWG-Grauzone.
-  Risiko minimieren: nur geschäftliche Adressen, sofortiges Austragen bei
-  Ablehnung, sauber dokumentieren.
+  Nur geschäftliche Adressen, Ablehnungen sofort und dauerhaft austragen.
 
-## 7. Reply-Playbook (Kurzfassung)
+## 7. Reply-Playbook
 
 | Reply | Antwort-Kern |
 |---|---|
-| „Was ist der Haken bei 500 €?" | Kein Haken, ein Kalkül: Einstiegsprojekt = unsere Bewerbung. Wir verdienen, wenn Sie danach mit uns wachsen (Google-Profil, Saison-Werbung, Print). Festpreis + Liefertermin schriftlich. |
-| „Haben schon eine Website" | „Die Frage ist nicht ob, sondern was sie einbringt. Wie viele Anfragen kamen letzten Monat nachweislich über die Seite?" → Teardown anbieten. |
-| „Keine Zeit (Saison)" | Verständnis + Umkehr: „Genau deshalb jetzt: Wir bauen, während Sie draußen sind. Zum Saisonende steht die Seite, die den Winter füllt." |
-| „Schicken Sie Infos" | Keine PDF-Schlacht: 3 Zeilen + Preview/2 Referenzlinks + konkreter Terminvorschlag. |
-| „Zu teuer / kein Budget" | Rechnung aufmachen: 1 Pflasterauftrag ≈ 10× Website-Preis. Wenn 500 € das Problem sind, unpassender Fit — höflich raus. |
+| „Was ist der Haken bei 500 €?" | Kein Haken, ein Kalkül: Das Einstiegsprojekt ist unsere Bewerbung. Wir verdienen, wenn Sie danach mit uns wachsen (Eigentümer-Funnel, Farming-Print). Festpreis + Liefertermin schriftlich, Nacharbeit-Garantie. |
+| „Wir leben von Empfehlungen" | „Perfekt — Empfehlungen googeln Sie, bevor sie anrufen. Die Website entscheidet, ob aus der Empfehlung ein Mandat wird. Sie muss nichts erzeugen, nur nichts verlieren." |
+| „ImmoScout reicht uns" | „Fürs Verkaufen ja. Fürs Einkaufen von Mandaten nicht — dort stehen Sie neben jedem Wettbewerber. Die eigene Seite ist der einzige Kanal ohne Vergleichsliste daneben." |
+| „Haben schon eine Website" | „Die Frage ist nicht ob, sondern was sie einbringt: Wie viele Eigentümer-Anfragen kamen letzten Monat darüber?" → ehrlicher Kurz-Check per Mail. |
+| „Keine Zeit" | „Deshalb: eine Stunde Ihrer Zeit insgesamt. Gespräch am Anfang, Feedback am Ende — den Rest machen wir." |
+| „Zu teuer" | Rechnung: 1 Alleinauftrag ≈ 20–40× der Investition. Wenn 500 € die Hürde sind → höflich disqualifizieren (kein Fit). |
 
 ## 8. Ehrliche Erwartungswerte
 
-Kalt-E-Mail B2B, gute Liste, gutes Offer: 2–5 % Reply-Rate (Sequenz A eher
-8–15 %, weil der Beweis mitgeliefert wird), davon ⅓–½ positiv. 1.000 Kontakte
-→ realistisch 5–15 ernsthafte Gespräche → 2–6 Einstiegsprojekte. Der eigentliche
-Gewinn liegt nicht in den 500 €, sondern im Upsell-Pfad danach.
+Kalt-E-Mail B2B, saubere Liste, präzise Branchen-Insight: **2–6 % Reply-Rate**,
+davon ⅓–½ positiv. 1.000 Kontakte → realistisch 8–20 ernsthafte Gespräche →
+**3–8 Einstiegsprojekte**. Der eigentliche Gewinn liegt im Upsell-Pfad:
+Eigentümer-Lead-Funnel und Farming-Magazine sind bei Maklern natürliche
+nächste Schritte — genau Elevos Kerngeschäft.
