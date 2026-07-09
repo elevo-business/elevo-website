@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Logo from '../../components/Logo.astro';
+import Footer from '../../components/Footer.astro';
+import CookieBanner from '../../components/CookieBanner.astro';
+import '../../styles/global.css';
+import '../../styles/ev-system.css';
+---
+
+<BaseLayout
+  title="Geschafft — dein Entwurf ist in Arbeit — Elevo"
+  description="Danke für deine Anfrage. Innerhalb von 48 Stunden bekommst du deinen kostenlosen Website-Entwurf."
+  canonical="https://elevo.solutions/webseite-aachen/danke"
+  noindex={true}
+  eagerPageView={true}
+>
+  <!-- Das Monday-Formular leitet nach dem Absenden hierher weiter. Läuft die
+       Weiterleitung innerhalb des Embed-iFrames, brechen wir auf die volle
+       Seite aus, damit die Conversion sauber auf oberster Ebene feuert. -->
+  <script is:inline>
+    if (window.top !== window.self) {
+      window.top.location.href = window.location.href;
+    }
+  </script>
+
+  <header class="lp-header">
+    <div class="container lp-header-inner">
+      <Logo size="md" />
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="ev-section lp-danke" aria-labelledby="danke-heading">
+      <div class="container">
+        <div class="lp-danke-card">
+          <div class="lp-danke-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <p class="ev-eyebrow">Anfrage erhalten</p>
+          <h1 id="danke-heading" class="ev-h2">Geschafft — dein Entwurf ist in Arbeit.</h1>
+          <p class="lp-danke-sub">
+            Danke für dein Vertrauen. So geht es jetzt weiter:
+          </p>
+          <ol class="lp-danke-steps" role="list">
+            <li><span class="lp-danke-num" aria-hidden="true">1</span>Wir schauen uns dein Unternehmen und deinen aktuellen Auftritt an.</li>
+            <li><span class="lp-danke-num" aria-hidden="true">2</span>Innerhalb von 48 Stunden bekommst du den Link zu deinem persönlichen Entwurf per E-Mail.</li>
+            <li><span class="lp-danke-num" aria-hidden="true">3</span>Danach entscheidest du in Ruhe — kostenlos und unverbindlich bleibt es so oder so.</li>
+          </ol>
+          <p class="lp-danke-note">Tipp: Schau zur Sicherheit auch in deinen Spam-Ordner. Fragen vorab? Schreib uns an <a href="mailto:hallo@elevo.solutions">hallo@elevo.solutions</a>.</p>
+          <a href="/referenzen" class="ev-btn ev-btn-ghost">Bis dahin: unsere Ergebnisse ansehen →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <CookieBanner />
+
+  <script>
+    // Conversion-Tracking: Formular wurde erfolgreich abgeschickt (Monday-Redirect).
+    // Google-Ads-Conversion
+    if (typeof (window as any).gtag !== 'undefined') {
+      (window as any).gtag('event', 'conversion', { send_to: 'AW-18023151518/contact_form_submit' });
+    }
+    // Meta Lead-Event (nur mit Marketing-Consent, gleiche Mechanik wie auf den anderen LPs).
+    const lead = (window as any).elevoMeta?.leadData?.();
+    if (lead) (window as any).elevoMeta?.fireLead?.(lead.metaEventId, { content_name: 'webseite-aachen' });
+  </script>
+</BaseLayout>
+
+<style>
+  .lp-header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250, 247, 240, 0.85);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .lp-header-inner { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; padding-bottom: 14px; }
+
+  .lp-danke { min-height: 62vh; display: flex; align-items: center; }
+  .lp-danke-card {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: 48px 36px;
+    box-shadow: var(--shadow-blue);
+  }
+  .lp-danke-icon {
+    width: 60px; height: 60px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: rgba(59,130,246,0.14);
+    color: var(--accent);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .lp-danke-icon svg { width: 28px; height: 28px; }
+  .lp-danke-card .ev-h2 { margin-left: auto; margin-right: auto; }
+  .lp-danke-sub { color: var(--text-secondary); margin: 14px 0 22px; font-size: 1.05rem; }
+  .lp-danke-steps {
+    list-style: none;
+    margin: 0 0 24px;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+    text-align: left;
+  }
+  .lp-danke-steps li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+  .lp-danke-num {
+    flex-shrink: 0;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+  .lp-danke-note { color: var(--text-muted); font-size: 0.9rem; margin: 0 0 26px; }
+  .lp-danke-note a { color: var(--accent); }
+
+  @media (max-width: 640px) {
+    .lp-danke-card { padding: 36px 22px; }
+  }
+</style>
