@@ -14,9 +14,8 @@ import '../../styles/ev-system.css';
   noindex={true}
   eagerPageView={true}
 >
-  <!-- Das Monday-Formular leitet nach dem Absenden hierher weiter. Läuft die
-       Weiterleitung innerhalb des Embed-iFrames, brechen wir auf die volle
-       Seite aus, damit die Conversion sauber auf oberster Ebene feuert. -->
+  <!-- Falls die Seite in einem iFrame landet (z. B. Alt-Redirect des
+       WorkForms), auf die volle Seite ausbrechen. -->
   <script is:inline>
     if (window.top !== window.self) {
       window.top.location.href = window.location.href;
@@ -56,16 +55,9 @@ import '../../styles/ev-system.css';
   <Footer />
   <CookieBanner />
 
-  <script>
-    // Conversion-Tracking: Formular wurde erfolgreich abgeschickt (Monday-Redirect).
-    // Google-Ads-Conversion
-    if (typeof (window as any).gtag !== 'undefined') {
-      (window as any).gtag('event', 'conversion', { send_to: 'AW-18023151518/contact_form_submit' });
-    }
-    // Meta Lead-Event (nur mit Marketing-Consent, gleiche Mechanik wie auf den anderen LPs).
-    const lead = (window as any).elevoMeta?.leadData?.();
-    if (lead) (window as any).elevoMeta?.fireLead?.(lead.metaEventId, { content_name: 'webseite-aachen' });
-  </script>
+  <!-- Kein Conversion-Tracking hier: Google-Ads-Conversion und Meta-Lead
+       feuern bereits auf der Landingpage direkt nach dem erfolgreichen
+       Absenden (mit CAPI-Dedup via event_id) — hier nochmal = Doppelzählung. -->
 </BaseLayout>
 
 <style>
