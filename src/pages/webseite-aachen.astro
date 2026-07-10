@@ -78,40 +78,54 @@ const avgPct = Math.round((avgNum / 5) * 100);
             <form class="lp-form" id="aachen-form" novalidate data-api-url={LEAD_API_URL}>
               <input type="text" name="_hp" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
               <input type="hidden" name="_ts" id="af-ts" value="">
-              <div class="form-group">
-                <label class="form-label" for="af-name">Dein Name *</label>
-                <input class="form-input" type="text" id="af-name" name="name" placeholder="Max Mustermann" required autocomplete="name">
+              <input type="hidden" name="timing" id="af-timing" value="">
+
+              <div class="af-progress">
+                <span class="af-progress-label" id="af-progress-label" aria-live="polite">Frage 1 von 6</span>
+                <span class="af-progress-track" aria-hidden="true"><i id="af-progress-bar" style="width:16.7%"></i></span>
               </div>
-              <div class="form-group">
-                <label class="form-label" for="af-company">Dein Unternehmen *</label>
-                <input class="form-input" type="text" id="af-company" name="company" placeholder="Mustermann GmbH" required autocomplete="organization">
+
+              <div class="af-steps" id="af-steps">
+                <div class="af-step is-active" data-step="0">
+                  <label class="af-q" for="af-name">Wie heißt du?</label>
+                  <input class="form-input" type="text" id="af-name" name="name" placeholder="Max Mustermann" autocomplete="name" enterkeyhint="next">
+                </div>
+                <div class="af-step" data-step="1">
+                  <label class="af-q" for="af-company">Wie heißt dein Unternehmen?</label>
+                  <input class="form-input" type="text" id="af-company" name="company" placeholder="Mustermann GmbH" autocomplete="organization" enterkeyhint="next">
+                </div>
+                <div class="af-step" data-step="2">
+                  <label class="af-q" for="af-website">Hast du schon eine Website?</label>
+                  <input class="form-input" type="text" id="af-website" name="website" placeholder="mustermann.de" autocomplete="url" inputmode="url" enterkeyhint="next">
+                  <p class="lp-field-hint">Einfach leer lassen, wenn es noch keine gibt.</p>
+                </div>
+                <div class="af-step" data-step="3">
+                  <span class="af-q" id="af-timing-label">Wann wäre der ideale Zeitpunkt für deine neue Website?</span>
+                  <div class="af-options" role="radiogroup" aria-labelledby="af-timing-label">
+                    <button type="button" class="af-option" data-value="So schnell wie möglich">So schnell wie möglich</button>
+                    <button type="button" class="af-option" data-value="In den nächsten 1–3 Monaten">In den nächsten 1–3 Monaten</button>
+                    <button type="button" class="af-option" data-value="In 3–6 Monaten">In 3–6 Monaten</button>
+                    <button type="button" class="af-option" data-value="Ich schaue mich erst mal nur um">Ich schaue mich erst mal nur um</button>
+                  </div>
+                </div>
+                <div class="af-step" data-step="4">
+                  <label class="af-q" for="af-email">Wohin dürfen wir dein Konzept schicken?</label>
+                  <input class="form-input" type="email" id="af-email" name="email" placeholder="max@mustermann.de" autocomplete="email" enterkeyhint="next">
+                </div>
+                <div class="af-step" data-step="5">
+                  <label class="af-q" for="af-phone">Deine Telefonnummer für eine kurze Rückfrage</label>
+                  <input class="form-input" type="tel" id="af-phone" name="phone" placeholder="+49 151 12345678" autocomplete="tel" enterkeyhint="send">
+                  <p class="lp-field-hint">Kein Verkaufsanruf. Versprochen.</p>
+                </div>
               </div>
-              <div class="form-group">
-                <label class="form-label" for="af-website">Deine aktuelle Website <span class="lp-optional">(falls vorhanden)</span></label>
-                <input class="form-input" type="text" id="af-website" name="website" placeholder="mustermann.de" autocomplete="url" inputmode="url">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="af-timing">Idealer Zeitpunkt für deine neue Website *</label>
-                <select class="form-input lp-select" id="af-timing" name="timing" required>
-                  <option value="" disabled selected>Bitte auswählen</option>
-                  <option value="So schnell wie möglich">So schnell wie möglich</option>
-                  <option value="In den nächsten 1–3 Monaten">In den nächsten 1–3 Monaten</option>
-                  <option value="In 3–6 Monaten">In 3–6 Monaten</option>
-                  <option value="Ich schaue mich erst mal nur um">Ich schaue mich erst mal nur um</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="af-email">Deine E-Mail-Adresse *</label>
-                <input class="form-input" type="email" id="af-email" name="email" placeholder="max@mustermann.de" required autocomplete="email">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="af-phone">Deine Telefonnummer *</label>
-                <input class="form-input" type="tel" id="af-phone" name="phone" placeholder="+49 151 12345678" required autocomplete="tel">
-                <p class="lp-field-hint">Für eine kurze Rückfrage zum Konzept. Kein Verkaufsanruf.</p>
-              </div>
-              <button type="submit" class="form-submit" id="af-submit">Kostenloses Konzept anfordern →</button>
-              <p class="lp-privacy">Mit dem Absenden stimmst du unserer <a href="/datenschutz">Datenschutzerklärung</a> zu.</p>
+
               <div class="form-message" id="af-message" role="alert" aria-live="polite"></div>
+
+              <div class="af-nav">
+                <button type="button" class="af-back" id="af-back" hidden>← Zurück</button>
+                <button type="button" class="form-submit af-next" id="af-next">Weiter →</button>
+              </div>
+              <p class="lp-privacy" id="af-privacy" hidden>Mit dem Absenden stimmst du unserer <a href="/datenschutz">Datenschutzerklärung</a> zu.</p>
             </form>
             <ul class="lp-formcard-trust" role="list">
               <li><span class="lp-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Ohne Gegenleistung</li>
@@ -391,17 +405,27 @@ const avgPct = Math.round((avgNum / 5) * 100);
   <CookieBanner />
 
   <script>
-    // Lead-Formular → elevo-api → monday.com. Gleiche Mechanik wie funnel-check:
-    // Meta event_id VOR dem Request erzeugen (nur mit Consent), Server feuert
-    // CAPI, Browser-Pixel feuert nach Erfolg mit derselben event_id (Dedup),
-    // danach Redirect auf die Danke-Seite.
+    // Interaktives Schritt-Formular (eine Frage pro Screen) → elevo-api → monday.com.
+    // Tracking wie funnel-check: Meta event_id VOR dem Request (nur mit Consent),
+    // Server feuert CAPI, Browser-Pixel nach Erfolg mit derselben event_id
+    // (Dedup), danach Redirect auf die Danke-Seite.
     const form = document.getElementById('aachen-form') as HTMLFormElement | null;
     if (form) {
       const tsEl = document.getElementById('af-ts') as HTMLInputElement;
       if (tsEl) tsEl.value = String(Date.now());
-      const btn = document.getElementById('af-submit') as HTMLButtonElement;
-      const msg = document.getElementById('af-message')!;
+
       const apiUrl = form.dataset.apiUrl!;
+      const msg = document.getElementById('af-message')!;
+      const steps = Array.from(form.querySelectorAll<HTMLElement>('.af-step'));
+      const nextBtn = document.getElementById('af-next') as HTMLButtonElement;
+      const backBtn = document.getElementById('af-back') as HTMLButtonElement;
+      const privacy = document.getElementById('af-privacy')!;
+      const progressLabel = document.getElementById('af-progress-label')!;
+      const progressBar = document.getElementById('af-progress-bar') as HTMLElement;
+      const timingInput = document.getElementById('af-timing') as HTMLInputElement;
+      const TOTAL = steps.length;
+      let current = 0;
+
       const val = (n: string) => (form.elements.namedItem(n) as HTMLInputElement)?.value.trim() ?? '';
 
       const utm: Record<string, string> = {};
@@ -411,28 +435,85 @@ const avgPct = Math.round((avgNum / 5) * 100);
         if (v) utm[k] = v;
       });
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if ((form.elements.namedItem('_hp') as HTMLInputElement)?.value) return; // Honeypot
-        const ts = (form.elements.namedItem('_ts') as HTMLInputElement)?.value;
+      function clearMsg() { msg.className = 'form-message'; msg.textContent = ''; }
 
-        const name = val('name'), company = val('company'), website = val('website'),
-              timing = val('timing'), email = val('email'), phone = val('phone');
-        if (!name || !company || !timing || !email || !phone) {
-          msg.className = 'form-message error'; msg.textContent = 'Bitte füll alle Pflichtfelder aus.'; return;
+      // Prüft nur den aktuellen Schritt — Fehler bleiben klein und lokal.
+      function validateStep(i: number): string | null {
+        switch (i) {
+          case 0: return val('name') ? null : 'Sag uns kurz, wie du heißt.';
+          case 1: return val('company') ? null : 'Wie heißt dein Unternehmen?';
+          case 2: return null; // Website ist optional
+          case 3: return timingInput.value ? null : 'Wähl kurz eine Option aus.';
+          case 4: return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('email')) ? null : 'Bitte gib eine gültige E-Mail-Adresse ein.';
+          case 5: return val('phone').replace(/[^0-9]/g, '').length >= 6 ? null : 'Bitte gib eine gültige Telefonnummer ein.';
+          default: return null;
         }
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          msg.className = 'form-message error'; msg.textContent = 'Bitte gib eine gültige E-Mail-Adresse ein.'; return;
-        }
+      }
 
-        const orig = btn.textContent;
-        btn.disabled = true; btn.textContent = 'Wird gesendet …';
+      function show(i: number) {
+        current = i;
+        steps.forEach((s, idx) => s.classList.toggle('is-active', idx === i));
+        progressLabel.textContent = `Frage ${i + 1} von ${TOTAL}`;
+        progressBar.style.width = `${Math.round(((i + 1) / TOTAL) * 100)}%`;
+        backBtn.hidden = i === 0;
+        const last = i === TOTAL - 1;
+        nextBtn.textContent = last ? 'Kostenloses Konzept anfordern →' : 'Weiter →';
+        privacy.hidden = !last;
+        // Auswahl-Schritt: kein Weiter-Button nötig, Klick geht direkt weiter.
+        nextBtn.hidden = i === 3 && !timingInput.value;
+        clearMsg();
+        const input = steps[i].querySelector<HTMLInputElement>('input.form-input');
+        if (input) setTimeout(() => input.focus(), 220);
+      }
+
+      function advance() {
+        const err = validateStep(current);
+        if (err) {
+          msg.className = 'form-message error'; msg.textContent = err;
+          steps[current].querySelector<HTMLInputElement>('input.form-input')?.focus();
+          return;
+        }
+        if (current < TOTAL - 1) show(current + 1);
+        else submitLead();
+      }
+
+      nextBtn.addEventListener('click', advance);
+      backBtn.addEventListener('click', () => { if (current > 0) show(current - 1); });
+
+      // Enter springt zur nächsten Frage statt das Formular abzuschicken.
+      form.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && (e.target as HTMLElement).tagName === 'INPUT') {
+          e.preventDefault();
+          advance();
+        }
+      });
+
+      // Auswahlfrage: Klick markiert und geht automatisch weiter.
+      form.querySelectorAll<HTMLButtonElement>('.af-option').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          form.querySelectorAll('.af-option').forEach((b) => b.classList.remove('is-selected'));
+          btn.classList.add('is-selected');
+          timingInput.value = btn.dataset.value || '';
+          setTimeout(() => { if (current === 3) advance(); }, 250);
+        });
+      });
+
+      form.addEventListener('submit', (e) => e.preventDefault());
+
+      async function submitLead() {
+        if ((form!.elements.namedItem('_hp') as HTMLInputElement)?.value) return; // Honeypot
+        const ts = (form!.elements.namedItem('_ts') as HTMLInputElement)?.value;
+
+        nextBtn.disabled = true;
+        const orig = nextBtn.textContent;
+        nextBtn.textContent = 'Wird gesendet …';
         const lead = (window as any).elevoMeta?.leadData?.() ?? null;
         try {
           const res = await fetch(apiUrl, {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              name, company, website, timing, email, phone,
+              name: val('name'), company: val('company'), website: val('website'),
+              timing: timingInput.value, email: val('email'), phone: val('phone'),
               _ts: ts,
               ...utm,
               ...(lead ?? {}),
@@ -448,9 +529,11 @@ const avgPct = Math.round((avgNum / 5) * 100);
         } catch {
           msg.className = 'form-message error';
           msg.textContent = 'Etwas ist schiefgelaufen. Schreib uns direkt: hallo@elevo.solutions';
-          btn.disabled = false; btn.textContent = orig || 'Kostenloses Konzept anfordern →';
+          nextBtn.disabled = false; nextBtn.textContent = orig || 'Kostenloses Konzept anfordern →';
         }
-      });
+      }
+
+      show(0);
     }
   </script>
 </BaseLayout>
@@ -511,24 +594,98 @@ const avgPct = Math.round((avgNum / 5) * 100);
   .lp-formcard-title { font-family: var(--font-heading); font-weight: 800; color: var(--text-primary); font-size: 1.25rem; margin: 0 0 6px; letter-spacing: -0.01em; }
   .lp-formcard-sub { color: var(--text-muted); font-size: 0.88rem; margin: 0; }
   .lp-form { text-align: left; }
-  .lp-form .form-group { margin-bottom: 14px; }
-  .lp-form .form-label { font-size: 0.86rem; margin-bottom: 6px; }
-  .lp-form .form-input { padding: 12px 14px; font-size: 0.95rem; }
-  .lp-form .form-submit { width: 100%; justify-content: center; margin-top: 4px; color: #fff; }
-  .lp-optional { color: var(--text-muted); font-weight: 400; }
-  .lp-field-hint { margin: 6px 0 0; font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
-  .lp-select {
-    appearance: none;
-    -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236B7888' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    padding-right: 40px;
-    cursor: pointer;
-  }
-  .lp-select:invalid { color: var(--text-muted); }
+  .lp-form .form-input { padding: 13px 15px; font-size: 1rem; width: 100%; }
+  .lp-field-hint { margin: 8px 0 0; font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
   .lp-privacy { margin: 10px 0 0; font-size: 0.76rem; color: var(--text-muted); text-align: center; line-height: 1.45; }
   .lp-privacy a { color: var(--text-secondary); }
+
+  /* Fortschritt */
+  .af-progress { margin-bottom: 18px; }
+  .af-progress-label {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .af-progress-track {
+    display: block;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(59,130,246,0.14);
+    overflow: hidden;
+  }
+  .af-progress-track i {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: var(--accent);
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Schritte (eine Frage pro Screen) */
+  .af-steps { position: relative; min-height: 148px; }
+  .af-step {
+    display: none;
+    animation: af-slide-in 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .af-step.is-active { display: block; }
+  @keyframes af-slide-in {
+    from { opacity: 0; transform: translateX(18px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .af-q {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.08rem;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin: 4px 0 14px;
+    letter-spacing: -0.01em;
+  }
+
+  /* Antwort-Optionen (Auswahlfrage) */
+  .af-options { display: grid; gap: 10px; }
+  .af-option {
+    text-align: left;
+    padding: 13px 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+  }
+  .af-option:hover { border-color: var(--accent); background: rgba(59,130,246,0.06); }
+  .af-option.is-selected {
+    border-color: var(--accent);
+    background: rgba(59,130,246,0.12);
+    box-shadow: 0 0 0 1px var(--accent) inset;
+  }
+
+  /* Navigation */
+  .af-nav { display: flex; align-items: center; gap: 12px; margin-top: 16px; }
+  .af-nav [hidden], .lp-form [hidden] { display: none !important; }
+  .af-nav .form-submit { flex: 1; justify-content: center; margin-top: 0; color: #fff; }
+  .af-back {
+    flex-shrink: 0;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 10px 6px;
+    transition: color 0.15s ease;
+  }
+  .af-back:hover { color: var(--text-primary); }
   .lp-formcard-trust { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; }
   .lp-formcard-trust li { display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 0.85rem; }
   .lp-formcard-trust .lp-check { width: 20px; height: 20px; border-radius: 6px; }
