@@ -221,6 +221,21 @@ const avgPct = Math.round((avgNum / 5) * 100);
             </div>
           </article>
         </div>
+
+        <figure class="lp-quote lp-quote-compact">
+          <blockquote>
+            „Es lief alles komplett unkompliziert, ich musste mich um fast nichts kümmern.
+            Schon in der ersten Woche kamen die ersten Anfragen über die neue Website.
+            Professionell und zuverlässig abgewickelt, genau so stellt man sich das vor."
+          </blockquote>
+          <figcaption class="lp-quote-author">
+            <img class="lp-quote-avatar" src="/testimonials/nazim-azemi.webp" alt="Nazim Azemi, Gründer und Geschäftsführer von Greenchild" width="48" height="48" loading="lazy" decoding="async">
+            <span class="lp-quote-meta">
+              <strong>Nazim Azemi</strong>
+              <span>Gründer &amp; Geschäftsführer, Greenchild</span>
+            </span>
+          </figcaption>
+        </figure>
       </div>
     </section>
 
@@ -275,22 +290,6 @@ const avgPct = Math.round((avgNum / 5) * 100);
       <div class="container">
         <p class="ev-eyebrow">Was Kunden sagen</p>
         <h2 id="lp-reviews-heading" class="ev-h2" style="margin-bottom:32px;">Echte Stimmen. Keine Versprechen.</h2>
-
-        <figure class="lp-quote">
-          <div class="lp-quote-stars" aria-label="5 von 5 Sternen">★★★★★</div>
-          <blockquote>
-            „Es lief alles komplett unkompliziert, ich musste mich um fast nichts kümmern.
-            Schon in der ersten Woche kamen die ersten Anfragen über die neue Website.
-            Professionell und zuverlässig abgewickelt, genau so stellt man sich das vor."
-          </blockquote>
-          <figcaption class="lp-quote-author">
-            <img class="lp-quote-avatar" src="/testimonials/nazim-azemi.webp" alt="Nazim Azemi, Gründer und Geschäftsführer von Greenchild" width="56" height="56" loading="lazy" decoding="async">
-            <span class="lp-quote-meta">
-              <strong>Nazim Azemi</strong>
-              <span>Gründer &amp; Geschäftsführer, Greenchild</span>
-            </span>
-          </figcaption>
-        </figure>
 
         <div class="lp-reviews-head">
           <span class="lp-g" aria-hidden="true">
@@ -722,7 +721,6 @@ const avgPct = Math.round((avgNum / 5) * 100);
     padding: 30px 32px;
     box-shadow: var(--shadow);
   }
-  .lp-quote-stars { color: #FBBC05; font-size: 1.1rem; letter-spacing: 3px; margin-bottom: 14px; }
   .lp-quote blockquote {
     margin: 0;
     font-family: var(--font-heading);
@@ -736,6 +734,12 @@ const avgPct = Math.round((avgNum / 5) * 100);
   .lp-quote-meta { display: flex; flex-direction: column; line-height: 1.35; }
   .lp-quote-meta strong { color: var(--text-primary); font-family: var(--font-heading); font-size: 1rem; }
   .lp-quote-meta span { color: var(--text-muted); font-size: 0.86rem; }
+
+  /* Kompakte Variante unter den Referenz-Karten */
+  .lp-quote-compact { margin: 26px 0 0; padding: 22px 26px; border-color: var(--border); box-shadow: none; max-width: none; }
+  .lp-quote-compact blockquote { font-size: 1.02rem; font-weight: 500; }
+  .lp-quote-compact .lp-quote-author { margin-top: 14px; }
+  .lp-quote-compact .lp-quote-avatar { width: 44px; height: 44px; }
 
   /* Google-Bewertungen */
   .lp-reviews-head { display: flex; align-items: center; gap: 18px; margin-bottom: 32px; }
