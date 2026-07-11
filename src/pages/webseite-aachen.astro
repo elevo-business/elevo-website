@@ -437,6 +437,19 @@ const avgPct = Math.round((avgNum / 5) * 100);
 
       function clearMsg() { msg.className = 'form-message'; msg.textContent = ''; }
 
+      // FormStart an Meta melden, sobald jemand wirklich anfängt (erste
+      // Eingabe oder Antwort-Klick) — einmal pro Seitenaufruf. Läuft wie
+      // alle Pixel-Events nur mit Marketing-Consent (fbq existiert sonst nicht).
+      let formStarted = false;
+      function markFormStart() {
+        if (formStarted) return;
+        formStarted = true;
+        if (typeof (window as any).fbq !== 'undefined') {
+          (window as any).fbq('trackCustom', 'FormStart', { content_name: 'webseite-aachen' });
+        }
+      }
+      form.addEventListener('input', markFormStart);
+
       // Prüft nur den aktuellen Schritt — Fehler bleiben klein und lokal.
       function validateStep(i: number): string | null {
         switch (i) {
@@ -491,6 +504,7 @@ const avgPct = Math.round((avgNum / 5) * 100);
       // Auswahlfrage: Klick markiert und geht automatisch weiter.
       form.querySelectorAll<HTMLButtonElement>('.af-option').forEach((btn) => {
         btn.addEventListener('click', () => {
+          markFormStart();
           form.querySelectorAll('.af-option').forEach((b) => b.classList.remove('is-selected'));
           btn.classList.add('is-selected');
           timingInput.value = btn.dataset.value || '';
