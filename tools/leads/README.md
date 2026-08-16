@@ -25,11 +25,24 @@ Einzelne Query pruefen (Rohausgabe als JSON):
 python leads.py probe --suchbegriff "Ingenieurbüro TGA" --stadt "Berlin" --max-seiten 1
 ```
 
-Volllauf ueber die Config (Schritte 3–6, noch nicht freigegeben):
+Volllauf ueber die Config:
 
 ```bash
 python leads.py run --config targets.yaml --out leads.csv
 ```
+
+Optionen fuer `run`:
+
+| Option | Wirkung |
+|--------|---------|
+| `--cache cache.sqlite` | Pfad zum lokalen Cache |
+| `--refresh` | Cache ignorieren, alles neu abrufen (kostet erneut API-Aufrufe) |
+| `--ohne-impressum` | Nur Places-Daten, keine Website-Auswertung |
+| `--max-domains N` | Impressum nur fuer die ersten N Domains (zum Testen) |
+
+Ein Abbruch ist unkritisch: abgeschlossene Queries und ausgewertete Domains liegen
+im SQLite-Cache und werden beim naechsten Start uebersprungen. Ein zweiter Lauf mit
+derselben Config kostet null API-Aufrufe.
 
 ## Dateien
 
@@ -38,8 +51,38 @@ python leads.py run --config targets.yaml --out leads.csv
 | `targets.yaml` | Suchbegriffe, Staedte, Filter, Kostenbremse, Crawl-Einstellungen |
 | `blocklist.txt` | Domains/E-Mails, die nie in der Ausgabe landen |
 | `.env` | API-Key (nicht im Repo) |
+| `cache.sqlite` | Lokaler Cache: Queries, Places, Impressum-Ergebnisse (nicht im Repo) |
 | `leadtool/config.py` | Config-, Key- und Blocklist-Handling |
 | `leadtool/places.py` | Places API v1 (`places:searchText`), Filter, Kostenbremse |
+| `leadtool/cache.py` | SQLite-Cache, macht Laeufe idempotent und wiederaufnehmbar |
+| `leadtool/impressum.py` | robots.txt, Impressum-Suche, Extraktion |
+| `leadtool/csvout.py` | CSV-Export (UTF-8 mit BOM, Semikolon) |
+
+## CSV-Spalten
+
+`firma; strasse; plz; ort; telefon; website; email; email_typ; ansprechpartner;
+branche_suchbegriff; bewertungen_anzahl; bewertung; place_id; impressum_url;
+impressum_status; postanschrift_impressum; handelsregister; abgerufen_am; quelle;
+score; notiz`
+
+- `postanschrift_impressum` steht nur dann drin, wenn das Impressum eine **andere**
+  Anschrift nennt als der Google-Eintrag (z. B. Hauptsitz statt Niederlassung).
+- `handelsregister` als Qualitaetssignal (HRB/HRA-Nummer).
+- Mehrere E-Mails stehen pipe-getrennt in `email`; `email_typ` haelt dieselbe
+  Reihenfolge ein, damit pro Adresse erkennbar bleibt, was Funktionspostfach ist.
+- `score` und `notiz` bleiben leer — die werden beim Sichten von Hand gefuellt.
+
+### Werte in `impressum_status`
+
+| Status | Bedeutung |
+|--------|-----------|
+| `ok` | Impressumsseite gefunden und ausgewertet |
+| `ok_email_von_startseite` | Impressum ohne E-Mail, Adresse stammt von der Startseite |
+| `ok_nur_startseite` | Seitenbudget erlaubte nur die Startseite |
+| `robots_disallow` | robots.txt verbietet den Abruf — Firma bleibt in der Liste |
+| `impressum_http_404` u. a. | Startseite ok, Impressumsseite nicht abrufbar |
+| `http_403`, `timeout`, `verbindungsfehler` | Website nicht erreichbar |
+| `keine_website` | Google kennt keine Website zu dem Eintrag |
 
 ## Places API
 
@@ -77,7 +120,7 @@ Zusammenfuehren mit Fremddaten zu Personenprofilen.
 
 - [x] Schritt 1 — Projektgeruest, `.env`-Handling, Config-Parsing
 - [x] Schritt 2 — Places-Abfrage, Rohausgabe als JSON
-- [ ] Schritt 3 — Cache-Schicht und Deduplizierung
-- [ ] Schritt 4 — Impressum-Modul
-- [ ] Schritt 5 — CSV-Export
-- [ ] Schritt 6 — Volllauf
+- [x] Schritt 3 — Cache-Schicht und Deduplizierung ueber die Place-ID
+- [x] Schritt 4 — Impressum-Modul
+- [x] Schritt 5 — CSV-Export
+- [x] Schritt 6 — Volllauf
