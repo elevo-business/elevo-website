@@ -14,7 +14,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 from typing import Any
-from urllib.parse import urljoin, urlparse
+from urllib.parse import unquote, urljoin, urlparse
 from urllib.robotparser import RobotFileParser
 
 import httpx
@@ -149,15 +149,77 @@ def emails_aus_text(text: str) -> list[str]:
     return gefunden
 
 
+# Teilwoerter fuer zusammengesetzte Funktionsadressen
+# (z. B. barrierefreiheitserklaerung@, rechnungseingang@)
+FUNKTIONS_TEILWOERTER = (
+    "barrierefrei", "datenschutz", "impressum", "bewerb", "karriere", "rechnung",
+    "buchhaltung", "newsletter", "anmeldung", "abmeldung", "kontakt", "info",
+    "empfang", "zentrale", "office", "sales", "vertrieb", "support", "service",
+    "anfrage", "auftrag", "angebot", "presse", "marketing", "einkauf", "personal",
+    "ausbildung", "praktikum", "schulung", "seminar", "disposition", "verwaltung",
+    "sekretariat", "beschwerde", "hinweisgeber", "compliance", "webmaster",
+    "noreply", "no-reply", "mailbox", "postfach", "recruiting", "jobs",
+)
+
+
+def normalisiere_emails(emails: list[str]) -> list[str]:
+    """Prozent-Kodierung aufloesen und dedupliziert zurueckgeben. Idempotent."""
+    ergebnis: list[str] = []
+    for eintrag in emails:
+        for adresse in emails_aus_text(unquote(eintrag)):
+            if adresse not in ergebnis:
+                ergebnis.append(adresse)
+    return ergebnis
+
+
 def email_typ(email: str) -> str:
-    """personen / funktion — als Kennzeichnung des Personenbezugs."""
+    """personen / funktion — als Kennzeichnung des Personenbezugs.
+
+    Im Zweifel 'personen': lieber beim Sichten einmal zu viel hinschauen.
+    """
     if not email:
         return "leer"
     lokal = email.partition("@")[0].lower()
     basis = re.split(r"[+]", lokal)[0]
     if basis in FUNKTIONS_PRAEFIXE or basis.replace("-", "") in FUNKTIONS_PRAEFIXE:
         return "funktion"
+    if any(teil in basis for teil in FUNKTIONS_TEILWOERTER):
+        return "funktion"
     return "personen"
+
+
+ROLLE = (
+    r"(?:Gesch[äa]ftsf[üu]hrende[rn]?\s+Gesellschafter(?:in)?"
+    r"|Pers[öo]nlich\s+haftende[rn]?\s+Gesellschafter(?:in)?"
+    r"|Gesch[äa]ftsf[üu]hrer(?:in)?|Gesch[äa]ftsf[üu]hrung"
+    r"|Inhaber(?:in)?|Vorstand|Aufsichtsrat|Vertreten\s+durch|Vors\.)"
+)
+
+_VORNE = re.compile(
+    r"^(?:[&,;/]|und|sowie|die|der|den|das|dem|vertreten\s+durch|" + ROLLE + r")"
+    r"\s*[:\-–,]?\s*",
+    re.IGNORECASE,
+)
+_HINTEN = re.compile(r"[,;/(]?\s*" + ROLLE + r"\s*\)?\s*$", re.IGNORECASE)
+_NUR_ROLLE = re.compile(r"^[\s(:\-–]*" + ROLLE + r"[\s):\-–.]*$", re.IGNORECASE)
+
+
+def saeubern_ansprechpartner(wert: str) -> str:
+    """Rollenbezeichnungen und Fuellwoerter abschneiden. Idempotent."""
+    if not wert:
+        return ""
+    vorher = None
+    while vorher != wert:
+        vorher = wert
+        wert = _VORNE.sub("", wert)
+        wert = _HINTEN.sub("", wert)
+        wert = wert.strip(" .,;:-–|/()")
+    wert = re.sub(r"^(?:Herr|Frau)\s+", "", wert, flags=re.IGNORECASE)
+    if not wert or _NUR_ROLLE.match(wert) or len(wert) < 4:
+        return ""
+    if len(wert.split()) < 2:  # Einzelwoerter sind fast immer Extraktionsmuell
+        return ""
+    return wert
 
 
 def ansprechpartner_aus_text(text: str) -> str:
@@ -174,7 +236,7 @@ def ansprechpartner_aus_text(text: str) -> str:
         return ""
     if EMAIL_REGEX.search(rohwert) or re.search(r"\d{4,}", rohwert):
         return ""
-    return rohwert
+    return saeubern_ansprechpartner(rohwert)
 
 
 def handelsregister_aus_text(text: str) -> str:
@@ -313,7 +375,7 @@ class ImpressumCrawler:
         return ImpressumErgebnis(
             status="ok",
             impressum_url=url,
-            emails=emails,
+            emails=normalisiere_emails(emails),
             ansprechpartner=ansprechpartner_aus_text(text),
             postanschrift=postanschrift,
             handelsregister=handelsregister_aus_text(text),

@@ -31,6 +31,8 @@ from leadtool.impressum import (
     ImpressumErgebnis,
     domain_von_url,
     email_typ,
+    normalisiere_emails,
+    saeubern_ansprechpartner,
 )
 from leadtool.places import (
     BudgetExceeded,
@@ -262,8 +264,14 @@ def cmd_run(args: argparse.Namespace) -> int:
         zeilen = []
         for place, abgerufen_am in behalten:
             domain = domain_von_url(place.website) if place.website else ""
-            imp = impressum_je_domain.get(domain, ImpressumErgebnis(status="nicht_abgerufen"))
-            emails = [e for e in imp.emails if not blocklist.blockt_email(e)]
+            imp = impressum_je_domain.get(
+                domain,
+                ImpressumErgebnis(status="keine_website" if not domain else "nicht_abgerufen"),
+            )
+            # normalisieren auch fuer Cache-Eintraege — die Funktion ist idempotent
+            emails = [
+                e for e in normalisiere_emails(imp.emails) if not blocklist.blockt_email(e)
+            ]
             zeilen.append(
                 {
                     "firma": place.name,
@@ -274,7 +282,8 @@ def cmd_run(args: argparse.Namespace) -> int:
                     "website": place.website or "",
                     "email": "|".join(emails),
                     "email_typ": "|".join(email_typ(e) for e in emails) or "leer",
-                    "ansprechpartner": imp.ansprechpartner,
+                    # Auch auf Cache-Eintraege anwenden — die Funktion ist idempotent.
+                    "ansprechpartner": saeubern_ansprechpartner(imp.ansprechpartner),
                     "branche_suchbegriff": place.suchbegriff,
                     "bewertungen_anzahl": place.user_rating_count,
                     "bewertung": place.rating if place.rating is not None else "",
