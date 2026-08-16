@@ -1,0 +1,38 @@
+# Zielkunden-Konfiguration fuer das Lead-Recherche-Tool.
+# Volumen entsteht ueber die Kombinatorik: Suchbegriffe x Staedte.
+# Eine einzelne Query ist bei ca. 60 Treffern hart gedeckelt (Places-API-Limit).
+
+suchbegriffe:
+  - "Ingenieurbüro TGA"
+  - "Tragwerksplanung"
+  - "Planungsbüro Gebäudetechnik"
+  - "Sondermaschinenbau"
+  - "IT-Systemhaus"
+  - "Personaldienstleister"
+
+staedte:
+  - "Berlin"
+  - "Potsdam"
+  - "Düsseldorf"
+  - "Köln"
+  - "Aachen"
+
+filter:
+  min_bewertungen: 3
+  nur_operational: true
+  ausschluss_typen:
+    - "real_estate_agency"
+    - "lawyer"
+
+# Kostenbremse: harter Abbruch beim Erreichen von max_api_calls.
+# Faustformel: Suchbegriffe x Staedte x max_seiten_pro_query = Obergrenze.
+limits:
+  max_api_calls: 100
+  max_seiten_pro_query: 3
+
+# Impressum-Crawl (Schritt 4): hoeflich, flach, mit Kontaktadresse im User-Agent.
+crawl:
+  user_agent: "ElevoLeadBot/0.1 (+https://elevo.solutions; kontakt@elevo.solutions)"
+  timeout_sekunden: 10
+  pause_zwischen_domains: 1.5
+  max_seiten_pro_domain: 2

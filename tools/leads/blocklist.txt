@@ -1,0 +1,7 @@
+# Sperrliste — eine Domain oder E-Mail-Adresse pro Zeile.
+# Eintraege hier tauchen nie in der Ausgabe auf (auch keine Subdomains).
+# Wer Werbung ablehnt, kommt hier rein und bleibt draussen.
+#
+# Beispiele:
+# beispiel-firma.de
+# info@beispiel-firma.de
