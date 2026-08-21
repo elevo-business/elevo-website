@@ -57,6 +57,22 @@ derselben Config kostet null API-Aufrufe.
 | `leadtool/cache.py` | SQLite-Cache, macht Laeufe idempotent und wiederaufnehmbar |
 | `leadtool/impressum.py` | robots.txt, Impressum-Suche, Extraktion |
 | `leadtool/csvout.py` | CSV-Export (UTF-8 mit BOM, Semikolon) |
+| `export_mailtracking.py` | Traegt Kontakte aus `leads.csv` in die Mail-Tracking-Mappe ein |
+
+## Mail-Tracking-Mappe befuellen
+
+```bash
+python export_mailtracking.py --csv leads.csv --xlsx MailTracking-ELEVO.xlsx
+```
+
+Schreibt nur Nr, Firma, Ansprechpartner, E-Mail und Notiz in das Blatt `Mails`
+(ab Zeile 3, die Beispielzeile bleibt stehen). Versanddatum, Variante und
+Antwortart bleiben leer — die traegt der Mensch ein. Formeln, Dropdowns und
+Formatierung der Vorlage werden nicht angefasst.
+
+Nur Firmen mit E-Mail landen dort. Als Primaeradresse wird das Funktionspostfach
+bevorzugt; mehrfach genutzte Sammeladressen erscheinen nur einmal, mit Vermerk in
+der Notiz. Fuer den Postversand bleibt `leads.csv` die vollstaendige Quelle.
 
 ## CSV-Spalten
 
