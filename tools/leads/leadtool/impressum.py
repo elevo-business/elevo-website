@@ -195,13 +195,26 @@ ROLLE = (
     r"|Inhaber(?:in)?|Vorstand|Aufsichtsrat|Vertreten\s+durch|Vors\.)"
 )
 
+# Wortalternativen brauchen eine Wortgrenze, sonst frisst "die" den Anfang von
+# "Dietmar" und "der" den von "Dierk".
 _VORNE = re.compile(
-    r"^(?:[&,;/]|und|sowie|die|der|den|das|dem|vertreten\s+durch|" + ROLLE + r")"
-    r"\s*[:\-–,]?\s*",
+    r"^(?:[&,;/]\s*"
+    r"|(?:und|sowie|die|der|den|das|dem|vertreten\s+durch|" + ROLLE + r")"
+    r"(?=$|[\s:\-–,])\s*[:\-–,]?\s*)",
     re.IGNORECASE,
 )
 _HINTEN = re.compile(r"[,;/(]?\s*" + ROLLE + r"\s*\)?\s*$", re.IGNORECASE)
 _NUR_ROLLE = re.compile(r"^[\s(:\-–]*" + ROLLE + r"[\s):\-–.]*$", re.IGNORECASE)
+
+
+TITEL = (
+    r"(?:Dipl\.?(?:-|\s)?[A-Za-zÄÖÜäöüß.]*|Dr\.(?:-Ing\.)?|Prof\.|Ing\.|"
+    r"M\.?Sc\.?|B\.?Sc\.?|M\.?A\.?|MBA|LL\.M\.|\(FH\)|Bauwesen|"
+    r"Architekt(?:in)?|Kaufmann|Kauffrau)"
+)
+NUR_TITEL = re.compile(rf"(?:{TITEL}[\s,.-]*)+", re.IGNORECASE)
+# Namenspartikel, die klein geschrieben sein duerfen
+PARTIKEL = {"von", "van", "de", "der", "den", "zu", "zur", "am", "und"}
 
 
 def saeubern_ansprechpartner(wert: str) -> str:
@@ -214,10 +227,20 @@ def saeubern_ansprechpartner(wert: str) -> str:
         wert = _VORNE.sub("", wert)
         wert = _HINTEN.sub("", wert)
         wert = wert.strip(" .,;:-–|/()")
-    wert = re.sub(r"^(?:Herr|Frau)\s+", "", wert, flags=re.IGNORECASE)
+    # Angebrochene Klammer aus dem Kappen der Fundstelle: "Christian Scholz (CEO"
+    if wert.count("(") > wert.count(")"):
+        wert = wert[: wert.rindex("(")].strip(" ,;-")
+    wert = re.sub(r"^(?:Herrn|Herr|Frau)\s+", "", wert, flags=re.IGNORECASE)
     if not wert or _NUR_ROLLE.match(wert) or len(wert) < 4:
         return ""
     if len(wert.split()) < 2:  # Einzelwoerter sind fast immer Extraktionsmuell
+        return ""
+    if NUR_TITEL.fullmatch(wert):  # nur akademische Grade, kein Name
+        return ""
+    # Ein klein beginnendes Wort heisst fast immer: vorne abgeschnitten
+    # ("tmar Deunert"). Lieber leer als ein falscher Name in der Anrede.
+    tokens = [w for w in re.split(r"[\s,]+", wert) if w]
+    if any(w[0].islower() and w.lower() not in PARTIKEL for w in tokens):
         return ""
     return wert
 
@@ -227,7 +250,12 @@ def ansprechpartner_aus_text(text: str) -> str:
     if not treffer:
         return ""
     rohwert = treffer.group(1)
-    rohwert = rohwert.split("\n")[0]
+    zeilen = [z.strip() for z in rohwert.split("\n") if z.strip()]
+    rohwert = zeilen[0] if zeilen else ""
+    # "Geschaeftsfuehrerin:\nDipl.-Kauffrau (FH)\nSaskia Prenzel" — steht in der
+    # ersten Zeile nur ein Titel, gehoert der Name der naechsten Zeile dazu.
+    if len(zeilen) > 1 and NUR_TITEL.fullmatch(rohwert):
+        rohwert = f"{rohwert} {zeilen[1]}"
     stopp = ANSPRECHPARTNER_STOPP.search(rohwert)
     if stopp:
         rohwert = rohwert[: stopp.start()]
