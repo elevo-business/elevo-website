@@ -58,6 +58,34 @@ derselben Config kostet null API-Aufrufe.
 | `leadtool/impressum.py` | robots.txt, Impressum-Suche, Extraktion |
 | `leadtool/csvout.py` | CSV-Export (UTF-8 mit BOM, Semikolon) |
 | `export_mailtracking.py` | Traegt Kontakte aus `leads.csv` in die Mail-Tracking-Mappe ein |
+| `export_sheets.py` | Erzeugt die gefilterte Tracking-Liste als CSV fuer Google Sheets |
+
+## Google-Sheets-Liste erzeugen
+
+```bash
+python export_sheets.py --ort Berlin --out sheets-berlin.csv
+```
+
+Die CSV wird in Google Drive hochgeladen und dabei in ein Sheet umgewandelt.
+Gefiltert wird auf einen Ort und auf inhabergefuehrte Betriebe; Konzerne,
+Filialen und Ketten fallen an vier Signalen raus:
+
+1. Rechtsform AG/SE/KGaA oder bekannter Konzernname
+2. dieselbe Domain an mehreren Standorten (Kette)
+3. Impressumsanschrift ausserhalb des Zielorts (Zentrale sitzt woanders)
+4. kein Inhaber oder Geschaeftsfuehrer im Impressum
+
+`--max-je-branche N` deckelt einzelne Branchen, `--trenner` stellt den
+Argumenttrenner der Formeln um.
+
+**Wichtig:** Google Sheets erwartet in deutscher Locale das **Semikolon** als
+Argumenttrenner. Mit Komma wirft jede mehrargumentige Formel `#ERROR!` — nur
+einargumentige wie `COUNT()` rechnen dann noch. Default ist deshalb `;`.
+
+Die Spalten `Nächstes Follow-up` und `Status heute` sind ARRAYFORMULA-Spalten in
+Zeile 2, die die ganze Spalte durchrechnen. Dropdowns und bedingte Formatierung
+kann die Drive-API nicht setzen — die zulaessigen Werte stehen als Legende im
+Auswertungsblock rechts.
 
 ## Mail-Tracking-Mappe befuellen
 

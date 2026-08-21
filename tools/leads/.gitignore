@@ -6,3 +6,4 @@ cache.sqlite-journal
 __pycache__/
 .venv/
 *.xlsx
+sheets-*.csv

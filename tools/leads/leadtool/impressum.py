@@ -40,6 +40,7 @@ DATEI_ENDUNGEN = (
 MUELL_DOMAINS = (
     "example.com", "example.org", "domain.de", "musterfirma.de", "sentry.io",
     "wixpress.com", "godaddy.com", "yourdomain.com", "email.com",
+    "website.com", "ihre-domain.de", "meine-domain.de", "deinedomain.de",
 )
 
 EMAIL_REGEX = re.compile(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9\-]+(?:\.[A-Za-z0-9\-]+)+")
@@ -188,11 +189,40 @@ def email_typ(email: str) -> str:
     return "personen"
 
 
+# Funktionspostfaecher, die zwar echt sind, aber nicht fuer eine Erstansprache
+# taugen — die stehen hinten an.
+NACHRANGIGE_PRAEFIXE = (
+    "datenschutz", "impressum", "bewerb", "karriere", "jobs", "presse",
+    "webmaster", "barrierefrei", "hinweisgeber", "compliance", "recruiting",
+    "noreply", "no-reply", "abmeldung", "beschwerde", "rechnung", "buchhaltung",
+)
+
+
+def primaeradresse(emails: list[str]) -> str:
+    """Die Adresse fuer die Erstansprache auswaehlen.
+
+    Reihenfolge: gewoehnliches Funktionspostfach (info@, kontakt@), dann
+    nachrangige Funktionspostfaecher (datenschutz@), zuletzt personenbezogene
+    Adressen. Es wird nichts geraten — nur sortiert.
+    """
+    if not emails:
+        return ""
+
+    def rang(adresse: str) -> tuple[int, int]:
+        lokal = adresse.partition("@")[0].lower()
+        nachrangig = any(lokal.startswith(p) for p in NACHRANGIGE_PRAEFIXE)
+        person = email_typ(adresse) == "personen"
+        return (1 if nachrangig else 0, 1 if person else 0)
+
+    return sorted(emails, key=rang)[0]
+
+
 ROLLE = (
     r"(?:Gesch[äa]ftsf[üu]hrende[rn]?\s+Gesellschafter(?:in)?"
     r"|Pers[öo]nlich\s+haftende[rn]?\s+Gesellschafter(?:in)?"
     r"|Gesch[äa]ftsf[üu]hrer(?:in)?|Gesch[äa]ftsf[üu]hrung"
-    r"|Inhaber(?:in)?|Vorstand|Aufsichtsrat|Vertreten\s+durch|Vors\.)"
+    r"|Inhaber(?:in)?|Vorstandsvorsitzende[rn]?|Vorstand|Aufsichtsrat"
+    r"|Vertreten\s+durch|Vors\.)"
 )
 
 # Wortalternativen brauchen eine Wortgrenze, sonst frisst "die" den Anfang von
@@ -231,6 +261,10 @@ def saeubern_ansprechpartner(wert: str) -> str:
     if wert.count("(") > wert.count(")"):
         wert = wert[: wert.rindex("(")].strip(" ,;-")
     wert = re.sub(r"^(?:Herrn|Herr|Frau)\s+", "", wert, flags=re.IGNORECASE)
+    # Anreden auch zwischen zwei Namen entfernen ("X und Herr Y")
+    wert = re.sub(r"\b(?:Herrn|Herr|Frau)\s+", "", wert, flags=re.IGNORECASE)
+    # Haengendes Bindewort am Ende ("Sven Stoye und")
+    wert = re.sub(r"\s+(?:und|sowie|&|,)\s*$", "", wert, flags=re.IGNORECASE)
     if not wert or _NUR_ROLLE.match(wert) or len(wert) < 4:
         return ""
     if len(wert.split()) < 2:  # Einzelwoerter sind fast immer Extraktionsmuell
