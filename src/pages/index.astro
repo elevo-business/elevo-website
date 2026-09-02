@@ -1,24 +1,31 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import ContactForm from '../components/ContactForm.astro';
-import FAQ from '../components/FAQ.astro';
+import Logo from '../components/Logo.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 import '../styles/global.css';
 import '../styles/ev-system.css';
-import '../styles/rx-theme.css';
 
-// FAQ-Inhalte fuer JSON-LD synchron mit FAQ.astro halten.
-// Diese Liste speist nur das Structured-Data-Markup (kein sichtbarer Output).
+// Kontakt-Mailto mit vorbelegtem Betreff (Soft-CTA "Erstgespräch", kein Preisanker).
+const MAILTO =
+  'mailto:hallo@elevo.solutions?subject=' +
+  encodeURIComponent('Kostenloses Erstgespräch — Neukunden für unser Fulfillment-Center');
+
+const pains = [
+  'Ihre Auslastung schwankt — mal platzt das Lager, mal stehen Flächen und Personal ungenutzt.',
+  'Ein, zwei Großkunden tragen den Umsatz. Springt einer ab, wird es sofort eng.',
+  'Kaltakquise frisst Zeit und Nerven — und die Entscheider bei Marken und Händlern sind kaum zu erreichen.',
+  'Agenturen liefern Klicks und Reichweite. Was fehlt, sind echte Anfragen von Versendern mit Volumen.',
+  'Empfehlungen sind wertvoll — aber nicht planbar. Wachstum lässt sich darauf nicht aufbauen.',
+  'Miete, Regale, WMS und Team laufen weiter. Jeder Tag Leerstand geht direkt von Ihrer Marge ab.',
+];
+
+// FAQ-Inhalte synchron mit sichtbarem Markup halten (speist zusätzlich JSON-LD).
 const faqEntries = [
-  { q: 'Für wen ist das 14-Tage-System gedacht?', a: 'Für Coaches, Berater, Trainer und Experten im DACH-Raum, die ein hochpreisiges Angebot verkaufen und schon Aufmerksamkeit haben — Website-Besucher, Follower, laufende Ads — diese aber zu selten in gebuchte Anfragen verwandeln. Wenn du jeden Monat Reichweite produzierst, aber zu wenig daraus Erstgespräche werden, bist du genau richtig.' },
-  { q: 'Ich habe noch kaum Website-Besucher — bin ich der richtige Kunde?', a: 'Ehrlich: noch nicht ganz. Wir verwandeln vorhandene Aufmerksamkeit in Anfragen. Wenn deine Seite quasi null Traffic hat, fehlt der Rohstoff, mit dem das System arbeitet. Dann reden wir zuerst über Reichweite. Hast du dagegen schon Besucher, Follower oder laufende Ads, die zu wenig konvertieren, holen wir genau da das Maximum raus.' },
-  { q: 'Was genau bekomme ich?', a: 'Ein komplettes Klienten-Gewinnungs-System, done-for-you: eine verkaufsstarke Website mit glasklarer Strecke zum Termin, automatische Terminbuchung direkt aus der Anfrage, automatisches Follow-up (E-Mail/WhatsApp), damit kein Lead versickert, und ein sauberes Tracking, damit du siehst, was wirkt. Copy, Design, Technik und Automatisierung machen wir — du lieferst nur die Infos.' },
-  { q: 'Wie schnell sehe ich erste Anfragen?', a: 'In 14 Tagen ist dein System live. Erste Anfragen kommen oft schon in den ersten Tagen nach Launch — bei GreenChild waren es fünf qualifizierte Anfragen in Woche 1, vorher null. Wie schnell es bei dir greift, hängt von deiner Reichweite und deinem Angebot ab. Genau das schauen wir uns vorher im Funnel-Check an.' },
-  { q: 'Muss ich technisch fit sein oder selbst etwas bauen?', a: 'Nein. Das ist komplett done-for-you. Du musst nichts installieren, einrichten oder pflegen. Du gibst uns die Infos zu deinem Angebot, wir bauen Website, Copy, Terminbuchung, Follow-up und Tracking — und übergeben dir ein System, das von selbst läuft. Auf Wunsch kümmern wir uns danach weiter darum.' },
-  { q: 'Und wenn es nicht funktioniert?', a: 'Dann ist es unser Risiko, nicht deins. In 14 Tagen bist du live. Bekommst du in den 30 Tagen nach Launch keine qualifizierte Anfrage über die Seite, arbeiten wir kostenlos weiter, bis du sie hast. Den Preis halten wir vorher als Festpreis schriftlich fest — keine offenen Stundenzettel, keine Nachforderungen.' },
-  { q: 'Was kostet das?', a: 'Der Preis hängt vom Umfang ab und steht als Festpreis fest, bevor wir starten. Wir hängen keine Preisschilder an die Wand, weil jedes System anders ist. Im kostenlosen Funnel-Check schauen wir uns deine Strecke an, zeigen dir, wo Anfragen verloren gehen, und machen dir anschließend ein konkretes Angebot inklusive Liefertermin.' },
-  { q: 'Ihr habt bisher auch andere Branchen gemacht — könnt ihr Coaches?', a: 'Ja. Das Prinzip ist immer dasselbe: aus Besuchern werden gebuchte Anfragen. GreenChild ging in drei Wochen von null auf live und brachte in Woche 1 fünf warme Anfragen. Für Coaches und Berater ist die Strecke sogar klarer, weil dein Verkauf über das Erstgespräch läuft — und genau darauf optimieren wir alles.' },
+  { q: 'Was ist ein „qualifizierter" Lead?', a: 'Ein Entscheider mit konkretem Fulfillment-Bedarf, der zu Ihren Kriterien passt — Volumen, Region und Warenart — und einem Gespräch zugestimmt hat. Keine anonymen Klicks, keine kalten Adressen.' },
+  { q: 'Muss ich einen langen Vertrag unterschreiben?', a: 'Nein. Sie zahlen pro Lead. Kein Retainer, kein Setup, keine Mindestlaufzeit über Jahre. Sie steuern selbst, wie viele Leads Sie abnehmen möchten.' },
+  { q: 'Wie schnell kommen die ersten Termine?', a: 'In der Regel innerhalb der ersten Wochen nach dem Start. Den allerersten qualifizierten Termin bekommen Sie kostenlos — Sie gehen also in keine Vorleistung.' },
+  { q: 'Woher kommen die Leads?', a: 'Aus gezielter Ansprache und Qualifizierung von Marken, Onlinehändlern und Versendern, die aktuell einen Fulfillment-Partner suchen oder wechseln wollen — passend zu Ihrer Kapazität.' },
+  { q: 'Für wen lohnt sich das?', a: 'Für Fulfillment-Center und 3PL-Dienstleister mit freien Kapazitäten, die planbar wachsen und die Abhängigkeit von wenigen Großkunden reduzieren wollen.' },
 ];
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -32,733 +39,405 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Vom Klick zum Klienten — das 14-Tage-System für Coaches & Berater | Elevo"
-  description="Wir verwandeln die Besucher, die du schon hast, in gebuchte Anfragen. Verkaufsstarke Website, automatische Terminbuchung und Follow-up — komplett für dich gebaut, in 14 Tagen live. Mit Garantie."
+  title="Neukundengewinnung für Fulfillment-Center — Elevo"
+  description="Planbar neue Versender gewinnen — ohne Kaltakquise. Sie zahlen pro qualifiziertem Lead, der erste Termin ist kostenlos. Über 200 qualifizierte Leads in den letzten 2 Monaten."
   canonical="https://elevo.solutions/"
-  bodyClass="rx"
 >
-  <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+  <a href="#kontakt" class="skip-link">Zum Hauptinhalt springen</a>
 
-  <Header />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
 
-  <!-- Live-Vorschau Modal -->
-  <div id="ref-modal" class="ref-modal" role="dialog" aria-modal="true" aria-label="Website-Vorschau">
-    <div class="ref-modal-backdrop"></div>
-    <div class="ref-modal-window">
-      <div class="ref-modal-bar">
-        <div class="ref-modal-dots" aria-hidden="true"><span></span><span></span><span></span></div>
-        <div class="ref-modal-url-wrap">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span class="ref-modal-url" id="ref-modal-url"></span>
-        </div>
-        <div class="ref-modal-actions">
-          <a class="ref-modal-open" id="ref-modal-open-btn" href="#" target="_blank" rel="noopener" aria-label="In neuem Tab öffnen">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
-          <button class="ref-modal-close" id="ref-modal-close" aria-label="Schließen">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
-        </div>
-      </div>
-      <div class="ref-modal-frame-wrap">
-        <iframe id="ref-modal-frame" src="" title="" class="ref-modal-iframe" allow="fullscreen"></iframe>
-      </div>
+  <header class="ff-header">
+    <div class="container ff-header-inner">
+      <Logo size="md" />
+      <a href="#kontakt" class="ev-btn ev-btn-primary ff-header-cta">Kostenloses Erstgespräch</a>
     </div>
-  </div>
+  </header>
 
   <main id="main">
 
     <!-- ===== HERO ===== -->
-    <section id="hero" class="ev-hero" aria-labelledby="hero-heading">
+    <section class="ev-hero ff-hero" aria-labelledby="ff-hero-heading">
       <div class="container">
         <div class="ev-hero-grid">
           <div class="ev-hero-copy">
-            <p class="ev-eyebrow reveal">Klienten-Gewinnung für Coaches &amp; Berater</p>
-            <h1 id="hero-heading" class="ev-hero-h1 reveal reveal-delay-1">
-              Vom Klick<br>
-              <span class="ev-accent">zum Klienten.</span>
+            <p class="ev-eyebrow">Lead-Generierung für Fulfillment-Center &amp; 3PL</p>
+            <h1 id="ff-hero-heading" class="ev-hero-h1">
+              Planbar neue Versender gewinnen.<br>
+              Sie zahlen erst, <span class="ev-accent">wenn der Lead da ist.</span>
             </h1>
-            <p class="ev-hero-sub reveal reveal-delay-2">
-              Du hast Reichweite — Besucher, Follower, vielleicht laufende Ads. Wir verwandeln sie in
-              gebuchte Anfragen. Verkaufsstarke Website, automatische Terminbuchung und Follow-up,
-              komplett für dich gebaut. In 14 Tagen live.
+            <p class="ev-hero-sub">
+              Volle Regale statt leerer Flächen: Wir bringen Ihnen qualifizierte Anfragen von Marken
+              und Onlinehändlern, die einen Fulfillment-Partner suchen — vorqualifiziert nach Ihren
+              Kriterien. Keine Kaltakquise, kein Streuverlust, kein langer Vertrag.
             </p>
-            <div class="ev-hero-ctas reveal reveal-delay-3">
+            <div class="ev-hero-ctas">
               <a href="#kontakt" class="ev-btn ev-btn-primary">
-                Kostenlosen Funnel-Check sichern
+                Kostenloses Erstgespräch sichern
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
-              <a href="#referenzen" class="ev-btn ev-btn-ghost">Ergebnisse ansehen</a>
+              <a href="#so-gehts" class="ev-btn ev-btn-ghost">So funktioniert&rsquo;s</a>
             </div>
-            <p class="ev-hero-trust reveal reveal-delay-4">Done-for-you · in 14 Tagen live · Anfragen-Garantie</p>
+            <p class="ev-hero-trust">Pay-per-Lead · kein Retainer · erster qualifizierter Termin gratis</p>
           </div>
 
-          <div class="ev-hero-visual reveal reveal-delay-2" aria-hidden="true">
-            <div class="ev-hv-browser">
-              <div class="ev-hv-bar">
-                <span class="ev-hv-dot ev-hv-dot--r"></span>
-                <span class="ev-hv-dot ev-hv-dot--y"></span>
-                <span class="ev-hv-dot ev-hv-dot--g"></span>
-                <span class="ev-hv-url">deine-anfragen.elevo</span>
-              </div>
-              <div class="ev-hv-screen">
-                <div class="ev-hv-row">
-                  <span class="ev-hv-kpi"><b>38</b><i>Besucher heute</i></span>
-                  <span class="ev-hv-kpi"><b>6</b><i>Anfragen</i></span>
-                  <span class="ev-hv-kpi"><b>4</b><i>Termine</i></span>
-                </div>
-                <div class="ev-hv-chart">
-                  <svg viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true">
-                    <polyline points="0,52 28,46 56,40 84,32 112,26 140,18 168,12 200,6" fill="none" stroke="currentColor" stroke-width="2.5"/>
-                    <polyline points="0,52 28,46 56,40 84,32 112,26 140,18 168,12 200,6 200,60 0,60" fill="currentColor" opacity="0.12" stroke="none"/>
-                  </svg>
-                </div>
-                <div class="ev-hv-list">
-                  <span class="ev-hv-li"><i></i><em class="ev-hv-tag ev-hv-tag--new">Neue Anfrage</em></span>
-                  <span class="ev-hv-li"><i></i><em class="ev-hv-tag">Termin gebucht</em></span>
-                  <span class="ev-hv-li"><i></i><em class="ev-hv-tag ev-hv-tag--won">Klient gewonnen</em></span>
-                </div>
-              </div>
-            </div>
-            <div class="ev-hv-badge ev-hv-badge--1">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              Neue Anfrage
-            </div>
-            <div class="ev-hv-badge ev-hv-badge--2">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
-              Termin gebucht
-            </div>
-          </div>
+          <aside class="ff-offer" aria-label="Ihr Angebot">
+            <p class="ff-offer-badge">Ihr Angebot</p>
+            <p class="ff-offer-title">Sie zahlen nur pro qualifiziertem Lead.</p>
+            <ul class="ff-offer-list" role="list">
+              <li><span class="ff-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Kein Setup, kein Retainer, keine Jahresbindung</li>
+              <li><span class="ff-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Nur Entscheider mit echtem Fulfillment-Bedarf — keine anonymen Klicks</li>
+              <li><span class="ff-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Ihr erster qualifizierter Termin ist <strong>kostenlos</strong></li>
+            </ul>
+            <a href="#kontakt" class="ev-btn ev-btn-primary ff-offer-cta">Ersten Termin gratis sichern →</a>
+            <p class="ff-offer-note">Wir arbeiten mit einer begrenzten Zahl an Fulfillment-Partnern pro Region — für saubere Qualität statt Masse.</p>
+          </aside>
         </div>
 
-        <!-- Animierte Kennzahlen -->
-        <div class="ev-statband reveal" role="list" aria-label="Kennzahlen">
-          <div class="ev-stat" role="listitem">
-            <div class="ev-stat-num"><span data-count="14" data-suffix=" Tage"></span></div>
-            <div class="ev-stat-label">bis dein System live ist</div>
+        <figure class="ff-herovisual">
+          <img src="/fulfillment/hero-fulfillment.svg" alt="Lagerhalle mit vollen Regalen und steigender Anzahl qualifizierter Neukunden-Anfragen" width="640" height="520" loading="eager" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== PROOF ===== -->
+    <section class="ev-section ev-section--tight" aria-label="Ergebnisse">
+      <div class="container">
+        <div class="ev-statband">
+          <div class="ev-stat">
+            <span class="ev-stat-num is-accent">200+</span>
+            <span class="ev-stat-label">qualifizierte Leads generiert</span>
           </div>
-          <div class="ev-stat" role="listitem">
-            <div class="ev-stat-num is-accent"><span data-count="5" data-suffix=" Anfragen"></span></div>
-            <div class="ev-stat-label">in Woche 1 — GreenChild</div>
+          <div class="ev-stat">
+            <span class="ev-stat-num">2</span>
+            <span class="ev-stat-label">Monate — nachweisbar, nicht geschätzt</span>
           </div>
-          <div class="ev-stat" role="listitem">
-            <div class="ev-stat-num"><span data-count="30" data-suffix=" Tage"></span></div>
-            <div class="ev-stat-label">Anfragen-Garantie nach Launch</div>
+          <div class="ev-stat">
+            <span class="ev-stat-num">1.</span>
+            <span class="ev-stat-label">Termin gratis, dann Pay-per-Lead</span>
           </div>
-          <div class="ev-stat" role="listitem">
-            <div class="ev-stat-num"><span data-count="3" data-suffix=" Plätze"></span></div>
-            <div class="ev-stat-label">pro Monat — bewusst limitiert</div>
+          <div class="ev-stat">
+            <span class="ev-stat-num">0</span>
+            <span class="ev-stat-label">Retainer &amp; Setup-Gebühr</span>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- ===== TRUST-MARQUEE ===== -->
-    <div class="ev-marquee" aria-hidden="true">
-      <div class="ev-marquee-track" id="ev-marquee-track">
-        <span class="ev-marquee-item">Business-Coaches</span>
-        <span class="ev-marquee-item">Karriere-Coaches</span>
-        <span class="ev-marquee-item">Berater &amp; Consultants</span>
-        <span class="ev-marquee-item">Trainer</span>
-        <span class="ev-marquee-item">Online-Kurse</span>
-        <span class="ev-marquee-item">Health-Coaches</span>
-        <span class="ev-marquee-item">Mentoren</span>
-        <span class="ev-marquee-item">Experten mit High-Ticket-Angebot</span>
-      </div>
-    </div>
 
     <!-- ===== PROBLEM ===== -->
-    <section id="problem" class="ev-section" aria-labelledby="problem-heading">
+    <section class="ev-section ev-section-alt" aria-labelledby="ff-pain-heading">
       <div class="container">
-        <p class="ev-eyebrow reveal">Das Problem</p>
-        <h2 id="problem-heading" class="ev-h2 reveal reveal-delay-1">Du hast Aufmerksamkeit. Aber zu wenig Anfragen.</h2>
-        <p class="ev-section-sub reveal reveal-delay-2">Die meisten Coaches verbrennen ihre Reichweite an drei Stellen — jeder verlorene Besucher ist ein verlorenes Erstgespräch.</p>
-        <div class="ev-grid-3">
-          <article class="ev-diag-card reveal">
-            <div class="ev-diag-icon" aria-hidden="true">
-              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-            </div>
-            <h3>Besucher springen wieder ab</h3>
-            <p>Deine Seite sieht aus wie ein Baukasten und führt nirgendwo hin. Kein klarer Pfad zum Termin — also klickt man weg.</p>
-          </article>
-          <article class="ev-diag-card reveal reveal-delay-1">
-            <div class="ev-diag-icon" aria-hidden="true">
-              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 22v-4M5 12H2M22 12h-3"/><circle cx="12" cy="12" r="4"/><path d="m4.9 4.9 2.1 2.1M17 17l2.1 2.1"/></svg>
-            </div>
-            <h3>Anfragen versickern</h3>
-            <p>Du bist im Coaching, antwortest zu spät, das Nachfassen vergisst sich. Der Interessent hat sich längst woanders gebucht.</p>
-          </article>
-          <article class="ev-diag-card reveal reveal-delay-2">
-            <div class="ev-diag-icon" aria-hidden="true">
-              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <h3>Termin-Pingpong per Mail</h3>
-            <p>„Wann passt es dir?“ — fünf Mails hin und her. Reibung, die Interessenten kostet, statt direkt einen Termin zu buchen.</p>
-          </article>
+        <p class="ev-eyebrow">Kennen Sie das?</p>
+        <h2 id="ff-pain-heading" class="ev-h2">Ihre Fläche ist da. Die passenden Kunden fehlen.</h2>
+        <div class="ff-pains">
+          {pains.map((p) => (
+            <div class="ff-pain"><span class="ff-x" aria-hidden="true">✕</span>{p}</div>
+          ))}
         </div>
       </div>
     </section>
 
-    <!-- ===== MECHANISMUS: VOM KLICK ZUM KLIENTEN ===== -->
-    <section id="mechanismus" class="ev-section ev-section-alt" aria-labelledby="mechanismus-heading">
+    <!-- ===== WARUM PLANBARE NEUKUNDEN ===== -->
+    <section class="ev-section" aria-labelledby="ff-why-heading">
       <div class="container">
-        <p class="ev-eyebrow reveal">Der Mechanismus</p>
-        <h2 id="mechanismus-heading" class="ev-h2 reveal reveal-delay-1">Vom Klick zum Klienten — automatisch.</h2>
-        <div class="ev-system-lead reveal reveal-delay-2">
-          <p>Wir sind keine Webdesigner. Wir bauen <strong>Klienten-Gewinnungs-Systeme</strong>: aus den Besuchern, die du schon hast, werden gebuchte Anfragen — ohne dass du mehr Werbung schalten oder selbst nachfassen musst.</p>
+        <div class="ff-why">
+          <div class="ff-why-copy">
+            <p class="ev-eyebrow">Warum das über Wachstum oder Stillstand entscheidet</p>
+            <h2 id="ff-why-heading" class="ev-h2">Ein Fulfillment-Center lebt von Auslastung.</h2>
+            <p class="ev-section-sub" style="margin-left:0;">
+              Ihre Kosten sind zum großen Teil fix: Die Fläche, die Technik und das Team sind da —
+              ob die Regale voll sind oder nicht. Jedes Prozent Leerstand geht direkt von Ihrer Marge ab.
+            </p>
+            <p class="ev-section-sub" style="margin-left:0;">
+              Deshalb ist die entscheidende Frage nicht, <em>ob</em> Sie neue Versender gewinnen — sondern
+              ob Sie es <strong>planbar</strong> tun. Eine gefüllte Pipeline ist der Unterschied zwischen
+              gesundem Wachstum und der Abhängigkeit von den zwei Kunden, die Sie gerade tragen. Genau
+              diese Planbarkeit bauen wir für Sie — mit Anfragen, die zu Ihrer Fläche, Ihrer Region und
+              Ihrer Warenart passen.
+            </p>
+          </div>
+          <figure class="ff-band">
+            <img src="/fulfillment/warehouse-band.svg" alt="Blick in eine Lagerhalle mit gefüllten Hochregalen" width="1200" height="380" loading="lazy" decoding="async">
+          </figure>
         </div>
+      </div>
+    </section>
 
-        <div class="ev-flow-wrap reveal">
-          <p class="ev-flow-caption">So wird aus einem Besucher ein gebuchtes Erstgespräch — ohne dass du etwas anfasst:</p>
-          <div class="ev-flow" role="img" aria-label="Ablauf: Besucher kommt auf die Seite, folgt einer klaren Strecke, bucht direkt einen Termin, Follow-up läuft automatisch.">
-            <div class="ev-flow-node">
-              <span class="ev-flow-ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              </span>
-              <span class="ev-flow-label">Besucher landet auf deiner Seite</span>
-            </div>
-            <div class="ev-flow-arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </div>
-            <div class="ev-flow-node">
-              <span class="ev-flow-ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
-              </span>
-              <span class="ev-flow-label">Klare Strecke führt zum Angebot</span>
-            </div>
-            <div class="ev-flow-arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </div>
-            <div class="ev-flow-node">
-              <span class="ev-flow-ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
-              </span>
-              <span class="ev-flow-label">Termin direkt gebucht</span>
-            </div>
-            <div class="ev-flow-arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </div>
-            <div class="ev-flow-node">
-              <span class="ev-flow-ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg>
-              </span>
-              <span class="ev-flow-label">Follow-up läuft, während du coachst</span>
-            </div>
+    <!-- ===== SO GEHT'S (3 Schritte) ===== -->
+    <section id="so-gehts" class="ev-section ev-section-alt" aria-labelledby="ff-steps-heading">
+      <div class="container">
+        <p class="ev-eyebrow">So arbeiten wir</p>
+        <h2 id="ff-steps-heading" class="ev-h2">In drei Schritten zu vollen Regalen.</h2>
+        <div class="prozess-steps" role="list" style="margin-top:48px;">
+          <div class="prozess-step" role="listitem">
+            <div class="step-num" aria-hidden="true">01</div>
+            <h3 class="step-title">Wir bauen Ihre Pipeline</h3>
+            <p class="step-desc">Zielgruppe: Marken, Onlinehändler und Versender mit dem Volumen, das zu Ihrer Fläche passt. Ansprache, Qualifizierung und Terminierung übernehmen wir komplett.</p>
+          </div>
+          <div class="prozess-step" role="listitem">
+            <div class="step-num" aria-hidden="true">02</div>
+            <h3 class="step-title">Sie bekommen qualifizierte Leads</h3>
+            <p class="step-desc">Kein „hat mal geklickt", sondern Entscheider mit konkretem Fulfillment-Bedarf — vorqualifiziert nach Ihren Kriterien: Volumen, Region, Warenart, Zeitpunkt.</p>
+          </div>
+          <div class="prozess-step" role="listitem">
+            <div class="step-num" aria-hidden="true">03</div>
+            <h3 class="step-title">Sie zahlen pro Lead</h3>
+            <p class="step-desc">Kein Retainer, kein Setup, keine lange Vertragsbindung. Sie zahlen nur für das, was ankommt. Und der erste qualifizierte Termin geht auf uns.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== DAS SYSTEM (4 BAUSTEINE) ===== -->
-    <section id="system" class="ev-section" aria-labelledby="system-heading">
+    <!-- ===== ANGEBOT (Risk Reversal) ===== -->
+    <section class="ev-section" aria-labelledby="ff-guarantee-heading">
       <div class="container">
-        <p class="ev-eyebrow reveal">Das System</p>
-        <h2 id="system-heading" class="ev-h2 reveal reveal-delay-1">Alles, was aus einem Klick einen Klienten macht.</h2>
-        <p class="ev-section-sub reveal reveal-delay-2">Vier Bausteine, die ineinandergreifen. Komplett für dich gebaut — du lieferst nur die Infos zu deinem Angebot.</p>
-
-        <div class="ev-stack">
-          <article class="ev-stack-card reveal">
-            <div class="ev-stack-head">
-              <span class="ev-stack-no">01</span>
-              <span class="ev-stack-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
-            </div>
-            <h3>Verkaufsstarke Website</h3>
-            <p>Kein Baukasten. Eine individuell gebaute Seite mit glasklarer Strecke zum Termin — gebaut, um aus Besuchern Anfragen zu machen, nicht nur, um schön auszusehen.</p>
-            <ul class="ev-stack-feats">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Conversion-Copy, die dein Angebot verkauft</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Ein klarer Pfad: vom Scroll zum Termin-CTA</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Blitzschnell auf Handy und Desktop</li>
-            </ul>
-          </article>
-
-          <article class="ev-stack-card reveal reveal-delay-1">
-            <div class="ev-stack-head">
-              <span class="ev-stack-no">02</span>
-              <span class="ev-stack-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/></svg></span>
-            </div>
-            <h3>Automatische Terminbuchung</h3>
-            <p>Interessenten buchen direkt aus der Anfrage einen Termin in deinem Kalender. Kein Mail-Pingpong, keine Reibung — und kein verlorener Lead, weil du gerade im Coaching warst.</p>
-            <ul class="ev-stack-feats">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Online-Buchung direkt aus der Seite</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Synchron mit deinem Kalender</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Automatische Bestätigung &amp; Erinnerung</li>
-            </ul>
-          </article>
-
-          <article class="ev-stack-card reveal reveal-delay-2">
-            <div class="ev-stack-head">
-              <span class="ev-stack-no">03</span>
-              <span class="ev-stack-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-            </div>
-            <h3>Follow-up-Automatisierung</h3>
-            <p>Nicht jeder bucht sofort. Automatische Nachfass-Sequenzen per E-Mail und WhatsApp holen Interessenten zurück — höflich, hartnäckig und vollautomatisch, während du lieferst.</p>
-            <ul class="ev-stack-feats">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Jede Anfrage landet sauber an einem Ort</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Automatische Nurture-Sequenz</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Kein Lead geht mehr verloren</li>
-            </ul>
-          </article>
-
-          <article class="ev-stack-card reveal reveal-delay-3">
-            <div class="ev-stack-head">
-              <span class="ev-stack-no">04</span>
-              <span class="ev-stack-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></span>
-            </div>
-            <h3>Tracking &amp; Optimierung</h3>
-            <p>Du siehst schwarz auf weiß, wie viele Besucher zu Anfragen werden — und wo. Damit drehen wir an den richtigen Stellen, statt zu raten.</p>
-            <ul class="ev-stack-feats">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Sauberes Conversion-Tracking</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>30 Tage Optimierung nach Launch</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Entscheidungen auf Zahlen, nicht Bauchgefühl</li>
-            </ul>
-          </article>
-        </div>
-
-        <div style="margin-top: 28px;" class="reveal">
-          <span class="ev-stack-note">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg>
-            Komplett done-for-you. In 14 Tagen live.
-          </span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== RECHNER ===== -->
-    <section id="rechner" class="ev-section ev-section-alt" aria-labelledby="rechner-heading">
-      <div class="container">
-        <p class="ev-eyebrow reveal">Rechne nach</p>
-        <h2 id="rechner-heading" class="ev-h2 reveal reveal-delay-1">Wie viele Anfragen verschenkst du gerade?</h2>
-        <p class="ev-section-sub reveal reveal-delay-2">Stell deine Zahlen ein. Der Rechner zeigt, wie viele Anfragen jeden Monat ungenutzt durch deine Seite laufen — bei gleicher Reichweite.</p>
-
-        <div class="ev-calc reveal">
-          <div class="ev-calc-inputs">
-            <div class="ev-calc-field">
-              <div class="ev-calc-field-head">
-                <label for="calc-visitors">Besucher pro Monat</label>
-                <output id="calc-visitors-out" class="ev-calc-val">2.500</output>
-              </div>
-              <input type="range" id="calc-visitors" class="ev-range" min="200" max="20000" step="100" value="2500">
-            </div>
-            <div class="ev-calc-field">
-              <div class="ev-calc-field-head">
-                <label for="calc-rate">Aktuelle Anfrage-Rate</label>
-                <output id="calc-rate-out" class="ev-calc-val">1,5&nbsp;%</output>
-              </div>
-              <input type="range" id="calc-rate" class="ev-range" min="0.5" max="6" step="0.5" value="1.5">
-            </div>
-            <div class="ev-calc-field">
-              <div class="ev-calc-field-head">
-                <label for="calc-close">Abschlussquote</label>
-                <output id="calc-close-out" class="ev-calc-val">30&nbsp;%</output>
-              </div>
-              <input type="range" id="calc-close" class="ev-range" min="10" max="80" step="5" value="30">
-            </div>
-          </div>
-
-          <div class="ev-calc-result">
-            <p class="ev-calc-result-label">Anfragen, die du pro Jahr verschenkst</p>
-            <p class="ev-calc-result-num" id="calc-lost">270</p>
-            <div class="ev-calc-result-rows">
-              <div class="ev-calc-stat"><strong id="calc-extra-clients">81</strong><span>zusätzliche Klienten / Jahr</span></div>
-              <div class="ev-calc-stat"><strong id="calc-extra-month">23</strong><span>Mehr-Anfragen / Monat</span></div>
-            </div>
-            <a href="#kontakt" class="ev-btn ev-btn-primary ev-btn-block">Deine echten Zahlen besprechen</a>
-            <p class="ev-calc-note">Überschlägige Rechnung auf Basis einer 2–3-fach besseren Conversion durch eine optimierte Strecke. Deine genauen Werte ermitteln wir im kostenlosen Funnel-Check.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== ABLAUF (14-TAGE) ===== -->
-    <section id="prozess" class="ev-section" aria-labelledby="prozess-heading">
-      <div class="container">
-        <p class="ev-eyebrow reveal">So läuft's</p>
-        <h2 id="prozess-heading" class="ev-h2 reveal reveal-delay-1">In 14 Tagen vom Gespräch zu gebuchten Anfragen.</h2>
-        <div class="prozess-steps">
-          <div class="prozess-step reveal">
-            <span class="ev-step-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
-            <div class="step-num">01</div>
-            <h3 class="step-title">Funnel-Check</h3>
-            <p class="step-desc">Kostenlos. Wir schauen uns deine Strecke an und zeigen dir, wo Anfragen verloren gehen.</p>
-          </div>
-          <div class="prozess-step reveal reveal-delay-1">
-            <span class="ev-step-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11H3v10h6zM21 3h-6v18h6zM15 7H9v14h6z"/></svg></span>
-            <div class="step-num">02</div>
-            <h3 class="step-title">Strategie &amp; Konzept</h3>
-            <p class="step-desc">Wir bauen die Strecke vom Klick zum Klienten — mit Festpreis und festem Liefertermin.</p>
-          </div>
-          <div class="prozess-step reveal reveal-delay-2">
-            <span class="ev-step-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
-            <div class="step-num">03</div>
-            <h3 class="step-title">Build (done-for-you)</h3>
-            <p class="step-desc">Website, Copy, Terminbuchung, Follow-up und Tracking — komplett von uns. In 14 Tagen live.</p>
-          </div>
-          <div class="prozess-step reveal reveal-delay-3">
-            <span class="ev-step-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></span>
-            <div class="step-num">04</div>
-            <h3 class="step-title">Launch &amp; Optimierung</h3>
-            <p class="step-desc">Dein System geht live — und wir optimieren 30 Tage nach, bis die Anfragen rollen.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== REFERENZEN (LIVE) ===== -->
-    <section id="referenzen" class="ev-section ev-section-alt" aria-labelledby="kompetenz-heading">
-      <div class="container">
-        <p class="ev-eyebrow reveal">Echte Ergebnisse</p>
-        <h2 id="kompetenz-heading" class="ev-h2 reveal reveal-delay-1">Sieh selbst — live, nicht als Screenshot.</h2>
-        <p class="ev-section-sub reveal reveal-delay-2">Drei echte Projekte direkt im Fenster. GreenChild ging in drei Wochen von null auf live — und brachte in Woche 1 fünf qualifizierte Anfragen.</p>
-
-        <div class="ev-ref-logos" role="list" aria-label="Referenzkunden">
-          <div class="ev-ref-logo" role="listitem">
-            <img src="/client-logos/greenchild.png" alt="GreenChild" class="ev-ref-logo-img" loading="lazy" decoding="async" width="150" height="38">
-          </div>
-          <div class="ev-ref-logo" role="listitem">
-            <img src="/client-logos/bml-white.png" alt="BrandsMarketingLab" class="ev-ref-logo-img" loading="lazy" decoding="async" width="44" height="44">
-          </div>
-          <div class="ev-ref-logo" role="listitem">
-            <img src="/client-logos/akropolis-mark.png" alt="Akropolis Geilenkirchen" class="ev-ref-logo-img" loading="lazy" decoding="async" width="120" height="106">
-          </div>
-        </div>
-
-        <div class="ev-ref-grid">
-          <article class="ev-ref-card reveal">
-            <div class="ev-ref-frame">
-              <div class="ev-ref-bar" aria-hidden="true"><i></i><i></i><i></i><em>greenchild.eu</em></div>
-              <div class="ev-ref-embed">
-                <iframe src="https://greenchild-preview.elevo.solutions/de/" title="GreenChild" loading="lazy" tabindex="-1" referrerpolicy="no-referrer"></iframe>
-                <button class="ev-ref-overlay ref-modal-trigger" type="button"
-                  data-url="https://greenchild-preview.elevo.solutions/de/"
-                  data-label="GreenChild" data-display-url="greenchild.eu">
-                  <span class="ev-ref-open"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>Live öffnen</span>
-                </button>
-              </div>
-            </div>
-            <div class="ev-ref-meta">
-              <span class="ev-ref-metric">5</span>
-              <div class="ev-ref-text">
-                <h3>GreenChild</h3>
-                <p>warme Anfragen in Woche 1 · vorher null</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="ev-ref-card reveal reveal-delay-1">
-            <div class="ev-ref-frame">
-              <div class="ev-ref-bar" aria-hidden="true"><i></i><i></i><i></i><em>elevo-business.github.io/bml</em></div>
-              <div class="ev-ref-embed">
-                <iframe src="https://elevo-business.github.io/bml/index.html" title="BrandsMarketingLab" loading="lazy" tabindex="-1" referrerpolicy="no-referrer"></iframe>
-                <button class="ev-ref-overlay ref-modal-trigger" type="button"
-                  data-url="https://elevo-business.github.io/bml/index.html"
-                  data-label="BrandsMarketingLab" data-display-url="elevo-business.github.io/bml">
-                  <span class="ev-ref-open"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>Live öffnen</span>
-                </button>
-              </div>
-            </div>
-            <div class="ev-ref-meta">
-              <span class="ev-ref-metric">Live</span>
-              <div class="ev-ref-text">
-                <h3>BrandsMarketingLab</h3>
-                <p>Conversion-Website · Marketing-Agentur</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="ev-ref-card reveal reveal-delay-2">
-            <div class="ev-ref-frame">
-              <div class="ev-ref-bar" aria-hidden="true"><i></i><i></i><i></i><em>akropolis-geilenkirchen.com</em></div>
-              <div class="ev-ref-embed">
-                <iframe src="https://akropolis-geilenkirchen.com" title="Akropolis Geilenkirchen" loading="lazy" tabindex="-1" referrerpolicy="no-referrer"></iframe>
-                <button class="ev-ref-overlay ref-modal-trigger" type="button"
-                  data-url="https://akropolis-geilenkirchen.com"
-                  data-label="Akropolis Geilenkirchen" data-display-url="akropolis-geilenkirchen.com"
-                  aria-label="Akropolis Geilenkirchen live öffnen">
-                  <span class="ev-ref-open"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>Live öffnen</span>
-                </button>
-              </div>
-            </div>
-            <div class="ev-ref-meta">
-              <span class="ev-ref-metric">+3×</span>
-              <div class="ev-ref-text">
-                <h3>Akropolis</h3>
-                <p>mehr Reservierungen · lokale Marke</p>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== GARANTIE ===== -->
-    <section id="garantie" class="ev-section" aria-labelledby="garantie-heading">
-      <div class="container">
-        <div class="ev-guarantee reveal">
+        <div class="ev-guarantee">
           <div class="ev-guarantee-ico" aria-hidden="true">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
           </div>
           <div class="ev-guarantee-body">
-            <p class="ev-eyebrow">Unsere Garantie</p>
-            <h2 id="garantie-heading" class="ev-h2">Unser Risiko, nicht deins.</h2>
-            <p>In 14 Tagen ist dein System live — zum Festpreis, der vorher schriftlich feststeht. Und bekommst du in den 30 Tagen nach Launch keine qualifizierte Anfrage über die Seite, arbeiten wir kostenlos weiter, bis du sie hast.</p>
+            <p class="ev-eyebrow">Testen Sie uns ohne Risiko</p>
+            <h2 id="ff-guarantee-heading" class="ev-h2">Der erste qualifizierte Termin ist kostenlos.</h2>
+            <p>
+              Sie müssen uns nicht glauben — Sie können es sehen. Ihren ersten qualifizierten Termin mit
+              einem passenden Versender bekommen Sie gratis. Überzeugt Sie das Ergebnis, skalieren wir
+              gemeinsam: Sie zahlen pro Lead, wir liefern planbar nach. Kein Retainer, keine Jahresbindung,
+              kein Risiko auf Ihrer Seite.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ===== WARUM ELEVO ===== -->
-    <section id="warum" class="ev-section ev-section-alt" aria-labelledby="vision-heading">
+    <section class="ev-section ev-section-alt" aria-labelledby="ff-diff-heading">
       <div class="container">
-        <div class="ev-vision reveal">
-          <figure class="ev-vision-portrait">
-            <picture>
-              <source type="image/webp" srcset="/team/mert-800.webp 1x, /team/mert-1600.webp 2x">
-              <img src="/team/mert-1200.jpg" alt="Mert Efe Celik, Gründer von Elevo" width="280" height="350" loading="lazy" decoding="async">
-            </picture>
-            <figcaption>
-              <strong>Mert Efe Celik</strong>
-              <span>Gründer · Elevo</span>
-            </figcaption>
-          </figure>
-          <div class="ev-vision-body">
-            <p class="ev-eyebrow">Warum es Elevo gibt</p>
-            <h2 id="vision-heading" class="ev-h2">Designer können kein Verkaufen. Agenturen keine Garantie.</h2>
-            <div class="ev-vision-text">
-              <p>Die meisten bauen dir eine hübsche Website und sind dann raus. Ob daraus Anfragen werden? Nicht ihr Problem. Genau da setzen wir an: Design auf Agentur-Niveau, echte technische Tiefe — und ein Gründer mit Vertriebs-Kopf, der nur eine Frage stellt: Wird daraus ein gebuchtes Gespräch?</p>
-              <p class="ev-vision-close">Wir verkaufen keine Websites. Wir verkaufen Anfragen. Klingt das nach deinem Ding? Dann lass uns reden.</p>
-            </div>
-            <div class="ev-vision-ctas">
-              <a href="#kontakt" class="ev-btn ev-btn-primary">Funnel-Check sichern →</a>
-              <a href="/ueber-uns" class="ev-btn ev-btn-ghost">Mehr über mich →</a>
-            </div>
+        <p class="ev-eyebrow">Warum Elevo</p>
+        <h2 id="ff-diff-heading" class="ev-h2">Fokus statt Gießkanne.</h2>
+        <div class="ev-grid-3" style="margin-top:40px;">
+          <div class="ff-diff">
+            <h3>Spezialisiert auf Fulfillment</h3>
+            <p>Wir gewinnen Neukunden für Fulfillment-Center und 3PL — nicht für alle Branchen gleichzeitig. Wir kennen die Entscheider und ihre Sprache.</p>
           </div>
+          <div class="ff-diff">
+            <h3>Qualität vor Menge</h3>
+            <p>Vorqualifizierte Entscheider mit echtem Bedarf statt Karteileichen. Jeder Lead passt zu Ihren Kriterien — sonst zählt er nicht.</p>
+          </div>
+          <div class="ff-diff">
+            <h3>Nachweisbare Ergebnisse</h3>
+            <p>Über 200 qualifizierte Leads in den letzten zwei Monaten. Kein Versprechen auf Folien — Zahlen, die wir belegen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ANSPRECHPARTNER ===== -->
+    <section class="ev-section" aria-labelledby="ff-people-heading">
+      <div class="container">
+        <p class="ev-eyebrow">Ihre Ansprechpartner</p>
+        <h2 id="ff-people-heading" class="ev-h2">Kein anonymes Callcenter. Menschen, die liefern.</h2>
+        <p class="ev-section-sub" style="margin-left:0;">Sie haben einen direkten Draht — kein Ticketsystem, keine Warteschleife.</p>
+
+        <div class="ff-people">
+          <article class="ff-person">
+            <div class="ff-person-photo">
+              <picture>
+                <source type="image/webp" srcset="/team/mert-800.webp 1x, /team/mert-1600.webp 2x">
+                <img src="/team/mert-1200.jpg" alt="Mert Efe Celik, Gründer von Elevo" width="240" height="300" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <div class="ff-person-info">
+              <h3 class="ff-person-name">Mert Efe Celik</h3>
+              <span class="ff-person-role">Gründer &amp; Strategie</span>
+              <p class="ff-person-bio">Verantwortlich für Strategie und Zielgruppe: Wer sind die richtigen Versender für Ihre Fläche — und wie erreichen wir sie planbar.</p>
+            </div>
+          </article>
+
+          <article class="ff-person">
+            <div class="ff-person-photo">
+              <div class="ff-person-placeholder" aria-hidden="true">
+                <span class="ff-person-initials">BK</span>
+                <span class="ff-person-soon">Bild folgt<br>in Kürze</span>
+              </div>
+            </div>
+            <div class="ff-person-info">
+              <h3 class="ff-person-name">Bünyamin Korkmaz</h3>
+              <span class="ff-person-role">Ihr Ansprechpartner · Neukundengewinnung</span>
+              <p class="ff-person-bio">Betreut Sie von der ersten Anfrage bis zum qualifizierten Termin — nah dran an den Leads und an Ihren Zielen.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
     <!-- ===== FAQ ===== -->
-    <FAQ />
-    <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
-
-    <!-- ===== FINAL CTA ===== -->
-    <section id="final-cta" class="ev-section" aria-labelledby="finalcta-heading">
+    <section class="ev-section ev-section-alt" aria-labelledby="ff-faq-heading">
       <div class="container">
-        <div class="ev-final reveal">
-          <span class="ev-scarcity"><span class="ev-dot"></span>Nur 3 Projekte pro Monat</span>
-          <h2 id="finalcta-heading" class="ev-h2">Sichere dir deinen Funnel-Check.</h2>
-          <p class="ev-final-sub">
-            Kostenlos und unverbindlich. Wir schauen uns deine Strecke an, zeigen dir, wo Anfragen
-            verloren gehen — und ob das 14-Tage-System für dich passt.
-          </p>
-          <a href="#kontakt" class="ev-btn ev-btn-primary ev-btn-xl">Funnel-Check sichern</a>
-          <p class="ev-final-trust">Antwort innerhalb von 24 Stunden · kein Verkaufsdruck · DSGVO-konform</p>
+        <p class="ev-eyebrow">Häufige Fragen</p>
+        <h2 id="ff-faq-heading" class="ev-h2" style="margin-bottom:32px;">Kurz beantwortet.</h2>
+        <div class="ff-faq">
+          {faqEntries.map(({ q, a }) => (
+            <details class="ff-faq-item">
+              <summary>{q}</summary>
+              <p>{a}</p>
+            </details>
+          ))}
         </div>
       </div>
     </section>
 
-    <!-- ===== KONTAKT ===== -->
-    <section id="kontakt" class="ev-section ev-section-alt" aria-labelledby="kontakt-heading">
+    <!-- ===== FINAL CTA / KONTAKT ===== -->
+    <section id="kontakt" class="ev-section" aria-labelledby="ff-final-heading">
       <div class="container">
-        <div class="ev-kontakt-grid">
-          <div>
-            <p class="ev-eyebrow">Kontakt</p>
-            <h2 id="kontakt-heading" class="ev-h2">Lass uns über deine Anfragen reden.</h2>
-            <p class="ev-section-sub">Kostenloser Funnel-Check, ganz unverbindlich. Gerne per E-Mail oder über das Formular.</p>
-            <ul class="ev-kontakt-list" role="list">
-              <li>
-                <span class="ev-kontakt-label">E-Mail</span>
-                <a href="mailto:hallo@elevo.solutions">hallo@elevo.solutions</a>
-              </li>
-              <li>
-                <span class="ev-kontakt-label">Für wen</span>
-                <span>Coaches &amp; Berater im DACH-Raum</span>
-              </li>
-              <li>
-                <span class="ev-kontakt-label">Antwort</span>
-                <span>Innerhalb von 24 Stunden</span>
-              </li>
-            </ul>
-          </div>
-          <div class="ev-kontakt-form">
-            <ContactForm />
-          </div>
+        <div class="ev-final">
+          <p class="ev-eyebrow">Kostenlos &amp; unverbindlich</p>
+          <h2 id="ff-final-heading" class="ev-h2">Reden wir über Ihre freien Kapazitäten.</h2>
+          <p class="ev-final-sub">
+            15 Minuten genügen: Wir schauen uns Ihre Fläche und Ihre Wunschkunden an und zeigen Ihnen,
+            wie viele passende Versender wir für Sie erreichen können. Ihren ersten qualifizierten Termin
+            bekommen Sie kostenlos.
+          </p>
+          <a href={MAILTO} class="ev-btn ev-btn-primary ev-btn-xl">Kostenloses Erstgespräch sichern</a>
+          <p class="ev-final-trust">
+            Oder direkt per E-Mail: <a href={MAILTO} class="ff-mail">hallo@elevo.solutions</a> · Pay-per-Lead · erster Termin gratis
+          </p>
         </div>
       </div>
     </section>
 
   </main>
 
-  <Footer />
+  <footer class="ff-footer" role="contentinfo">
+    <div class="container ff-footer-inner">
+      <Logo size="sm" />
+      <p class="ff-footer-tag">Planbare Neukundengewinnung für Fulfillment-Center &amp; 3PL-Dienstleister.</p>
+      <nav class="ff-footer-links" aria-label="Rechtliches">
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutz</a>
+        <a href={MAILTO}>Kontakt</a>
+      </nav>
+      <p class="ff-footer-copy">© {new Date().getFullYear()} Elevo · ELEVO Solutions</p>
+    </div>
+  </footer>
 
-  <!-- Sticky Mobile-CTA -->
-  <div class="ev-mcta" id="ev-mcta" aria-hidden="true">
-    <a href="mailto:hallo@elevo.solutions" class="ev-mcta-btn ev-mcta-ghost" aria-label="E-Mail schreiben">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-    </a>
-    <a href="#kontakt" class="ev-mcta-btn ev-mcta-primary">Funnel-Check sichern</a>
-  </div>
-
-  <script>
-    // ----- Reveal-on-Scroll -----
-    const revealEls = Array.from(document.querySelectorAll('.reveal, .reveal-left, .reveal-right'));
-    if (revealEls.length && 'IntersectionObserver' in window) {
-      const ro = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            ro.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-      revealEls.forEach((el) => ro.observe(el));
-    } else {
-      revealEls.forEach((el) => el.classList.add('visible'));
-    }
-
-    // ----- Count-up Kennzahlen -----
-    const fmtDE = (n: number) => Math.round(n).toLocaleString('de-DE');
-    const counters = Array.from(document.querySelectorAll<HTMLElement>('[data-count]'));
-    if (counters.length && 'IntersectionObserver' in window) {
-      const co = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const el = entry.target as HTMLElement;
-          const target = parseFloat(el.dataset.count || '0');
-          const suffix = el.dataset.suffix || '';
-          const prefix = el.dataset.prefix || '';
-          const dur = 1400;
-          const start = performance.now();
-          const tick = (now: number) => {
-            const p = Math.min((now - start) / dur, 1);
-            const eased = 1 - Math.pow(1 - p, 3);
-            el.textContent = prefix + fmtDE(target * eased) + suffix;
-            if (p < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
-          co.unobserve(el);
-        });
-      }, { threshold: 0.5 });
-      counters.forEach((el) => co.observe(el));
-    } else {
-      counters.forEach((el) => {
-        el.textContent = (el.dataset.prefix || '') + fmtDE(parseFloat(el.dataset.count || '0')) + (el.dataset.suffix || '');
-      });
-    }
-
-    // ----- Marquee: Track verdoppeln fuer nahtlose Schleife -----
-    const mqTrack = document.getElementById('ev-marquee-track');
-    if (mqTrack) mqTrack.innerHTML += mqTrack.innerHTML;
-
-    // ----- Sticky Mobile-CTA -----
-    const mcta = document.getElementById('ev-mcta');
-    const kontakt = document.getElementById('kontakt');
-    if (mcta) {
-      let kontaktVisible = false;
-      if ('IntersectionObserver' in window && kontakt) {
-        new IntersectionObserver((es) => { kontaktVisible = es[0].isIntersecting; updateMcta(); }, { threshold: 0.12 }).observe(kontakt);
-      }
-      const updateMcta = () => {
-        const pastHero = window.scrollY > window.innerHeight * 0.6;
-        const show = pastHero && !kontaktVisible;
-        mcta.classList.toggle('is-visible', show);
-        mcta.setAttribute('aria-hidden', show ? 'false' : 'true');
-      };
-      window.addEventListener('scroll', updateMcta, { passive: true });
-      window.addEventListener('resize', updateMcta, { passive: true });
-      updateMcta();
-    }
-
-    // ----- Live-Vorschau Modal -----
-    const modal = document.getElementById('ref-modal') as HTMLElement;
-    const frame = document.getElementById('ref-modal-frame') as HTMLIFrameElement;
-    const urlDisplay = document.getElementById('ref-modal-url') as HTMLElement;
-    const openBtn = document.getElementById('ref-modal-open-btn') as HTMLAnchorElement;
-    const closeBtn = document.getElementById('ref-modal-close') as HTMLButtonElement;
-    const backdrop = modal?.querySelector('.ref-modal-backdrop') as HTMLElement;
-
-    let lastFocus: HTMLElement | null = null;
-
-    function openModal(url: string, label: string, displayUrl: string) {
-      lastFocus = document.activeElement as HTMLElement;
-      frame.src = url;
-      frame.title = label;
-      urlDisplay.textContent = displayUrl;
-      openBtn.href = url;
-      modal.classList.add('is-visible');
-      document.body.style.overflow = 'hidden';
-      requestAnimationFrame(() => { modal.classList.add('is-open'); });
-      closeBtn.focus();
-    }
-
-    function closeModal() {
-      modal.classList.remove('is-open');
-      modal.addEventListener('transitionend', () => {
-        modal.classList.remove('is-visible');
-        frame.src = '';
-        document.body.style.overflow = '';
-        lastFocus?.focus();
-      }, { once: true });
-    }
-
-    document.querySelectorAll<HTMLElement>('.ref-modal-trigger').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const url = btn.dataset.url!;
-        const label = btn.dataset.label!;
-        const displayUrl = btn.dataset.displayUrl || url;
-        openModal(url, label, displayUrl);
-      });
-    });
-
-    closeBtn?.addEventListener('click', closeModal);
-    backdrop?.addEventListener('click', closeModal);
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('is-visible')) closeModal();
-    });
-
-    // ----- Anfragen-Rechner -----
-    const visEl = document.getElementById('calc-visitors') as HTMLInputElement;
-    const rateEl = document.getElementById('calc-rate') as HTMLInputElement;
-    const closeEl = document.getElementById('calc-close') as HTMLInputElement;
-    const visOut = document.getElementById('calc-visitors-out')!;
-    const rateOut = document.getElementById('calc-rate-out')!;
-    const closeOut = document.getElementById('calc-close-out')!;
-    const lostOut = document.getElementById('calc-lost')!;
-    const extraClientsOut = document.getElementById('calc-extra-clients')!;
-    const extraMonthOut = document.getElementById('calc-extra-month')!;
-
-    const de = new Intl.NumberFormat('de-DE');
-
-    function paintRange(el: HTMLInputElement) {
-      const pct = ((+el.value - +el.min) / (+el.max - +el.min)) * 100;
-      el.style.background =
-        `linear-gradient(90deg, var(--accent) 0%, var(--accent) ${pct}%, rgba(26,31,43,0.12) ${pct}%, rgba(26,31,43,0.12) 100%)`;
-    }
-
-    // Optimierte Strecke schafft erfahrungsgemaess das 2,5-fache der Anfrage-Rate.
-    const UPLIFT_FACTOR = 2.5;
-
-    function updateCalc() {
-      const visitors = +visEl.value;
-      const rate = +rateEl.value;          // %
-      const close = +closeEl.value;         // %
-      const extraRate = rate * (UPLIFT_FACTOR - 1); // zusaetzliche Prozentpunkte
-      const extraPerMonth = visitors * extraRate / 100;
-      const extraPerYear = extraPerMonth * 12;
-      const extraClients = extraPerYear * close / 100;
-
-      visOut.textContent = de.format(visitors);
-      rateOut.innerHTML = rate.toLocaleString('de-DE') + '&nbsp;%';
-      closeOut.innerHTML = close + '&nbsp;%';
-      lostOut.textContent = de.format(Math.round(extraPerYear));
-      extraClientsOut.textContent = de.format(Math.round(extraClients));
-      extraMonthOut.textContent = de.format(Math.round(extraPerMonth));
-
-      [visEl, rateEl, closeEl].forEach(paintRange);
-    }
-
-    if (visEl && rateEl && closeEl) {
-      [visEl, rateEl, closeEl].forEach(el => el.addEventListener('input', updateCalc));
-      updateCalc();
-    }
-  </script>
+  <CookieBanner />
 </BaseLayout>
+
+<style>
+  /* ===== Header ===== */
+  .ff-header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250, 247, 240, 0.85);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .ff-header-inner { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; padding-bottom: 14px; }
+  .ff-header-cta { padding: 11px 22px; font-size: 0.92rem; }
+
+  .ff-hero { padding-top: clamp(56px, 8vw, 96px); }
+
+  /* ===== Angebots-Karte (Hero) ===== */
+  .ff-offer {
+    background: linear-gradient(180deg, rgba(59,130,246,0.10), transparent 60%), var(--bg-card);
+    border: 1px solid var(--border-strong); border-radius: var(--radius-lg); padding: 32px 30px; align-self: center;
+  }
+  .ff-offer-badge {
+    display: inline-block; background: rgba(59,130,246,0.14); color: var(--accent);
+    font-family: var(--font-heading); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin: 0 0 16px;
+  }
+  .ff-offer-title { font-family: var(--font-heading); font-weight: 800; color: var(--text-primary); font-size: 1.35rem; line-height: 1.25; margin: 0 0 20px; }
+  .ff-offer-list { list-style: none; margin: 0 0 26px; padding: 0; display: grid; gap: 16px; }
+  .ff-offer-list li { display: flex; gap: 12px; align-items: flex-start; color: var(--text-secondary); font-size: 1rem; line-height: 1.45; }
+  .ff-offer-list strong { color: var(--text-primary); }
+  .ff-check { flex-shrink: 0; width: 24px; height: 24px; border-radius: 7px; background: rgba(59,130,246,0.14); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .ff-check svg { width: 13px; height: 13px; }
+  .ff-offer-cta { width: 100%; justify-content: center; }
+  .ff-offer-note { font-size: 0.82rem; color: var(--text-muted); margin: 16px 0 0; line-height: 1.45; }
+
+  /* ===== Hero-Visual ===== */
+  .ff-herovisual { margin: 48px auto 0; max-width: 640px; }
+  .ff-herovisual img { width: 100%; height: auto; display: block; border-radius: var(--radius-lg); }
+
+  /* ===== Pain-Grid ===== */
+  .ff-pains { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px; }
+  .ff-pain {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 22px 22px; color: var(--text-primary);
+    font-family: var(--font-heading); font-weight: 600; font-size: 1rem; line-height: 1.45;
+  }
+  .ff-x { color: var(--danger); font-weight: 800; font-size: 1.2rem; flex-shrink: 0; line-height: 1.35; }
+
+  /* ===== Warum-Block mit Band-Visual ===== */
+  .ff-why { display: grid; grid-template-columns: 1fr; gap: 40px; }
+  .ff-why-copy .ev-section-sub { margin-top: 16px; text-align: left; }
+  .ff-band { margin: 0; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); }
+  .ff-band img { width: 100%; height: auto; display: block; }
+
+  /* ===== Differenzierung ===== */
+  .ff-diff { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px 26px; }
+  .ff-diff h3 { font-family: var(--font-heading); font-weight: 700; font-size: 1.15rem; color: var(--text-primary); margin: 0 0 10px; }
+  .ff-diff p { color: var(--text-secondary); font-size: 0.96rem; line-height: 1.6; margin: 0; }
+
+  /* ===== Ansprechpartner ===== */
+  .ff-people { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 40px; }
+  .ff-person {
+    display: flex; gap: 22px; align-items: center;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 26px 26px;
+  }
+  .ff-person-photo { flex-shrink: 0; }
+  .ff-person-photo img {
+    width: 120px; height: 150px; object-fit: cover; border-radius: var(--radius);
+    display: block; border: 1px solid var(--border);
+  }
+  .ff-person-placeholder {
+    width: 120px; height: 150px; border-radius: var(--radius);
+    background: rgba(59,130,246,0.06); border: 1px dashed var(--border-strong);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center;
+  }
+  .ff-person-initials { font-family: var(--font-heading); font-weight: 800; font-size: 1.9rem; color: var(--accent); letter-spacing: 0.02em; }
+  .ff-person-soon { font-size: 0.66rem; color: var(--text-muted); line-height: 1.3; letter-spacing: 0.03em; }
+  .ff-person-name { font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; color: var(--text-primary); margin: 0 0 8px; }
+  .ff-person-role {
+    display: inline-block; background: rgba(59,130,246,0.1); color: var(--accent);
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 100px; margin-bottom: 14px;
+  }
+  .ff-person-bio { color: var(--text-secondary); font-size: 0.94rem; line-height: 1.6; margin: 0; }
+
+  /* ===== FAQ ===== */
+  .ff-faq { display: grid; gap: 14px; max-width: 820px; }
+  .ff-faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color var(--transition); }
+  .ff-faq-item[open] { border-color: var(--border-strong); }
+  .ff-faq-item summary {
+    cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 18px 22px; font-family: var(--font-heading); font-weight: 600; font-size: 1.02rem; color: var(--text-primary);
+  }
+  .ff-faq-item summary::-webkit-details-marker { display: none; }
+  .ff-faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--accent); line-height: 1; flex-shrink: 0; transition: transform var(--transition); }
+  .ff-faq-item[open] summary::after { transform: rotate(45deg); }
+  .ff-faq-item p { margin: 0; padding: 0 22px 20px; color: var(--text-secondary); line-height: 1.65; font-size: 0.98rem; }
+
+  .ff-mail { color: var(--accent); border-bottom: 1px solid var(--border); }
+  .ff-mail:hover { border-bottom-color: var(--accent); }
+
+  /* ===== Footer ===== */
+  .ff-footer { background: var(--bg-card); border-top: 1px solid var(--border); padding: 40px 0; margin-top: 8px; }
+  .ff-footer-inner { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
+  .ff-footer-tag { color: var(--text-secondary); font-size: 0.92rem; max-width: 46ch; margin: 0; }
+  .ff-footer-links { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+  .ff-footer-links a { color: var(--text-muted); font-size: 0.9rem; text-decoration: none; transition: color var(--transition); }
+  .ff-footer-links a:hover { color: var(--accent); }
+  .ff-footer-copy { color: var(--text-muted); font-size: 0.82rem; margin: 0; }
+
+  @media (max-width: 1024px) {
+    .ff-pains { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 760px) {
+    .ff-pains { grid-template-columns: 1fr; }
+    .ff-people { grid-template-columns: 1fr; }
+    .ff-header-cta { padding: 10px 14px; font-size: 0.82rem; }
+    .ff-person { flex-direction: column; text-align: center; align-items: center; }
+  }
+</style>
