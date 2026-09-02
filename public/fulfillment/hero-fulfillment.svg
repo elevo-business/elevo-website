@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" role="img" aria-label="Illustration: Fulfillment-Lager mit steigender Anzahl an Neukunden-Anfragen">
+  <defs>
+    <linearGradient id="ff-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F3EEE3"/>
+    </linearGradient>
+    <linearGradient id="ff-acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#2F6FE0"/>
+    </linearGradient>
+    <linearGradient id="ff-box" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E9DFC9"/>
+      <stop offset="1" stop-color="#D8C9A9"/>
+    </linearGradient>
+    <linearGradient id="ff-box2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F1E8D6"/>
+      <stop offset="1" stop-color="#E3D5B8"/>
+    </linearGradient>
+    <filter id="ff-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#1A1F2B" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="640" height="520" rx="24" fill="url(#ff-sky)"/>
+
+  <!-- floor -->
+  <rect x="0" y="404" width="640" height="116" fill="#EBE2D0"/>
+  <line x1="0" y1="404" x2="640" y2="404" stroke="#D8C9A9" stroke-width="2"/>
+
+  <!-- warehouse racking -->
+  <g stroke="#B9A97F" stroke-width="6" stroke-linecap="round">
+    <line x1="70" y1="120" x2="70" y2="404"/>
+    <line x1="300" y1="120" x2="300" y2="404"/>
+    <line x1="70" y1="140" x2="300" y2="140"/>
+    <line x1="70" y1="240" x2="300" y2="240"/>
+    <line x1="70" y1="330" x2="300" y2="330"/>
+  </g>
+
+  <!-- boxes on racks -->
+  <g filter="url(#ff-shadow)">
+    <rect x="92" y="168" width="60" height="60" rx="4" fill="url(#ff-box)"/>
+    <rect x="160" y="176" width="52" height="52" rx="4" fill="url(#ff-box2)"/>
+    <rect x="222" y="168" width="60" height="60" rx="4" fill="url(#ff-box)"/>
+    <rect x="100" y="266" width="70" height="56" rx="4" fill="url(#ff-box2)"/>
+    <rect x="184" y="270" width="94" height="52" rx="4" fill="url(#ff-box)"/>
+  </g>
+  <g stroke="#C6B488" stroke-width="3" opacity="0.8">
+    <line x1="122" y1="168" x2="122" y2="228"/>
+    <line x1="252" y1="168" x2="252" y2="228"/>
+    <line x1="135" y1="266" x2="135" y2="322"/>
+  </g>
+
+  <!-- parcel stack on floor -->
+  <g filter="url(#ff-shadow)">
+    <rect x="360" y="316" width="96" height="88" rx="6" fill="url(#ff-box)"/>
+    <rect x="372" y="252" width="72" height="64" rx="6" fill="url(#ff-box2)"/>
+    <rect x="466" y="340" width="80" height="64" rx="6" fill="url(#ff-box2)"/>
+  </g>
+  <g stroke="#3B82F6" stroke-width="4" opacity="0.9">
+    <line x1="408" y1="316" x2="408" y2="404"/>
+    <line x1="408" y1="284" x2="408" y2="252"/>
+    <line x1="506" y1="340" x2="506" y2="404"/>
+  </g>
+  <g fill="#1A1F2B" opacity="0.28" font-family="'Sora','Inter',sans-serif" font-size="13" font-weight="700">
+    <rect x="376" y="266" width="30" height="14" rx="3" fill="#1A1F2B" opacity="0.14"/>
+    <rect x="372" y="332" width="34" height="14" rx="3" fill="#1A1F2B" opacity="0.14"/>
+  </g>
+
+  <!-- floating KPI card: rising leads -->
+  <g filter="url(#ff-shadow)">
+    <rect x="356" y="72" width="228" height="150" rx="18" fill="#FFFFFF" stroke="#E3D5B8" stroke-width="1.5"/>
+    <text x="380" y="106" font-family="'Sora','Inter',sans-serif" font-size="13" font-weight="600" fill="#6B7888" letter-spacing="0.06em">QUALIFIZIERTE LEADS</text>
+    <text x="380" y="146" font-family="'Sora','Inter',sans-serif" font-size="40" font-weight="800" fill="#1A1F2B">200<tspan fill="#3B82F6">+</tspan></text>
+    <text x="380" y="168" font-family="'Outfit','Inter',sans-serif" font-size="13" fill="#6B7888">in 2 Monaten</text>
+    <!-- mini rising bars -->
+    <g fill="url(#ff-acc)">
+      <rect x="472" y="180" width="14" height="18" rx="3"/>
+      <rect x="492" y="168" width="14" height="30" rx="3"/>
+      <rect x="512" y="150" width="14" height="48" rx="3"/>
+      <rect x="532" y="128" width="14" height="70" rx="3"/>
+      <rect x="552" y="106" width="14" height="92" rx="3"/>
+    </g>
+    <path d="M479 176 L499 162 L519 146 L539 122 L559 100" fill="none" stroke="#1A1F2B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.35"/>
+  </g>
+
+  <!-- incoming-request pin -->
+  <g filter="url(#ff-shadow)">
+    <circle cx="150" cy="96" r="30" fill="url(#ff-acc)"/>
+    <path d="M138 90 h24 a2 2 0 0 1 2 2 v14 a2 2 0 0 1 -2 2 h-24 a2 2 0 0 1 -2 -2 v-14 a2 2 0 0 1 2 -2 z" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
+    <path d="M137 92 l13 9 l13 -9" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
