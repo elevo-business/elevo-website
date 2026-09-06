@@ -1,69 +1,80 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import ContactForm from '../components/ContactForm.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import LeadQuiz from '../components/LeadQuiz.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 import '../styles/global.css';
 import '../styles/ev-system.css';
-import '../styles/rx-theme.css';
 ---
 
 <BaseLayout
-  title="Funnel-Check sichern — Elevo"
-  description="Sichere dir deinen kostenlosen Funnel-Check. Wir zeigen dir, wo deine Anfragen verloren gehen — unverbindlich, kein Verkaufsdruck. Antwort innerhalb von 24 Stunden. Für Coaches & Berater im DACH-Raum."
+  title="Leads anfragen — Elevo"
+  description="Fordern Sie aktuelle, exklusive Leads mit Ersatz-Garantie an. Ein paar kurze Fragen, dann Ihre Kontaktdaten — wir melden uns kurzfristig."
   canonical="https://elevo.solutions/kontakt"
-  bodyClass="rx"
 >
   <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
 
-  <Header />
+  <SiteHeader />
 
   <main id="main">
-    <!-- ===== HERO ===== -->
     <section class="ev-page-hero" aria-labelledby="kontakt-hero-heading">
       <div class="container">
-        <p class="ev-eyebrow">Funnel-Check</p>
+        <p class="ev-eyebrow">Leads anfragen</p>
         <h1 id="kontakt-hero-heading" class="ev-hero-h1">
-          Lass uns über<br>
-          <span class="ev-accent">deine Anfragen reden.</span>
+          Reden wir über<br>
+          <span class="ev-accent">Ihre freien Kapazitäten.</span>
         </h1>
         <p class="ev-hero-sub">
-          Kostenloser Funnel-Check, ganz unverbindlich. Wir schauen uns deine Strecke an und
-          sagen dir ehrlich, wo Anfragen verloren gehen — und ob das 14-Tage-System für dich passt.
+          Aktuelle, exklusive Leads mit kostenloser Ersatz-Garantie. Kein Retainer, kein Setup —
+          Sie zahlen nur pro qualifiziertem Lead.
         </p>
       </div>
     </section>
 
-    <!-- ===== KONTAKT ===== -->
-    <section id="kontakt" class="ev-section ev-section-alt" aria-labelledby="kontakt-heading">
+    <section class="ev-section ev-section-alt" aria-label="Kontaktformular">
       <div class="container">
-        <div class="ev-kontakt-grid">
+        <div class="kontakt-grid">
           <div>
             <p class="ev-eyebrow">Kontakt aufnehmen</p>
-            <h2 id="kontakt-heading" class="ev-h2">Direkt. Persönlich. Konkret.</h2>
-            <p class="ev-section-sub">Kein Ticketsystem, kein Callcenter. Du sprichst direkt mit den Menschen, die dein System bauen.</p>
-            <ul class="ev-kontakt-list" role="list">
+            <h2 class="ev-h2">Direkt. Persönlich. Konkret.</h2>
+            <p class="ev-section-sub" style="margin-left:0;">Kein Ticketsystem, kein Callcenter. Sie sprechen direkt mit den Menschen, die Ihre Leads liefern.</p>
+            <ul class="kontakt-list" role="list">
               <li>
-                <span class="ev-kontakt-label">E-Mail</span>
-                <a href="mailto:hallo@elevo.solutions">hallo@elevo.solutions</a>
+                <span class="kontakt-label">E-Mail</span>
+                <a href="mailto:hey@elevo.solutions">hey@elevo.solutions</a>
               </li>
               <li>
-                <span class="ev-kontakt-label">Für wen</span>
-                <span>Coaches &amp; Berater im DACH-Raum</span>
+                <span class="kontakt-label">Für wen</span>
+                <span>Fulfillment-Center &amp; 3PL-/Logistikdienstleister</span>
               </li>
               <li>
-                <span class="ev-kontakt-label">Antwort</span>
-                <span>Innerhalb von 24 Stunden</span>
+                <span class="kontakt-label">Modell</span>
+                <span>Pay-per-Lead, exklusiv, mit Ersatz-Garantie</span>
               </li>
             </ul>
           </div>
-          <div class="ev-kontakt-form">
-            <ContactForm />
-          </div>
+          <LeadQuiz />
         </div>
       </div>
     </section>
   </main>
 
-  <Footer />
+  <SiteFooter />
+
+  <CookieBanner />
 </BaseLayout>
+
+<style>
+  .kontakt-list { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 18px; }
+  .kontakt-list li { display: flex; flex-direction: column; gap: 4px; }
+  .kontakt-label { font-family: var(--font-heading); font-weight: 700; font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+  .kontakt-list a { color: var(--accent); font-weight: 600; }
+  .kontakt-list span:not(.kontakt-label) { color: var(--text-primary); font-weight: 500; }
+
+  .kontakt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+
+  @media (max-width: 900px) {
+    .kontakt-grid { grid-template-columns: 1fr; }
+  }
+</style>

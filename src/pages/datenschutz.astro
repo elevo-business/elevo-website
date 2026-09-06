@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import DatenschutzContent from '../components/legal/DatenschutzContent.astro';
 import '../styles/global.css';
 import '../styles/rx-theme.css';
@@ -15,7 +15,7 @@ import '../styles/rx-theme.css';
 >
   <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
 
-  <Header />
+  <SiteHeader />
 
   <main id="main" class="legal-page">
     <div class="container">
@@ -23,12 +23,12 @@ import '../styles/rx-theme.css';
     </div>
   </main>
 
-  <Footer />
+  <SiteFooter />
 </BaseLayout>
 
 <style>
   .legal-page {
-    padding: 140px 0 96px;
+    padding: 64px 0 96px;
     min-height: 100vh;
   }
 </style>

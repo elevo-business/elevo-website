@@ -44,12 +44,12 @@
    CSS Custom Properties
 =========================== */
 :root {
-  /* Cremeweiss-Palette (Light Theme) — warmes Creme + Ink-Text, Akzent Blau */
-  --bg-deep: #F3EEE3;
-  --bg-dark: #FAF7F0;
-  --bg-alt: #F3EEE3;
+  /* Weiß/Blau-Palette (Light Theme, ab Sept. 2026) — reines Weiß + Ink-Text, Akzent Blau. Kein Creme-/Warmton mehr. */
+  --bg-deep: #FFFFFF;
+  --bg-dark: #FFFFFF;
+  --bg-alt: #F5F8FC;
   --bg-card: #FFFFFF;
-  --bg-card-hover: #F8F4EC;
+  --bg-card-hover: #EEF4FC;
   --accent: #3B82F6;
   --accent-hover: #2F6FE0;
   --accent-glow: rgba(59, 130, 246, 0.16);

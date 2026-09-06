@@ -1,0 +1,42 @@
+---
+// Schlanker, wiederverwendbarer Footer für alle Marketing-/Legal-Seiten.
+import Logo from './Logo.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container site-footer-inner">
+    <Logo size="sm" />
+    <p class="site-footer-tag">Aktuelle, exklusive Leads für Unternehmen mit freien Kapazitäten — mit Ersatz-Garantie.</p>
+    <nav class="site-footer-links" aria-label="Rechtliches">
+      <a href="/leads-fulfillmentcenter">Fulfillment-Center</a>
+      <a href="/leads-3pl-logistik">3PL &amp; Logistik</a>
+      <a href="/impressum">Impressum</a>
+      <a href="/datenschutz">Datenschutz</a>
+      <a href="mailto:hey@elevo.solutions">hey@elevo.solutions</a>
+    </nav>
+    <p class="site-footer-copy">© {year} Elevo · ELEVO Solutions</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--bg-alt);
+    border-top: 1px solid var(--border);
+    padding: 40px 0;
+    margin-top: 8px;
+  }
+  .site-footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+  }
+  .site-footer-tag { color: var(--text-secondary); font-size: 0.92rem; max-width: 46ch; margin: 0; }
+  .site-footer-links { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+  .site-footer-links a { color: var(--text-muted); font-size: 0.9rem; text-decoration: none; transition: color var(--transition); }
+  .site-footer-links a:hover { color: var(--accent); }
+  .site-footer-copy { color: var(--text-muted); font-size: 0.82rem; margin: 0; }
+</style>

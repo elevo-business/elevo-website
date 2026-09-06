@@ -1,0 +1,371 @@
+---
+// Quiz-artiges Kontaktformular: ein paar Qualifizierungsfragen (Klick-Auswahl,
+// kein Tippen) + am Ende die Kontaktdaten. Läuft komplett client-seitig
+// (kein Framework, reines <script>) und postet an denselben Endpoint wie das
+// bisherige Kontaktformular — die einzige echte Backend-Anbindung, die diese
+// rein statische Astro-Site hat.
+//
+// WICHTIG (an den Betreiber): Dieser Endpoint speist laut Kommentar in
+// vertriebssystem.astro aktuell Pipedrive (CRM), nicht garantiert ein
+// Postfach. Damit Quiz-Ergebnisse wirklich bei hey@elevo.solutions ankommen,
+// bitte in Pipedrive (oder im Backend selbst, das nicht Teil dieses Repos
+// ist) eine E-Mail-Benachrichtigung an hey@elevo.solutions einrichten.
+const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solutions/api/contact';
+---
+
+<div class="lead-quiz" id="lead-quiz" data-api-url={apiUrl}>
+  <div class="lq-progress" aria-hidden="true">
+    <div class="lq-progress-fill" id="lq-progress-fill"></div>
+  </div>
+
+  <div id="lq-choice-steps"></div>
+
+  <form class="lq-step" id="lq-contact-step" novalidate hidden>
+    <p class="lq-step-label" id="lq-contact-label">Letzter Schritt</p>
+    <h3>Wohin dürfen wir uns melden?</h3>
+
+    <input type="text" name="_hp" tabindex="-1" autocomplete="off" class="lq-honeypot" aria-hidden="true">
+    <input type="hidden" name="_ts" id="lq-ts">
+
+    <div class="lq-field">
+      <label for="lq-name">Name *</label>
+      <input id="lq-name" name="name" type="text" required autocomplete="name">
+    </div>
+    <div class="lq-field">
+      <label for="lq-company">Firma *</label>
+      <input id="lq-company" name="company" type="text" required autocomplete="organization">
+    </div>
+    <div class="lq-field">
+      <label for="lq-email">E-Mail *</label>
+      <input id="lq-email" name="email" type="email" required autocomplete="email">
+    </div>
+    <div class="lq-field">
+      <label for="lq-phone">Telefon <span class="lq-optional">(optional)</span></label>
+      <input id="lq-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel">
+    </div>
+
+    <p class="lq-error" id="lq-error" role="alert" hidden></p>
+
+    <div class="lq-nav-row">
+      <button type="button" class="lq-back" id="lq-back-contact">← Zurück</button>
+      <button type="submit" class="ev-btn ev-btn-primary" id="lq-submit">Absenden</button>
+    </div>
+    <p class="lq-privacy">
+      Mit dem Absenden stimmst du unserer <a href="/datenschutz">Datenschutzerklärung</a> zu.
+    </p>
+  </form>
+
+  <div class="lq-step lq-done" id="lq-done" hidden>
+    <div class="lq-done-icon" aria-hidden="true">✓</div>
+    <h3 id="lq-done-heading">Danke!</h3>
+    <p>Wir melden uns kurzfristig mit einer Einschätzung, wie viele passende Leads wir für euch liefern können.</p>
+  </div>
+</div>
+
+<style>
+  .lead-quiz {
+    width: 100%;
+    max-width: 560px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 34px 32px;
+    box-shadow: var(--shadow);
+  }
+
+  .lq-progress {
+    height: 6px;
+    border-radius: 999px;
+    background: var(--border);
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .lq-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width var(--transition);
+  }
+
+  .lq-step-label {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-hover);
+    margin: 0 0 8px;
+  }
+
+  .lq-step h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin: 0 0 20px;
+  }
+
+  .lq-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .lq-option {
+    text-align: left;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color var(--transition), background var(--transition);
+  }
+  .lq-option:hover { border-color: var(--accent); background: var(--bg-card-hover); }
+  .lq-option.is-selected { border-color: var(--accent); background: var(--bg-card-hover); color: var(--accent-hover); font-weight: 600; }
+
+  .lq-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .lq-field label { font-family: var(--font-heading); font-weight: 600; font-size: 0.9rem; color: var(--text-primary); }
+  .lq-optional { color: var(--text-muted); font-weight: 400; }
+  .lq-field input {
+    padding: 12px 14px;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--border);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text-primary);
+    background: var(--bg-card);
+  }
+  .lq-field input:focus { outline: none; border-color: var(--accent); }
+
+  .lq-honeypot { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; overflow: hidden; }
+
+  .lq-nav-row { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; gap: 16px; }
+  .lq-back {
+    background: none; border: none; color: var(--text-muted);
+    font-family: var(--font-heading); font-weight: 600; font-size: 0.92rem;
+    cursor: pointer; padding: 8px 4px;
+  }
+  .lq-back:hover { color: var(--text-primary); }
+
+  .lq-error { color: #C0392B; font-size: 0.88rem; margin: -6px 0 12px; }
+
+  .lq-privacy { font-size: 0.78rem; color: var(--text-muted); margin: 16px 0 0; line-height: 1.5; }
+  .lq-privacy a { color: var(--text-muted); text-decoration: underline; }
+
+  .lq-done { text-align: center; padding: 8px 0; }
+  .lq-done-icon {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--bg-card-hover); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 18px; font-size: 1.6rem; font-weight: 700;
+  }
+  .lq-done p { color: var(--text-secondary); line-height: 1.6; margin: 0; }
+
+  @media (max-width: 600px) {
+    .lead-quiz { padding: 26px 22px; }
+  }
+</style>
+
+<script>
+  type QuizField = 'segment' | 'acquisition' | 'volume' | 'urgency';
+
+  interface QuizStep {
+    field: QuizField;
+    question: string;
+    options: string[];
+  }
+
+  const STEPS: QuizStep[] = [
+    {
+      field: 'segment',
+      question: 'Was beschreibt euch am besten?',
+      options: [
+        'Fulfillment-Center / 3PL-Dienstleister',
+        'Anderer Dienstleister mit freien Kapazitäten',
+        'Sonstige Branche',
+      ],
+    },
+    {
+      field: 'acquisition',
+      question: 'Wie läuft eure Neukundengewinnung aktuell?',
+      options: ['Kaltakquise', 'Empfehlungen', 'Agentur / Marketing', 'Nichts Systematisches'],
+    },
+    {
+      field: 'volume',
+      question: 'Wie viele neue Kunden sucht ihr aktuell pro Monat?',
+      options: ['1–2', '3–5', '5+', 'Noch unklar, wir testen erstmal'],
+    },
+    {
+      field: 'urgency',
+      question: 'Wie dringend ist der Bedarf?',
+      options: ['Akut — wir suchen jetzt', 'In den nächsten Wochen', 'Wir informieren uns erstmal'],
+    },
+  ];
+
+  const TOTAL_STEPS = STEPS.length + 1; // + Kontakt-Schritt
+
+  const root = document.getElementById('lead-quiz') as HTMLElement;
+  const choiceContainer = document.getElementById('lq-choice-steps') as HTMLElement;
+  const contactStep = document.getElementById('lq-contact-step') as HTMLFormElement;
+  const contactLabel = document.getElementById('lq-contact-label') as HTMLElement;
+  const doneStep = document.getElementById('lq-done') as HTMLElement;
+  const progressFill = document.getElementById('lq-progress-fill') as HTMLElement;
+  const backContactBtn = document.getElementById('lq-back-contact') as HTMLButtonElement;
+  const submitBtn = document.getElementById('lq-submit') as HTMLButtonElement;
+  const errorEl = document.getElementById('lq-error') as HTMLElement;
+  const tsInput = document.getElementById('lq-ts') as HTMLInputElement;
+  const apiUrl = root.dataset.apiUrl!;
+
+  if (tsInput) tsInput.value = String(Date.now());
+
+  const answers: Record<QuizField, string> = { segment: '', acquisition: '', volume: '', urgency: '' };
+  let stepIndex = 0;
+
+  // Alle Choice-Steps als DOM-Elemente aufbauen (verstecken bis auf Step 0).
+  const stepEls: HTMLElement[] = STEPS.map((step, i) => {
+    const el = document.createElement('div');
+    el.className = 'lq-step';
+    el.hidden = i !== 0;
+
+    const label = document.createElement('p');
+    label.className = 'lq-step-label';
+    label.textContent = `Frage ${i + 1} von ${TOTAL_STEPS}`;
+    el.appendChild(label);
+
+    const h3 = document.createElement('h3');
+    h3.textContent = step.question;
+    el.appendChild(h3);
+
+    const opts = document.createElement('div');
+    opts.className = 'lq-options';
+    step.options.forEach((opt) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'lq-option';
+      btn.textContent = opt;
+      btn.addEventListener('click', () => selectOption(i, step.field, opt, btn, opts));
+      opts.appendChild(btn);
+    });
+    el.appendChild(opts);
+
+    if (i > 0) {
+      const nav = document.createElement('div');
+      nav.className = 'lq-nav-row';
+      const back = document.createElement('button');
+      back.type = 'button';
+      back.className = 'lq-back';
+      back.textContent = '← Zurück';
+      back.addEventListener('click', () => goToStep(i - 1));
+      nav.appendChild(back);
+      el.appendChild(nav);
+    }
+
+    choiceContainer.appendChild(el);
+    return el;
+  });
+
+  function updateProgress() {
+    const pct = doneStep.hidden === false ? 100 : Math.round((stepIndex / TOTAL_STEPS) * 100);
+    progressFill.style.width = `${pct}%`;
+  }
+
+  function goToStep(index: number) {
+    stepEls.forEach((el, i) => { el.hidden = i !== index; });
+    contactStep.hidden = index !== STEPS.length;
+    if (index === STEPS.length) contactLabel.textContent = `Schritt ${TOTAL_STEPS} von ${TOTAL_STEPS}`;
+    stepIndex = index;
+    errorEl.hidden = true;
+    updateProgress();
+  }
+
+  function selectOption(stepI: number, field: QuizField, value: string, btn: HTMLButtonElement, group: HTMLElement) {
+    answers[field] = value;
+    group.querySelectorAll('.lq-option').forEach((b) => b.classList.remove('is-selected'));
+    btn.classList.add('is-selected');
+    setTimeout(() => goToStep(stepI + 1), 160);
+  }
+
+  backContactBtn.addEventListener('click', () => goToStep(STEPS.length - 1));
+
+  function formatMessage(): string {
+    return [
+      `Lead-Quiz — Qualifizierungsantworten`,
+      ``,
+      `Segment: ${answers.segment || '—'}`,
+      `Aktuelle Neukundengewinnung: ${answers.acquisition || '—'}`,
+      `Gesuchte neue Kunden/Monat: ${answers.volume || '—'}`,
+      `Dringlichkeit: ${answers.urgency || '—'}`,
+    ].join('\n');
+  }
+
+  contactStep.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const hp = (contactStep.elements.namedItem('_hp') as HTMLInputElement)?.value;
+    if (hp) return;
+    const ts = (contactStep.elements.namedItem('_ts') as HTMLInputElement)?.value;
+    if (ts && Date.now() - parseInt(ts, 10) < 1500) return;
+
+    const name = (contactStep.elements.namedItem('name') as HTMLInputElement).value.trim();
+    const company = (contactStep.elements.namedItem('company') as HTMLInputElement).value.trim();
+    const email = (contactStep.elements.namedItem('email') as HTMLInputElement).value.trim();
+    const phone = (contactStep.elements.namedItem('phone') as HTMLInputElement).value.trim();
+
+    errorEl.hidden = true;
+    if (!name || !company) {
+      errorEl.textContent = 'Bitte Name und Firma angeben.';
+      errorEl.hidden = false;
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errorEl.textContent = 'Bitte eine gültige E-Mail-Adresse angeben.';
+      errorEl.hidden = false;
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Wird gesendet …';
+
+    const lead = (window as any).elevoMeta?.leadData?.() ?? null;
+
+    try {
+      const res = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          company,
+          service: 'lead-generierung',
+          message: formatMessage(),
+          source: 'elevo.solutions-quiz',
+          ...(lead ?? {}),
+        }),
+      });
+
+      if (!res.ok) throw new Error('Server error');
+
+      contactStep.hidden = true;
+      doneStep.hidden = false;
+      progressFill.style.width = '100%';
+
+      if (typeof (window as any).gtag !== 'undefined') {
+        (window as any).gtag('event', 'conversion', { send_to: 'AW-18023151518/contact_form_submit' });
+      }
+      if (lead) (window as any).elevoMeta?.fireLead?.(lead.metaEventId, { content_name: 'lead-quiz' });
+    } catch {
+      errorEl.textContent = 'Etwas ist schiefgelaufen. Schreib uns direkt: hey@elevo.solutions';
+      errorEl.hidden = false;
+    }
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Absenden';
+  });
+
+  updateProgress();
+</script>

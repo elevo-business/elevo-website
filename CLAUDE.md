@@ -13,25 +13,27 @@
 
 ```
 src/
-  components/   Hero, Header, Footer, ContactForm (.astro)
+  components/   SiteHeader, SiteFooter, LeadQuiz, Logo, CookieBanner (.astro) — Header/Footer/ContactForm/Team/FAQ/ErlebnisweltSection sind Altlasten der vorherigen Positionierung, ungenutzt seit dem Relaunch
   layouts/      BaseLayout.astro (SEO meta, OG tags, fonts)
-  pages/        index, leistungen, referenzen, kontakt, impressum, datenschutz
+  pages/        index (Lead-Gen-Onepager), leads-fulfillmentcenter, leads-3pl-logistik, kontakt (Quiz), impressum, datenschutz
     previews/   Kunden-Preview-Seiten (Einzelseiten pro Kunde)
     demos/      Demo-Websites
-  styles/       global.css (CSS Custom Properties, keine Frameworks)
+  styles/       global.css (CSS Custom Properties), ev-system.css (wiederverwendbare Sektions-/Button-Klassen), rx-theme.css (Legal-Seiten)
 public/         Fonts (Sora, Outfit woff2), Icons, Bilder
 ```
 
-## Brand CI (zwingend, Visual Direction v1 — Ink/Teal, ab ELE-600/ELE-597)
-- Akzent: `--accent: #3DD6C0` (Teal) — Hover: `#2EBFAB`
-- Hintergrund: `--bg-deep: #08111B` / `--bg-dark: #0D1B2A` (Ink) / `--bg-card: #14253A` (Surface 1)
-- Text: `--text-primary: #FFFFFF` / `--text-secondary: #C9D7E4` / `--text-muted: #8AAFC8`
-- Border: `--border: #243A55` / `--border-strong: rgba(61,214,192,0.35)`
+## Brand CI (zwingend, Visual Direction v2 — Weiß/Blau, ab Sept. 2026)
+- Akzent: `--accent: #3B82F6` (Blau) — Hover: `#2F6FE0`
+- Hintergrund: `--bg-deep: #FFFFFF` / `--bg-dark: #FFFFFF` (reines Weiß) / `--bg-alt: #F5F8FC` (dezenter Blauton für alternierende Sektionen) / `--bg-card: #FFFFFF` (Karten, per Border abgesetzt)
+- Text: `--text-primary: #1A1F2B` / `--text-secondary: #44505F` / `--text-muted: #6B7888`
+- Border: `--border: rgba(26,31,43,0.12)` / `--border-strong: rgba(59,130,246,0.45)`
 - Headings: Sora (mit Inter-Fallback), 400–800. Body: Outfit (mit Inter-Fallback), 300–600.
 - Alle Fonts self-hosted (DSGVO)
 - Border-Radius: `--radius: 14px`
 - Transitions: `0.3s cubic-bezier(0.4, 0, 0.2, 1)`
-- Logo-Komponente: `src/components/Logo.astro` (wordmark „Elevo" + Echo-Chevron-Icon)
+- Logo-Komponente: `src/components/Logo.astro` (wordmark „Elevo" + Echo-Chevron-Icon, kein Gesicht/Foto)
+- **Design-Prinzip „clean, keine fancy Details"**: keine Foto-Bänder, keine Browser-Mockups, keine floatenden Badges, keine Personen-/Team-Fotos auf Marketing-Seiten. Typografie, Weißraum, klare Karten mit Border — das ist der Look.
+- Frühere Ink/Teal-Dark-Direktive (ELE-600/ELE-597) ist **abgelöst** — nicht wiederherstellen ohne explizite Freigabe.
 
 ## Konventionen
 - Sprache Website: Deutsch (de)
@@ -69,8 +71,9 @@ public/         Fonts (Sora, Outfit woff2), Icons, Bilder
 - Fonts NICHT von Google CDN laden (DSGVO-Verstoss)
 - Kundenvorschauen unter /previews/ nutzen das Template-System (siehe unten)
 - Nginx cached statische Assets 1 Jahr (immutable) — Cache-Busting bei Asset-Änderungen
-- Kein Light-Mode — Website ist ausschliesslich Dark Theme
+- Website ist ausschliesslich Light Theme (Weiß/Blau) — kein Dark Mode, kein Toggle
 - Keine Frameworks (Tailwind/SCSS/React) installieren — Pure CSS + Astro only
+- Keine Team-/Personenfotos auf Marketing-Seiten (Positionierung ab Sept. 2026 bewusst gesichtslos/produktfokussiert)
 
 ## Template-System: Neue Preview erstellen
 

@@ -1,0 +1,63 @@
+---
+// Schlanker, wiederverwendbarer Seiten-Header. Bewusst ohne Mobile-Hamburger-Menü
+// und ohne Scroll-Progress-Bar (Design-Prinzip "keine fancy Details") — auf
+// Mobile bleiben nur Logo + CTA sichtbar, die Nav-Links werden ausgeblendet.
+import Logo from './Logo.astro';
+
+export interface Props {
+  ctaHref?: string;
+  ctaText?: string;
+}
+
+const { ctaHref = '/kontakt', ctaText = 'Leads anfragen' } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="container site-header-inner">
+    <Logo size="md" />
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <a href="/leads-fulfillmentcenter">Fulfillment-Center</a>
+      <a href="/leads-3pl-logistik">3PL &amp; Logistik</a>
+      <a href="/#modell">So funktioniert&rsquo;s</a>
+    </nav>
+    <a href={ctaHref} class="ev-btn ev-btn-primary site-header-cta">{ctaText}</a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.94rem;
+  }
+  .site-nav a { color: var(--text-secondary); transition: color var(--transition); }
+  .site-nav a:hover { color: var(--accent); }
+  .site-header-cta { padding: 11px 22px; font-size: 0.92rem; flex-shrink: 0; }
+
+  @media (max-width: 880px) {
+    .site-nav { display: none; }
+  }
+  @media (max-width: 760px) {
+    .site-header-cta { padding: 10px 14px; font-size: 0.82rem; }
+  }
+</style>

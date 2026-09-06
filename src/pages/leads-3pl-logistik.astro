@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import LeadQuiz from '../components/LeadQuiz.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import '../styles/global.css';
+import '../styles/ev-system.css';
+
+const pains = [
+  'Ausschreibungen und Vergabeverfahren dauern Monate — planbares Wachstum sieht anders aus.',
+  'Ein, zwei Großverlader tragen den Umsatz. Läuft ein Vertrag aus, wird es eng.',
+  'Kaltakquise bei Einkauf/Logistikleitung ist zäh — die Entscheider sind kaum direkt erreichbar.',
+  'Freie Lager-, Umschlags- oder Transportkapazität, aber keine passenden Anfragen dazu.',
+  'Empfehlungen laufen, aber unregelmäßig. Darauf lässt sich kein Wachstumsplan bauen.',
+  'Fläche, Fuhrpark und Team kosten unabhängig von der Auslastung — Leerstand geht direkt von der Marge ab.',
+];
+
+const faqEntries = [
+  { q: 'Was ist ein „qualifizierter" Lead für einen Logistikdienstleister?', a: 'Ein Entscheider (Einkauf, Logistikleitung, Geschäftsführung) mit konkretem Bedarf an Kontraktlogistik, Lager- oder Transportkapazität — passend zu Volumen, Region und Warenart, mit Zustimmung zu einem Gespräch.' },
+  { q: 'Ist der Lead wirklich nur für uns?', a: 'Ja. Jeder Lead ist exklusiv und wird nur an einen Anbieter pro Region verkauft.' },
+  { q: 'Was, wenn der Lead nicht passt?', a: 'Falsche Kontaktdaten oder kein echtes Interesse: Wir ersetzen den Lead kostenlos.' },
+  { q: 'Wie sieht das Vertragsmodell aus?', a: 'Pay-per-Lead — Sie zahlen pro qualifiziertem Lead, kein Retainer, keine Mindestlaufzeit über Jahre.' },
+  { q: 'Welche Bereiche deckt ihr ab?', a: 'Kontraktlogistik, Lagerlogistik, Umschlag und Transport — überall dort, wo Unternehmen planbar neue Vertragspartner statt Zufallsanfragen suchen.' },
+];
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqEntries.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Leads für 3PL & Logistikdienstleister — aktuell, exklusiv, mit Garantie — Elevo"
+  description="Qualifizierte Leads für 3PL- und Logistikdienstleister: aktuell, exklusiv und mit kostenloser Ersatz-Garantie. Pay-per-Lead, kein Retainer."
+  canonical="https://elevo.solutions/leads-3pl-logistik"
+>
+  <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+
+  <SiteHeader />
+
+  <main id="main">
+
+    <!-- ===== HERO ===== -->
+    <section class="ev-hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="ev-hero-grid ev-hero-grid--single">
+          <div class="ev-hero-copy">
+            <p class="ev-eyebrow">Lead-Generierung für 3PL &amp; Logistikdienstleister</p>
+            <h1 id="hero-heading" class="ev-hero-h1">
+              Planbar neue Vertragspartner gewinnen.<br>
+              Leads sind <span class="ev-accent">aktuell und exklusiv.</span>
+            </h1>
+            <p class="ev-hero-sub">
+              Statt auf Ausschreibungen zu warten: Wir liefern qualifizierte Anfragen von Unternehmen,
+              die aktiv einen Kontraktlogistik-, Lager- oder Transportpartner suchen — vorqualifiziert
+              nach Ihren Kriterien, exklusiv für Sie, mit kostenlosem Ersatz bei Fehltreffern.
+            </p>
+            <div class="ev-hero-ctas">
+              <a href="#kontakt" class="ev-btn ev-btn-primary">
+                Passende Leads anfragen
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="#so-gehts" class="ev-btn ev-btn-ghost">So funktioniert&rsquo;s</a>
+            </div>
+            <p class="ev-hero-trust">Pay-per-Lead · exklusiv · kostenloser Ersatz bei Fehltreffern</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROBLEM ===== -->
+    <section class="ev-section ev-section-alt" aria-labelledby="pain-heading">
+      <div class="container">
+        <p class="ev-eyebrow">Kennen Sie das?</p>
+        <h2 id="pain-heading" class="ev-h2">Ihre Kapazität ist da. Die passenden Verlader fehlen.</h2>
+        <div class="pains-grid">
+          {pains.map((p) => (
+            <div class="pain-item"><span class="pain-x" aria-hidden="true">✕</span>{p}</div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SO GEHT'S ===== -->
+    <section id="so-gehts" class="ev-section" aria-labelledby="steps-heading">
+      <div class="container">
+        <p class="ev-eyebrow">So arbeiten wir</p>
+        <h2 id="steps-heading" class="ev-h2">In drei Schritten zu neuen Vertragspartnern.</h2>
+        <div class="prozess-steps" role="list" style="margin-top:48px;">
+          <div class="prozess-step" role="listitem">
+            <div class="step-num" aria-hidden="true">01</div>
+            <h3 class="step-title">Wir klären Ihre Kriterien</h3>
+            <p class="step-desc">Kapazität, Region, Warenart, Leistungsspektrum — kurzes Gespräch, damit die Ansprache zu Ihrem Angebot passt.</p>
+          </div>
+          <div class="prozess-step" role="listitem">
+            <div class="step-num" aria-hidden="true">02</div>
+            <h3 class="step-title">Sie bekommen qualifizierte Leads</h3>
+            <p class="step-desc">Entscheider mit konkretem Bedarf an Kontraktlogistik, Lager- oder Transportkapazität — vorqualifiziert, nicht anonym.</p>
+          </div>
+          <div class="prozess-step" role="listitem">
+            <div class="step-num" aria-hidden="true">03</div>
+            <h3 class="step-title">Sie zahlen pro Lead</h3>
+            <p class="step-desc">Kein Retainer, kein Setup, keine lange Vertragsbindung. Exklusiv für Sie — und kostenloser Ersatz, falls ein Lead nicht passt.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GARANTIE ===== -->
+    <section class="ev-section ev-section-alt" aria-labelledby="guarantee-heading">
+      <div class="container">
+        <div class="ev-guarantee">
+          <div class="ev-guarantee-ico" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <div class="ev-guarantee-body">
+            <p class="ev-eyebrow">Testen Sie uns ohne Risiko</p>
+            <h2 id="guarantee-heading" class="ev-h2">Aktuell, exklusiv, mit Garantie.</h2>
+            <p>
+              Jeder Lead ist aktuell recherchiert und exklusiv nur für Sie in Ihrer Region. Passt ein
+              Lead nicht (falsche Daten, kein echtes Interesse), ersetzen wir ihn kostenlos. Kein
+              Retainer, keine Jahresbindung.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="ev-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <p class="ev-eyebrow">Häufige Fragen</p>
+        <h2 id="faq-heading" class="ev-h2" style="margin-bottom:32px;">Kurz beantwortet.</h2>
+        <div class="faq-list">
+          {faqEntries.map(({ q, a }) => (
+            <details class="faq-item">
+              <summary>{q}</summary>
+              <p>{a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== QUIZ / KONTAKT ===== -->
+    <section id="kontakt" class="ev-section ev-section-alt" aria-labelledby="kontakt-heading">
+      <div class="container">
+        <div class="kontakt-grid">
+          <div class="kontakt-intro">
+            <p class="ev-eyebrow">In 2 Minuten</p>
+            <h2 id="kontakt-heading" class="ev-h2">Reden wir über Ihre freien Kapazitäten.</h2>
+            <p class="ev-section-sub" style="margin-left:0;">
+              Ein paar kurze Fragen zu Ihrem Leistungsspektrum, dann Ihre Kontaktdaten — wir melden
+              uns mit einer Einschätzung, wie viele passende Verlader wir für Sie erreichen können.
+            </p>
+            <p class="kontakt-direct">Oder direkt per E-Mail: <a href="mailto:hey@elevo.solutions">hey@elevo.solutions</a></p>
+          </div>
+          <LeadQuiz />
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <SiteFooter />
+
+  <CookieBanner />
+</BaseLayout>
+
+<style>
+  .ev-hero-grid--single { grid-template-columns: 1fr; max-width: 760px; }
+
+  .pains-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px; }
+  .pain-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 22px 22px; color: var(--text-primary);
+    font-family: var(--font-heading); font-weight: 600; font-size: 1rem; line-height: 1.45;
+  }
+  .pain-x { color: var(--danger); font-weight: 800; font-size: 1.2rem; flex-shrink: 0; line-height: 1.35; }
+
+  .faq-list { display: grid; gap: 14px; max-width: 820px; }
+  .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color var(--transition); }
+  .faq-item[open] { border-color: var(--border-strong); }
+  .faq-item summary {
+    cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 18px 22px; font-family: var(--font-heading); font-weight: 600; font-size: 1.02rem; color: var(--text-primary);
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--accent); line-height: 1; flex-shrink: 0; transition: transform var(--transition); }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: 0; padding: 0 22px 20px; color: var(--text-secondary); line-height: 1.65; font-size: 0.98rem; }
+
+  .kontakt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .kontakt-direct { margin-top: 24px; font-size: 0.94rem; color: var(--text-secondary); }
+  .kontakt-direct a { color: var(--accent); }
+
+  @media (max-width: 1024px) {
+    .pains-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .kontakt-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px) {
+    .pains-grid { grid-template-columns: 1fr; }
+  }
+</style>
