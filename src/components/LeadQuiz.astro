@@ -127,6 +127,28 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
   .lq-option:hover { border-color: var(--accent); background: var(--bg-card-hover); }
   .lq-option.is-selected { border-color: var(--accent); background: var(--bg-card-hover); color: var(--accent-hover); font-weight: 600; }
 
+  /* Multi-Select-Fragen: Checkbox-Indikator statt Auto-Advance */
+  .lq-option.is-multi { display: flex; align-items: center; gap: 12px; }
+  .lq-option.is-multi::before {
+    content: '';
+    flex-shrink: 0;
+    width: 18px; height: 18px;
+    border-radius: 5px;
+    border: 1.5px solid var(--border);
+    background: var(--bg-card);
+    transition: border-color var(--transition), background var(--transition);
+  }
+  .lq-option.is-multi.is-selected::before {
+    border-color: var(--accent);
+    background: var(--accent);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+    background-size: 12px 12px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .lq-multi-hint { font-size: 0.82rem; color: var(--text-muted); margin: 10px 0 0; }
+  .lq-continue { flex-shrink: 0; }
+
   .lq-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
   .lq-field label { font-family: var(--font-heading); font-weight: 600; font-size: 0.9rem; color: var(--text-primary); }
   .lq-optional { color: var(--text-muted); font-weight: 400; }
@@ -177,6 +199,8 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
     field: QuizField;
     question: string;
     options: string[];
+    /** Mehrfachauswahl (Checkbox-Stil, expliziter "Weiter"-Button) statt Single-Choice mit Auto-Advance. */
+    multi?: boolean;
   }
 
   const STEPS: QuizStep[] = [
@@ -191,8 +215,9 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
     },
     {
       field: 'acquisition',
-      question: 'Wie läuft eure Neukundengewinnung aktuell?',
+      question: 'Wie läuft eure Neukundengewinnung aktuell? (Mehrfachauswahl möglich)',
       options: ['Kaltakquise', 'Empfehlungen', 'Agentur / Marketing', 'Nichts Systematisches'],
+      multi: true,
     },
     {
       field: 'volume',
@@ -222,7 +247,9 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
 
   if (tsInput) tsInput.value = String(Date.now());
 
-  const answers: Record<QuizField, string> = { segment: '', acquisition: '', volume: '', urgency: '' };
+  // Intern immer als Array geführt — bei Single-Choice-Fragen genau ein Eintrag,
+  // bei Multi-Choice-Fragen null oder mehr.
+  const answers: Record<QuizField, string[]> = { segment: [], acquisition: [], volume: [], urgency: [] };
   let stepIndex = 0;
 
   // Alle Choice-Steps als DOM-Elemente aufbauen (verstecken bis auf Step 0).
@@ -245,22 +272,52 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
     step.options.forEach((opt) => {
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = 'lq-option';
+      btn.className = step.multi ? 'lq-option is-multi' : 'lq-option';
       btn.textContent = opt;
-      btn.addEventListener('click', () => selectOption(i, step.field, opt, btn, opts));
+      btn.addEventListener('click', () =>
+        step.multi
+          ? toggleOption(step.field, opt, btn)
+          : selectOption(i, step.field, opt, btn, opts)
+      );
       opts.appendChild(btn);
     });
     el.appendChild(opts);
 
-    if (i > 0) {
+    if (step.multi) {
+      const hint = document.createElement('p');
+      hint.className = 'lq-multi-hint';
+      hint.textContent = 'Mehrere Antworten möglich.';
+      el.appendChild(hint);
+    }
+
+    if (i > 0 || step.multi) {
       const nav = document.createElement('div');
       nav.className = 'lq-nav-row';
-      const back = document.createElement('button');
-      back.type = 'button';
-      back.className = 'lq-back';
-      back.textContent = '← Zurück';
-      back.addEventListener('click', () => goToStep(i - 1));
-      nav.appendChild(back);
+      if (i > 0) {
+        const back = document.createElement('button');
+        back.type = 'button';
+        back.className = 'lq-back';
+        back.textContent = '← Zurück';
+        back.addEventListener('click', () => goToStep(i - 1));
+        nav.appendChild(back);
+      } else {
+        nav.appendChild(document.createElement('span'));
+      }
+      if (step.multi) {
+        const cont = document.createElement('button');
+        cont.type = 'button';
+        cont.className = 'ev-btn ev-btn-primary lq-continue';
+        cont.textContent = 'Weiter →';
+        cont.addEventListener('click', () => {
+          if (answers[step.field].length === 0) {
+            errorEl.textContent = 'Bitte mindestens eine Option auswählen.';
+            errorEl.hidden = false;
+            return;
+          }
+          goToStep(i + 1);
+        });
+        nav.appendChild(cont);
+      }
       el.appendChild(nav);
     }
 
@@ -283,22 +340,39 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
   }
 
   function selectOption(stepI: number, field: QuizField, value: string, btn: HTMLButtonElement, group: HTMLElement) {
-    answers[field] = value;
+    answers[field] = [value];
     group.querySelectorAll('.lq-option').forEach((b) => b.classList.remove('is-selected'));
     btn.classList.add('is-selected');
     setTimeout(() => goToStep(stepI + 1), 160);
   }
 
+  function toggleOption(field: QuizField, value: string, btn: HTMLButtonElement) {
+    const current = answers[field];
+    const i = current.indexOf(value);
+    if (i === -1) {
+      current.push(value);
+      btn.classList.add('is-selected');
+    } else {
+      current.splice(i, 1);
+      btn.classList.remove('is-selected');
+    }
+    if (current.length > 0) errorEl.hidden = true;
+  }
+
   backContactBtn.addEventListener('click', () => goToStep(STEPS.length - 1));
+
+  function fmt(field: QuizField): string {
+    return answers[field].length ? answers[field].join(', ') : '—';
+  }
 
   function formatMessage(): string {
     return [
       `Lead-Quiz — Qualifizierungsantworten`,
       ``,
-      `Segment: ${answers.segment || '—'}`,
-      `Aktuelle Neukundengewinnung: ${answers.acquisition || '—'}`,
-      `Gesuchte neue Kunden/Monat: ${answers.volume || '—'}`,
-      `Dringlichkeit: ${answers.urgency || '—'}`,
+      `Segment: ${fmt('segment')}`,
+      `Aktuelle Neukundengewinnung: ${fmt('acquisition')}`,
+      `Gesuchte neue Kunden/Monat: ${fmt('volume')}`,
+      `Dringlichkeit: ${fmt('urgency')}`,
     ].join('\n');
   }
 
