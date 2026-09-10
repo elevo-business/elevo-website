@@ -18,10 +18,10 @@ const dim = size === 'sm' ? 24 : size === 'lg' ? 36 : 28;
     focusable="false"
   >
     <path d="M13 32 L32 14 L51 32" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M21 39 L32 28 L43 39" fill="none" stroke="#A9C8F4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="24" y1="47" x2="40" y2="47" stroke="#A9C8F4" stroke-width="7" stroke-linecap="round"/>
+    <path d="M21 39 L32 28 L43 39" fill="none" stroke="var(--accent-soft-strong, #7FE9DA)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="24" y1="47" x2="40" y2="47" stroke="var(--accent-soft-strong, #7FE9DA)" stroke-width="7" stroke-linecap="round"/>
   </svg>
-  <span class="logo-word">ELEVO</span>
+  <span class="logo-word">Elevo</span>
 </a>
 
 <style>
@@ -29,27 +29,20 @@ const dim = size === 'sm' ? 24 : size === 'lg' ? 36 : 28;
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    color: var(--accent, #3B82F6);
+    color: var(--accent);
     text-decoration: none;
-    font-family: var(--font-heading, 'Inter', 'Sora', sans-serif);
+    font-family: var(--font-heading);
     font-weight: 800;
-    letter-spacing: -0.04em;
     line-height: 1;
-    transition: opacity 0.2s ease;
+    transition: opacity var(--transition);
   }
-  .logo-lockup:hover { opacity: 0.88; }
-  .logo-mark {
-    flex: 0 0 auto;
-    color: var(--accent, #3B82F6);
-  }
+  .logo-lockup:hover { opacity: 0.85; }
+  .logo-mark { flex: 0 0 auto; }
   .logo-word {
-    color: var(--text-primary, #ffffff);
-    font-size: 1.35rem;
-    letter-spacing: 0.04em;
+    color: var(--text-primary);
+    font-size: 1.45rem;
+    letter-spacing: -0.03em;
   }
-  .logo-sm .logo-word { font-size: 1.15rem; }
-  .logo-lg .logo-word { font-size: 1.65rem; }
-  @media (max-width: 640px) {
-    .logo-word { font-size: 1.2rem; }
-  }
+  .logo-sm .logo-word { font-size: 1.2rem; }
+  .logo-lg .logo-word { font-size: 1.7rem; }
 </style>
