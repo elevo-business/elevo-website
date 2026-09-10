@@ -1,32 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Logo from '../components/Logo.astro';
-import CookieBanner from '../components/CookieBanner.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-import '../styles/ev-system.css';
 
-// Kontakt-Mailto mit vorbelegtem Betreff (Soft-CTA "Erstgespräch", kein Preisanker).
 const MAILTO =
-  'mailto:hallo@elevo.solutions?subject=' +
-  encodeURIComponent('Kostenloses Erstgespräch — Neukunden für unser Fulfillment-Center');
-
-const pains = [
-  'Ihre Auslastung schwankt — mal platzt das Lager, mal stehen Flächen und Personal ungenutzt.',
-  'Ein, zwei Großkunden tragen den Umsatz. Springt einer ab, wird es sofort eng.',
-  'Kaltakquise frisst Zeit und Nerven — und die Entscheider bei Marken und Händlern sind kaum zu erreichen.',
-  'Agenturen liefern Klicks und Reichweite. Was fehlt, sind echte Anfragen von Versendern mit Volumen.',
-  'Empfehlungen sind wertvoll — aber nicht planbar. Wachstum lässt sich darauf nicht aufbauen.',
-  'Miete, Regale, WMS und Team laufen weiter. Jeder Tag Leerstand geht direkt von Ihrer Marge ab.',
-];
+  'mailto:hey@elevo.solutions?subject=' +
+  encodeURIComponent('Erstgespräch — Leads für unser Fulfillment-Center');
 
 // FAQ-Inhalte synchron mit sichtbarem Markup halten (speist zusätzlich JSON-LD).
 const faqEntries = [
-  { q: 'Was ist ein „qualifizierter" Lead?', a: 'Ein Entscheider mit konkretem Fulfillment-Bedarf, der zu Ihren Kriterien passt — Volumen, Region und Warenart — und einem Gespräch zugestimmt hat. Keine anonymen Klicks, keine kalten Adressen.' },
-  { q: 'Muss ich einen langen Vertrag unterschreiben?', a: 'Nein. Sie zahlen pro Lead. Kein Retainer, kein Setup, keine Mindestlaufzeit über Jahre. Sie steuern selbst, wie viele Leads Sie abnehmen möchten.' },
-  { q: 'Wie schnell kommen die ersten Termine?', a: 'In der Regel innerhalb der ersten Wochen nach dem Start. Den allerersten qualifizierten Termin bekommen Sie kostenlos — Sie gehen also in keine Vorleistung.' },
-  { q: 'Woher kommen die Leads?', a: 'Aus gezielter Ansprache und Qualifizierung von Marken, Onlinehändlern und Versendern, die aktuell einen Fulfillment-Partner suchen oder wechseln wollen — passend zu Ihrer Kapazität.' },
-  { q: 'Für wen lohnt sich das?', a: 'Für Fulfillment-Center und 3PL-Dienstleister mit freien Kapazitäten, die planbar wachsen und die Abhängigkeit von wenigen Großkunden reduzieren wollen.' },
+  { q: 'Was heißt „exklusiv“ bei einem Lead?', a: 'Jeder Lead wird nur einmal verkauft — nie gleichzeitig an mehrere Anbieter in derselben Region. Kein Wettrennen um denselben Kontakt, kein Preiskampf um die Anfrage.' },
+  { q: 'Was ist die Ersatz-Garantie?', a: 'Hat ein Lead falsche Kontaktdaten oder gar kein echtes Interesse, ersetzen wir ihn kostenlos. Sie zahlen nur für Leads, die wirklich zählen.' },
+  { q: 'Muss ich einen langen Vertrag unterschreiben?', a: 'Nein. Sie zahlen pro Lead — kein Retainer, kein Setup, keine Mindestlaufzeit. Sie steuern selbst, wie viele Leads Sie abnehmen.' },
+  { q: 'Woher kommen die Leads?', a: 'Aus gezielter Ansprache und mehrstufiger Qualifizierung von Unternehmen, die aktiv einen Fulfillment-Partner suchen oder wechseln wollen — passend zu Ihren Kriterien wie Volumen, Region und Warenart.' },
+  { q: 'Wie schnell kommen die ersten Leads?', a: 'In der Regel innerhalb der ersten Wochen nach dem Start. Wir beginnen mit einem kurzen Gespräch zu Ihren Kriterien und skalieren dann Schritt für Schritt.' },
+  { q: 'Für welche Branchen ist das gedacht?', a: 'Schwerpunkt sind Fulfillment-Center und 3PL-/Logistikdienstleister mit freien Kapazitäten. Auf Anfrage prüfen wir auch andere B2B-Branchen mit vergleichbarem Bedarf.' },
 ];
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -36,251 +27,282 @@ const faqSchema = {
     acceptedAnswer: { '@type': 'Answer', text: a },
   })),
 };
+
+const tickerItems = [
+  'Pay-per-Lead',
+  'Exklusiv pro Region',
+  'Ersatz-Garantie',
+  'Kein Retainer',
+  'Entscheider statt Klicks',
+  'DACH-weit',
+];
+
+const chevron = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>';
 ---
 
 <BaseLayout
-  title="Neukundengewinnung für Fulfillment-Center — Elevo"
-  description="Planbar neue Versender gewinnen — ohne Kaltakquise. Sie zahlen pro qualifiziertem Lead, der erste Termin ist kostenlos. Über 200 qualifizierte Leads in den letzten 2 Monaten."
+  title="Leadgenerierung für Fulfillment & 3PL — Elevo"
+  description="Exklusive, vorqualifizierte Leads für Fulfillment-Center und 3PL-Dienstleister: Pay-per-Lead, kein Retainer, Ersatz-Garantie bei Fehltreffern. Über 200 qualifizierte Leads in 2 Monaten."
   canonical="https://elevo.solutions/"
 >
-  <a href="#kontakt" class="skip-link">Zum Hauptinhalt springen</a>
+  <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
 
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
 
-  <header class="ff-header">
-    <div class="container ff-header-inner">
-      <Logo size="md" />
-      <a href="#kontakt" class="ev-btn ev-btn-primary ff-header-cta">Kostenloses Erstgespräch</a>
-    </div>
-  </header>
+  <Header />
 
   <main id="main">
 
     <!-- ===== HERO ===== -->
-    <section class="ev-hero ff-hero" aria-labelledby="ff-hero-heading">
-      <div class="container">
-        <div class="ev-hero-grid">
-          <div class="ev-hero-copy">
-            <p class="ev-eyebrow">Lead-Generierung für Fulfillment-Center &amp; 3PL</p>
-            <h1 id="ff-hero-heading" class="ev-hero-h1">
-              Planbar neue Versender gewinnen.<br>
-              Sie zahlen erst, <span class="ev-accent">wenn der Lead da ist.</span>
-            </h1>
-            <p class="ev-hero-sub">
-              Volle Regale statt leerer Flächen: Wir bringen Ihnen qualifizierte Anfragen von Marken
-              und Onlinehändlern, die einen Fulfillment-Partner suchen — vorqualifiziert nach Ihren
-              Kriterien. Keine Kaltakquise, kein Streuverlust, kein langer Vertrag.
-            </p>
-            <div class="ev-hero-ctas">
-              <a href="#kontakt" class="ev-btn ev-btn-primary">
-                Kostenloses Erstgespräch sichern
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-              <a href="#so-gehts" class="ev-btn ev-btn-ghost">So funktioniert&rsquo;s</a>
-            </div>
-            <p class="ev-hero-trust">Pay-per-Lead · kein Retainer · erster qualifizierter Termin gratis</p>
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="hero-eyebrow">Lead-Generierung · Fulfillment &amp; 3PL</p>
+          <h1 id="hero-heading" class="hero-h1">
+            <span class="hero-line"><span class="hero-line-inner">Neue Versender.</span></span>
+            <span class="hero-line hero-line--offset"><span class="hero-line-inner hero-line-delay"><em>Planbar</em> geliefert.</span></span>
+          </h1>
+          <p class="hero-sub">
+            Wir liefern Ihnen vorqualifizierte Anfragen von Marken und Onlinehändlern, die aktiv
+            einen Fulfillment-Partner wie Sie suchen — jeder Lead exklusiv für Sie, ohne Streuverlust.
+          </p>
+          <div class="hero-ctas">
+            <a href="/kontakt" class="btn btn-primary">
+              Erstgespräch vereinbaren
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#modell" class="btn btn-ghost">Das Modell ansehen</a>
           </div>
-
-          <aside class="ff-offer" aria-label="Ihr Angebot">
-            <p class="ff-offer-badge">Ihr Angebot</p>
-            <p class="ff-offer-title">Sie zahlen nur pro qualifiziertem Lead.</p>
-            <ul class="ff-offer-list" role="list">
-              <li><span class="ff-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Kein Setup, kein Retainer, keine Jahresbindung</li>
-              <li><span class="ff-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Nur Entscheider mit echtem Fulfillment-Bedarf — keine anonymen Klicks</li>
-              <li><span class="ff-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Ihr erster qualifizierter Termin ist <strong>kostenlos</strong></li>
-            </ul>
-            <a href="#kontakt" class="ev-btn ev-btn-primary ff-offer-cta">Ersten Termin gratis sichern →</a>
-            <p class="ff-offer-note">Wir arbeiten mit einer begrenzten Zahl an Fulfillment-Partnern pro Region — für saubere Qualität statt Masse.</p>
-          </aside>
+          <p class="hero-trust">Pay-per-Lead · Exklusiv pro Region · Ersatz-Garantie</p>
         </div>
 
-        <figure class="ff-herovisual">
-          <img src="/fulfillment/hero-warehouse.jpg" alt="Blick in eine Lagerhalle mit vollen Hochregalen — Fulfillment-Center im Betrieb" width="1280" height="900" loading="eager" decoding="async" fetchpriority="high">
-        </figure>
+        <div class="hero-visual" role="img" aria-label="Schematische Darstellung: Aus vielen Anfragen von Marken und Versendern wird durch Qualifizierung ein exklusiver Lead für Ihren Vertrieb.">
+          <svg viewBox="0 0 460 560" fill="none" aria-hidden="true" class="pipeline">
+            <text x="230" y="26" text-anchor="middle" class="pl-label">Marken &amp; Versender</text>
+
+            <!-- Quell-Punkte -->
+            <circle cx="50" cy="72" r="5" class="pl-dot" />
+            <circle cx="140" cy="72" r="5" class="pl-dot" />
+            <circle cx="230" cy="72" r="5" class="pl-dot" />
+            <circle cx="320" cy="72" r="5" class="pl-dot" />
+            <circle cx="410" cy="72" r="5" class="pl-dot" />
+
+            <!-- Zulaufende Linien -->
+            <path d="M50 84 C50 170 200 200 224 244" class="pl-line" />
+            <path d="M140 84 C140 160 210 195 226 242" class="pl-line" />
+            <path d="M230 84 L230 240" class="pl-line" />
+            <path d="M320 84 C320 160 250 195 234 242" class="pl-line" />
+            <path d="M410 84 C410 170 260 200 236 244" class="pl-line" />
+
+            <!-- Qualifizierungs-Filter -->
+            <rect x="206" y="246" width="48" height="48" rx="8" transform="rotate(45 230 270)" class="pl-filter" />
+            <text x="230" y="346" text-anchor="middle" class="pl-label">Qualifizierung</text>
+
+            <!-- Abfluss -->
+            <path d="M230 300 C230 370 230 400 230 448" class="pl-line pl-line--active" />
+            <circle r="4.5" class="pl-travel">
+              <animateMotion dur="2.8s" repeatCount="indefinite" path="M230 300 C230 370 230 400 230 448" />
+            </circle>
+
+            <!-- Ergebnis-Node -->
+            <circle cx="230" cy="472" r="10" class="pl-result-ring" />
+            <circle cx="230" cy="472" r="10" class="pl-result-ring pl-result-ring--late" />
+            <circle cx="230" cy="472" r="7" class="pl-result" />
+            <text x="230" y="512" text-anchor="middle" class="pl-label pl-label--accent">1 exklusiver Lead</text>
+            <text x="230" y="540" text-anchor="middle" class="pl-label">Ihr Vertrieb</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Stat-Band -->
+      <div class="container">
+        <dl class="statband">
+          <div class="stat">
+            <dt class="stat-label">qualifizierte Leads in 2 Monaten</dt>
+            <dd class="stat-num">200<span class="stat-plus">+</span></dd>
+          </div>
+          <div class="stat">
+            <dt class="stat-label">wird jeder Lead verkauft</dt>
+            <dd class="stat-num">1<span class="stat-plus">×</span></dd>
+          </div>
+          <div class="stat">
+            <dt class="stat-label">Ersatz bei Fehltreffern</dt>
+            <dd class="stat-num">100<span class="stat-plus">%</span></dd>
+          </div>
+          <div class="stat">
+            <dt class="stat-label">Retainer &amp; Setup</dt>
+            <dd class="stat-num">0</dd>
+          </div>
+        </dl>
       </div>
     </section>
 
-    <!-- ===== PROOF ===== -->
-    <section class="ev-section ev-section--tight" aria-label="Ergebnisse">
-      <div class="container">
-        <div class="ev-statband">
-          <div class="ev-stat">
-            <span class="ev-stat-num is-accent">200+</span>
-            <span class="ev-stat-label">qualifizierte Leads generiert</span>
-          </div>
-          <div class="ev-stat">
-            <span class="ev-stat-num">2</span>
-            <span class="ev-stat-label">Monate — nachweisbar, nicht geschätzt</span>
-          </div>
-          <div class="ev-stat">
-            <span class="ev-stat-num">1.</span>
-            <span class="ev-stat-label">Termin gratis, dann Pay-per-Lead</span>
-          </div>
-          <div class="ev-stat">
-            <span class="ev-stat-num">0</span>
-            <span class="ev-stat-label">Retainer &amp; Setup-Gebühr</span>
-          </div>
-        </div>
+    <!-- ===== TICKER ===== -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        {[...tickerItems, ...tickerItems].map((item) => (
+          <span class="ticker-item"><Fragment set:html={chevron} />{item}</span>
+        ))}
       </div>
-    </section>
+    </div>
 
-    <!-- ===== PROBLEM ===== -->
-    <section class="ev-section ev-section-alt" aria-labelledby="ff-pain-heading">
-      <div class="container">
-        <p class="ev-eyebrow">Kennen Sie das?</p>
-        <h2 id="ff-pain-heading" class="ev-h2">Ihre Fläche ist da. Die passenden Kunden fehlen.</h2>
-        <div class="ff-pains">
-          {pains.map((p) => (
-            <div class="ff-pain"><span class="ff-x" aria-hidden="true">✕</span>{p}</div>
-          ))}
-        </div>
-        <figure class="ff-photoband">
-          <img src="/fulfillment/packing-team.jpg" alt="Zwei Mitarbeiter tragen Pakete durch einen Regalgang im Fulfillment-Center" width="1200" height="800" loading="lazy" decoding="async">
-        </figure>
-      </div>
-    </section>
-
-    <!-- ===== WARUM PLANBARE NEUKUNDEN ===== -->
-    <section class="ev-section" aria-labelledby="ff-why-heading">
-      <div class="container">
-        <div class="ff-why">
-          <div class="ff-why-copy">
-            <p class="ev-eyebrow">Warum das über Wachstum oder Stillstand entscheidet</p>
-            <h2 id="ff-why-heading" class="ev-h2">Ein Fulfillment-Center lebt von Auslastung.</h2>
-            <p class="ev-section-sub" style="margin-left:0;">
-              Ihre Kosten sind zum großen Teil fix: Die Fläche, die Technik und das Team sind da —
-              ob die Regale voll sind oder nicht. Jedes Prozent Leerstand geht direkt von Ihrer Marge ab.
-            </p>
-            <p class="ev-section-sub" style="margin-left:0;">
-              Deshalb ist die entscheidende Frage nicht, <em>ob</em> Sie neue Versender gewinnen — sondern
-              ob Sie es <strong>planbar</strong> tun. Eine gefüllte Pipeline ist der Unterschied zwischen
-              gesundem Wachstum und der Abhängigkeit von den zwei Kunden, die Sie gerade tragen. Genau
-              diese Planbarkeit bauen wir für Sie — mit Anfragen, die zu Ihrer Fläche, Ihrer Region und
-              Ihrer Warenart passen.
-            </p>
-          </div>
-          <figure class="ff-band">
+    <!-- ===== MANIFEST / WARUM ===== -->
+    <section class="section section--line" aria-labelledby="warum-heading">
+      <div class="container manifest">
+        <p class="kicker"><span class="kicker-num">—</span> Warum Elevo</p>
+        <h2 id="warum-heading" class="manifest-statement reveal">
+          Auslastung ist kein Zufall.<br>
+          <span class="muted">Sie ist ein System.</span>
+        </h2>
+        <div class="manifest-grid">
+          <p class="lead reveal-late">
+            Fläche, Technik und Team laufen weiter — ob die Regale voll sind oder nicht.
+            Jedes Prozent Leerstand geht direkt von Ihrer Marge ab. Die entscheidende Frage
+            ist deshalb nicht, <em>ob</em> Sie neue Versender gewinnen, sondern ob Sie es
+            <strong> planbar</strong> tun.
+          </p>
+          <figure class="manifest-figure reveal-late">
             <img src="/fulfillment/warehouse-aisle.jpg" alt="Symmetrischer Regalgang in einem Fulfillment-Lager mit palettierter Ware" width="1600" height="560" loading="lazy" decoding="async">
           </figure>
         </div>
       </div>
     </section>
 
-    <!-- ===== SO GEHT'S (3 Schritte) ===== -->
-    <section id="so-gehts" class="ev-section ev-section-alt" aria-labelledby="ff-steps-heading">
+    <!-- ===== 01 DAS MODELL ===== -->
+    <section id="modell" class="section section--alt section--line" aria-labelledby="modell-heading">
       <div class="container">
-        <p class="ev-eyebrow">So arbeiten wir</p>
-        <h2 id="ff-steps-heading" class="ev-h2">In drei Schritten zu vollen Regalen.</h2>
-        <div class="prozess-steps" role="list" style="margin-top:48px;">
-          <div class="prozess-step" role="listitem">
-            <div class="step-num" aria-hidden="true">01</div>
-            <h3 class="step-title">Wir bauen Ihre Pipeline</h3>
-            <p class="step-desc">Zielgruppe: Marken, Onlinehändler und Versender mit dem Volumen, das zu Ihrer Fläche passt. Ansprache, Qualifizierung und Terminierung übernehmen wir komplett.</p>
-          </div>
-          <div class="prozess-step" role="listitem">
-            <div class="step-num" aria-hidden="true">02</div>
-            <h3 class="step-title">Sie bekommen qualifizierte Leads</h3>
-            <p class="step-desc">Kein „hat mal geklickt", sondern Entscheider mit konkretem Fulfillment-Bedarf — vorqualifiziert nach Ihren Kriterien: Volumen, Region, Warenart, Zeitpunkt.</p>
-          </div>
-          <div class="prozess-step" role="listitem">
-            <div class="step-num" aria-hidden="true">03</div>
-            <h3 class="step-title">Sie zahlen pro Lead</h3>
-            <p class="step-desc">Kein Retainer, kein Setup, keine lange Vertragsbindung. Sie zahlen nur für das, was ankommt. Und der erste qualifizierte Termin geht auf uns.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+        <p class="kicker"><span class="kicker-num">01</span> Das Modell</p>
+        <h2 id="modell-heading" class="h2 reveal">Einfach, planbar —<br>ohne Risiko auf Ihrer Seite.</h2>
+        <p class="lead reveal-late" style="margin-top: 22px;">
+          Keine Preisliste, kein Kleingedrucktes: Im Gespräch legen wir gemeinsam fest, was zu
+          Ihrer Kapazität und Region passt. Das Prinzip bleibt immer gleich.
+        </p>
 
-    <!-- ===== ANGEBOT (Risk Reversal) ===== -->
-    <section class="ev-section" aria-labelledby="ff-guarantee-heading">
-      <div class="container">
-        <div class="ev-guarantee">
-          <div class="ev-guarantee-ico" aria-hidden="true">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-          </div>
-          <div class="ev-guarantee-body">
-            <p class="ev-eyebrow">Testen Sie uns ohne Risiko</p>
-            <h2 id="ff-guarantee-heading" class="ev-h2">Der erste qualifizierte Termin ist kostenlos.</h2>
-            <p>
-              Sie müssen uns nicht glauben — Sie können es sehen. Ihren ersten qualifizierten Termin mit
-              einem passenden Versender bekommen Sie gratis. Überzeugt Sie das Ergebnis, skalieren wir
-              gemeinsam: Sie zahlen pro Lead, wir liefern planbar nach. Kein Retainer, keine Jahresbindung,
-              kein Risiko auf Ihrer Seite.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== WARUM ELEVO ===== -->
-    <section class="ev-section ev-section-alt" aria-labelledby="ff-diff-heading">
-      <div class="container">
-        <p class="ev-eyebrow">Warum Elevo</p>
-        <h2 id="ff-diff-heading" class="ev-h2">Fokus statt Gießkanne.</h2>
-        <div class="ev-grid-3" style="margin-top:40px;">
-          <div class="ff-diff">
-            <h3>Spezialisiert auf Fulfillment</h3>
-            <p>Wir gewinnen Neukunden für Fulfillment-Center und 3PL — nicht für alle Branchen gleichzeitig. Wir kennen die Entscheider und ihre Sprache.</p>
-          </div>
-          <div class="ff-diff">
-            <h3>Qualität vor Menge</h3>
-            <p>Vorqualifizierte Entscheider mit echtem Bedarf statt Karteileichen. Jeder Lead passt zu Ihren Kriterien — sonst zählt er nicht.</p>
-          </div>
-          <div class="ff-diff">
-            <h3>Nachweisbare Ergebnisse</h3>
-            <p>Über 200 qualifizierte Leads in den letzten zwei Monaten. Kein Versprechen auf Folien — Zahlen, die wir belegen.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== ANSPRECHPARTNER ===== -->
-    <section class="ev-section" aria-labelledby="ff-people-heading">
-      <div class="container">
-        <p class="ev-eyebrow">Ihre Ansprechpartner</p>
-        <h2 id="ff-people-heading" class="ev-h2">Kein anonymes Callcenter. Menschen, die liefern.</h2>
-        <p class="ev-section-sub" style="margin-left:0;">Sie haben einen direkten Draht — kein Ticketsystem, keine Warteschleife.</p>
-
-        <div class="ff-people">
-          <article class="ff-person">
-            <div class="ff-person-photo">
-              <picture>
-                <source type="image/webp" srcset="/team/mert-800.webp 1x, /team/mert-1600.webp 2x">
-                <img src="/team/mert-1200.jpg" alt="Mert Efe Celik, Gründer von Elevo" width="240" height="300" loading="lazy" decoding="async">
-              </picture>
+        <div class="rows" role="list">
+          <article class="row reveal" role="listitem">
+            <span class="row-num" aria-hidden="true">01</span>
+            <div class="row-body">
+              <h3 class="h3">Pay-per-Lead</h3>
+              <p>Kein Retainer, kein Setup, keine Mindestabnahme. Sie zahlen ausschließlich für Leads, die tatsächlich bei Ihnen ankommen — nichts sonst.</p>
             </div>
-            <div class="ff-person-info">
-              <h3 class="ff-person-name">Mert Efe Celik</h3>
-              <span class="ff-person-role">Gründer &amp; Strategie</span>
-              <p class="ff-person-bio">Verantwortlich für Strategie und Zielgruppe: Wer sind die richtigen Versender für Ihre Fläche — und wie erreichen wir sie planbar.</p>
-            </div>
+            <span class="row-arrow" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
           </article>
 
-          <article class="ff-person">
-            <div class="ff-person-photo">
-              <div class="ff-person-placeholder" aria-hidden="true">
-                <span class="ff-person-initials">BK</span>
-                <span class="ff-person-soon">Bild folgt<br>in Kürze</span>
-              </div>
+          <article class="row reveal" role="listitem">
+            <span class="row-num" aria-hidden="true">02</span>
+            <div class="row-body">
+              <h3 class="h3">Exklusiv</h3>
+              <p>Jeder Lead wird nur einmal verkauft — nie gleichzeitig an mehrere Anbieter in derselben Region. Kein Wettrennen um denselben Kontakt.</p>
             </div>
-            <div class="ff-person-info">
-              <h3 class="ff-person-name">Bünyamin Korkmaz</h3>
-              <span class="ff-person-role">Gründer &amp; Neukundengewinnung</span>
-              <p class="ff-person-bio">Ihr direkter Ansprechpartner — betreut Sie von der ersten Anfrage bis zum qualifizierten Termin, nah dran an den Leads und an Ihren Zielen.</p>
+            <span class="row-arrow" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+          </article>
+
+          <article class="row reveal" role="listitem">
+            <span class="row-num" aria-hidden="true">03</span>
+            <div class="row-body">
+              <h3 class="h3">Ersatz-Garantie</h3>
+              <p>Falsche Kontaktdaten oder kein echtes Interesse: Wir ersetzen den Lead ohne Zusatzkosten. Sie zahlen nur für Leads, die wirklich zählen.</p>
             </div>
+            <span class="row-arrow" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ===== FAQ ===== -->
-    <section class="ev-section ev-section-alt" aria-labelledby="ff-faq-heading">
+    <!-- ===== 02 ABLAUF ===== -->
+    <section id="ablauf" class="section section--line" aria-labelledby="ablauf-heading">
       <div class="container">
-        <p class="ev-eyebrow">Häufige Fragen</p>
-        <h2 id="ff-faq-heading" class="ev-h2" style="margin-bottom:32px;">Kurz beantwortet.</h2>
-        <div class="ff-faq">
+        <p class="kicker"><span class="kicker-num">02</span> So arbeiten wir</p>
+        <h2 id="ablauf-heading" class="h2 reveal">In drei Schritten<br>zu vollen Regalen.</h2>
+
+        <div class="steps">
+          <article class="step reveal">
+            <span class="step-num" aria-hidden="true">01</span>
+            <h3 class="h3">Wir klären Ihre Kriterien</h3>
+            <p>Volumen, Region, Warenart, Kapazität — ein kurzes Gespräch, damit jeder Lead wirklich zu Ihnen passt.</p>
+          </article>
+          <article class="step reveal">
+            <span class="step-num" aria-hidden="true">02</span>
+            <h3 class="h3">Wir qualifizieren &amp; liefern</h3>
+            <p>Gezielte Ansprache, mehrstufige Qualifizierung. Sie bekommen Entscheider mit echtem, aktuellem Bedarf — keine anonymen Klicks.</p>
+          </article>
+          <article class="step reveal">
+            <span class="step-num" aria-hidden="true">03</span>
+            <h3 class="h3">Sie zahlen pro Lead</h3>
+            <p>Nur für das, was ankommt — exklusiv für Sie und mit kostenlosem Ersatz bei Fehltreffern.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 03 FÜR WEN ===== -->
+    <section class="section section--alt section--line" aria-labelledby="fuerven-heading">
+      <div class="container">
+        <p class="kicker"><span class="kicker-num">03</span> Für wen</p>
+        <h2 id="fuerven-heading" class="h2 reveal">Gebaut für Fulfillment.<br><span class="muted">Nichts sonst.</span></h2>
+
+        <div class="fit-grid">
+          <div class="fit-col reveal">
+            <p class="fit-title fit-title--yes">Passt zu Ihnen, wenn …</p>
+            <ul role="list">
+              <li>Sie ein Fulfillment-Center mit freier Lagerfläche betreiben</li>
+              <li>Sie 3PL- oder Kontraktlogistik-Dienstleister sind</li>
+              <li>Sie planbar wachsen statt auf Empfehlungen zu warten</li>
+              <li>Sie die Abhängigkeit von wenigen Großkunden senken wollen</li>
+            </ul>
+          </div>
+          <div class="fit-col reveal-late">
+            <p class="fit-title fit-title--no">Weniger geeignet, wenn …</p>
+            <ul role="list">
+              <li>Sie aktuell keine freien Kapazitäten haben</li>
+              <li>Sie ausschließlich über Eigenakquise wachsen wollen</li>
+              <li>Sie außerhalb von B2B-Logistik arbeiten — andere Branchen prüfen wir auf Anfrage</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 04 ANSPRECHPARTNER ===== -->
+    <section class="section section--line" aria-labelledby="people-heading">
+      <div class="container">
+        <p class="kicker"><span class="kicker-num">04</span> Ansprechpartner</p>
+        <h2 id="people-heading" class="h2 reveal">Kein Callcenter.<br>Menschen, die liefern.</h2>
+        <p class="lead reveal-late" style="margin-top: 22px;">Sie haben einen direkten Draht — kein Ticketsystem, keine Warteschleife.</p>
+
+        <div class="people">
+          <article class="person reveal">
+            <picture>
+              <source type="image/webp" srcset="/team/mert-800.webp 1x, /team/mert-1600.webp 2x">
+              <img src="/team/mert-1200.jpg" alt="Porträt von Mert Efe Celik, Gründer von Elevo" width="480" height="600" loading="lazy" decoding="async">
+            </picture>
+            <div class="person-info">
+              <h3>Mert Efe Celik</h3>
+              <p class="person-role">Gründer · Strategie</p>
+              <p class="person-bio">Verantwortlich für Strategie und Zielgruppe: Wer sind die richtigen Versender für Ihre Fläche — und wie erreichen wir sie planbar.</p>
+            </div>
+          </article>
+
+          <article class="person reveal-late">
+            <div class="person-placeholder" aria-hidden="true"><span>BK</span></div>
+            <div class="person-info">
+              <h3>Bünyamin Korkmaz</h3>
+              <p class="person-role">Gründer · Neukundengewinnung</p>
+              <p class="person-bio">Ihr direkter Ansprechpartner — von der ersten Anfrage bis zum gelieferten Lead, nah dran an Ihren Kriterien und Zielen.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 05 FAQ ===== -->
+    <section id="faq" class="section section--alt section--line" aria-labelledby="faq-heading">
+      <div class="container">
+        <p class="kicker"><span class="kicker-num">05</span> Häufige Fragen</p>
+        <h2 id="faq-heading" class="h2 reveal">Kurz beantwortet.</h2>
+        <div class="faq reveal-late" style="margin-top: 40px;">
           {faqEntries.map(({ q, a }) => (
-            <details class="ff-faq-item">
+            <details class="faq-item">
               <summary>{q}</summary>
               <p>{a}</p>
             </details>
@@ -289,166 +311,392 @@ const faqSchema = {
       </div>
     </section>
 
-    <!-- ===== FINAL CTA / KONTAKT ===== -->
-    <section id="kontakt" class="ev-section" aria-labelledby="ff-final-heading">
-      <div class="container">
-        <div class="ev-final">
-          <p class="ev-eyebrow">Kostenlos &amp; unverbindlich</p>
-          <h2 id="ff-final-heading" class="ev-h2">Reden wir über Ihre freien Kapazitäten.</h2>
-          <p class="ev-final-sub">
-            15 Minuten genügen: Wir schauen uns Ihre Fläche und Ihre Wunschkunden an und zeigen Ihnen,
-            wie viele passende Versender wir für Sie erreichen können. Ihren ersten qualifizierten Termin
-            bekommen Sie kostenlos.
-          </p>
-          <a href={MAILTO} class="ev-btn ev-btn-primary ev-btn-xl">Kostenloses Erstgespräch sichern</a>
-          <p class="ev-final-trust">
-            Oder direkt per E-Mail: <a href={MAILTO} class="ff-mail">hallo@elevo.solutions</a> · Pay-per-Lead · erster Termin gratis
-          </p>
+    <!-- ===== FINAL CTA ===== -->
+    <section class="section section--line final" aria-labelledby="final-heading">
+      <div class="container final-inner">
+        <p class="kicker" style="justify-content:center;"><span class="kicker-num">→</span> Kostenlos &amp; unverbindlich</p>
+        <h2 id="final-heading" class="h-display reveal">
+          Reden wir über Ihre<br><span class="accent">freien Kapazitäten.</span>
+        </h2>
+        <p class="lead reveal-late" style="margin: 26px auto 0; text-align: center;">
+          In einem kurzen Gespräch klären wir Volumen, Region und Warenart — und wie viele
+          passende Leads wir für Sie liefern können.
+        </p>
+        <div class="final-ctas reveal-late">
+          <a href="/kontakt" class="btn btn-primary btn-xl">
+            Erstgespräch vereinbaren
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
+        <p class="final-note">Oder direkt per E-Mail: <a href={MAILTO} class="u-link">hey@elevo.solutions</a></p>
       </div>
     </section>
 
   </main>
 
-  <footer class="ff-footer" role="contentinfo">
-    <div class="container ff-footer-inner">
-      <Logo size="sm" />
-      <p class="ff-footer-tag">Planbare Neukundengewinnung für Fulfillment-Center &amp; 3PL-Dienstleister.</p>
-      <nav class="ff-footer-links" aria-label="Rechtliches">
-        <a href="/impressum">Impressum</a>
-        <a href="/datenschutz">Datenschutz</a>
-        <a href={MAILTO}>Kontakt</a>
-      </nav>
-      <p class="ff-footer-copy">© {new Date().getFullYear()} Elevo · ELEVO Solutions</p>
-    </div>
-  </footer>
-
-  <CookieBanner />
+  <Footer />
 </BaseLayout>
 
 <style>
-  /* ===== Header ===== */
-  .ff-header {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(250, 247, 240, 0.85);
-    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
+  /* ================= HERO ================= */
+  .hero {
+    padding-top: clamp(56px, 8vw, 104px);
+    overflow: hidden;
   }
-  .ff-header-inner { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; padding-bottom: 14px; }
-  .ff-header-cta { padding: 11px 22px; font-size: 0.92rem; }
-
-  .ff-hero { padding-top: clamp(56px, 8vw, 96px); }
-
-  /* ===== Angebots-Karte (Hero) ===== */
-  .ff-offer {
-    background: linear-gradient(180deg, rgba(59,130,246,0.10), transparent 60%), var(--bg-card);
-    border: 1px solid var(--border-strong); border-radius: var(--radius-lg); padding: 32px 30px; align-self: center;
+  .hero-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 32px;
+    align-items: center;
   }
-  .ff-offer-badge {
-    display: inline-block; background: rgba(59,130,246,0.14); color: var(--accent);
-    font-family: var(--font-heading); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.08em;
-    text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin: 0 0 16px;
-  }
-  .ff-offer-title { font-family: var(--font-heading); font-weight: 800; color: var(--text-primary); font-size: 1.35rem; line-height: 1.25; margin: 0 0 20px; }
-  .ff-offer-list { list-style: none; margin: 0 0 26px; padding: 0; display: grid; gap: 16px; }
-  .ff-offer-list li { display: flex; gap: 12px; align-items: flex-start; color: var(--text-secondary); font-size: 1rem; line-height: 1.45; }
-  .ff-offer-list strong { color: var(--text-primary); }
-  .ff-check { flex-shrink: 0; width: 24px; height: 24px; border-radius: 7px; background: rgba(59,130,246,0.14); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; margin-top: 1px; }
-  .ff-check svg { width: 13px; height: 13px; }
-  .ff-offer-cta { width: 100%; justify-content: center; }
-  .ff-offer-note { font-size: 0.82rem; color: var(--text-muted); margin: 16px 0 0; line-height: 1.45; }
+  .hero-copy { grid-column: 1 / 8; }
+  .hero-visual { grid-column: 8 / 13; }
 
-  /* ===== Hero-Visual ===== */
-  .ff-herovisual { margin: 48px auto 0; max-width: 1040px; }
-  .ff-herovisual img {
-    width: 100%; display: block; border-radius: var(--radius-lg);
-    aspect-ratio: 16 / 9; object-fit: cover;
-    border: 1px solid var(--border); box-shadow: var(--shadow);
+  .hero-eyebrow {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 26px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 34px;
+    height: 1px;
+    background: var(--accent);
   }
 
-  /* ===== Foto-Band (Problem-Sektion) ===== */
-  .ff-photoband { margin: 40px 0 0; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); }
-  .ff-photoband img { width: 100%; display: block; aspect-ratio: 3 / 1; object-fit: cover; }
-
-  /* ===== Pain-Grid ===== */
-  .ff-pains { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px; }
-  .ff-pain {
-    display: flex; align-items: flex-start; gap: 12px;
-    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 22px 22px; color: var(--text-primary);
-    font-family: var(--font-heading); font-weight: 600; font-size: 1rem; line-height: 1.45;
+  .hero-h1 {
+    font-size: clamp(2.9rem, 7.2vw, 6rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
   }
-  .ff-x { color: var(--danger); font-weight: 800; font-size: 1.2rem; flex-shrink: 0; line-height: 1.35; }
+  .hero-line { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+  .hero-line--offset { padding-left: clamp(36px, 6vw, 110px); }
+  .hero-line-inner { display: inline-block; }
+  .hero-h1 em { font-style: normal; color: var(--accent); }
 
-  /* ===== Warum-Block mit Band-Visual ===== */
-  .ff-why { display: grid; grid-template-columns: 1fr; gap: 40px; }
-  .ff-why-copy .ev-section-sub { margin-top: 16px; text-align: left; }
-  .ff-band { margin: 0; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); }
-  .ff-band img { width: 100%; height: auto; display: block; }
-
-  /* ===== Differenzierung ===== */
-  .ff-diff { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px 26px; }
-  .ff-diff h3 { font-family: var(--font-heading); font-weight: 700; font-size: 1.15rem; color: var(--text-primary); margin: 0 0 10px; }
-  .ff-diff p { color: var(--text-secondary); font-size: 0.96rem; line-height: 1.6; margin: 0; }
-
-  /* ===== Ansprechpartner ===== */
-  .ff-people { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 40px; }
-  .ff-person {
-    display: flex; gap: 22px; align-items: center;
-    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 26px 26px;
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-line-inner {
+      animation: hero-rise 0.9s cubic-bezier(0.22, 0.9, 0.28, 1) both;
+    }
+    .hero-line-delay { animation-delay: 0.12s; }
   }
-  .ff-person-photo { flex-shrink: 0; }
-  .ff-person-photo img {
-    width: 120px; height: 150px; object-fit: cover; border-radius: var(--radius);
-    display: block; border: 1px solid var(--border);
+  @keyframes hero-rise {
+    from { transform: translateY(112%); }
+    to { transform: translateY(0); }
   }
-  .ff-person-placeholder {
-    width: 120px; height: 150px; border-radius: var(--radius);
-    background: rgba(59,130,246,0.06); border: 1px dashed var(--border-strong);
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center;
+
+  .hero-sub {
+    margin: 30px 0 36px;
+    font-size: clamp(1.05rem, 1.5vw, 1.22rem);
+    line-height: 1.65;
+    max-width: 54ch;
   }
-  .ff-person-initials { font-family: var(--font-heading); font-weight: 800; font-size: 1.9rem; color: var(--accent); letter-spacing: 0.02em; }
-  .ff-person-soon { font-size: 0.66rem; color: var(--text-muted); line-height: 1.3; letter-spacing: 0.03em; }
-  .ff-person-name { font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; color: var(--text-primary); margin: 0 0 8px; }
-  .ff-person-role {
-    display: inline-block; background: rgba(59,130,246,0.1); color: var(--accent);
-    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-    padding: 4px 12px; border-radius: 100px; margin-bottom: 14px;
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; }
+  .hero-trust {
+    margin-top: 24px;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
   }
-  .ff-person-bio { color: var(--text-secondary); font-size: 0.94rem; line-height: 1.6; margin: 0; }
 
-  /* ===== FAQ ===== */
-  .ff-faq { display: grid; gap: 14px; max-width: 820px; }
-  .ff-faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color var(--transition); }
-  .ff-faq-item[open] { border-color: var(--border-strong); }
-  .ff-faq-item summary {
-    cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px;
-    padding: 18px 22px; font-family: var(--font-heading); font-weight: 600; font-size: 1.02rem; color: var(--text-primary);
+  /* Pipeline-Visual */
+  .pipeline { width: 100%; height: auto; display: block; }
+  .pl-label {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    fill: var(--text-muted);
   }
-  .ff-faq-item summary::-webkit-details-marker { display: none; }
-  .ff-faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--accent); line-height: 1; flex-shrink: 0; transition: transform var(--transition); }
-  .ff-faq-item[open] summary::after { transform: rotate(45deg); }
-  .ff-faq-item p { margin: 0; padding: 0 22px 20px; color: var(--text-secondary); line-height: 1.65; font-size: 0.98rem; }
+  .pl-label--accent { fill: var(--accent); }
+  .pl-dot { fill: var(--text-muted); opacity: 0.55; }
+  .pl-line {
+    stroke: var(--border);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 8;
+    animation: pl-dash 1.4s linear infinite;
+  }
+  .pl-line--active { stroke: var(--accent); stroke-width: 2; }
+  .pl-filter {
+    fill: var(--bg-card);
+    stroke: var(--accent);
+    stroke-width: 1.5;
+  }
+  .pl-travel { fill: var(--accent); }
+  .pl-result { fill: var(--accent); }
+  .pl-result-ring {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1.5;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: pl-pulse 2.6s ease-out infinite;
+  }
+  .pl-result-ring--late { animation-delay: 1.3s; }
 
-  .ff-mail { color: var(--accent); border-bottom: 1px solid var(--border); }
-  .ff-mail:hover { border-bottom-color: var(--accent); }
+  @keyframes pl-dash { to { stroke-dashoffset: -12; } }
+  @keyframes pl-pulse {
+    from { transform: scale(1); opacity: 0.7; }
+    to { transform: scale(3.2); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pl-line, .pl-result-ring { animation: none; }
+    .pl-travel { display: none; }
+  }
 
-  /* ===== Footer ===== */
-  .ff-footer { background: var(--bg-card); border-top: 1px solid var(--border); padding: 40px 0; margin-top: 8px; }
-  .ff-footer-inner { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
-  .ff-footer-tag { color: var(--text-secondary); font-size: 0.92rem; max-width: 46ch; margin: 0; }
-  .ff-footer-links { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-  .ff-footer-links a { color: var(--text-muted); font-size: 0.9rem; text-decoration: none; transition: color var(--transition); }
-  .ff-footer-links a:hover { color: var(--accent); }
-  .ff-footer-copy { color: var(--text-muted); font-size: 0.82rem; margin: 0; }
+  /* Stat-Band */
+  .statband {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin: clamp(56px, 7vw, 88px) 0 0;
+    padding: 34px 0;
+    border-top: 1px solid var(--border-soft);
+  }
+  .stat { display: grid; gap: 8px; align-content: start; }
+  .stat + .stat { border-left: 1px solid var(--border-soft); padding-left: 32px; }
+  .stat-num {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(2.4rem, 4.4vw, 3.6rem);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+    order: -1;
+  }
+  .stat-plus { color: var(--accent); }
+  .stat-label {
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+    max-width: 20ch;
+  }
 
+  /* ================= MANIFEST ================= */
+  .manifest-statement {
+    font-size: clamp(2.2rem, 5.4vw, 4.4rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  .manifest-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(36px, 5vw, 72px);
+    align-items: end;
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  .manifest-grid .lead em { font-style: normal; color: var(--text-primary); }
+  .manifest-grid .lead strong { color: var(--accent); font-weight: 600; }
+  .manifest-figure {
+    margin: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+  }
+  .manifest-figure img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 8 / 5;
+    object-fit: cover;
+    filter: saturate(0.5) brightness(0.75) contrast(1.05);
+  }
+  .manifest-figure::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(61, 214, 192, 0.14), rgba(8, 17, 27, 0.55) 70%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  /* ================= ROWS (Modell) ================= */
+  .rows { margin-top: clamp(44px, 5vw, 64px); border-bottom: 1px solid var(--border-soft); }
+  .row {
+    display: grid;
+    grid-template-columns: 110px 1fr 48px;
+    gap: 28px;
+    align-items: center;
+    padding: clamp(28px, 3.4vw, 42px) 8px;
+    border-top: 1px solid var(--border-soft);
+    transition: background var(--transition), padding-left var(--transition);
+  }
+  .row:hover { background: rgba(20, 37, 58, 0.4); padding-left: 22px; }
+  .row-num {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    transition: -webkit-text-stroke var(--transition);
+  }
+  .row:hover .row-num { -webkit-text-stroke: 1px var(--accent); }
+  .row-body { max-width: 62ch; }
+  .row-body p { margin-top: 10px; line-height: 1.65; }
+  .row-arrow {
+    justify-self: end;
+    color: var(--text-muted);
+    opacity: 0;
+    transform: translate(-8px, 8px);
+    transition: opacity var(--transition), transform var(--transition), color var(--transition);
+  }
+  .row:hover .row-arrow { opacity: 1; transform: translate(0, 0); color: var(--accent); }
+
+  /* ================= STEPS (Ablauf) ================= */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(32px, 4vw, 56px);
+    margin-top: clamp(48px, 6vw, 72px);
+  }
+  .step { position: relative; padding-top: 26px; border-top: 1px solid var(--border); }
+  .step-num {
+    position: absolute;
+    top: -0.72em;
+    right: 0;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(3.4rem, 6vw, 5.2rem);
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--border);
+    user-select: none;
+  }
+  .step h3 { margin-bottom: 12px; max-width: 16ch; }
+  .step p { font-size: 0.98rem; line-height: 1.65; }
+
+  /* ================= FIT (Für wen) ================= */
+  .fit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(36px, 5vw, 80px);
+    margin-top: clamp(44px, 5vw, 64px);
+  }
+  .fit-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .fit-title--yes { color: var(--accent); }
+  .fit-title--no { color: var(--text-muted); }
+  .fit-col ul { list-style: none; margin: 0; padding: 0; }
+  .fit-col li {
+    position: relative;
+    padding: 18px 8px 18px 40px;
+    border-top: 1px solid var(--border-soft);
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+  .fit-col li:last-child { border-bottom: 1px solid var(--border-soft); }
+  .fit-col li::before {
+    position: absolute;
+    left: 8px;
+    top: 20px;
+    font-family: var(--font-heading);
+    font-weight: 800;
+  }
+  .fit-col:first-child li::before { content: '+'; color: var(--accent); }
+  .fit-col:last-child li::before { content: '–'; color: var(--text-muted); }
+
+  /* ================= PEOPLE ================= */
+  .people {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 4vw, 48px);
+    margin-top: clamp(44px, 5vw, 64px);
+  }
+  .person {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 30px;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    padding-top: 34px;
+  }
+  .person img, .person-placeholder {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    display: block;
+  }
+  .person-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-soft);
+    border: 1px dashed var(--border-strong);
+  }
+  .person-placeholder span {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 2.6rem;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  .person-info h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+  .person-role {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .person-bio { font-size: 0.95rem; line-height: 1.65; }
+
+  /* ================= FINAL CTA ================= */
+  .final { text-align: center; }
+  .final-inner { max-width: 900px; }
+  .final .kicker { justify-content: center; }
+  .final .kicker::after { display: none; }
+  .final-ctas { margin-top: 40px; display: flex; justify-content: center; }
+  .final-note { margin-top: 24px; font-size: 0.92rem; color: var(--text-muted); }
+  .final-note a { color: var(--accent); }
+
+  /* ================= RESPONSIVE ================= */
   @media (max-width: 1024px) {
-    .ff-pains { grid-template-columns: repeat(2, 1fr); }
+    .hero-copy { grid-column: 1 / 9; }
+    .hero-visual { grid-column: 9 / 13; }
+    .statband { grid-template-columns: repeat(2, 1fr); row-gap: 36px; }
+    .stat:nth-child(3) { border-left: none; padding-left: 0; }
+    .steps { grid-template-columns: 1fr; }
+    .manifest-grid { grid-template-columns: 1fr; }
   }
-  @media (max-width: 760px) {
-    .ff-pains { grid-template-columns: 1fr; }
-    .ff-people { grid-template-columns: 1fr; }
-    .ff-header-cta { padding: 10px 14px; font-size: 0.82rem; }
-    .ff-person { flex-direction: column; text-align: center; align-items: center; }
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-copy, .hero-visual { grid-column: 1 / -1; }
+    .hero-visual { max-width: 420px; margin: 24px auto 0; }
+    .fit-grid, .people { grid-template-columns: 1fr; }
+    .person { grid-template-columns: 160px 1fr; }
+    .person img, .person-placeholder { width: 160px; height: 200px; }
+  }
+  @media (max-width: 600px) {
+    .hero-line--offset { padding-left: 0; }
+    .statband { grid-template-columns: 1fr 1fr; }
+    .stat + .stat { border-left: none; padding-left: 0; }
+    .stat:nth-child(even) { border-left: 1px solid var(--border-soft); padding-left: 24px; }
+    .row { grid-template-columns: 56px 1fr; }
+    .row-arrow { display: none; }
+    .person { grid-template-columns: 1fr; }
+    .person img, .person-placeholder { width: 100%; height: auto; aspect-ratio: 4 / 5; max-width: 300px; }
   }
 </style>
