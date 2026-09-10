@@ -9,22 +9,21 @@ Es wird vom `/brand-audit` Skill verwendet.
 
 | CSS Custom Property | Hex-Wert | Verwendung |
 |---------------------|----------|------------|
-| `--accent` | `#3B82F6` | Primärfarbe, CTAs, Highlights (Blue 500) |
-| `--bg-deep` | `#05070E` | Tiefster Hintergrund (Hero, Body-BG) |
-| `--bg-dark` | `#0A0E1A` | Abschnitt-Hintergrund |
-| `--text-primary` | `#E2E8F0` | Haupttext |
-| `--text-secondary` | `#94A3B8` | Sekundärtext, Captions |
-| `--border` | `rgba(255,255,255,0.08)` | Karten-Borders |
+| `--accent` | `#3DD6C0` | Primärfarbe, CTAs, Highlights (Teal) |
+| `--bg-deep` | `#08111B` | Tiefster Hintergrund (Body-BG) |
+| `--bg-dark` | `#0D1B2A` | Abschnitt-Hintergrund |
+| `--text-primary` | `#FFFFFF` | Haupttext |
+| `--text-secondary` | `#C9D7E4` | Sekundärtext; `--text-muted`: `#8AAFC8` |
+| `--border` | `#243A55` | Hairlines, Karten-Borders; `--border-strong`: `rgba(61,214,192,0.35)` |
 
 ### Regeln
 - Hardcoded Hex-Werte ausserhalb von `global.css` → ❌ Verstoß
 - Farben immer als `var(--accent)` etc. referenzieren → ✅ korrekt
-- Abweichende Blautöne / Grautöne ohne CI-Grundlage → ❌ Verstoß
+- Abweichende Teal-/Grautöne ohne CI-Grundlage → ❌ Verstoß
 - Hartes `#000000` als Hintergrund (statt `--bg-deep`) → ❌ Verstoß
 
 ### Erlaubte Ausnahmen
 - `src/styles/global.css` → `:root`-Definitionen sind erlaubt
-- `public/templates/themes/*.css` → Branchen-Themes haben eigene Farbpaletten
 
 ---
 
@@ -130,7 +129,7 @@ ELEVO ist ausschliesslich Dark Theme. Es gibt keinen Light Mode.
 ## 8. SEO-Pflicht
 
 Jede Seite MUSS haben:
-- Einzigartiger `<title>`: Format "Seitenname — ELEVO | Webagentur Aachen"
+- Einzigartiger `<title>`: Format "Seitenname — Elevo"
 - `<meta name="description">` (150–160 Zeichen)
 - `<link rel="canonical">`
 - Open-Graph Tags (`og:title`, `og:description`, `og:image`)
