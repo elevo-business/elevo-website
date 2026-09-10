@@ -4,66 +4,151 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ContactForm from '../components/ContactForm.astro';
 import '../styles/global.css';
-import '../styles/ev-system.css';
-import '../styles/rx-theme.css';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Start', item: 'https://elevo.solutions/' },
+    { '@type': 'ListItem', position: 2, name: 'Kontakt', item: 'https://elevo.solutions/kontakt' },
+  ],
+};
 ---
 
 <BaseLayout
-  title="Funnel-Check sichern — Elevo"
-  description="Sichere dir deinen kostenlosen Funnel-Check. Wir zeigen dir, wo deine Anfragen verloren gehen — unverbindlich, kein Verkaufsdruck. Antwort innerhalb von 24 Stunden. Für Coaches & Berater im DACH-Raum."
+  title="Kontakt: Erstgespräch vereinbaren — Elevo"
+  description="Vereinbaren Sie ein kostenloses Erstgespräch: Wir schätzen ein, wie viele exklusive Leads wir für Ihr Fulfillment-Center oder Ihren 3PL-Betrieb liefern können. Antwort innerhalb von 24 Stunden."
   canonical="https://elevo.solutions/kontakt"
-  bodyClass="rx"
 >
   <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
 
   <Header />
 
   <main id="main">
-    <!-- ===== HERO ===== -->
-    <section class="ev-page-hero" aria-labelledby="kontakt-hero-heading">
+
+    <!-- ===== PAGE HERO ===== -->
+    <section class="page-hero" aria-labelledby="page-heading">
       <div class="container">
-        <p class="ev-eyebrow">Funnel-Check</p>
-        <h1 id="kontakt-hero-heading" class="ev-hero-h1">
-          Lass uns über<br>
-          <span class="ev-accent">deine Anfragen reden.</span>
+        <p class="hero-eyebrow">Kontakt</p>
+        <h1 id="page-heading" class="page-h1">
+          Reden wir über Ihre<br>
+          <span class="accent">freien Kapazitäten.</span>
         </h1>
-        <p class="ev-hero-sub">
-          Kostenloser Funnel-Check, ganz unverbindlich. Wir schauen uns deine Strecke an und
-          sagen dir ehrlich, wo Anfragen verloren gehen — und ob das 14-Tage-System für dich passt.
+        <p class="lead page-lead">
+          Kostenlos und unverbindlich: Wir schauen uns Ihre Fläche und Ihre Wunsch-Versender an
+          und sagen Ihnen ehrlich, wie viele passende Leads wir für Sie liefern können.
         </p>
       </div>
     </section>
 
     <!-- ===== KONTAKT ===== -->
-    <section id="kontakt" class="ev-section ev-section-alt" aria-labelledby="kontakt-heading">
-      <div class="container">
-        <div class="ev-kontakt-grid">
-          <div>
-            <p class="ev-eyebrow">Kontakt aufnehmen</p>
-            <h2 id="kontakt-heading" class="ev-h2">Direkt. Persönlich. Konkret.</h2>
-            <p class="ev-section-sub">Kein Ticketsystem, kein Callcenter. Du sprichst direkt mit den Menschen, die dein System bauen.</p>
-            <ul class="ev-kontakt-list" role="list">
-              <li>
-                <span class="ev-kontakt-label">E-Mail</span>
-                <a href="mailto:hallo@elevo.solutions">hallo@elevo.solutions</a>
-              </li>
-              <li>
-                <span class="ev-kontakt-label">Für wen</span>
-                <span>Coaches &amp; Berater im DACH-Raum</span>
-              </li>
-              <li>
-                <span class="ev-kontakt-label">Antwort</span>
-                <span>Innerhalb von 24 Stunden</span>
-              </li>
-            </ul>
-          </div>
-          <div class="ev-kontakt-form">
-            <ContactForm />
-          </div>
+    <section class="section section--line" aria-labelledby="kontakt-heading">
+      <div class="container kontakt-grid">
+        <div class="kontakt-info">
+          <h2 id="kontakt-heading" class="h2 reveal">Direkt. Persönlich.<br>Konkret.</h2>
+          <p class="kontakt-sub">
+            Kein Ticketsystem, kein Callcenter — Sie sprechen direkt mit den Gründern.
+          </p>
+
+          <dl class="kontakt-facts">
+            <div class="kontakt-fact">
+              <dt>E-Mail</dt>
+              <dd><a href="mailto:hey@elevo.solutions" class="u-link">hey@elevo.solutions</a></dd>
+            </div>
+            <div class="kontakt-fact">
+              <dt>Antwort</dt>
+              <dd>Innerhalb von 24 Stunden</dd>
+            </div>
+            <div class="kontakt-fact">
+              <dt>Für wen</dt>
+              <dd>Fulfillment-Center &amp; 3PL-Dienstleister im DACH-Raum</dd>
+            </div>
+            <div class="kontakt-fact">
+              <dt>Was wir im Gespräch klären</dt>
+              <dd>Volumen, Region, Warenart — und wie viele Leads realistisch sind</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="kontakt-form reveal-late">
+          <ContactForm />
         </div>
       </div>
     </section>
+
   </main>
 
   <Footer />
 </BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: clamp(72px, 10vw, 128px);
+    padding-bottom: clamp(48px, 6vw, 72px);
+  }
+  .hero-eyebrow {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 26px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero-eyebrow::before { content: ''; width: 34px; height: 1px; background: var(--accent); }
+  .page-h1 {
+    font-size: clamp(2.6rem, 6.4vw, 5.2rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.04;
+  }
+  .page-lead { margin-top: 30px; }
+
+  .kontakt-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: clamp(40px, 6vw, 88px);
+    align-items: start;
+  }
+  .kontakt-sub { margin-top: 20px; font-size: 1.05rem; color: var(--text-secondary); }
+
+  .kontakt-facts { margin: 40px 0 0; display: grid; }
+  .kontakt-fact {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 20px;
+    padding: 20px 4px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .kontakt-fact:last-child { border-bottom: 1px solid var(--border-soft); }
+  .kontakt-fact dt {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding-top: 2px;
+  }
+  .kontakt-fact dd { margin: 0; color: var(--text-primary); line-height: 1.55; }
+  .kontakt-fact a { color: var(--accent); font-weight: 600; }
+
+  .kontakt-form {
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: clamp(26px, 3.4vw, 44px);
+  }
+
+  @media (max-width: 900px) {
+    .kontakt-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .kontakt-fact { grid-template-columns: 1fr; gap: 6px; }
+  }
+</style>
