@@ -1,113 +1,140 @@
 ---
 import Logo from './Logo.astro';
+
+const navItems = [
+  { href: '/#modell', label: 'Modell' },
+  { href: '/leistungen', label: 'Leistungen' },
+  { href: '/#ablauf', label: 'Ablauf' },
+  { href: '/#faq', label: 'FAQ' },
+];
 ---
 
-<div id="progress-bar"></div>
+<header class="site-header">
+  <div class="container header-inner">
+    <Logo size="md" />
 
-<nav id="nav" role="navigation" aria-label="Hauptnavigation">
-  <div class="container">
-    <div class="nav-inner">
-      <Logo size="md" />
-
-      <ul class="nav-links" role="list">
-        <li><a href="/#referenzen">Ergebnisse</a></li>
-        <li><a href="/#system">Das System</a></li>
-        <li><a href="/leistungen">Leistungen</a></li>
-        <li><a href="/#prozess">Ablauf</a></li>
-        <li><a href="/ueber-uns">Über uns</a></li>
+    <nav class="main-nav" aria-label="Hauptnavigation">
+      <ul role="list">
+        {navItems.map((item) => (
+          <li><a href={item.href} class="u-link">{item.label}</a></li>
+        ))}
       </ul>
+    </nav>
 
-      <a href="/kontakt" class="nav-cta" aria-label="Kostenlosen Funnel-Check sichern">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        Funnel-Check sichern
-      </a>
+    <a href="/kontakt" class="btn btn-primary btn-sm header-cta">Erstgespräch vereinbaren</a>
 
-      <button class="hamburger" id="hamburger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+    <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span>
+    </button>
   </div>
 
-  <div class="mobile-menu" id="mobile-menu" role="menu">
-    <a href="/#referenzen" role="menuitem">Ergebnisse</a>
-    <a href="/#system" role="menuitem">Das System</a>
-    <a href="/leistungen" role="menuitem">Leistungen</a>
-    <a href="/#prozess" role="menuitem">Ablauf</a>
-    <a href="/ueber-uns" role="menuitem">Über uns</a>
-    <a href="/kontakt" class="mobile-cta" role="menuitem">Funnel-Check sichern →</a>
-  </div>
-</nav>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation" hidden>
+    <ul role="list">
+      {navItems.map((item) => (
+        <li><a href={item.href}>{item.label}</a></li>
+      ))}
+      <li><a href="/kontakt" class="mobile-nav-cta">Erstgespräch vereinbaren</a></li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: rgba(8, 17, 27, 0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    height: var(--header-h);
+  }
+  .main-nav ul {
+    display: flex;
+    gap: clamp(22px, 3vw, 40px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .main-nav a {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.92rem;
+    letter-spacing: 0.02em;
+    color: var(--text-secondary);
+  }
+  .header-cta { flex-shrink: 0; }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--text-primary);
+    transition: transform var(--transition), opacity var(--transition);
+  }
+  .nav-toggle[aria-expanded="true"] span:first-child { transform: translateY(4.5px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:last-child { transform: translateY(-4.5px) rotate(-45deg); }
+
+  .mobile-nav {
+    border-top: 1px solid var(--border-soft);
+    background: var(--bg-deep);
+    padding: 12px var(--gutter) 28px;
+  }
+  .mobile-nav ul { list-style: none; margin: 0; padding: 0; display: grid; }
+  .mobile-nav a {
+    display: block;
+    padding: 16px 4px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-soft);
+    transition: color var(--transition);
+  }
+  .mobile-nav a:hover { color: var(--accent); }
+  .mobile-nav .mobile-nav-cta { color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .main-nav, .header-cta { display: none; }
+    .nav-toggle { display: flex; }
+  }
+</style>
 
 <script>
-  const nav = document.getElementById('nav')!;
-  const progressBar = document.getElementById('progress-bar')!;
-  const hamburger = document.getElementById('hamburger')!;
-  const mobileMenu = document.getElementById('mobile-menu')!;
-  const floatCta = document.getElementById('float-cta');
+  const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
 
-  function onScroll() {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    progressBar.style.width = (scrollTop / docHeight * 100) + '%';
-    nav.classList.toggle('scrolled', scrollTop > 60);
-
-    if (floatCta) {
-      const hero = document.getElementById('hero');
-      const heroHeight = hero ? hero.offsetHeight : 600;
-      const visible = scrollTop > heroHeight * 0.7;
-      floatCta.classList.toggle('visible', visible);
-      floatCta.setAttribute('aria-hidden', visible ? 'false' : 'true');
-    }
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  hamburger.addEventListener('click', () => {
-    const open = mobileMenu.classList.toggle('open');
-    hamburger.classList.toggle('open', open);
-    hamburger.setAttribute('aria-expanded', String(open));
-    document.body.style.overflow = open ? 'hidden' : '';
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    toggle.setAttribute('aria-label', open ? 'Menü öffnen' : 'Menü schließen');
+    if (mobileNav) mobileNav.hidden = open;
   });
 
-  mobileMenu.querySelectorAll('a').forEach(link => {
+  mobileNav?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
+      toggle?.setAttribute('aria-expanded', 'false');
+      if (mobileNav) mobileNav.hidden = true;
     });
   });
-
-  document.addEventListener('click', (e) => {
-    if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target as Node) && !hamburger.contains(e.target as Node)) {
-      mobileMenu.classList.remove('open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-  });
-
-  // Globaler Reveal-on-Scroll-Observer — auf jeder Seite aktiv (idempotent).
-  // Stellt sicher, dass .reveal-Elemente auch auf Unterseiten ohne eigenes
-  // Skript sichtbar werden. Doppelte Beobachtung durch seiten-eigene Observer
-  // ist unkritisch (setzt .visible nur erneut).
-  if (!(window as any).__evRevealInit) {
-    (window as any).__evRevealInit = true;
-    const revealNodes = Array.from(
-      document.querySelectorAll('.reveal, .reveal-left, .reveal-right')
-    );
-    if (revealNodes.length && 'IntersectionObserver' in window) {
-      const revObs = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            revObs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-      revealNodes.forEach((el) => revObs.observe(el));
-    } else {
-      revealNodes.forEach((el) => el.classList.add('visible'));
-    }
-  }
 </script>

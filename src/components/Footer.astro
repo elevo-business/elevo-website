@@ -1,331 +1,134 @@
 ---
 import Logo from './Logo.astro';
-import LegalModal from './LegalModal.astro';
-import ImpressumContent from './legal/ImpressumContent.astro';
-import DatenschutzContent from './legal/DatenschutzContent.astro';
+
+const year = new Date().getFullYear();
 ---
 
-<footer id="footer" role="contentinfo">
+<footer class="site-footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
         <Logo size="md" />
-        <p class="footer-tagline">
-          Vom Klick zum Klienten — wir verwandeln die Besucher, die du schon hast, in gebuchte Anfragen.
+        <p class="footer-tag">
+          Planbare Neukundengewinnung für Fulfillment-Center und 3PL-Dienstleister im DACH-Raum.
         </p>
-        <a href="mailto:hallo@elevo.solutions" style="font-size:0.85rem; color: var(--accent);">hallo@elevo.solutions</a>
+        <a class="u-link footer-mail" href="mailto:hey@elevo.solutions">hey@elevo.solutions</a>
       </div>
 
-      <div>
-        <p class="footer-col-title">Das System</p>
-        <ul class="footer-links">
-          <li><a href="/#system">Die 4 Bausteine</a></li>
-          <li><a href="/#mechanismus">Vom Klick zum Klienten</a></li>
-          <li><a href="/#referenzen">Ergebnisse</a></li>
+      <nav class="footer-col" aria-label="Seiten">
+        <p class="footer-col-title">Seiten</p>
+        <ul role="list">
+          <li><a href="/" class="u-link">Start</a></li>
+          <li><a href="/leistungen" class="u-link">Leistungen</a></li>
+          <li><a href="/kontakt" class="u-link">Kontakt</a></li>
         </ul>
-      </div>
+      </nav>
 
-      <div>
-        <p class="footer-col-title">Unternehmen</p>
-        <ul class="footer-links">
-          <li><a href="/ueber-uns">Über uns</a></li>
-          <li><a href="/leistungen">Leistungen</a></li>
-          <li><a href="/#prozess">Ablauf</a></li>
-          <li><a href="/kontakt">Funnel-Check</a></li>
-        </ul>
-      </div>
-
-      <div>
+      <nav class="footer-col" aria-label="Rechtliches">
         <p class="footer-col-title">Rechtliches</p>
-        <ul class="footer-links">
-          <li><a href="/impressum" data-legal-open="legal-modal-impressum">Impressum</a></li>
-          <li><a href="/datenschutz" data-legal-open="legal-modal-datenschutz">Datenschutz</a></li>
-          <li><a href="#" id="cookie-settings-link" aria-label="Cookie-Einstellungen anpassen">Cookie-Einstellungen</a></li>
+        <ul role="list">
+          <li><a href="/impressum" class="u-link">Impressum</a></li>
+          <li><a href="/datenschutz" class="u-link">Datenschutz</a></li>
+          <li><button type="button" id="cookie-settings-link" class="u-link footer-cookie-btn">Cookie-Einstellungen</button></li>
         </ul>
-        <p class="footer-col-title" style="margin-top:1.5rem;">Folg uns</p>
-        <ul class="footer-links footer-social">
-          <li>
-            <a href="https://linkedin.com/company/elevo-solutions" target="_blank" rel="noopener noreferrer" aria-label="Elevo auf LinkedIn">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-              LinkedIn
-            </a>
-          </li>
-          <li>
-            <a href="https://instagram.com/elevo.solutions" target="_blank" rel="noopener noreferrer" aria-label="Elevo auf Instagram">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-              Instagram
-            </a>
-          </li>
-        </ul>
+      </nav>
+
+      <div class="footer-col">
+        <p class="footer-col-title">Standort</p>
+        <address class="footer-address">
+          ELEVO Solutions<br>
+          Ahrstraße 6<br>
+          52511 Geilenkirchen
+        </address>
       </div>
     </div>
 
-    <div class="footer-bottom">
-      <p class="footer-legal">
-        © <span id="year"></span> Elevo · Ahrstraße 6, 52511 Geilenkirchen ·
-        <a href="/impressum" data-legal-open="legal-modal-impressum">Impressum</a> ·
-        <a href="/datenschutz" data-legal-open="legal-modal-datenschutz">Datenschutz</a>
-      </p>
+    <p class="footer-wordmark" aria-hidden="true">Elevo</p>
+
+    <div class="footer-bar">
+      <p>© {year} Elevo · ELEVO Solutions</p>
+      <p class="footer-bar-note">Pay-per-Lead · Exklusiv · Ersatz-Garantie</p>
     </div>
   </div>
 </footer>
 
-<!-- Floating CTA -->
-<div id="float-cta" aria-hidden="true">
-  <a href="/kontakt" class="float-btn">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-    Funnel-Check
-  </a>
-</div>
+<style>
+  .site-footer {
+    background: var(--bg-dark);
+    border-top: 1px solid var(--border-soft);
+    padding-top: clamp(64px, 8vw, 96px);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: clamp(48px, 6vw, 72px);
+  }
+  .footer-tag {
+    margin: 22px 0 18px;
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    max-width: 34ch;
+    line-height: 1.6;
+  }
+  .footer-mail { font-weight: 600; font-size: 1.02rem; }
+  .footer-col-title {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 6px 0 20px;
+  }
+  .footer-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 13px; }
+  .footer-col a, .footer-cookie-btn {
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+  .footer-cookie-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .footer-address { font-style: normal; font-size: 0.98rem; color: var(--text-secondary); line-height: 1.7; }
 
-<!-- Legal Modals (Impressum + Datenschutz) -->
-<LegalModal id="legal-modal-impressum" labelledBy="anbieter" fallbackHref="/impressum">
-  <ImpressumContent />
-</LegalModal>
-
-<LegalModal id="legal-modal-datenschutz" labelledBy="ds-verantwortlicher" fallbackHref="/datenschutz">
-  <DatenschutzContent />
-</LegalModal>
-
-<!-- Cookie Banner -->
-<div id="cookie-banner" role="dialog" aria-modal="true" aria-labelledby="cookie-title">
-  <p class="cookie-title" id="cookie-title">🍪 Cookies &amp; Datenschutz</p>
-  <p class="cookie-text">
-    Mit deiner Zustimmung messen wir anonym, wie gut unsere Werbung funktioniert (Google Ads &amp; Meta).
-    Das hilft uns, dir relevantere Inhalte zu zeigen. Du entscheidest — jederzeit änderbar.
-    Mehr dazu in unserer <a href="/datenschutz">Datenschutzerklärung</a>.
-  </p>
-  <div class="cookie-toggles">
-    <div class="cookie-toggle-row">
-      <div class="cookie-toggle-info">
-        <div class="cookie-toggle-label">Notwendig</div>
-        <div class="cookie-toggle-desc">Technisch erforderlich, immer aktiv</div>
-      </div>
-      <label class="cookie-toggle-switch" aria-label="Notwendige Cookies (immer aktiv)">
-        <input type="checkbox" id="toggle-necessary" checked disabled>
-        <span class="cookie-toggle-track"></span>
-      </label>
-    </div>
-    <div class="cookie-toggle-row">
-      <div class="cookie-toggle-info">
-        <div class="cookie-toggle-label">Statistik</div>
-        <div class="cookie-toggle-desc">Anonyme Reichweitenmessung mit Google Analytics</div>
-      </div>
-      <label class="cookie-toggle-switch" aria-label="Statistik-Cookies">
-        <input type="checkbox" id="toggle-analytics">
-        <span class="cookie-toggle-track"></span>
-      </label>
-    </div>
-    <div class="cookie-toggle-row">
-      <div class="cookie-toggle-info">
-        <div class="cookie-toggle-label">Marketing</div>
-        <div class="cookie-toggle-desc">Google Ads &amp; Meta — Conversion-Tracking für Werbeanzeigen</div>
-      </div>
-      <label class="cookie-toggle-switch" aria-label="Marketing-Cookies">
-        <input type="checkbox" id="toggle-marketing">
-        <span class="cookie-toggle-track"></span>
-      </label>
-    </div>
-  </div>
-  <div class="cookie-btns">
-    <button class="cookie-accept" id="cookie-accept">Alle akzeptieren</button>
-    <button class="cookie-save" id="cookie-save">Auswahl speichern</button>
-    <button class="cookie-decline" id="cookie-decline">Nur notwendige</button>
-  </div>
-</div>
-
-<script>
-  document.getElementById('year')!.textContent = String(new Date().getFullYear());
-
-  const COOKIE_KEY = 'elevo_consent_v2';
-
-  interface ConsentPrefs { marketing: boolean; analytics: boolean; }
-
-  function applyConsent(prefs: ConsentPrefs) {
-    if (typeof (window as any).gtag !== 'undefined') {
-      (window as any).gtag('consent', 'update', {
-        'analytics_storage': prefs.analytics ? 'granted' : 'denied',
-        'ad_storage': prefs.marketing ? 'granted' : 'denied',
-        'ad_user_data': prefs.marketing ? 'granted' : 'denied',
-        'ad_personalization': prefs.marketing ? 'granted' : 'denied'
-      });
-    }
-    // gtag.js wird post-LCP / interaktionsgetriggert geladen.
-    // Sobald Marketing oder Statistik freigegeben wird, soll gtag.js sofort
-    // ziehen, damit Hits nach Einwilligung nicht auf den Hardcap warten.
-    if (prefs.marketing || prefs.analytics) {
-      window.dispatchEvent(new Event('elevo:consent-granted'));
-    }
-    // Statistik separat: triggert Microsoft Clarity (laedt nur mit Statistik-Consent).
-    if (prefs.analytics) {
-      window.dispatchEvent(new Event('elevo:analytics-granted'));
-    }
+  .footer-wordmark {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(5rem, 17vw, 15rem);
+    letter-spacing: -0.04em;
+    line-height: 0.85;
+    color: #0D1E2E;
+    text-align: center;
+    margin: 0 0 -0.12em;
+    user-select: none;
+    pointer-events: none;
   }
 
-  function syncToggles(prefs: ConsentPrefs) {
-    (document.getElementById('toggle-marketing') as HTMLInputElement).checked = prefs.marketing;
-    (document.getElementById('toggle-analytics') as HTMLInputElement).checked = prefs.analytics;
+  .footer-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    border-top: 1px solid var(--border-soft);
+    padding-block: 26px;
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    position: relative;
   }
+  .footer-bar p { margin: 0; }
 
-  function saveConsent(prefs: ConsentPrefs) {
-    localStorage.setItem(COOKIE_KEY, JSON.stringify(prefs));
-    applyConsent(prefs);
-    hideBanner();
+  @media (max-width: 900px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
   }
-
-  const banner = document.getElementById('cookie-banner')!;
-  const acceptBtn = document.getElementById('cookie-accept')!;
-  const saveBtn = document.getElementById('cookie-save')!;
-  const declineBtn = document.getElementById('cookie-decline')!;
-  const settingsLink = document.getElementById('cookie-settings-link');
-
-  function showBanner() {
-    banner.classList.add('show');
-    setTimeout(() => acceptBtn.focus(), 50);
+  @media (max-width: 560px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 36px;  }
   }
-
-  function hideBanner() {
-    banner.classList.remove('show');
-  }
-
-  function getTogglePrefs(): ConsentPrefs {
-    return {
-      marketing: (document.getElementById('toggle-marketing') as HTMLInputElement).checked,
-      analytics: (document.getElementById('toggle-analytics') as HTMLInputElement).checked
-    };
-  }
-
-  // Focus trap
-  banner.addEventListener('keydown', (e: KeyboardEvent) => {
-    if (e.key !== 'Tab') return;
-    const focusable = Array.from(banner.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], input:not([disabled])'));
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    if (e.shiftKey) {
-      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
-    } else {
-      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
-    }
-  });
-
-  const storedRaw = localStorage.getItem(COOKIE_KEY);
-  if (storedRaw) {
-    try {
-      const raw = JSON.parse(storedRaw);
-      // Rueckwaertskompatibel: aelterer Consent kannte nur "marketing".
-      const prefs: ConsentPrefs = { marketing: raw.marketing === true, analytics: raw.analytics === true };
-      applyConsent(prefs);
-      syncToggles(prefs);
-    } catch {
-      applyConsent({ marketing: true, analytics: true });
-      syncToggles({ marketing: true, analytics: true });
-    }
-  } else {
-    showBanner();
-  }
-
-  acceptBtn.addEventListener('click', () => {
-    syncToggles({ marketing: true, analytics: true });
-    saveConsent({ marketing: true, analytics: true });
-  });
-
-  saveBtn.addEventListener('click', () => {
-    saveConsent(getTogglePrefs());
-  });
-
-  declineBtn.addEventListener('click', () => {
-    syncToggles({ marketing: false, analytics: false });
-    saveConsent({ marketing: false, analytics: false });
-  });
-
-  settingsLink?.addEventListener('click', (e: Event) => {
-    e.preventDefault();
-    const raw = localStorage.getItem(COOKIE_KEY);
-    if (raw) {
-      try { syncToggles(JSON.parse(raw) as ConsentPrefs); } catch {}
-    }
-    showBanner();
-  });
-
-  // ---------- Legal modals (Impressum, Datenschutz) ----------
-  // Footer links carry data-legal-open="<modal-id>". JS opens the modal in place;
-  // when JS fails or for crawlers the href remains a valid direct route (SEO + § 5 TMG).
-  let lastTrigger: HTMLElement | null = null;
-
-  function getFocusable(scope: HTMLElement): HTMLElement[] {
-    return Array.from(
-      scope.querySelectorAll<HTMLElement>(
-        'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
-      )
-    ).filter((el) => !el.hasAttribute('inert'));
-  }
-
-  function openLegalModal(modalId: string, trigger: HTMLElement | null) {
-    const modal = document.getElementById(modalId);
-    if (!modal) return;
-    lastTrigger = trigger;
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.documentElement.classList.add('legal-modal-open');
-    const focusable = getFocusable(modal);
-    const target = modal.querySelector<HTMLElement>('.legal-modal-close') ?? focusable[0];
-    setTimeout(() => target?.focus(), 30);
-  }
-
-  function closeLegalModal(modal: HTMLElement) {
-    modal.classList.remove('is-open');
-    modal.setAttribute('aria-hidden', 'true');
-    if (!document.querySelector('.legal-modal.is-open')) {
-      document.documentElement.classList.remove('legal-modal-open');
-    }
-    lastTrigger?.focus?.();
-  }
-
-  document.querySelectorAll<HTMLElement>('[data-legal-open]').forEach((trigger) => {
-    trigger.addEventListener('click', (event) => {
-      const modalId = trigger.getAttribute('data-legal-open');
-      if (!modalId) return;
-      const modal = document.getElementById(modalId);
-      if (!modal) return;
-      event.preventDefault();
-      openLegalModal(modalId, trigger);
-    });
-  });
-
-  document.querySelectorAll<HTMLElement>('.legal-modal').forEach((modal) => {
-    modal.addEventListener('click', (event) => {
-      const target = event.target as HTMLElement | null;
-      if (target?.closest('[data-legal-close]')) {
-        closeLegalModal(modal);
-      }
-    });
-
-    modal.addEventListener('keydown', (event: KeyboardEvent) => {
-      if (event.key === 'Tab') {
-        const focusable = getFocusable(modal);
-        if (focusable.length === 0) {
-          event.preventDefault();
-          return;
-        }
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (event.shiftKey && document.activeElement === first) {
-          event.preventDefault();
-          last.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault();
-          first.focus();
-        }
-      }
-    });
-  });
-
-  document.addEventListener('keydown', (event: KeyboardEvent) => {
-    if (event.key !== 'Escape') return;
-    const open = document.querySelector<HTMLElement>('.legal-modal.is-open');
-    if (open) {
-      event.preventDefault();
-      closeLegalModal(open);
-    }
-  });
-</script>
+</style>
