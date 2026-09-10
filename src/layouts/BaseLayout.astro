@@ -1,4 +1,6 @@
 ---
+import CookieBanner from '../components/CookieBanner.astro';
+
 export interface Props {
   title?: string;
   description?: string;
@@ -13,8 +15,8 @@ export interface Props {
 }
 
 const {
-  title = 'Neukundengewinnung für Fulfillment-Center — Elevo',
-  description = 'Planbar neue Versender gewinnen — ohne Kaltakquise. Sie zahlen pro qualifiziertem Lead, der erste Termin ist kostenlos. Über 200 qualifizierte Leads in den letzten 2 Monaten.',
+  title = 'Leadgenerierung für Fulfillment & 3PL — Elevo',
+  description = 'Exklusive, vorqualifizierte Leads für Fulfillment-Center und 3PL-Dienstleister. Pay-per-Lead, kein Retainer — mit Ersatz-Garantie bei Fehltreffern.',
   canonical = 'https://elevo.solutions/',
   ogImage = 'https://elevo.solutions/og-image.jpg',
   noindex = false,
@@ -44,7 +46,7 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_ID ?? 'xbi2du3vxx';
   <meta name="description" content={description}>
   <meta name="author" content="Elevo">
   <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'}>
-  <meta name="theme-color" content="#0A0E1A">
+  <meta name="theme-color" content="#08111B">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -83,10 +85,10 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_ID ?? 'xbi2du3vxx';
     "@type": "ProfessionalService",
     "name": "Elevo",
     "serviceType": "Lead-Generierung und Neukundengewinnung für Fulfillment-Center und 3PL-Dienstleister",
-    "description": "Elevo generiert planbar qualifizierte Neukunden-Leads für Fulfillment-Center und 3PL-Dienstleister im DACH-Raum: gezielte Ansprache, Qualifizierung und Terminierung von Marken, Onlinehändlern und Versendern mit passendem Volumen. Pay-per-Lead, kein Retainer — der erste qualifizierte Termin ist kostenlos.",
-    "slogan": "Planbar neue Versender gewinnen",
+    "description": "Elevo liefert Fulfillment-Centern und 3PL-Dienstleistern im DACH-Raum exklusive, vorqualifizierte Leads: gezielte Ansprache und mehrstufige Qualifizierung von Marken, Onlinehändlern und Versendern mit aktuellem Bedarf. Pay-per-Lead, kein Retainer — jeder Lead wird nur einmal verkauft, bei Fehltreffern gibt es kostenlosen Ersatz.",
+    "slogan": "Aktuelle, exklusive Leads — mit Ersatz-Garantie",
     "url": "https://elevo.solutions",
-    "email": "hallo@elevo.solutions",
+    "email": "hey@elevo.solutions",
     "logo": "https://elevo.solutions/elevo-logo.png",
     "image": "https://elevo.solutions/og-image.jpg",
     "founder": [
@@ -111,13 +113,6 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_ID ?? 'xbi2du3vxx';
       "addressCountry": "DE"
     },
     "areaServed": [
-      { "@type": "AdministrativeArea", "name": "Nordrhein-Westfalen" },
-      { "@type": "City", "name": "Geilenkirchen" },
-      { "@type": "City", "name": "Heinsberg" },
-      { "@type": "City", "name": "Aachen" },
-      { "@type": "City", "name": "Düren" },
-      { "@type": "City", "name": "Mönchengladbach" },
-      { "@type": "City", "name": "Köln" },
       { "@type": "Country", "name": "Deutschland" },
       { "@type": "Country", "name": "Österreich" },
       { "@type": "Country", "name": "Schweiz" }
@@ -155,8 +150,8 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_ID ?? 'xbi2du3vxx';
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Erster qualifizierter Termin kostenlos",
-            "description": "Zum Start bekommen Fulfillment-Center ihren ersten qualifizierten Termin mit einem passenden Versender kostenlos — Testen ohne Risiko."
+            "name": "Ersatz-Garantie",
+            "description": "Falsche Kontaktdaten oder kein echtes Interesse: Elevo ersetzt den Lead ohne Zusatzkosten."
           }
         }
       ]
@@ -421,5 +416,6 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_ID ?? 'xbi2du3vxx';
 
 <body class={bodyClass}>
   <slot />
+  <CookieBanner />
 </body>
 </html>
