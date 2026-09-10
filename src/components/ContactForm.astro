@@ -1,77 +1,76 @@
 ---
+// Kontaktformular — sendet an die Elevo Contact-API (Payload-Shape stabil halten,
+// Backend + CAPI-Deduplizierung haengen an diesen Feldern).
 const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solutions/api/contact';
 ---
 
-<form class="contact-form" id="contact-form" novalidate data-api-url={apiUrl}>
+<form class="form-grid" id="contact-form" novalidate data-api-url={apiUrl}>
   <input type="text" name="_hp" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
   <input type="hidden" name="_ts" id="form-ts" value="">
+
   <div class="form-row">
     <div class="form-group">
-      <label class="form-label" for="name">Dein Name *</label>
+      <label class="form-label" for="name">Ihr Name *</label>
       <input class="form-input" type="text" id="name" name="name" placeholder="Max Mustermann" required autocomplete="name">
     </div>
     <div class="form-group">
-      <label class="form-label" for="company">Coaching / Marke</label>
-      <input class="form-input" type="text" id="company" name="company" placeholder="z. B. dein Coaching-Business" autocomplete="organization">
+      <label class="form-label" for="company">Unternehmen</label>
+      <input class="form-input" type="text" id="company" name="company" placeholder="z. B. Ihr Fulfillment-Center" autocomplete="organization">
     </div>
   </div>
+
   <div class="form-row">
     <div class="form-group">
       <label class="form-label" for="email">E-Mail-Adresse *</label>
-      <input class="form-input" type="email" id="email" name="email" placeholder="max@dein-coaching.de" required autocomplete="email">
+      <input class="form-input" type="email" id="email" name="email" placeholder="max@unternehmen.de" required autocomplete="email">
     </div>
     <div class="form-group">
-      <label class="form-label" for="phone">Telefon / WhatsApp <span class="form-label-optional">(optional)</span></label>
+      <label class="form-label" for="phone">Telefon <span class="form-label-optional">(optional)</span></label>
       <input class="form-input" type="tel" id="phone" name="phone" placeholder="Für einen schnellen Rückruf" autocomplete="tel" inputmode="tel">
     </div>
   </div>
+
   <div class="form-group">
-    <label class="form-label" for="service">Worum geht's?</label>
+    <label class="form-label" for="service">Was beschreibt Sie am besten?</label>
     <select class="form-select" id="service" name="service">
-      <option value="">Bitte wählen...</option>
-      <option value="funnel-check">Kostenloser Funnel-Check</option>
-      <option value="system">Das 14-Tage Klienten-System</option>
-      <option value="website">Conversion-Website</option>
-      <option value="automatisierung">Terminbuchung &amp; Follow-up-Automatisierung</option>
+      <option value="">Bitte wählen …</option>
+      <option value="fulfillment-center">Fulfillment-Center mit freien Kapazitäten</option>
+      <option value="3pl">3PL- / Kontraktlogistik-Dienstleister</option>
+      <option value="andere-branche">Andere B2B-Branche (auf Anfrage)</option>
       <option value="sonstiges">Etwas anderes</option>
     </select>
   </div>
+
   <div class="form-group">
-    <label class="form-label" for="message">Erzähl uns kurz von deinem Angebot *</label>
-    <textarea class="form-textarea" id="message" name="message" placeholder="Was bietest du an, wie viel Reichweite hast du schon, und was ist dein Ziel?" required autocomplete="off"></textarea>
+    <label class="form-label" for="message">Ihre Situation *</label>
+    <textarea class="form-textarea" id="message" name="message" placeholder="Wie viel Fläche / Kapazität ist frei, in welcher Region, und welche Versender passen zu Ihnen?" required autocomplete="off"></textarea>
   </div>
-  <button type="submit" class="form-submit" id="submit-btn">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-    Funnel-Check anfragen
+
+  <button type="submit" class="btn btn-primary form-submit" id="submit-btn">
+    Erstgespräch anfragen
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </button>
-  <p class="form-assurance">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-    Kostenlos &amp; unverbindlich · Antwort innerhalb von 24 Stunden
-  </p>
-  <p class="form-privacy-note">
-    Mit dem Absenden stimmst du unserer <a href="/datenschutz">Datenschutzerklärung</a> zu. Conversion-Tracking läuft nur, wenn du im Cookie-Banner eingewilligt hast.
+
+  <p class="form-assurance">Kostenlos &amp; unverbindlich · Antwort innerhalb von 24 Stunden</p>
+  <p class="form-privacy">
+    Mit dem Absenden stimmen Sie unserer <a href="/datenschutz" class="u-link">Datenschutzerklärung</a> zu.
+    Conversion-Tracking läuft nur mit Ihrer Einwilligung im Cookie-Banner.
   </p>
   <div class="form-message" id="form-message" role="alert" aria-live="polite"></div>
 </form>
 
 <style>
-  .form-label-optional {
-    color: var(--text-muted);
-    font-weight: 400;
-  }
-
+  .form-submit { justify-self: start; }
   .form-assurance {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 14px;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin: 0;
   }
-
-  .form-assurance svg {
-    flex-shrink: 0;
-    color: var(--accent);
+  .form-privacy {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.55;
   }
 </style>
 
@@ -82,6 +81,8 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
   const apiUrl = form.dataset.apiUrl!;
   const tsInput = document.getElementById('form-ts') as HTMLInputElement;
   if (tsInput) tsInput.value = String(Date.now());
+
+  const submitLabel = submitBtn.innerHTML;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -100,21 +101,20 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
 
     if (!name || !email || !message) {
       formMsg.className = 'form-message error';
-      formMsg.textContent = 'Bitte füll alle Pflichtfelder aus.';
+      formMsg.textContent = 'Bitte füllen Sie alle Pflichtfelder aus.';
       return;
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       formMsg.className = 'form-message error';
-      formMsg.textContent = 'Bitte gib eine gültige E-Mail-Adresse ein.';
+      formMsg.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
       return;
     }
 
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Wird gesendet...';
+    submitBtn.textContent = 'Wird gesendet …';
 
     // Meta: event_id + fbp/fbc VOR dem Request sammeln (nur mit Consent).
-    // Wird mitgeschickt, damit das server-seitige CAPI-Event dedupliziert wird.
     const lead = (window as any).elevoMeta?.leadData?.() ?? null;
 
     try {
@@ -132,17 +132,16 @@ const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://api.elevo.solu
         if (typeof (window as any).gtag !== 'undefined') {
           (window as any).gtag('event', 'conversion', { send_to: 'AW-18023151518/contact_form_submit' });
         }
-        // Meta Browser-Pixel mit derselben event_id wie das CAPI-Event feuern.
         if (lead) (window as any).elevoMeta?.fireLead?.(lead.metaEventId, { content_name: service || 'contact' });
       } else {
         throw new Error('Server error');
       }
     } catch {
       formMsg.className = 'form-message error';
-      formMsg.textContent = 'Etwas ist schiefgelaufen. Schreib uns direkt: hallo@elevo.solutions';
+      formMsg.textContent = 'Etwas ist schiefgelaufen. Schreiben Sie uns direkt: hey@elevo.solutions';
     }
 
     submitBtn.disabled = false;
-    submitBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Funnel-Check anfragen';
+    submitBtn.innerHTML = submitLabel;
   });
 </script>
