@@ -249,23 +249,27 @@ const totalSteps = questions.length + 1; // + Kontakt-Schritt
       const lead = (window as any).elevoMeta?.leadData?.() ?? null;
 
       try {
+        // FormSubmit.co -> E-Mail an hey@elevo.solutions (kein eigenes Backend, kein
+        // API-Key im Code). FormSubmit antwortet auch bei logischen Fehlern mit HTTP 200 —
+        // deshalb wird data.success ausgewertet, nicht nur res.ok.
         const res = await fetch(endpoint, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify({
             name, email, phone, company,
             segment: answers.segment || '',
             bestellvolumen: answers.bestellvolumen || '',
             lagerbedarf: answers.lagerbedarf || '',
             dringlichkeit: answers.dringlichkeit || '',
-            quelle: 'Website',
-            kampagne: 'Startseite Fulfillment Quiz',
-            metaEventId: lead?.metaEventId ?? '',
-            ...(lead ?? {}),
+            _subject: `Neue Fulfillment-Anfrage: ${company}`,
+            _template: 'table',
+            _captcha: 'false',
+            'Meta Event-ID': lead?.metaEventId ?? '',
           }),
         });
 
-        if (!res.ok) throw new Error('Server error');
+        const data = await res.json().catch(() => null);
+        if (!res.ok || data?.success !== 'true') throw new Error(data?.message || 'Server error');
 
         showStep('success');
         if (typeof (window as any).gtag !== 'undefined') {

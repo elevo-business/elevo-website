@@ -11,14 +11,13 @@ const MAILTO =
   'mailto:hallo@elevo.solutions?subject=' +
   encodeURIComponent('Kostenloses Erstgespräch — Neukunden für unser Fulfillment-Center');
 
-// Lead-Quiz -> eigener Cloudflare Worker -> Monday-CRM-Board "Leads"
-// (Gruppe "Website – Fulfillment"). Der Monday-API-Key bleibt dabei als Worker-Secret
-// server-seitig, nie im Browser. Sobald der Worker deployt ist (siehe monday-lead-worker.js),
-// dessen *.workers.dev-URL hier als PUBLIC_CONTACT_API_URL (Coolify-Env-Var) hinterlegen
-// und redeployen — keine weitere Code-Änderung nötig. Bis dahin ist absichtlich kein
-// funktionierender Default gesetzt (das Formular zeigt dann die freundliche Fehlermeldung
-// statt still zu scheitern).
-const LEAD_API_URL = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://PENDING-cloudflare-worker-url.example/not-yet-deployed';
+// Lead-Quiz -> FormSubmit.co -> E-Mail direkt an hey@elevo.solutions.
+// Kein eigenes Backend, kein API-Key im Code (die Zieladresse ist nur eine
+// öffentliche E-Mail-Adresse, kein Secret). Override via Env-Var möglich.
+// Wichtig: FormSubmit braucht eine einmalige Aktivierung — beim ersten Live-
+// Submit bekommt hey@elevo.solutions eine Bestätigungsmail mit "Activate
+// Form"-Link, der geklickt werden muss (auch im Spam-Ordner prüfen).
+const LEAD_API_URL = import.meta.env.PUBLIC_CONTACT_API_URL ?? 'https://formsubmit.co/ajax/hey@elevo.solutions';
 
 const pains = [
   'Ihre Auslastung schwankt — mal platzt das Lager, mal stehen Flächen und Personal ungenutzt.',
