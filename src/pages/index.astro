@@ -32,7 +32,7 @@ const pains = [
 const faqEntries = [
   { q: 'Was ist ein „qualifizierter" Lead?', a: 'Ein Entscheider mit konkretem Fulfillment-Bedarf, der zu Ihren Kriterien passt — Volumen, Region und Warenart — und einem Gespräch zugestimmt hat. Keine anonymen Klicks, keine kalten Adressen.' },
   { q: 'Muss ich einen langen Vertrag unterschreiben?', a: 'Nein. Sie zahlen pro Lead. Kein Retainer, kein Setup, keine Mindestlaufzeit über Jahre. Sie steuern selbst, wie viele Leads Sie abnehmen möchten.' },
-  { q: 'Wie schnell kommen die ersten Termine?', a: 'In der Regel innerhalb der ersten Wochen nach dem Start. Den allerersten qualifizierten Termin bekommen Sie kostenlos — Sie gehen also in keine Vorleistung.' },
+  { q: 'Wie schnell kommen die ersten Termine?', a: 'In der Regel innerhalb der ersten Wochen nach dem Start — abhängig von Ihrer Region und Ihren Kriterien.' },
   { q: 'Woher kommen die Leads?', a: 'Aus gezielter Ansprache und Qualifizierung von Marken, Onlinehändlern und Versendern, die aktuell einen Fulfillment-Partner suchen oder wechseln wollen — passend zu Ihrer Kapazität.' },
   { q: 'Für wen lohnt sich das?', a: 'Für Fulfillment-Center und 3PL-Dienstleister mit freien Kapazitäten, die planbar wachsen und die Abhängigkeit von wenigen Großkunden reduzieren wollen.' },
 ];
@@ -49,7 +49,7 @@ const faqSchema = {
 
 <BaseLayout
   title="Neukundengewinnung für Fulfillment-Center — Elevo"
-  description="Planbar neue Versender gewinnen — ohne Kaltakquise. Sie zahlen pro qualifiziertem Lead, der erste Termin ist kostenlos. Über 200 qualifizierte Leads in den letzten 2 Monaten."
+  description="Planbar neue Versender gewinnen — ohne Kaltakquise. Sie zahlen pro qualifiziertem Lead. Über 200 qualifizierte Leads in den letzten 2 Monaten."
   canonical="https://elevo.solutions/"
 >
   <a href="#kontakt" class="skip-link">Zum Hauptinhalt springen</a>
@@ -73,7 +73,7 @@ const faqSchema = {
             <p class="ev-eyebrow">Lead-Generierung für Fulfillment-Center &amp; 3PL</p>
             <h1 id="ff-hero-heading" class="ev-hero-h1">
               Planbar neue Versender gewinnen.<br>
-              Sie zahlen erst, <span class="ev-accent">wenn der Lead da ist.</span>
+              Sie zahlen nur für <span class="ev-accent">qualifizierte Leads.</span>
             </h1>
             <p class="ev-hero-sub">
               Volle Regale statt leerer Flächen: Wir bringen Ihnen qualifizierte Anfragen von Marken
@@ -87,7 +87,7 @@ const faqSchema = {
               </a>
               <a href="#so-gehts" class="ev-btn ev-btn-ghost">So funktioniert&rsquo;s</a>
             </div>
-            <p class="ev-hero-trust">Pay-per-Lead · kein Retainer · erster qualifizierter Termin gratis</p>
+            <p class="ev-hero-trust">Pay-per-Lead · kein Retainer · keine Jahresbindung</p>
           </div>
 
           <aside class="ff-offer" aria-label="Ihr Angebot">
@@ -96,9 +96,9 @@ const faqSchema = {
             <ul class="ff-offer-list" role="list">
               <li><span class="ff-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Kein Setup, kein Retainer, keine Jahresbindung</li>
               <li><span class="ff-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Nur Entscheider mit echtem Fulfillment-Bedarf — keine anonymen Klicks</li>
-              <li><span class="ff-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Ihr erster qualifizierter Termin ist <strong>kostenlos</strong></li>
+              <li><span class="ff-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Leads passend zu Ihrer Fläche, Region und Warenart — kein Streuverlust</li>
             </ul>
-            <a href="#kontakt" class="ev-btn ev-btn-primary ff-offer-cta">Ersten Termin gratis sichern →</a>
+            <a href="#kontakt" class="ev-btn ev-btn-primary ff-offer-cta">Kostenloses Erstgespräch sichern →</a>
             <p class="ff-offer-note">Wir arbeiten mit einer begrenzten Zahl an Fulfillment-Partnern pro Region — für saubere Qualität statt Masse.</p>
           </aside>
         </div>
@@ -122,8 +122,8 @@ const faqSchema = {
             <span class="ev-stat-label">Monate — nachweisbar, nicht geschätzt</span>
           </div>
           <div class="ev-stat">
-            <span class="ev-stat-num">1.</span>
-            <span class="ev-stat-label">Termin gratis, dann Pay-per-Lead</span>
+            <span class="ev-stat-num">100%</span>
+            <span class="ev-stat-label">Leads vorqualifiziert nach Ihren Kriterien</span>
           </div>
           <div class="ev-stat">
             <span class="ev-stat-num">0</span>
@@ -194,7 +194,7 @@ const faqSchema = {
           <div class="prozess-step" role="listitem">
             <div class="step-num" aria-hidden="true">03</div>
             <h3 class="step-title">Sie zahlen pro Lead</h3>
-            <p class="step-desc">Kein Retainer, kein Setup, keine lange Vertragsbindung. Sie zahlen nur für das, was ankommt. Und der erste qualifizierte Termin geht auf uns.</p>
+            <p class="step-desc">Kein Retainer, kein Setup, keine lange Vertragsbindung. Sie zahlen nur für das, was ankommt.</p>
           </div>
         </div>
       </div>
@@ -209,12 +209,11 @@ const faqSchema = {
           </div>
           <div class="ev-guarantee-body">
             <p class="ev-eyebrow">Testen Sie uns ohne Risiko</p>
-            <h2 id="ff-guarantee-heading" class="ev-h2">Der erste qualifizierte Termin ist kostenlos.</h2>
+            <h2 id="ff-guarantee-heading" class="ev-h2">Sie zahlen nur für Leads, die ankommen.</h2>
             <p>
-              Sie müssen uns nicht glauben — Sie können es sehen. Ihren ersten qualifizierten Termin mit
-              einem passenden Versender bekommen Sie gratis. Überzeugt Sie das Ergebnis, skalieren wir
-              gemeinsam: Sie zahlen pro Lead, wir liefern planbar nach. Kein Retainer, keine Jahresbindung,
-              kein Risiko auf Ihrer Seite.
+              Kein Vorschuss auf Vertrauen: Sie zahlen pro qualifiziertem Lead — nicht für Werbebudget,
+              das im Nichts verpufft, und nicht für eine Agentur, die Reichweite statt Anfragen liefert.
+              Kein Retainer, keine Jahresbindung, kein Risiko auf Ihrer Seite.
             </p>
           </div>
         </div>
@@ -246,11 +245,11 @@ const faqSchema = {
     <!-- ===== ANSPRECHPARTNER ===== -->
     <section class="ev-section" aria-labelledby="ff-people-heading">
       <div class="container">
-        <p class="ev-eyebrow">Ihre Ansprechpartner</p>
-        <h2 id="ff-people-heading" class="ev-h2">Kein anonymes Callcenter. Menschen, die liefern.</h2>
+        <p class="ev-eyebrow">Ihr Ansprechpartner</p>
+        <h2 id="ff-people-heading" class="ev-h2">Kein anonymes Callcenter. Ein Mensch, der liefert.</h2>
         <p class="ev-section-sub" style="margin-left:0;">Sie haben einen direkten Draht — kein Ticketsystem, keine Warteschleife.</p>
 
-        <div class="ff-people">
+        <div class="ff-people ff-people-single">
           <article class="ff-person">
             <div class="ff-person-photo">
               <picture>
@@ -262,20 +261,6 @@ const faqSchema = {
               <h3 class="ff-person-name">Mert Efe Celik</h3>
               <span class="ff-person-role">Gründer &amp; Strategie</span>
               <p class="ff-person-bio">Verantwortlich für Strategie und Zielgruppe: Wer sind die richtigen Versender für Ihre Fläche — und wie erreichen wir sie planbar.</p>
-            </div>
-          </article>
-
-          <article class="ff-person">
-            <div class="ff-person-photo">
-              <div class="ff-person-placeholder" aria-hidden="true">
-                <span class="ff-person-initials">BK</span>
-                <span class="ff-person-soon">Bild folgt<br>in Kürze</span>
-              </div>
-            </div>
-            <div class="ff-person-info">
-              <h3 class="ff-person-name">Bünyamin Korkmaz</h3>
-              <span class="ff-person-role">Gründer &amp; Neukundengewinnung</span>
-              <p class="ff-person-bio">Ihr direkter Ansprechpartner — betreut Sie von der ersten Anfrage bis zum qualifizierten Termin, nah dran an den Leads und an Ihren Zielen.</p>
             </div>
           </article>
         </div>
@@ -306,15 +291,14 @@ const faqSchema = {
           <h2 id="ff-final-heading" class="ev-h2">Reden wir über Ihre freien Kapazitäten.</h2>
           <p class="ev-final-sub">
             15 Minuten genügen: Wir schauen uns Ihre Fläche und Ihre Wunschkunden an und zeigen Ihnen,
-            wie viele passende Versender wir für Sie erreichen können. Ihren ersten qualifizierten Termin
-            bekommen Sie kostenlos.
+            wie viele passende Versender wir für Sie erreichen können.
           </p>
         </div>
 
         <LeadQuiz endpoint={LEAD_API_URL} formId="ff-lead-quiz" />
 
         <p class="ev-final-trust" style="margin-top:18px;">
-          Oder direkt per E-Mail: <a href={MAILTO} class="ff-mail">hallo@elevo.solutions</a> · Pay-per-Lead · erster Termin gratis
+          Oder direkt per E-Mail: <a href={MAILTO} class="ff-mail">hallo@elevo.solutions</a> · Pay-per-Lead · kein Retainer
         </p>
       </div>
     </section>
@@ -404,6 +388,7 @@ const faqSchema = {
 
   /* ===== Ansprechpartner ===== */
   .ff-people { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 40px; }
+  .ff-people-single { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; }
   .ff-person {
     display: flex; gap: 22px; align-items: center;
     background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 26px 26px;
