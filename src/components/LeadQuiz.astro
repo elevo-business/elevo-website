@@ -1,0 +1,400 @@
+---
+// Mehrstufiges Lead-Quiz (Typeform-Stil): eine Frage pro Bildschirm, Fortschrittsbalken,
+// große klickbare Antwortkarten mit Auto-Advance. Letzter Schritt sammelt die Kontaktdaten
+// und sendet den kompletten Datensatz an einen Webhook (Make.com -> Monday-CRM-Board "Leads").
+// Reines Astro + Vanilla JS, kein Framework (CI-Vorgabe).
+export interface Props {
+  endpoint: string;
+  formId?: string;
+}
+const { endpoint, formId = 'lead-quiz' } = Astro.props;
+
+const questions = [
+  {
+    field: 'segment',
+    label: 'Was beschreibt euch am besten?',
+    options: [
+      { value: 'Fulfillment-Center / 3PL-Dienstleister', desc: 'Wir betreiben eigene Lagerflächen und suchen neue Versender.' },
+      { value: 'Anderer Logistik-/Lagerdienstleister mit freien Kapazitäten', desc: 'Wir haben Kapazität frei, sind aber kein klassisches Fulfillment-Center.' },
+      { value: 'Sonstige Branche', desc: 'Keins von beiden trifft zu.', disqualify: true },
+    ],
+  },
+  {
+    field: 'bestellvolumen',
+    label: 'Wie viele Bestellungen wickeln Sie aktuell im Monat ab?',
+    options: [
+      { value: '< 1.000 Bestellungen/Monat' },
+      { value: '1.000 – 5.000 Bestellungen/Monat' },
+      { value: '5.000 – 20.000 Bestellungen/Monat' },
+      { value: '20.000+ Bestellungen/Monat' },
+    ],
+  },
+  {
+    field: 'lagerbedarf',
+    label: 'Wie viele freie Palettenstellplätze haben Sie aktuell?',
+    options: [
+      { value: '< 50 Stellplätze frei' },
+      { value: '50 – 200 Stellplätze frei' },
+      { value: '200 – 500 Stellplätze frei' },
+      { value: '500+ Stellplätze frei' },
+    ],
+  },
+  {
+    field: 'dringlichkeit',
+    label: 'Wie dringend suchen Sie neue Kunden?',
+    options: [
+      { value: 'Sofort — Kapazität steht bereits frei' },
+      { value: 'In den nächsten Wochen' },
+      { value: 'Erstmal unverbindlich informieren' },
+    ],
+  },
+];
+
+const totalSteps = questions.length + 1; // + Kontakt-Schritt
+---
+
+<div class="lq" id={formId} data-endpoint={endpoint} data-total-steps={totalSteps}>
+  <div class="lq-progress" role="progressbar" aria-valuemin="0" aria-valuemax={totalSteps} aria-valuenow="1">
+    <div class="lq-progress-bar" style="width: 20%"></div>
+  </div>
+
+  <div class="lq-body">
+    {questions.map((q, i) => (
+      <div class="lq-step" data-step={i + 1} hidden={i !== 0}>
+        <p class="lq-step-label">Frage {i + 1} von {totalSteps}</p>
+        <h3 class="lq-question">{q.label}</h3>
+        <div class="lq-options" role="radiogroup" data-field={q.field} aria-label={q.label}>
+          {q.options.map((opt) => (
+            <button type="button" class="lq-option" role="radio" aria-checked="false" data-value={opt.value} data-disqualify={opt.disqualify ? 'true' : undefined}>
+              <span class="lq-option-value">{opt.value}</span>
+              {opt.desc && <span class="lq-option-desc">{opt.desc}</span>}
+              <svg class="lq-option-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </button>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <div class="lq-step" data-step={totalSteps} hidden>
+      <p class="lq-step-label">Frage {totalSteps} von {totalSteps}</p>
+      <h3 class="lq-question">Fast geschafft — wie erreichen wir Sie?</h3>
+      <form class="lq-contact-form" novalidate>
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+        <input type="hidden" name="_ts" class="lq-ts" value="">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for={`${formId}-company`}>Firmenname *</label>
+            <input class="form-input" type="text" id={`${formId}-company`} name="company" placeholder="Ihr Fulfillment-Center" required autocomplete="organization">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for={`${formId}-name`}>Ihr Name *</label>
+            <input class="form-input" type="text" id={`${formId}-name`} name="name" placeholder="Max Mustermann" required autocomplete="name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for={`${formId}-email`}>E-Mail-Adresse *</label>
+            <input class="form-input" type="email" id={`${formId}-email`} name="email" placeholder="max@ihr-fulfillment.de" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for={`${formId}-phone`}>Telefon <span class="form-label-optional">(optional)</span></label>
+            <input class="form-input" type="tel" id={`${formId}-phone`} name="phone" placeholder="Für einen schnellen Rückruf" autocomplete="tel" inputmode="tel">
+          </div>
+        </div>
+        <button type="submit" class="form-submit lq-submit-btn">Kostenloses Erstgespräch anfragen</button>
+      </form>
+    </div>
+
+    <div class="lq-step lq-panel" data-step="dq" hidden>
+      <div class="lq-panel-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <h3 class="lq-question">Aktuell noch nicht die richtige Passform.</h3>
+      <p class="lq-panel-text">
+        Unser Angebot ist speziell auf Fulfillment-Center und 3PL-Dienstleister mit freien
+        Lagerkapazitäten zugeschnitten. Betreiben Sie kein eigenes Lager, können wir Ihnen
+        aktuell keine passenden Versender vermitteln. Bei Fragen schreiben Sie uns gern trotzdem:
+        <a href="mailto:hallo@elevo.solutions">hallo@elevo.solutions</a>
+      </p>
+      <button type="button" class="ev-btn ev-btn-ghost lq-restart">Zurück zur ersten Frage</button>
+    </div>
+
+    <div class="lq-step lq-panel" data-step="success" hidden>
+      <div class="lq-panel-icon lq-panel-icon-success" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3 class="lq-question">Danke! Ihre Anfrage ist da.</h3>
+      <p class="lq-panel-text">Wir melden uns innerhalb von 24 Stunden für Ihr kostenloses Erstgespräch.</p>
+    </div>
+  </div>
+
+  <div class="lq-footer">
+    <button type="button" class="lq-back" hidden>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      Zurück
+    </button>
+    <p class="lq-error" role="alert" aria-live="polite" hidden></p>
+  </div>
+
+  <p class="form-privacy-note">
+    Mit dem Absenden stimmen Sie unserer <a href="/datenschutz">Datenschutzerklärung</a> zu.
+    Ihre Angaben nutzen wir ausschließlich, um Sie zu Ihrem Erstgespräch zu kontaktieren.
+  </p>
+</div>
+
+<script>
+  type Answers = Record<string, string>;
+
+  document.querySelectorAll<HTMLElement>('.lq').forEach((root) => {
+    const endpoint = root.dataset.endpoint!;
+    const totalSteps = parseInt(root.dataset.totalSteps || '5', 10);
+    const progressBar = root.querySelector<HTMLElement>('.lq-progress-bar')!;
+    const progressWrap = root.querySelector<HTMLElement>('.lq-progress')!;
+    const backBtn = root.querySelector<HTMLButtonElement>('.lq-back')!;
+    const errorEl = root.querySelector<HTMLElement>('.lq-error')!;
+    const contactForm = root.querySelector<HTMLFormElement>('.lq-contact-form')!;
+    const tsInput = root.querySelector<HTMLInputElement>('.lq-ts');
+    if (tsInput) tsInput.value = String(Date.now());
+
+    const answers: Answers = {};
+    let stepOrder: (number | string)[] = Array.from({ length: totalSteps }, (_, i) => i + 1);
+    let currentIndex = 0; // index into stepOrder
+
+    function stepEl(step: number | string): HTMLElement {
+      return root.querySelector<HTMLElement>(`.lq-step[data-step="${step}"]`)!;
+    }
+
+    function showStep(step: number | string) {
+      root.querySelectorAll<HTMLElement>('.lq-step').forEach((el) => { el.hidden = true; });
+      stepEl(step).hidden = false;
+      const numericStep = typeof step === 'number' ? step : totalSteps;
+      progressBar.style.width = `${Math.min(100, (numericStep / totalSteps) * 100)}%`;
+      progressWrap.setAttribute('aria-valuenow', String(numericStep));
+      backBtn.hidden = currentIndex === 0 || step === 'dq' || step === 'success';
+      errorEl.hidden = true;
+      stepEl(step).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function goNext() {
+      currentIndex++;
+      if (currentIndex >= stepOrder.length) return;
+      showStep(stepOrder[currentIndex]);
+    }
+
+    function goBack() {
+      if (currentIndex === 0) return;
+      currentIndex--;
+      showStep(stepOrder[currentIndex]);
+    }
+
+    backBtn.addEventListener('click', goBack);
+
+    // Klick-Handler für alle Options-Fragen (Auto-Advance)
+    root.querySelectorAll<HTMLElement>('.lq-options').forEach((group) => {
+      const field = group.dataset.field!;
+      group.querySelectorAll<HTMLButtonElement>('.lq-option').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          answers[field] = btn.dataset.value || '';
+          group.querySelectorAll('.lq-option').forEach((b) => b.setAttribute('aria-checked', 'false'));
+          btn.setAttribute('aria-checked', 'true');
+          const disqualify = btn.dataset.disqualify === 'true';
+          window.setTimeout(() => {
+            if (disqualify) {
+              currentIndex = stepOrder.length; // "verlässt" die normale Reihenfolge
+              showStep('dq');
+            } else {
+              goNext();
+            }
+          }, 280);
+        });
+      });
+    });
+
+    root.querySelector<HTMLButtonElement>('.lq-restart')?.addEventListener('click', () => {
+      currentIndex = 0;
+      root.querySelectorAll('.lq-option').forEach((b) => b.setAttribute('aria-checked', 'false'));
+      showStep(stepOrder[0]);
+    });
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const honey = (contactForm.elements.namedItem('_honey') as HTMLInputElement)?.value;
+      if (honey) return;
+      const ts = (contactForm.elements.namedItem('_ts') as HTMLInputElement)?.value;
+      if (ts && Date.now() - parseInt(ts, 10) < 1200) return;
+
+      const name = (contactForm.elements.namedItem('name') as HTMLInputElement).value.trim();
+      const company = (contactForm.elements.namedItem('company') as HTMLInputElement).value.trim();
+      const email = (contactForm.elements.namedItem('email') as HTMLInputElement).value.trim();
+      const phone = (contactForm.elements.namedItem('phone') as HTMLInputElement).value.trim();
+
+      if (!name || !company || !email) {
+        errorEl.hidden = false;
+        errorEl.textContent = 'Bitte füllen Sie alle Pflichtfelder aus.';
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errorEl.hidden = false;
+        errorEl.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
+        return;
+      }
+
+      const submitBtn = contactForm.querySelector<HTMLButtonElement>('.lq-submit-btn')!;
+      const origText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Wird gesendet...';
+
+      // Meta: event_id + fbp/fbc VOR dem Request sammeln (nur mit Consent).
+      const lead = (window as any).elevoMeta?.leadData?.() ?? null;
+
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name, email, phone, company,
+            segment: answers.segment || '',
+            bestellvolumen: answers.bestellvolumen || '',
+            lagerbedarf: answers.lagerbedarf || '',
+            dringlichkeit: answers.dringlichkeit || '',
+            quelle: 'Website',
+            kampagne: 'Startseite Fulfillment Quiz',
+            metaEventId: lead?.metaEventId ?? '',
+            ...(lead ?? {}),
+          }),
+        });
+
+        if (!res.ok) throw new Error('Server error');
+
+        showStep('success');
+        if (typeof (window as any).gtag !== 'undefined') {
+          (window as any).gtag('event', 'conversion', { send_to: 'AW-18023151518/contact_form_submit' });
+        }
+        if (lead) (window as any).elevoMeta?.fireLead?.(lead.metaEventId, { content_name: 'fulfillment-leadgen-quiz' });
+      } catch {
+        errorEl.hidden = false;
+        errorEl.textContent = 'Etwas ist schiefgelaufen. Schreiben Sie uns direkt: hallo@elevo.solutions';
+        submitBtn.disabled = false;
+        submitBtn.textContent = origText || 'Kostenloses Erstgespräch anfragen';
+      }
+    });
+  });
+</script>
+
+<style>
+  .lq {
+    max-width: 640px;
+    margin: 40px auto 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 36px 32px 28px;
+  }
+
+  .lq-progress {
+    height: 6px;
+    background: rgba(59, 130, 246, 0.12);
+    border-radius: 100px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .lq-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+    border-radius: 100px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .lq-step-label {
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 10px;
+  }
+  .lq-question {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin: 0 0 22px;
+    letter-spacing: -0.01em;
+  }
+
+  .lq-options { display: grid; gap: 12px; }
+  .lq-option {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    width: 100%;
+    text-align: left;
+    padding: 16px 46px 16px 18px;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: border-color var(--transition), background var(--transition), transform 0.15s ease;
+  }
+  .lq-option:hover { border-color: var(--border-strong); background: rgba(59, 130, 246, 0.04); }
+  .lq-option:active { transform: scale(0.99); }
+  .lq-option[aria-checked="true"] {
+    border-color: var(--accent);
+    background: rgba(59, 130, 246, 0.08);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+  .lq-option-value { font-weight: 600; color: var(--text-primary); font-size: 1rem; }
+  .lq-option-desc { font-size: 0.85rem; color: var(--text-muted); }
+  .lq-option-check {
+    position: absolute;
+    top: 50%; right: 16px;
+    transform: translateY(-50%) scale(0.5);
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity var(--transition), transform var(--transition);
+  }
+  .lq-option[aria-checked="true"] .lq-option-check { opacity: 1; transform: translateY(-50%) scale(1); }
+
+  .lq-contact-form .form-group { margin-bottom: 18px; }
+  .lq-submit-btn { width: 100%; justify-content: center; }
+  .form-label-optional { color: var(--text-muted); font-weight: 400; }
+
+  .lq-panel { text-align: center; padding: 12px 0 4px; }
+  .lq-panel .lq-question { margin-bottom: 12px; }
+  .lq-panel-text { color: var(--text-secondary); line-height: 1.6; margin: 0 0 22px; }
+  .lq-panel-text a { color: var(--accent); }
+  .lq-panel-icon {
+    width: 52px; height: 52px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: rgba(229, 72, 77, 0.1);
+    color: var(--danger);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .lq-panel-icon-success { background: rgba(59, 130, 246, 0.14); color: var(--accent); }
+
+  .lq-footer { margin-top: 22px; min-height: 24px; }
+  .lq-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: none; border: none; cursor: pointer;
+    font-family: var(--font-body); font-size: 0.88rem; font-weight: 500;
+    color: var(--text-muted); padding: 4px 0;
+    transition: color var(--transition);
+  }
+  .lq-back:hover { color: var(--accent); }
+  .lq-error { color: var(--danger); font-size: 0.9rem; margin: 10px 0 0; }
+
+  .lq .form-privacy-note { margin-top: 18px; text-align: center; }
+
+  @media (max-width: 640px) {
+    .lq { padding: 28px 20px 22px; margin-top: 32px; }
+    .lq-question { font-size: 1.2rem; }
+  }
+</style>
