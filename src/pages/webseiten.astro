@@ -1,0 +1,1599 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import '../styles/ev-system.css';
+import '../styles/rx-theme.css';
+
+// Referenzprojekte für den Live-Showroom. `src` wird im iframe geladen,
+// `domain` steht in der Adresszeile. Die Seiten müssen das Einbetten von
+// elevo.solutions erlauben (frame-ancestors), sonst bleibt das Fenster leer;
+// der Link „In neuem Tab öffnen" funktioniert in jedem Fall.
+const projects = [
+  {
+    id: 'greenchild',
+    name: 'Greenchild',
+    domain: 'greenchild.eu',
+    src: 'https://greenchild-preview.elevo.solutions/de/',
+    sector: 'Sachwert-Investment',
+    status: 'Live',
+    task: 'Ein erklärungsbedürftiges Investment so zeigen, dass aus Neugier ein Beratungsgespräch wird.',
+    points: [
+      'Fünf qualifizierte Anfragen in der ersten Woche, vorher keine',
+      'Anfrageformular mit Telefon-Bestätigung: keine Fake-Kontakte im Vertrieb',
+      'Dreisprachig und mit eigenen Landingpages für jede Kampagne',
+    ],
+  },
+  {
+    id: 'amelner',
+    name: 'Amelner',
+    domain: 'amelner.de',
+    src: 'https://amelner.de/',
+    sector: 'Likör-Manufaktur seit 1901',
+    status: 'Live',
+    task: 'Über hundert Jahre Familiengeschichte erzählen, ohne dass die Bestellung darunter verschwindet.',
+    points: [
+      'Bestellung und Händleranfrage sind von jeder Seite aus einen Klick entfernt',
+      'Herkunft, Rezeptur und Chronik als Geschichte, die man zu Ende liest',
+      'Eigene Seite für Händler, damit Großanfragen nicht im Postfach landen',
+    ],
+  },
+  {
+    id: 'dina',
+    name: 'Dina Römgens',
+    domain: 'dina-roemgens.com',
+    src: 'https://dinaroemgens-preview.elevo.solutions/',
+    sector: 'Burnout-Coaching',
+    status: 'Live',
+    task: 'Menschen in der Erschöpfung abholen, die zu müde sind, um sich durch lange Texte zu arbeiten.',
+    points: [
+      'Symptom-Check als leiser Einstieg, bevor jemand zum Telefon greifen muss',
+      'Ruhige Gestaltung, die Vertrauen schafft statt Druck',
+      'Mehr Klienten bei gleicher Anzahl an Anfragen',
+    ],
+  },
+  {
+    id: 'sina',
+    name: 'Sina Bachmann',
+    domain: 'sinabachmann.de',
+    src: 'https://sinabachmann-preview.elevo.solutions/',
+    sector: 'Coaching für Frauen in Führung',
+    status: 'Relaunch',
+    task: 'Den vertrauten Auftritt behalten und dahinter eine Seite bauen, die Gespräche verlässlich anstößt.',
+    points: [
+      'Antreiber-Check, der Besucherinnen ins Gespräch bringt, bevor sie gehen',
+      'Klare Wege für Einzelcoaching, Unternehmen und Academy',
+      'Bestehendes Design übernommen, Technik und Struktur komplett neu',
+    ],
+  },
+];
+
+const faqs = [
+  {
+    q: 'Was kostet eine Website bei euch?',
+    a: 'Das hängt davon ab, was die Seite leisten soll: eine Seite für ein Angebot ist ein anderes Projekt als ein mehrsprachiger Auftritt mit Shop-Anbindung. Im Strategie-Gespräch klären wir den Umfang, danach bekommst du einen Festpreis. Was vereinbart ist, ändert sich nicht mehr.',
+  },
+  {
+    q: 'Muss ich die Texte selbst schreiben?',
+    a: 'Nein. Wir schreiben die Texte mit dir zusammen. Du lieferst das Wissen über dein Angebot und deine Kunden, wir machen daraus Sätze, die gelesen werden und zur Anfrage führen. Texte sind bei uns kein Füllmaterial, sondern der Teil der Seite, der verkauft.',
+  },
+  {
+    q: 'Ich habe schon eine Website. Lohnt sich ein Neubau?',
+    a: 'Nicht immer. Manchmal reicht es, den Weg zur Anfrage neu zu bauen und das Erscheinungsbild zu behalten, so wie bei Sina Bachmann. Im Gespräch sehen wir uns deine bestehende Seite an und sagen dir ehrlich, was sich lohnt und was nicht.',
+  },
+  {
+    q: 'Wie lange dauert es, bis die Seite online ist?',
+    a: 'In der Regel zwei bis drei Wochen ab dem Moment, in dem alle Inhalte da sind. Den Termin legen wir vor dem Start fest. Hosting und laufende Pflege übernehmen wir auf Wunsch, damit du dich nicht um Technik kümmern musst.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Webseiten, die Anfragen bringen',
+  serviceType: 'Webdesign und Website-Entwicklung',
+  url: 'https://elevo.solutions/webseiten',
+  areaServed: ['DE', 'AT', 'CH'],
+  provider: {
+    '@type': 'LocalBusiness',
+    name: 'ELEVO Solutions',
+    url: 'https://elevo.solutions',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Ahrstraße 6',
+      postalCode: '52511',
+      addressLocality: 'Geilenkirchen',
+      addressCountry: 'DE',
+    },
+  },
+  description:
+    'Individuell gebaute Websites mit Texten, die verkaufen, und einem Anfrageweg ohne Hürden. Damit aus Besuchern Anfragen werden.',
+};
+---
+
+<BaseLayout
+  title="Webseiten, die Anfragen bringen — Elevo"
+  description="Wir bauen Websites, auf denen eine Anfrage leichter ist, als es zu lassen: individuell gestaltet, mit Texten, die verkaufen, schnell auf dem Handy. Sieh dir unsere Kundenprojekte live an."
+  canonical="https://elevo.solutions/webseiten"
+  bodyClass="rx"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+
+  <Header />
+
+  <main id="main" class="ws">
+
+    <!-- ===================================================== HERO -->
+    <section class="ws-hero" aria-labelledby="ws-hero-heading">
+      <div class="ws-grid-bg" aria-hidden="true"></div>
+      <div class="container ws-hero-grid">
+        <div class="ws-hero-copy">
+          <p class="ev-eyebrow">Webseiten</p>
+          <h1 id="ws-hero-heading" class="ev-hero-h1">
+            Schöne Websites gibt es viele.<br>
+            <span class="ev-accent">Unsere bringen Anfragen.</span>
+          </h1>
+          <p class="ev-hero-sub">
+            Wer auf deiner Seite landet, entscheidet in Sekunden, ob er bleibt. Und er geht, sobald eine Anfrage
+            nach Arbeit aussieht. Wir bauen Websites, die ihm diese Arbeit abnehmen: klar in der Aussage, schnell
+            auf dem Handy und mit einem Weg zur Anfrage, den niemand suchen muss.
+          </p>
+          <div class="ev-hero-ctas">
+            <a href="/kontakt" class="ev-btn ev-btn-primary">
+              Strategie-Gespräch vereinbaren
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#live" class="ev-btn ev-btn-ghost">Projekte live ansehen</a>
+          </div>
+          <ul class="ws-hero-facts" aria-label="Was jede Website mitbringt">
+            <li>Individuell gebaut, kein Baukasten</li>
+            <li>Texte inklusive</li>
+            <li>DSGVO-konform gehostet</li>
+          </ul>
+        </div>
+
+        <!-- Illustration: Seite baut sich auf, Besucher klickt, Anfrage kommt an -->
+        <div class="ws-stage" aria-hidden="true">
+          <div class="ws-browser">
+            <div class="ws-browser-bar">
+              <span class="ws-dots"><i></i><i></i><i></i></span>
+              <span class="ws-url"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>deine-firma.de</span>
+            </div>
+            <div class="ws-page">
+              <div class="ws-p-nav"><b></b><span></span><span></span><span></span><em></em></div>
+              <div class="ws-p-hero">
+                <div class="ws-p-text">
+                  <span class="ws-l ws-l-xl"></span>
+                  <span class="ws-l ws-l-lg"></span>
+                  <span class="ws-l ws-l-sm"></span>
+                  <span class="ws-l ws-l-sm2"></span>
+                  <span class="ws-p-cta">Anfrage stellen<span class="ws-ripple"></span><svg class="ws-cursor ws-cursor-a" viewBox="0 0 24 24" width="22" height="22"><path d="M4 2l15 9.5-6.6 1.4L9 20z" fill="#0A0C10" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
+                </div>
+                <div class="ws-p-img"></div>
+              </div>
+              <div class="ws-p-cards"><span></span><span></span><span></span></div>
+
+              <div class="ws-form">
+                <p class="ws-form-step">Schritt 3 von 3</p>
+                <div class="ws-form-prog"><i></i></div>
+                <span class="ws-field"><i></i></span>
+                <span class="ws-field"><i></i></span>
+                <span class="ws-form-send">Anfrage senden<span class="ws-ripple ws-ripple-b"></span><svg class="ws-cursor ws-cursor-b" viewBox="0 0 24 24" width="22" height="22"><path d="M4 2l15 9.5-6.6 1.4L9 20z" fill="#0A0C10" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
+                <span class="ws-form-ok"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              </div>
+            </div>
+                      </div>
+
+          <div class="ws-toast">
+            <span class="ws-toast-ico"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span>
+            <span class="ws-toast-body">
+              <strong>Neue Anfrage</strong>
+              <small>Gartenpflege · Aachen · gerade eben</small>
+            </span>
+          </div>
+          <div class="ws-tag ws-tag-time"><span class="ws-pulse"></span>Sonntag, 21:47 Uhr</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== DIE RECHNUNG -->
+    <section class="ev-section ev-section-alt" aria-labelledby="ws-path-heading">
+      <div class="container">
+        <div class="ws-split">
+          <div>
+            <p class="ev-eyebrow reveal">Der eigentliche Mehrwert</p>
+            <h2 id="ws-path-heading" class="ev-h2 reveal reveal-delay-1">Jeder Schritt zu viel kostet dich eine Anfrage.</h2>
+            <div class="ws-prose reveal reveal-delay-2">
+              <p>
+                Niemand fragt an, weil das Kontaktformular so hübsch ist. Menschen fragen an, wenn es leichter ist,
+                als es zu lassen. Zwischen dem Moment, in dem jemand denkt <em>„die könnten passen“</em>, und der
+                tatsächlichen Nachricht liegen auf den meisten Websites zu viele kleine Hürden: die Kontaktseite
+                suchen, die Nummer abschreiben, eine Mailbox, ein Formular mit zwölf Pflichtfeldern.
+              </p>
+              <p>
+                Jede dieser Hürden verliert einen Teil der Menschen, die eigentlich wollten. Wir räumen sie weg.
+                Das Ergebnis sind mehr Anfragen aus denselben Besuchern, ohne einen Euro mehr für Werbung.
+              </p>
+            </div>
+          </div>
+
+          <div class="ws-paths reveal reveal-delay-2" aria-label="Vergleich: üblicher Anfrageweg und Anfrageweg mit Elevo">
+            <div class="ws-path ws-path-old">
+              <p class="ws-path-label">Der übliche Weg</p>
+              <ol>
+                <li>Kontaktseite suchen</li>
+                <li>Telefonnummer abschreiben</li>
+                <li>Anrufen, Mailbox</li>
+                <li>„Melde mich später nochmal“</li>
+                <li class="ws-lost">Fragt bei der Konkurrenz an</li>
+              </ol>
+              <svg class="ws-path-line" viewBox="0 0 40 300" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M20 10 C 2 40, 38 60, 20 75 S 2 120, 20 140 S 38 190, 20 205 S 4 250, 20 290" />
+              </svg>
+            </div>
+            <div class="ws-path ws-path-new">
+              <p class="ws-path-label">Mit Elevo</p>
+              <ol>
+                <li>Sieht den Button, ohne zu suchen</li>
+                <li>Beantwortet drei kurze Fragen</li>
+                <li class="ws-won">Anfrage liegt bei dir im Postfach</li>
+              </ol>
+              <svg class="ws-path-line" viewBox="0 0 40 300" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M20 10 L 20 290" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== MEHRWERTE -->
+    <section class="ev-section" aria-labelledby="ws-values-heading">
+      <div class="container">
+        <header>
+          <p class="ev-eyebrow reveal">Was deine Website für dich tut</p>
+          <h2 id="ws-values-heading" class="ev-h2 reveal reveal-delay-1">Dein bester Mitarbeiter hat nie Feierabend.</h2>
+          <p class="ev-section-sub reveal reveal-delay-2">
+            Eine gute Website ist kein Prospekt, den man einmal druckt. Sie empfängt, erklärt, beantwortet Fragen und
+            nimmt Anfragen an. Jeden Tag, auch dann, wenn du gerade beim Kunden bist.
+          </p>
+        </header>
+
+        <div class="ws-values">
+          <article class="ws-value reveal">
+            <div class="ws-vis ws-vis-form" aria-hidden="true">
+              <div class="ws-mini-card">
+                <div class="ws-mini-steps"><i class="on"></i><i class="on"></i><i></i></div>
+                <span class="ws-mini-q"></span>
+                <div class="ws-mini-opts"><span class="sel">Neubau</span><span>Sanierung</span><span>Pflege</span></div>
+              </div>
+            </div>
+            <h3>Anfragen in unter einer Minute</h3>
+            <p>Statt eines leeren Textfelds stellen wir die drei Fragen, die du sowieso am Telefon stellen würdest. Antippen statt Tippen. So fragen auch die an, denen ein Anruf zu viel wäre.</p>
+          </article>
+
+          <article class="ws-value reveal reveal-delay-1">
+            <div class="ws-vis ws-vis-clock" aria-hidden="true">
+              <div class="ws-clock"><i class="h"></i><i class="m"></i></div>
+              <div class="ws-notes">
+                <span><b>06:12</b> Anfrage · Badsanierung</span>
+                <span><b>13:40</b> Anfrage · Beratung</span>
+                <span><b>22:05</b> Anfrage · Angebot</span>
+              </div>
+            </div>
+            <h3>Erreichbar, wenn du es nicht bist</h3>
+            <p>Viele melden sich abends, am Wochenende, zwischen zwei Terminen. Deine Website nimmt die Anfrage an, und du antwortest, wenn du Zeit hast. Keine verpassten Anrufe mehr, kein „ich versuche es später nochmal“.</p>
+          </article>
+
+          <article class="ws-value reveal reveal-delay-2">
+            <div class="ws-vis ws-vis-brief" aria-hidden="true">
+              <div class="ws-brief">
+                <p><span>Leistung</span><b>Gartenpflege</b></p>
+                <p><span>Zeitraum</span><b>ab März</b></p>
+                <p><span>Ort</span><b>Aachen</b></p>
+                <p><span>Rückruf</span><b>vormittags</b></p>
+              </div>
+            </div>
+            <h3>Du weißt, worum es geht, bevor du zurückrufst</h3>
+            <p>Jede Anfrage kommt mit den Angaben, die du für ein gutes erstes Gespräch brauchst. Du sortierst schneller, bereitest dich vor und verlierst keine Zeit mit Anfragen, die nicht passen.</p>
+          </article>
+
+          <article class="ws-value reveal">
+            <div class="ws-vis ws-vis-trust" aria-hidden="true">
+              <div class="ws-stars"><i></i><i></i><i></i><i></i><i></i></div>
+              <span class="ws-quote-l"></span>
+              <span class="ws-quote-l short"></span>
+              <div class="ws-avatars"><i></i><i></i><i></i><em>+48</em></div>
+            </div>
+            <h3>Vertrauen, bevor das Telefon klingelt</h3>
+            <p>Echte Projekte, echte Stimmen, ein Gesicht hinter dem Namen. Wer sich vorher überzeugen konnte, fragt nicht nach dem Preis, sondern nach dem Termin.</p>
+          </article>
+
+          <article class="ws-value reveal reveal-delay-1">
+            <div class="ws-vis ws-vis-phone" aria-hidden="true">
+              <div class="ws-phone-mini">
+                <span class="ws-pm-l"></span><span class="ws-pm-l s"></span>
+                <span class="ws-pm-img"></span>
+                <span class="ws-thumb-zone"></span>
+                <span class="ws-pm-btn"></span>
+              </div>
+            </div>
+            <h3>Für den Daumen gebaut</h3>
+            <p>Die meisten Anfragen beginnen auf dem Smartphone, oft unterwegs. Deshalb gestalten wir zuerst fürs Handy: kurze Wege, große Schaltflächen, Ladezeiten, bei denen niemand ungeduldig wird.</p>
+          </article>
+
+          <article class="ws-value reveal reveal-delay-2">
+            <div class="ws-vis ws-vis-search" aria-hidden="true">
+              <div class="ws-serp">
+                <span class="ws-serp-bar"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>gärtner in aachen</span>
+                <div class="ws-serp-hit you"><span class="t"></span><span class="d"></span></div>
+                <div class="ws-serp-hit"><span class="t"></span><span class="d"></span></div>
+                <div class="ws-serp-hit"><span class="t"></span><span class="d"></span></div>
+              </div>
+            </div>
+            <h3>Gefunden von denen, die suchen</h3>
+            <p>Saubere Technik, eine klare Struktur und Texte, die beschreiben, was du wo anbietest. Das ist die Grundlage, damit Google dich den Menschen zeigt, die gerade jemanden wie dich suchen.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== LIVE-SHOWROOM -->
+    <section id="live" class="ev-section ev-section-alt ws-live" aria-labelledby="ws-live-heading">
+      <div class="container">
+        <header>
+          <p class="ev-eyebrow reveal">Referenzen, live</p>
+          <h2 id="ws-live-heading" class="ev-h2 reveal reveal-delay-1">Nicht beschrieben. Gebaut.</h2>
+          <p class="ev-section-sub reveal reveal-delay-2">
+            Keine Screenshots, keine Mockups. Das hier sind die echten Seiten unserer Kunden, direkt eingebettet.
+            Scroll durch, klick dich rein, wechsle zwischen Desktop und Handy.
+          </p>
+        </header>
+
+        <div class="ws-show reveal" data-showroom>
+          <div class="ws-tabs" role="tablist" aria-label="Kundenprojekte">
+            {projects.map((p, i) => (
+              <button
+                class="ws-tab"
+                role="tab"
+                id={`ws-tab-${p.id}`}
+                aria-controls={`ws-panel-${p.id}`}
+                aria-selected={i === 0 ? 'true' : 'false'}
+                tabindex={i === 0 ? 0 : -1}
+                data-tab={p.id}
+              >
+                <span class="ws-tab-name">{p.name}</span>
+                <span class="ws-tab-sector">{p.sector}</span>
+              </button>
+            ))}
+          </div>
+
+          <div class="ws-view-toggle" role="group" aria-label="Ansicht wählen">
+            <button type="button" class="ws-vt is-on" data-view="desktop" aria-pressed="true">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              Desktop
+            </button>
+            <button type="button" class="ws-vt" data-view="mobile" aria-pressed="false">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
+              Handy
+            </button>
+          </div>
+
+          {projects.map((p, i) => (
+            <div
+              class="ws-panel"
+              role="tabpanel"
+              id={`ws-panel-${p.id}`}
+              aria-labelledby={`ws-tab-${p.id}`}
+              hidden={i !== 0}
+              data-panel={p.id}
+            >
+              <div class="ws-devices">
+                <div class="ws-desk">
+                  <div class="ws-desk-bar">
+                    <span class="ws-dots"><i></i><i></i><i></i></span>
+                    <span class="ws-desk-url">
+                      <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                      {p.domain}
+                    </span>
+                    <a class="ws-desk-open" href={p.src} target="_blank" rel="noopener" aria-label={`${p.name} in neuem Tab öffnen`}>
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                  </div>
+                  <div class="ws-desk-view" data-scale-host>
+                    <iframe
+                      data-src={p.src}
+                      title={`${p.name}: Website, live eingebettet (Desktop-Ansicht)`}
+                      loading="lazy"
+                      referrerpolicy="no-referrer"
+                    ></iframe>
+                    <span class="ws-loading" aria-hidden="true"><i></i>Seite wird geladen</span>
+                  </div>
+                </div>
+
+                <div class="ws-mob">
+                  <div class="ws-mob-notch" aria-hidden="true"></div>
+                  <div class="ws-mob-view">
+                    <iframe
+                      data-src={p.src}
+                      title={`${p.name}: Website, live eingebettet (Handy-Ansicht)`}
+                      loading="lazy"
+                      referrerpolicy="no-referrer"
+                    ></iframe>
+                    <span class="ws-loading" aria-hidden="true"><i></i>Seite wird geladen</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ws-case">
+                <div class="ws-case-head">
+                  <span class={`ws-badge ${p.status === 'Live' ? 'is-live' : ''}`}>{p.status}</span>
+                  <h3>{p.name}</h3>
+                  <p class="ws-case-sector">{p.sector}</p>
+                </div>
+                <p class="ws-case-task"><span>Die Aufgabe</span>{p.task}</p>
+                <ul class="ws-case-points">
+                  {p.points.map((pt) => <li>{pt}</li>)}
+                </ul>
+                <a class="ws-case-link" href={p.src} target="_blank" rel="noopener">
+                  Seite in voller Größe öffnen
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== ANATOMIE -->
+    <section class="ev-section" aria-labelledby="ws-anatomy-heading">
+      <div class="container">
+        <header>
+          <p class="ev-eyebrow reveal">Wie wir bauen</p>
+          <h2 id="ws-anatomy-heading" class="ev-h2 reveal reveal-delay-1">Fünf Stellen, an denen sich entscheidet, ob jemand anfragt.</h2>
+          <p class="ev-section-sub reveal reveal-delay-2">
+            Gutes Design ist bei uns kein Geschmack, sondern eine Abfolge von Antworten. Auf jede Frage, die sich ein
+            Besucher stellt, liefert die Seite die Antwort an der Stelle, an der er sie sucht.
+          </p>
+        </header>
+
+        <div class="ws-anatomy reveal">
+          <div class="ws-wire" aria-hidden="true">
+            <div class="ws-wire-bar"><span class="ws-dots"><i></i><i></i><i></i></span></div>
+            <div class="ws-wire-body">
+              <div class="ws-zone" data-k="1"><span class="ws-pin">1</span><i class="w70"></i><i class="w45"></i></div>
+              <div class="ws-zone ws-zone-row" data-k="2"><span class="ws-pin">2</span><b></b><b></b><b></b><b></b></div>
+              <div class="ws-zone" data-k="3"><span class="ws-pin">3</span><i class="w30 btn"></i></div>
+              <div class="ws-zone ws-zone-cols" data-k="4"><span class="ws-pin">4</span><u></u><u></u></div>
+              <div class="ws-zone" data-k="5"><span class="ws-pin">5</span><i class="w60"></i><i class="w30 btn"></i></div>
+            </div>
+          </div>
+
+          <ol class="ws-anat-list">
+            <li class="ws-anat" data-k="1" tabindex="0">
+              <span class="ws-anat-n">1</span>
+              <div><h3>Ein Satz, der sagt, was du tust</h3><p>Wer nach drei Sekunden nicht weiß, ob er hier richtig ist, ist weg. Deshalb steht oben kein Slogan, sondern dein Angebot in klaren Worten.</p></div>
+            </li>
+            <li class="ws-anat" data-k="2" tabindex="0">
+              <span class="ws-anat-n">2</span>
+              <div><h3>Beweis direkt darunter</h3><p>Bewertungen, Kundenlogos, Zahlen. Vertrauen entsteht nicht durch Behauptungen, sondern durch das, was andere über dich sagen.</p></div>
+            </li>
+            <li class="ws-anat" data-k="3" tabindex="0">
+              <span class="ws-anat-n">3</span>
+              <div><h3>Ein Weg, nicht zehn</h3><p>Eine Handlung pro Seite, immer sichtbar. Wer sich zwischen vielen Optionen entscheiden muss, entscheidet sich oft für keine.</p></div>
+            </li>
+            <li class="ws-anat" data-k="4" tabindex="0">
+              <span class="ws-anat-n">4</span>
+              <div><h3>Einwände, bevor sie entstehen</h3><p>Was kostet das ungefähr, wie läuft es ab, was, wenn es nicht passt? Wir beantworten die Fragen, die sonst niemand stellt, sondern einfach geht.</p></div>
+            </li>
+            <li class="ws-anat" data-k="5" tabindex="0">
+              <span class="ws-anat-n">5</span>
+              <div><h3>Die Anfrage am Ende jeder Strecke</h3><p>Wer bis unten gelesen hat, ist überzeugt. Dort wartet kein Impressum-Link, sondern der einfachste Weg, dich zu erreichen.</p></div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== ABLAUF -->
+    <section class="ev-section ev-section-alt" aria-labelledby="ws-process-heading">
+      <div class="container">
+        <header>
+          <p class="ev-eyebrow reveal">Ablauf</p>
+          <h2 id="ws-process-heading" class="ev-h2 reveal reveal-delay-1">Vom ersten Gespräch bis zur ersten Anfrage.</h2>
+          <p class="ev-section-sub reveal reveal-delay-2">Du bringst das Wissen über dein Geschäft mit. Alles andere übernehmen wir: Struktur, Texte, Gestaltung, Technik und den Livegang.</p>
+        </header>
+
+        <ol class="ws-process reveal">
+          <li>
+            <span class="ws-proc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span>
+            <span class="ws-proc-n">01</span>
+            <h3>Strategie-Gespräch</h3>
+            <p>Wir lernen dein Angebot und deine Kunden kennen und sehen uns an, wo heute Anfragen verloren gehen.</p>
+          </li>
+          <li>
+            <span class="ws-proc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-2.5h14V17"/></svg></span>
+            <span class="ws-proc-n">02</span>
+            <h3>Struktur und Texte</h3>
+            <p>Wir legen fest, welche Seite welche Frage beantwortet, und schreiben die Texte. Du gibst frei, bevor gestaltet wird.</p>
+          </li>
+          <li>
+            <span class="ws-proc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span>
+            <span class="ws-proc-n">03</span>
+            <h3>Gestaltung und Umsetzung</h3>
+            <p>Deine Seite entsteht auf einer Vorschau-Adresse. Du klickst dich durch, wir arbeiten deine Rückmeldungen ein.</p>
+          </li>
+          <li>
+            <span class="ws-proc-ico ws-proc-live" aria-hidden="true"><span class="ws-pulse"></span></span>
+            <span class="ws-proc-n">04</span>
+            <h3>Livegang</h3>
+            <p>Wir schalten die Seite auf deine Domain, prüfen jedes Formular und bleiben dran, bis die ersten Anfragen ankommen.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================================================== FAQ -->
+    <section class="ev-section" aria-labelledby="ws-faq-heading">
+      <div class="container ws-faq-wrap">
+        <div>
+          <p class="ev-eyebrow reveal">Häufige Fragen</p>
+          <h2 id="ws-faq-heading" class="ev-h2 reveal reveal-delay-1">Was du vorher wissen willst.</h2>
+        </div>
+        <div class="ws-faq reveal reveal-delay-1">
+          {faqs.map((f) => (
+            <details class="ws-faq-item">
+              <summary>{f.q}<span class="ws-faq-plus" aria-hidden="true"></span></summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== CTA -->
+    <section class="ev-section ev-section-alt" aria-labelledby="ws-cta-heading">
+      <div class="container">
+        <div class="ev-final ws-final">
+          <p class="ev-eyebrow">Der nächste Schritt</p>
+          <h2 id="ws-cta-heading" class="ev-h2">Finde heraus, wie viele Anfragen deine Website liegen lässt.</h2>
+          <p class="ev-final-sub">Im Strategie-Gespräch sehen wir uns deine Seite gemeinsam an und zeigen dir, an welchen Stellen Interessenten abspringen. Kostenlos, und du nimmst die Erkenntnisse mit, egal wie du dich entscheidest.</p>
+          <a href="/kontakt" class="ev-btn ev-btn-primary ev-btn-xl">Strategie-Gespräch vereinbaren</a>
+          <p class="ev-final-trust">Antwort innerhalb von 24 Stunden · unverbindlich · kein Verkaufsdruck</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script>
+    // Live-Showroom: Tabs, Desktop/Handy-Umschalter, iframes erst bei Bedarf laden
+    // und die Desktop-Ansicht (1440 px) maßstabsgetreu in den Rahmen skalieren.
+    const show = document.querySelector<HTMLElement>('[data-showroom]');
+    if (show) {
+      const tabs = Array.from(show.querySelectorAll<HTMLButtonElement>('.ws-tab'));
+      const panels = Array.from(show.querySelectorAll<HTMLElement>('.ws-panel'));
+      const toggles = Array.from(show.querySelectorAll<HTMLButtonElement>('.ws-vt'));
+      const DESK_W = 1440;
+
+      const load = (panel: HTMLElement) => {
+        panel.querySelectorAll<HTMLIFrameElement>('iframe[data-src]').forEach((f) => {
+          if (f.getAttribute('src')) return;
+          f.addEventListener('load', () => f.parentElement?.classList.add('is-loaded'), { once: true });
+          f.src = f.dataset.src!;
+        });
+      };
+
+      const fit = (host: HTMLElement) => {
+        const s = host.clientWidth / DESK_W;
+        if (s > 0) host.style.setProperty('--s', String(s));
+      };
+      const ro = new ResizeObserver((entries) => entries.forEach((e) => fit(e.target as HTMLElement)));
+      show.querySelectorAll<HTMLElement>('[data-scale-host]').forEach((h) => ro.observe(h));
+
+      const activate = (tab: HTMLButtonElement, focus = false) => {
+        tabs.forEach((t) => {
+          const on = t === tab;
+          t.setAttribute('aria-selected', String(on));
+          t.tabIndex = on ? 0 : -1;
+        });
+        panels.forEach((p) => {
+          const on = p.dataset.panel === tab.dataset.tab;
+          p.hidden = !on;
+          if (on) {
+            load(p);
+            p.querySelectorAll<HTMLElement>('[data-scale-host]').forEach(fit);
+          }
+        });
+        if (focus) tab.focus();
+      };
+
+      tabs.forEach((t, i) => {
+        t.addEventListener('click', () => activate(t));
+        t.addEventListener('keydown', (e) => {
+          const k = e.key;
+          let n = -1;
+          if (k === 'ArrowRight' || k === 'ArrowDown') n = (i + 1) % tabs.length;
+          if (k === 'ArrowLeft' || k === 'ArrowUp') n = (i - 1 + tabs.length) % tabs.length;
+          if (k === 'Home') n = 0;
+          if (k === 'End') n = tabs.length - 1;
+          if (n > -1) { e.preventDefault(); activate(tabs[n], true); }
+        });
+      });
+
+      toggles.forEach((b) => b.addEventListener('click', () => {
+        toggles.forEach((x) => {
+          const on = x === b;
+          x.classList.toggle('is-on', on);
+          x.setAttribute('aria-pressed', String(on));
+        });
+        show.dataset.view = b.dataset.view;
+      }));
+
+      // Erst laden, wenn der Showroom in die Nähe des Viewports kommt.
+      const io = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          const first = panels.find((p) => !p.hidden);
+          if (first) load(first);
+          io.disconnect();
+        }
+      }, { rootMargin: '400px 0px' });
+      io.observe(show);
+    }
+  </script>
+
+  <style>
+    /* ================================================================
+       Seite „Webseiten" — gescoped unter .ws, nutzt die rx-Tokens.
+       ================================================================ */
+    .ws {
+      --ws-ink: var(--text-primary);
+      --ws-line: var(--border);
+      --ws-soft: var(--accent-soft, rgba(37, 99, 235, 0.08));
+      --ws-ok: #16A34A;
+      --ws-warn: #E5484D;
+      --ws-cycle: 11s;
+      --ws-ease: cubic-bezier(0.16, 0.84, 0.44, 1);
+    }
+
+    .ws .ws-dots { display: inline-flex; gap: 5px; flex-shrink: 0; }
+    .ws .ws-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--ws-line); }
+    .ws .ws-dots i:nth-child(1) { background: #FF5F57; }
+    .ws .ws-dots i:nth-child(2) { background: #FEBC2E; }
+    .ws .ws-dots i:nth-child(3) { background: #28C840; }
+
+    .ws-pulse {
+      position: relative;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--ws-ok);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .ws-pulse::after {
+      content: '';
+      position: absolute; inset: -4px;
+      border-radius: 50%;
+      border: 2px solid var(--ws-ok);
+      opacity: 0;
+      animation: ws-pulse 2.2s var(--ws-ease) infinite;
+    }
+    @keyframes ws-pulse {
+      0% { transform: scale(0.6); opacity: 0.7; }
+      100% { transform: scale(1.9); opacity: 0; }
+    }
+
+    /* ---------------------------------------------------------- HERO */
+    .ws-hero {
+      position: relative;
+      padding: clamp(120px, 14vw, 176px) 0 clamp(72px, 9vw, 120px);
+      background: var(--bg-dark);
+      overflow: hidden;
+    }
+    /* Layout-Raster im Hintergrund: Spalten und Baseline wie im Design-Tool */
+    .ws-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(10, 12, 16, 0.035) 1px, transparent 1px);
+      background-size: calc(100% / 12) 100%, 100% 32px;
+      mask-image: radial-gradient(ellipse 80% 70% at 70% 40%, #000 20%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 70% 40%, #000 20%, transparent 75%);
+      pointer-events: none;
+    }
+    .ws-hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    body.rx .ws-hero .ev-hero-h1 { font-size: clamp(2.4rem, 5vw, 4.1rem); max-width: 16ch; }
+    .ws-hero .ev-hero-sub { max-width: 54ch; }
+    .ws-hero-facts {
+      display: flex; flex-wrap: wrap; gap: 8px 22px;
+      margin-top: 28px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .ws-hero-facts li { display: inline-flex; align-items: center; gap: 8px; }
+    .ws-hero-facts li::before {
+      content: '';
+      width: 14px; height: 14px; flex-shrink: 0;
+      background: var(--accent);
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/contain no-repeat;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    /* Bühne: Browser + Anfrage-Benachrichtigung */
+    .ws-stage { position: relative; max-width: 560px; width: 100%; margin: 0 auto; padding: 0 0 40px; }
+    .ws-browser {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .ws-browser-bar {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--ws-line);
+      background: var(--bg-alt);
+    }
+    .ws-url {
+      flex: 1;
+      display: inline-flex; align-items: center; gap: 6px;
+      max-width: 240px;
+      margin: 0 auto;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: var(--bg-card);
+      border: 1px solid var(--ws-line);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      justify-content: center;
+    }
+    .ws-url svg { color: var(--ws-ok); }
+
+    .ws-page { position: relative; padding: 16px 18px 20px; aspect-ratio: 16 / 11; }
+    .ws-p-nav { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+    .ws-p-nav b { width: 54px; height: 10px; border-radius: 3px; background: var(--ws-ink); }
+    .ws-p-nav span { width: 30px; height: 6px; border-radius: 3px; background: var(--ws-line); }
+    .ws-p-nav span:first-of-type { margin-left: auto; }
+    .ws-p-nav em { width: 52px; height: 18px; border-radius: 999px; background: var(--accent); opacity: 0.9; }
+
+    .ws-p-hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px; align-items: center; }
+    .ws-p-text { display: flex; flex-direction: column; gap: 8px; }
+    .ws-l { display: block; height: 10px; border-radius: 4px; background: var(--ws-line); transform-origin: left; }
+    .ws-l-xl { width: 92%; height: 14px; }
+    .ws-l-lg { width: 70%; height: 14px; }
+    .ws-l-sm { width: 88%; height: 6px; margin-top: 6px; }
+    .ws-l-sm2 { width: 62%; height: 6px; }
+    .ws-p-cta {
+      align-self: flex-start;
+      margin-top: 10px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.66rem;
+      font-weight: 600;
+      font-family: var(--font-heading);
+      letter-spacing: 0.01em;
+    }
+    .ws-p-img {
+      aspect-ratio: 4 / 3.4;
+      border-radius: 10px;
+      background:
+        radial-gradient(circle at 70% 30%, rgba(255,255,255,0.55) 0 12%, transparent 13%),
+        linear-gradient(160deg, #DCE6FB 0%, #A9C1F5 55%, #7FA2EE 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .ws-p-img::after {
+      content: '';
+      position: absolute; left: -10%; right: -10%; bottom: -20%;
+      height: 60%;
+      background: #5F86E6;
+      border-radius: 50% 50% 0 0;
+      opacity: 0.55;
+    }
+    .ws-p-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+    .ws-p-cards span { height: 44px; border-radius: 8px; border: 1px solid var(--ws-line); background: var(--bg-alt); }
+
+    /* Mehrstufiges Formular, das sich über die Seite legt */
+    .ws-form {
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 62%;
+      padding: 16px 16px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--ws-line);
+      border-radius: 12px;
+      box-shadow: 0 24px 60px -18px rgba(10, 12, 16, 0.35);
+      transform: translate(-50%, -40%) scale(0.96);
+      opacity: 0;
+      display: flex; flex-direction: column; gap: 9px;
+    }
+    .ws-form-step { margin: 0; font-size: 0.62rem; color: var(--text-muted); font-weight: 500; letter-spacing: 0.04em; }
+    .ws-form-prog { height: 4px; border-radius: 4px; background: var(--ws-line); overflow: hidden; }
+    .ws-form-prog i { display: block; height: 100%; width: 66%; background: var(--accent); border-radius: inherit; }
+    .ws-field { height: 22px; border-radius: 6px; border: 1px solid var(--ws-line); display: flex; align-items: center; padding: 0 8px; }
+    .ws-field i { height: 5px; width: 0; border-radius: 3px; background: var(--text-secondary); opacity: 0.55; }
+    .ws-form-send {
+      margin-top: 3px;
+      text-align: center;
+      padding: 7px;
+      border-radius: 8px;
+      background: var(--ws-ink);
+      color: #fff;
+      font-size: 0.66rem;
+      font-weight: 600;
+      font-family: var(--font-heading);
+    }
+    .ws-form-ok {
+      position: absolute; inset: 0;
+      display: grid; place-items: center;
+      background: var(--bg-card);
+      border-radius: inherit;
+      color: var(--ws-ok);
+      opacity: 0;
+    }
+    .ws-form-ok svg {
+      width: 38px; height: 38px;
+      padding: 8px;
+      border-radius: 50%;
+      background: rgba(22, 163, 74, 0.1);
+    }
+
+    /* Cursor und Klick-Welle sitzen im jeweiligen Button, damit sie bei jeder Größe treffen */
+    .ws-p-cta, .ws-form-send { position: relative; }
+    .ws-cursor {
+      position: absolute;
+      left: 55%; top: 45%;
+      filter: drop-shadow(0 3px 6px rgba(10, 12, 16, 0.25));
+      opacity: 0;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .ws-ripple {
+      position: absolute;
+      left: 55%; top: 45%;
+      width: 34px; height: 34px;
+      margin: -15px 0 0 -15px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .ws-ripple-b { border-color: #fff; }
+
+    .ws-toast {
+      position: absolute;
+      right: -8px; bottom: 6px;
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 16px 12px 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--ws-line);
+      border-radius: 14px;
+      box-shadow: 0 22px 50px -16px rgba(10, 12, 16, 0.32);
+      opacity: 0;
+      transform: translateY(14px) scale(0.98);
+    }
+    .ws-toast-ico {
+      width: 34px; height: 34px;
+      display: grid; place-items: center;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+    }
+    .ws-toast-body { display: flex; flex-direction: column; line-height: 1.25; }
+    .ws-toast-body strong { font-family: var(--font-heading); font-size: 0.86rem; color: var(--ws-ink); font-weight: 700; }
+    .ws-toast-body small { font-size: 0.74rem; color: var(--text-muted); }
+
+    .ws-tag {
+      position: absolute;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--bg-card);
+      border: 1px solid var(--ws-line);
+      box-shadow: var(--shadow-sm);
+      font-size: 0.74rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+    .ws-tag-time { left: -10px; top: -16px; }
+
+    /* --- Ablauf der Hero-Animation (ein Zyklus, endlos) --- */
+    @media (prefers-reduced-motion: no-preference) {
+      .ws-l, .ws-p-img, .ws-p-cta { animation: ws-build var(--ws-cycle) var(--ws-ease) infinite; }
+      .ws-l-lg { animation-delay: 0.08s; }
+      .ws-l-sm { animation-delay: 0.16s; }
+      .ws-l-sm2 { animation-delay: 0.22s; }
+      .ws-p-img { animation-name: ws-build-img; }
+      .ws-p-cta { animation-name: ws-cta; }
+      .ws-p-cards span { animation: ws-build-img var(--ws-cycle) var(--ws-ease) infinite; }
+      .ws-p-cards span:nth-child(2) { animation-delay: 0.1s; }
+      .ws-p-cards span:nth-child(3) { animation-delay: 0.2s; }
+      .ws-cursor-a { animation: ws-cursor-a var(--ws-cycle) var(--ws-ease) infinite; }
+      .ws-cursor-b { animation: ws-cursor-b var(--ws-cycle) var(--ws-ease) infinite; }
+      .ws-ripple { animation: ws-ripple-a var(--ws-cycle) linear infinite; }
+      .ws-ripple-b { animation-name: ws-ripple-b; }
+      .ws-form { animation: ws-form var(--ws-cycle) var(--ws-ease) infinite; }
+      .ws-form-prog i { animation: ws-prog var(--ws-cycle) var(--ws-ease) infinite; }
+      .ws-field i { animation: ws-type var(--ws-cycle) steps(12, end) infinite; }
+      .ws-field + .ws-field i { animation-name: ws-type2; }
+      .ws-form-ok { animation: ws-ok var(--ws-cycle) var(--ws-ease) infinite; }
+      .ws-toast { animation: ws-toast var(--ws-cycle) var(--ws-ease) infinite; }
+    }
+    /* Ohne Animation: Endzustand zeigen */
+    @media (prefers-reduced-motion: reduce) {
+      .ws-l { background: var(--ws-ink); }
+      .ws-l-sm, .ws-l-sm2 { background: var(--text-muted); }
+      .ws-toast { opacity: 1; transform: none; }
+    }
+
+    @keyframes ws-build {
+      0%, 3% { background: var(--ws-line); transform: scaleX(0.35); opacity: 0.6; }
+      14%, 92% { background: var(--ws-ink); transform: scaleX(1); opacity: 1; }
+      100% { background: var(--ws-line); transform: scaleX(0.35); opacity: 0.6; }
+    }
+    @keyframes ws-build-img {
+      0%, 6% { opacity: 0.25; filter: grayscale(1); }
+      18%, 92% { opacity: 1; filter: grayscale(0); }
+      100% { opacity: 0.25; filter: grayscale(1); }
+    }
+    @keyframes ws-cta {
+      0%, 14% { opacity: 0; transform: translateY(4px); }
+      20%, 37% { opacity: 1; transform: none; }
+      39% { opacity: 1; transform: scale(0.93); }
+      42%, 92% { opacity: 1; transform: none; }
+      100% { opacity: 0; }
+    }
+    /* Cursor A fährt von rechts unten zum Button und klickt */
+    @keyframes ws-cursor-a {
+      0%, 18% { opacity: 0; transform: translate(260px, 120px); }
+      22% { opacity: 1; transform: translate(260px, 120px); }
+      36% { opacity: 1; transform: translate(0, 0); }
+      38% { transform: scale(0.84); }
+      41% { opacity: 1; transform: translate(0, 0); }
+      45%, 100% { opacity: 0; transform: translate(6px, 4px); }
+    }
+    @keyframes ws-ripple-a {
+      0%, 37% { opacity: 0; transform: scale(0.3); }
+      38% { opacity: 0.9; transform: scale(0.3); }
+      46%, 100% { opacity: 0; transform: scale(1.7); }
+    }
+    /* Cursor B füllt das Formular aus und klickt auf Senden */
+    @keyframes ws-cursor-b {
+      0%, 50% { opacity: 0; transform: translate(-40px, -70px); }
+      54% { opacity: 1; transform: translate(-40px, -70px); }
+      64% { opacity: 1; transform: translate(0, 0); }
+      66% { transform: scale(0.84); }
+      68% { opacity: 1; transform: translate(0, 0); }
+      70%, 100% { opacity: 0; }
+    }
+    @keyframes ws-ripple-b {
+      0%, 65% { opacity: 0; transform: scale(0.3); }
+      66% { opacity: 0.9; transform: scale(0.3); }
+      73%, 100% { opacity: 0; transform: scale(1.7); }
+    }
+    @keyframes ws-form {
+      0%, 40% { opacity: 0; transform: translate(-50%, -40%) scale(0.96); }
+      45%, 86% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      92%, 100% { opacity: 0; transform: translate(-50%, -54%) scale(0.98); }
+    }
+    @keyframes ws-prog {
+      0%, 44% { width: 33%; }
+      50% { width: 66%; }
+      62%, 100% { width: 100%; }
+    }
+    @keyframes ws-type {
+      0%, 46% { width: 0; }
+      53%, 100% { width: 70%; }
+    }
+    @keyframes ws-type2 {
+      0%, 54% { width: 0; }
+      61%, 100% { width: 48%; }
+    }
+    @keyframes ws-ok {
+      0%, 67% { opacity: 0; }
+      70%, 100% { opacity: 1; }
+    }
+    @keyframes ws-toast {
+      0%, 71% { opacity: 0; transform: translateY(14px) scale(0.98); }
+      75%, 95% { opacity: 1; transform: none; }
+      100% { opacity: 0; transform: translateY(-6px); }
+    }
+
+    /* ---------------------------------------------------------- RECHNUNG */
+    .ws-split { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; }
+    .ws-prose p { color: var(--text-secondary); font-size: clamp(1rem, 1.3vw, 1.1rem); line-height: 1.75; margin: 0 0 18px; max-width: 58ch; }
+    .ws-prose em { font-style: normal; color: var(--ws-ink); font-weight: 500; }
+
+    .ws-paths { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .ws-path {
+      position: relative;
+      padding: 22px 20px 22px 52px;
+      border-radius: var(--radius);
+      border: 1px solid var(--ws-line);
+      background: var(--bg-card);
+    }
+    .ws-path-new { border-color: var(--border-strong); box-shadow: var(--shadow-blue); }
+    .ws-path-label {
+      font-family: var(--font-heading);
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 0 0 16px -32px;
+    }
+    .ws-path-new .ws-path-label { color: var(--accent); }
+    .ws-path ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; height: calc(100% - 34px); justify-content: space-between; min-height: 260px; }
+    .ws-path li { position: relative; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.4; padding: 4px 0; }
+    .ws-path li::before {
+      content: '';
+      position: absolute; left: -38px; top: 50%;
+      width: 12px; height: 12px; margin-top: -6px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 2px solid var(--text-muted);
+      z-index: 1;
+    }
+    .ws-path-new li::before { border-color: var(--accent); }
+    .ws-path li.ws-lost { color: var(--ws-warn); font-weight: 500; }
+    .ws-path li.ws-lost::before { border-color: var(--ws-warn); background: var(--ws-warn); }
+    .ws-path li.ws-won { color: var(--ws-ink); font-weight: 600; }
+    .ws-path li.ws-won::before { background: var(--ws-ok); border-color: var(--ws-ok); box-shadow: 0 0 0 5px rgba(22, 163, 74, 0.15); }
+    .ws-path-line {
+      position: absolute;
+      left: 14px; top: 56px; bottom: 26px;
+      width: 24px; height: calc(100% - 82px);
+      overflow: visible;
+    }
+    .ws-path-line path {
+      fill: none;
+      stroke-width: 2;
+      vector-effect: non-scaling-stroke;
+      stroke-linecap: round;
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+      transition: stroke-dashoffset 1.8s var(--ws-ease) 0.3s;
+    }
+    .ws-path-old .ws-path-line path { stroke: var(--text-muted); stroke-dasharray: 4 6; stroke-dashoffset: 0; opacity: 0; transition: opacity 1s ease 0.4s; }
+    .ws-path-new .ws-path-line path { stroke: var(--accent); stroke-width: 2.5; }
+    .ws-paths.visible .ws-path-line path { stroke-dashoffset: 0; }
+    .ws-paths.visible .ws-path-old .ws-path-line path { opacity: 0.8; }
+
+    /* ---------------------------------------------------------- MEHRWERTE */
+    .ws-values { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    .ws-value {
+      padding: 22px 22px 26px;
+      border: 1px solid var(--ws-line);
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+    .ws-value:hover { border-color: var(--border-strong); box-shadow: var(--shadow); }
+    .ws-value h3 {
+      font-family: var(--font-heading);
+      font-size: 1.12rem; font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      color: var(--ws-ink);
+      margin: 22px 0 10px;
+    }
+    .ws-value p { font-size: 0.95rem; line-height: 1.65; color: var(--text-secondary); margin: 0; }
+
+    .ws-vis {
+      position: relative;
+      height: 150px;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(to right, rgba(10,12,16,0.035) 1px, transparent 1px) 0 0 / 20px 20px,
+        linear-gradient(to bottom, rgba(10,12,16,0.035) 1px, transparent 1px) 0 0 / 20px 20px,
+        var(--bg-alt);
+      border: 1px solid var(--ws-line);
+      display: grid; place-items: center;
+      overflow: hidden;
+    }
+
+    /* Formular-Vis */
+    .ws-mini-card { width: 74%; padding: 14px; border-radius: 12px; background: var(--bg-card); border: 1px solid var(--ws-line); box-shadow: var(--shadow-sm); }
+    .ws-mini-steps { display: flex; gap: 4px; margin-bottom: 12px; }
+    .ws-mini-steps i { flex: 1; height: 4px; border-radius: 2px; background: var(--ws-line); transition: background 0.5s var(--ws-ease) 0.1s; }
+    .ws-mini-steps i.on { background: var(--accent); }
+    .ws-mini-q { display: block; width: 66%; height: 8px; border-radius: 4px; background: var(--ws-ink); margin-bottom: 12px; }
+    .ws-mini-opts { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ws-mini-opts span { font-size: 0.68rem; padding: 4px 9px; border-radius: 999px; border: 1px solid var(--ws-line); color: var(--text-secondary); transition: all var(--transition); }
+    .ws-mini-opts span.sel { border-color: var(--accent); background: var(--ws-soft); color: var(--accent); font-weight: 500; }
+    .ws-value:hover .ws-mini-steps i:last-child { background: var(--accent); }
+
+    /* Uhr-Vis */
+    .ws-vis-clock { grid-template-columns: auto 1fr; gap: 18px; padding: 0 20px; justify-items: start; }
+    .ws-clock { position: relative; width: 74px; height: 74px; border-radius: 50%; background: var(--bg-card); border: 2px solid var(--ws-ink); }
+    .ws-clock::after { content: ''; position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px; border-radius: 50%; background: var(--accent); }
+    .ws-clock i { position: absolute; left: 50%; bottom: 50%; width: 2px; margin-left: -1px; background: var(--ws-ink); border-radius: 2px; transform-origin: bottom center; }
+    .ws-clock .h { height: 20px; transform: rotate(-60deg); }
+    .ws-clock .m { height: 28px; transform: rotate(150deg); background: var(--accent); }
+    @media (prefers-reduced-motion: no-preference) {
+      .ws-clock .m { animation: ws-spin 12s linear infinite; }
+      .ws-clock .h { animation: ws-spin 144s linear infinite; }
+    }
+    @keyframes ws-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .ws-notes { display: flex; flex-direction: column; gap: 6px; width: 100%; }
+    .ws-notes span {
+      display: block;
+      font-size: 0.7rem; color: var(--text-secondary);
+      padding: 6px 9px;
+      border-radius: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--ws-line);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      transition: transform var(--transition), border-color var(--transition);
+    }
+    .ws-notes b { font-weight: 600; color: var(--accent); margin-right: 4px; font-variant-numeric: tabular-nums; }
+    .ws-value:hover .ws-notes span:last-child { border-color: var(--border-strong); transform: translateX(4px); }
+
+    /* Briefing-Vis */
+    .ws-brief { width: 76%; padding: 10px 14px; border-radius: 12px; background: var(--bg-card); border: 1px solid var(--ws-line); box-shadow: var(--shadow-sm); }
+    .ws-brief p { display: flex; justify-content: space-between; gap: 10px; margin: 0; padding: 5px 0; font-size: 0.72rem; border-bottom: 1px dashed var(--ws-line); }
+    .ws-brief p:last-child { border-bottom: 0; }
+    .ws-brief span { color: var(--text-muted); }
+    .ws-brief b { color: var(--ws-ink); font-weight: 600; }
+
+    /* Vertrauen-Vis */
+    .ws-vis-trust { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 8px; padding: 0 26px; }
+    .ws-stars { display: flex; gap: 3px; margin-bottom: 4px; }
+    .ws-stars i {
+      width: 16px; height: 16px;
+      background: #F5B300;
+      clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      transition: transform 0.35s var(--ws-ease);
+    }
+    .ws-value:hover .ws-stars i { transform: scale(1.15); }
+    .ws-value:hover .ws-stars i:nth-child(2) { transition-delay: 0.04s; }
+    .ws-value:hover .ws-stars i:nth-child(3) { transition-delay: 0.08s; }
+    .ws-value:hover .ws-stars i:nth-child(4) { transition-delay: 0.12s; }
+    .ws-value:hover .ws-stars i:nth-child(5) { transition-delay: 0.16s; }
+    .ws-quote-l { display: block; width: 88%; height: 7px; border-radius: 4px; background: var(--text-muted); opacity: 0.5; }
+    .ws-quote-l.short { width: 60%; }
+    .ws-avatars { display: flex; align-items: center; margin-top: 8px; }
+    .ws-avatars i { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--bg-alt); margin-right: -8px; background: linear-gradient(135deg, #CBD5E1, #94A3B8); }
+    .ws-avatars i:nth-child(2) { background: linear-gradient(135deg, #BFDBFE, #60A5FA); }
+    .ws-avatars i:nth-child(3) { background: linear-gradient(135deg, #FDE68A, #F59E0B); }
+    .ws-avatars em { font-style: normal; font-size: 0.7rem; font-weight: 600; color: var(--text-secondary); margin-left: 16px; }
+
+    /* Handy-Vis */
+    .ws-phone-mini {
+      position: relative;
+      width: 82px; height: 160px;
+      margin-top: 34px;
+      padding: 14px 9px;
+      border-radius: 16px;
+      border: 2px solid var(--ws-ink);
+      background: var(--bg-card);
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .ws-pm-l { height: 6px; width: 90%; border-radius: 3px; background: var(--ws-ink); }
+    .ws-pm-l.s { width: 60%; background: var(--text-muted); opacity: 0.6; }
+    .ws-pm-img { height: 34px; border-radius: 6px; background: linear-gradient(160deg, #DCE6FB, #7FA2EE); margin-top: 2px; }
+    .ws-pm-btn { position: absolute; left: 9px; right: 9px; top: 82px; height: 16px; border-radius: 999px; background: var(--accent); }
+    .ws-thumb-zone {
+      position: absolute;
+      left: -22px; right: -30px; top: 56px;
+      height: 110px;
+      border-radius: 50% 50% 0 0;
+      background: radial-gradient(ellipse at 70% 100%, rgba(37, 99, 235, 0.22), transparent 70%);
+      transition: opacity var(--transition);
+      opacity: 0.7;
+    }
+    .ws-value:hover .ws-thumb-zone { opacity: 1; }
+
+    /* Such-Vis */
+    .ws-serp { width: 80%; display: flex; flex-direction: column; gap: 8px; }
+    .ws-serp-bar {
+      display: flex; align-items: center; gap: 7px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--bg-card);
+      border: 1px solid var(--ws-line);
+      font-size: 0.72rem; color: var(--text-secondary);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2px;
+    }
+    .ws-serp-hit { padding: 6px 10px; border-radius: 8px; display: flex; flex-direction: column; gap: 4px; }
+    .ws-serp-hit .t { height: 6px; width: 54%; border-radius: 3px; background: var(--text-muted); opacity: 0.45; }
+    .ws-serp-hit .d { height: 4px; width: 84%; border-radius: 3px; background: var(--text-muted); opacity: 0.25; }
+    .ws-serp-hit.you { background: var(--bg-card); border: 1px solid var(--border-strong); transition: transform var(--transition); }
+    .ws-serp-hit.you .t { background: var(--accent); opacity: 1; }
+    .ws-value:hover .ws-serp-hit.you { transform: translateX(4px); }
+
+    /* ---------------------------------------------------------- SHOWROOM */
+    .ws-show { display: grid; grid-template-columns: 1fr; gap: 18px; }
+    .ws-tabs {
+      display: flex; gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 2px;
+      margin: 0 -2px;
+    }
+    .ws-tabs::-webkit-scrollbar { display: none; }
+    .ws-tab {
+      flex: 1 0 auto;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--ws-line);
+      background: var(--bg-card);
+      text-align: left;
+      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+    .ws-tab:hover { border-color: var(--border-strong); }
+    .ws-tab[aria-selected="true"] { border-color: var(--accent); box-shadow: 0 0 0 3px var(--ws-soft); }
+    .ws-tab-name { font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; color: var(--ws-ink); }
+    .ws-tab-sector { font-size: 0.76rem; color: var(--text-muted); white-space: nowrap; }
+
+    .ws-view-toggle {
+      justify-self: start;
+      display: none;
+      padding: 4px;
+      gap: 4px;
+      border-radius: 999px;
+      background: var(--bg-card);
+      border: 1px solid var(--ws-line);
+    }
+    .ws-vt {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem; font-weight: 500;
+      color: var(--text-secondary);
+      transition: background var(--transition), color var(--transition);
+    }
+    .ws-vt.is-on { background: var(--ws-ink); color: #fff; }
+
+    .ws-panel { display: grid; grid-template-columns: 1fr; gap: 28px; }
+    .ws-panel[hidden] { display: none; }
+    .ws-devices { position: relative; }
+
+    .ws-desk {
+      display: none;
+      border-radius: 14px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-card);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .ws-desk-bar {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 14px;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--ws-line);
+    }
+    .ws-desk-url {
+      flex: 1;
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      max-width: 340px; margin: 0 auto;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: var(--bg-card);
+      border: 1px solid var(--ws-line);
+      font-size: 0.78rem; color: var(--text-secondary);
+    }
+    .ws-desk-url svg { color: var(--ws-ok); }
+    .ws-desk-open {
+      width: 30px; height: 30px;
+      display: grid; place-items: center;
+      border-radius: 8px;
+      color: var(--text-secondary);
+      border: 1px solid var(--ws-line);
+      transition: color var(--transition), border-color var(--transition);
+    }
+    .ws-desk-open:hover { color: var(--accent); border-color: var(--accent); }
+    .ws-desk-view {
+      --s: 0.6;
+      position: relative;
+      height: clamp(420px, 52vw, 640px);
+      overflow: hidden;
+      background: var(--bg-alt);
+    }
+    .ws-desk-view iframe {
+      position: absolute; left: 0; top: 0;
+      width: 1440px;
+      height: calc(100% / var(--s));
+      border: 0;
+      transform: scale(var(--s));
+      transform-origin: 0 0;
+      background: #fff;
+    }
+
+    .ws-mob {
+      position: relative;
+      width: min(100%, 360px);
+      margin: 0 auto;
+      padding: 12px;
+      border-radius: 44px;
+      background: #0A0C10;
+      box-shadow: var(--shadow-lg), inset 0 0 0 2px #2A2F38;
+    }
+    .ws-mob-notch {
+      position: absolute; left: 50%; top: 20px;
+      width: 92px; height: 24px; margin-left: -46px;
+      border-radius: 999px;
+      background: #0A0C10;
+      z-index: 2;
+    }
+    .ws-mob-view {
+      position: relative;
+      height: min(680px, 72vh);
+      border-radius: 32px;
+      overflow: hidden;
+      background: var(--bg-alt);
+    }
+    .ws-mob-view iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #fff; }
+
+    .ws-loading {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+      font-size: 0.82rem; color: var(--text-muted);
+      background: var(--bg-alt);
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .ws-loading i {
+      width: 120px; height: 3px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent) 0 0 / 50% 100% no-repeat, var(--ws-line);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .ws-loading i { animation: ws-load 1.2s ease-in-out infinite; }
+    }
+    @keyframes ws-load { from { background-position: -100% 0, 0 0; } to { background-position: 200% 0, 0 0; } }
+    .is-loaded > .ws-loading { opacity: 0; }
+
+    .ws-case {
+      align-self: start;
+      padding: 26px 24px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--ws-line);
+      background: var(--bg-card);
+    }
+    .ws-case-head h3 { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; color: var(--ws-ink); margin: 12px 0 2px; }
+    .ws-case-sector { margin: 0; font-size: 0.9rem; color: var(--text-muted); }
+    .ws-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.04em;
+      background: var(--bg-alt);
+      color: var(--text-secondary);
+      border: 1px solid var(--ws-line);
+    }
+    .ws-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); }
+    .ws-badge.is-live { color: var(--ws-ok); border-color: rgba(22, 163, 74, 0.3); background: rgba(22, 163, 74, 0.06); }
+    .ws-badge.is-live::before { background: var(--ws-ok); }
+    .ws-case-task { margin: 20px 0 18px; padding: 14px 16px; border-radius: 12px; background: var(--bg-alt); font-size: 0.95rem; line-height: 1.6; color: var(--ws-ink); }
+    .ws-case-task span { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .ws-case-points { display: flex; flex-direction: column; gap: 10px; margin: 0 0 22px; }
+    .ws-case-points li { position: relative; padding-left: 22px; font-size: 0.93rem; line-height: 1.55; color: var(--text-secondary); }
+    .ws-case-points li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 10px; height: 2px; background: var(--accent); }
+    .ws-case-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 0.92rem; color: var(--accent); }
+    .ws-case-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ---------------------------------------------------------- ANATOMIE */
+    .ws-anatomy { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: start; }
+    .ws-wire {
+      border-radius: 14px;
+      border: 1px solid var(--ws-line);
+      background: var(--bg-card);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .ws-wire-bar { padding: 10px 14px; background: var(--bg-alt); border-bottom: 1px solid var(--ws-line); }
+    .ws-wire-body { padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+    .ws-zone {
+      position: relative;
+      display: flex; flex-direction: column; gap: 8px;
+      padding: 16px 16px 16px 46px;
+      border-radius: 10px;
+      border: 1.5px dashed var(--ws-line);
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .ws-zone i { display: block; height: 8px; border-radius: 4px; background: var(--ws-line); }
+    .ws-zone .w70 { width: 70%; height: 12px; background: var(--ws-ink); opacity: 0.85; }
+    .ws-zone .w60 { width: 60%; }
+    .ws-zone .w45 { width: 45%; }
+    .ws-zone .w30 { width: 30%; }
+    .ws-zone .btn { height: 20px; border-radius: 999px; background: var(--accent); opacity: 0.85; }
+    .ws-zone-row { flex-direction: row; gap: 10px; }
+    .ws-zone-row b { flex: 1; height: 22px; border-radius: 6px; background: var(--bg-alt); border: 1px solid var(--ws-line); }
+    .ws-zone-cols { flex-direction: row; gap: 10px; }
+    .ws-zone-cols u { flex: 1; height: 46px; border-radius: 8px; background: var(--bg-alt); border: 1px solid var(--ws-line); }
+    .ws-pin {
+      position: absolute; left: 12px; top: 50%;
+      width: 24px; height: 24px; margin-top: -12px;
+      display: grid; place-items: center;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1.5px solid var(--ws-ink);
+      font-family: var(--font-heading); font-size: 0.72rem; font-weight: 700;
+      color: var(--ws-ink);
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+    }
+
+    .ws-anat-list { display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; list-style: none; }
+    .ws-anat {
+      display: flex; gap: 16px;
+      padding: 16px 18px;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      cursor: default;
+      transition: background var(--transition), border-color var(--transition);
+      outline: none;
+    }
+    .ws-anat:hover, .ws-anat:focus-visible { background: var(--bg-card); border-color: var(--border-strong); }
+    .ws-anat-n {
+      flex-shrink: 0;
+      width: 30px; height: 30px;
+      display: grid; place-items: center;
+      border-radius: 50%;
+      border: 1.5px solid var(--ws-line);
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.82rem;
+      color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    .ws-anat:hover .ws-anat-n, .ws-anat:focus-visible .ws-anat-n { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .ws-anat h3 { font-family: var(--font-heading); font-size: 1.02rem; font-weight: 700; color: var(--ws-ink); margin: 3px 0 6px; line-height: 1.35; }
+    .ws-anat p { margin: 0; font-size: 0.93rem; line-height: 1.6; color: var(--text-secondary); }
+
+    /* Hover in der Liste hebt die passende Zone im Wireframe hervor */
+    .ws-anatomy:has(.ws-anat[data-k="1"]:is(:hover, :focus-visible)) .ws-zone[data-k="1"],
+    .ws-anatomy:has(.ws-anat[data-k="2"]:is(:hover, :focus-visible)) .ws-zone[data-k="2"],
+    .ws-anatomy:has(.ws-anat[data-k="3"]:is(:hover, :focus-visible)) .ws-zone[data-k="3"],
+    .ws-anatomy:has(.ws-anat[data-k="4"]:is(:hover, :focus-visible)) .ws-zone[data-k="4"],
+    .ws-anatomy:has(.ws-anat[data-k="5"]:is(:hover, :focus-visible)) .ws-zone[data-k="5"] {
+      border-color: var(--accent);
+      border-style: solid;
+      background: var(--ws-soft);
+    }
+    .ws-anatomy:has(.ws-anat[data-k="1"]:is(:hover, :focus-visible)) .ws-zone[data-k="1"] .ws-pin,
+    .ws-anatomy:has(.ws-anat[data-k="2"]:is(:hover, :focus-visible)) .ws-zone[data-k="2"] .ws-pin,
+    .ws-anatomy:has(.ws-anat[data-k="3"]:is(:hover, :focus-visible)) .ws-zone[data-k="3"] .ws-pin,
+    .ws-anatomy:has(.ws-anat[data-k="4"]:is(:hover, :focus-visible)) .ws-zone[data-k="4"] .ws-pin,
+    .ws-anatomy:has(.ws-anat[data-k="5"]:is(:hover, :focus-visible)) .ws-zone[data-k="5"] .ws-pin {
+      background: var(--accent); border-color: var(--accent); color: #fff;
+    }
+
+    /* ---------------------------------------------------------- ABLAUF */
+    .ws-process {
+      position: relative;
+      display: grid; grid-template-columns: 1fr; gap: 16px;
+      list-style: none; margin: 0; padding: 0;
+    }
+    .ws-process li {
+      position: relative;
+      padding: 24px 22px;
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      border: 1px solid var(--ws-line);
+    }
+    .ws-proc-ico {
+      width: 44px; height: 44px;
+      display: grid; place-items: center;
+      border-radius: 12px;
+      background: var(--bg-alt);
+      border: 1px solid var(--ws-line);
+      color: var(--ws-ink);
+      margin-bottom: 18px;
+      position: relative; z-index: 1;
+    }
+    .ws-proc-live { background: rgba(22, 163, 74, 0.08); border-color: rgba(22, 163, 74, 0.3); }
+    .ws-proc-n { display: block; font-family: var(--font-heading); font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 6px; }
+    .ws-process h3 { font-family: var(--font-heading); font-size: 1.08rem; font-weight: 700; color: var(--ws-ink); margin: 0 0 8px; }
+    .ws-process p { margin: 0; font-size: 0.93rem; line-height: 1.6; color: var(--text-secondary); }
+
+    /* ---------------------------------------------------------- FAQ */
+    .ws-faq-wrap { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    .ws-faq { border-top: 1px solid var(--ws-line); }
+    .ws-faq-item { border-bottom: 1px solid var(--ws-line); }
+    .ws-faq-item summary {
+      list-style: none;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      padding: 22px 0;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--ws-ink);
+    }
+    .ws-faq-item summary::-webkit-details-marker { display: none; }
+    .ws-faq-plus { position: relative; flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--ws-line); transition: transform var(--transition), background var(--transition), border-color var(--transition); }
+    .ws-faq-plus::before, .ws-faq-plus::after { content: ''; position: absolute; left: 50%; top: 50%; width: 10px; height: 1.5px; margin: -0.75px 0 0 -5px; background: var(--ws-ink); transition: transform var(--transition); }
+    .ws-faq-plus::after { transform: rotate(90deg); }
+    .ws-faq-item[open] .ws-faq-plus { background: var(--ws-ink); border-color: var(--ws-ink); }
+    .ws-faq-item[open] .ws-faq-plus::before, .ws-faq-item[open] .ws-faq-plus::after { background: #fff; }
+    .ws-faq-item[open] .ws-faq-plus::after { transform: rotate(0deg); }
+    .ws-faq-item p { margin: 0 0 24px; max-width: 64ch; font-size: 0.98rem; line-height: 1.7; color: var(--text-secondary); }
+
+    .ws-final .ev-final-sub { max-width: 58ch; margin-left: auto; margin-right: auto; }
+
+    /* ---------------------------------------------------------- BREAKPOINTS */
+    @media (max-width: 767px) {
+      .ws-paths { grid-template-columns: 1fr; }
+      .ws-path ol { min-height: 0; gap: 14px; }
+      .ws-path-new ol { min-height: 0; }
+      .ws-tag-time { left: 4px; }
+      .ws-toast { right: 4px; }
+    }
+
+    @media (min-width: 768px) {
+      .ws-values { grid-template-columns: repeat(2, 1fr); }
+      .ws-process { grid-template-columns: repeat(2, 1fr); }
+      .ws-view-toggle { display: inline-flex; }
+      .ws-tab { flex: 1 1 0; }
+
+      /* Desktop/Handy-Umschalter (Tablet) */
+      .ws-show:not([data-view="mobile"]) .ws-desk { display: block; }
+      .ws-show:not([data-view="mobile"]) .ws-mob { display: none; }
+    }
+
+    @media (min-width: 1024px) {
+      .ws-hero-grid { grid-template-columns: 1.12fr 0.88fr; gap: 56px; }
+      .ws-stage { margin-right: 0; }
+      .ws-split { grid-template-columns: 1fr 1fr; gap: 72px; }
+      .ws-values { grid-template-columns: repeat(3, 1fr); }
+      .ws-anatomy { grid-template-columns: 0.95fr 1.05fr; gap: 56px; }
+      .ws-wire { position: sticky; top: 110px; }
+      .ws-process { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+      .ws-process::before {
+        content: '';
+        position: absolute;
+        left: 44px; right: 44px; top: 46px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent) 0 var(--ws-prog, 0%), var(--ws-line) var(--ws-prog, 0%));
+        transition: --ws-prog 1.6s var(--ws-ease) 0.3s;
+      }
+      .ws-process.visible { --ws-prog: 100%; }
+      .ws-faq-wrap { grid-template-columns: 0.8fr 1.2fr; gap: 64px; }
+
+      .ws-panel { grid-template-columns: minmax(0, 1fr) 320px; align-items: start; }
+      .ws-show:not([data-view="mobile"]) .ws-desk { display: block; }
+      /* Auf großen Bildschirmen: Desktop-Rahmen mit Handy davor, wie im Studio */
+      .ws-show:not([data-view="mobile"]) .ws-devices { padding-right: 70px; padding-bottom: 40px; }
+      .ws-show:not([data-view="mobile"]) .ws-mob {
+        display: block;
+        position: absolute;
+        right: 0; bottom: 0;
+        width: 210px;
+        padding: 8px;
+        border-radius: 32px;
+      }
+      .ws-show:not([data-view="mobile"]) .ws-mob-notch { top: 14px; width: 60px; height: 16px; margin-left: -30px; }
+      .ws-show:not([data-view="mobile"]) .ws-mob-view { height: 420px; border-radius: 25px; }
+    }
+  </style>
+
+  <style is:global>
+    /* Registrierte Property, damit der Fortschrittsbalken im Ablauf animiert. */
+    @property --ws-prog { syntax: '<percentage>'; inherits: true; initial-value: 0%; }
+  </style>
+</BaseLayout>
