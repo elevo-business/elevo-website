@@ -1,0 +1,32 @@
+---
+import site from '../../config/site.json';
+import CtaLink from './CtaLink.astro';
+
+const items = site.faq.filter((item) => item.q.trim() !== '');
+const middle = Math.ceil(items.length / 2);
+const groups = [items.slice(0, middle), items.slice(middle)].filter((g) => g.length > 0);
+---
+
+<section class="mt-16" aria-labelledby="faq-titel">
+  <h2 id="faq-titel" class="text-center text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">{site.sections.faqHeadline}</h2>
+  {
+    groups.map((group, index) => (
+      <>
+        <div class="mt-6 divide-y divide-line rounded-2xl border border-line bg-white">
+          {group.map((item) => (
+            <details class="group">
+              <summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-left font-semibold text-ink">
+                <span>{item.q}</span>
+                <svg class="size-5 shrink-0 transition-transform duration-300 group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </summary>
+              <div class="px-5 pb-5 leading-relaxed">{item.a}</div>
+            </details>
+          ))}
+        </div>
+        {index === 0 && groups.length > 1 && <CtaLink />}
+      </>
+    ))
+  }
+</section>

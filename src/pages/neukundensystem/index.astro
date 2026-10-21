@@ -1,0 +1,39 @@
+---
+import LpLayout from '../../neukundensystem/layouts/LpLayout.astro';
+import site from '../../config/site.json';
+import Logo from '../../neukundensystem/components/Logo.astro';
+import Hero from '../../neukundensystem/components/Hero.astro';
+import VslFacade from '../../neukundensystem/components/VslFacade.astro';
+import LeadForm from '../../neukundensystem/components/LeadForm.astro';
+import Testimonials from '../../neukundensystem/components/Testimonials.astro';
+import Faq from '../../neukundensystem/components/Faq.astro';
+import StickyCta from '../../neukundensystem/components/StickyCta.astro';
+---
+
+<LpLayout title={site.seo.title} description={site.seo.description} stickyCta>
+  <main id="inhalt" class="mx-auto max-w-[720px] px-4">
+    <div class="flex justify-center pt-5"><Logo /></div>
+
+    <Hero />
+
+    <section class="mt-8" aria-label="Video">
+      <VslFacade video={site.vsl} autoplay />
+      {site.vsl.caption && <p class="mt-4 text-center text-base text-pretty">{site.vsl.caption}</p>}
+    </section>
+
+    <LeadForm />
+
+    <Testimonials />
+
+    <Faq />
+
+    <section class="mt-16 rounded-2xl bg-ink px-5 py-10 text-center sm:px-10" aria-labelledby="abschluss-titel">
+      <h2 id="abschluss-titel" class="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">{site.closingCta.headline}</h2>
+      <p class="mx-auto mt-3 max-w-md text-base leading-relaxed text-white/85">{site.closingCta.text}</p>
+      <div class="mx-auto mt-6 max-w-sm">
+        <a href="#formular" class="btn-cta">{site.closingCta.button}</a>
+      </div>
+    </section>
+  </main>
+  <StickyCta />
+</LpLayout>

@@ -1,0 +1,13 @@
+---
+import site from '../../config/site.json';
+
+interface Props {
+  label?: string;
+  variant?: 'primary' | 'secondary';
+}
+const { label = site.sections.inlineCta, variant = 'secondary' } = Astro.props;
+---
+
+<div class="mt-8 flex justify-center">
+  <a href="#formular" class={variant === 'primary' ? 'btn-cta' : 'btn-secondary'}>{label}</a>
+</div>

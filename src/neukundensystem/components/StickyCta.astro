@@ -1,0 +1,29 @@
+---
+import site from '../../config/site.json';
+---
+
+<div class="fixed inset-x-0 bottom-0 z-30 translate-y-full border-t border-line bg-white/95 p-3 backdrop-blur transition-transform duration-300 md:hidden" data-sticky-cta aria-hidden="true">
+  <a href="#formular" class="btn-cta min-h-12 text-base" tabindex="-1">{site.sections.stickyCta}</a>
+</div>
+
+<script>
+  // Mobile: schwebender CTA, sobald das Formular nicht im Bild ist (und kein Consent-Banner offen ist).
+  const bar = document.querySelector<HTMLElement>('[data-sticky-cta]');
+  const form = document.getElementById('formular');
+  if (bar && form && 'IntersectionObserver' in window) {
+    const link = bar.querySelector('a')!;
+    let formVisible = true;
+    const update = () => {
+      const bannerOpen = document.querySelector('[data-consent-banner]:not([hidden])') !== null;
+      const show = !formVisible && !bannerOpen;
+      bar.classList.toggle('translate-y-full', !show);
+      bar.setAttribute('aria-hidden', String(!show));
+      link.tabIndex = show ? 0 : -1;
+    };
+    new IntersectionObserver(([entry]) => {
+      formVisible = entry.isIntersecting;
+      update();
+    }).observe(form);
+    window.addEventListener('consent:visibility', update);
+  }
+</script>

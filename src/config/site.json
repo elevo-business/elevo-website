@@ -1,0 +1,184 @@
+{
+  "paths": {
+    "landing": "/neukundensystem/",
+    "thankYou": "/neukundensystem/danke/"
+  },
+  "brand": {
+    "name": "Elevo",
+    "legalName": "ELEVO Solutions",
+    "primaryColor": "#0D1B2A",
+    "accentColor": "#3DD6C0",
+    "accentHoverColor": "#2EBFAB"
+  },
+  "seo": {
+    "title": "Neukundensystem in 14 Tagen — Elevo",
+    "description": "Meta Ads, Landingpage, CRM mit Sofort-Benachrichtigung und ein Vertriebsprozess, den dein Team ab Tag 1 nutzt. Setup kostenlos · 30 Tage Geld-zurück-Garantie.",
+    "ogImage": "/og-image.jpg",
+    "thankYouTitle": "Danke — Elevo"
+  },
+  "hero": {
+    "eyebrow": "Für Unternehmen, die planbar Neukunden gewinnen wollen",
+    "headline": "In 14 Tagen zu deinem eigenen Neukundensystem – oder du bekommst dein Geld zurück.",
+    "headlineVariants": {
+      "A": "In 14 Tagen zu deinem eigenen Neukundensystem – oder du bekommst dein Geld zurück.",
+      "B": "Planbar Neukunden statt Zufall: Ich baue dir Ads und Vertriebsprozess aus einer Hand.",
+      "C": "Schluss mit „nur Empfehlungen“: Dein Vertriebssystem aus Meta Ads, Landingpage und Speed-to-Lead."
+    },
+    "subheadline": "Meta Ads, Landingpage, CRM mit Sofort-Benachrichtigung und ein Vertriebsprozess, den dein Team ab Tag 1 nutzt – ohne dass du an deiner Website oder deinem CRM etwas ändern musst."
+  },
+  "vsl": {
+    "provider": "self",
+    "src": "/neukundensystem/vsl.mp4",
+    "videoId": "",
+    "bunnyLibraryId": "",
+    "poster": "/neukundensystem/vsl-poster.jpg",
+    "aspect": "9:16",
+    "title": "Video: Dein Neukundensystem in 14 Tagen",
+    "caption": "Schau dir das Video an. Wenn du danach denkst „Das brauche ich“, trag dich unten ein – ich rufe dich persönlich an.",
+    "soundButton": "Mit Ton ansehen",
+    "playButton": "Video abspielen",
+    "providerHint": "Beim Abspielen wird das Video von {{anbieter}} geladen."
+  },
+  "form": {
+    "headline": "Kostenloses Erstgespräch anfragen",
+    "ctaText": "Jetzt Rückruf anfordern",
+    "submittingText": "Wird gesendet …",
+    "trustLine": "Ich rufe dich persönlich an – meist noch am selben Tag.",
+    "guaranteeLine": "Setup kostenlos · 30 Tage Geld-zurück-Garantie",
+    "errorText": "Das hat nicht geklappt. Bitte versuch es erneut oder ruf mich an:",
+    "hubspot": {
+      "portalId": "[PORTAL-ID EINTRAGEN]",
+      "formGuid": "[FORM-GUID EINTRAGEN]",
+      "communications": []
+    },
+    "fields": [
+      { "name": "vorname", "label": "Vorname", "type": "text", "autocomplete": "given-name", "error": "Bitte gib deinen Vornamen ein." },
+      { "name": "nachname", "label": "Nachname", "type": "text", "autocomplete": "family-name", "error": "Bitte gib deinen Nachnamen ein." },
+      { "name": "email", "label": "E-Mail", "type": "email", "autocomplete": "email", "error": "Bitte gib deine E-Mail-Adresse ein.", "errorFormat": "Bitte gib eine gültige E-Mail-Adresse ein (z. B. name@firma.de)." },
+      { "name": "telefon", "label": "Telefon", "type": "tel", "autocomplete": "tel", "error": "Bitte gib deine Telefonnummer ein.", "errorFormat": "Bitte gib eine gültige Telefonnummer ein (z. B. 0151 1234567 oder +49 151 1234567)." },
+      { "name": "firma", "label": "Firma", "type": "text", "autocomplete": "organization", "error": "Bitte gib deine Firma ein." },
+      { "name": "branche", "label": "Branche", "type": "text", "autocomplete": "off", "error": "Bitte gib deine Branche ein." }
+    ],
+    "fieldMapping": {
+      "vorname": "firstname",
+      "nachname": "lastname",
+      "email": "email",
+      "telefon": "phone",
+      "firma": "company",
+      "branche": "industry",
+      "utm_source": "utm_source",
+      "utm_medium": "utm_medium",
+      "utm_campaign": "utm_campaign",
+      "utm_content": "utm_content",
+      "utm_term": "utm_term",
+      "fbclid": "fbclid",
+      "event_id": ""
+    },
+    "qualifiers": [
+      {
+        "name": "werbebudget",
+        "hubspotProperty": "lp_werbebudget",
+        "label": "Wie viel kannst du monatlich in Werbung investieren?",
+        "options": ["unter 1.000 €", "1.000–3.000 €", "über 3.000 €"]
+      },
+      {
+        "name": "anrufer",
+        "hubspotProperty": "lp_anrufer",
+        "label": "Wer ruft bei euch neue Anfragen an?",
+        "options": ["Ich selbst", "Ein Vertriebsmitarbeiter", "Noch niemand"]
+      },
+      {
+        "name": "startzeitpunkt",
+        "hubspotProperty": "lp_startzeitpunkt",
+        "label": "Wann möchtest du starten?",
+        "options": ["Sofort", "In 1–3 Monaten", "Später"]
+      }
+    ],
+    "qualifierError": "Bitte wähle eine Antwort aus.",
+    "consentText": "Ich stimme der Verarbeitung meiner Daten gemäß der {{datenschutz}} zu.",
+    "consentLinkText": "Datenschutzerklärung",
+    "consentError": "Bitte stimme der Verarbeitung deiner Daten zu, damit ich dich anrufen kann."
+  },
+  "sections": {
+    "inlineCta": "Jetzt eintragen",
+    "stickyCta": "Jetzt Rückruf anfordern",
+    "testimonialsHeadline": "Ergebnisse, die für sich sprechen",
+    "faqHeadline": "Häufige Fragen"
+  },
+  "testimonials": [
+    {
+      "featured": true,
+      "name": "Greenchild",
+      "company": "Greenchild",
+      "situation": "[eintragen]",
+      "solution": "Meta Ads mit Formular-Funnel, Rückruf innerhalb weniger Minuten, Setter-Closer-Prozess",
+      "result": "[Zahlen eintragen, z. B. Leads pro Monat, Kosten pro Lead, Abschlüsse]",
+      "quote": "[eintragen, falls vorhanden – sonst weglassen]",
+      "image": "",
+      "video": null
+    },
+    {
+      "_hinweis": "Coach 1: [Name, Firma, Zitat zur Zusammenarbeit (Website)]",
+      "name": "[Name]",
+      "company": "[Firma]",
+      "result": "",
+      "quote": "[Zitat zur Zusammenarbeit (Website)]",
+      "image": "",
+      "video": null
+    },
+    {
+      "_hinweis": "Coach 2: [Name, Firma, Zitat zur Zusammenarbeit (Website)]",
+      "name": "[Name]",
+      "company": "[Firma]",
+      "result": "",
+      "quote": "[Zitat zur Zusammenarbeit (Website)]",
+      "image": "",
+      "video": null
+    }
+  ],
+  "faq": [
+    { "q": "Für wen ist das geeignet?", "a": "Für Unternehmen mit eigenem Vertriebsmitarbeiter (oder du rufst selbst an), die mind. 1.000 € im Monat in Werbung investieren können und planbar wachsen wollen." },
+    { "q": "Für wen ist das nicht geeignet?", "a": "Wenn du Anfragen nicht innerhalb weniger Minuten anrufen kannst oder nur „ein paar Ads“ suchst." },
+    { "q": "Was genau bekomme ich?", "a": "Meta-Ads-Kampagnen, eine Landingpage, ein CRM mit Push bei jedem Lead, E-Mail-Strecken zum Nachfassen, Gesprächsskripte und Training für dein Team, Skripte für Werbevideos und ein wöchentliches Reporting." },
+    { "q": "Was kostet das?", "a": "Das Setup ist kostenlos. Die monatliche Investition besprechen wir im Gespräch. Die Mindestlaufzeit beträgt 3 Monate." },
+    { "q": "Wie viel Werbebudget brauche ich?", "a": "Mindestens 1.000 € im Monat. Das Budget zahlst du direkt an Meta." },
+    { "q": "Brauche ich eigene Vertriebsmitarbeiter?", "a": "Ja. Ich baue das System und schule dein Team – angerufen wird von euch." },
+    { "q": "Wie schnell geht es los?", "a": "Deine Kampagnen sind innerhalb von 14 Tagen live." },
+    { "q": "Wie funktioniert die Garantie?", "a": "Liefert das System in den ersten 30 Tagen nach dem Start keine Ergebnisse, bekommst du dein Geld zurück. [Bedingungen eintragen]" },
+    { "q": "Muss ich an meiner Website oder meinem CRM etwas ändern?", "a": "Nein. Alles läuft separat. Du gibst mir nur Zugänge zu deinem Werbekonto frei." },
+    { "q": "Wie viel Zeit kostet mich das?", "a": "Ein Kick-off-Call (60 Min.), ein paar Videos per Handy aufnehmen und Freigaben. Den Rest übernehme ich." }
+  ],
+  "closingCta": {
+    "headline": "Bereit für planbare Neukunden?",
+    "text": "Trag dich ein – ich rufe dich an und wir schauen gemeinsam, ob das System zu dir passt.",
+    "button": "Jetzt Rückruf anfordern"
+  },
+  "thankYou": {
+    "headline": "Danke, {{vorname}}! Ich rufe dich in Kürze an.",
+    "headlineWithoutName": "Danke! Ich rufe dich in Kürze an.",
+    "stepsHeadline": "So geht es weiter",
+    "steps": [
+      "Ich rufe dich an – ca. 15 Minuten, wir lernen uns kurz kennen.",
+      "Wenn es passt: Strategiegespräch zu deinem Neukundensystem.",
+      "Innerhalb von 14 Tagen nach Start ist dein System live."
+    ],
+    "phoneLine": "Speichere meine Nummer, damit du den Anruf erkennst:",
+    "phone": "[Telefonnummer]",
+    "video": null
+  },
+  "tracking": {
+    "metaPixelId": "[PIXEL-ID EINTRAGEN]"
+  },
+  "consent": {
+    "headline": "Datenschutz-Einstellungen",
+    "text": "Notwendige Funktionen brauche ich, damit die Seite und das Formular funktionieren. Mit deiner Zustimmung lade ich nach dem Absenden des Formulars den Meta Pixel, um zu messen, welche Anzeigen Anfragen bringen.",
+    "acceptAll": "Alle akzeptieren",
+    "necessaryOnly": "Nur notwendige",
+    "privacyLinkText": "Datenschutzerklärung",
+    "settingsLink": "Cookie-Einstellungen"
+  },
+  "legal": {
+    "impressumUrl": "/impressum",
+    "datenschutzUrl": "/datenschutz"
+  }
+}
