@@ -1,3 +1,5 @@
+> **Landingpage /neukundensystem** (Meta Ads, HubSpot, Pixel nur auf der Danke-Seite): Anleitung in [NEUKUNDENSYSTEM.md](NEUKUNDENSYSTEM.md).
+
 # Astro Starter Kit: Minimal
 
 ```sh

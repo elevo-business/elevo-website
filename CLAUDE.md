@@ -66,6 +66,7 @@ public/         Fonts (Sora, Outfit woff2), Icons, Bilder
 - **Preise**: Auf den sichtbaren Marketing-Seiten (`index.astro`, `leistungen.astro`, FAQ) dürfen KEINE EUR-Beträge/Preisranges stehen — Soft-CTA „Strategie-Gespräch" statt Preisanker (Hormozi-Style).
 
 ## Gotchas
+- **Ausnahme /neukundensystem** (Ads-Landingpage, Freigabe Mert 21.10.2026): nutzt Tailwind, helles Design und ein eigenes Layout ohne seitenweites Tracking (`src/neukundensystem/`, Config `src/config/site.json`). Die Regeln „kein Tailwind“, „nur Dark Theme“ und „keine EUR-Beträge“ gelten dort nicht. Doku: `NEUKUNDENSYSTEM.md`.
 - Fonts NICHT von Google CDN laden (DSGVO-Verstoss)
 - Kundenvorschauen unter /previews/ nutzen das Template-System (siehe unten)
 - Nginx cached statische Assets 1 Jahr (immutable) — Cache-Busting bei Asset-Änderungen

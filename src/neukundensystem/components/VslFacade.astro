@@ -1,0 +1,169 @@
+---
+// Video als Facade: Vor dem Klick lädt nur das lokale Vorschaubild.
+//  - provider "self":  eigene MP4 aus /public (wie im Greenchild-Funnel) – startet nach dem Seitenaufbau
+//                      stumm, Klick schaltet Ton + Steuerung ein. Keine Drittanbieter.
+//  - provider "bunny" / "vimeo": iframe wird erst nach Klick eingefügt (2-Klick-Lösung mit Hinweis).
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import site from '../../config/site.json';
+import { fill } from '../lib/text';
+
+export interface VideoConfig {
+  provider: string;
+  src?: string;
+  videoId?: string;
+  bunnyLibraryId?: string;
+  poster?: string;
+  aspect?: string;
+  title?: string;
+}
+
+interface Props {
+  video: VideoConfig;
+  /** Stumm-Autoplay für eigene Videos (nur Haupt-VSL) */
+  autoplay?: boolean;
+}
+
+const { video, autoplay = false } = Astro.props;
+const provider = video.provider || 'self';
+const vertical = video.aspect === '9:16';
+const frameClass = vertical ? 'mx-auto aspect-[9/16] w-full max-w-[320px]' : 'aspect-video w-full';
+const [w, h] = vertical ? [720, 1280] : [1280, 720];
+const title = video.title || 'Video';
+const poster = video.poster && existsSync(join(process.cwd(), 'public', video.poster)) ? video.poster : undefined;
+
+const providerNames: Record<string, string> = { bunny: 'Bunny Stream', vimeo: 'Vimeo' };
+let embedUrl = '';
+if (provider === 'bunny' && video.bunnyLibraryId && video.videoId) {
+  embedUrl = `https://iframe.mediadelivery.net/embed/${encodeURIComponent(video.bunnyLibraryId)}/${encodeURIComponent(video.videoId)}?autoplay=true&preload=true&responsive=true`;
+} else if (provider === 'vimeo' && video.videoId) {
+  embedUrl = `https://player.vimeo.com/video/${encodeURIComponent(video.videoId)}?dnt=1&autoplay=1`;
+}
+const selfReady = provider === 'self' && !!video.src && existsSync(join(process.cwd(), 'public', video.src));
+const ready = selfReady || embedUrl !== '';
+const hint = fill(site.vsl.providerHint, { anbieter: providerNames[provider] ?? '' });
+---
+
+<div class:list={['relative overflow-hidden rounded-2xl bg-ink-deep shadow-lg', frameClass]}>
+  {
+    !ready && (
+      <div class="flex h-full w-full items-center justify-center p-6 text-center text-sm font-semibold text-white">
+        {provider === 'self' ? `[VIDEO HOCHLADEN: public${video.src}]` : '[VIDEO-ID IN site.json EINTRAGEN]'}
+      </div>
+    )
+  }
+  {
+    selfReady && (
+      <div class="h-full w-full" data-video-self data-autoplay={autoplay ? 'true' : undefined}>
+        <video
+          class="block h-full w-full cursor-pointer object-cover"
+          playsinline
+          muted
+          loop={autoplay}
+          preload="none"
+          poster={poster}
+          width={w}
+          height={h}
+          data-src={video.src}
+          aria-label={title}
+        />
+        <button
+          type="button"
+          class="absolute inset-0 flex flex-col items-center justify-end gap-3 bg-gradient-to-t from-black/55 via-black/10 to-transparent pb-8 transition-opacity duration-300"
+          data-video-start
+        >
+          <span class="grid size-16 place-items-center rounded-full bg-white shadow-lg" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0D1B2A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 5 6 9H2v6h4l5 4V5z" />
+              <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+              <path d="M19 5a10 10 0 0 1 0 14" />
+            </svg>
+          </span>
+          <span class="text-sm font-semibold text-white [text-shadow:0_1px_6px_rgba(0,0,0,.6)]">{site.vsl.soundButton}</span>
+        </button>
+      </div>
+    )
+  }
+  {
+    embedUrl && (
+      <div class="h-full w-full" data-video-embed={embedUrl} data-title={title}>
+        {poster && <img src={poster} alt="" width={w} height={h} class="absolute inset-0 h-full w-full object-cover" fetchpriority="high" />}
+        <button
+          type="button"
+          class="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/35 p-4 text-center"
+          data-video-start
+        >
+          <span class="grid size-16 place-items-center rounded-full bg-white shadow-lg" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="#0D1B2A"><path d="M8 5v14l11-7z" /></svg>
+          </span>
+          <span class="text-base font-semibold text-white">{site.vsl.playButton}</span>
+          <span class="max-w-[16rem] text-xs text-white/90">{hint}</span>
+        </button>
+      </div>
+    )
+  }
+</div>
+
+<script>
+  // Eigene Videos
+  for (const wrap of document.querySelectorAll<HTMLElement>('[data-video-self]')) {
+    const video = wrap.querySelector('video');
+    const button = wrap.querySelector<HTMLButtonElement>('[data-video-start]');
+    if (!video || !button) continue;
+
+    const load = () => {
+      if (!video.getAttribute('src') && video.dataset.src) video.src = video.dataset.src;
+    };
+    const startMuted = () => {
+      load();
+      video.play().catch(() => {});
+    };
+    const startWithSound = () => {
+      load();
+      video.muted = false;
+      video.loop = false;
+      video.controls = true;
+      video.currentTime = 0;
+      video.play().catch(() => {});
+      button.classList.add('opacity-0', 'pointer-events-none');
+      button.setAttribute('aria-hidden', 'true');
+      button.tabIndex = -1;
+    };
+
+    button.addEventListener('click', startWithSound);
+    video.addEventListener('click', () => {
+      if (video.muted) startWithSound();
+    });
+
+    // Stummer Autoplay erst nach dem Seitenaufbau – hält den ersten Bildschirm schnell.
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true;
+    if (wrap.dataset.autoplay && !reduceMotion && !saveData) {
+      const schedule = () => {
+        if (typeof window.requestIdleCallback === 'function') window.requestIdleCallback(startMuted, { timeout: 2500 });
+        else setTimeout(startMuted, 1200);
+      };
+      if (document.readyState === 'complete') schedule();
+      else window.addEventListener('load', schedule, { once: true });
+    }
+  }
+
+  // Bunny Stream / Vimeo: iframe erst nach Klick
+  for (const wrap of document.querySelectorAll<HTMLElement>('[data-video-embed]')) {
+    const button = wrap.querySelector<HTMLButtonElement>('[data-video-start]');
+    button?.addEventListener(
+      'click',
+      () => {
+        const iframe = document.createElement('iframe');
+        iframe.src = wrap.dataset.videoEmbed ?? '';
+        iframe.title = wrap.dataset.title ?? 'Video';
+        iframe.allow = 'autoplay; fullscreen; picture-in-picture; encrypted-media';
+        iframe.allowFullscreen = true;
+        iframe.className = 'absolute inset-0 h-full w-full border-0';
+        wrap.replaceChildren(iframe);
+        iframe.focus();
+      },
+      { once: true },
+    );
+  }
+</script>

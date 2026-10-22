@@ -1,0 +1,86 @@
+---
+// Nur echte Referenzen: Eine Karte erscheint erst, wenn ihre Pflichtangaben ohne [Platzhalter] ausgefüllt sind.
+// Ist keine Karte vollständig, wird die ganze Sektion ausgeblendet (Briefing, Abschnitt 3).
+import site from '../../config/site.json';
+import { isFilled } from '../lib/text';
+import VslFacade, { type VideoConfig } from './VslFacade.astro';
+import CtaLink from './CtaLink.astro';
+
+interface Testimonial {
+  featured?: boolean;
+  name: string;
+  company: string;
+  situation?: string;
+  solution?: string;
+  result?: string;
+  quote?: string;
+  image?: string;
+  video?: VideoConfig | null;
+}
+
+const items = site.testimonials as Testimonial[];
+const featured = items.filter(
+  (t) => t.featured && isFilled(t.name) && isFilled(t.situation) && isFilled(t.solution) && isFilled(t.result),
+);
+const cards = items.filter((t) => !t.featured && isFilled(t.name) && isFilled(t.company) && isFilled(t.quote));
+const visible = featured.length + cards.length > 0;
+---
+
+{
+  visible && (
+    <section class="mt-16" aria-labelledby="referenzen-titel">
+      <h2 id="referenzen-titel" class="text-center text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
+        {site.sections.testimonialsHeadline}
+      </h2>
+
+      {featured.map((t) => (
+        <article class="mt-8 rounded-2xl border border-line bg-white p-5 shadow-sm sm:p-8">
+          <div class="flex items-center gap-4">
+            {isFilled(t.image) && <img src={t.image} alt={`${t.name}, ${t.company}`} width="64" height="64" loading="lazy" class="size-16 rounded-full object-cover" />}
+            <div>
+              <h3 class="text-xl font-bold text-ink">{t.company}</h3>
+              {t.name !== t.company && <p class="text-sm text-muted">{t.name}</p>}
+            </div>
+          </div>
+          <dl class="mt-5 space-y-4">
+            <div>
+              <dt class="text-sm font-semibold tracking-wide text-muted uppercase">Ausgangslage</dt>
+              <dd class="mt-1">{t.situation}</dd>
+            </div>
+            <div>
+              <dt class="text-sm font-semibold tracking-wide text-muted uppercase">Lösung</dt>
+              <dd class="mt-1">{t.solution}</dd>
+            </div>
+            <div>
+              <dt class="text-sm font-semibold tracking-wide text-muted uppercase">Ergebnis</dt>
+              <dd class="mt-1 font-semibold text-ink">{t.result}</dd>
+            </div>
+          </dl>
+          {isFilled(t.quote) && <blockquote class="mt-5 border-l-4 border-accent pl-4 italic">„{t.quote}“</blockquote>}
+          {t.video && <div class="mt-5"><VslFacade video={t.video} /></div>}
+        </article>
+      ))}
+
+      {cards.length > 0 && (
+        <div class="mt-6 grid gap-6 sm:grid-cols-2">
+          {cards.map((t) => (
+            <article class="flex flex-col rounded-2xl border border-line bg-white p-5 shadow-sm">
+              <div class="flex items-center gap-3">
+                {isFilled(t.image) && <img src={t.image} alt={`${t.name}, ${t.company}`} width="48" height="48" loading="lazy" class="size-12 rounded-full object-cover" />}
+                <div>
+                  <h3 class="font-bold text-ink">{t.name}</h3>
+                  <p class="text-sm text-muted">{t.company}</p>
+                </div>
+              </div>
+              {isFilled(t.result) && <p class="mt-3 font-semibold text-ink">{t.result}</p>}
+              <blockquote class="mt-3">„{t.quote}“</blockquote>
+              {t.video && <div class="mt-4"><VslFacade video={t.video} /></div>}
+            </article>
+          ))}
+        </div>
+      )}
+
+      <CtaLink />
+    </section>
+  )
+}

@@ -1,0 +1,250 @@
+---
+import site from '../../config/site.json';
+import { telHref } from '../lib/text';
+
+const { form, legal, thankYou } = site;
+const [consentBefore, consentAfter] = form.consentText.split('{{datenschutz}}');
+const phoneHref = telHref(thankYou.phone);
+type InputType = 'text' | 'email' | 'tel';
+---
+
+<section id="formular" class="mt-12 rounded-2xl border border-line bg-surface p-5 sm:p-8" aria-labelledby="formular-titel">
+  <h2 id="formular-titel" class="text-center text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">{form.headline}</h2>
+
+  <form class="mt-6 space-y-5" novalidate data-lead-form>
+    <!-- Honeypot gegen Spam: für Menschen unsichtbar -->
+    <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+      <label for="lf-website">Website</label>
+      <input id="lf-website" type="text" name="website" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-2">
+      {
+        form.fields.map((field) => (
+          <div data-field={field.name}>
+            <label for={`lf-${field.name}`} class="mb-1.5 block text-sm font-semibold text-ink">
+              {field.label} <span aria-hidden="true">*</span>
+            </label>
+            <input
+              id={`lf-${field.name}`}
+              name={field.name}
+              type={field.type as InputType}
+              autocomplete={field.autocomplete}
+              inputmode={field.type === 'tel' ? 'tel' : field.type === 'email' ? 'email' : undefined}
+              required
+              aria-required="true"
+              aria-describedby={`lf-${field.name}-error`}
+              maxlength={field.type === 'email' ? 254 : 120}
+              class="field-input"
+              data-error={field.error}
+              data-error-format={field.errorFormat}
+            />
+            <p id={`lf-${field.name}-error`} class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for={field.name} />
+          </div>
+        ))
+      }
+    </div>
+
+    {
+      form.qualifiers.map((q) => (
+        <fieldset data-field={q.name} aria-describedby={`lf-${q.name}-error`}>
+          <legend class="mb-2 text-sm font-semibold text-ink">
+            {q.label} <span aria-hidden="true">*</span>
+          </legend>
+          <div class="grid gap-2 sm:grid-cols-3">
+            {q.options.map((option, i) => (
+              <label class="flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border border-field bg-white px-3.5 py-2.5 text-base text-ink has-checked:border-ink has-checked:ring-2 has-checked:ring-ink">
+                <input type="radio" name={q.name} value={option} required={i === 0} class="size-5 shrink-0 accent-ink" />
+                <span>{option}</span>
+              </label>
+            ))}
+          </div>
+          <p id={`lf-${q.name}-error`} class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for={q.name} />
+        </fieldset>
+      ))
+    }
+
+    <div data-field="consent">
+      <label class="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-body">
+        <input
+          type="checkbox"
+          name="consent"
+          required
+          aria-describedby="lf-consent-error"
+          class="mt-0.5 size-5 shrink-0 accent-ink"
+        />
+        <span>
+          {consentBefore}<a href={legal.datenschutzUrl} target="_blank" rel="noopener" class="font-semibold text-ink underline underline-offset-2">{form.consentLinkText}</a>{consentAfter}
+        </span>
+      </label>
+      <p id="lf-consent-error" class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for="consent" />
+    </div>
+
+    <div class="hidden rounded-lg border border-danger bg-white p-3.5 text-sm font-medium text-danger" role="alert" data-submit-error>
+      {form.errorText}
+      {phoneHref ? <a href={phoneHref} class="underline">{thankYou.phone}</a> : thankYou.phone}
+    </div>
+
+    <button type="submit" class="btn-cta" data-submit>
+      <span data-submit-label>{form.ctaText}</span>
+      <span class="hidden items-center gap-2" data-submit-loading>
+        <svg class="size-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-opacity=".25" stroke-width="3" />
+          <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+        </svg>
+        {form.submittingText}
+      </span>
+    </button>
+
+    <div class="space-y-1 text-center text-sm">
+      <p class="text-body">{form.trustLine}</p>
+      <p class="font-semibold text-ink">{form.guaranteeLine}</p>
+    </div>
+  </form>
+</section>
+
+<script>
+  import { form as formConfig, paths } from '../../config/site.json';
+  import { submitToHubspot, type HubspotField } from '../lib/hubspot';
+  import { captureAttribution, getAttribution } from '../lib/utm';
+  import { markLeadSubmitted } from '../lib/lead';
+  import { uuid } from '../lib/storage';
+
+  captureAttribution();
+
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const PHONE_CHARS = /^\+?[\d\s()/.-]+$/;
+
+  const formEl = document.querySelector<HTMLFormElement>('[data-lead-form]');
+
+  function phoneValid(value: string): boolean {
+    const digits = value.replace(/\D/g, '');
+    return PHONE_CHARS.test(value) && digits.length >= 6 && digits.length <= 15;
+  }
+
+  if (formEl) {
+    const submitBtn = formEl.querySelector<HTMLButtonElement>('[data-submit]')!;
+    const submitError = formEl.querySelector<HTMLElement>('[data-submit-error]')!;
+    const touched = new Set<string>();
+
+    const showError = (name: string, message: string) => {
+      const target = formEl.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
+      const inputs = formEl.querySelectorAll<HTMLInputElement>(`[name="${name}"]`);
+      if (target) {
+        target.textContent = message;
+        target.classList.toggle('hidden', message === '');
+      }
+      inputs.forEach((input) => input.setAttribute('aria-invalid', message ? 'true' : 'false'));
+    };
+
+    const validateField = (name: string): boolean => {
+      const config = formConfig.fields.find((f) => f.name === name);
+      if (config) {
+        const input = formEl.elements.namedItem(name) as HTMLInputElement;
+        const value = input.value.trim();
+        let message = '';
+        if (value === '') message = config.error;
+        else if (config.type === 'email' && !EMAIL.test(value)) message = config.errorFormat ?? config.error;
+        else if (config.type === 'tel' && !phoneValid(value)) message = config.errorFormat ?? config.error;
+        showError(name, message);
+        return message === '';
+      }
+      if (formConfig.qualifiers.some((q) => q.name === name)) {
+        const checked = formEl.querySelector(`[name="${name}"]:checked`);
+        showError(name, checked ? '' : formConfig.qualifierError);
+        return !!checked;
+      }
+      if (name === 'consent') {
+        const checked = (formEl.elements.namedItem('consent') as HTMLInputElement).checked;
+        showError('consent', checked ? '' : formConfig.consentError);
+        return checked;
+      }
+      return true;
+    };
+
+    const allNames = [...formConfig.fields.map((f) => f.name), ...formConfig.qualifiers.map((q) => q.name), 'consent'];
+
+    formEl.addEventListener('focusout', (event) => {
+      const input = event.target as HTMLInputElement;
+      if (input.type === 'radio' || input.type === 'checkbox' || !allNames.includes(input.name)) return;
+      touched.add(input.name);
+      validateField(input.name);
+    });
+    formEl.addEventListener('input', (event) => {
+      const input = event.target as HTMLInputElement;
+      if (input.type === 'radio' || input.type === 'checkbox') validateField(input.name);
+      else if (touched.has(input.name)) validateField(input.name);
+    });
+
+    const setLoading = (loading: boolean) => {
+      submitBtn.disabled = loading;
+      submitBtn.setAttribute('aria-busy', String(loading));
+      formEl.querySelector('[data-submit-label]')!.classList.toggle('hidden', loading);
+      const spinner = formEl.querySelector<HTMLElement>('[data-submit-loading]')!;
+      spinner.classList.toggle('hidden', !loading);
+      spinner.classList.toggle('inline-flex', loading);
+    };
+
+    let sending = false;
+
+    // Zurück-Button nach der Weiterleitung (bfcache): Formular wieder bedienbar machen.
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        sending = false;
+        setLoading(false);
+      }
+    });
+
+    formEl.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (sending) return;
+      submitError.classList.add('hidden');
+
+      const results = allNames.map((name) => ({ name, ok: validateField(name) }));
+      allNames.forEach((n) => touched.add(n));
+      const firstInvalid = results.find((r) => !r.ok);
+      if (firstInvalid) {
+        formEl.querySelector<HTMLInputElement>(`[name="${firstInvalid.name}"]`)?.focus();
+        return;
+      }
+
+      const data = new FormData(formEl);
+      // Honeypot ausgefüllt → Bot: nichts senden, nichts tracken.
+      if (String(data.get('website') ?? '') !== '') {
+        window.location.href = paths.thankYou;
+        return;
+      }
+
+      sending = true;
+      setLoading(true);
+
+      const mapping = formConfig.fieldMapping as Record<string, string>;
+      const eventId = uuid();
+      const fields: HubspotField[] = [];
+      const push = (key: string, value: string | undefined) => {
+        const name = mapping[key];
+        if (name && value) fields.push({ name, value });
+      };
+      formConfig.fields.forEach((f) => push(f.name, String(data.get(f.name) ?? '').trim()));
+      formConfig.qualifiers.forEach((q) => {
+        const value = String(data.get(q.name) ?? '');
+        if (q.hubspotProperty && value) fields.push({ name: q.hubspotProperty, value });
+      });
+      Object.entries(getAttribution()).forEach(([key, value]) => push(key, value));
+      push('event_id', eventId);
+
+      const consentText = formConfig.consentText.replace('{{datenschutz}}', formConfig.consentLinkText);
+      const ok = await submitToHubspot(formConfig.hubspot, fields, consentText);
+
+      if (ok) {
+        markLeadSubmitted(String(data.get('vorname') ?? '').trim(), eventId);
+        window.location.href = paths.thankYou;
+        return;
+      }
+
+      sending = false;
+      setLoading(false);
+      submitError.classList.remove('hidden');
+    });
+  }
+</script>

@@ -1,0 +1,63 @@
+---
+// Schlanker Consent-Banner (Briefing, Abschnitt 6). Speichert consent_marketing in localStorage.
+import site from '../../config/site.json';
+
+interface Props {
+  /** Auf /danke: Banner auch nach „Nur notwendige“ erneut zeigen, solange ein Lead im 30-Minuten-Fenster offen ist */
+  showOnPendingLead?: boolean;
+}
+const { showOnPendingLead = false } = Astro.props;
+const { consent, legal } = site;
+---
+
+<section
+  class="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white p-4 shadow-[0_-8px_30px_rgba(13,27,42,.12)] sm:inset-x-auto sm:right-4 sm:bottom-4 sm:max-w-md sm:rounded-2xl sm:border"
+  role="dialog"
+  aria-modal="false"
+  aria-labelledby="consent-titel"
+  aria-describedby="consent-text"
+  data-consent-banner
+  data-pending-lead={showOnPendingLead ? 'true' : undefined}
+  hidden
+>
+  <h2 id="consent-titel" class="font-bold text-ink">{consent.headline}</h2>
+  <p id="consent-text" class="mt-1.5 text-sm leading-relaxed">
+    {consent.text}
+    <a href={legal.datenschutzUrl} target="_blank" rel="noopener" class="font-semibold text-ink underline underline-offset-2">{consent.privacyLinkText}</a>
+  </p>
+  <div class="mt-4 grid grid-cols-2 gap-3">
+    <button type="button" class="btn-secondary min-h-12 px-3 text-sm" data-consent-choice="false">{consent.necessaryOnly}</button>
+    <button type="button" class="btn-secondary min-h-12 px-3 text-sm" data-consent-choice="true">{consent.acceptAll}</button>
+  </div>
+</section>
+
+<script>
+  import { CONSENT_OPEN_EVENT, getMarketingConsent, setMarketingConsent } from '../lib/consent';
+  import { getPendingLead } from '../lib/lead';
+
+  const banner = document.querySelector<HTMLElement>('[data-consent-banner]');
+  if (banner) {
+    const setOpen = (open: boolean) => {
+      banner.hidden = !open;
+      window.dispatchEvent(new Event('consent:visibility'));
+    };
+
+    const current = getMarketingConsent();
+    const reaskForLead = banner.dataset.pendingLead === 'true' && current !== true && getPendingLead() !== null;
+    if (current === null || reaskForLead) setOpen(true);
+
+    banner.querySelectorAll<HTMLButtonElement>('[data-consent-choice]').forEach((button) => {
+      button.addEventListener('click', () => {
+        setMarketingConsent(button.dataset.consentChoice === 'true');
+        setOpen(false);
+      });
+    });
+
+    const open = () => {
+      setOpen(true);
+      banner.querySelector<HTMLButtonElement>('[data-consent-choice]')?.focus();
+    };
+    window.addEventListener(CONSENT_OPEN_EVENT, open);
+    document.querySelectorAll('[data-consent-open]').forEach((el) => el.addEventListener('click', open));
+  }
+</script>
