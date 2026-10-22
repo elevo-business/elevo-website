@@ -11,20 +11,21 @@
     "accentHoverColor": "#2EBFAB"
   },
   "seo": {
-    "title": "Neukundensystem in 14 Tagen — Elevo",
-    "description": "Meta Ads, Landingpage, CRM mit Sofort-Benachrichtigung und ein Vertriebsprozess, den dein Team ab Tag 1 nutzt. Setup kostenlos · 30 Tage Geld-zurück-Garantie.",
+    "title": "Planbar Neukunden gewinnen — Elevo",
+    "description": "Wisse am Ersten des Monats, wie viele Neukunden du gewinnst: Angebot, Werbeanzeigen, Funnel und Setter-Closer-Prozess aus einer Hand. Setup kostenlos · 30 Tage Geld-zurück-Garantie.",
     "ogImage": "/og-image.jpg",
     "thankYouTitle": "Danke — Elevo"
   },
   "hero": {
-    "eyebrow": "Für Unternehmen, die planbar Neukunden gewinnen wollen",
-    "headline": "In 14 Tagen zu deinem eigenen Neukundensystem – oder du bekommst dein Geld zurück.",
+    "eyebrow": "Kannst du sagen, wie viele Neukunden du nächsten Monat gewinnst?",
+    "headline": "Wisse am Ersten des Monats, wie viele Neukunden du gewinnst – statt zu hoffen.",
     "headlineVariants": {
-      "A": "In 14 Tagen zu deinem eigenen Neukundensystem – oder du bekommst dein Geld zurück.",
-      "B": "Planbar Neukunden statt Zufall: Ich baue dir Ads und Vertriebsprozess aus einer Hand.",
-      "C": "Schluss mit „nur Empfehlungen“: Dein Vertriebssystem aus Meta Ads, Landingpage und Speed-to-Lead."
+      "A": "Wisse am Ersten des Monats, wie viele Neukunden du gewinnst – statt zu hoffen.",
+      "B": "Kein Vertrieb, sondern Hoffnung? Ich baue dir ein System, das aus Interessenten planbar Kunden macht.",
+      "C": "In 14 Tagen zu deinem eigenen Neukundensystem – oder du bekommst dein Geld zurück."
     },
-    "subheadline": "Meta Ads, Landingpage, CRM mit Sofort-Benachrichtigung und ein Vertriebsprozess, den dein Team ab Tag 1 nutzt – ohne dass du an deiner Website oder deinem CRM etwas ändern musst."
+    "subheadline": "Ich schärfe dein Angebot, baue Werbeanzeigen und Funnel und setze in deinem Vertrieb einen Setter-Closer-Prozess auf, der jede Anfrage innerhalb von Minuten anruft.",
+    "note": "Setup kostenlos · 30 Tage Geld-zurück-Garantie"
   },
   "vsl": {
     "provider": "self",
@@ -33,8 +34,8 @@
     "bunnyLibraryId": "",
     "poster": "/neukundensystem/vsl-poster.jpg",
     "aspect": "9:16",
-    "title": "Video: Dein Neukundensystem in 14 Tagen",
-    "caption": "Schau dir das Video an. Wenn du danach denkst „Das brauche ich“, trag dich unten ein – ich rufe dich persönlich an.",
+    "title": "Video: Planbar Neukunden gewinnen",
+    "caption": "Schau dir das kurze Video an. Wenn du sehen willst, wie das in deinem Unternehmen aussehen könnte, trag dich unten ein – ich rufe dich persönlich an.",
     "soundButton": "Mit Ton ansehen",
     "playButton": "Video abspielen",
     "providerHint": "Beim Abspielen wird das Video von {{anbieter}} geladen."
@@ -110,9 +111,9 @@
       "featured": true,
       "name": "Greenchild",
       "company": "Greenchild",
-      "situation": "[eintragen]",
+      "situation": "[eintragen – optional, wird erst angezeigt, wenn ausgefüllt]",
       "solution": "Meta Ads mit Formular-Funnel, Rückruf innerhalb weniger Minuten, Setter-Closer-Prozess",
-      "result": "[Zahlen eintragen, z. B. Leads pro Monat, Kosten pro Lead, Abschlüsse]",
+      "result": "Über 30.000 € zusätzlicher Umsatz in drei Monaten",
       "quote": "[eintragen, falls vorhanden – sonst weglassen]",
       "image": "",
       "video": null
@@ -139,12 +140,13 @@
   "faq": [
     { "q": "Für wen ist das geeignet?", "a": "Für Unternehmen mit eigenem Vertriebsmitarbeiter (oder du rufst selbst an), die mind. 1.000 € im Monat in Werbung investieren können und planbar wachsen wollen." },
     { "q": "Für wen ist das nicht geeignet?", "a": "Wenn du Anfragen nicht innerhalb weniger Minuten anrufen kannst oder nur „ein paar Ads“ suchst." },
-    { "q": "Was genau bekomme ich?", "a": "Meta-Ads-Kampagnen, eine Landingpage, ein CRM mit Push bei jedem Lead, E-Mail-Strecken zum Nachfassen, Gesprächsskripte und Training für dein Team, Skripte für Werbevideos und ein wöchentliches Reporting." },
-    { "q": "Was kostet das?", "a": "Das Setup ist kostenlos. Die monatliche Investition besprechen wir im Gespräch. Die Mindestlaufzeit beträgt 3 Monate." },
+    { "q": "Was genau bekomme ich?", "a": "Ein geschärftes Angebot, Meta-Ads-Kampagnen, eine Landingpage, ein CRM mit Push bei jedem Lead, E-Mail-Strecken zum Nachfassen, Gesprächsskripte und Training für dein Team, Skripte für Werbevideos und ein wöchentliches Reporting." },
+    { "q": "Was kostet das?", "a": "Das Setup kostet dich nichts – ich mache die ganze Arbeit. Die monatliche Investition besprechen wir im Gespräch. Die Mindestlaufzeit beträgt 3 Monate." },
+    { "q": "Warum ist der schnelle Rückruf so wichtig?", "a": "Eine Auswertung von über 3,5 Millionen Leads hat gezeigt: Wer eine Anfrage innerhalb der ersten Minute anruft, steigert seine Abschlussquote um fast 400 %. Deshalb wird bei mir jede Anfrage innerhalb von Minuten angerufen." },
     { "q": "Wie viel Werbebudget brauche ich?", "a": "Mindestens 1.000 € im Monat. Das Budget zahlst du direkt an Meta." },
     { "q": "Brauche ich eigene Vertriebsmitarbeiter?", "a": "Ja. Ich baue das System und schule dein Team – angerufen wird von euch." },
     { "q": "Wie schnell geht es los?", "a": "Deine Kampagnen sind innerhalb von 14 Tagen live." },
-    { "q": "Wie funktioniert die Garantie?", "a": "Liefert das System in den ersten 30 Tagen nach dem Start keine Ergebnisse, bekommst du dein Geld zurück. [Bedingungen eintragen]" },
+    { "q": "Wie funktioniert die Garantie?", "a": "Liefert das System in den ersten 30 Tagen nach dem Start keine Ergebnisse, bekommst du jeden Cent zurück. [Bedingungen eintragen]" },
     { "q": "Muss ich an meiner Website oder meinem CRM etwas ändern?", "a": "Nein. Alles läuft separat. Du gibst mir nur Zugänge zu deinem Werbekonto frei." },
     { "q": "Wie viel Zeit kostet mich das?", "a": "Ein Kick-off-Call (60 Min.), ein paar Videos per Handy aufnehmen und Freigaben. Den Rest übernehme ich." }
   ],

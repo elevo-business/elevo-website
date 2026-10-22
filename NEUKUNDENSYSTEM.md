@@ -33,7 +33,7 @@ Beim Build listet die Konsole alle noch offenen `[Platzhalter]` auf („offene P
 
 `hero.headline` ist die Headline, die angezeigt wird. Die drei Varianten liegen in `hero.headlineVariants`.
 Zum Wechseln den Text der gewünschten Variante in `hero.headline` kopieren.
-Steht in der Headline „ – “ (Gedankenstrich mit Leerzeichen), kommt der Teil danach auf eine eigene Zeile.
+`hero.note` ist die kurze Zeile unter der Subheadline (Risikoumkehr). Steht in der Headline „ – “ (Gedankenstrich mit Leerzeichen), kommt der Teil danach auf eine eigene Zeile.
 
 ### Video
 
@@ -64,7 +64,7 @@ Optional ein Video auf der Danke-Seite: `thankYou.video` auf ein Objekt im selbe
 
 Eine Karte wird **nur angezeigt, wenn ihre Pflichtangaben echt ausgefüllt sind** (kein Text in `[eckigen Klammern]`). Ist keine Karte vollständig, ist die ganze Sektion unsichtbar.
 
-- Greenchild-Hauptkarte (`"featured": true`): braucht `situation`, `solution`, `result`. `quote` ist optional – leer lassen (`""`) oder Platzhalter stehen lassen, dann wird es weggelassen.
+- Greenchild-Hauptkarte (`"featured": true`): braucht `solution` und `result`. `situation` (Ausgangslage) und `quote` sind optional – leer lassen (`""`) oder Platzhalter stehen lassen, dann wird es weggelassen.
 - Weitere Karten: brauchen `name`, `company`, `quote`. `result` ist optional.
 - `image`: Pfad zu einem Foto/Logo in `public/` (z. B. `/neukundensystem/greenchild.webp`, quadratisch, WebP).
 - `video`: optional, gleiches Format wie oben.

@@ -20,7 +20,7 @@ interface Testimonial {
 
 const items = site.testimonials as Testimonial[];
 const featured = items.filter(
-  (t) => t.featured && isFilled(t.name) && isFilled(t.situation) && isFilled(t.solution) && isFilled(t.result),
+  (t) => t.featured && isFilled(t.name) && isFilled(t.solution) && isFilled(t.result),
 );
 const cards = items.filter((t) => !t.featured && isFilled(t.name) && isFilled(t.company) && isFilled(t.quote));
 const visible = featured.length + cards.length > 0;
@@ -43,10 +43,12 @@ const visible = featured.length + cards.length > 0;
             </div>
           </div>
           <dl class="mt-5 space-y-4">
-            <div>
-              <dt class="text-sm font-semibold tracking-wide text-muted uppercase">Ausgangslage</dt>
-              <dd class="mt-1">{t.situation}</dd>
-            </div>
+            {isFilled(t.situation) && (
+              <div>
+                <dt class="text-sm font-semibold tracking-wide text-muted uppercase">Ausgangslage</dt>
+                <dd class="mt-1">{t.situation}</dd>
+              </div>
+            )}
             <div>
               <dt class="text-sm font-semibold tracking-wide text-muted uppercase">Lösung</dt>
               <dd class="mt-1">{t.solution}</dd>

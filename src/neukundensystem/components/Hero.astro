@@ -1,7 +1,7 @@
 ---
 import site from '../../config/site.json';
 
-const { eyebrow, headline, subheadline } = site.hero;
+const { eyebrow, headline, subheadline, note } = site.hero;
 // Steht im Headline-Text ein Gedankenstrich (Variante A), kommt der zweite Teil auf eine eigene Zeile.
 // Der Wortlaut bleibt dabei unverändert.
 const dashIndex = headline.indexOf(' – ');
@@ -16,4 +16,5 @@ const tail = dashIndex > -1 ? headline.slice(dashIndex + 1) : '';
     {tail && <> <span class="mt-1 block font-bold text-body">{tail}</span></>}
   </h1>
   {subheadline && <p class="mt-4 text-base leading-relaxed text-pretty sm:text-lg">{subheadline}</p>}
+  {note && <p class="mt-3 text-sm font-semibold text-ink sm:text-base">{note}</p>}
 </header>
