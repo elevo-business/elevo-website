@@ -49,6 +49,7 @@ const progress = (n: number) => form.progressText.replace('{{n}}', String(n)).re
                   {step.qualifier.label}
                 </span>
               </legend>
+              {step.qualifier.hint && <p class="mt-2 text-center text-sm text-muted">{step.qualifier.hint}</p>}
               <div class="mt-5 grid gap-3">
                 {step.qualifier.options.map((option, i) => (
                   <label class="group flex min-h-14 cursor-pointer items-center gap-3 rounded-xl border-2 border-field bg-white px-4 py-3 text-lg font-semibold text-ink transition-colors duration-300 hover:border-ink has-checked:border-ink has-checked:bg-ink has-checked:text-white has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-ink">
