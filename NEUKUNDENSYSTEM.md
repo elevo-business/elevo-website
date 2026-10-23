@@ -71,6 +71,11 @@ Eine Karte wird **nur angezeigt, wenn ihre Pflichtangaben echt ausgefüllt sind*
 
 ### Formular-Felder und Qualifizierungsfragen
 
+Das Formular läuft in Schritten zum Durchklicken (Fortschrittsbalken oben). Ein Klick auf eine Antwort springt direkt zum nächsten Schritt. An HubSpot wird **einmal am Ende** gesendet – abgebrochene Formulare erzeugen keinen Kontakt.
+
+- `form.steps`: Reihenfolge der Schritte. Ein Schritt mit genau einer Qualifizierungsfrage (z. B. `["werbebudget"]`) wird als Frage mit großen Antwort-Buttons angezeigt; andere Schritte bekommen eine Überschrift (`title`) und die genannten Felder. `"consent"` gehört in den letzten Schritt.
+- `form.nextText`, `form.backText`, `form.progressText` („Schritt {{n}} von {{total}}“): Texte der Navigation.
+
 - `form.fields`: Beschriftungen und Fehlermeldungen der Textfelder.
 - `form.qualifiers`: die drei Auswahlfragen. `label` = Frage, `options` = Antworten, `hubspotProperty` = interner Name der HubSpot-Property.
 - `form.fieldMapping`: welches Formularfeld in welche HubSpot-Property geschrieben wird. Ist ein Wert leer (`""`), wird das Feld nicht gesendet.

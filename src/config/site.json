@@ -44,6 +44,16 @@
     "headline": "Kostenloses Erstgespräch anfragen",
     "ctaText": "Jetzt Rückruf anfordern",
     "submittingText": "Wird gesendet …",
+    "nextText": "Weiter",
+    "backText": "Zurück",
+    "progressText": "Schritt {{n}} von {{total}}",
+    "steps": [
+      { "items": ["werbebudget"] },
+      { "items": ["anrufer"] },
+      { "items": ["startzeitpunkt"] },
+      { "title": "Erzähl mir kurz von deinem Unternehmen", "items": ["firma", "branche"] },
+      { "title": "Wohin darf ich dich anrufen?", "items": ["vorname", "nachname", "email", "telefon", "consent"] }
+    ],
     "trustLine": "Ich rufe dich persönlich an – meist noch am selben Tag.",
     "guaranteeLine": "Setup kostenlos · 30 Tage Geld-zurück-Garantie",
     "errorText": "Das hat nicht geklappt. Bitte versuch es erneut oder ruf mich an:",
