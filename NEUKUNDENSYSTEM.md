@@ -92,7 +92,7 @@ Auf den Buttons steht dunkler Text – die Akzentfarbe muss also hell genug sein
 Die Forms API nimmt nur Felder an, die es im HubSpot-Formular gibt.
 
 1. **Kontakt-Properties anlegen** (Einstellungen → Properties → Kontakt), Typ „Einzeiliger Text“:
-   `lp_situation`, `lp_anrufer`, `lp_startzeitpunkt`, `lp_werbebudget`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `fbclid`
+   `lp_situation`, `lp_anrufer`, `lp_startzeitpunkt`, `lp_kundenwert`, `lp_werbebudget`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `fbclid`
    (Einzeiliger Text, damit die Antworten 1:1 ankommen. Wenn du Dropdowns willst: interne Werte exakt wie die `options` in `site.json`.)
 2. **Formular anlegen** (Marketing → Formulare) mit: Vorname, Nachname, E-Mail, Telefonnummer, Firma, Branche (`industry`) und allen Properties aus Schritt 1. Die UTM-Felder und `fbclid` als **ausgeblendete Felder**.
 3. **Datenschutz**: Die Seite schickt `consentToProcess: true` mit dem Text der Checkbox mit.
