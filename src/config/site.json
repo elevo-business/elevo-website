@@ -1,7 +1,8 @@
 {
   "paths": {
     "landing": "/neukundensystem/",
-    "thankYou": "/neukundensystem/danke/"
+    "thankYou": "/neukundensystem/danke/",
+    "disqualified": "/neukundensystem/absage/"
   },
   "brand": {
     "name": "Elevo",
@@ -221,7 +222,15 @@
     "qualifierError": "Bitte wähle eine Antwort aus.",
     "consentText": "Ich stimme der Verarbeitung meiner Daten gemäß der {{datenschutz}} zu.",
     "consentLinkText": "Datenschutzerklärung",
-    "consentError": "Bitte stimme der Verarbeitung deiner Daten zu, damit ich dich anrufen kann."
+    "consentError": "Bitte stimme der Verarbeitung deiner Daten zu, damit ich dich anrufen kann.",
+    "disqualify": [
+      {
+        "question": "kundenwert",
+        "options": [
+          "unter 2.000 €"
+        ]
+      }
+    ]
   },
   "sections": {
     "inlineCta": "Jetzt eintragen",
@@ -374,5 +383,13 @@
   "legal": {
     "impressumUrl": "/impressum",
     "datenschutzUrl": "/datenschutz"
+  },
+  "disqualified": {
+    "title": "Danke für dein Interesse — Elevo",
+    "headline": "Danke für deine Offenheit!",
+    "text": "Mein Neukundensystem rechnet sich erst ab einem Kundenwert von etwa 2.000 €. Darunter fressen Werbebudget und Aufwand den Gewinn meist wieder auf – und ich möchte dir nichts verkaufen, das sich für dich nicht lohnt.",
+    "text2": "Wenn sich dein Angebot ändert oder du einen höherpreisigen Service planst, trag dich gern noch einmal ein.",
+    "button": "Zur Startseite",
+    "buttonHref": "/"
   }
 }
