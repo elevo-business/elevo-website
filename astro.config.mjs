@@ -7,8 +7,8 @@ import placeholderReport from './src/neukundensystem/integrations/placeholder-re
 export default defineConfig({
   site: 'https://elevo.solutions',
   integrations: [
-    // /neukundensystem/danke ist noindex und gehört nicht in die Sitemap
-    sitemap({ filter: (page) => !page.includes('/neukundensystem/danke') }),
+    // /neukundensystem/danke und /absage sind noindex und gehören nicht in die Sitemap
+    sitemap({ filter: (page) => !/\/neukundensystem\/(danke|absage)/.test(page) }),
     placeholderReport(),
   ],
   output: 'static',

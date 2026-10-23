@@ -1,0 +1,30 @@
+---
+import LpLayout from '../../neukundensystem/layouts/LpLayout.astro';
+import site from '../../config/site.json';
+import Logo from '../../neukundensystem/components/Logo.astro';
+
+const page = site.disqualified;
+---
+
+<LpLayout title={page.title} description={page.headline} noindex>
+  <main id="inhalt" class="mx-auto max-w-[720px] px-4">
+    <div class="flex justify-center pt-5"><Logo /></div>
+
+    <h1 class="mt-10 text-center text-[1.625rem] leading-[1.2] font-extrabold tracking-tight text-balance text-ink sm:text-4xl">
+      {page.headline}
+    </h1>
+
+    <div class="mx-auto mt-6 max-w-xl space-y-4 text-center text-base leading-relaxed sm:text-lg">
+      <p>{page.text}</p>
+      {page.text2 && <p>{page.text2}</p>}
+    </div>
+
+    {
+      page.button && (
+        <div class="mx-auto mt-8 max-w-xs">
+          <a href={page.buttonHref} class="btn-secondary w-full">{page.button}</a>
+        </div>
+      )
+    }
+  </main>
+</LpLayout>

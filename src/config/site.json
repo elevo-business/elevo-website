@@ -1,7 +1,8 @@
 {
   "paths": {
     "landing": "/neukundensystem/",
-    "thankYou": "/neukundensystem/danke/"
+    "thankYou": "/neukundensystem/danke/",
+    "disqualified": "/neukundensystem/absage/"
   },
   "brand": {
     "name": "Elevo",
@@ -48,11 +49,48 @@
     "backText": "Zurück",
     "progressText": "Schritt {{n}} von {{total}}",
     "steps": [
-      { "items": ["werbebudget"] },
-      { "items": ["anrufer"] },
-      { "items": ["startzeitpunkt"] },
-      { "title": "Erzähl mir kurz von deinem Unternehmen", "items": ["firma", "branche"] },
-      { "title": "Wohin darf ich dich anrufen?", "items": ["vorname", "nachname", "email", "telefon", "consent"] }
+      {
+        "items": [
+          "situation"
+        ]
+      },
+      {
+        "items": [
+          "anrufer"
+        ]
+      },
+      {
+        "items": [
+          "startzeitpunkt"
+        ]
+      },
+      {
+        "title": "Erzähl mir kurz von deinem Unternehmen",
+        "items": [
+          "firma",
+          "branche"
+        ]
+      },
+      {
+        "items": [
+          "kundenwert"
+        ]
+      },
+      {
+        "items": [
+          "werbebudget"
+        ]
+      },
+      {
+        "title": "Fast geschafft – deine Kontaktdaten für den Rückruf",
+        "items": [
+          "vorname",
+          "nachname",
+          "email",
+          "telefon",
+          "consent"
+        ]
+      }
     ],
     "trustLine": "Ich rufe dich persönlich an – meist noch am selben Tag.",
     "guaranteeLine": "Setup kostenlos · 30 Tage Geld-zurück-Garantie",
@@ -63,12 +101,50 @@
       "communications": []
     },
     "fields": [
-      { "name": "vorname", "label": "Vorname", "type": "text", "autocomplete": "given-name", "error": "Bitte gib deinen Vornamen ein." },
-      { "name": "nachname", "label": "Nachname", "type": "text", "autocomplete": "family-name", "error": "Bitte gib deinen Nachnamen ein." },
-      { "name": "email", "label": "E-Mail", "type": "email", "autocomplete": "email", "error": "Bitte gib deine E-Mail-Adresse ein.", "errorFormat": "Bitte gib eine gültige E-Mail-Adresse ein (z. B. name@firma.de)." },
-      { "name": "telefon", "label": "Telefon", "type": "tel", "autocomplete": "tel", "error": "Bitte gib deine Telefonnummer ein.", "errorFormat": "Bitte gib eine gültige Telefonnummer ein (z. B. 0151 1234567 oder +49 151 1234567)." },
-      { "name": "firma", "label": "Firma", "type": "text", "autocomplete": "organization", "error": "Bitte gib deine Firma ein." },
-      { "name": "branche", "label": "Branche", "type": "text", "autocomplete": "off", "error": "Bitte gib deine Branche ein." }
+      {
+        "name": "vorname",
+        "label": "Vorname",
+        "type": "text",
+        "autocomplete": "given-name",
+        "error": "Bitte gib deinen Vornamen ein."
+      },
+      {
+        "name": "nachname",
+        "label": "Nachname",
+        "type": "text",
+        "autocomplete": "family-name",
+        "error": "Bitte gib deinen Nachnamen ein."
+      },
+      {
+        "name": "email",
+        "label": "E-Mail",
+        "type": "email",
+        "autocomplete": "email",
+        "error": "Bitte gib deine E-Mail-Adresse ein.",
+        "errorFormat": "Bitte gib eine gültige E-Mail-Adresse ein (z. B. name@firma.de)."
+      },
+      {
+        "name": "telefon",
+        "label": "Telefon",
+        "type": "tel",
+        "autocomplete": "tel",
+        "error": "Bitte gib deine Telefonnummer ein.",
+        "errorFormat": "Bitte gib eine gültige Telefonnummer ein (z. B. 0151 1234567 oder +49 151 1234567)."
+      },
+      {
+        "name": "firma",
+        "label": "Firma",
+        "type": "text",
+        "autocomplete": "organization",
+        "error": "Bitte gib deine Firma ein."
+      },
+      {
+        "name": "branche",
+        "label": "Branche",
+        "type": "text",
+        "autocomplete": "off",
+        "error": "Bitte gib deine Branche ein."
+      }
     ],
     "fieldMapping": {
       "vorname": "firstname",
@@ -87,28 +163,74 @@
     },
     "qualifiers": [
       {
-        "name": "werbebudget",
-        "hubspotProperty": "lp_werbebudget",
-        "label": "Wie viel kannst du monatlich in Werbung investieren?",
-        "options": ["unter 1.000 €", "1.000–3.000 €", "über 3.000 €"]
+        "name": "situation",
+        "hubspotProperty": "lp_situation",
+        "label": "Wie gewinnst du heute neue Kunden?",
+        "hint": "Nur ein paar kurze Fragen – dauert keine Minute.",
+        "options": [
+          "Vor allem über Empfehlungen",
+          "Wir machen schon Werbung, aber es kommt zu wenig dabei rum",
+          "Anfragen kommen, aber zu wenige werden zu Kunden"
+        ]
       },
       {
         "name": "anrufer",
         "hubspotProperty": "lp_anrufer",
-        "label": "Wer ruft bei euch neue Anfragen an?",
-        "options": ["Ich selbst", "Ein Vertriebsmitarbeiter", "Noch niemand"]
+        "label": "Wer kümmert sich bei euch um neue Anfragen?",
+        "hint": "",
+        "options": [
+          "Ich selbst",
+          "Jemand aus meinem Team",
+          "Das ist noch offen"
+        ]
       },
       {
         "name": "startzeitpunkt",
         "hubspotProperty": "lp_startzeitpunkt",
-        "label": "Wann möchtest du starten?",
-        "options": ["Sofort", "In 1–3 Monaten", "Später"]
+        "label": "Wann würdest du gern loslegen?",
+        "hint": "",
+        "options": [
+          "Am liebsten sofort",
+          "In den nächsten 1–3 Monaten",
+          "Ich schaue mich erst mal um"
+        ]
+      },
+      {
+        "name": "kundenwert",
+        "hubspotProperty": "lp_kundenwert",
+        "label": "Was ist ein neuer Kunde für dich ungefähr wert?",
+        "hint": "Gemeint ist der Umsatz, den du mit einem Kunden machst – nur zur Einordnung.",
+        "options": [
+          "unter 2.000 €",
+          "2.000–5.000 €",
+          "5.000–10.000 €",
+          "über 10.000 €"
+        ]
+      },
+      {
+        "name": "werbebudget",
+        "hubspotProperty": "lp_werbebudget",
+        "label": "Mit welchem Werbebudget planst du ungefähr pro Monat?",
+        "hint": "Nur zur Einordnung – so kann ich dir im Gespräch realistische Zahlen nennen.",
+        "options": [
+          "unter 1.000 €",
+          "1.000–3.000 €",
+          "über 3.000 €"
+        ]
       }
     ],
     "qualifierError": "Bitte wähle eine Antwort aus.",
     "consentText": "Ich stimme der Verarbeitung meiner Daten gemäß der {{datenschutz}} zu.",
     "consentLinkText": "Datenschutzerklärung",
-    "consentError": "Bitte stimme der Verarbeitung deiner Daten zu, damit ich dich anrufen kann."
+    "consentError": "Bitte stimme der Verarbeitung deiner Daten zu, damit ich dich anrufen kann.",
+    "disqualify": [
+      {
+        "question": "kundenwert",
+        "options": [
+          "unter 2.000 €"
+        ]
+      }
+    ]
   },
   "sections": {
     "inlineCta": "Jetzt eintragen",
@@ -121,44 +243,113 @@
       "featured": true,
       "name": "Greenchild",
       "company": "Greenchild",
-      "situation": "[eintragen – optional, wird erst angezeigt, wenn ausgefüllt]",
+      "logo": "/client-logos/greenchild.png",
+      "tag": "Sachwert-Investment · erklärungsbedürftiges Produkt",
+      "situation": "Start bei null: keine Seite, kein Weg zur Anfrage. Leads und Unterlagen liefen über Handarbeit, das Nachfassen blieb liegen.",
       "solution": "Meta Ads mit Formular-Funnel, Rückruf innerhalb weniger Minuten, Setter-Closer-Prozess",
       "result": "Über 30.000 € zusätzlicher Umsatz in drei Monaten",
-      "quote": "[eintragen, falls vorhanden – sonst weglassen]",
+      "stats": [
+        {
+          "value": "30.000 €+",
+          "label": "zusätzlicher Umsatz in 3 Monaten"
+        },
+        {
+          "value": "5",
+          "label": "qualifizierte Anfragen in Woche 1 – vorher null"
+        },
+        {
+          "value": "5 Std.",
+          "label": "weniger Handarbeit pro Woche"
+        }
+      ],
+      "processHeadline": "So läuft der Funnel bei Greenchild",
+      "process": [
+        "Meta-Werbeanzeigen bringen gezielt Interessenten auf die Seite.",
+        "Eigene Landingpages pro Kampagne, die laufend gegeneinander getestet werden.",
+        "Ein Formular zum Durchklicken qualifiziert vor – die Telefonnummer wird per SMS bestätigt, damit keine Fake-Kontakte im Vertrieb landen.",
+        "Jede Anfrage landet sofort im CRM, der Vertrieb wird direkt benachrichtigt.",
+        "Rückruf innerhalb weniger Minuten, danach das Beratungsgespräch nach dem Setter-Closer-Prinzip. Jeder Anruf wird automatisch im CRM protokolliert.",
+        "Follow-up- und Erinnerungs-E-Mails laufen automatisch.",
+        "Abgeschlossene Verträge fließen zurück an Meta – die Anzeigen lernen auf echte Kunden statt auf Klicks."
+      ],
+      "quote": "Früher lief bei uns vieles über Handarbeit. Heute kommt ein Lead rein und der Rest passiert von allein, vom Dokument bis zur Erinnerung. Mein Team kümmert sich wieder um Kunden statt um Copy und Paste. Elevo hat genau das gebaut, was sie versprochen haben.",
+      "quoteAuthor": "Nazim Azemi",
+      "quoteRole": "Gründer & Geschäftsführer, Greenchild",
+      "quoteImage": "/testimonials/nazim-azemi.webp",
+      "video": null
+    },
+    {
+      "name": "Dina Römgens",
+      "company": "Burnout-Coaching",
+      "label": "Website",
+      "result": "Mehr Klienten bei gleicher Anzahl an Anfragen",
+      "points": [
+        "Symptom-Check als leiser Einstieg, bevor jemand zum Telefon greifen muss",
+        "Ruhige Gestaltung, die Vertrauen schafft statt Druck"
+      ],
+      "quote": "[Zitat zur Zusammenarbeit (Website) – optional]",
       "image": "",
       "video": null
     },
     {
-      "_hinweis": "Coach 1: [Name, Firma, Zitat zur Zusammenarbeit (Website)]",
-      "name": "[Name]",
-      "company": "[Firma]",
+      "name": "Sina Bachmann",
+      "company": "Coaching für Frauen in Führung",
+      "label": "Website",
       "result": "",
-      "quote": "[Zitat zur Zusammenarbeit (Website)]",
-      "image": "",
-      "video": null
-    },
-    {
-      "_hinweis": "Coach 2: [Name, Firma, Zitat zur Zusammenarbeit (Website)]",
-      "name": "[Name]",
-      "company": "[Firma]",
-      "result": "",
-      "quote": "[Zitat zur Zusammenarbeit (Website)]",
+      "points": [
+        "Antreiber-Check, der Besucherinnen ins Gespräch bringt, bevor sie gehen",
+        "Klare Wege für Einzelcoaching, Unternehmen und Academy"
+      ],
+      "quote": "[Zitat zur Zusammenarbeit (Website) – optional]",
       "image": "",
       "video": null
     }
   ],
   "faq": [
-    { "q": "Für wen ist das geeignet?", "a": "Für Unternehmen mit eigenem Vertriebsmitarbeiter (oder du rufst selbst an), die mind. 1.000 € im Monat in Werbung investieren können und planbar wachsen wollen." },
-    { "q": "Für wen ist das nicht geeignet?", "a": "Wenn du Anfragen nicht innerhalb weniger Minuten anrufen kannst oder nur „ein paar Ads“ suchst." },
-    { "q": "Was genau bekomme ich?", "a": "Ein geschärftes Angebot, Meta-Ads-Kampagnen, eine Landingpage, ein CRM mit Push bei jedem Lead, E-Mail-Strecken zum Nachfassen, Gesprächsskripte und Training für dein Team, Skripte für Werbevideos und ein wöchentliches Reporting." },
-    { "q": "Was kostet das?", "a": "Das Setup kostet dich nichts – ich mache die ganze Arbeit. Die monatliche Investition besprechen wir im Gespräch. Die Mindestlaufzeit beträgt 3 Monate." },
-    { "q": "Warum ist der schnelle Rückruf so wichtig?", "a": "Eine Auswertung von über 3,5 Millionen Leads hat gezeigt: Wer eine Anfrage innerhalb der ersten Minute anruft, steigert seine Abschlussquote um fast 400 %. Deshalb wird bei mir jede Anfrage innerhalb von Minuten angerufen." },
-    { "q": "Wie viel Werbebudget brauche ich?", "a": "Mindestens 1.000 € im Monat. Das Budget zahlst du direkt an Meta." },
-    { "q": "Brauche ich eigene Vertriebsmitarbeiter?", "a": "Ja. Ich baue das System und schule dein Team – angerufen wird von euch." },
-    { "q": "Wie schnell geht es los?", "a": "Deine Kampagnen sind innerhalb von 14 Tagen live." },
-    { "q": "Wie funktioniert die Garantie?", "a": "Liefert das System in den ersten 30 Tagen nach dem Start keine Ergebnisse, bekommst du jeden Cent zurück. [Bedingungen eintragen]" },
-    { "q": "Muss ich an meiner Website oder meinem CRM etwas ändern?", "a": "Nein. Alles läuft separat. Du gibst mir nur Zugänge zu deinem Werbekonto frei." },
-    { "q": "Wie viel Zeit kostet mich das?", "a": "Ein Kick-off-Call (60 Min.), ein paar Videos per Handy aufnehmen und Freigaben. Den Rest übernehme ich." }
+    {
+      "q": "Für wen ist das geeignet?",
+      "a": "Für Unternehmen mit eigenem Vertriebsmitarbeiter (oder du rufst selbst an), die mind. 1.000 € im Monat in Werbung investieren können und planbar wachsen wollen."
+    },
+    {
+      "q": "Für wen ist das nicht geeignet?",
+      "a": "Wenn du Anfragen nicht innerhalb weniger Minuten anrufen kannst oder nur „ein paar Ads“ suchst."
+    },
+    {
+      "q": "Was genau bekomme ich?",
+      "a": "Ein geschärftes Angebot, Meta-Ads-Kampagnen, eine Landingpage, ein CRM mit Push bei jedem Lead, E-Mail-Strecken zum Nachfassen, Gesprächsskripte und Training für dein Team, Skripte für Werbevideos und ein wöchentliches Reporting."
+    },
+    {
+      "q": "Was kostet das?",
+      "a": "Das Setup kostet dich nichts – ich mache die ganze Arbeit. Die monatliche Investition besprechen wir im Gespräch. Die Mindestlaufzeit beträgt 3 Monate."
+    },
+    {
+      "q": "Warum ist der schnelle Rückruf so wichtig?",
+      "a": "Eine Auswertung von über 3,5 Millionen Leads hat gezeigt: Wer eine Anfrage innerhalb der ersten Minute anruft, steigert seine Abschlussquote um fast 400 %. Deshalb wird bei mir jede Anfrage innerhalb von Minuten angerufen."
+    },
+    {
+      "q": "Wie viel Werbebudget brauche ich?",
+      "a": "Mindestens 1.000 € im Monat. Das Budget zahlst du direkt an Meta."
+    },
+    {
+      "q": "Brauche ich eigene Vertriebsmitarbeiter?",
+      "a": "Ja. Ich baue das System und schule dein Team – angerufen wird von euch."
+    },
+    {
+      "q": "Wie schnell geht es los?",
+      "a": "Deine Kampagnen sind innerhalb von 14 Tagen live."
+    },
+    {
+      "q": "Wie funktioniert die Garantie?",
+      "a": "Liefert das System in den ersten 30 Tagen nach dem Start keine Ergebnisse, bekommst du jeden Cent zurück. [Bedingungen eintragen]"
+    },
+    {
+      "q": "Muss ich an meiner Website oder meinem CRM etwas ändern?",
+      "a": "Nein. Alles läuft separat. Du gibst mir nur Zugänge zu deinem Werbekonto frei."
+    },
+    {
+      "q": "Wie viel Zeit kostet mich das?",
+      "a": "Ein Kick-off-Call (60 Min.), ein paar Videos per Handy aufnehmen und Freigaben. Den Rest übernehme ich."
+    }
   ],
   "closingCta": {
     "headline": "Bereit für planbare Neukunden?",
@@ -192,5 +383,13 @@
   "legal": {
     "impressumUrl": "/impressum",
     "datenschutzUrl": "/datenschutz"
+  },
+  "disqualified": {
+    "title": "Danke für dein Interesse — Elevo",
+    "headline": "Danke für deine Offenheit!",
+    "text": "Mein Neukundensystem rechnet sich erst ab einem Kundenwert von etwa 2.000 €. Darunter fressen Werbebudget und Aufwand den Gewinn meist wieder auf – und ich möchte dir nichts verkaufen, das sich für dich nicht lohnt.",
+    "text2": "Wenn sich dein Angebot ändert oder du einen höherpreisigen Service planst, trag dich gern noch einmal ein.",
+    "button": "Zur Startseite",
+    "buttonHref": "/"
   }
 }
