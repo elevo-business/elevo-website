@@ -6,97 +6,138 @@ const { form, legal, thankYou } = site;
 const [consentBefore, consentAfter] = form.consentText.split('{{datenschutz}}');
 const phoneHref = telHref(thankYou.phone);
 type InputType = 'text' | 'email' | 'tel';
+
+// Formular zum Durchklicken: Reihenfolge und Gruppierung kommen aus form.steps.
+const fieldsByName = Object.fromEntries(form.fields.map((f) => [f.name, f]));
+const qualifiersByName = Object.fromEntries(form.qualifiers.map((q) => [q.name, q]));
+const steps = form.steps.map((step, index) => ({
+  index,
+  title: step.title,
+  qualifier: step.items.length === 1 ? qualifiersByName[step.items[0]] : undefined,
+  fields: step.items.filter((name) => fieldsByName[name]).map((name) => fieldsByName[name]),
+  consent: step.items.includes('consent'),
+  last: index === form.steps.length - 1,
+}));
+const total = steps.length;
+const progress = (n: number) => form.progressText.replace('{{n}}', String(n)).replace('{{total}}', String(total));
 ---
 
 <section id="formular" class="mt-12 rounded-2xl border border-line bg-surface p-5 sm:p-8" aria-labelledby="formular-titel">
   <h2 id="formular-titel" class="text-center text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">{form.headline}</h2>
 
-  <form class="mt-6 space-y-5" novalidate data-lead-form>
+  <form class="mt-6" novalidate data-lead-form data-total={total}>
     <!-- Honeypot gegen Spam: für Menschen unsichtbar -->
     <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
       <label for="lf-website">Website</label>
       <input id="lf-website" type="text" name="website" tabindex="-1" autocomplete="off" />
     </div>
 
-    <div class="grid gap-5 sm:grid-cols-2">
-      {
-        form.fields.map((field) => (
-          <div data-field={field.name}>
-            <label for={`lf-${field.name}`} class="mb-1.5 block text-sm font-semibold text-ink">
-              {field.label} <span aria-hidden="true">*</span>
-            </label>
-            <input
-              id={`lf-${field.name}`}
-              name={field.name}
-              type={field.type as InputType}
-              autocomplete={field.autocomplete}
-              inputmode={field.type === 'tel' ? 'tel' : field.type === 'email' ? 'email' : undefined}
-              required
-              aria-required="true"
-              aria-describedby={`lf-${field.name}-error`}
-              maxlength={field.type === 'email' ? 254 : 120}
-              class="field-input"
-              data-error={field.error}
-              data-error-format={field.errorFormat}
-            />
-            <p id={`lf-${field.name}-error`} class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for={field.name} />
-          </div>
-        ))
-      }
+    <div class="mb-6">
+      <p class="mb-2 text-center text-sm font-semibold text-muted" aria-live="polite" data-progress-text>{progress(1)}</p>
+      <div class="h-2 overflow-hidden rounded-full bg-line" aria-hidden="true">
+        <div class="h-full rounded-full bg-ink transition-[width] duration-300" style={`width:${100 / total}%`} data-progress-bar></div>
+      </div>
     </div>
 
     {
-      form.qualifiers.map((q) => (
-        <fieldset data-field={q.name} aria-describedby={`lf-${q.name}-error`}>
-          <legend class="mb-2 text-sm font-semibold text-ink">
-            {q.label} <span aria-hidden="true">*</span>
-          </legend>
-          <div class="grid gap-2 sm:grid-cols-3">
-            {q.options.map((option, i) => (
-              <label class="flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border border-field bg-white px-3.5 py-2.5 text-base text-ink has-checked:border-ink has-checked:ring-2 has-checked:ring-ink">
-                <input type="radio" name={q.name} value={option} required={i === 0} class="size-5 shrink-0 accent-ink" />
-                <span>{option}</span>
-              </label>
-            ))}
+      steps.map((step) => (
+        <div data-step={step.index} hidden={step.index > 0}>
+          {step.qualifier ? (
+            <fieldset aria-describedby={`lf-${step.qualifier.name}-error`} data-qualifier-step>
+              <legend class="contents">
+                <span id={`lf-step-${step.index}-title`} tabindex="-1" class="block text-center text-xl font-bold text-ink outline-none sm:text-2xl" data-step-title>
+                  {step.qualifier.label}
+                </span>
+              </legend>
+              <div class="mt-5 grid gap-3">
+                {step.qualifier.options.map((option, i) => (
+                  <label class="group flex min-h-14 cursor-pointer items-center gap-3 rounded-xl border-2 border-field bg-white px-4 py-3 text-lg font-semibold text-ink transition-colors duration-300 hover:border-ink has-checked:border-ink has-checked:bg-ink has-checked:text-white has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-ink">
+                    <input type="radio" name={step.qualifier!.name} value={option} required={i === 0} class="sr-only" />
+                    <span class="grid size-6 shrink-0 place-items-center rounded-full border-2 border-current" aria-hidden="true">
+                      <span class="size-2.5 rounded-full bg-current opacity-0 group-has-checked:opacity-100" />
+                    </span>
+                    <span>{option}</span>
+                  </label>
+                ))}
+              </div>
+              <p id={`lf-${step.qualifier.name}-error`} class="mt-2 hidden text-sm font-medium text-danger" data-error-for={step.qualifier.name} />
+            </fieldset>
+          ) : (
+            <div role="group" aria-labelledby={`lf-step-${step.index}-title`}>
+              <span id={`lf-step-${step.index}-title`} tabindex="-1" class="block text-center text-xl font-bold text-ink outline-none sm:text-2xl" data-step-title>
+                {step.title}
+              </span>
+              <div class="mt-5 grid gap-5 sm:grid-cols-2">
+                {step.fields.map((field) => (
+                  <div data-field={field.name}>
+                    <label for={`lf-${field.name}`} class="mb-1.5 block text-sm font-semibold text-ink">
+                      {field.label} <span aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      id={`lf-${field.name}`}
+                      name={field.name}
+                      type={field.type as InputType}
+                      autocomplete={field.autocomplete}
+                      inputmode={field.type === 'tel' ? 'tel' : field.type === 'email' ? 'email' : undefined}
+                      required
+                      aria-required="true"
+                      aria-describedby={`lf-${field.name}-error`}
+                      maxlength={field.type === 'email' ? 254 : 120}
+                      class="field-input"
+                    />
+                    <p id={`lf-${field.name}-error`} class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for={field.name} />
+                  </div>
+                ))}
+              </div>
+              {step.consent && (
+                <div data-field="consent" class="mt-5">
+                  <label class="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-body">
+                    <input type="checkbox" name="consent" required aria-describedby="lf-consent-error" class="mt-0.5 size-5 shrink-0 accent-ink" />
+                    <span>
+                      {consentBefore}<a href={legal.datenschutzUrl} target="_blank" rel="noopener" class="font-semibold text-ink underline underline-offset-2">{form.consentLinkText}</a>{consentAfter}
+                    </span>
+                  </label>
+                  <p id="lf-consent-error" class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for="consent" />
+                </div>
+              )}
+            </div>
+          )}
+
+          {step.last && (
+            <div class="mt-5 hidden rounded-lg border border-danger bg-white p-3.5 text-sm font-medium text-danger" role="alert" data-submit-error>
+              {form.errorText}
+              {phoneHref ? <a href={phoneHref} class="underline">{thankYou.phone}</a> : thankYou.phone}
+            </div>
+          )}
+
+          <div class="mt-6 flex gap-3">
+            {step.index > 0 && (
+              <button type="button" class="btn-secondary min-h-14 shrink-0 px-5" data-back>
+                {form.backText}
+              </button>
+            )}
+            {step.last ? (
+              <button type="submit" class="btn-cta" data-submit>
+                <span data-submit-label>{form.ctaText}</span>
+                <span class="hidden items-center gap-2" data-submit-loading>
+                  <svg class="size-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-opacity=".25" stroke-width="3" />
+                    <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                  </svg>
+                  {form.submittingText}
+                </span>
+              </button>
+            ) : (
+              <button type="button" class="btn-cta" data-next>
+                {form.nextText}
+              </button>
+            )}
           </div>
-          <p id={`lf-${q.name}-error`} class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for={q.name} />
-        </fieldset>
+        </div>
       ))
     }
 
-    <div data-field="consent">
-      <label class="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-body">
-        <input
-          type="checkbox"
-          name="consent"
-          required
-          aria-describedby="lf-consent-error"
-          class="mt-0.5 size-5 shrink-0 accent-ink"
-        />
-        <span>
-          {consentBefore}<a href={legal.datenschutzUrl} target="_blank" rel="noopener" class="font-semibold text-ink underline underline-offset-2">{form.consentLinkText}</a>{consentAfter}
-        </span>
-      </label>
-      <p id="lf-consent-error" class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for="consent" />
-    </div>
-
-    <div class="hidden rounded-lg border border-danger bg-white p-3.5 text-sm font-medium text-danger" role="alert" data-submit-error>
-      {form.errorText}
-      {phoneHref ? <a href={phoneHref} class="underline">{thankYou.phone}</a> : thankYou.phone}
-    </div>
-
-    <button type="submit" class="btn-cta" data-submit>
-      <span data-submit-label>{form.ctaText}</span>
-      <span class="hidden items-center gap-2" data-submit-loading>
-        <svg class="size-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-opacity=".25" stroke-width="3" />
-          <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
-        </svg>
-        {form.submittingText}
-      </span>
-    </button>
-
-    <div class="space-y-1 text-center text-sm">
+    <div class="mt-5 space-y-1 text-center text-sm">
       <p class="text-body">{form.trustLine}</p>
       <p class="font-semibold text-ink">{form.guaranteeLine}</p>
     </div>
@@ -164,6 +205,69 @@ type InputType = 'text' | 'email' | 'tel';
 
     const allNames = [...formConfig.fields.map((f) => f.name), ...formConfig.qualifiers.map((q) => q.name), 'consent'];
 
+    // --- Schritte
+    const stepEls = Array.from(formEl.querySelectorAll<HTMLElement>('[data-step]'));
+    const total = stepEls.length;
+    const progressText = formEl.querySelector<HTMLElement>('[data-progress-text]')!;
+    const progressBar = formEl.querySelector<HTMLElement>('[data-progress-bar]')!;
+    const section = document.getElementById('formular');
+    let current = 0;
+
+    const stepOf = (name: string) => formConfig.steps.findIndex((s) => s.items.includes(name));
+
+    const validateStep = (index: number): string | null => {
+      const invalid = formConfig.steps[index].items.filter((name) => !validateField(name));
+      formConfig.steps[index].items.forEach((name) => touched.add(name));
+      return invalid[0] ?? null;
+    };
+
+    const showStep = (index: number, focus = true) => {
+      current = Math.max(0, Math.min(index, total - 1));
+      stepEls.forEach((el, i) => (el.hidden = i !== current));
+      progressText.textContent = formConfig.progressText.replace('{{n}}', String(current + 1)).replace('{{total}}', String(total));
+      progressBar.style.width = `${((current + 1) / total) * 100}%`;
+      if (!focus) return;
+      if (section && section.getBoundingClientRect().top < 0) section.scrollIntoView({ block: 'start' });
+      stepEls[current].querySelector<HTMLElement>('[data-step-title]')?.focus({ preventScroll: true });
+    };
+
+    const next = () => {
+      const invalid = validateStep(current);
+      if (invalid) {
+        formEl.querySelector<HTMLInputElement>(`[name="${invalid}"]`)?.focus();
+        return;
+      }
+      showStep(current + 1);
+    };
+
+    formEl.querySelectorAll('[data-next]').forEach((btn) => btn.addEventListener('click', next));
+    formEl.querySelectorAll('[data-back]').forEach((btn) => btn.addEventListener('click', () => showStep(current - 1)));
+
+    // Klick/Tipp auf eine Antwort springt direkt weiter. Mit der Tastatur (Pfeiltasten) bleibt man im Schritt
+    // und geht mit „Weiter“ – sonst würde jeder Pfeiltasten-Druck einen Schritt überspringen.
+    let pointerChoice = false;
+    formEl.addEventListener('pointerdown', (event) => {
+      pointerChoice = !!(event.target as HTMLElement).closest('[data-qualifier-step] label');
+    });
+    formEl.addEventListener('change', (event) => {
+      const input = event.target as HTMLInputElement;
+      if (input.type !== 'radio' || !pointerChoice) return;
+      pointerChoice = false;
+      const step = current;
+      window.setTimeout(() => {
+        if (current === step) next();
+      }, 250);
+    });
+
+    // Enter in einem Textfeld: zum nächsten Schritt statt absenden
+    formEl.addEventListener('keydown', (event) => {
+      const target = event.target as HTMLElement;
+      if (event.key === 'Enter' && target.tagName === 'INPUT' && (target as HTMLInputElement).type !== 'checkbox' && current < total - 1) {
+        event.preventDefault();
+        next();
+      }
+    });
+
     formEl.addEventListener('focusout', (event) => {
       const input = event.target as HTMLInputElement;
       if (input.type === 'radio' || input.type === 'checkbox' || !allNames.includes(input.name)) return;
@@ -200,10 +304,16 @@ type InputType = 'text' | 'email' | 'tel';
       if (sending) return;
       submitError.classList.add('hidden');
 
+      if (current < total - 1) {
+        next();
+        return;
+      }
       const results = allNames.map((name) => ({ name, ok: validateField(name) }));
       allNames.forEach((n) => touched.add(n));
       const firstInvalid = results.find((r) => !r.ok);
       if (firstInvalid) {
+        const step = stepOf(firstInvalid.name);
+        if (step > -1 && step !== current) showStep(step, false);
         formEl.querySelector<HTMLInputElement>(`[name="${firstInvalid.name}"]`)?.focus();
         return;
       }
