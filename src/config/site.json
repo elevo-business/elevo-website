@@ -96,8 +96,8 @@
     "guaranteeLine": "Setup kostenlos · 30 Tage Geld-zurück-Garantie",
     "errorText": "Das hat nicht geklappt. Bitte versuch es erneut oder ruf mich an:",
     "hubspot": {
-      "portalId": "[PORTAL-ID EINTRAGEN]",
-      "formGuid": "[FORM-GUID EINTRAGEN]",
+      "portalId": "149380660",
+      "formGuid": "927e45dd-6786-4a34-b084-7d6e73c6a470",
       "communications": []
     },
     "fields": [
