@@ -277,32 +277,6 @@
       "quoteRole": "Gründer & Geschäftsführer, Greenchild",
       "quoteImage": "/testimonials/nazim-azemi.webp",
       "video": null
-    },
-    {
-      "name": "Dina Römgens",
-      "company": "Burnout-Coaching",
-      "label": "Website",
-      "result": "Mehr Klienten bei gleicher Anzahl an Anfragen",
-      "points": [
-        "Symptom-Check als leiser Einstieg, bevor jemand zum Telefon greifen muss",
-        "Ruhige Gestaltung, die Vertrauen schafft statt Druck"
-      ],
-      "quote": "[Zitat zur Zusammenarbeit (Website) – optional]",
-      "image": "",
-      "video": null
-    },
-    {
-      "name": "Sina Bachmann",
-      "company": "Coaching für Frauen in Führung",
-      "label": "Website",
-      "result": "",
-      "points": [
-        "Antreiber-Check, der Besucherinnen ins Gespräch bringt, bevor sie gehen",
-        "Klare Wege für Einzelcoaching, Unternehmen und Academy"
-      ],
-      "quote": "[Zitat zur Zusammenarbeit (Website) – optional]",
-      "image": "",
-      "video": null
     }
   ],
   "faq": [
