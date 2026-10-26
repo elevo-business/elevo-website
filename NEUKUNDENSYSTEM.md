@@ -64,8 +64,8 @@ Optional ein Video auf der Danke-Seite: `thankYou.video` auf ein Objekt im selbe
 
 Eine Karte wird **nur angezeigt, wenn ihre Pflichtangaben echt ausgefüllt sind** (kein Text in `[eckigen Klammern]`). Ist keine Karte vollständig, ist die ganze Sektion unsichtbar.
 
-- Greenchild-Hauptkarte (`"featured": true`): braucht `solution` und `result`. `situation` (Ausgangslage) und `quote` sind optional – leer lassen (`""`) oder Platzhalter stehen lassen, dann wird es weggelassen.
-- Weitere Karten: brauchen `name`, `company`, `quote`. `result` ist optional.
+- Greenchild-Hauptkarte (`"featured": true`): braucht `solution` und `result`. Optional und nur sichtbar, wenn ausgefüllt: `logo`, `tag`, `situation` (Ausgangslage), `stats` (Kennzahlen-Kacheln), `processHeadline` + `process` (nummerierte Funnel-Schritte; ersetzt die Zeile „Lösung“), `quote` + `quoteAuthor` + `quoteRole` + `quoteImage`.
+- Weitere Karten: brauchen `name`, `company` und entweder `quote` oder `points` (Stichpunkte). `label`, `result` und `image` sind optional.
 - `image`: Pfad zu einem Foto/Logo in `public/` (z. B. `/neukundensystem/greenchild.webp`, quadratisch, WebP).
 - `video`: optional, gleiches Format wie oben.
 
@@ -74,10 +74,11 @@ Eine Karte wird **nur angezeigt, wenn ihre Pflichtangaben echt ausgefüllt sind*
 Das Formular läuft in Schritten zum Durchklicken (Fortschrittsbalken oben). Ein Klick auf eine Antwort springt direkt zum nächsten Schritt. An HubSpot wird **einmal am Ende** gesendet – abgebrochene Formulare erzeugen keinen Kontakt.
 
 - `form.steps`: Reihenfolge der Schritte. Ein Schritt mit genau einer Qualifizierungsfrage (z. B. `["werbebudget"]`) wird als Frage mit großen Antwort-Buttons angezeigt; andere Schritte bekommen eine Überschrift (`title`) und die genannten Felder. `"consent"` gehört in den letzten Schritt.
+- `form.disqualify`: Antworten, die direkt zur Absage-Seite `https://elevo.solutions/neukundensystem/absage/` führen (aktuell: Kundenwert „unter 2.000 €“). Dann wird **nichts** an HubSpot gesendet und kein Lead an Meta gemeldet. Die Texte der Absage-Seite stehen unter `disqualified` (noindex, nicht in der Sitemap).
 - `form.nextText`, `form.backText`, `form.progressText` („Schritt {{n}} von {{total}}“): Texte der Navigation.
 
 - `form.fields`: Beschriftungen und Fehlermeldungen der Textfelder.
-- `form.qualifiers`: die drei Auswahlfragen. `label` = Frage, `options` = Antworten, `hubspotProperty` = interner Name der HubSpot-Property.
+- `form.qualifiers`: die Auswahlfragen. `label` = Frage, `hint` = kleine Zeile darunter (optional), `options` = Antworten, `hubspotProperty` = interner Name der HubSpot-Property.
 - `form.fieldMapping`: welches Formularfeld in welche HubSpot-Property geschrieben wird. Ist ein Wert leer (`""`), wird das Feld nicht gesendet.
 
 ### Farben
@@ -92,7 +93,7 @@ Auf den Buttons steht dunkler Text – die Akzentfarbe muss also hell genug sein
 Die Forms API nimmt nur Felder an, die es im HubSpot-Formular gibt.
 
 1. **Kontakt-Properties anlegen** (Einstellungen → Properties → Kontakt), Typ „Einzeiliger Text“:
-   `lp_werbebudget`, `lp_anrufer`, `lp_startzeitpunkt`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `fbclid`
+   `lp_situation`, `lp_anrufer`, `lp_startzeitpunkt`, `lp_kundenwert`, `lp_werbebudget`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `fbclid`
    (Einzeiliger Text, damit die Antworten 1:1 ankommen. Wenn du Dropdowns willst: interne Werte exakt wie die `options` in `site.json`.)
 2. **Formular anlegen** (Marketing → Formulare) mit: Vorname, Nachname, E-Mail, Telefonnummer, Firma, Branche (`industry`) und allen Properties aus Schritt 1. Die UTM-Felder und `fbclid` als **ausgeblendete Felder**.
 3. **Datenschutz**: Die Seite schickt `consentToProcess: true` mit dem Text der Checkbox mit.

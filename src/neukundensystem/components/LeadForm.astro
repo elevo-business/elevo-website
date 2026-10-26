@@ -49,6 +49,7 @@ const progress = (n: number) => form.progressText.replace('{{n}}', String(n)).re
                   {step.qualifier.label}
                 </span>
               </legend>
+              {step.qualifier.hint && <p class="mt-2 text-center text-sm text-muted">{step.qualifier.hint}</p>}
               <div class="mt-5 grid gap-3">
                 {step.qualifier.options.map((option, i) => (
                   <label class="group flex min-h-14 cursor-pointer items-center gap-3 rounded-xl border-2 border-field bg-white px-4 py-3 text-lg font-semibold text-ink transition-colors duration-300 hover:border-ink has-checked:border-ink has-checked:bg-ink has-checked:text-white has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-ink">
@@ -231,10 +232,22 @@ const progress = (n: number) => form.progressText.replace('{{n}}', String(n)).re
       stepEls[current].querySelector<HTMLElement>('[data-step-title]')?.focus({ preventScroll: true });
     };
 
+    // Antworten, die nicht passen (z. B. Kundenwert unter 2.000 €): direkt zur Absage-Seite.
+    // Es wird nichts an HubSpot gesendet und kein Lead getrackt.
+    const isDisqualified = () =>
+      formConfig.disqualify.some((rule) => {
+        const checked = formEl.querySelector<HTMLInputElement>(`[name="${rule.question}"]:checked`);
+        return !!checked && rule.options.includes(checked.value);
+      });
+
     const next = () => {
       const invalid = validateStep(current);
       if (invalid) {
         formEl.querySelector<HTMLInputElement>(`[name="${invalid}"]`)?.focus();
+        return;
+      }
+      if (isDisqualified()) {
+        window.location.href = paths.disqualified;
         return;
       }
       showStep(current + 1);
@@ -315,6 +328,11 @@ const progress = (n: number) => form.progressText.replace('{{n}}', String(n)).re
         const step = stepOf(firstInvalid.name);
         if (step > -1 && step !== current) showStep(step, false);
         formEl.querySelector<HTMLInputElement>(`[name="${firstInvalid.name}"]`)?.focus();
+        return;
+      }
+
+      if (isDisqualified()) {
+        window.location.href = paths.disqualified;
         return;
       }
 
