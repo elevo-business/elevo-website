@@ -27,7 +27,7 @@ export async function submitToHubspot(
   consentText: string,
 ): Promise<boolean> {
   if (!isHubspotConfigured(config)) {
-    console.warn('HubSpot: portalId/formGuid sind in der Config (src/config/*.json) noch nicht eingetragen.');
+    console.error('HubSpot: portalId/formGuid sind in der Config (src/config/*.json) noch nicht eingetragen.');
     return false;
   }
   const hutk = getHutk();
@@ -59,11 +59,11 @@ export async function submitToHubspot(
       signal: controller.signal,
     });
     if (!response.ok) {
-      console.warn('HubSpot-Antwort', response.status, await response.text().catch(() => ''));
+      console.error('HubSpot-Antwort', response.status, await response.text().catch(() => ''));
     }
     return response.ok;
   } catch (error) {
-    console.warn('HubSpot-Versand fehlgeschlagen', error);
+    console.error('HubSpot-Versand fehlgeschlagen', error);
     return false;
   } finally {
     window.clearTimeout(timeout);
