@@ -2,7 +2,7 @@
 
 Landingpage für die eigenen Meta Ads an Kanzleien mit Schwerpunkt Familienrecht. Aufbau wie /neukundensystem: Astro (statisch) + Tailwind, eigenes Layout ohne seitenweites Tracking, Formular an die HubSpot Forms API, Meta Pixel nur auf der Danke-Seite.
 
-- `https://elevo.solutions/familienrecht/`: Headline + Pilot-Box → Quiz → Ergebnisse → Was Ihre Kanzlei bekommt → Für wen → Pilotangebot + Garantie → FAQ → Abschluss-CTA → Footer
+- `https://elevo.solutions/familienrecht/`: Headline + Pilot-Box → Quiz → Ergebnisse → Was Ihre Kanzlei bekommt → Über mich (`about`, Foto aus `public/team/`) → Für wen → Pilotangebot + Garantie → FAQ → Abschluss-CTA → Footer
 - `https://elevo.solutions/familienrecht/danke/`: Danke-Seite mit „Nummer speichern“ (`.vcf`), hier und nur hier lädt der Meta Pixel
 - Beide Seiten sind `noindex` und stehen nicht in der Sitemap (nur Ads-Traffic).
 - Kein Video: Headline, Pilot-Box und direkt darunter das Quiz.
@@ -107,7 +107,7 @@ src/pages/familienrecht/index.astro  Landingpage
 src/pages/familienrecht/danke.astro  Danke-Seite
 src/pages/familienrecht/mert-efe-celik.vcf.ts  vCard für „Nummer speichern“
 src/familienrecht/
-  components/  Hero, PilotBox, QuizForm, Results, HowItWorks, Fit, Offer, Faq, FinalCta, StickyCta, ConsentBanner, Footer
+  components/  Hero, PilotBox, QuizForm, Results, HowItWorks, About, Fit, Offer, Faq, FinalCta, StickyCta, ConsentBanner, Footer
   lib/         variant.ts (A/B/C), vcard.ts, answers.ts (Quiz-Zwischenstand)
   layouts/FrLayout.astro, styles/global.css (Tailwind nur für diese Seiten)
 public/familienrecht/                Referenz-Logos (Greenchild, BrandsMarketingLab)
