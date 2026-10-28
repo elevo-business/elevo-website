@@ -42,10 +42,11 @@ const hsContext = JSON.stringify({
     {Object.entries(form.hiddenFields).map(([name, value]) => <input type="hidden" name={name} value={value} />)}
     <input type="hidden" name="lp_headline" value={hero.defaultVariant} data-variant-field />
 
-    <!-- Honeypot gegen Spam: für Menschen unsichtbar, ohne name (wird nie an HubSpot gesendet) -->
+    <!-- Honeypot gegen Spam: für Menschen unsichtbar, ohne name (wird nie an HubSpot gesendet).
+         Bewusst ohne Begriffe wie „Website“, damit die Autofill-Funktion des Browsers das Feld nicht befüllt. -->
     <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
-      <label for="fr-hp">Website</label>
-      <input id="fr-hp" type="text" tabindex="-1" autocomplete="off" />
+      <label for="fr-hp">Bitte leer lassen</label>
+      <input id="fr-hp" type="text" tabindex="-1" autocomplete="one-time-code" data-lpignore="true" data-1p-ignore />
     </div>
 
     <div class="js-only mb-5">
