@@ -30,13 +30,13 @@
   },
   "pilot": {
     "totalPlaces": 5,
-    "freePlaces": 5,
+    "freePlaces": 4,
     "bullets": [
-      "Noch **{{free}} von {{total}}** Pilotplätzen frei",
       "**50 % des regulären Preises**, wenn ich Ihre Kanzlei als Referenz nennen darf",
       "**Ergebnisse in den ersten 30 Tagen** oder Sie bekommen Ihr Geld zurück"
     ],
-    "soldOutBullet": "**Alle {{total}} Pilotplätze vergeben**"
+    "placesLine": "Noch **{{free}} von {{total}}** Pilotplätzen frei",
+    "soldOutLine": "Alle {{total}} Pilotplätze vergeben"
   },
   "form": {
     "headline": "Pilotplatz anfragen",
@@ -312,7 +312,7 @@
       {
         "name": "Greenchild",
         "value": "Über 30.000 €",
-        "result": "zusätzlicher Umsatz in [2 oder 3] Monaten",
+        "result": "zusätzlicher Umsatz in 2 Monaten",
         "text": "Meta Ads, schneller Rückruf auf jede Anfrage und ein klarer Ablauf vom ersten Telefonat bis zum Abschluss.",
         "image": "/familienrecht/logo-greenchild.webp",
         "imageWidth": 398,
@@ -340,7 +340,7 @@
     "steps": [
       {
         "title": "Anzeigen, die Sie freigeben.",
-        "text": "Ich plane Ihre Anzeigen, schreibe die Skripte für kurze Videos und übernehme den Schnitt. Sie nehmen nur mit dem Handy auf. Keine Anzeige geht ohne Ihre Freigabe online."
+        "text": "Ich plane Ihre Anzeigen, gestalte Bildanzeigen, schreibe die Skripte für kurze Videos und übernehme den Schnitt. Sie nehmen nur mit dem Handy auf. Keine Anzeige geht ohne Ihre Freigabe online."
       },
       {
         "title": "Anfragen mit Vorinformation.",
@@ -401,7 +401,7 @@
     },
     {
       "q": "Was genau bekomme ich?",
-      "a": "Konzept und Skripte für Ihre Anzeigen, den Videoschnitt, die Einrichtung des Werbekontos, ein Anfrageformular mit Vorqualifizierung, eine Push-Benachrichtigung bei jeder Anfrage und Leitfäden für Rückruf und Erstgespräch."
+      "a": "Konzept und Skripte für Ihre Anzeigen, Bildanzeigen und den Videoschnitt, die Einrichtung des Werbekontos, ein Anfrageformular mit Vorqualifizierung, eine Push-Benachrichtigung bei jeder Anfrage und Leitfäden für Rückruf und Erstgespräch."
     },
     {
       "q": "Was kostet das?",
@@ -417,7 +417,7 @@
     },
     {
       "q": "Wie viel Zeit kostet mich das?",
-      "a": "Ein Kick-off-Gespräch, ein paar kurze Videos mit dem Handy und die Freigabe der Anzeigen. Den Rest übernehme ich."
+      "a": "Ein Kick-off-Gespräch, ein paar kurze Videos mit dem Handy und die Freigabe der Anzeigen. Den Rest übernehme ich, auch die Bildanzeigen."
     },
     {
       "q": "Muss ich an meiner Website etwas ändern?",
