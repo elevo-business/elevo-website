@@ -201,6 +201,16 @@ const hsContext = JSON.stringify({
     return red ? labels.c : green >= aMinGreen ? labels.a : labels.b;
   };
 
+  // Telefonnummer im Format +49… (0151 123 → +49151123, 0049… → +49…)
+  const toE164 = (raw: string): string => {
+    const cleaned = raw.replace(/[^\d+]/g, '');
+    if (cleaned.startsWith('+')) return cleaned;
+    if (cleaned.startsWith('00')) return `+${cleaned.slice(2)}`;
+    if (cleaned.startsWith('0')) return `+49${cleaned.slice(1)}`;
+    if (cleaned.startsWith('49')) return `+${cleaned}`;
+    return `+49${cleaned}`;
+  };
+
   const formEl = document.querySelector<HTMLFormElement>('[data-quiz]');
 
   if (formEl) {
@@ -421,10 +431,23 @@ const hsContext = JSON.stringify({
 
       const data = new FormData(formEl);
       const fields: HubspotField[] = [];
+      const choiceSteps = config.steps.filter((step) => step.type === 'choice');
       data.forEach((value, name) => {
         const text = String(value).trim();
-        if (name !== 'hs_context' && text) fields.push({ name, value: text });
+        if (name === 'hs_context' || !text) return;
+        const step = choiceSteps.find((s) => s.hubspotProperty === name);
+        if (step) {
+          // Dropdown-Properties: internen HubSpot-Wert senden, nicht den Anzeigetext
+          const values = (step as { hubspotValues?: Record<string, string> }).hubspotValues;
+          const mapped = values ? values[text] : text;
+          if (mapped) fields.push({ name, value: mapped });
+          const detail = (step as { detailProperty?: string }).detailProperty;
+          if (detail) fields.push({ name: detail, value: text });
+          return;
+        }
+        fields.push({ name, value: name === 'phone' ? toE164(text) : text });
       });
+      // Nur gefüllte UTM-Werte / fbclid
       Object.entries(getAttribution()).forEach(([name, value]) => value && fields.push({ name, value }));
       fields.push({ name: config.priority.property, value: priority(data) });
 

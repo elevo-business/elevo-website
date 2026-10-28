@@ -90,7 +90,12 @@
           "4 oder mehr"
         ],
         "red": [],
-        "green": []
+        "green": [],
+        "hubspotValues": {
+          "1": "1",
+          "2–3": "2_3",
+          "4 oder mehr": "4_plus"
+        }
       },
       {
         "id": "kapazitaet",
@@ -147,7 +152,7 @@
         "id": "rueckruf",
         "type": "choice",
         "question": "Wer ruft neue Anfragen zurück und wie schnell?",
-        "hubspotProperty": "fr_rueckruf",
+        "hubspotProperty": "lead_rueckruf",
         "options": [
           "Ich selbst, am selben Tag",
           "Sekretariat oder ReFa, am selben Tag",
@@ -161,7 +166,13 @@
         "green": [
           "Ich selbst, am selben Tag",
           "Sekretariat oder ReFa, am selben Tag"
-        ]
+        ],
+        "detailProperty": "fr_rueckruf",
+        "hubspotValues": {
+          "Ich selbst, am selben Tag": "ich_selbst",
+          "Sekretariat oder ReFa, am selben Tag": "sekretariat",
+          "Niemand fest zuständig": "niemand"
+        }
       },
       {
         "id": "crm",
@@ -182,20 +193,23 @@
         "id": "werbebudget",
         "type": "choice",
         "question": "Wie viel können Sie monatlich in Werbung investieren?",
-        "hubspotProperty": "fr_werbebudget",
+        "hubspotProperty": "lead_werbebudget",
         "options": [
           "Unter 1.000 €",
-          "1.000–2.000 €",
-          "2.000–5.000 €",
-          "Über 5.000 €"
+          "1.000–3.000 €",
+          "Über 3.000 €"
         ],
         "red": [
           "Unter 1.000 €"
         ],
         "green": [
-          "2.000–5.000 €",
-          "Über 5.000 €"
-        ]
+          "Über 3.000 €"
+        ],
+        "hubspotValues": {
+          "Unter 1.000 €": "unter_1000",
+          "1.000–3.000 €": "1000_3000",
+          "Über 3.000 €": "ueber_3000"
+        }
       },
       {
         "id": "entscheider",
@@ -229,7 +243,12 @@
         ],
         "green": [
           "Sofort"
-        ]
+        ],
+        "hubspotValues": {
+          "Sofort": "sofort",
+          "In 1–3 Monaten": "1_3_monate",
+          "Später": "spaeter"
+        }
       },
       {
         "id": "name",
@@ -295,7 +314,7 @@
       }
     ],
     "priority": {
-      "_info": "Wird automatisch berechnet und als lp_prioritaet an HubSpot gesendet. Eine Antwort aus 'red' → C. Keine 'red' und mind. aMinGreen Antworten aus 'green' → A. Sonst B.",
+      "_info": "Wird automatisch berechnet und als lp_prioritaet an HubSpot gesendet. Eine Antwort aus 'red' → C. Keine 'red' und mind. aMinGreen Antworten aus 'green' → A. Sonst B. hubspotValues: Anzeigetext → interner HubSpot-Wert (Dropdown-Properties); detailProperty: zusätzliches Textfeld mit dem vollen Anzeigetext.",
       "property": "lp_prioritaet",
       "aMinGreen": 4,
       "labels": {
