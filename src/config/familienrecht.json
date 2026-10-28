@@ -55,7 +55,7 @@
     "errorText": "Das hat nicht geklappt. Bitte versuchen Sie es noch einmal oder rufen Sie mich an:",
     "hubspot": {
       "portalId": "149380660",
-      "formGuid": "",
+      "formGuid": "723cfd30-9dea-46e2-9073-32b09db15b22",
       "communications": []
     },
     "hiddenFields": {
@@ -393,6 +393,10 @@
         "text": "Im Gegenzug darf ich Ihre Kanzlei als Referenz nennen."
       },
       {
+        "bold": "Keine Setupgebühr.",
+        "text": ""
+      },
+      {
         "bold": "Live in 14 Tagen.",
         "text": ""
       }
@@ -422,7 +426,7 @@
     },
     {
       "q": "Was kostet das?",
-      "a": "Pilotkanzleien zahlen 50 % des regulären Preises. Die genauen Zahlen nenne ich Ihnen im Telefonat."
+      "a": "Pilotkanzleien zahlen 50 % des regulären Preises. Eine Setupgebühr gibt es nicht. Die genauen Zahlen nenne ich Ihnen im Telefonat."
     },
     {
       "q": "Wer ruft die Anfragen zurück?",
