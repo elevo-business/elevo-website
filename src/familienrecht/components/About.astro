@@ -1,0 +1,39 @@
+---
+import fr from '../../config/familienrecht.json';
+const { headline, name, role, image, imageWidth, imageHeight, imageAlt, text, facts } = fr.about;
+---
+
+<section class="mt-16" aria-labelledby="ueber-mich-titel">
+  <h2 id="ueber-mich-titel" class="text-center text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">{headline}</h2>
+  <div class="mt-8 overflow-hidden rounded-2xl border border-line bg-white sm:grid sm:grid-cols-[220px_1fr]">
+    <img
+      src={image}
+      alt={imageAlt}
+      width={imageWidth}
+      height={imageHeight}
+      loading="lazy"
+      decoding="async"
+      class="aspect-[4/3] w-full object-cover object-[50%_15%] sm:aspect-auto sm:h-full"
+    />
+    <div class="p-5 sm:p-6">
+      <h3 class="text-xl font-bold text-ink">{name}</h3>
+      <p class="text-sm font-semibold text-muted">{role}</p>
+      <p class="mt-3">{text}</p>
+      {
+        facts.length > 0 && (
+          <dl class="mt-5 grid grid-cols-2 gap-3">
+            {facts.map((f) => (
+              <div class="rounded-xl bg-surface p-3 text-center">
+                <dt class="sr-only">{f.label}</dt>
+                <dd>
+                  <span class="block text-xl font-extrabold whitespace-nowrap text-ink sm:text-2xl">{f.value}</span>
+                  <span class="block text-sm text-muted">{f.label}</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )
+      }
+    </div>
+  </div>
+</section>

@@ -353,6 +353,26 @@
     ],
     "footnote": "In 14 Tagen eingerichtet. An Ihrer Website und Ihrer Kanzleisoftware ändert sich nichts."
   },
+  "about": {
+    "headline": "Wer Sie anruft",
+    "name": "Mert Efe Celik",
+    "role": "Vertriebsleiter, ELEVO Solutions",
+    "image": "/team/mert-800.webp",
+    "imageWidth": 800,
+    "imageHeight": 1000,
+    "imageAlt": "Porträt von Mert Efe Celik, Vertriebsleiter bei ELEVO Solutions",
+    "text": "Ich bin seit 5 Jahren im Vertrieb und Marketing tätig und habe bereits über 100.000 € in Werbeanzeigen investiert. Als Vertriebsleiter weiß ich: Anzeigen allein bringen keine Mandate. Entscheidend ist, was nach der Anfrage passiert. Deshalb richte ich jedes System selbst ein und rufe Sie persönlich an.",
+    "facts": [
+      {
+        "value": "5 Jahre",
+        "label": "Vertrieb und Marketing"
+      },
+      {
+        "value": "100.000 €+",
+        "label": "in Werbung investiert"
+      }
+    ]
+  },
   "fit": {
     "headline": "Passt das zu Ihrer Kanzlei?",
     "yesTitle": "Passt, wenn Sie",
