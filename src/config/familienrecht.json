@@ -195,8 +195,7 @@
         "green": [
           "2.000–5.000 €",
           "Über 5.000 €"
-        ],
-        "hint": "Das Budget zahlen Sie direkt an Meta, nicht an mich."
+        ]
       },
       {
         "id": "entscheider",
@@ -348,7 +347,7 @@
       },
       {
         "title": "Rückruf, solange das Interesse da ist.",
-        "text": "Jede Anfrage landet sofort per Push auf dem Handy Ihrer Kanzlei. Dazu bekommen Sie einen Leitfaden für den Rückruf und für das Erstgespräch."
+        "text": "Jede Anfrage landet sofort bei der zuständigen Person in Ihrer Kanzlei. Dazu bekommen Sie einen Leitfaden für den Rückruf und für das Erstgespräch."
       }
     ],
     "footnote": "In 14 Tagen eingerichtet. An Ihrer Website und Ihrer Kanzleisoftware ändert sich nichts."
@@ -378,8 +377,7 @@
     "yesTitle": "Passt, wenn Sie",
     "yes": [
       "einen Schwerpunkt im Familienrecht haben und mehr Mandate annehmen können",
-      "neue Anfragen am selben Tag zurückrufen können, selbst oder über Ihr Sekretariat",
-      "mindestens 1.000 € im Monat in Werbung investieren können"
+      "neue Anfragen am selben Tag zurückrufen können, selbst oder über Ihr Sekretariat"
     ],
     "noTitle": "Passt nicht, wenn Sie",
     "no": [
@@ -396,22 +394,21 @@
       },
       {
         "bold": "Live in 14 Tagen.",
-        "text": "Die Monatsgebühr läuft erst ab dem Start der Anzeigen."
-      },
-      {
-        "bold": "Mindestlaufzeit 3 Monate.",
         "text": ""
-      },
-      {
-        "bold": "Werbebudget",
-        "text": "zahlen Sie direkt an Meta, mindestens 1.000 € im Monat."
       }
     ],
     "guarantee": {
       "title": "Ergebnisse in 30 Tagen oder Geld zurück",
-      "text": "Ich garantiere Ihnen Ergebnisse in den ersten 30 Tagen nach dem Start. Was als Ergebnis zählt, legen wir im Kick-off gemeinsam als Zahl an neuen Mandaten fest. Wird sie in den ersten 30 Tagen nicht erreicht, zahle ich Ihnen die Monatsgebühr zurück und Sie können sofort kündigen. Voraussetzung: Ihre Kanzlei ruft Anfragen innerhalb von 15 Minuten während der Bürozeiten zurück und das Werbebudget läuft wie vereinbart."
+      "text": "Ich garantiere Ihnen Ergebnisse in den ersten 30 Tagen nach dem Start. Was als Ergebnis zählt, legen wir im Kick-off gemeinsam als Zahl an neuen Mandaten fest. Wird sie in den ersten 30 Tagen nicht erreicht, bekommen Sie Ihr Geld zurück. Voraussetzung: Ihre Kanzlei ruft Anfragen innerhalb von 15 Minuten während der Bürozeiten zurück."
     },
-    "button": "Pilotplatz anfragen"
+    "button": "Pilotplatz anfragen",
+    "processHeadline": "So läuft es ab",
+    "process": [
+      "Telefonat: Wir prüfen in etwa 15 Minuten, ob es passt.",
+      "Kick-off: Wir legen Ziele und die Zahl an neuen Mandaten fest. Sie nehmen ein paar kurze Videos mit dem Handy auf.",
+      "Aufbau: Ich erstelle Anzeigen, Anfrageformular und Rückruf-Leitfaden. Sie geben alles frei.",
+      "Start: Nach 14 Tagen ist Ihr System live und die ersten Anfragen kommen bei Ihnen an."
+    ]
   },
   "faqHeadline": "Häufige Fragen",
   "faq": [
@@ -421,15 +418,11 @@
     },
     {
       "q": "Was genau bekomme ich?",
-      "a": "Konzept und Skripte für Ihre Anzeigen, Bildanzeigen und den Videoschnitt, die Einrichtung des Werbekontos, ein Anfrageformular mit Vorqualifizierung, eine Push-Benachrichtigung bei jeder Anfrage und Leitfäden für Rückruf und Erstgespräch."
+      "a": "Konzept und Skripte für Ihre Anzeigen, Bildanzeigen und den Videoschnitt, die Einrichtung des Werbekontos, ein Anfrageformular mit Vorqualifizierung, die sofortige Weiterleitung jeder Anfrage an die zuständige Person in Ihrer Kanzlei und Leitfäden für Rückruf und Erstgespräch."
     },
     {
       "q": "Was kostet das?",
-      "a": "Pilotkanzleien zahlen 50 % des regulären Preises. Die genauen Zahlen nenne ich Ihnen im Telefonat. Die Monatsgebühr läuft ab dem Start der Anzeigen, die Mindestlaufzeit beträgt 3 Monate. Das Werbebudget zahlen Sie direkt an Meta."
-    },
-    {
-      "q": "Wie viel Werbebudget brauche ich?",
-      "a": "Mindestens 1.000 € im Monat. Darunter kommen zu wenige Anfragen zusammen, um in 30 Tagen ein belastbares Ergebnis zu sehen."
+      "a": "Pilotkanzleien zahlen 50 % des regulären Preises. Die genauen Zahlen nenne ich Ihnen im Telefonat."
     },
     {
       "q": "Wer ruft die Anfragen zurück?",
@@ -445,7 +438,7 @@
     },
     {
       "q": "Wie funktioniert die Garantie?",
-      "a": "Ich garantiere Ergebnisse in den ersten 30 Tagen nach dem Start. Im Kick-off legen wir dafür eine Zahl an neuen Mandaten fest. Wird sie nicht erreicht, bekommen Sie die Monatsgebühr zurück und können sofort kündigen. Voraussetzung: Rückruf innerhalb von 15 Minuten während der Bürozeiten und das Werbebudget läuft wie vereinbart."
+      "a": "Ich garantiere Ergebnisse in den ersten 30 Tagen nach dem Start. Im Kick-off legen wir dafür eine Zahl an neuen Mandaten fest. Wird sie nicht erreicht, bekommen Sie Ihr Geld zurück. Voraussetzung: Rückruf innerhalb von 15 Minuten während der Bürozeiten."
     },
     {
       "q": "Warum nur 5 Pilotplätze?",
