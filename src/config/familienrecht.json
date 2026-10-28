@@ -147,7 +147,7 @@
         "id": "rueckruf",
         "type": "choice",
         "question": "Wer ruft neue Anfragen zurück und wie schnell?",
-        "hubspotProperty": "lead_rueckruf",
+        "hubspotProperty": "fr_rueckruf",
         "options": [
           "Ich selbst, am selben Tag",
           "Sekretariat oder ReFa, am selben Tag",
@@ -182,7 +182,7 @@
         "id": "werbebudget",
         "type": "choice",
         "question": "Wie viel können Sie monatlich in Werbung investieren?",
-        "hubspotProperty": "lead_werbebudget",
+        "hubspotProperty": "fr_werbebudget",
         "options": [
           "Unter 1.000 €",
           "1.000–2.000 €",

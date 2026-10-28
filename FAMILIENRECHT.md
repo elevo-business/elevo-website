@@ -53,9 +53,9 @@ Bei `"freePlaces": 0` zeigt die Pilot-Box „Alle 5 Pilotplätze vergeben“ und
 | 3 | Kapazität für zusätzliche Mandate pro Monat | `lead_kapazitaet` |
 | 4 | Woher neue Mandate heute kommen | `lead_akquise` |
 | 5 | Honorar pro Familienrechtsmandat | `lead_mandatswert` |
-| 6 | Wer ruft zurück und wie schnell | `lead_rueckruf` |
+| 6 | Wer ruft zurück und wie schnell | `fr_rueckruf` |
 | 7 | Wo Anfragen erfasst werden (CRM, Kanzleisoftware, …) | `lead_crm` |
-| 8 | Monatliches Werbebudget | `lead_werbebudget` |
+| 8 | Monatliches Werbebudget | `fr_werbebudget` |
 | 9 | Wer entscheidet | `lead_entscheider` |
 | 10 | Startzeitpunkt | `lead_startzeitpunkt` |
 | 11 | Vorname*, Nachname, Kanzlei, Website | `firstname`, `lastname`, `company`, `website` |
@@ -76,8 +76,8 @@ Verhalten: Klick auf eine Kachel springt nach 250 ms weiter, Zurück behält die
 ## 5. HubSpot einrichten (einmalig)
 
 1. **Kontakt-Properties** anlegen (Einstellungen → Properties → Kontakt), Typ „Einzeiliger Text“ (oder Dropdown mit exakt denselben Werten wie die `options`):
-   `lead_schwerpunkt`, `lead_kanzlei_groesse`, `lead_kapazitaet`, `lead_akquise`, `lead_mandatswert`, `lead_rueckruf`, `lead_crm`, `lead_werbebudget`, `lead_entscheider`, `lead_startzeitpunkt`, `lp_prioritaet`, `lp_variante`, `lp_headline`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `fbclid`
-2. **Formular anlegen** mit **allen** Feldern: Vorname, Nachname, E-Mail, Telefon, Firma, Website und alle Properties aus Schritt 1 (die UTM-Felder, `fbclid`, `lp_*` als ausgeblendete Felder). Die API verwirft Felder, die nicht im Formular sind.
+   `lead_schwerpunkt`, `lead_kanzlei_groesse`, `lead_kapazitaet`, `lead_akquise`, `lead_mandatswert`, `fr_rueckruf`, `lead_crm`, `fr_werbebudget`, `lead_entscheider`, `lead_startzeitpunkt`, `lp_prioritaet`, `lp_variante`, `lp_headline`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `fbclid`
+2. **Formular anlegen** mit **allen** Feldern (wichtig: die Forms API verwirft jedes Feld, das nicht im Formular steht, auch wenn die Property existiert): Vorname, Nachname, E-Mail, Telefon, Firma, Website und alle Properties aus Schritt 1 (die UTM-Felder, `fbclid`, `lp_*` als ausgeblendete Felder). Die API verwirft Felder, die nicht im Formular sind.
 3. `formGuid` in `form.hubspot.formGuid` eintragen (`portalId` 149380660 ist gesetzt).
 4. **Push aufs Handy**: in der HubSpot-App Benachrichtigungen für Formulareinsendungen aktivieren.
 
