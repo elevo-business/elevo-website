@@ -4,7 +4,7 @@ import { fill, isFilled } from '../../neukundensystem/lib/text';
 import CheckIcon from './CheckIcon.astro';
 import CtaButton from './CtaButton.astro';
 
-const { headline, bullets, guarantee, button } = fr.offer;
+const { headline, bullets, processHeadline, process, guarantee, button } = fr.offer;
 ---
 
 <section class="mt-16" aria-labelledby="angebot-titel">
@@ -21,6 +21,22 @@ const { headline, bullets, guarantee, button } = fr.offer;
       ))
     }
   </ul>
+
+  {
+    process?.length > 0 && (
+      <div class="mt-8">
+        <h3 class="text-xl font-bold text-ink">{processHeadline}</h3>
+        <ol class="mt-4 space-y-3">
+          {process.map((step, i) => (
+            <li class="flex gap-3">
+              <span class="grid size-8 shrink-0 place-items-center rounded-full bg-ink text-sm font-bold text-white" aria-hidden="true">{i + 1}</span>
+              <span class="pt-0.5">{step}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    )
+  }
 
   <div class="mt-8 rounded-2xl border-2 border-ink bg-white p-5 sm:p-6">
     <div class="flex items-center gap-3">
