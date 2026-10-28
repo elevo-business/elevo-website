@@ -5,14 +5,24 @@ import { fill } from '../../neukundensystem/lib/text';
 import Bold from './Bold.astro';
 import CheckIcon from './CheckIcon.astro';
 
-const { totalPlaces, freePlaces, bullets, soldOutBullet } = fr.pilot;
-const values = { free: String(Math.max(0, freePlaces)), total: String(totalPlaces) };
-const soldOut = freePlaces <= 0;
-const lines = (soldOut ? [soldOutBullet, ...bullets.slice(1)] : bullets).map((b) => fill(b, values));
+const { totalPlaces, freePlaces, placesLine, soldOutLine, bullets } = fr.pilot;
+const free = Math.max(0, Math.min(freePlaces, totalPlaces));
+const values = { free: String(free), total: String(totalPlaces) };
+const headline = fill(free === 0 ? soldOutLine : placesLine, values);
+const lines = bullets.map((b) => fill(b, values));
 ---
 
-<div class="rounded-2xl border-2 border-accent bg-accent-soft px-3.5 py-3 sm:px-5 sm:py-4">
-  <ul class="space-y-1.5">
+<div class="overflow-hidden rounded-2xl border-2 border-accent bg-accent-soft shadow-[0_6px_24px_rgba(242,163,58,.25)]">
+  <div class="flex items-center justify-between gap-3 bg-accent px-3 py-2.5 text-ink-deep sm:px-5">
+    <p class="text-base leading-tight font-semibold sm:text-lg"><Bold text={headline} /></p>
+    <!-- Platz-Anzeige: belegte Plätze dunkel, freie Plätze hell -->
+    <div class="flex shrink-0 gap-1" aria-hidden="true">
+      {Array.from({ length: totalPlaces }, (_, i) => (
+        <span class:list={['size-3 rounded-full border-2 border-ink-deep', i < totalPlaces - free ? 'bg-ink-deep' : 'bg-white']} />
+      ))}
+    </div>
+  </div>
+  <ul class="space-y-1.5 px-3.5 py-3 sm:px-5 sm:py-4">
     {
       lines.map((line) => (
         <li class="flex gap-2.5 text-[15px] leading-snug sm:text-[17px]">
