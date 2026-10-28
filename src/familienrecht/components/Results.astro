@@ -1,0 +1,42 @@
+---
+// Ergebnisse: nur Angaben aus der Config. Logo nur, wenn `image` gesetzt ist; Zitat nur, wenn `quote` gefüllt ist.
+import fr from '../../config/familienrecht.json';
+import { isFilled } from '../../neukundensystem/lib/text';
+
+const { headline, items, honestyNote } = fr.results;
+---
+
+<section class="mt-16" aria-labelledby="ergebnisse-titel">
+  <h2 id="ergebnisse-titel" class="text-center text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">{headline}</h2>
+
+  <div class="mt-8 grid gap-5 sm:grid-cols-2">
+    {
+      items.map((item) => (
+        <article class:list={['flex flex-col rounded-2xl border border-line bg-white p-5 shadow-sm sm:p-6', item.featured && 'sm:col-span-2']}>
+          <div class="flex min-h-10 items-center gap-3">
+            {item.image && (
+              <img
+                src={item.image}
+                alt={item.imageAlt}
+                width={item.imageWidth}
+                height={item.imageHeight}
+                loading="lazy"
+                decoding="async"
+                class:list={['w-auto', item.imageWidth > item.imageHeight * 2 ? 'h-8' : 'h-10']}
+              />
+            )}
+            <h3 class:list={['font-bold text-ink', item.image && item.imageWidth > item.imageHeight * 2 && 'sr-only']}>{item.name}</h3>
+          </div>
+          <p class="mt-4">
+            <span class:list={['block font-extrabold tracking-tight text-ink', item.featured ? 'text-4xl sm:text-5xl' : 'text-4xl']}>{item.value}</span>
+            <span class="mt-1 block text-sm font-semibold text-muted">{item.result}</span>
+          </p>
+          <p class="mt-4 text-[15px] leading-relaxed">{item.text}</p>
+          {isFilled(item.quote) && <blockquote class="mt-4 border-l-4 border-line pl-4 italic">„{item.quote}“</blockquote>}
+        </article>
+      ))
+    }
+  </div>
+
+  {honestyNote && <p class="mt-6 text-pretty">{honestyNote}</p>}
+</section>

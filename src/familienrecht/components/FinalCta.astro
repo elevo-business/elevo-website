@@ -1,0 +1,21 @@
+---
+// Freie Plätze nur aus der Config. Erst bei freePlaces = 0 erscheint die Warteliste.
+import fr from '../../config/familienrecht.json';
+import { fill } from '../../neukundensystem/lib/text';
+import CtaButton from './CtaButton.astro';
+
+const free = Math.max(0, fr.pilot.freePlaces);
+const { finalCta } = fr;
+const soldOut = free === 0;
+const headline = soldOut ? finalCta.soldOut.headline : free === 1 ? finalCta.headlineOne : fill(finalCta.headline, { free: String(free) });
+const text = soldOut ? finalCta.soldOut.text : finalCta.text;
+const button = soldOut ? finalCta.soldOut.button : finalCta.button;
+---
+
+<section class="mt-16 rounded-2xl bg-ink px-5 py-10 text-center sm:px-10" aria-labelledby="abschluss-titel">
+  <h2 id="abschluss-titel" class="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">{headline}</h2>
+  <p class="mx-auto mt-3 max-w-md text-white/85">{text}</p>
+  <div class="mx-auto mt-6 max-w-sm">
+    <CtaButton label={button} />
+  </div>
+</section>

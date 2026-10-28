@@ -1,0 +1,25 @@
+---
+// Freie Plätze kommen nur aus der Config (pilot.freePlaces) – kein Zähler, keine Automatik.
+import fr from '../../config/familienrecht.json';
+import { fill } from '../../neukundensystem/lib/text';
+import Bold from './Bold.astro';
+import CheckIcon from './CheckIcon.astro';
+
+const { totalPlaces, freePlaces, bullets, soldOutBullet } = fr.pilot;
+const values = { free: String(Math.max(0, freePlaces)), total: String(totalPlaces) };
+const soldOut = freePlaces <= 0;
+const lines = (soldOut ? [soldOutBullet, ...bullets.slice(1)] : bullets).map((b) => fill(b, values));
+---
+
+<div class="rounded-2xl border-2 border-accent bg-accent-soft px-3.5 py-3 sm:px-5 sm:py-4">
+  <ul class="space-y-1.5">
+    {
+      lines.map((line) => (
+        <li class="flex gap-2.5 text-[15px] leading-snug sm:text-[17px]">
+          <CheckIcon class="mt-0.5 size-5 text-ink" />
+          <span><Bold text={line} /></span>
+        </li>
+      ))
+    }
+  </ul>
+</div>

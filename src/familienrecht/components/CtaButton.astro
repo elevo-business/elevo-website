@@ -1,0 +1,11 @@
+---
+// Primärer Button: springt zum Quiz, setzt den Fokus auf die aktuelle Frage (Skript in QuizForm)
+import fr from '../../config/familienrecht.json';
+interface Props {
+  label?: string;
+  class?: string;
+}
+const { label = fr.hero.ctaText, class: className } = Astro.props;
+---
+
+<a href="#formular" class:list={['btn-cta', className]} data-to-quiz>{label}</a>

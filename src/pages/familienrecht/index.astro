@@ -1,0 +1,36 @@
+---
+// Landingpage für die eigenen Meta Ads an Familienrechtskanzleien. Texte: src/config/familienrecht.json, Doku: FAMILIENRECHT.md
+import FrLayout from '../../familienrecht/layouts/FrLayout.astro';
+import fr from '../../config/familienrecht.json';
+import Logo from '../../familienrecht/components/Logo.astro';
+import Hero from '../../familienrecht/components/Hero.astro';
+import QuizForm from '../../familienrecht/components/QuizForm.astro';
+import Results from '../../familienrecht/components/Results.astro';
+import HowItWorks from '../../familienrecht/components/HowItWorks.astro';
+import Fit from '../../familienrecht/components/Fit.astro';
+import Offer from '../../familienrecht/components/Offer.astro';
+import Faq from '../../familienrecht/components/Faq.astro';
+import FinalCta from '../../familienrecht/components/FinalCta.astro';
+import StickyCta from '../../familienrecht/components/StickyCta.astro';
+import CtaButton from '../../familienrecht/components/CtaButton.astro';
+---
+
+<FrLayout title={fr.seo.title} description={fr.seo.description} stickyCta>
+  <main id="inhalt" class="px-4">
+    <div class="mx-auto max-w-[720px]">
+      <div class="flex justify-center pt-4"><Logo /></div>
+      <Hero />
+      <QuizForm />
+
+      <Results />
+      <div class="mx-auto mt-8 max-w-sm"><CtaButton /></div>
+
+      <HowItWorks />
+      <Fit />
+      <Offer />
+      <Faq />
+      <FinalCta />
+    </div>
+  </main>
+  <StickyCta />
+</FrLayout>

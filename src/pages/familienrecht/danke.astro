@@ -1,0 +1,67 @@
+---
+import FrLayout from '../../familienrecht/layouts/FrLayout.astro';
+import fr from '../../config/familienrecht.json';
+import Logo from '../../familienrecht/components/Logo.astro';
+import { telHref } from '../../neukundensystem/lib/text';
+
+const { thankYou, paths } = fr;
+const [before, after] = thankYou.headline.split('{{vorname}}');
+const phoneHref = telHref(thankYou.phoneInternational || thankYou.phone);
+---
+
+<FrLayout title={fr.seo.thankYouTitle} description={thankYou.headlineNoName} consentOnPendingLead>
+  <main id="inhalt" class="mx-auto max-w-[720px] px-4">
+    <div class="flex justify-center pt-4"><Logo /></div>
+
+    <h1 class="mt-10 text-center text-[1.75rem] leading-[1.2] font-extrabold tracking-tight text-balance text-ink sm:text-4xl" data-thanks-headline>
+      {thankYou.headlineNoName}
+    </h1>
+    <template data-thanks-template data-before={before} data-after={after}></template>
+
+
+    <section class="mt-10" aria-labelledby="schritte-titel">
+      <h2 id="schritte-titel" class="text-xl font-bold text-ink sm:text-2xl">{thankYou.stepsHeadline}</h2>
+      <ol class="mt-5 space-y-4">
+        {
+          thankYou.steps.map((step, i) => (
+            <li class="flex gap-4 rounded-2xl border border-line bg-white p-4">
+              <span class="grid size-9 shrink-0 place-items-center rounded-full bg-ink font-bold text-white" aria-hidden="true">{i + 1}</span>
+              <span class="pt-1">{step}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="mt-8 rounded-2xl bg-surface p-5 text-center" aria-labelledby="nummer-titel">
+      <p id="nummer-titel">{thankYou.phoneLine}</p>
+      <p class="mt-2 text-2xl font-extrabold text-ink">
+        {phoneHref ? <a href={phoneHref} class="underline-offset-4 hover:underline">{thankYou.phone}</a> : thankYou.phone}
+      </p>
+      <div class="mx-auto mt-4 max-w-xs">
+        <a href={paths.vcard} download="mert-efe-celik.vcf" class="btn-secondary w-full">{thankYou.saveButton}</a>
+      </div>
+    </section>
+  </main>
+</FrLayout>
+
+<script>
+  import { tracking } from '../../config/familienrecht.json';
+  import { getLeadVorname } from '../../neukundensystem/lib/lead';
+  import { trackLeadIfAllowed } from '../../neukundensystem/lib/pixel';
+  import { CONSENT_EVENT } from '../../neukundensystem/lib/consent';
+
+  // Vorname aus sessionStorage – als Text gesetzt, nie als HTML
+  const headline = document.querySelector<HTMLElement>('[data-thanks-headline]');
+  const template = document.querySelector<HTMLElement>('[data-thanks-template]');
+  const vorname = getLeadVorname().slice(0, 60);
+  if (headline && template && vorname) {
+    headline.textContent = `${template.dataset.before ?? ''}${vorname}${template.dataset.after ?? ''}`;
+  }
+
+  // Lead nur nach erfolgreichem Versand (≤ 30 Min.) + Einwilligung – ohne Pixel-ID lädt nichts
+  trackLeadIfAllowed(tracking.metaPixelId);
+  window.addEventListener(CONSENT_EVENT, (event) => {
+    if ((event as CustomEvent<boolean>).detail === true) trackLeadIfAllowed(tracking.metaPixelId);
+  });
+</script>

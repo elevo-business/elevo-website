@@ -1,0 +1,446 @@
+---
+// Qualifizierungs-Quiz in EINEM <form>: Schritte, Fragen und Antworten kommen aus form.steps in der Config.
+// Ohne JavaScript stehen alle Fragen untereinander und das Formular geht direkt an HubSpot (Legacy-Formular-Endpunkt).
+// Mit JavaScript: eine Frage pro Bildschirm, Versand per fetch an die Forms API v3.
+import fr from '../../config/familienrecht.json';
+import { isHubspotConfigured } from '../../neukundensystem/lib/hubspot';
+import { telHref } from '../../neukundensystem/lib/text';
+import CheckIcon from './CheckIcon.astro';
+
+const { form, legal, thankYou, paths, hero, seo } = fr;
+const [consentBefore, consentAfter] = form.consentText.split('{{datenschutz}}');
+const phoneHref = telHref(thankYou.phone);
+const total = form.steps.length;
+const progress = (n: number) => form.progressText.replace('{{n}}', String(n)).replace('{{total}}', String(total));
+type InputType = 'text' | 'email' | 'tel' | 'url';
+interface Field {
+  name: string;
+  label: string;
+  type: string;
+  autocomplete: string;
+  required: boolean;
+  help?: string;
+  error?: string;
+}
+
+const noJsAction = isHubspotConfigured(form.hubspot)
+  ? `https://forms.hubspot.com/uploads/form/v2/${form.hubspot.portalId}/${form.hubspot.formGuid}`
+  : undefined;
+const hsContext = JSON.stringify({
+  pageUrl: new URL(paths.landing, Astro.site).href,
+  pageName: seo.title,
+  redirectUrl: new URL(paths.thankYou, Astro.site).href,
+});
+---
+
+<section id="formular" class="mt-5 rounded-2xl border border-line bg-surface px-4 py-5 sm:p-8" aria-labelledby="formular-titel">
+  <h2 id="formular-titel" class="text-center text-xl font-extrabold tracking-tight text-ink sm:text-3xl">{form.headline}</h2>
+  {form.subline && <p class="mt-1 text-center text-[15px] leading-snug text-pretty text-muted">{form.subline}</p>}
+
+  <form class="mt-4" method="post" action={noJsAction} data-quiz>
+    <input type="hidden" name="hs_context" value={hsContext} data-nojs-only />
+    {Object.entries(form.hiddenFields).map(([name, value]) => <input type="hidden" name={name} value={value} />)}
+    <input type="hidden" name="lp_headline" value={hero.defaultVariant} data-variant-field />
+
+    <!-- Honeypot gegen Spam: für Menschen unsichtbar, ohne name (wird nie an HubSpot gesendet) -->
+    <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+      <label for="fr-hp">Website</label>
+      <input id="fr-hp" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="js-only mb-5">
+      <p class="mb-2 text-center text-sm font-semibold text-muted" aria-live="polite" data-progress-text>{progress(1)}</p>
+      <div class="h-2 overflow-hidden rounded-full bg-line" aria-hidden="true">
+        <div class="h-full rounded-full bg-ink transition-[width] duration-300" style={`width:${100 / total}%`} data-progress-bar></div>
+      </div>
+    </div>
+
+    {
+      form.steps.map((step, index) => {
+        const last = index === total - 1;
+        const fields = (step.fields ?? []) as Field[];
+        return (
+          <fieldset class="quiz-step" data-step={index} data-active={index === 0 ? '' : undefined}>
+            <legend class="contents">
+              <span tabindex="-1" class="block text-center text-xl font-bold text-ink outline-none sm:text-2xl" data-step-title>
+                {step.question}
+              </span>
+            </legend>
+            {step.hint && <p class="mt-2 text-center text-sm text-muted">{step.hint}</p>}
+
+            {step.type === 'choice' ? (
+              <>
+                <div class="mt-5 grid gap-3" role="radiogroup" aria-describedby={`fr-${step.id}-error`}>
+                  {step.options!.map((option, i) => (
+                    <label class="group flex min-h-14 cursor-pointer items-center gap-3 rounded-xl border-2 border-field bg-white px-4 py-3 text-lg font-semibold text-ink transition-colors duration-300 hover:border-ink has-checked:border-ink has-checked:bg-ink has-checked:text-white has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-ink">
+                      <input type="radio" name={step.hubspotProperty} value={option} required={i === 0} class="sr-only" />
+                      <span class="grid size-6 shrink-0 place-items-center rounded-full border-2 border-current" aria-hidden="true">
+                        <span class="size-2.5 rounded-full bg-current opacity-0 group-has-checked:opacity-100" />
+                      </span>
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+                <p id={`fr-${step.id}-error`} class="mt-2 hidden text-sm font-medium text-danger" data-error-for={step.hubspotProperty} />
+              </>
+            ) : (
+              <div class="mt-5 grid gap-5">
+                {fields.map((field) => (
+                  <div>
+                    <label for={`fr-${field.name}`} class="mb-1.5 block text-sm font-semibold text-ink">
+                      {field.label}
+                      {field.required ? <span aria-hidden="true"> *</span> : <span class="font-normal text-muted"> ({form.optionalText})</span>}
+                    </label>
+                    <input
+                      id={`fr-${field.name}`}
+                      name={field.name}
+                      type={field.type as InputType}
+                      autocomplete={field.autocomplete}
+                      inputmode={field.type === 'tel' ? 'tel' : field.type === 'email' ? 'email' : field.type === 'url' ? 'url' : undefined}
+                      required={field.required}
+                      aria-required={field.required ? 'true' : undefined}
+                      aria-describedby={[field.help && `fr-${field.name}-help`, `fr-${field.name}-error`].filter(Boolean).join(' ')}
+                      maxlength={field.type === 'email' ? 254 : field.type === 'url' ? 200 : 120}
+                      class="field-input"
+                    />
+                    {field.help && <p id={`fr-${field.name}-help`} class="mt-1.5 text-sm text-muted">{field.help}</p>}
+                    <p id={`fr-${field.name}-error`} class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for={field.name} />
+                  </div>
+                ))}
+                {step.consent && (
+                  <div>
+                    <label class="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-body">
+                      <input type="checkbox" required aria-describedby="fr-consent-error" class="mt-0.5 size-5 shrink-0 accent-ink" data-consent />
+                      <span>
+                        {consentBefore}<a href={legal.datenschutzUrl} target="_blank" rel="noopener" class="font-semibold text-ink underline underline-offset-2">{form.consentLinkText}</a>{consentAfter}
+                      </span>
+                    </label>
+                    <p id="fr-consent-error" class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for="consent" />
+                  </div>
+                )}
+              </div>
+            )}
+
+            {last && (
+              <div class="mt-5 hidden rounded-lg border border-danger bg-white p-3.5 text-sm font-medium text-danger" role="alert" data-submit-error>
+                {form.errorText} {phoneHref ? <a href={phoneHref} class="underline">{thankYou.phone}</a> : thankYou.phone}
+              </div>
+            )}
+
+            <div class="mt-6 flex gap-3">
+              {index > 0 && (
+                <button type="button" class="js-only btn-secondary min-h-14 shrink-0 px-5" data-back>
+                  {form.backText}
+                </button>
+              )}
+              {last ? (
+                <button type="submit" class="btn-cta" data-submit>
+                  <span data-submit-label>{form.submitText}</span>
+                  <span class="hidden items-center gap-2" data-submit-loading>
+                    <svg class="size-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-opacity=".25" stroke-width="3" />
+                      <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                    </svg>
+                    {form.submittingText}
+                  </span>
+                </button>
+              ) : (
+                <button type="button" class="js-only btn-cta" data-next>
+                  {form.nextText}
+                </button>
+              )}
+            </div>
+            {last && form.belowSubmit && (
+              <p class="mt-3 flex items-center justify-center gap-1.5 text-center text-sm font-semibold text-ink">
+                <CheckIcon class="size-4" />
+                {form.belowSubmit}
+              </p>
+            )}
+          </fieldset>
+        );
+      })
+    }
+  </form>
+</section>
+
+<script>
+  import fr from '../../config/familienrecht.json';
+  import { submitToHubspot, type HubspotField } from '../../neukundensystem/lib/hubspot';
+  import { captureAttribution, getAttribution } from '../../neukundensystem/lib/utm';
+  import { markLeadSubmitted } from '../../neukundensystem/lib/lead';
+  import { uuid } from '../../neukundensystem/lib/storage';
+  import { resolveVariant } from '../lib/variant';
+  import { clearQuiz, loadQuiz, saveQuiz } from '../lib/answers';
+
+  const { form: config, paths, hero } = fr;
+  captureAttribution();
+
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const PHONE_CHARS = /^\+?[\d\s()/.-]+$/;
+  const phoneValid = (value: string) => {
+    const digits = value.replace(/\D/g, '');
+    return PHONE_CHARS.test(value) && digits.length >= 6 && digits.length <= 15;
+  };
+  const debug = (...args: unknown[]) => {
+    // Abbruch-Analyse nur lokal in der Konsole – nichts geht an Dritte.
+    if (import.meta.env.DEV) console.debug('[quiz]', ...args);
+  };
+
+  // Priorität für den Setting-Call (A/B/C) aus den red/green-Antworten der Config
+  const priority = (data: FormData): string => {
+    let red = false;
+    let green = 0;
+    for (const step of config.steps) {
+      if (step.type !== 'choice') continue;
+      const value = String(data.get(step.hubspotProperty!) ?? '');
+      if (step.red?.includes(value)) red = true;
+      if (step.green?.includes(value)) green++;
+    }
+    const { labels, aMinGreen } = config.priority;
+    return red ? labels.c : green >= aMinGreen ? labels.a : labels.b;
+  };
+
+  const formEl = document.querySelector<HTMLFormElement>('[data-quiz]');
+
+  if (formEl) {
+    formEl.noValidate = true;
+    formEl.querySelector('[data-nojs-only]')?.remove();
+    const variant = resolveVariant(hero.defaultVariant);
+    formEl.querySelector<HTMLInputElement>('[data-variant-field]')!.value = variant;
+
+    const stepEls = Array.from(formEl.querySelectorAll<HTMLElement>('[data-step]'));
+    const total = stepEls.length;
+    const progressText = formEl.querySelector<HTMLElement>('[data-progress-text]')!;
+    const progressBar = formEl.querySelector<HTMLElement>('[data-progress-bar]')!;
+    const submitBtn = formEl.querySelector<HTMLButtonElement>('[data-submit]')!;
+    const submitError = formEl.querySelector<HTMLElement>('[data-submit-error]')!;
+    const consentBox = formEl.querySelector<HTMLInputElement>('[data-consent]')!;
+    const section = document.getElementById('formular')!;
+    const touched = new Set<string>();
+    let current = 0;
+
+    type Field = { name: string; type: string; required: boolean; error?: string };
+    const allFields = config.steps.flatMap((s) => (s.fields ?? []) as Field[]);
+    const choiceNames = config.steps.filter((s) => s.type === 'choice').map((s) => s.hubspotProperty!);
+    const namesOf = (index: number): string[] => {
+      const step = config.steps[index];
+      if (step.type === 'choice') return [step.hubspotProperty!];
+      return [...(step.fields ?? []).map((f) => f.name), ...(step.consent ? ['consent'] : [])];
+    };
+
+    const showError = (name: string, message: string) => {
+      const target = formEl.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
+      if (target) {
+        target.textContent = message;
+        target.classList.toggle('hidden', message === '');
+      }
+      const inputs = name === 'consent' ? [consentBox] : Array.from(formEl.querySelectorAll<HTMLInputElement>(`[name="${name}"]`));
+      inputs.forEach((input) => input.setAttribute('aria-invalid', message ? 'true' : 'false'));
+    };
+
+    const validate = (name: string): boolean => {
+      let message = '';
+      if (name === 'consent') {
+        if (!consentBox.checked) message = config.consentError;
+      } else if (choiceNames.includes(name)) {
+        if (!formEl.querySelector(`[name="${name}"]:checked`)) message = config.choiceError;
+      } else {
+        const field = allFields.find((f) => f.name === name);
+        const value = (formEl.elements.namedItem(name) as HTMLInputElement | null)?.value.trim() ?? '';
+        if (field?.required) {
+          if (value === '') message = field.error ?? '';
+          else if (field.type === 'email' && !EMAIL.test(value)) message = field.error ?? '';
+          else if (field.type === 'tel' && !phoneValid(value)) message = field.error ?? '';
+        }
+      }
+      showError(name, message);
+      return message === '';
+    };
+
+    const firstInvalidIn = (index: number): string | null => {
+      const names = namesOf(index);
+      names.forEach((n) => touched.add(n));
+      return names.filter((n) => !validate(n))[0] ?? null;
+    };
+
+    // --- Antworten merken (sessionStorage)
+    const persist = () => {
+      const answers: Record<string, string> = {};
+      new FormData(formEl).forEach((value, key) => {
+        if (choiceNames.includes(key) || allFields.some((f) => f.name === key)) answers[key] = String(value);
+      });
+      saveQuiz({ step: current, answers });
+    };
+
+    const titleOf = (index: number) => stepEls[index].querySelector<HTMLElement>('[data-step-title]');
+
+    const showStep = (index: number, focus = true) => {
+      current = Math.max(0, Math.min(index, total - 1));
+      stepEls.forEach((el, i) => el.toggleAttribute('data-active', i === current));
+      progressText.textContent = config.progressText.replace('{{n}}', String(current + 1)).replace('{{total}}', String(total));
+      progressBar.style.width = `${((current + 1) / total) * 100}%`;
+      persist();
+      debug('Schritt', current + 1);
+      if (!focus) return;
+      if (section.getBoundingClientRect().top < 0) section.scrollIntoView({ block: 'start' });
+      titleOf(current)?.focus({ preventScroll: true });
+    };
+
+    const restore = () => {
+      const saved = loadQuiz();
+      if (!saved) return;
+      for (const [name, value] of Object.entries(saved.answers)) {
+        if (choiceNames.includes(name)) {
+          formEl.querySelectorAll<HTMLInputElement>(`[name="${name}"]`).forEach((r) => (r.checked = r.value === value));
+        } else {
+          const input = formEl.elements.namedItem(name) as HTMLInputElement | null;
+          if (input) input.value = value;
+        }
+      }
+      // Nicht hinter eine noch unbeantwortete Frage springen
+      let step = 0;
+      while (step < Math.min(saved.step, total - 1) && namesOf(step).every((n) => n === 'consent' || isAnswered(n))) step++;
+      showStep(step, false);
+    };
+    const isAnswered = (name: string) => {
+      if (choiceNames.includes(name)) return !!formEl.querySelector(`[name="${name}"]:checked`);
+      const field = allFields.find((f) => f.name === name);
+      const value = (formEl.elements.namedItem(name) as HTMLInputElement | null)?.value.trim() ?? '';
+      return !field?.required || value !== '';
+    };
+    restore();
+
+    const next = () => {
+      const invalid = firstInvalidIn(current);
+      if (invalid) {
+        (invalid === 'consent' ? consentBox : formEl.querySelector<HTMLInputElement>(`[name="${invalid}"]`))?.focus();
+        return;
+      }
+      showStep(current + 1);
+    };
+
+    formEl.querySelectorAll('[data-next]').forEach((btn) => btn.addEventListener('click', next));
+    formEl.querySelectorAll('[data-back]').forEach((btn) => btn.addEventListener('click', () => showStep(current - 1)));
+
+    // Klick/Tipp auf eine Kachel springt nach 250 ms weiter. Mit den Pfeiltasten bleibt man im Schritt
+    // und geht mit „Weiter“ – sonst würde jeder Tastendruck eine Frage überspringen.
+    let pointerChoice = false;
+    formEl.addEventListener('pointerdown', (event) => {
+      pointerChoice = !!(event.target as HTMLElement).closest('[role="radiogroup"] label');
+    });
+    formEl.addEventListener('change', (event) => {
+      const input = event.target as HTMLInputElement;
+      persist();
+      if (input.type !== 'radio' || !pointerChoice) return;
+      pointerChoice = false;
+      const step = current;
+      window.setTimeout(() => {
+        if (current === step) next();
+      }, 250);
+    });
+
+    // Enter in einem Textfeld: weiter statt absenden (im letzten Schritt: absenden)
+    formEl.addEventListener('keydown', (event) => {
+      const target = event.target as HTMLInputElement;
+      if (event.key === 'Enter' && target.tagName === 'INPUT' && target.type !== 'checkbox' && current < total - 1) {
+        event.preventDefault();
+        next();
+      }
+    });
+
+    formEl.addEventListener('focusout', (event) => {
+      const input = event.target as HTMLInputElement;
+      if (input.type === 'radio' || input.type === 'checkbox' || !input.name) return;
+      if (!allFields.some((f) => f.name === input.name)) return;
+      touched.add(input.name);
+      validate(input.name);
+    });
+    formEl.addEventListener('input', (event) => {
+      const input = event.target as HTMLInputElement;
+      if (input === consentBox) validate('consent');
+      else if (input.type === 'radio') validate(input.name);
+      else if (touched.has(input.name)) validate(input.name);
+      if (input.type !== 'radio') persist();
+    });
+
+    // Alle „Pilotplatz anfragen“-Buttons: zum Quiz scrollen und Fokus auf die aktuelle Frage
+    document.querySelectorAll<HTMLAnchorElement>('a[href="#formular"]').forEach((link) =>
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        section.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+        titleOf(current)?.focus({ preventScroll: true });
+      }),
+    );
+
+    const setLoading = (loading: boolean) => {
+      submitBtn.disabled = loading;
+      submitBtn.setAttribute('aria-busy', String(loading));
+      formEl.querySelector('[data-submit-label]')!.classList.toggle('hidden', loading);
+      const spinner = formEl.querySelector<HTMLElement>('[data-submit-loading]')!;
+      spinner.classList.toggle('hidden', !loading);
+      spinner.classList.toggle('inline-flex', loading);
+    };
+
+    let sending = false;
+    // Zurück-Button nach der Weiterleitung (bfcache): Formular wieder bedienbar machen
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        sending = false;
+        setLoading(false);
+      }
+    });
+
+    formEl.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (sending) return;
+      submitError.classList.add('hidden');
+      if (current < total - 1) {
+        next();
+        return;
+      }
+
+      for (let i = 0; i < total; i++) {
+        const invalid = firstInvalidIn(i);
+        if (invalid) {
+          if (i !== current) showStep(i, false);
+          (invalid === 'consent' ? consentBox : formEl.querySelector<HTMLInputElement>(`[name="${invalid}"]`))?.focus();
+          return;
+        }
+      }
+
+      // Honeypot ausgefüllt → Bot: nichts senden, nichts tracken
+      if ((document.getElementById('fr-hp') as HTMLInputElement | null)?.value) {
+        window.location.href = paths.thankYou;
+        return;
+      }
+
+      sending = true;
+      setLoading(true);
+
+      const data = new FormData(formEl);
+      const fields: HubspotField[] = [];
+      data.forEach((value, name) => {
+        const text = String(value).trim();
+        if (name !== 'hs_context' && text) fields.push({ name, value: text });
+      });
+      Object.entries(getAttribution()).forEach(([name, value]) => value && fields.push({ name, value }));
+      fields.push({ name: config.priority.property, value: priority(data) });
+
+      const consentText = config.consentText.replace('{{datenschutz}}', config.consentLinkText);
+      const ok = await submitToHubspot(config.hubspot, fields, consentText);
+
+      if (ok) {
+        markLeadSubmitted(String(data.get('firstname') ?? '').trim(), uuid());
+        clearQuiz();
+        window.location.href = paths.thankYou;
+        return;
+      }
+
+      debug('Versand fehlgeschlagen');
+      sending = false;
+      setLoading(false);
+      submitError.classList.remove('hidden');
+    });
+  }
+</script>

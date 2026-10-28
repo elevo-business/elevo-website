@@ -1,0 +1,31 @@
+---
+import fr from '../../config/familienrecht.json';
+import PilotBox from './PilotBox.astro';
+
+const { eyebrow, defaultVariant, headlines } = fr.hero;
+const initial = headlines[defaultVariant as keyof typeof headlines] ?? headlines.a;
+---
+
+<header class="pt-5 text-center sm:pt-8">
+  {eyebrow && <p class="text-[15px] font-semibold text-muted sm:text-base">{eyebrow}</p>}
+  <h1 class="mt-2 text-[1.6875rem] leading-[1.18] font-extrabold tracking-[-0.025em] text-balance text-ink sm:text-4xl" data-headline>
+    {initial}
+  </h1>
+  <script is:inline define:vars={{ headlines, defaultVariant }}>
+    // Headline-Test: ?h=a|b|c, sonst gemerkte Variante, sonst Standard – direkt nach der H1, damit nichts springt.
+    (function () {
+      var v = defaultVariant;
+      try {
+        var p = (new URLSearchParams(location.search).get('h') || '').toLowerCase();
+        var s = sessionStorage.getItem('lp_headline');
+        if (headlines[p]) { v = p; sessionStorage.setItem('lp_headline', p); }
+        else if (headlines[s]) v = s;
+      } catch (e) {}
+      var h = document.querySelector('[data-headline]');
+      if (h && headlines[v]) h.textContent = headlines[v];
+    })();
+  </script>
+  <div class="mt-4 text-left sm:mt-6">
+    <PilotBox />
+  </div>
+</header>
