@@ -1,0 +1,40 @@
+---
+import fr from '../../config/familienrecht.json';
+import { fill, isFilled } from '../../neukundensystem/lib/text';
+import CheckIcon from './CheckIcon.astro';
+import CtaButton from './CtaButton.astro';
+
+const { headline, bullets, guarantee, button } = fr.offer;
+---
+
+<section class="mt-16" aria-labelledby="angebot-titel">
+  <h2 id="angebot-titel" class="text-center text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
+    {fill(headline, { total: String(fr.pilot.totalPlaces) })}
+  </h2>
+  <ul class="mt-8 space-y-3">
+    {
+      bullets.map((b) => (
+        <li class="flex gap-2.5">
+          <CheckIcon class="mt-1 size-5 text-ink" />
+          <span><strong class="font-bold text-ink">{b.bold}</strong>{b.text && ` ${b.text}`}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="mt-8 rounded-2xl border-2 border-ink bg-white p-5 sm:p-6">
+    <div class="flex items-center gap-3">
+      <svg class="size-8 shrink-0 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6L12 3Z" />
+        <path d="m8.8 12 2.2 2.2 4.2-4.4" />
+      </svg>
+      <h3 class="text-xl font-bold text-ink">{guarantee.title}</h3>
+    </div>
+    <p class="mt-3">{guarantee.text}</p>
+    {isFilled(guarantee.note) ? <p class="mt-3 text-sm text-muted">{guarantee.note}</p> : guarantee.note && <p class="mt-3 text-sm font-semibold text-danger">{guarantee.note}</p>}
+  </div>
+
+  <div class="mx-auto mt-8 max-w-sm">
+    <CtaButton label={button} />
+  </div>
+</section>

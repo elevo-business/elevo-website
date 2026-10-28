@@ -1,7 +1,8 @@
-// Listet beim Build alle noch offenen [Platzhalter] aus src/config/site.json auf.
+// Listet beim Build alle noch offenen [Platzhalter] aus src/config/site.json und src/config/familienrecht.json auf.
 // Der Build bricht dabei nicht ab – die Liste ist eine Erinnerung vor dem Go-live.
 import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { findOpenItems as findFamilienrechtItems } from '../../../scripts/check-placeholders.mjs';
 
 const PLACEHOLDER = /\[[^\]]+\]/;
 
@@ -23,6 +24,11 @@ export default function placeholderReport() {
     hooks: {
       'astro:build:done': ({ logger }) => {
         const root = process.cwd();
+        const familienrecht = findFamilienrechtItems(root);
+        if (familienrecht.length > 0) {
+          logger.warn(`${familienrecht.length} offene Platzhalter in src/config/familienrecht.json (bun run check:placeholders):`);
+          for (const line of familienrecht) logger.warn(`  • ${line}`);
+        }
         const site = JSON.parse(readFileSync(join(root, 'src/config/site.json'), 'utf8'));
         const open = [];
         collect(site, '', open);

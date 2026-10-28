@@ -1,0 +1,63 @@
+---
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import '../styles/global.css';
+import fr from '../../config/familienrecht.json';
+import ConsentBanner from '../components/ConsentBanner.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Banner auf /danke erneut zeigen, solange keine Zustimmung vorliegt und ein Lead offen ist */
+  consentOnPendingLead?: boolean;
+  /** Seite hat einen schwebenden CTA (nur Landingpage) */
+  stickyCta?: boolean;
+}
+
+const { title, description, consentOnPendingLead = false, stickyCta = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+// Eigenes OG-Bild, sobald es in public/ liegt – sonst das Standardbild der Website
+const ogPath = existsSync(join(process.cwd(), 'public', fr.seo.ogImage)) ? fr.seo.ogImage : '/og-image.jpg';
+const ogImage = new URL(ogPath, Astro.site).href;
+const { primaryColor, accentColor, accentHoverColor } = fr.brand;
+const isColor = (c: string) => /^#[0-9a-fA-F]{3,8}$/.test(c);
+const brandVars = [
+  isColor(primaryColor) && `--color-ink:${primaryColor}`,
+  isColor(accentColor) && `--color-accent:${accentColor}`,
+  isColor(accentHoverColor) && `--color-accent-hover:${accentHoverColor}`,
+]
+  .filter(Boolean)
+  .join(';');
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {fr.seo.noindex ? <meta name="robots" content="noindex, nofollow" /> : <link rel="canonical" href={canonical} />}
+    <meta name="theme-color" content="#FFFFFF" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content={fr.brand.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    {brandVars && <style is:inline set:html={`:root{${brandVars}}`} />}
+  </head>
+  <body class="min-h-dvh">
+    <a href="#inhalt" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-ink">
+      Zum Inhalt springen
+    </a>
+    <slot />
+    <Footer stickySpace={stickyCta} />
+    <ConsentBanner showOnPendingLead={consentOnPendingLead} />
+  </body>
+</html>

@@ -1,4 +1,5 @@
 > **Landingpage /neukundensystem** (Meta Ads, HubSpot, Pixel nur auf der Danke-Seite): Anleitung in [NEUKUNDENSYSTEM.md](NEUKUNDENSYSTEM.md).
+> **Landingpage /familienrecht** (Pilotkanzleien, Quiz mit Lead-Priorität): Anleitung in [FAMILIENRECHT.md](FAMILIENRECHT.md).
 
 # Astro Starter Kit: Minimal
 

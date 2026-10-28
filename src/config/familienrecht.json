@@ -1,0 +1,482 @@
+{
+  "paths": {
+    "landing": "/familienrecht/",
+    "thankYou": "/familienrecht/danke/",
+    "vcard": "/familienrecht/mert-efe-celik.vcf"
+  },
+  "brand": {
+    "name": "Elevo",
+    "legalName": "ELEVO Solutions",
+    "primaryColor": "#0D1B2A",
+    "accentColor": "#F2A33A",
+    "accentHoverColor": "#E08E1F"
+  },
+  "seo": {
+    "title": "Mehr Mandate im Familienrecht | Pilotplätze für Kanzleien",
+    "description": "5 Pilotplätze für Familienrechtskanzleien: Anzeigen, vorqualifizierte Anfragen und Rückruf-Leitfaden. 50 % des regulären Preises, Ergebnisse in den ersten 30 Tagen oder Geld zurück.",
+    "thankYouTitle": "Danke | Pilotplätze Familienrecht",
+    "ogImage": "/og-familienrecht.jpg",
+    "noindex": true
+  },
+  "hero": {
+    "eyebrow": "Für Kanzleien mit Schwerpunkt Familienrecht",
+    "defaultVariant": "a",
+    "headlines": {
+      "a": "Mehr Mandate im Familien­recht. Oder Sie bekommen Ihr Geld zurück.",
+      "b": "Neue Mandanten für Ihre Familien­rechts­kanzlei. In 14 Tagen eingerichtet.",
+      "c": "Ich suche 5 Familien­rechts­kanzleien, die ich zum halben Preis betreue."
+    },
+    "ctaText": "Pilotplatz anfragen"
+  },
+  "pilot": {
+    "totalPlaces": 5,
+    "freePlaces": 5,
+    "bullets": [
+      "Noch **{{free}} von {{total}}** Pilotplätzen frei",
+      "**50 % des regulären Preises**, wenn ich Ihre Kanzlei als Referenz nennen darf",
+      "**Ergebnisse in den ersten 30 Tagen** oder Sie bekommen Ihr Geld zurück"
+    ],
+    "soldOutBullet": "**Alle {{total}} Pilotplätze vergeben**"
+  },
+  "form": {
+    "headline": "Pilotplatz anfragen",
+    "subline": "Fast alles per Klick, etwa 2 Minuten. Danach rufe ich Sie an und wir prüfen, ob das System zu Ihrer Kanzlei passt.",
+    "progressText": "Frage {{n}} von {{total}}",
+    "nextText": "Weiter",
+    "backText": "Zurück",
+    "submitText": "Rückruf anfordern",
+    "submittingText": "Wird gesendet …",
+    "belowSubmit": "50 % für Pilotkanzleien · Ergebnisse in 30 Tagen garantiert",
+    "optionalText": "optional",
+    "choiceError": "Bitte wählen Sie eine Antwort aus.",
+    "consentText": "Ich bin einverstanden, dass ELEVO Solutions mich zu meiner Anfrage per Telefon und E-Mail kontaktiert. Hinweise in der {{datenschutz}}.",
+    "consentLinkText": "Datenschutzerklärung",
+    "consentError": "Bitte bestätigen Sie die Einwilligung.",
+    "errorText": "Das hat nicht geklappt. Bitte versuchen Sie es noch einmal oder rufen Sie mich an:",
+    "hubspot": {
+      "portalId": "149380660",
+      "formGuid": "",
+      "communications": []
+    },
+    "hiddenFields": {
+      "lp_variante": "familienrecht"
+    },
+    "steps": [
+      {
+        "id": "schwerpunkt",
+        "type": "choice",
+        "question": "Welchen Anteil hat das Familienrecht an Ihren Mandaten?",
+        "hubspotProperty": "lead_schwerpunkt",
+        "options": [
+          "Mehr als die Hälfte",
+          "Etwa 20 bis 50 %",
+          "Weniger als 20 %"
+        ],
+        "red": [
+          "Weniger als 20 %"
+        ],
+        "green": [
+          "Mehr als die Hälfte"
+        ]
+      },
+      {
+        "id": "kanzlei_groesse",
+        "type": "choice",
+        "question": "Wie viele Anwältinnen und Anwälte arbeiten bei Ihnen im Familienrecht?",
+        "hubspotProperty": "lead_kanzlei_groesse",
+        "options": [
+          "1",
+          "2–3",
+          "4 oder mehr"
+        ],
+        "red": [],
+        "green": []
+      },
+      {
+        "id": "kapazitaet",
+        "type": "choice",
+        "question": "Wie viele neue Mandate könnten Sie zusätzlich pro Monat übernehmen?",
+        "hubspotProperty": "lead_kapazitaet",
+        "options": [
+          "Mehr als 5",
+          "2 bis 5",
+          "Gerade keine"
+        ],
+        "red": [
+          "Gerade keine"
+        ],
+        "green": [
+          "Mehr als 5"
+        ]
+      },
+      {
+        "id": "akquise",
+        "type": "choice",
+        "question": "Woher kommen neue Mandate heute vor allem?",
+        "hubspotProperty": "lead_akquise",
+        "options": [
+          "Empfehlungen",
+          "Website und Google",
+          "Anwaltsportale wie anwalt.de",
+          "Bezahlte Werbung"
+        ],
+        "red": [],
+        "green": []
+      },
+      {
+        "id": "mandatswert",
+        "type": "choice",
+        "question": "Was bringt Ihnen ein neues Familienrechtsmandat im Schnitt an Honorar?",
+        "hubspotProperty": "lead_mandatswert",
+        "options": [
+          "Unter 1.500 €",
+          "1.500–3.000 €",
+          "3.000–5.000 €",
+          "Über 5.000 €"
+        ],
+        "red": [
+          "Unter 1.500 €"
+        ],
+        "green": [
+          "3.000–5.000 €",
+          "Über 5.000 €"
+        ],
+        "hint": "Eine grobe Schätzung reicht. So kann ich Ihnen im Gespräch realistische Zahlen nennen."
+      },
+      {
+        "id": "rueckruf",
+        "type": "choice",
+        "question": "Wer ruft neue Anfragen zurück und wie schnell?",
+        "hubspotProperty": "lead_rueckruf",
+        "options": [
+          "Ich selbst, am selben Tag",
+          "Sekretariat oder ReFa, am selben Tag",
+          "Meist erst nach 1 bis 2 Tagen",
+          "Niemand fest zuständig"
+        ],
+        "red": [
+          "Meist erst nach 1 bis 2 Tagen",
+          "Niemand fest zuständig"
+        ],
+        "green": [
+          "Ich selbst, am selben Tag",
+          "Sekretariat oder ReFa, am selben Tag"
+        ]
+      },
+      {
+        "id": "crm",
+        "type": "choice",
+        "question": "Wo erfassen Sie neue Anfragen heute?",
+        "hubspotProperty": "lead_crm",
+        "options": [
+          "In einem CRM wie HubSpot oder Pipedrive",
+          "In der Kanzleisoftware wie RA-MICRO oder Advoware",
+          "In Excel, Outlook oder auf Papier",
+          "Gar nicht systematisch"
+        ],
+        "red": [],
+        "green": [],
+        "hint": "Kein CRM ist kein Ausschluss. Ich richte das passend ein."
+      },
+      {
+        "id": "werbebudget",
+        "type": "choice",
+        "question": "Wie viel können Sie monatlich in Werbung investieren?",
+        "hubspotProperty": "lead_werbebudget",
+        "options": [
+          "Unter 1.000 €",
+          "1.000–2.000 €",
+          "2.000–5.000 €",
+          "Über 5.000 €"
+        ],
+        "red": [
+          "Unter 1.000 €"
+        ],
+        "green": [
+          "2.000–5.000 €",
+          "Über 5.000 €"
+        ],
+        "hint": "Das Budget zahlen Sie direkt an Meta, nicht an mich."
+      },
+      {
+        "id": "entscheider",
+        "type": "choice",
+        "question": "Wer entscheidet über eine Zusammenarbeit?",
+        "hubspotProperty": "lead_entscheider",
+        "options": [
+          "Ich allein",
+          "Ich gemeinsam mit meinen Partnern",
+          "Jemand anderes"
+        ],
+        "red": [
+          "Jemand anderes"
+        ],
+        "green": [
+          "Ich allein"
+        ]
+      },
+      {
+        "id": "startzeitpunkt",
+        "type": "choice",
+        "question": "Wann möchten Sie starten?",
+        "hubspotProperty": "lead_startzeitpunkt",
+        "options": [
+          "Sofort",
+          "In 1–3 Monaten",
+          "Später"
+        ],
+        "red": [
+          "Später"
+        ],
+        "green": [
+          "Sofort"
+        ]
+      },
+      {
+        "id": "name",
+        "type": "fields",
+        "question": "Wie heißen Sie und Ihre Kanzlei?",
+        "fields": [
+          {
+            "name": "firstname",
+            "label": "Vorname",
+            "type": "text",
+            "autocomplete": "given-name",
+            "required": true,
+            "error": "Bitte geben Sie Ihren Vornamen an."
+          },
+          {
+            "name": "lastname",
+            "label": "Nachname",
+            "type": "text",
+            "autocomplete": "family-name",
+            "required": false
+          },
+          {
+            "name": "company",
+            "label": "Name der Kanzlei",
+            "type": "text",
+            "autocomplete": "organization",
+            "required": false
+          },
+          {
+            "name": "website",
+            "label": "Website der Kanzlei",
+            "type": "url",
+            "autocomplete": "url",
+            "required": false,
+            "help": "Damit ich mich auf unser Gespräch vorbereiten kann."
+          }
+        ]
+      },
+      {
+        "id": "kontakt",
+        "type": "fields",
+        "question": "Unter welcher Nummer erreiche ich Sie am besten?",
+        "consent": true,
+        "fields": [
+          {
+            "name": "phone",
+            "label": "Telefon",
+            "type": "tel",
+            "autocomplete": "tel",
+            "required": true,
+            "help": "Ich rufe meist noch am selben Werktag an.",
+            "error": "Bitte geben Sie eine Telefonnummer an, unter der ich Sie erreiche."
+          },
+          {
+            "name": "email",
+            "label": "E-Mail",
+            "type": "email",
+            "autocomplete": "email",
+            "required": true,
+            "error": "Bitte prüfen Sie Ihre E-Mail-Adresse."
+          }
+        ]
+      }
+    ],
+    "priority": {
+      "_info": "Wird automatisch berechnet und als lp_prioritaet an HubSpot gesendet. Eine Antwort aus 'red' → C. Keine 'red' und mind. aMinGreen Antworten aus 'green' → A. Sonst B.",
+      "property": "lp_prioritaet",
+      "aMinGreen": 4,
+      "labels": {
+        "a": "A – sehr gut qualifiziert",
+        "b": "B – prüfen",
+        "c": "C – passt eher nicht"
+      }
+    }
+  },
+  "results": {
+    "headline": "Ergebnisse aus der Zusammenarbeit",
+    "items": [
+      {
+        "name": "Greenchild",
+        "value": "Über 30.000 €",
+        "result": "zusätzlicher Umsatz in [2 oder 3] Monaten",
+        "text": "Meta Ads, schneller Rückruf auf jede Anfrage und ein klarer Ablauf vom ersten Telefonat bis zum Abschluss.",
+        "image": "/familienrecht/logo-greenchild.webp",
+        "imageWidth": 398,
+        "imageHeight": 100,
+        "imageAlt": "Logo von Greenchild",
+        "quote": "",
+        "featured": true
+      },
+      {
+        "name": "BrandsMarketingLab, Aachen",
+        "value": "10.000 €",
+        "result": "Mehrumsatz im ersten Monat",
+        "text": "Gleiches System: Anzeigen, vorqualifizierte Anfragen, Rückruf mit Leitfaden.",
+        "image": "/familienrecht/logo-bml.webp",
+        "imageWidth": 192,
+        "imageHeight": 185,
+        "imageAlt": "Logo von BrandsMarketingLab",
+        "quote": ""
+      }
+    ],
+    "honestyNote": "Beide Ergebnisse stammen aus anderen Branchen. Eine Familienrechtskanzlei ist noch nicht dabei. Genau deshalb gibt es die 5 Pilotplätze zum halben Preis."
+  },
+  "howItWorks": {
+    "headline": "Was Ihre Kanzlei bekommt",
+    "steps": [
+      {
+        "title": "Anzeigen, die Sie freigeben.",
+        "text": "Ich plane Ihre Anzeigen, schreibe die Skripte für kurze Videos und übernehme den Schnitt. Sie nehmen nur mit dem Handy auf. Keine Anzeige geht ohne Ihre Freigabe online."
+      },
+      {
+        "title": "Anfragen mit Vorinformation.",
+        "text": "Interessenten beantworten vor dem Absenden ein paar Fragen: Geht es um Scheidung, Unterhalt, Kinder oder eine gemeinsame Immobilie? Wie dringend ist es? Sie sehen das vor dem Rückruf und sprechen mit den richtigen Mandanten zuerst."
+      },
+      {
+        "title": "Rückruf, solange das Interesse da ist.",
+        "text": "Jede Anfrage landet sofort per Push auf dem Handy Ihrer Kanzlei. Dazu bekommen Sie einen Leitfaden für den Rückruf und für das Erstgespräch."
+      }
+    ],
+    "footnote": "In 14 Tagen eingerichtet. An Ihrer Website und Ihrer Kanzleisoftware ändert sich nichts."
+  },
+  "fit": {
+    "headline": "Passt das zu Ihrer Kanzlei?",
+    "yesTitle": "Passt, wenn Sie",
+    "yes": [
+      "einen Schwerpunkt im Familienrecht haben und mehr Mandate annehmen können",
+      "neue Anfragen am selben Tag zurückrufen können, selbst oder über Ihr Sekretariat",
+      "mindestens 1.000 € im Monat in Werbung investieren können"
+    ],
+    "noTitle": "Passt nicht, wenn Sie",
+    "no": [
+      "gerade keine neuen Mandate annehmen können",
+      "Anfragen erst nach mehreren Tagen bearbeiten"
+    ]
+  },
+  "offer": {
+    "headline": "Das Pilotangebot für {{total}} Kanzleien",
+    "bullets": [
+      {
+        "bold": "50 % des regulären Preises.",
+        "text": "Im Gegenzug darf ich Ihre Kanzlei als Referenz nennen."
+      },
+      {
+        "bold": "Live in 14 Tagen.",
+        "text": "Die Monatsgebühr läuft erst ab dem Start der Anzeigen."
+      },
+      {
+        "bold": "Mindestlaufzeit 3 Monate.",
+        "text": ""
+      },
+      {
+        "bold": "Werbebudget",
+        "text": "zahlen Sie direkt an Meta, mindestens 1.000 € im Monat."
+      }
+    ],
+    "guarantee": {
+      "title": "Ergebnisse in 30 Tagen oder Geld zurück",
+      "text": "Ich garantiere Ihnen Ergebnisse in den ersten 30 Tagen nach dem Start. Was als Ergebnis zählt, legen wir im Kick-off gemeinsam als Zahl an neuen Mandaten fest. Wird sie in den ersten 30 Tagen nicht erreicht, zahle ich Ihnen die Monatsgebühr zurück und Sie können sofort kündigen. Voraussetzung: Ihre Kanzlei ruft Anfragen innerhalb von 15 Minuten während der Bürozeiten zurück und das Werbebudget läuft wie vereinbart."
+    },
+    "button": "Pilotplatz anfragen"
+  },
+  "faqHeadline": "Häufige Fragen",
+  "faq": [
+    {
+      "q": "Dürfen Anwälte auf Facebook und Instagram werben?",
+      "a": "Ja. § 43b BRAO erlaubt Werbung, die sachlich über Ihre Kanzlei und Ihre Schwerpunkte informiert. Die Anzeigen sind entsprechend aufgebaut, und jede Anzeige geben Sie vor dem Start frei."
+    },
+    {
+      "q": "Was genau bekomme ich?",
+      "a": "Konzept und Skripte für Ihre Anzeigen, den Videoschnitt, die Einrichtung des Werbekontos, ein Anfrageformular mit Vorqualifizierung, eine Push-Benachrichtigung bei jeder Anfrage und Leitfäden für Rückruf und Erstgespräch."
+    },
+    {
+      "q": "Was kostet das?",
+      "a": "Pilotkanzleien zahlen 50 % des regulären Preises. Die genauen Zahlen nenne ich Ihnen im Telefonat. Die Monatsgebühr läuft ab dem Start der Anzeigen, die Mindestlaufzeit beträgt 3 Monate. Das Werbebudget zahlen Sie direkt an Meta."
+    },
+    {
+      "q": "Wie viel Werbebudget brauche ich?",
+      "a": "Mindestens 1.000 € im Monat. Darunter kommen zu wenige Anfragen zusammen, um in 30 Tagen ein belastbares Ergebnis zu sehen."
+    },
+    {
+      "q": "Wer ruft die Anfragen zurück?",
+      "a": "Ihre Kanzlei, zum Beispiel Sie selbst oder Ihr Sekretariat. Sie bekommen dafür einen fertigen Leitfaden."
+    },
+    {
+      "q": "Wie viel Zeit kostet mich das?",
+      "a": "Ein Kick-off-Gespräch, ein paar kurze Videos mit dem Handy und die Freigabe der Anzeigen. Den Rest übernehme ich."
+    },
+    {
+      "q": "Muss ich an meiner Website etwas ändern?",
+      "a": "Nein. Das System läuft separat."
+    },
+    {
+      "q": "Wie funktioniert die Garantie?",
+      "a": "Ich garantiere Ergebnisse in den ersten 30 Tagen nach dem Start. Im Kick-off legen wir dafür eine Zahl an neuen Mandaten fest. Wird sie nicht erreicht, bekommen Sie die Monatsgebühr zurück und können sofort kündigen. Voraussetzung: Rückruf innerhalb von 15 Minuten während der Bürozeiten und das Werbebudget läuft wie vereinbart."
+    },
+    {
+      "q": "Warum nur 5 Pilotplätze?",
+      "a": "Ich richte jedes System selbst ein und schneide die Videos selbst. Mehr als 5 neue Kanzleien gleichzeitig schaffe ich dabei nicht in der Qualität, die ich liefern will."
+    },
+    {
+      "q": "Was passiert nach dem Formular?",
+      "a": "Ich rufe Sie an, meist noch am selben Werktag. Das Gespräch dauert etwa 15 Minuten. Passt es, besprechen wir in einem zweiten Termin die Anzeigen für Ihre Kanzlei."
+    }
+  ],
+  "finalCta": {
+    "headline": "Noch {{free}} Pilotplätze frei",
+    "headlineOne": "Noch 1 Pilotplatz frei",
+    "text": "Tragen Sie sich ein. Ich rufe Sie an und wir prüfen gemeinsam, ob das System zu Ihrer Kanzlei passt.",
+    "button": "Pilotplatz anfragen",
+    "soldOut": {
+      "headline": "Alle Pilotplätze sind vergeben",
+      "text": "Tragen Sie sich trotzdem ein. Ich melde mich, sobald ein Platz frei wird.",
+      "button": "Auf die Warteliste"
+    }
+  },
+  "stickyCta": "Pilotplatz anfragen",
+  "thankYou": {
+    "headline": "Danke, {{vorname}}. Ich rufe Sie in Kürze an.",
+    "headlineNoName": "Danke. Ich rufe Sie in Kürze an.",
+    "stepsHeadline": "So geht es weiter",
+    "steps": [
+      "Ich rufe Sie an, meist noch am selben Werktag (ca. 15 Minuten).",
+      "Wenn es passt: Wir besprechen die Anzeigen für Ihre Kanzlei.",
+      "Ihr System ist innerhalb von 14 Tagen live."
+    ],
+    "phoneLine": "Speichern Sie meine Nummer, damit Sie den Anruf erkennen:",
+    "phone": "02451 9949695",
+    "phoneInternational": "+49 2451 9949695",
+    "saveButton": "Nummer speichern",
+    "vcardName": "Mert Efe Celik",
+    "vcardOrg": "ELEVO Solutions"
+  },
+  "tracking": {
+    "metaPixelId": ""
+  },
+  "consent": {
+    "headline": "Datenschutz-Einstellungen",
+    "text": "Notwendige Funktionen brauche ich, damit Seite und Formular funktionieren. Mit Ihrer Zustimmung lade ich nach dem Absenden des Formulars den Meta Pixel, um zu messen, welche Anzeigen Anfragen bringen.",
+    "acceptAll": "Alle akzeptieren",
+    "necessaryOnly": "Nur notwendige",
+    "privacyLinkText": "Datenschutzerklärung",
+    "settingsLink": "Cookie-Einstellungen"
+  },
+  "legal": {
+    "impressumUrl": "https://elevo.solutions/impressum",
+    "datenschutzUrl": "https://elevo.solutions/datenschutz"
+  }
+}

@@ -1,0 +1,73 @@
+@import "tailwindcss" source(none);
+@source "../";
+@source "../../pages/familienrecht";
+
+/* Farben: Standardwerte. primary/accent werden im FrLayout aus familienrecht.json (brand) überschrieben. */
+@theme {
+  --color-ink: #0D1B2A;
+  --color-ink-deep: #08111B;
+  --color-body: #2F3F52;
+  --color-muted: #52627A;
+  --color-line: #DCE3EA;
+  --color-field: #6F8197;
+  --color-surface: #F5F7FA;
+  --color-accent: #F2A33A;
+  --color-accent-hover: #E08E1F;
+  --color-accent-soft: #FFF6E8;
+  --color-brand: #3DD6C0;
+  --color-danger: #B42318;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  body {
+    @apply bg-white font-sans text-[17px] leading-[1.6] text-body antialiased;
+  }
+  h1, h2, h3 {
+    overflow-wrap: break-word;
+    hyphens: manual;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+  [id] { scroll-margin-top: 1rem; }
+  summary::-webkit-details-marker { display: none; }
+}
+
+@layer components {
+  .btn-cta {
+    @apply inline-flex min-h-14 w-full items-center justify-center rounded-xl bg-accent px-6 py-3 text-center text-lg font-bold text-ink-deep shadow-sm transition-colors duration-300 hover:bg-accent-hover disabled:cursor-wait disabled:opacity-70;
+  }
+  .btn-secondary {
+    @apply inline-flex min-h-12 items-center justify-center rounded-xl border-2 border-ink px-6 py-2.5 font-semibold text-ink transition-colors duration-300 hover:bg-ink hover:text-white;
+  }
+  .field-input {
+    @apply block w-full rounded-lg border border-field bg-white px-3.5 py-3 text-base text-ink aria-invalid:border-danger;
+  }
+}
+
+/* Quiz: Ohne JavaScript stehen alle Fragen untereinander. Mit JavaScript (html.js) eine Frage pro Bildschirm. */
+.js-only { display: none; }
+.js .js-only { display: revert; }
+.js [data-quiz] .js-hide { display: none; }
+.js [data-quiz] [data-step]:not([data-active]) { display: none; }
+.js [data-quiz] [data-step][data-active] { animation: quiz-in 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+@keyframes quiz-in {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js [data-quiz] [data-step][data-active] { animation: none; }
+}
+
+/* Ohne JavaScript: Abstand zwischen den untereinander stehenden Fragen */
+.quiz-step + .quiz-step { margin-top: 2.5rem; }
+.js .quiz-step + .quiz-step { margin-top: 0; }

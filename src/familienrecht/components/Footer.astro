@@ -1,0 +1,20 @@
+---
+import fr from '../../config/familienrecht.json';
+interface Props {
+  /** Platz für den schwebenden CTA auf dem Handy */
+  stickySpace?: boolean;
+}
+const { stickySpace = false } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class:list={['mt-20 border-t border-line bg-surface', stickySpace && 'pb-20 md:pb-0']}>
+  <div class="mx-auto flex max-w-[720px] flex-col items-center gap-3 px-4 py-8 text-sm text-muted sm:flex-row sm:justify-between">
+    <p>© {year} {fr.brand.legalName}</p>
+    <nav aria-label="Rechtliches" class="flex flex-wrap justify-center gap-x-5 gap-y-2">
+      <a href={fr.legal.impressumUrl} class="underline-offset-2 hover:text-ink hover:underline">Impressum</a>
+      <a href={fr.legal.datenschutzUrl} class="underline-offset-2 hover:text-ink hover:underline">Datenschutz</a>
+      <button type="button" class="cursor-pointer underline-offset-2 hover:text-ink hover:underline" data-consent-open>{fr.consent.settingsLink}</button>
+    </nav>
+  </div>
+</footer>

@@ -1,0 +1,10 @@
+---
+// Rendert **fett** aus Config-Texten als <strong> (ohne HTML aus der Config)
+import { boldParts } from '../lib/text';
+interface Props {
+  text: string;
+}
+const parts = boldParts(Astro.props.text);
+---
+
+{parts.map((p) => (p.bold ? <strong class="font-bold text-ink">{p.text}</strong> : p.text))}

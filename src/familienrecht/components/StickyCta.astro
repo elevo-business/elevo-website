@@ -1,0 +1,32 @@
+---
+import fr from '../../config/familienrecht.json';
+---
+
+<div class="js-only fixed inset-x-0 bottom-0 z-30 translate-y-full border-t border-line bg-white/95 p-3 backdrop-blur transition-transform duration-300 md:hidden" data-sticky-cta aria-hidden="true">
+  <a href="#formular" class="btn-cta min-h-12 text-base" tabindex="-1">{fr.stickyCta}</a>
+</div>
+
+<script>
+  // Handy: schwebender Button, sobald weder Quiz noch Hero-Button im Bild sind (und kein Consent-Banner offen ist).
+  const bar = document.querySelector<HTMLElement>('[data-sticky-cta]');
+  const quiz = document.getElementById('formular');
+  const heroCta = document.querySelector('header [data-to-quiz]');
+  if (bar && quiz && 'IntersectionObserver' in window) {
+    const link = bar.querySelector('a')!;
+    const visible = new Map<Element, boolean>();
+    const update = () => {
+      const bannerOpen = document.querySelector('[data-consent-banner]:not([hidden])') !== null;
+      const show = !visible.get(quiz) && !visible.get(heroCta ?? quiz) && !bannerOpen;
+      bar.classList.toggle('translate-y-full', !show);
+      bar.setAttribute('aria-hidden', String(!show));
+      link.tabIndex = show ? 0 : -1;
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => visible.set(e.target, e.isIntersecting));
+      update();
+    });
+    observer.observe(quiz);
+    if (heroCta) observer.observe(heroCta);
+    window.addEventListener('consent:visibility', update);
+  }
+</script>

@@ -27,7 +27,7 @@ export async function submitToHubspot(
   consentText: string,
 ): Promise<boolean> {
   if (!isHubspotConfigured(config)) {
-    console.warn('HubSpot: portalId/formGuid sind in src/config/site.json noch nicht eingetragen.');
+    console.warn('HubSpot: portalId/formGuid sind in der Config (src/config/*.json) noch nicht eingetragen.');
     return false;
   }
   const hutk = getHutk();
