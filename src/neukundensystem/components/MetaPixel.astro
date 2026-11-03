@@ -1,0 +1,16 @@
+---
+// Meta-Pixel-Basiscode für alle Seiten einer Ads-Landingpage. Lädt erst nach Marketing-Einwilligung.
+interface Props {
+  pixelId: string;
+}
+const { pixelId } = Astro.props;
+---
+
+<span hidden data-meta-pixel={pixelId}></span>
+
+<script>
+  import { startPixel } from '../lib/pixel';
+
+  const id = document.querySelector<HTMLElement>('[data-meta-pixel]')?.dataset.metaPixel ?? '';
+  startPixel(id);
+</script>

@@ -3,6 +3,7 @@ import '../styles/global.css';
 import site from '../../config/site.json';
 import ConsentBanner from '../components/ConsentBanner.astro';
 import Footer from '../components/Footer.astro';
+import MetaPixel from '../components/MetaPixel.astro';
 
 interface Props {
   title: string;
@@ -55,5 +56,6 @@ const brandVars = [
     <slot />
     <Footer stickySpace={stickyCta} />
     <ConsentBanner showOnPendingLead={consentOnPendingLead} />
+    <MetaPixel pixelId={site.tracking.metaPixelId} />
   </body>
 </html>

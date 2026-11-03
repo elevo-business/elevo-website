@@ -1,5 +1,6 @@
-// Meta Pixel – wird ausschließlich von /danke importiert (Briefing, Abschnitt 5).
-import { getMarketingConsent } from './consent';
+// Meta Pixel für die Ads-Landingpages: Basiscode (PageView) auf allen Seiten, Lead nur auf der Danke-Seite.
+// Geladen wird erst nach Marketing-Einwilligung.
+import { CONSENT_EVENT, getMarketingConsent } from './consent';
 import { clearPendingLead, getPendingLead } from './lead';
 
 type Fbq = ((...args: unknown[]) => void) & {
@@ -14,6 +15,7 @@ declare global {
   interface Window {
     fbq?: Fbq;
     _fbq?: Fbq;
+    __lpPixelInit?: string;
   }
 }
 
@@ -42,6 +44,26 @@ function loadPixelBase(): Fbq {
   return fbq;
 }
 
+/** Lädt den Basiscode und zählt einen PageView – höchstens einmal pro Seitenaufruf, nur mit Einwilligung. */
+export function initPixel(pixelId: string): boolean {
+  if (!isValidPixelId(pixelId) || getMarketingConsent() !== true) return false;
+  const id = pixelId.trim();
+  if (window.__lpPixelInit === id) return true;
+  const fbq = loadPixelBase();
+  fbq('init', id);
+  fbq('track', 'PageView');
+  window.__lpPixelInit = id;
+  return true;
+}
+
+/** PageView sofort (wenn schon zugestimmt) oder sobald im Banner zugestimmt wird. */
+export function startPixel(pixelId: string): void {
+  initPixel(pixelId);
+  window.addEventListener(CONSENT_EVENT, (event) => {
+    if ((event as CustomEvent<boolean>).detail === true) initPixel(pixelId);
+  });
+}
+
 /**
  * Feuert genau ein Lead-Event, wenn
  *  1. eine gültige Pixel-ID konfiguriert ist,
@@ -55,10 +77,8 @@ export function trackLeadIfAllowed(pixelId: string): boolean {
   const lead = getPendingLead();
   if (!lead) return false;
 
-  const fbq = loadPixelBase();
-  fbq('init', pixelId.trim());
-  fbq('track', 'PageView');
-  fbq('track', 'Lead', {}, { eventID: lead.eventId });
+  initPixel(pixelId);
+  window.fbq!('track', 'Lead', {}, { eventID: lead.eventId });
   clearPendingLead();
   tracked = true;
   return true;

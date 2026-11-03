@@ -348,7 +348,7 @@
   },
   "consent": {
     "headline": "Datenschutz-Einstellungen",
-    "text": "Notwendige Funktionen brauche ich, damit die Seite und das Formular funktionieren. Mit deiner Zustimmung lade ich nach dem Absenden des Formulars den Meta Pixel, um zu messen, welche Anzeigen Anfragen bringen.",
+    "text": "Notwendige Funktionen brauche ich, damit die Seite und das Formular funktionieren. Mit deiner Zustimmung lade ich den Meta Pixel, um zu messen, welche Anzeigen Besucher und Anfragen bringen.",
     "acceptAll": "Alle akzeptieren",
     "necessaryOnly": "Nur notwendige",
     "privacyLinkText": "Datenschutzerklärung",

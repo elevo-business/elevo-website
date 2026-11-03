@@ -1,12 +1,12 @@
 # Landingpage /neukundensystem
 
 VSL-Landingpage + Danke-Seite für die eigenen Meta Ads (Neukundensystem), als eigene Seite auf elevo.solutions.
-Astro (statisch) + Tailwind CSS, Formular an die HubSpot Forms API, Meta Pixel nur auf der Danke-Seite.
+Astro (statisch) + Tailwind CSS, Formular an die HubSpot Forms API, Meta Pixel (nach Einwilligung) auf allen Seiten, Lead-Event nur auf der Danke-Seite.
 
 - `https://elevo.solutions/neukundensystem/` – Landingpage: Headline → Video → Formular → Referenzen → FAQ → Abschluss-CTA → Footer
-- `https://elevo.solutions/neukundensystem/danke/` – Danke-Seite (noindex, nicht in der Sitemap), hier und nur hier lädt der Meta Pixel
+- `https://elevo.solutions/neukundensystem/danke/` – Danke-Seite (noindex, nicht in der Sitemap), nur hier feuert das Conversion-Event `Lead`
 
-**Wichtig:** Die beiden Seiten nutzen ein eigenes Layout (`src/neukundensystem/layouts/LpLayout.astro`) – **nicht** das BaseLayout der restlichen Website. Dadurch laden dort weder der seitenweite Meta Pixel noch Google Ads/GA4/Clarity. Tailwind wird nur für diese Seiten verwendet (`src/neukundensystem/styles/global.css`); die übrigen Seiten bleiben unverändert.
+**Wichtig:** Die Seiten nutzen ein eigenes Layout (`src/neukundensystem/layouts/LpLayout.astro`) – **nicht** das BaseLayout der restlichen Website. Dort laden weder der seitenweite elevo.solutions-Pixel noch Google Ads/GA4/Clarity, sondern nur der eigene Pixel dieser Landingpage (nach Einwilligung). Tailwind wird nur für diese Seiten verwendet (`src/neukundensystem/styles/global.css`); die übrigen Seiten bleiben unverändert.
 
 ---
 
@@ -131,19 +131,19 @@ In den Meta Ads als Ziel-URL `https://elevo.solutions/neukundensystem/` eintrage
 
 ## 5. Tracking und Einwilligung – so funktioniert es
 
-- Auf `/neukundensystem/` wird **kein** Pixel und kein anderes Tracking geladen (auch nicht der seitenweite Pixel/Google-Tag von elevo.solutions).
+- **Basiscode auf allen Seiten:** Auf `/neukundensystem/`, der Danke- und der Absage-Seite lädt der Pixel (`tracking.metaPixelId`) mit `init` + `PageView` – aber erst, wenn Marketing-Einwilligung vorliegt (sofort beim Aufruf oder in dem Moment, in dem im Banner zugestimmt wird). Ohne Einwilligung lädt nichts. Der seitenweite Pixel/Google-Tag von elevo.solutions lädt hier nicht.
 - Nach erfolgreichem Versand an HubSpot speichert die Seite `lead_submitted` (Zeitstempel), `lead_event_id` und `lead_vorname` im sessionStorage und leitet auf `/neukundensystem/danke/` weiter.
-- Auf der Danke-Seite lädt der Pixel nur, wenn (1) eine Pixel-ID eingetragen ist, (2) Marketing-Einwilligung vorliegt und (3) der Versand höchstens 30 Minuten her ist. Dann: `init` → `PageView` → `Lead` mit `eventID`. Direkt danach wird `lead_submitted` gelöscht – Neuladen oder erneuter Aufruf zählt keinen zweiten Lead.
+- **Conversion nur auf der Danke-Seite:** `Lead` (mit `eventID`) feuert nur, wenn (1) eine Pixel-ID eingetragen ist, (2) Marketing-Einwilligung vorliegt und (3) der Versand höchstens 30 Minuten her ist. Direkt danach wird `lead_submitted` gelöscht – Neuladen oder erneuter Aufruf zählt keinen zweiten Lead.
 - Die Einwilligung wird mit dem Cookie-Banner der restlichen Website geteilt (`elevo_consent_v2`): Wer auf elevo.solutions schon gewählt hat, wird auf der Landingpage nicht noch einmal gefragt – und umgekehrt.
 - Consent-Banner: „Alle akzeptieren“ / „Nur notwendige“, gespeichert in localStorage (`consent_marketing` + Datum). Hat jemand nicht zugestimmt, erscheint der Banner auf der Danke-Seite noch einmal; stimmt er dort innerhalb der 30 Minuten zu, wird der Lead noch gezählt. Über „Cookie-Einstellungen“ im Footer lässt sich die Auswahl jederzeit ändern.
-- In Meta muss das Kampagnenziel auf das Conversion-Event **Lead** stehen. Da der Pixel nur auf der Danke-Seite liegt, sieht Meta keine Seitenbesuche (kein Retargeting auf Besucher) – das ist so gewollt.
+- In Meta muss das Kampagnenziel auf das Conversion-Event **Lead** stehen. Durch den PageView auf allen Seiten sieht Meta auch die Besucher (mit Einwilligung) – für Optimierung und Retargeting-Zielgruppen.
 
 ### Testen mit den Meta-Test-Events
 
-1. Events Manager → Pixel → **Test-Events** → URL `https://elevo.solutions/neukundensystem/` öffnen.
+1. Events Manager → Pixel → **Test-Events** → URL `https://elevo.solutions/neukundensystem/` öffnen, „Alle akzeptieren“ → ein `PageView` erscheint.
 2. Formular ausfüllen, „Alle akzeptieren“, absenden → auf der Danke-Seite muss genau **ein** `Lead` erscheinen.
-3. Danke-Seite neu laden → kein weiterer Lead.
-4. In neuem privaten Fenster „Nur notwendige“ wählen und absenden → kein Pixel. Im Banner auf der Danke-Seite zustimmen → genau ein Lead.
+3. Danke-Seite neu laden → nur ein `PageView`, kein weiterer Lead.
+4. In neuem privaten Fenster „Nur notwendige“ wählen und absenden → kein Pixel, auch kein PageView. Im Banner auf der Danke-Seite zustimmen → genau ein Lead.
 
 ---
 
