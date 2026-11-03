@@ -1,9 +1,9 @@
 # Landingpage /familienrecht (Pilotkanzleien)
 
-Landingpage für die eigenen Meta Ads an Kanzleien mit Schwerpunkt Familienrecht. Aufbau wie /neukundensystem: Astro (statisch) + Tailwind, eigenes Layout ohne seitenweites Tracking, Formular an die HubSpot Forms API, Meta Pixel nur auf der Danke-Seite.
+Landingpage für die eigenen Meta Ads an Kanzleien mit Schwerpunkt Familienrecht. Aufbau wie /neukundensystem: Astro (statisch) + Tailwind, eigenes Layout ohne den seitenweiten elevo.solutions-Pixel/Google-Tag, Formular an die HubSpot Forms API, Meta Pixel (nach Einwilligung) auf allen Seiten, Lead-Event nur auf der Danke-Seite.
 
 - `https://elevo.solutions/familienrecht/`: Headline + Pilot-Box → Quiz → Ergebnisse → Was Ihre Kanzlei bekommt → Über mich (`about`, Foto aus `public/team/`) → Für wen → Pilotangebot + Garantie → FAQ → Abschluss-CTA → Footer
-- `https://elevo.solutions/familienrecht/danke/`: Danke-Seite mit „Nummer speichern“ (`.vcf`), hier und nur hier lädt der Meta Pixel
+- `https://elevo.solutions/familienrecht/danke/`: Danke-Seite mit „Nummer speichern“ (`.vcf`), nur hier feuert das Conversion-Event `Lead`
 - Beide Seiten sind `noindex` und stehen nicht in der Sitemap (nur Ads-Traffic).
 - Kein Video: Headline, Pilot-Box und direkt darunter das Quiz.
 
@@ -83,9 +83,9 @@ Verhalten: Klick auf eine Kachel springt nach 250 ms weiter, Zurück behält die
 
 ## 6. Tracking und Einwilligung
 
-- Auf `/familienrecht/` lädt **kein** Pixel und kein anderes Tracking.
+- Auf allen Seiten (`/familienrecht/` und Danke-Seite) lädt der Pixel mit `init` + `PageView`, sobald Marketing-Einwilligung vorliegt. Ohne Einwilligung lädt nichts. Der seitenweite Pixel/Google-Tag von elevo.solutions lädt hier nicht.
 - Nach erfolgreichem Versand: `lead_submitted`, `lead_vorname`, `lead_event_id` im sessionStorage, Weiterleitung auf `/familienrecht/danke/`.
-- Dort lädt der Pixel nur mit Pixel-ID (`tracking.metaPixelId`), Marketing-Einwilligung und Versand vor höchstens 30 Minuten: `init` → `PageView` → `Lead` mit `eventID`. Neuladen zählt keinen zweiten Lead.
+- `Lead` (mit `eventID`) feuert nur auf der Danke-Seite, mit Pixel-ID (`tracking.metaPixelId`), Marketing-Einwilligung und Versand vor höchstens 30 Minuten. Neuladen zählt keinen zweiten Lead.
 - Ohne `metaPixelId` lädt nichts. Für das bestehende Werbekonto kann dieselbe Pixel-ID wie in `src/config/site.json` eingetragen werden.
 - Die Einwilligung wird mit dem Rest von elevo.solutions geteilt (`elevo_consent_v2`).
 
