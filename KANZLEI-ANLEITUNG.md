@@ -14,7 +14,7 @@ Lead-Magnet-Funnel für die eigenen Meta Ads an Kanzleien (alle Rechtsgebiete): 
 | --- | --- |
 | Video-Anleitung | Eingebettet aus Miro (`thankYou.video`, `provider: "miro"`, `embedUrl` = `src` aus dem Miro-Einbettungscode). Lädt erst nach Klick mit Hinweis „Beim Abspielen wird das Video von Miro geladen“. Das Board muss für „Jeder mit dem Link kann ansehen“ freigegeben sein. Alternativ: eigene MP4 (`provider: "self"`, `src`) oder Bunny Stream (`provider: "bunny"`, `bunnyLibraryId`, `videoId`). |
 | Inhalt der Anleitung | `benefits.items` – die vier Punkte müssen zu dem passen, was im Video tatsächlich vorkommt. |
-| Vorschaubild | `public/kanzlei-anleitung/thumbnail.webp` (1280 × 720, aus dem Porträtfoto erstellt). Wird auf der Opt-in-Seite und vor dem Abspielen auf der Danke-Seite gezeigt. Beim Austausch neuen Dateinamen verwenden (nginx cacht Bilder) und `hero.thumbnail.src` + `thankYou.video.poster` anpassen. |
+| Vorschaubild | `public/kanzlei-anleitung/thumbnail-du.webp` (1280 × 720, aus dem Porträtfoto erstellt). Wird auf der Opt-in-Seite und vor dem Abspielen auf der Danke-Seite gezeigt. Beim Austausch neuen Dateinamen verwenden (nginx cacht Bilder) und `hero.thumbnail.src` + `thankYou.video.poster` anpassen. |
 | Eigenes OG-Bild (optional) | `public/og-kanzlei-anleitung.jpg`, sonst wird das Standardbild genutzt. |
 
 Beim `bun run build` listet die Konsole alle noch offenen `[…]`-Platzhalter und die fehlende Videodatei auf.
