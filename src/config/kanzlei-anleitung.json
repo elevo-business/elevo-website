@@ -11,38 +11,38 @@
     "accentHoverColor": "#E08E1F"
   },
   "seo": {
-    "title": "Kostenlose Video-Anleitung: Planbar neue Mandate für Ihre Kanzlei",
-    "description": "In der kostenlosen Video-Anleitung sehen Sie, wie Kanzleien mit Online-Anzeigen, vorqualifizierten Anfragen und schnellem Rückruf planbar neue Mandate gewinnen.",
+    "title": "Kostenlose Video-Anleitung: Planbar neue Mandate für deine Kanzlei",
+    "description": "In der kostenlosen Video-Anleitung siehst du, wie Kanzleien mit Online-Anzeigen, vorqualifizierten Anfragen und schnellem Rückruf planbar neue Mandate gewinnen.",
     "thankYouTitle": "Zugang freigeschaltet | Video-Anleitung für Kanzleien",
     "ogImage": "/og-kanzlei-anleitung.jpg"
   },
   "hero": {
     "eyebrow": "Kostenlose Video-Anleitung für Kanzleien",
-    "headline": "So gewinnt Ihre Kanzlei planbar neue Mandate – ohne auf Empfehlungen und Zufall angewiesen zu sein",
-    "subline": "In der kostenlosen Video-Anleitung zeige ich Ihnen Schritt für Schritt, wie Kanzleien aus Online-Anzeigen vorqualifizierte Anfragen machen – und aus Anfragen Mandate.",
+    "headline": "So gewinnt deine Kanzlei planbar neue Mandate – ohne auf Empfehlungen und Zufall angewiesen zu sein",
+    "subline": "In der kostenlosen Video-Anleitung zeige ich dir Schritt für Schritt, wie Kanzleien aus Online-Anzeigen vorqualifizierte Anfragen machen – und aus Anfragen Mandate.",
     "videoCardTitle": "Video-Anleitung",
     "videoCardMeta": "ca. 36 Min. · kostenlos",
     "ctaText": "Ja, Video-Anleitung kostenlos ansehen",
     "ctaNote": "Sofortiger Zugang nach dem Eintragen.",
     "thumbnail": {
-      "src": "/kanzlei-anleitung/thumbnail.webp",
+      "src": "/kanzlei-anleitung/thumbnail-du.webp",
       "width": 1280,
       "height": 720,
-      "alt": "Vorschaubild der Video-Anleitung „Planbar neue Mandate für Ihre Kanzlei“ mit Mert Efe Celik"
+      "alt": "Vorschaubild der Video-Anleitung „Planbar neue Mandate für deine Kanzlei“ mit Mert Efe Celik"
     }
   },
   "benefits": {
-    "headline": "Das erfahren Sie in der Anleitung",
+    "headline": "Das erfährst du in der Anleitung",
     "items": [
       "Warum Empfehlungen allein keine **planbare Mandatsgewinnung** sind – und was stattdessen funktioniert.",
-      "Wie Online-Anzeigen gezielt die Mandanten ansprechen, die **fachlich und wirtschaftlich** zu Ihrer Kanzlei passen.",
+      "Wie Online-Anzeigen gezielt die Mandanten ansprechen, die **fachlich und wirtschaftlich** zu deiner Kanzlei passen.",
       "Warum die meisten Anfragen verloren gehen, **bevor jemand zurückruft** – und wie ein Rückruf in Minuten das verhindert.",
-      "Wie Sie unpassende Anfragen **vorab aussortieren**, statt Zeit in unqualifizierte Erstgespräche zu stecken."
+      "Wie du unpassende Anfragen **vorab aussortieren**, statt Zeit in unqualifizierte Erstgespräche zu stecken."
     ],
     "ctaText": "Jetzt kostenlos freischalten"
   },
   "about": {
-    "headline": "Wer Ihnen die Anleitung zeigt",
+    "headline": "Wer dir die Anleitung zeigt",
     "name": "Mert Efe Celik",
     "role": "Vertriebsleiter, ELEVO Solutions",
     "image": "/team/mert-800.webp",
@@ -62,15 +62,15 @@
     ]
   },
   "finalCta": {
-    "headline": "Sehen Sie sich die Anleitung jetzt an",
+    "headline": "Sieh dir die Anleitung jetzt an",
     "text": "Kostenlos, sofort verfügbar und ohne Verpflichtung.",
     "ctaText": "Ja, Video-Anleitung kostenlos ansehen"
   },
   "form": {
-    "headline": "Fast geschafft: Sichern Sie sich jetzt die kostenlose Video-Anleitung",
+    "headline": "Fast geschafft: Sichere dir jetzt die kostenlose Video-Anleitung",
     "submitText": "Jetzt Zugang zum Video erhalten",
     "submittingText": "Wird freigeschaltet …",
-    "belowSubmit": "Ihre Daten werden verschlüsselt übertragen.",
+    "belowSubmit": "Deine Daten werden verschlüsselt übertragen.",
     "closeLabel": "Schließen",
     "fields": [
       {
@@ -78,29 +78,29 @@
         "label": "Vor- und Nachname",
         "type": "text",
         "autocomplete": "name",
-        "error": "Bitte geben Sie Ihren Vor- und Nachnamen an."
+        "error": "Bitte gib deinen Vor- und Nachnamen an."
       },
       {
         "name": "email",
         "label": "E-Mail-Adresse",
         "type": "email",
         "autocomplete": "email",
-        "error": "Bitte geben Sie Ihre E-Mail-Adresse an.",
-        "errorFormat": "Bitte prüfen Sie Ihre E-Mail-Adresse (z. B. name@kanzlei.de)."
+        "error": "Bitte gib deine E-Mail-Adresse an.",
+        "errorFormat": "Bitte prüfe deine E-Mail-Adresse (z. B. name@kanzlei.de)."
       },
       {
         "name": "phone",
         "label": "Mobilnummer",
         "type": "tel",
         "autocomplete": "tel",
-        "error": "Bitte geben Sie Ihre Mobilnummer an.",
-        "errorFormat": "Bitte geben Sie eine gültige Telefonnummer an (z. B. 0151 1234567)."
+        "error": "Bitte gib deine Mobilnummer an.",
+        "errorFormat": "Bitte gib eine gültige Telefonnummer an (z. B. 0151 1234567)."
       }
     ],
     "consentText": "Ich bin einverstanden, dass ELEVO Solutions mich zur Anleitung per Telefon und E-Mail kontaktiert. Hinweise in der {{datenschutz}}.",
     "consentLinkText": "Datenschutzerklärung",
-    "consentError": "Bitte stimmen Sie zu, damit ich Ihnen den Zugang freischalten kann.",
-    "errorText": "Das hat nicht geklappt. Bitte versuchen Sie es erneut oder rufen Sie mich an:",
+    "consentError": "Bitte stimme zu, damit ich dir den Zugang freischalten kann.",
+    "errorText": "Das hat nicht geklappt. Bitte versuch es erneut oder ruf mich an:",
     "hubspot": {
       "portalId": "149380660",
       "formGuid": "723cfd30-9dea-46e2-9073-32b09db15b22",
@@ -112,35 +112,35 @@
   },
   "thankYou": {
     "badge": "Zugang freigeschaltet",
-    "headline": "Danke, {{vorname}}! Hier ist Ihre Video-Anleitung.",
-    "headlineNoName": "Danke! Hier ist Ihre Video-Anleitung.",
-    "subline": "Nehmen Sie sich in Ruhe Zeit – die Anleitung dauert ca. 36 Minuten. Am besten mit Ton ansehen.",
+    "headline": "Danke, {{vorname}}! Hier ist deine Video-Anleitung.",
+    "headlineNoName": "Danke! Hier ist deine Video-Anleitung.",
+    "subline": "Nimm dir in Ruhe Zeit – die Anleitung dauert ca. 36 Minuten. Am besten mit Ton ansehen.",
     "video": {
       "provider": "miro",
       "embedUrl": "https://miro.com/video-player/1nJ4q4ZFD5eWyThBLtnHPt",
       "aspect": "16:9",
-      "title": "Video-Anleitung: Planbar neue Mandate für Ihre Kanzlei",
-      "poster": "/kanzlei-anleitung/thumbnail.webp"
+      "title": "Video-Anleitung: Planbar neue Mandate für deine Kanzlei",
+      "poster": "/kanzlei-anleitung/thumbnail-du.webp"
     },
-    "phoneLine": "Fragen zur Anleitung? Sie erreichen mich unter",
+    "phoneLine": "Fragen zur Anleitung? Du erreichst mich unter",
     "phone": "02451 9949695",
     "phoneInternational": "+49 2451 9949695",
     "form": {
-      "headline": "Möchten Sie das für Ihre Kanzlei umsetzen?",
-      "text": "Beantworten Sie vier kurze Fragen – ich melde mich für ein kostenloses Strategiegespräch bei Ihnen.",
-      "contactHeadline": "Wie erreiche ich Sie?",
+      "headline": "Möchtest du das für deine Kanzlei umsetzen?",
+      "text": "Beantworte vier kurze Fragen – ich melde mich für ein kostenloses Strategiegespräch bei dir.",
+      "contactHeadline": "Wie erreiche ich dich?",
       "submitText": "Kostenloses Strategiegespräch anfragen",
       "submittingText": "Wird gesendet …",
-      "successHeadline": "Danke! Ihre Anfrage ist angekommen.",
-      "successText": "Ich melde mich in Kürze bei Ihnen, um einen Termin für Ihr Strategiegespräch zu finden.",
-      "choiceError": "Bitte wählen Sie eine Antwort aus.",
+      "successHeadline": "Danke! Deine Anfrage ist angekommen.",
+      "successText": "Ich melde mich in Kürze bei dir, um einen Termin für dein Strategiegespräch zu finden.",
+      "choiceError": "Bitte wähle eine Antwort aus.",
       "fields": [
         {
           "name": "company",
-          "label": "Wie heißt Ihre Kanzlei?",
+          "label": "Wie heißt deine Kanzlei?",
           "type": "text",
           "autocomplete": "organization",
-          "error": "Bitte geben Sie den Namen Ihrer Kanzlei an."
+          "error": "Bitte gib den Namen deiner Kanzlei an."
         }
       ],
       "questions": [
@@ -156,7 +156,7 @@
         },
         {
           "name": "lead_mandatswert",
-          "label": "Was bringt Ihnen ein neues Mandat im Schnitt an Honorar?",
+          "label": "Was bringt dir ein neues Mandat im Schnitt an Honorar?",
           "options": [
             "Unter 1.500 €",
             "1.500–3.000 €",
@@ -166,7 +166,7 @@
         },
         {
           "name": "lead_startzeitpunkt",
-          "label": "Wann möchten Sie starten?",
+          "label": "Wann möchtest du starten?",
           "options": [
             "Sofort",
             "In 1–3 Monaten",
@@ -189,7 +189,7 @@
   },
   "consent": {
     "headline": "Datenschutz-Einstellungen",
-    "text": "Notwendige Funktionen brauche ich, damit Seite und Formular funktionieren. Mit Ihrer Zustimmung lade ich den Meta Pixel, um zu messen, welche Anzeigen Besucher und Anfragen bringen.",
+    "text": "Notwendige Funktionen brauche ich, damit Seite und Formular funktionieren. Mit deiner Zustimmung lade ich den Meta Pixel, um zu messen, welche Anzeigen Besucher und Anfragen bringen.",
     "acceptAll": "Alle akzeptieren",
     "necessaryOnly": "Nur notwendige",
     "privacyLinkText": "Datenschutzerklärung",
