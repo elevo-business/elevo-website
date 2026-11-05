@@ -1,0 +1,353 @@
+{
+  "paths": {
+    "landing": "/kanzlei-berlin/",
+    "thankYou": "/kanzlei-berlin/danke/",
+    "vcard": "/kanzlei-berlin/mert-efe-celik.vcf"
+  },
+  "brand": {
+    "name": "Elevo",
+    "legalName": "ELEVO Solutions",
+    "primaryColor": "#0D1B2A",
+    "accentColor": "#F2A33A",
+    "accentHoverColor": "#E08E1F"
+  },
+  "seo": {
+    "title": "Neue Mandate für Berliner Kanzleien im Familien- und Erbrecht",
+    "description": "Anzeigen nur für Menschen in Berlin und Umgebung, vorgeprüfte Anfragen und schneller Rückruf. Erste Anfragen in 7 Werktagen, 30 Tage Geld-zurück-Garantie.",
+    "thankYouTitle": "Danke | Kanzleien Berlin",
+    "ogImage": "/og-kanzlei-berlin.jpg",
+    "noindex": true
+  },
+  "hero": {
+    "_info": "Headline-Test passend zu den drei Anzeigen: ?h=a (Skript 1 Empfehlungen), ?h=b (Skript 2 Werbung seriös), ?h=c (Skript 3 Erstgespräche). Ohne Parameter gilt defaultVariant.",
+    "eyebrow": "Für Kanzleien im Familien- und Erbrecht in Berlin",
+    "defaultVariant": "a",
+    "headlines": {
+      "a": "Neue Mandate für Ihre Kanzlei. Planbar, nicht nur über Empfehlungen.",
+      "b": "Seriöse Anzeigen, die Mandanten aus Berlin direkt zu Ihnen bringen.",
+      "c": "Nur noch Erstgespräche, die sich für Ihre Kanzlei lohnen."
+    },
+    "subline": "Anzeigen nur für Menschen in Berlin und Umgebung, die gerade vor einer Trennung oder einem Erbfall stehen. Jede Anfrage ist vorgeprüft.",
+    "trust": [
+      "**Erste Anfragen in 7 Werktagen**, oft schon früher",
+      "**30 Tage Geld-zurück-Garantie**",
+      "**Nur Anfragen aus Berlin und Umgebung**"
+    ],
+    "ctaText": "Jetzt prüfen, ob es passt"
+  },
+  "form": {
+    "headline": "Passt das zu Ihrer Kanzlei?",
+    "subline": "4 Fragen per Klick, unter 1 Minute.",
+    "progressText": "Frage {{n}} von {{total}}",
+    "nextText": "Weiter",
+    "backText": "Zurück",
+    "submitText": "Gespräch anfragen",
+    "submittingText": "Wird gesendet …",
+    "belowSubmit": "Kostenlos und unverbindlich · 30 Tage Geld-zurück-Garantie",
+    "optionalText": "optional",
+    "choiceError": "Bitte wählen Sie eine Antwort aus.",
+    "consentText": "Ich bin einverstanden, dass ELEVO Solutions mich zu meiner Anfrage per Telefon und E-Mail kontaktiert. Hinweise in der {{datenschutz}}.",
+    "consentLinkText": "Datenschutzerklärung",
+    "consentError": "Bitte bestätigen Sie die Einwilligung.",
+    "errorText": "Das hat nicht geklappt. Bitte versuchen Sie es noch einmal oder rufen Sie mich an:",
+    "hubspot": {
+      "_info": "Gleiches HubSpot-Formular wie /familienrecht. Alle Properties existieren dort bereits; Leads erkennbar an lp_variante = kanzlei-berlin.",
+      "portalId": "149380660",
+      "formGuid": "723cfd30-9dea-46e2-9073-32b09db15b22",
+      "communications": []
+    },
+    "hiddenFields": {
+      "lp_variante": "kanzlei-berlin"
+    },
+    "steps": [
+      {
+        "id": "akquise",
+        "type": "choice",
+        "question": "Woher kommen Ihre neuen Mandate heute vor allem?",
+        "hubspotProperty": "lead_akquise",
+        "options": [
+          "Empfehlungen",
+          "Website und Google",
+          "Anwaltsportale wie anwalt.de",
+          "Bezahlte Werbung"
+        ],
+        "red": [],
+        "green": ["Empfehlungen"]
+      },
+      {
+        "id": "kapazitaet",
+        "type": "choice",
+        "question": "Wie viele neue Mandate könnten Sie zusätzlich pro Monat übernehmen?",
+        "hubspotProperty": "lead_kapazitaet",
+        "options": [
+          "Mehr als 5",
+          "2 bis 5",
+          "Gerade keine"
+        ],
+        "red": ["Gerade keine"],
+        "green": ["Mehr als 5"]
+      },
+      {
+        "id": "rueckruf",
+        "type": "choice",
+        "question": "Wer ruft neue Anfragen bei Ihnen zurück?",
+        "hubspotProperty": "lead_rueckruf",
+        "options": [
+          "Ich selbst, am selben Tag",
+          "Sekretariat oder ReFa, am selben Tag",
+          "Meist erst nach 1 bis 2 Tagen",
+          "Niemand fest zuständig"
+        ],
+        "red": [
+          "Meist erst nach 1 bis 2 Tagen",
+          "Niemand fest zuständig"
+        ],
+        "green": [
+          "Ich selbst, am selben Tag",
+          "Sekretariat oder ReFa, am selben Tag"
+        ],
+        "detailProperty": "fr_rueckruf",
+        "hubspotValues": {
+          "Ich selbst, am selben Tag": "ich_selbst",
+          "Sekretariat oder ReFa, am selben Tag": "sekretariat",
+          "Niemand fest zuständig": "niemand"
+        },
+        "hint": "Das ist kein Ausschluss. Es hilft mir nur bei der Planung."
+      },
+      {
+        "id": "werbebudget",
+        "type": "choice",
+        "question": "Wie viel könnten Sie monatlich in Anzeigen investieren?",
+        "hubspotProperty": "lead_werbebudget",
+        "options": [
+          "Unter 1.000 €",
+          "1.000–3.000 €",
+          "Über 3.000 €"
+        ],
+        "red": ["Unter 1.000 €"],
+        "green": ["1.000–3.000 €", "Über 3.000 €"],
+        "hubspotValues": {
+          "Unter 1.000 €": "unter_1000",
+          "1.000–3.000 €": "1000_3000",
+          "Über 3.000 €": "ueber_3000"
+        },
+        "hint": "Eine grobe Einschätzung reicht. Das Budget geht direkt an Meta, nicht an mich."
+      },
+      {
+        "id": "kontakt",
+        "type": "fields",
+        "question": "Wohin darf ich mich melden?",
+        "consent": true,
+        "fields": [
+          {
+            "name": "firstname",
+            "label": "Vorname",
+            "type": "text",
+            "autocomplete": "given-name",
+            "required": true,
+            "error": "Bitte geben Sie Ihren Vornamen an."
+          },
+          {
+            "name": "company",
+            "label": "Name der Kanzlei",
+            "type": "text",
+            "autocomplete": "organization",
+            "required": false
+          },
+          {
+            "name": "phone",
+            "label": "Telefon",
+            "type": "tel",
+            "autocomplete": "tel",
+            "required": true,
+            "help": "Ich rufe meist noch am selben Werktag an.",
+            "error": "Bitte geben Sie eine Telefonnummer an, unter der ich Sie erreiche."
+          },
+          {
+            "name": "email",
+            "label": "E-Mail",
+            "type": "email",
+            "autocomplete": "email",
+            "required": true,
+            "error": "Bitte prüfen Sie Ihre E-Mail-Adresse."
+          }
+        ]
+      }
+    ],
+    "priority": {
+      "_info": "Wird automatisch berechnet und als lp_prioritaet an HubSpot gesendet. Eine Antwort aus 'red' → C. Keine 'red' und mind. aMinGreen Antworten aus 'green' → A. Sonst B.",
+      "property": "lp_prioritaet",
+      "aMinGreen": 3,
+      "labels": {
+        "a": "A – sehr gut qualifiziert",
+        "b": "B – prüfen",
+        "c": "C – passt eher nicht"
+      }
+    }
+  },
+  "howItWorks": {
+    "headline": "So kommen die Mandate zu Ihnen",
+    "steps": [
+      {
+        "title": "Anzeigen nur für Ihr Einzugsgebiet.",
+        "text": "Ruhige, sachliche Anzeigen, die nur Menschen in Berlin und Umgebung sehen, die sich gerade trennen oder einen Erbfall haben. Keine Anzeige geht ohne Ihre Freigabe online."
+      },
+      {
+        "title": "Vorprüfung vor dem ersten Gespräch.",
+        "text": "Bevor jemand anfragt, beantwortet er ein paar kurze Fragen: Worum geht es, wo wohnen Sie, wie dringend ist es? Sie sehen vor dem Rückruf, ob der Fall zu Ihnen passt."
+      },
+      {
+        "title": "Rückruf, bevor die Anfrage weiterzieht.",
+        "text": "Jede passende Anfrage landet sofort bei Ihnen oder Ihrem Sekretariat. Dazu bekommen Sie einen Leitfaden für Rückruf und Erstgespräch."
+      }
+    ],
+    "footnote": "An Ihrer Website und Ihrer Kanzleisoftware ändert sich nichts."
+  },
+  "results": {
+    "headline": "Ergebnisse mit demselben System",
+    "items": [
+      {
+        "name": "Greenchild",
+        "value": "Über 30.000 €",
+        "result": "zusätzlicher Umsatz in 3 Monaten",
+        "text": "Meta-Anzeigen, ein Formular zum Durchklicken, Rückruf innerhalb weniger Minuten und ein klarer Ablauf bis zum Abschluss.",
+        "image": "/kanzlei-berlin/logo-greenchild.webp",
+        "imageWidth": 398,
+        "imageHeight": 100,
+        "imageAlt": "Logo von Greenchild",
+        "quote": "Früher lief bei uns vieles über Handarbeit. Heute kommt ein Lead rein und der Rest passiert von allein. Elevo hat genau das gebaut, was sie versprochen haben.",
+        "quoteAuthor": "Nazim Azemi",
+        "quoteRole": "Gründer und Geschäftsführer, Greenchild",
+        "quoteImage": "/testimonials/nazim-azemi.webp",
+        "featured": true
+      },
+      {
+        "name": "BrandsMarketingLab, Aachen",
+        "value": "10.000 €",
+        "result": "Mehrumsatz im ersten Monat",
+        "text": "Gleiches Prinzip: Anzeigen, vorqualifizierte Anfragen, Rückruf mit Leitfaden.",
+        "image": "/kanzlei-berlin/logo-bml.webp",
+        "imageWidth": 192,
+        "imageHeight": 185,
+        "imageAlt": "Logo von BrandsMarketingLab",
+        "quote": ""
+      }
+    ],
+    "honestyNote": "Beide Ergebnisse stammen aus anderen Branchen. Das System dahinter ist dasselbe: Anzeigen im richtigen Umkreis, Vorprüfung, schneller Rückruf."
+  },
+  "guarantee": {
+    "headline": "Ihr Risiko liegt bei mir",
+    "items": [
+      {
+        "title": "Erste Anfragen in 7 Werktagen",
+        "text": "Nach dem Start Ihrer Anzeigen kommen die ersten Anfragen innerhalb von 7 Werktagen bei Ihnen an, oft schon früher."
+      },
+      {
+        "title": "30 Tage Geld-zurück-Garantie",
+        "text": "Kommen in den ersten 30 Tagen keine passenden Anfragen bei Ihnen an, bekommen Sie Ihr Geld zurück. Was als passende Anfrage zählt, halten wir vor dem Start gemeinsam schriftlich fest."
+      }
+    ],
+    "processHeadline": "So läuft es ab",
+    "process": [
+      "Sie beantworten oben 4 kurze Fragen. Dauert unter einer Minute.",
+      "Ich rufe Sie an und schaue mir Ihre aktuelle Mandatsgewinnung an (ca. 15 Minuten).",
+      "Passt es, baue ich Anzeigen und Vorprüfung auf. Sie geben alles frei.",
+      "Die Anzeigen starten. Erste Anfragen kommen innerhalb von 7 Werktagen."
+    ],
+    "button": "Jetzt prüfen, ob es passt"
+  },
+  "about": {
+    "headline": "Wer hinter den Anzeigen steht",
+    "name": "Mert Efe Celik",
+    "role": "ELEVO Solutions",
+    "image": "/team/mert-800.webp",
+    "imageWidth": 800,
+    "imageHeight": 1000,
+    "imageAlt": "Porträt von Mert Efe Celik, ELEVO Solutions",
+    "text": "Ich bin seit 5 Jahren im Vertrieb und Marketing tätig und habe bereits über 100.000 € in Werbeanzeigen investiert. Anzeigen allein bringen keine Mandate. Entscheidend ist, was nach der Anfrage passiert. Deshalb richte ich jedes System selbst ein und bin Ihr direkter Ansprechpartner.",
+    "facts": [
+      { "value": "5 Jahre", "label": "Vertrieb und Marketing" },
+      { "value": "100.000 €+", "label": "in Werbung investiert" }
+    ]
+  },
+  "faqHeadline": "Häufige Fragen",
+  "faq": [
+    {
+      "q": "Dürfen Anwälte auf Facebook und Instagram werben?",
+      "a": "Ja. § 43b BRAO erlaubt Werbung, die sachlich über Ihre Kanzlei und Ihre Schwerpunkte informiert. Die Anzeigen sind genau so aufgebaut, und jede Anzeige geben Sie vor dem Start frei."
+    },
+    {
+      "q": "Wirkt Werbung für eine Kanzlei nicht unseriös?",
+      "a": "Unseriös wirkt schlechte Werbung. Eine ruhige, sachliche Anzeige, in der Sie zeigen, wie Sie arbeiten, wirkt eher wie eine Empfehlung. Wer sich gerade trennt oder einen Erbfall hat und niemanden kennt, sucht auf dem Handy. Dort sollte er Ihre Kanzlei finden."
+    },
+    {
+      "q": "Ich bekomme genug Empfehlungen. Brauche ich das?",
+      "a": "Empfehlungen sind ein gutes Zeichen. Sie lassen sich aber nicht planen. Die Anzeigen sind eine zweite Quelle, die Sie selbst steuern: mehr Anfragen, wenn der Kalender leer ist, und Pause, wenn er voll ist."
+    },
+    {
+      "q": "Bekomme ich auch Anfragen von außerhalb Berlins?",
+      "a": "Die Anzeigen sehen nur Menschen in Berlin und Umgebung. Zusätzlich fragt die Vorprüfung nach dem Wohnort. So sehen Sie vor dem Rückruf, ob die Anfrage in Ihr Einzugsgebiet passt."
+    },
+    {
+      "q": "Wie schnell kommen die ersten Anfragen?",
+      "a": "Innerhalb von 7 Werktagen nach dem Start der Anzeigen, oft schon früher."
+    },
+    {
+      "q": "Wie funktioniert die Geld-zurück-Garantie?",
+      "a": "Kommen in den ersten 30 Tagen keine passenden Anfragen bei Ihnen an, bekommen Sie Ihr Geld zurück. Was als passende Anfrage zählt, legen wir vor dem Start gemeinsam schriftlich fest."
+    },
+    {
+      "q": "Was kostet das?",
+      "a": "Das hängt von Ihrem Einzugsgebiet und davon ab, wie viele Mandate Sie zusätzlich übernehmen können. Die genauen Zahlen nenne ich Ihnen im Gespräch. Das Werbebudget zahlen Sie direkt an Meta."
+    },
+    {
+      "q": "Wie viel Zeit kostet mich das?",
+      "a": "Ein kurzes Gespräch zum Start und die Freigabe der Anzeigen. Den Rest übernehme ich. Danach rufen Sie nur noch die passenden Anfragen zurück."
+    },
+    {
+      "q": "Muss ich an meiner Website etwas ändern?",
+      "a": "Nein. Anzeigen und Vorprüfung laufen separat. An Website und Kanzleisoftware ändert sich nichts."
+    },
+    {
+      "q": "Was passiert nach dem Formular?",
+      "a": "Ich rufe Sie an, meist noch am selben Werktag. Im Gespräch (ca. 15 Minuten) schaue ich mir Ihre aktuelle Mandatsgewinnung an und zeige Ihnen, wie eine Anzeige für Ihre Kanzlei konkret aussehen würde. Unverbindlich."
+    }
+  ],
+  "finalCta": {
+    "headline": "Wissen Sie, wie viele Mandate nächsten Monat reinkommen?",
+    "text": "Beantworten Sie 4 kurze Fragen. Ich zeige Ihnen im Gespräch, wie eine zweite, planbare Quelle für Ihre Kanzlei aussehen würde.",
+    "button": "Jetzt prüfen, ob es passt"
+  },
+  "stickyCta": "Jetzt prüfen, ob es passt",
+  "thankYou": {
+    "headline": "Danke, {{vorname}}. Ich melde mich in Kürze bei Ihnen.",
+    "headlineNoName": "Danke. Ich melde mich in Kürze bei Ihnen.",
+    "stepsHeadline": "So geht es weiter",
+    "steps": [
+      "Ich rufe Sie an, meist noch am selben Werktag (ca. 15 Minuten).",
+      "Ich schaue mir Ihre aktuelle Mandatsgewinnung an und zeige Ihnen, wie eine Anzeige für Ihre Kanzlei aussehen würde.",
+      "Passt es, starten die Anzeigen. Erste Anfragen kommen innerhalb von 7 Werktagen."
+    ],
+    "phoneLine": "Speichern Sie meine Nummer, damit Sie den Anruf erkennen:",
+    "phone": "02451 9949695",
+    "phoneInternational": "+49 2451 9949695",
+    "saveButton": "Nummer speichern",
+    "vcardName": "Mert Efe Celik",
+    "vcardOrg": "ELEVO Solutions"
+  },
+  "tracking": {
+    "metaPixelId": "1150135684404237"
+  },
+  "consent": {
+    "headline": "Datenschutz-Einstellungen",
+    "text": "Notwendige Funktionen brauche ich, damit Seite und Formular funktionieren. Mit Ihrer Zustimmung lade ich den Meta Pixel, um zu messen, welche Anzeigen Besucher und Anfragen bringen.",
+    "acceptAll": "Alle akzeptieren",
+    "necessaryOnly": "Nur notwendige",
+    "privacyLinkText": "Datenschutzerklärung",
+    "settingsLink": "Cookie-Einstellungen"
+  },
+  "legal": {
+    "impressumUrl": "https://elevo.solutions/impressum",
+    "datenschutzUrl": "https://elevo.solutions/datenschutz"
+  }
+}
