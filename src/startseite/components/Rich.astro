@@ -1,0 +1,9 @@
+---
+// Rendert *Wort* aus Config-Texten als kursive Serifen-Hervorhebung (ohne HTML aus der Config)
+interface Props {
+  text: string;
+}
+const parts = Astro.props.text.split(/\*(.+?)\*/g).map((t, i) => ({ t, em: i % 2 === 1 })).filter((p) => p.t !== '');
+---
+
+{parts.map((p) => (p.em ? <em class="emph">{p.t}</em> : p.t))}

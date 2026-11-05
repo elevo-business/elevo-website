@@ -4,7 +4,7 @@ import ss from '../../config/startseite.json';
 import Logo from './Logo.astro';
 ---
 
-<header class="mx-auto flex max-w-[1080px] items-center justify-between gap-4 px-4 pt-4 sm:pt-5">
-  <a href="/" aria-label={`${ss.brand.name}, Startseite`} class="rounded-md"><Logo /></a>
-  <a href="#formular" class="inline-flex min-h-11 items-center rounded-lg bg-gold px-4 text-[15px] font-semibold text-navy transition-colors duration-300 hover:bg-gold-hover">{ss.header.ctaText}</a>
+<header class="mx-auto flex max-w-[1080px] items-center justify-between gap-4 px-4 pt-4 sm:pt-6">
+  <a href="/" aria-label={`${ss.brand.name}, Startseite`} class="rounded-sm"><Logo /></a>
+  <a href="#formular" class="inline-flex min-h-11 items-center border-b-2 border-gold px-1 text-[15px] font-semibold text-navy transition-colors duration-300 hover:border-navy">{ss.header.ctaText}</a>
 </header>

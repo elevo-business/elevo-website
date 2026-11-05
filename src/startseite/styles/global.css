@@ -21,6 +21,12 @@
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+/* Newsreader (Serife für Überschriften, variabel 200–800, normal + kursiv), lokal eingebunden */
+@font-face { font-family: "Newsreader"; font-style: normal; font-weight: 200 800; font-display: swap; src: url("/fonts/Newsreader-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Newsreader"; font-style: normal; font-weight: 200 800; font-display: swap; src: url("/fonts/Newsreader-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0, U+A720-A7FF; }
+@font-face { font-family: "Newsreader"; font-style: italic; font-weight: 200 800; font-display: swap; src: url("/fonts/Newsreader-latin-italic.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Newsreader"; font-style: italic; font-weight: 200 800; font-display: swap; src: url("/fonts/Newsreader-latin-ext-italic.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0, U+A720-A7FF; }
+
 /* Farben aus dem Briefing (navy, offwhite, gold). Werden im SsLayout aus startseite.json (brand) überschrieben. */
 @theme {
   --color-navy: #0E1A30;
@@ -41,6 +47,8 @@
   --color-danger: #B42318;
   --color-brand: #3DD6C0;
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-serif: "Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --color-rule: #CFCBBE;
 }
 
 @layer base {
@@ -70,17 +78,25 @@
 
 @layer components {
   .btn-cta {
-    @apply inline-flex min-h-14 w-full items-center justify-center rounded-xl bg-gold px-6 py-3 text-center text-lg font-semibold text-navy shadow-sm transition-colors duration-300 hover:bg-gold-hover disabled:cursor-wait disabled:opacity-70;
+    @apply inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-[4px] bg-gold px-6 py-3 text-center text-[17px] font-semibold tracking-[0.01em] text-navy transition-colors duration-300 hover:bg-gold-hover disabled:cursor-wait disabled:opacity-70;
   }
+  .btn-cta .arrow { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+  .btn-cta:hover .arrow { transform: translateX(4px); }
   .btn-secondary {
-    @apply inline-flex min-h-12 items-center justify-center rounded-xl border-2 border-navy px-6 py-2.5 font-semibold text-navy transition-colors duration-300 hover:bg-navy hover:text-white;
+    @apply inline-flex min-h-12 items-center justify-center rounded-[4px] border-2 border-navy px-6 py-2.5 font-semibold text-navy transition-colors duration-300 hover:bg-navy hover:text-white;
   }
   .field-input {
-    @apply block w-full rounded-lg border border-field bg-white px-3.5 py-3 text-base text-navy aria-invalid:border-danger;
+    @apply block w-full rounded-[4px] border border-field bg-white px-3.5 py-3 text-base text-navy aria-invalid:border-danger;
   }
   .section-title {
-    @apply text-[1.625rem] leading-[1.2] font-bold tracking-[-0.02em] text-navy sm:text-[2rem];
+    @apply font-serif text-[2rem] leading-[1.1] font-medium tracking-[-0.015em] text-navy sm:text-[2.75rem];
   }
+  /* Kursive Hervorhebung aus der Config (*Wort*): Serife kursiv, Gold */
+  .emph { @apply font-serif font-medium italic; color: var(--color-gold-text); }
+  .on-navy .emph { color: var(--color-gold); }
+  /* Rubrik am Rand: „01 — Das Problem“ */
+  .rubric { @apply text-[12px] font-semibold tracking-[0.16em] uppercase; color: var(--color-gold-text); font-variant-numeric: tabular-nums; }
+  .on-navy .rubric { color: var(--color-gold); }
 }
 
 /* Quiz: Ohne JavaScript stehen alle Fragen untereinander. Mit JavaScript (html.js) eine Frage pro Bildschirm. */

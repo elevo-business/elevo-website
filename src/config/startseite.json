@@ -24,11 +24,13 @@
   },
   "problem": {
     "eyebrow": "Für Kanzleien mit Schwerpunkt Familienrecht",
-    "h1": "Sie brauchen nicht mehr Anfragen. Sie brauchen einen Prozess, der aus Anfragen Mandate macht.",
+    "h1": "Sie brauchen nicht mehr Anfragen. Sie brauchen einen Prozess, der aus Anfragen *Mandate* macht.",
     "subheadline": "Viele Familienrecht-Kanzleien leben von Empfehlungen. Ein Monat ist voll, der nächste ruhig. Und die Scheidungsmandate mit Immobilie, Zugewinn oder Unterhalt sind zu selten.",
     "subheadlineMobile": "Viele Familienrecht-Kanzleien leben von Empfehlungen. Ein Monat ist voll, der nächste ruhig.",
     "ctaText": "Platz anfragen",
-    "microcopy": "4 kurze Fragen. Ich rufe Sie persönlich an."
+    "microcopy": "4 kurze Fragen. Ich rufe Sie persönlich an.",
+    "label": "Das Problem",
+    "outlineTitle": "Die Thesis in sieben Schritten"
   },
   "video": {
     "provider": "bunny",
@@ -49,7 +51,8 @@
       "in Suchmaschinen-Optimierung",
       "in Anwaltsportale",
       "in eine Agentur, die mehr Anfragen bringen soll"
-    ]
+    ],
+    "label": "Die naheliegende Antwort"
   },
   "antithesis": {
     "headline": "Die meisten Kanzleien verlieren Mandate nicht vor der Anfrage, sondern danach.",
@@ -57,10 +60,11 @@
       "Anfragen werden zu spät zurückgerufen.",
       "Anfragen bleiben im Postfach liegen.",
       "Anwaltszeit geht an Gespräche, aus denen nie ein Mandat wird."
-    ]
+    ],
+    "label": "Wo Mandate verloren gehen"
   },
   "diagnosis": {
-    "headline": "Wer zuerst zurückruft, bekommt das Mandat.",
+    "headline": "Wer zuerst zurückruft, bekommt *das Mandat*.",
     "stats": [
       {
         "value": "7-mal",
@@ -85,22 +89,39 @@
         "text": "Clio Legal Trends Report 2024, Testkäufer-Studie mit US-Kanzleien.",
         "url": "https://www.clio.com/about/press/clio-latest-legal-trends-report/"
       }
-    ]
+    ],
+    "label": "Die Diagnose"
   },
   "mechanism": {
-    "headline": "Erst der Prozess. Dann die Anzeigen.",
+    "headline": "Erst der Prozess. *Dann* die Anzeigen.",
     "intro": "Ich drehe die übliche Reihenfolge um. Zuerst steht der Ablauf, der jede Anfrage verlässlich zum Mandat führt. Erst dann bringen Anzeigen gezielt neue Anfragen hinein.",
     "steps": [
-      { "title": "Vorab fragen.", "text": "Ein kurzes Formular fragt die wichtigsten Punkte ab, bevor jemand anruft." },
-      { "title": "Sofort Bescheid geben.", "text": "Ihr Sekretariat bekommt jede Anfrage sofort als Nachricht aufs Handy." },
-      { "title": "In Minuten zurückrufen.", "text": "Der Rückruf folgt einem festen Leitfaden." },
-      { "title": "Nur passende Fälle beraten.", "text": "In die Erstberatung beim Anwalt kommen nur Fälle, die zu Ihrer Kanzlei passen." },
-      { "title": "Digital unterschreiben.", "text": "Die Vollmacht wird online unterschrieben, ohne Termin vor Ort." }
+      {
+        "title": "Vorab fragen.",
+        "text": "Ein kurzes Formular fragt die wichtigsten Punkte ab, bevor jemand anruft."
+      },
+      {
+        "title": "Sofort Bescheid geben.",
+        "text": "Ihr Sekretariat bekommt jede Anfrage sofort als Nachricht aufs Handy."
+      },
+      {
+        "title": "In Minuten zurückrufen.",
+        "text": "Der Rückruf folgt einem festen Leitfaden."
+      },
+      {
+        "title": "Nur passende Fälle beraten.",
+        "text": "In die Erstberatung beim Anwalt kommen nur Fälle, die zu Ihrer Kanzlei passen."
+      },
+      {
+        "title": "Digital unterschreiben.",
+        "text": "Die Vollmacht wird online unterschrieben, ohne Termin vor Ort."
+      }
     ],
     "then": {
       "title": "Dann die Anzeigen.",
       "text": "Anzeigen auf Facebook und Instagram bringen gezielt neue Anfragen in diesen Prozess. Ich plane sie, schreibe die Skripte und schneide die Videos. Keine Anzeige geht ohne Ihre Freigabe online."
-    }
+    },
+    "label": "Der Mechanismus"
   },
   "proof": {
     "headline": "Diesen Prozess habe ich schon aufgebaut.",
@@ -125,22 +146,40 @@
         "text": ""
       }
     ],
-    "note": "Beide Ergebnisse stammen aus anderen Branchen. Genau deshalb gibt es die Plätze für Referenz-Kanzleien zum halben Preis."
+    "note": "Beide Ergebnisse stammen aus anderen Branchen. Genau deshalb gibt es die Plätze für Referenz-Kanzleien zum halben Preis.",
+    "label": "Die Beweise"
   },
   "pilot": {
     "total": 5,
     "free": 3,
     "headline": "{{total}} Plätze für Familienrecht-Kanzleien",
     "bullets": [
-      { "bold": "Halber Preis,", "text": "wenn ich Ihre Kanzlei als Referenz nennen darf." },
-      { "bold": "Geld zurück,", "text": "wenn das System Ihr Investment in den ersten 30 Tagen nach dem Start nicht wieder hereinholt." },
-      { "bold": "Ich rufe Sie persönlich an,", "text": "nachdem Sie das kurze Formular ausgefüllt haben." }
+      {
+        "bold": "Halber Preis,",
+        "text": "wenn ich Ihre Kanzlei als Referenz nennen darf."
+      },
+      {
+        "bold": "Geld zurück,",
+        "text": "wenn das System Ihr Investment in den ersten 30 Tagen nach dem Start nicht wieder hereinholt."
+      },
+      {
+        "bold": "Ich rufe Sie persönlich an,",
+        "text": "nachdem Sie das kurze Formular ausgefüllt haben."
+      }
     ],
     "budgetNote": "Werbebudget zahlen Sie direkt an Meta, mindestens 1.000 € im Monat.",
     "freeText": "Noch {{free}} von {{total}} frei.",
     "soldOut": "Alle Plätze sind vergeben. Tragen Sie sich trotzdem ein, ich melde mich, sobald ein Platz frei wird.",
-    "guaranteeNote": "[NEED: Mert bestätigt den Garantie-Wortlaut gegen den Kundenvertrag]",
-    "ctaText": "Platz anfragen"
+    "guaranteeNote": "",
+    "ctaText": "Platz anfragen",
+    "label": "Das Angebot",
+    "person": {
+      "name": "Mert Efe Celik",
+      "role": "ELEVO Solutions",
+      "image": "/team/mert-800.webp",
+      "imageAlt": "Porträt von Mert Efe Celik",
+      "line": "Ich rufe Sie persönlich an."
+    }
   },
   "form": {
     "headline": "Platz anfragen",
@@ -171,24 +210,48 @@
         "type": "choice",
         "question": "Wie viele Anwältinnen und Anwälte arbeiten bei Ihnen im Familienrecht?",
         "hubspotProperty": "lead_kanzlei_groesse",
-        "options": ["1", "2–3", "4 oder mehr"],
-        "hubspotValues": { "1": "1", "2–3": "2_3", "4 oder mehr": "4_plus" }
+        "options": [
+          "1",
+          "2–3",
+          "4 oder mehr"
+        ],
+        "hubspotValues": {
+          "1": "1",
+          "2–3": "2_3",
+          "4 oder mehr": "4_plus"
+        }
       },
       {
         "id": "rueckruf",
         "type": "choice",
         "question": "Wer ruft neue Anfragen heute zurück?",
         "hubspotProperty": "lead_rueckruf",
-        "options": ["Ich selbst", "Sekretariat oder ReFa", "Niemand fest zuständig"],
-        "hubspotValues": { "Ich selbst": "ich_selbst", "Sekretariat oder ReFa": "sekretariat", "Niemand fest zuständig": "niemand" }
+        "options": [
+          "Ich selbst",
+          "Sekretariat oder ReFa",
+          "Niemand fest zuständig"
+        ],
+        "hubspotValues": {
+          "Ich selbst": "ich_selbst",
+          "Sekretariat oder ReFa": "sekretariat",
+          "Niemand fest zuständig": "niemand"
+        }
       },
       {
         "id": "werbebudget",
         "type": "choice",
         "question": "Wie viel können Sie monatlich in Werbung investieren?",
         "hubspotProperty": "lead_werbebudget",
-        "options": ["Unter 1.000 €", "1.000–3.000 €", "Über 3.000 €"],
-        "hubspotValues": { "Unter 1.000 €": "unter_1000", "1.000–3.000 €": "1000_3000", "Über 3.000 €": "ueber_3000" }
+        "options": [
+          "Unter 1.000 €",
+          "1.000–3.000 €",
+          "Über 3.000 €"
+        ],
+        "hubspotValues": {
+          "Unter 1.000 €": "unter_1000",
+          "1.000–3.000 €": "1000_3000",
+          "Über 3.000 €": "ueber_3000"
+        }
       },
       {
         "id": "kontakt",
@@ -196,14 +259,49 @@
         "question": "Wie erreiche ich Sie?",
         "consent": true,
         "fields": [
-          { "name": "firstname", "label": "Vorname", "type": "text", "autocomplete": "given-name", "required": true, "error": "Bitte geben Sie Ihren Vornamen an." },
-          { "name": "lastname", "label": "Nachname", "type": "text", "autocomplete": "family-name", "required": false },
-          { "name": "company", "label": "Kanzlei", "type": "text", "autocomplete": "organization", "required": false },
-          { "name": "phone", "label": "Telefon", "type": "tel", "autocomplete": "tel", "required": true, "help": "Ich rufe meist noch am selben Werktag an.", "error": "Bitte geben Sie eine Telefonnummer an, unter der ich Sie erreiche." },
-          { "name": "email", "label": "E-Mail", "type": "email", "autocomplete": "email", "required": true, "error": "Bitte prüfen Sie Ihre E-Mail-Adresse." }
+          {
+            "name": "firstname",
+            "label": "Vorname",
+            "type": "text",
+            "autocomplete": "given-name",
+            "required": true,
+            "error": "Bitte geben Sie Ihren Vornamen an."
+          },
+          {
+            "name": "lastname",
+            "label": "Nachname",
+            "type": "text",
+            "autocomplete": "family-name",
+            "required": false
+          },
+          {
+            "name": "company",
+            "label": "Kanzlei",
+            "type": "text",
+            "autocomplete": "organization",
+            "required": false
+          },
+          {
+            "name": "phone",
+            "label": "Telefon",
+            "type": "tel",
+            "autocomplete": "tel",
+            "required": true,
+            "help": "Ich rufe meist noch am selben Werktag an.",
+            "error": "Bitte geben Sie eine Telefonnummer an, unter der ich Sie erreiche."
+          },
+          {
+            "name": "email",
+            "label": "E-Mail",
+            "type": "email",
+            "autocomplete": "email",
+            "required": true,
+            "error": "Bitte prüfen Sie Ihre E-Mail-Adresse."
+          }
         ]
       }
-    ]
+    ],
+    "label": "Ihre Anfrage"
   },
   "fit": {
     "headline": "Passt das zu Ihrer Kanzlei?",
@@ -216,14 +314,27 @@
     "noTitle": "Passt nicht, wenn Sie",
     "no": [
       "nur mehr Anfragen wollen, aber am Ablauf nichts ändern möchten"
-    ]
+    ],
+    "label": "Für wen"
   },
   "faqHeadline": "Häufige Fragen",
   "faq": [
-    { "q": "Dürfen Kanzleien auf Facebook und Instagram werben?", "a": "Ja. Anwälte dürfen sachlich über ihre Kanzlei und ihre Schwerpunkte informieren. Die Anzeigen sind entsprechend aufgebaut, und jede Anzeige geben Sie vor dem Start frei." },
-    { "q": "Wer ruft die Anfragen zurück?", "a": "Ihre Kanzlei, zum Beispiel Ihr Sekretariat. Sie bekommen dafür einen festen Leitfaden." },
-    { "q": "Muss ich an meiner Kanzleisoftware etwas ändern?", "a": "Nein. Der Prozess läuft separat. Die Anfragen kommen sortiert und mit allen Angaben bei Ihnen an." },
-    { "q": "Was passiert nach dem Formular?", "a": "Ich rufe Sie an, meist noch am selben Werktag. Das Gespräch dauert etwa 15 Minuten. Passt es, besprechen wir den Prozess für Ihre Kanzlei." }
+    {
+      "q": "Dürfen Kanzleien auf Facebook und Instagram werben?",
+      "a": "Ja. Anwälte dürfen sachlich über ihre Kanzlei und ihre Schwerpunkte informieren. Die Anzeigen sind entsprechend aufgebaut, und jede Anzeige geben Sie vor dem Start frei."
+    },
+    {
+      "q": "Wer ruft die Anfragen zurück?",
+      "a": "Ihre Kanzlei, zum Beispiel Ihr Sekretariat. Sie bekommen dafür einen festen Leitfaden."
+    },
+    {
+      "q": "Muss ich an meiner Kanzleisoftware etwas ändern?",
+      "a": "Nein. Der Prozess läuft separat. Die Anfragen kommen sortiert und mit allen Angaben bei Ihnen an."
+    },
+    {
+      "q": "Was passiert nach dem Formular?",
+      "a": "Ich rufe Sie an, meist noch am selben Werktag. Das Gespräch dauert etwa 15 Minuten. Passt es, besprechen wir den Prozess für Ihre Kanzlei."
+    }
   ],
   "stickyCta": "Platz anfragen",
   "thankYou": {
@@ -260,5 +371,6 @@
     "email": "hey@elevo.solutions",
     "guideUrl": "/kanzlei-anleitung/",
     "guideText": "Kostenlose Anleitung für Kanzleien"
-  }
+  },
+  "faqLabel": "Fragen"
 }

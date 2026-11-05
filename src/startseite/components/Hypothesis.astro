@@ -1,13 +1,18 @@
 ---
 // Baustein 2: Hypothese (der naheliegende Irrglaube) – bewusst zurückhaltend in Grau
 import ss from '../../config/startseite.json';
-const { headline, text, items } = ss.hypothesis;
+import Section from './Section.astro';
+const { headline, text, items, label } = ss.hypothesis;
 ---
 
-<section class="mx-auto mt-20 max-w-[720px] px-4 sm:mt-28" aria-labelledby="hypothese-titel">
+<Section id="hypothese-titel" num="02" label={label}>
   <h2 id="hypothese-titel" class="section-title">{headline}</h2>
-  <p class="mt-4 text-muted">{text}</p>
-  <ul class="mt-6 grid gap-3 sm:grid-cols-2">
-    {items.map((item) => <li class="rounded-xl bg-grey-card px-4 py-3.5 text-muted">{item}</li>)}
+  <p class="mt-5 text-muted">{text}</p>
+  <ul class="mt-6 grid gap-px overflow-hidden rounded-[4px] border border-rule bg-rule sm:grid-cols-2">
+    {items.map((item, i) => (
+      <li class="flex gap-3 bg-grey-card px-4 py-4 text-muted">
+        <span class="font-serif text-muted italic" aria-hidden="true">{String.fromCharCode(97 + i)})</span>{item}
+      </li>
+    ))}
   </ul>
-</section>
+</Section>

@@ -20,18 +20,18 @@ const phoneHref = telHref(thankYou.phoneInternational || thankYou.phone);
       </a>
     </div>
 
-    <h1 class="mt-12 text-center text-[1.875rem] leading-[1.2] font-bold tracking-[-0.02em] text-navy sm:text-[2.5rem]" data-thanks-headline>
+    <h1 class="mt-12 text-center font-serif text-[2.25rem] leading-[1.1] font-medium tracking-[-0.015em] text-navy sm:text-[3rem]" data-thanks-headline>
       {thankYou.headlineNoName}
     </h1>
     <template data-thanks-template data-before={before} data-after={after}></template>
 
     <section class="mt-10" aria-labelledby="schritte-titel">
-      <h2 id="schritte-titel" class="text-xl font-bold text-navy sm:text-2xl">{thankYou.stepsHeadline}</h2>
+      <h2 id="schritte-titel" class="rubric">{thankYou.stepsHeadline}</h2>
       <ol class="mt-5 space-y-4">
         {
           thankYou.steps.map((step, i) => (
-            <li class="flex gap-4 rounded-2xl border border-line bg-paper p-4">
-              <span class="grid size-9 shrink-0 place-items-center rounded-full bg-gold font-bold text-navy" aria-hidden="true">{i + 1}</span>
+            <li class="flex gap-4 border-b border-rule py-4">
+              <span class="grid size-9 shrink-0 place-items-center rounded-full bg-navy font-serif text-lg text-gold" aria-hidden="true">{i + 1}</span>
               <span class="pt-1">{step}</span>
             </li>
           ))
@@ -39,7 +39,7 @@ const phoneHref = telHref(thankYou.phoneInternational || thankYou.phone);
       </ol>
     </section>
 
-    <section class="mt-8 rounded-2xl bg-navy p-6 text-center text-on-navy" aria-labelledby="nummer-titel">
+    <section class="on-navy mt-10 rounded-[4px] bg-navy p-6 text-center text-on-navy" aria-labelledby="nummer-titel">
       <p id="nummer-titel">{thankYou.phoneLine}</p>
       <p class="mt-2 text-2xl font-bold text-white">
         {phoneHref ? <a href={phoneHref} class="underline-offset-4 hover:underline">{thankYou.phone}</a> : thankYou.phone}
