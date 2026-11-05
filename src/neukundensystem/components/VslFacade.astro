@@ -13,7 +13,7 @@ export interface VideoConfig {
   src?: string;
   videoId?: string;
   bunnyLibraryId?: string;
-  /** Nur für Miro: src aus dem Einbettungscode (https://miro.com/app/live-embed/…) */
+  /** Nur für Miro: src aus dem Einbettungscode (https://miro.com/video-player/… oder /app/live-embed/…) */
   embedUrl?: string;
   poster?: string;
   aspect?: string;
@@ -40,7 +40,7 @@ if (provider === 'bunny' && video.bunnyLibraryId && video.videoId) {
   embedUrl = `https://iframe.mediadelivery.net/embed/${encodeURIComponent(video.bunnyLibraryId)}/${encodeURIComponent(video.videoId)}?autoplay=true&preload=true&responsive=true`;
 } else if (provider === 'vimeo' && video.videoId) {
   embedUrl = `https://player.vimeo.com/video/${encodeURIComponent(video.videoId)}?dnt=1&autoplay=1`;
-} else if (provider === 'miro' && video.embedUrl && /^https:\/\/miro\.com\/app\/live-embed\//.test(video.embedUrl)) {
+} else if (provider === 'miro' && video.embedUrl && /^https:\/\/miro\.com\/(app\/live-embed|video-player)\//.test(video.embedUrl)) {
   embedUrl = video.embedUrl;
 }
 const selfReady = provider === 'self' && !!video.src && existsSync(join(process.cwd(), 'public', video.src));
