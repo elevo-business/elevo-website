@@ -16,6 +16,7 @@ import QuizForm from '../startseite/components/QuizForm.astro';
 import Fit from '../startseite/components/Fit.astro';
 import Faq from '../startseite/components/Faq.astro';
 import StickyCta from '../startseite/components/StickyCta.astro';
+import Section from '../startseite/components/Section.astro';
 ---
 
 <SsLayout title={ss.seo.title} description={ss.seo.description} stickyCta>
@@ -28,7 +29,7 @@ import StickyCta from '../startseite/components/StickyCta.astro';
     <Mechanism />
     <Proof />
     <Offer />
-    <div class="px-4"><QuizForm /></div>
+    <Section id="formular-titel" label={ss.form.label}><QuizForm /></Section>
     <Fit />
     <Faq />
   </main>
