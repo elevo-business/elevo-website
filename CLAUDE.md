@@ -68,6 +68,7 @@ public/         Fonts (Sora, Outfit woff2), Icons, Bilder
 ## Gotchas
 - **Ausnahme /neukundensystem** (Ads-Landingpage, Freigabe Mert 21.10.2026): nutzt Tailwind, helles Design und ein eigenes Layout ohne den seitenweiten Pixel/Google-Tag; eigener Meta Pixel nach Einwilligung auf allen LP-Seiten, `Lead` nur auf der Danke-Seite (`src/neukundensystem/`, Config `src/config/site.json`). Die Regeln „kein Tailwind“, „nur Dark Theme“ und „keine EUR-Beträge“ gelten dort nicht. Doku: `NEUKUNDENSYSTEM.md`.
 - **Ausnahme /familienrecht** (Ads-Landingpage Pilotkanzleien, Freigabe Mert 28.10.2026): gleiche Ausnahmen wie /neukundensystem (Tailwind, helles Design, eigenes Layout `src/familienrecht/`, Config `src/config/familienrecht.json`). Doku: `FAMILIENRECHT.md`.
+- **Ausnahme /kanzlei-anleitung** (Lead-Magnet für Kanzleien, Freigabe Mert 05.11.2026): gleiche Ausnahmen wie /familienrecht (Tailwind, helles Design, eigenes Layout `src/kanzlei-anleitung/`, Config `src/config/kanzlei-anleitung.json`). Doku: `KANZLEI-ANLEITUNG.md`.
 - Fonts NICHT von Google CDN laden (DSGVO-Verstoss)
 - Kundenvorschauen unter /previews/ nutzen das Template-System (siehe unten)
 - Nginx cached statische Assets 1 Jahr (immutable) — Cache-Busting bei Asset-Änderungen

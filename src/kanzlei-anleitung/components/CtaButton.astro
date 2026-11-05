@@ -1,0 +1,13 @@
+---
+// Öffnet den Opt-in-Dialog. Ohne JavaScript springt der Link zum Formular am Seitenende.
+interface Props {
+  text: string;
+  note?: string;
+}
+const { text, note } = Astro.props;
+---
+
+<div class="mx-auto max-w-md">
+  <a href="#formular" class="btn-cta" data-optin-open>{text}</a>
+  {note && <p class="mt-2 text-center text-sm text-muted">{note}</p>}
+</div>

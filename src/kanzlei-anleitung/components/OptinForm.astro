@@ -1,0 +1,243 @@
+---
+// Zweistufiges Opt-in wie in der Vorlage: Klick auf einen CTA öffnet dieses Formular als Dialog.
+// Versand an die HubSpot Forms API (gleiches Formular wie /familienrecht, unterschieden über lp_variante).
+import ka from '../../config/kanzlei-anleitung.json';
+import { telHref } from '../../neukundensystem/lib/text';
+
+const { form, legal, thankYou } = ka;
+const [consentBefore, consentAfter] = form.consentText.split('{{datenschutz}}');
+const phoneHref = telHref(thankYou.phoneInternational || thankYou.phone);
+type InputType = 'text' | 'email' | 'tel';
+---
+
+<dialog
+  id="formular"
+  class="m-auto w-[calc(100%-2rem)] max-w-lg rounded-2xl border border-line bg-white p-0 text-body shadow-2xl"
+  aria-labelledby="optin-titel"
+  data-optin
+>
+  <div class="relative p-5 sm:p-7">
+    <button type="button" class="absolute top-3 right-3 grid size-10 cursor-pointer place-items-center rounded-full text-muted hover:bg-surface hover:text-ink" aria-label={form.closeLabel} data-optin-close>
+      <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+    </button>
+
+    <div class="mr-10 mb-5 h-2 overflow-hidden rounded-full bg-line" aria-hidden="true">
+      <div class="h-full w-4/5 rounded-full bg-accent"></div>
+    </div>
+
+    <h2 id="optin-titel" class="pr-8 text-xl leading-snug font-extrabold text-ink sm:text-2xl">{form.headline}</h2>
+
+    <form class="mt-5 space-y-4" novalidate data-optin-form>
+      {Object.entries(form.hiddenFields).map(([name, value]) => <input type="hidden" name={name} value={value} />)}
+
+      <!-- Honeypot gegen Spam: für Menschen unsichtbar, ohne name (wird nie gesendet) -->
+      <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+        <label for="ka-hp">Bitte leer lassen</label>
+        <input id="ka-hp" type="text" tabindex="-1" autocomplete="one-time-code" data-lpignore="true" data-1p-ignore />
+      </div>
+
+      {
+        form.fields.map((field) => (
+          <div>
+            <label for={`ka-${field.name}`} class="mb-1.5 block text-sm font-semibold text-ink">
+              {field.label} <span aria-hidden="true">*</span>
+            </label>
+            <input
+              id={`ka-${field.name}`}
+              name={field.name}
+              type={field.type as InputType}
+              autocomplete={field.autocomplete}
+              inputmode={field.type === 'tel' ? 'tel' : field.type === 'email' ? 'email' : undefined}
+              required
+              aria-required="true"
+              aria-describedby={`ka-${field.name}-error`}
+              maxlength={field.type === 'email' ? 254 : 120}
+              class="field-input"
+            />
+            <p id={`ka-${field.name}-error`} class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for={field.name} />
+          </div>
+        ))
+      }
+
+      <div>
+        <label class="flex cursor-pointer items-start gap-3 text-sm leading-relaxed">
+          <input type="checkbox" name="consent" required aria-describedby="ka-consent-error" class="mt-0.5 size-5 shrink-0 accent-ink" />
+          <span>
+            {consentBefore}<a href={legal.datenschutzUrl} target="_blank" rel="noopener" class="font-semibold text-ink underline underline-offset-2">{form.consentLinkText}</a>{consentAfter}
+          </span>
+        </label>
+        <p id="ka-consent-error" class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for="consent" />
+      </div>
+
+      <div class="hidden rounded-lg border border-danger bg-white p-3.5 text-sm font-medium text-danger" role="alert" data-submit-error>
+        {form.errorText} {phoneHref ? <a href={phoneHref} class="underline">{thankYou.phone}</a> : thankYou.phone}
+      </div>
+
+      <button type="submit" class="btn-cta" data-submit>
+        <span data-submit-label>{form.submitText}</span>
+        <span class="hidden items-center gap-2" data-submit-loading>
+          <svg class="size-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-opacity=".25" stroke-width="3" />
+            <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+          </svg>
+          {form.submittingText}
+        </span>
+      </button>
+      <p class="flex items-center justify-center gap-1.5 text-center text-sm text-muted">
+        <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
+        {form.belowSubmit}
+      </p>
+    </form>
+  </div>
+</dialog>
+
+<script>
+  import { form as config, paths } from '../../config/kanzlei-anleitung.json';
+  import { submitToHubspot, type HubspotField } from '../../neukundensystem/lib/hubspot';
+  import { captureAttribution, getAttribution } from '../../neukundensystem/lib/utm';
+  import { markLeadSubmitted } from '../../neukundensystem/lib/lead';
+  import { uuid } from '../../neukundensystem/lib/storage';
+
+  captureAttribution();
+
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const PHONE_CHARS = /^\+?[\d\s()/.-]+$/;
+  const phoneValid = (v: string) => {
+    const digits = v.replace(/\D/g, '');
+    return PHONE_CHARS.test(v) && digits.length >= 6 && digits.length <= 15;
+  };
+  const toE164 = (raw: string): string => {
+    const cleaned = raw.replace(/[^\d+]/g, '');
+    if (cleaned.startsWith('+')) return cleaned;
+    if (cleaned.startsWith('00')) return `+${cleaned.slice(2)}`;
+    if (cleaned.startsWith('0')) return `+49${cleaned.slice(1)}`;
+    if (cleaned.startsWith('49')) return `+${cleaned}`;
+    return `+49${cleaned}`;
+  };
+
+  const dialog = document.querySelector<HTMLDialogElement>('dialog[data-optin]');
+  const formEl = document.querySelector<HTMLFormElement>('[data-optin-form]');
+
+  if (dialog && formEl) {
+    // Öffnen per CTA, Schließen per X, Esc oder Klick neben den Dialog
+    document.querySelectorAll<HTMLElement>('[data-optin-open]').forEach((el) =>
+      el.addEventListener('click', (event) => {
+        if (typeof dialog.showModal !== 'function') return; // Fallback: Anker-Link
+        event.preventDefault();
+        dialog.showModal();
+        dialog.querySelector<HTMLInputElement>('input[name="fullname"]')?.focus();
+      }),
+    );
+    dialog.querySelector('[data-optin-close]')?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    const submitBtn = formEl.querySelector<HTMLButtonElement>('[data-submit]')!;
+    const submitError = formEl.querySelector<HTMLElement>('[data-submit-error]')!;
+    const touched = new Set<string>();
+
+    const showError = (name: string, message: string) => {
+      const target = formEl.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
+      if (target) {
+        target.textContent = message;
+        target.classList.toggle('hidden', message === '');
+      }
+      formEl.querySelectorAll(`[name="${name}"]`).forEach((input) => input.setAttribute('aria-invalid', message ? 'true' : 'false'));
+    };
+
+    const validate = (name: string): boolean => {
+      if (name === 'consent') {
+        const ok = (formEl.elements.namedItem('consent') as HTMLInputElement).checked;
+        showError('consent', ok ? '' : config.consentError);
+        return ok;
+      }
+      const field = config.fields.find((f) => f.name === name);
+      if (!field) return true;
+      const value = (formEl.elements.namedItem(name) as HTMLInputElement).value.trim();
+      let message = '';
+      if (!value) message = field.error;
+      else if (field.type === 'email' && !EMAIL.test(value)) message = field.errorFormat ?? field.error;
+      else if (field.type === 'tel' && !phoneValid(value)) message = field.errorFormat ?? field.error;
+      showError(name, message);
+      return message === '';
+    };
+
+    const names = [...config.fields.map((f) => f.name), 'consent'];
+
+    formEl.addEventListener('focusout', (event) => {
+      const input = event.target as HTMLInputElement;
+      if (input.type === 'checkbox' || !names.includes(input.name)) return;
+      touched.add(input.name);
+      validate(input.name);
+    });
+    formEl.addEventListener('input', (event) => {
+      const input = event.target as HTMLInputElement;
+      if (input.type === 'checkbox' || touched.has(input.name)) validate(input.name);
+    });
+
+    const setLoading = (loading: boolean) => {
+      submitBtn.disabled = loading;
+      submitBtn.setAttribute('aria-busy', String(loading));
+      formEl.querySelector('[data-submit-label]')!.classList.toggle('hidden', loading);
+      const spinner = formEl.querySelector<HTMLElement>('[data-submit-loading]')!;
+      spinner.classList.toggle('hidden', !loading);
+      spinner.classList.toggle('inline-flex', loading);
+    };
+
+    let sending = false;
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        sending = false;
+        setLoading(false);
+      }
+    });
+
+    formEl.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (sending) return;
+      submitError.classList.add('hidden');
+
+      const invalid = names.filter((name) => !validate(name));
+      names.forEach((n) => touched.add(n));
+      if (invalid.length) {
+        formEl.querySelector<HTMLInputElement>(`[name="${invalid[0]}"]`)?.focus();
+        return;
+      }
+
+      // Honeypot ausgefüllt → Bot: nichts senden, nichts tracken
+      if ((document.getElementById('ka-hp') as HTMLInputElement | null)?.value) {
+        window.location.href = paths.thankYou;
+        return;
+      }
+
+      sending = true;
+      setLoading(true);
+
+      const data = new FormData(formEl);
+      const fullname = String(data.get('fullname') ?? '').trim().replace(/\s+/g, ' ');
+      const [firstname, ...rest] = fullname.split(' ');
+      const fields: HubspotField[] = [
+        { name: 'firstname', value: firstname },
+        { name: 'lastname', value: rest.join(' ') },
+        { name: 'email', value: String(data.get('email') ?? '').trim() },
+        { name: 'phone', value: toE164(String(data.get('phone') ?? '')) },
+        ...Object.entries(config.hiddenFields).map(([name, value]) => ({ name, value })),
+      ];
+      Object.entries(getAttribution()).forEach(([name, value]) => value && fields.push({ name, value }));
+
+      const consentText = config.consentText.replace('{{datenschutz}}', config.consentLinkText);
+      const ok = await submitToHubspot(config.hubspot, fields, consentText);
+
+      if (ok) {
+        markLeadSubmitted(firstname, uuid());
+        window.location.href = paths.thankYou;
+        return;
+      }
+
+      sending = false;
+      setLoading(false);
+      submitError.classList.remove('hidden');
+    });
+  }
+</script>

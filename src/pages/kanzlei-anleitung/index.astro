@@ -1,0 +1,74 @@
+---
+import KaLayout from '../../kanzlei-anleitung/layouts/KaLayout.astro';
+import ka from '../../config/kanzlei-anleitung.json';
+import Logo from '../../kanzlei-anleitung/components/Logo.astro';
+import Bold from '../../kanzlei-anleitung/components/Bold.astro';
+import CheckIcon from '../../kanzlei-anleitung/components/CheckIcon.astro';
+import CtaButton from '../../kanzlei-anleitung/components/CtaButton.astro';
+import Results from '../../kanzlei-anleitung/components/Results.astro';
+import About from '../../kanzlei-anleitung/components/About.astro';
+import OptinForm from '../../kanzlei-anleitung/components/OptinForm.astro';
+
+const { hero, benefits, finalCta } = ka;
+---
+
+<KaLayout title={ka.seo.title} description={ka.seo.description}>
+  <main id="inhalt" class="mx-auto max-w-[720px] px-4">
+    <div class="flex justify-center pt-4"><Logo /></div>
+
+    <header class="pt-8 text-center sm:pt-10">
+      <p class="inline-block rounded-full bg-accent-soft px-3 py-1 text-sm font-semibold text-ink">{hero.eyebrow}</p>
+      <h1 class="mt-4 text-[1.75rem] leading-[1.2] font-extrabold tracking-tight text-balance text-ink sm:text-4xl">{hero.headline}</h1>
+      <p class="mt-4 text-pretty sm:text-lg">{hero.subline}</p>
+    </header>
+
+    <!-- Vorschau auf das Video: öffnet das Opt-in, zeigt aber kein Video vor dem Eintragen -->
+    <a
+      href="#formular"
+      data-optin-open
+      class="group mt-8 block overflow-hidden rounded-2xl bg-ink-deep p-6 text-white shadow-lg sm:p-8"
+      aria-label={hero.ctaText}
+    >
+      <div class="flex items-center gap-5">
+        <span class="grid size-16 shrink-0 place-items-center rounded-full bg-accent text-ink-deep shadow-lg transition-transform duration-300 group-hover:scale-105" aria-hidden="true">
+          <svg class="ml-1 size-7" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+        </span>
+        <span class="text-left">
+          <span class="block text-xl font-extrabold">{hero.videoCardTitle}</span>
+          <span class="mt-1 block text-sm text-white/80">{hero.videoCardMeta}</span>
+        </span>
+      </div>
+    </a>
+
+    <div class="mt-6"><CtaButton text={hero.ctaText} note={hero.ctaNote} /></div>
+
+    <section class="mt-14" aria-labelledby="inhalt-titel">
+      <h2 id="inhalt-titel" class="text-center text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">{benefits.headline}</h2>
+      <ul class="mt-6 space-y-3">
+        {
+          benefits.items.map((item) => (
+            <li class="flex gap-3 rounded-2xl border border-line bg-white p-4">
+              <span class="grid size-7 shrink-0 place-items-center rounded-full bg-accent-soft text-ink">
+                <CheckIcon class="size-4" />
+              </span>
+              <span class="pt-0.5"><Bold text={item} /></span>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="mt-8"><CtaButton text={benefits.ctaText} /></div>
+    </section>
+
+    <Results />
+
+    <About />
+
+    <section class="mt-16 rounded-2xl bg-ink px-5 py-10 text-center sm:px-10" aria-labelledby="abschluss-titel">
+      <h2 id="abschluss-titel" class="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">{finalCta.headline}</h2>
+      <p class="mx-auto mt-3 max-w-md text-white/85">{finalCta.text}</p>
+      <div class="mt-6"><CtaButton text={finalCta.ctaText} /></div>
+    </section>
+  </main>
+
+  <OptinForm />
+</KaLayout>

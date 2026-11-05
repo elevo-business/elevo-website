@@ -1,0 +1,171 @@
+{
+  "paths": {
+    "landing": "/kanzlei-anleitung/",
+    "thankYou": "/kanzlei-anleitung/danke/"
+  },
+  "brand": {
+    "name": "Elevo",
+    "legalName": "ELEVO Solutions",
+    "primaryColor": "#0D1B2A",
+    "accentColor": "#F2A33A",
+    "accentHoverColor": "#E08E1F"
+  },
+  "seo": {
+    "title": "Kostenlose Video-Anleitung: Planbar neue Mandate für Ihre Kanzlei",
+    "description": "In der kostenlosen Video-Anleitung sehen Sie, wie Kanzleien mit Online-Anzeigen, vorqualifizierten Anfragen und schnellem Rückruf planbar neue Mandate gewinnen.",
+    "thankYouTitle": "Zugang freigeschaltet | Video-Anleitung für Kanzleien",
+    "ogImage": "/og-kanzlei-anleitung.jpg"
+  },
+  "hero": {
+    "eyebrow": "Kostenlose Video-Anleitung für Kanzleien",
+    "headline": "So gewinnt Ihre Kanzlei planbar neue Mandate – ohne auf Empfehlungen und Zufall angewiesen zu sein",
+    "subline": "In der kostenlosen Video-Anleitung zeige ich Ihnen Schritt für Schritt, wie Kanzleien aus Online-Anzeigen vorqualifizierte Anfragen machen – und aus Anfragen Mandate.",
+    "videoCardTitle": "Video-Anleitung",
+    "videoCardMeta": "[Dauer eintragen, z. B. ca. 12 Minuten] · kostenlos · sofort ansehen",
+    "ctaText": "Ja, Video-Anleitung kostenlos ansehen",
+    "ctaNote": "Sofortiger Zugang nach dem Eintragen."
+  },
+  "benefits": {
+    "headline": "Das erfahren Sie in der Anleitung",
+    "items": [
+      "Warum Empfehlungen allein keine **planbare Mandatsgewinnung** sind – und was stattdessen funktioniert.",
+      "Wie Online-Anzeigen gezielt die Mandanten ansprechen, die **fachlich und wirtschaftlich** zu Ihrer Kanzlei passen.",
+      "Warum die meisten Anfragen verloren gehen, **bevor jemand zurückruft** – und wie ein Rückruf in Minuten das verhindert.",
+      "Wie Sie unpassende Anfragen **vorab aussortieren**, statt Zeit in unqualifizierte Erstgespräche zu stecken."
+    ],
+    "ctaText": "Jetzt kostenlos freischalten"
+  },
+  "results": {
+    "headline": "Ergebnisse aus der Zusammenarbeit",
+    "items": [
+      {
+        "name": "Greenchild",
+        "value": "Über 30.000 €",
+        "result": "zusätzlicher Umsatz in 2 Monaten",
+        "text": "Meta Ads, schneller Rückruf auf jede Anfrage und ein klarer Ablauf vom ersten Telefonat bis zum Abschluss.",
+        "image": "/familienrecht/logo-greenchild.webp",
+        "imageWidth": 398,
+        "imageHeight": 100,
+        "imageAlt": "Logo von Greenchild"
+      },
+      {
+        "name": "BrandsMarketingLab, Aachen",
+        "value": "10.000 €",
+        "result": "Mehrumsatz im ersten Monat",
+        "text": "Gleiches System: Anzeigen, vorqualifizierte Anfragen, Rückruf mit Leitfaden.",
+        "image": "/familienrecht/logo-bml.webp",
+        "imageWidth": 192,
+        "imageHeight": 185,
+        "imageAlt": "Logo von BrandsMarketingLab"
+      }
+    ],
+    "honestyNote": "Beide Ergebnisse stammen aus anderen Branchen. Wie sich das System auf Kanzleien übertragen lässt, zeige ich in der Anleitung."
+  },
+  "about": {
+    "headline": "Wer Ihnen die Anleitung zeigt",
+    "name": "Mert Efe Celik",
+    "role": "Vertriebsleiter, ELEVO Solutions",
+    "image": "/team/mert-800.webp",
+    "imageWidth": 800,
+    "imageHeight": 1000,
+    "imageAlt": "Porträt von Mert Efe Celik, Vertriebsleiter bei ELEVO Solutions",
+    "text": "Ich bin seit 5 Jahren im Vertrieb und Marketing tätig und habe bereits über 100.000 € in Werbeanzeigen investiert. Als Vertriebsleiter weiß ich: Anzeigen allein bringen keine Mandate. Entscheidend ist, was nach der Anfrage passiert – genau darum geht es in der Anleitung.",
+    "facts": [
+      {
+        "value": "5 Jahre",
+        "label": "Vertrieb und Marketing"
+      },
+      {
+        "value": "100.000 €+",
+        "label": "in Werbung investiert"
+      }
+    ]
+  },
+  "finalCta": {
+    "headline": "Sehen Sie sich die Anleitung jetzt an",
+    "text": "Kostenlos, sofort verfügbar und ohne Verpflichtung.",
+    "ctaText": "Ja, Video-Anleitung kostenlos ansehen"
+  },
+  "form": {
+    "headline": "Fast geschafft: Sichern Sie sich jetzt die kostenlose Video-Anleitung",
+    "submitText": "Jetzt Zugang zum Video erhalten",
+    "submittingText": "Wird freigeschaltet …",
+    "belowSubmit": "Ihre Daten werden verschlüsselt übertragen.",
+    "closeLabel": "Schließen",
+    "fields": [
+      {
+        "name": "fullname",
+        "label": "Vor- und Nachname",
+        "type": "text",
+        "autocomplete": "name",
+        "error": "Bitte geben Sie Ihren Vor- und Nachnamen an."
+      },
+      {
+        "name": "email",
+        "label": "E-Mail-Adresse",
+        "type": "email",
+        "autocomplete": "email",
+        "error": "Bitte geben Sie Ihre E-Mail-Adresse an.",
+        "errorFormat": "Bitte prüfen Sie Ihre E-Mail-Adresse (z. B. name@kanzlei.de)."
+      },
+      {
+        "name": "phone",
+        "label": "Mobilnummer",
+        "type": "tel",
+        "autocomplete": "tel",
+        "error": "Bitte geben Sie Ihre Mobilnummer an.",
+        "errorFormat": "Bitte geben Sie eine gültige Telefonnummer an (z. B. 0151 1234567)."
+      }
+    ],
+    "consentText": "Ich bin einverstanden, dass ELEVO Solutions mich zur Anleitung per Telefon und E-Mail kontaktiert. Hinweise in der {{datenschutz}}.",
+    "consentLinkText": "Datenschutzerklärung",
+    "consentError": "Bitte stimmen Sie zu, damit ich Ihnen den Zugang freischalten kann.",
+    "errorText": "Das hat nicht geklappt. Bitte versuchen Sie es erneut oder rufen Sie mich an:",
+    "hubspot": {
+      "portalId": "149380660",
+      "formGuid": "723cfd30-9dea-46e2-9073-32b09db15b22",
+      "communications": []
+    },
+    "hiddenFields": {
+      "lp_variante": "kanzlei-anleitung"
+    }
+  },
+  "thankYou": {
+    "badge": "Zugang freigeschaltet",
+    "headline": "Danke, {{vorname}}! Hier ist Ihre Video-Anleitung.",
+    "headlineNoName": "Danke! Hier ist Ihre Video-Anleitung.",
+    "subline": "Nehmen Sie sich ein paar Minuten Zeit und schauen Sie das Video am besten mit Ton.",
+    "video": {
+      "provider": "self",
+      "src": "/kanzlei-anleitung/anleitung.mp4",
+      "poster": "/kanzlei-anleitung/anleitung-poster.jpg",
+      "aspect": "9:16",
+      "title": "Video-Anleitung: Planbar neue Mandate für Ihre Kanzlei"
+    },
+    "cta": {
+      "enabled": false,
+      "headline": "[Nächster Schritt nach dem Video – noch offen]",
+      "text": "[Text eintragen]",
+      "buttonText": "[Button-Text eintragen]",
+      "buttonHref": "[Link eintragen]"
+    },
+    "phoneLine": "Fragen zur Anleitung? Sie erreichen mich unter",
+    "phone": "02451 9949695",
+    "phoneInternational": "+49 2451 9949695"
+  },
+  "tracking": {
+    "metaPixelId": "1150135684404237"
+  },
+  "consent": {
+    "headline": "Datenschutz-Einstellungen",
+    "text": "Notwendige Funktionen brauche ich, damit Seite und Formular funktionieren. Mit Ihrer Zustimmung lade ich den Meta Pixel, um zu messen, welche Anzeigen Besucher und Anfragen bringen.",
+    "acceptAll": "Alle akzeptieren",
+    "necessaryOnly": "Nur notwendige",
+    "privacyLinkText": "Datenschutzerklärung",
+    "settingsLink": "Cookie-Einstellungen"
+  },
+  "legal": {
+    "impressumUrl": "https://elevo.solutions/impressum",
+    "datenschutzUrl": "https://elevo.solutions/datenschutz"
+  }
+}
