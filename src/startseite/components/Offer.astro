@@ -1,0 +1,42 @@
+---
+// Baustein 7, Teil 1: Angebot. Freie Plätze ändern sich nur über pilot.free in der Config.
+import ss from '../../config/startseite.json';
+import { fill, isFilled } from '../../neukundensystem/lib/text';
+import CheckIcon from './CheckIcon.astro';
+import CtaButton from './CtaButton.astro';
+
+const { total, free, headline, bullets, budgetNote, freeText, soldOut, guaranteeNote, ctaText } = ss.pilot;
+const places = Math.max(0, Math.min(free, total));
+const values = { total: String(total), free: String(places) };
+---
+
+<section class="mx-auto mt-20 max-w-[720px] px-4 sm:mt-28" aria-labelledby="angebot-titel">
+  <div class="rounded-2xl border-2 border-gold bg-paper p-6 sm:p-8">
+    <h2 id="angebot-titel" class="section-title">{fill(headline, values)}</h2>
+
+    <div class="mt-4 flex items-center gap-3">
+      <div class="flex gap-1.5" aria-hidden="true">
+        {Array.from({ length: total }, (_, i) => <span class:list={['size-3 rounded-full border-2 border-navy', i < total - places ? 'bg-navy' : 'bg-transparent']} />)}
+      </div>
+      <p class="font-semibold text-navy">{places === 0 ? soldOut : fill(freeText, values)}</p>
+    </div>
+
+    <ul class="mt-6 space-y-3.5">
+      {
+        bullets.map((b) => (
+          <li class="flex gap-3">
+            <CheckIcon class="mt-1 size-5 text-gold-text" />
+            <span><strong class="font-semibold text-navy">{b.bold}</strong> {b.text}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    {budgetNote && <p class="mt-5 text-sm text-muted">{budgetNote}</p>}
+    {guaranteeNote && !isFilled(guaranteeNote) && <p class="mt-3 text-sm font-semibold text-danger">{guaranteeNote}</p>}
+
+    <div class="mt-7 sm:max-w-sm">
+      <CtaButton label={ctaText} />
+    </div>
+  </div>
+</section>

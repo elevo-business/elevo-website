@@ -1,0 +1,20 @@
+---
+// Baustein 1: Problem
+import ss from '../../config/startseite.json';
+import VideoFacade from './VideoFacade.astro';
+
+const { eyebrow, h1, subheadline, subheadlineMobile, ctaText, microcopy } = ss.problem;
+---
+
+<section class="mx-auto max-w-[720px] px-4 pt-8 text-center sm:pt-14" aria-labelledby="hero-titel">
+  <p class="text-[15px] font-semibold text-muted sm:text-base">{eyebrow}</p>
+  <h1 id="hero-titel" class="mt-3 text-[clamp(1.625rem,7.7vw,2.125rem)] leading-[1.15] font-[650] tracking-[-0.035em] text-navy sm:text-[2.75rem] lg:text-[3.25rem]">{h1}</h1>
+  {subheadlineMobile && <p class="mt-4 text-pretty text-muted sm:hidden">{subheadlineMobile}</p>}
+  <p class:list={['mt-5 text-pretty text-muted sm:text-[19px]', subheadlineMobile && 'hidden sm:block']}>{subheadline}</p>
+  <div class="mx-auto mt-6 max-w-sm sm:mt-8">
+    <a href="#formular" class="btn-cta" data-to-quiz data-hero-cta>{ctaText}</a>
+    {microcopy && <p class="mt-2.5 text-sm text-muted">{microcopy}</p>}
+  </div>
+</section>
+
+<VideoFacade />

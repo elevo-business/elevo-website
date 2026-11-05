@@ -1,0 +1,22 @@
+---
+import ss from '../../config/startseite.json';
+interface Props {
+  /** Platz für den schwebenden CTA auf dem Handy */
+  stickySpace?: boolean;
+}
+const { stickySpace = false } = Astro.props;
+const { legal, brand, consent } = ss;
+---
+
+<footer class:list={['mt-20 border-t border-line bg-paper', stickySpace && 'pb-20 md:pb-0']}>
+  <div class="mx-auto flex max-w-[1080px] flex-col items-center gap-3 px-4 py-8 text-sm text-muted sm:flex-row sm:flex-wrap sm:justify-between">
+    <p>© {new Date().getFullYear()} {brand.legalName}</p>
+    <nav aria-label="Rechtliches und Kontakt" class="flex flex-wrap justify-center gap-x-5 gap-y-2">
+      <a href={legal.guideUrl} class="font-medium text-navy underline underline-offset-2 hover:no-underline">{legal.guideText}</a>
+      <a href={`mailto:${legal.email}`} class="underline-offset-2 hover:text-navy hover:underline">{legal.email}</a>
+      <a href={legal.impressumUrl} class="underline-offset-2 hover:text-navy hover:underline">Impressum</a>
+      <a href={legal.datenschutzUrl} class="underline-offset-2 hover:text-navy hover:underline">Datenschutz</a>
+      <button type="button" class="cursor-pointer underline-offset-2 hover:text-navy hover:underline" data-consent-open>{consent.settingsLink}</button>
+    </nav>
+  </div>
+</footer>

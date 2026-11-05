@@ -1,0 +1,264 @@
+{
+  "paths": {
+    "home": "/",
+    "thankYou": "/danke/",
+    "vcard": "/mert-efe-celik.vcf"
+  },
+  "brand": {
+    "name": "Elevo",
+    "legalName": "ELEVO Solutions",
+    "logo": "/elevo-logo.png",
+    "navy": "#0E1A30",
+    "offwhite": "#F7F6F2",
+    "gold": "#D6B062"
+  },
+  "seo": {
+    "title": "Mehr Mandate aus Ihren Anfragen | ELEVO für Familienrecht-Kanzleien",
+    "description": "Familienrecht-Kanzleien verlieren Mandate meist nach der Anfrage. ELEVO baut den Prozess, der aus Anfragen Mandate macht. Erst dann kommen Anzeigen dazu.",
+    "thankYouTitle": "Danke | ELEVO für Familienrecht-Kanzleien",
+    "ogImage": "/og-startseite.jpg",
+    "ogImageFallback": "/og-image.jpg"
+  },
+  "header": {
+    "ctaText": "Platz anfragen"
+  },
+  "problem": {
+    "eyebrow": "Für Kanzleien mit Schwerpunkt Familienrecht",
+    "h1": "Sie brauchen nicht mehr Anfragen. Sie brauchen einen Prozess, der aus Anfragen Mandate macht.",
+    "subheadline": "Viele Familienrecht-Kanzleien leben von Empfehlungen. Ein Monat ist voll, der nächste ruhig. Und die Scheidungsmandate mit Immobilie, Zugewinn oder Unterhalt sind zu selten.",
+    "subheadlineMobile": "Viele Familienrecht-Kanzleien leben von Empfehlungen. Ein Monat ist voll, der nächste ruhig.",
+    "ctaText": "Platz anfragen",
+    "microcopy": "4 kurze Fragen. Ich rufe Sie persönlich an."
+  },
+  "video": {
+    "provider": "bunny",
+    "bunnyLibraryId": "",
+    "videoId": "",
+    "poster": "/thesis-poster.webp",
+    "title": "Video: Die Idee in 60 Sekunden",
+    "caption": "Die ganze Idee in 60 Sekunden.",
+    "providerName": "Bunny.net",
+    "playButton": "Video abspielen",
+    "providerHint": "Beim Abspielen wird das Video von {{anbieter}} geladen."
+  },
+  "hypothesis": {
+    "headline": "Die naheliegende Antwort: mehr Sichtbarkeit.",
+    "text": "Wenn es ruhiger wird, denken die meisten Kanzleien, ihnen fehlt Sichtbarkeit. Also wird investiert:",
+    "items": [
+      "in eine neue Website",
+      "in Suchmaschinen-Optimierung",
+      "in Anwaltsportale",
+      "in eine Agentur, die mehr Anfragen bringen soll"
+    ]
+  },
+  "antithesis": {
+    "headline": "Die meisten Kanzleien verlieren Mandate nicht vor der Anfrage, sondern danach.",
+    "items": [
+      "Anfragen werden zu spät zurückgerufen.",
+      "Anfragen bleiben im Postfach liegen.",
+      "Anwaltszeit geht an Gespräche, aus denen nie ein Mandat wird."
+    ]
+  },
+  "diagnosis": {
+    "headline": "Wer zuerst zurückruft, bekommt das Mandat.",
+    "stats": [
+      {
+        "value": "7-mal",
+        "text": "Wer innerhalb einer Stunde auf eine Anfrage reagiert, kommt fast 7-mal so oft in ein qualifiziertes Gespräch wie jemand, der eine Stunde später anruft.",
+        "footnote": 1
+      },
+      {
+        "value": "40 %",
+        "text": "In einem Testkäufer-Test bei 500 Kanzleien ging nur in 40 % der Fälle jemand ans Telefon.",
+        "footnote": 2
+      }
+    ],
+    "conclusion": "Mehr Anfragen in so einen Prozess bringen mehr Chaos, nicht mehr Mandate.",
+    "footnotes": [
+      {
+        "id": 1,
+        "text": "Oldroyd, McElheran, Elkington: „The Short Life of Online Sales Leads“, Harvard Business Review, März 2011. Studie mit US-Unternehmen.",
+        "url": "https://hbr.org/2011/03/the-short-life-of-online-sales-leads"
+      },
+      {
+        "id": 2,
+        "text": "Clio Legal Trends Report 2024, Testkäufer-Studie mit US-Kanzleien.",
+        "url": "https://www.clio.com/about/press/clio-latest-legal-trends-report/"
+      }
+    ]
+  },
+  "mechanism": {
+    "headline": "Erst der Prozess. Dann die Anzeigen.",
+    "intro": "Ich drehe die übliche Reihenfolge um. Zuerst steht der Ablauf, der jede Anfrage verlässlich zum Mandat führt. Erst dann bringen Anzeigen gezielt neue Anfragen hinein.",
+    "steps": [
+      { "title": "Vorab fragen.", "text": "Ein kurzes Formular fragt die wichtigsten Punkte ab, bevor jemand anruft." },
+      { "title": "Sofort Bescheid geben.", "text": "Ihr Sekretariat bekommt jede Anfrage sofort als Nachricht aufs Handy." },
+      { "title": "In Minuten zurückrufen.", "text": "Der Rückruf folgt einem festen Leitfaden." },
+      { "title": "Nur passende Fälle beraten.", "text": "In die Erstberatung beim Anwalt kommen nur Fälle, die zu Ihrer Kanzlei passen." },
+      { "title": "Digital unterschreiben.", "text": "Die Vollmacht wird online unterschrieben, ohne Termin vor Ort." }
+    ],
+    "then": {
+      "title": "Dann die Anzeigen.",
+      "text": "Anzeigen auf Facebook und Instagram bringen gezielt neue Anfragen in diesen Prozess. Ich plane sie, schreibe die Skripte und schneide die Videos. Keine Anzeige geht ohne Ihre Freigabe online."
+    }
+  },
+  "proof": {
+    "headline": "Diesen Prozess habe ich schon aufgebaut.",
+    "items": [
+      {
+        "value": "Über 30.000 €",
+        "label": "Umsatz in 2 Monaten",
+        "name": "Greenchild",
+        "text": "Mit diesem Vertriebsprozess: schneller Rückruf, klare Vorqualifizierung, fester Ablauf bis zum Abschluss."
+      },
+      {
+        "value": "10.000 €",
+        "label": "Mehrumsatz im ersten Monat",
+        "name": "BrandsMarketingLab, Aachen",
+        "text": ""
+      },
+      {
+        "_info": "Dritte Karte (Kanzlei-Referenz): erst eintragen, wenn Ergebnisse vorliegen und die Kanzlei zugestimmt hat. Leer = unsichtbar.",
+        "value": "",
+        "label": "",
+        "name": "",
+        "text": ""
+      }
+    ],
+    "note": "Beide Ergebnisse stammen aus anderen Branchen. Genau deshalb gibt es die Plätze für Referenz-Kanzleien zum halben Preis."
+  },
+  "pilot": {
+    "total": 5,
+    "free": 3,
+    "headline": "{{total}} Plätze für Familienrecht-Kanzleien",
+    "bullets": [
+      { "bold": "Halber Preis,", "text": "wenn ich Ihre Kanzlei als Referenz nennen darf." },
+      { "bold": "Geld zurück,", "text": "wenn das System Ihr Investment in den ersten 30 Tagen nach dem Start nicht wieder hereinholt." },
+      { "bold": "Ich rufe Sie persönlich an,", "text": "nachdem Sie das kurze Formular ausgefüllt haben." }
+    ],
+    "budgetNote": "Werbebudget zahlen Sie direkt an Meta, mindestens 1.000 € im Monat.",
+    "freeText": "Noch {{free}} von {{total}} frei.",
+    "soldOut": "Alle Plätze sind vergeben. Tragen Sie sich trotzdem ein, ich melde mich, sobald ein Platz frei wird.",
+    "guaranteeNote": "[NEED: Mert bestätigt den Garantie-Wortlaut gegen den Kundenvertrag]",
+    "ctaText": "Platz anfragen"
+  },
+  "form": {
+    "headline": "Platz anfragen",
+    "subline": "4 kurze Fragen. Danach rufe ich Sie an, meist noch am selben Werktag.",
+    "progressText": "Frage {{n}} von {{total}}",
+    "nextText": "Weiter",
+    "backText": "Zurück",
+    "submitText": "Rückruf anfordern",
+    "submittingText": "Wird gesendet …",
+    "belowSubmit": "Halber Preis für Referenz-Kanzleien · 30 Tage Geld-zurück-Garantie",
+    "optionalText": "optional",
+    "choiceError": "Bitte wählen Sie eine Antwort aus.",
+    "consentText": "Ich bin einverstanden, dass ELEVO Solutions mich zu meiner Anfrage per Telefon und E-Mail kontaktiert. Hinweise in der {{datenschutz}}.",
+    "consentLinkText": "Datenschutzerklärung",
+    "consentError": "Bitte bestätigen Sie die Einwilligung.",
+    "errorText": "Das hat nicht geklappt. Bitte versuchen Sie es noch einmal oder rufen Sie mich an:",
+    "hubspot": {
+      "portalId": "149380660",
+      "formGuid": "",
+      "communications": []
+    },
+    "hiddenFields": {
+      "lp_variante": "startseite"
+    },
+    "steps": [
+      {
+        "id": "kanzlei_groesse",
+        "type": "choice",
+        "question": "Wie viele Anwältinnen und Anwälte arbeiten bei Ihnen im Familienrecht?",
+        "hubspotProperty": "lead_kanzlei_groesse",
+        "options": ["1", "2–3", "4 oder mehr"],
+        "hubspotValues": { "1": "1", "2–3": "2_3", "4 oder mehr": "4_plus" }
+      },
+      {
+        "id": "rueckruf",
+        "type": "choice",
+        "question": "Wer ruft neue Anfragen heute zurück?",
+        "hubspotProperty": "lead_rueckruf",
+        "options": ["Ich selbst", "Sekretariat oder ReFa", "Niemand fest zuständig"],
+        "hubspotValues": { "Ich selbst": "ich_selbst", "Sekretariat oder ReFa": "sekretariat", "Niemand fest zuständig": "niemand" }
+      },
+      {
+        "id": "werbebudget",
+        "type": "choice",
+        "question": "Wie viel können Sie monatlich in Werbung investieren?",
+        "hubspotProperty": "lead_werbebudget",
+        "options": ["Unter 1.000 €", "1.000–3.000 €", "Über 3.000 €"],
+        "hubspotValues": { "Unter 1.000 €": "unter_1000", "1.000–3.000 €": "1000_3000", "Über 3.000 €": "ueber_3000" }
+      },
+      {
+        "id": "kontakt",
+        "type": "fields",
+        "question": "Wie erreiche ich Sie?",
+        "consent": true,
+        "fields": [
+          { "name": "firstname", "label": "Vorname", "type": "text", "autocomplete": "given-name", "required": true, "error": "Bitte geben Sie Ihren Vornamen an." },
+          { "name": "lastname", "label": "Nachname", "type": "text", "autocomplete": "family-name", "required": false },
+          { "name": "company", "label": "Kanzlei", "type": "text", "autocomplete": "organization", "required": false },
+          { "name": "phone", "label": "Telefon", "type": "tel", "autocomplete": "tel", "required": true, "help": "Ich rufe meist noch am selben Werktag an.", "error": "Bitte geben Sie eine Telefonnummer an, unter der ich Sie erreiche." },
+          { "name": "email", "label": "E-Mail", "type": "email", "autocomplete": "email", "required": true, "error": "Bitte prüfen Sie Ihre E-Mail-Adresse." }
+        ]
+      }
+    ]
+  },
+  "fit": {
+    "headline": "Passt das zu Ihrer Kanzlei?",
+    "yesTitle": "Passt, wenn Sie",
+    "yes": [
+      "einen Schwerpunkt im Familienrecht haben und mehr Mandate annehmen können",
+      "neue Anfragen am selben Tag zurückrufen können, selbst oder über Ihr Sekretariat",
+      "mindestens 1.000 € im Monat in Werbung investieren können"
+    ],
+    "noTitle": "Passt nicht, wenn Sie",
+    "no": [
+      "nur mehr Anfragen wollen, aber am Ablauf nichts ändern möchten"
+    ]
+  },
+  "faqHeadline": "Häufige Fragen",
+  "faq": [
+    { "q": "Dürfen Kanzleien auf Facebook und Instagram werben?", "a": "Ja. Anwälte dürfen sachlich über ihre Kanzlei und ihre Schwerpunkte informieren. Die Anzeigen sind entsprechend aufgebaut, und jede Anzeige geben Sie vor dem Start frei." },
+    { "q": "Wer ruft die Anfragen zurück?", "a": "Ihre Kanzlei, zum Beispiel Ihr Sekretariat. Sie bekommen dafür einen festen Leitfaden." },
+    { "q": "Muss ich an meiner Kanzleisoftware etwas ändern?", "a": "Nein. Der Prozess läuft separat. Die Anfragen kommen sortiert und mit allen Angaben bei Ihnen an." },
+    { "q": "Was passiert nach dem Formular?", "a": "Ich rufe Sie an, meist noch am selben Werktag. Das Gespräch dauert etwa 15 Minuten. Passt es, besprechen wir den Prozess für Ihre Kanzlei." }
+  ],
+  "stickyCta": "Platz anfragen",
+  "thankYou": {
+    "headline": "Danke, {{vorname}}. Ich rufe Sie in Kürze an.",
+    "headlineNoName": "Danke. Ich rufe Sie in Kürze an.",
+    "stepsHeadline": "So geht es weiter",
+    "steps": [
+      "Ich rufe Sie an, meist noch am selben Werktag (ca. 15 Minuten).",
+      "Wenn es passt, besprechen wir den Prozess für Ihre Kanzlei.",
+      "Danach richte ich ihn ein, erst dann starten die Anzeigen."
+    ],
+    "phoneLine": "Speichern Sie meine Nummer, damit Sie den Anruf erkennen:",
+    "phone": "02451 9949695",
+    "phoneInternational": "+49 2451 9949695",
+    "saveButton": "Nummer speichern",
+    "vcardName": "Mert Efe Celik",
+    "vcardOrg": "ELEVO Solutions",
+    "backLink": "Zur Startseite"
+  },
+  "tracking": {
+    "metaPixelId": "1150135684404237"
+  },
+  "consent": {
+    "headline": "Datenschutz-Einstellungen",
+    "text": "Notwendige Funktionen brauche ich, damit Seite und Formular funktionieren. Mit Ihrer Zustimmung lade ich nach dem Absenden des Formulars den Meta Pixel, um zu messen, welche Anzeigen Anfragen bringen.",
+    "acceptAll": "Alle akzeptieren",
+    "necessaryOnly": "Nur notwendige",
+    "privacyLinkText": "Datenschutzerklärung",
+    "settingsLink": "Cookie-Einstellungen"
+  },
+  "legal": {
+    "impressumUrl": "/impressum",
+    "datenschutzUrl": "/datenschutz",
+    "email": "hey@elevo.solutions",
+    "guideUrl": "/kanzlei-anleitung/",
+    "guideText": "Kostenlose Anleitung für Kanzleien"
+  }
+}
