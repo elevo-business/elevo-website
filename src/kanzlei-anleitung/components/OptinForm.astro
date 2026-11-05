@@ -97,6 +97,7 @@ type InputType = 'text' | 'email' | 'tel';
   import { captureAttribution, getAttribution } from '../../neukundensystem/lib/utm';
   import { markLeadSubmitted } from '../../neukundensystem/lib/lead';
   import { uuid } from '../../neukundensystem/lib/storage';
+  import { saveContact } from '../lib/contact';
 
   captureAttribution();
 
@@ -231,6 +232,7 @@ type InputType = 'text' | 'email' | 'tel';
 
       if (ok) {
         markLeadSubmitted(firstname, uuid());
+        saveContact({ firstname, lastname: rest.join(' '), email: String(data.get('email') ?? '').trim(), phone: toE164(String(data.get('phone') ?? '')) });
         window.location.href = paths.thankYou;
         return;
       }

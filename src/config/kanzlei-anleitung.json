@@ -21,9 +21,15 @@
     "headline": "So gewinnt Ihre Kanzlei planbar neue Mandate – ohne auf Empfehlungen und Zufall angewiesen zu sein",
     "subline": "In der kostenlosen Video-Anleitung zeige ich Ihnen Schritt für Schritt, wie Kanzleien aus Online-Anzeigen vorqualifizierte Anfragen machen – und aus Anfragen Mandate.",
     "videoCardTitle": "Video-Anleitung",
-    "videoCardMeta": "ca. 36 Minuten · kostenlos · sofort ansehen",
+    "videoCardMeta": "ca. 36 Min. · kostenlos",
     "ctaText": "Ja, Video-Anleitung kostenlos ansehen",
-    "ctaNote": "Sofortiger Zugang nach dem Eintragen."
+    "ctaNote": "Sofortiger Zugang nach dem Eintragen.",
+    "thumbnail": {
+      "src": "/kanzlei-anleitung/thumbnail.webp",
+      "width": 1280,
+      "height": 720,
+      "alt": "Vorschaubild der Video-Anleitung „Planbar neue Mandate für Ihre Kanzlei“ mit Mert Efe Celik"
+    }
   },
   "benefits": {
     "headline": "Das erfahren Sie in der Anleitung",
@@ -35,32 +41,6 @@
     ],
     "ctaText": "Jetzt kostenlos freischalten"
   },
-  "results": {
-    "headline": "Ergebnisse aus der Zusammenarbeit",
-    "items": [
-      {
-        "name": "Greenchild",
-        "value": "Über 30.000 €",
-        "result": "zusätzlicher Umsatz in 2 Monaten",
-        "text": "Meta Ads, schneller Rückruf auf jede Anfrage und ein klarer Ablauf vom ersten Telefonat bis zum Abschluss.",
-        "image": "/familienrecht/logo-greenchild.webp",
-        "imageWidth": 398,
-        "imageHeight": 100,
-        "imageAlt": "Logo von Greenchild"
-      },
-      {
-        "name": "BrandsMarketingLab, Aachen",
-        "value": "10.000 €",
-        "result": "Mehrumsatz im ersten Monat",
-        "text": "Gleiches System: Anzeigen, vorqualifizierte Anfragen, Rückruf mit Leitfaden.",
-        "image": "/familienrecht/logo-bml.webp",
-        "imageWidth": 192,
-        "imageHeight": 185,
-        "imageAlt": "Logo von BrandsMarketingLab"
-      }
-    ],
-    "honestyNote": "Beide Ergebnisse stammen aus anderen Branchen. Wie sich das System auf Kanzleien übertragen lässt, zeige ich in der Anleitung."
-  },
   "about": {
     "headline": "Wer Ihnen die Anleitung zeigt",
     "name": "Mert Efe Celik",
@@ -69,14 +49,14 @@
     "imageWidth": 800,
     "imageHeight": 1000,
     "imageAlt": "Porträt von Mert Efe Celik, Vertriebsleiter bei ELEVO Solutions",
-    "text": "Ich bin seit 5 Jahren im Vertrieb und Marketing tätig und habe bereits über 100.000 € in Werbeanzeigen investiert. Als Vertriebsleiter weiß ich: Anzeigen allein bringen keine Mandate. Entscheidend ist, was nach der Anfrage passiert – genau darum geht es in der Anleitung.",
+    "text": "Ich bin seit 5 Jahren im Vertrieb und Marketing tätig und habe bereits über 200.000 € in Werbeanzeigen investiert. Als Vertriebsleiter weiß ich: Anzeigen allein bringen keine Mandate. Entscheidend ist, was nach der Anfrage passiert – genau darum geht es in der Anleitung.",
     "facts": [
       {
         "value": "5 Jahre",
         "label": "Vertrieb und Marketing"
       },
       {
-        "value": "100.000 €+",
+        "value": "200.000 €+",
         "label": "in Werbung investiert"
       }
     ]
@@ -139,18 +119,70 @@
       "provider": "miro",
       "embedUrl": "https://miro.com/app/live-embed/uXjVERDafpc=/?embedMode=view_only_without_ui&moveToViewport=19814,2895,1925,936&embedId=388209181448",
       "aspect": "16:9",
-      "title": "Video-Anleitung: Planbar neue Mandate für Ihre Kanzlei"
-    },
-    "cta": {
-      "enabled": false,
-      "headline": "[Nächster Schritt nach dem Video – noch offen]",
-      "text": "[Text eintragen]",
-      "buttonText": "[Button-Text eintragen]",
-      "buttonHref": "[Link eintragen]"
+      "title": "Video-Anleitung: Planbar neue Mandate für Ihre Kanzlei",
+      "poster": "/kanzlei-anleitung/thumbnail.webp"
     },
     "phoneLine": "Fragen zur Anleitung? Sie erreichen mich unter",
     "phone": "02451 9949695",
-    "phoneInternational": "+49 2451 9949695"
+    "phoneInternational": "+49 2451 9949695",
+    "form": {
+      "headline": "Möchten Sie das für Ihre Kanzlei umsetzen?",
+      "text": "Beantworten Sie vier kurze Fragen – ich melde mich für ein kostenloses Strategiegespräch bei Ihnen.",
+      "contactHeadline": "Wie erreiche ich Sie?",
+      "submitText": "Kostenloses Strategiegespräch anfragen",
+      "submittingText": "Wird gesendet …",
+      "successHeadline": "Danke! Ihre Anfrage ist angekommen.",
+      "successText": "Ich melde mich in Kürze bei Ihnen, um einen Termin für Ihr Strategiegespräch zu finden.",
+      "choiceError": "Bitte wählen Sie eine Antwort aus.",
+      "fields": [
+        {
+          "name": "company",
+          "label": "Wie heißt Ihre Kanzlei?",
+          "type": "text",
+          "autocomplete": "organization",
+          "error": "Bitte geben Sie den Namen Ihrer Kanzlei an."
+        }
+      ],
+      "questions": [
+        {
+          "name": "lead_akquise",
+          "label": "Woher kommen neue Mandate heute vor allem?",
+          "options": [
+            "Empfehlungen",
+            "Website und Google",
+            "Anwaltsportale wie anwalt.de",
+            "Bezahlte Werbung"
+          ]
+        },
+        {
+          "name": "lead_mandatswert",
+          "label": "Was bringt Ihnen ein neues Mandat im Schnitt an Honorar?",
+          "options": [
+            "Unter 1.500 €",
+            "1.500–3.000 €",
+            "3.000–5.000 €",
+            "Über 5.000 €"
+          ]
+        },
+        {
+          "name": "lead_startzeitpunkt",
+          "label": "Wann möchten Sie starten?",
+          "options": [
+            "Sofort",
+            "In 1–3 Monaten",
+            "Später"
+          ],
+          "hubspotValues": {
+            "Sofort": "sofort",
+            "In 1–3 Monaten": "1_3_monate",
+            "Später": "spaeter"
+          }
+        }
+      ],
+      "hiddenFields": {
+        "lp_variante": "kanzlei-anleitung-gespraech"
+      }
+    }
   },
   "tracking": {
     "metaPixelId": "1150135684404237"

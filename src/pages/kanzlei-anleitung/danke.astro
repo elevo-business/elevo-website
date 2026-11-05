@@ -3,13 +3,12 @@ import KaLayout from '../../kanzlei-anleitung/layouts/KaLayout.astro';
 import ka from '../../config/kanzlei-anleitung.json';
 import Logo from '../../kanzlei-anleitung/components/Logo.astro';
 import VslFacade from '../../neukundensystem/components/VslFacade.astro';
-import { isFilled, telHref } from '../../neukundensystem/lib/text';
+import GespraechForm from '../../kanzlei-anleitung/components/GespraechForm.astro';
+import { telHref } from '../../neukundensystem/lib/text';
 
 const { thankYou } = ka;
 const [before, after] = thankYou.headline.split('{{vorname}}');
 const phoneHref = telHref(thankYou.phoneInternational || thankYou.phone);
-const cta = thankYou.cta;
-const showCta = cta.enabled && isFilled(cta.headline) && isFilled(cta.buttonText) && isFilled(cta.buttonHref);
 ---
 
 <KaLayout title={ka.seo.thankYouTitle} description={thankYou.headlineNoName} consentOnPendingLead>
@@ -33,17 +32,7 @@ const showCta = cta.enabled && isFilled(cta.headline) && isFilled(cta.buttonText
       <VslFacade video={thankYou.video} />
     </section>
 
-    {
-      showCta && (
-        <section class="mt-12 rounded-2xl bg-ink px-5 py-10 text-center sm:px-10" aria-labelledby="weiter-titel">
-          <h2 id="weiter-titel" class="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">{cta.headline}</h2>
-          {isFilled(cta.text) && <p class="mx-auto mt-3 max-w-md text-white/85">{cta.text}</p>}
-          <div class="mx-auto mt-6 max-w-md">
-            <a href={cta.buttonHref} class="btn-cta">{cta.buttonText}</a>
-          </div>
-        </section>
-      )
-    }
+    <GespraechForm />
 
     <p class="mt-10 text-center">
       {thankYou.phoneLine}
