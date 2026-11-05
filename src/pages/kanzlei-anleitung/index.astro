@@ -5,7 +5,6 @@ import Logo from '../../kanzlei-anleitung/components/Logo.astro';
 import Bold from '../../kanzlei-anleitung/components/Bold.astro';
 import CheckIcon from '../../kanzlei-anleitung/components/CheckIcon.astro';
 import CtaButton from '../../kanzlei-anleitung/components/CtaButton.astro';
-import Results from '../../kanzlei-anleitung/components/Results.astro';
 import About from '../../kanzlei-anleitung/components/About.astro';
 import OptinForm from '../../kanzlei-anleitung/components/OptinForm.astro';
 
@@ -23,21 +22,26 @@ const { hero, benefits, finalCta } = ka;
     </header>
 
     <!-- Vorschau auf das Video: öffnet das Opt-in, zeigt aber kein Video vor dem Eintragen -->
-    <a
-      href="#formular"
-      data-optin-open
-      class="group mt-8 block overflow-hidden rounded-2xl bg-ink-deep p-6 text-white shadow-lg sm:p-8"
-      aria-label={hero.ctaText}
-    >
-      <div class="flex items-center gap-5">
-        <span class="grid size-16 shrink-0 place-items-center rounded-full bg-accent text-ink-deep shadow-lg transition-transform duration-300 group-hover:scale-105" aria-hidden="true">
-          <svg class="ml-1 size-7" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+    <a href="#formular" data-optin-open class="group mt-8 block overflow-hidden rounded-2xl bg-ink-deep shadow-lg" aria-label={hero.ctaText}>
+      <span class="relative block">
+        <img
+          src={hero.thumbnail.src}
+          alt={hero.thumbnail.alt}
+          width={hero.thumbnail.width}
+          height={hero.thumbnail.height}
+          fetchpriority="high"
+          class="block aspect-video w-full object-cover"
+        />
+        <span class="absolute inset-0 flex items-end justify-start bg-black/0 p-[5%] transition-colors duration-300 group-hover:bg-black/10" aria-hidden="true">
+          <span class="grid size-12 place-items-center rounded-full bg-white text-ink-deep shadow-lg transition-transform duration-300 group-hover:scale-105 sm:size-16">
+            <svg class="ml-0.5 size-6 sm:size-7" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+          </span>
         </span>
-        <span class="text-left">
-          <span class="block text-xl font-extrabold">{hero.videoCardTitle}</span>
-          <span class="mt-1 block text-sm text-white/80">{hero.videoCardMeta}</span>
-        </span>
-      </div>
+      </span>
+      <span class="flex items-center justify-between gap-3 px-4 py-3 text-sm text-white/85">
+        <span class="font-semibold text-white">{hero.videoCardTitle}</span>
+        <span>{hero.videoCardMeta}</span>
+      </span>
     </a>
 
     <div class="mt-6"><CtaButton text={hero.ctaText} note={hero.ctaNote} /></div>
@@ -58,8 +62,6 @@ const { hero, benefits, finalCta } = ka;
       </ul>
       <div class="mt-8"><CtaButton text={benefits.ctaText} /></div>
     </section>
-
-    <Results />
 
     <About />
 

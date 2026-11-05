@@ -1,0 +1,240 @@
+---
+// Kurzes Formular unter dem Video: 4 Fragen → Anfrage Strategiegespräch.
+// Kontaktdaten kommen aus dem Opt-in (sessionStorage). Fehlen sie (z. B. Seite direkt geöffnet),
+// werden Name, E-Mail, Telefon und Einwilligung zusätzlich abgefragt.
+import ka from '../../config/kanzlei-anleitung.json';
+import { telHref } from '../../neukundensystem/lib/text';
+
+const f = ka.thankYou.form;
+const optin = ka.form;
+const [consentBefore, consentAfter] = optin.consentText.split('{{datenschutz}}');
+const phoneHref = telHref(ka.thankYou.phoneInternational || ka.thankYou.phone);
+type InputType = 'text' | 'email' | 'tel';
+const inputClass = 'field-input';
+---
+
+<section class="mt-12 rounded-2xl border border-line bg-surface p-5 sm:p-8" aria-labelledby="gespraech-titel" data-gespraech>
+  <div data-gespraech-form-wrap>
+    <h2 id="gespraech-titel" class="text-center text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">{f.headline}</h2>
+    <p class="mt-2 text-center text-pretty">{f.text}</p>
+
+    <form class="mt-6 space-y-6" novalidate data-gespraech-form>
+      {Object.entries(f.hiddenFields).map(([name, value]) => <input type="hidden" name={name} value={value} />)}
+      <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+        <label for="kg-hp">Bitte leer lassen</label>
+        <input id="kg-hp" type="text" tabindex="-1" autocomplete="one-time-code" data-lpignore="true" data-1p-ignore />
+      </div>
+
+      {
+        f.fields.map((field) => (
+          <div>
+            <label for={`kg-${field.name}`} class="mb-1.5 block font-semibold text-ink">{field.label}</label>
+            <input id={`kg-${field.name}`} name={field.name} type={field.type as InputType} autocomplete={field.autocomplete} required aria-describedby={`kg-${field.name}-error`} maxlength="120" class={inputClass} />
+            <p id={`kg-${field.name}-error`} class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for={field.name} />
+          </div>
+        ))
+      }
+
+      {
+        f.questions.map((q) => (
+          <fieldset aria-describedby={`kg-${q.name}-error`}>
+            <legend class="mb-2 font-semibold text-ink">{q.label}</legend>
+            <div class="grid gap-2 sm:grid-cols-2">
+              {q.options.map((option, i) => (
+                <label class="flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border border-field bg-white px-3.5 py-2.5 text-ink has-checked:border-ink has-checked:ring-2 has-checked:ring-ink">
+                  <input type="radio" name={q.name} value={option} required={i === 0} class="size-5 shrink-0 accent-ink" />
+                  <span>{option}</span>
+                </label>
+              ))}
+            </div>
+            <p id={`kg-${q.name}-error`} class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for={q.name} />
+          </fieldset>
+        ))
+      }
+
+      <!-- Nur sichtbar, wenn keine Kontaktdaten aus dem Opt-in vorliegen -->
+      <div class="space-y-4" hidden data-contact-fields>
+        <p class="font-semibold text-ink">{f.contactHeadline}</p>
+        {
+          optin.fields.map((field) => (
+            <div>
+              <label for={`kg-${field.name}`} class="mb-1.5 block text-sm font-semibold text-ink">{field.label}</label>
+              <input id={`kg-${field.name}`} name={field.name} type={field.type as InputType} autocomplete={field.autocomplete} aria-describedby={`kg-${field.name}-error`} maxlength={field.type === 'email' ? 254 : 120} class={inputClass} />
+              <p id={`kg-${field.name}-error`} class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for={field.name} />
+            </div>
+          ))
+        }
+        <div>
+          <label class="flex cursor-pointer items-start gap-3 text-sm leading-relaxed">
+            <input type="checkbox" name="consent" aria-describedby="kg-consent-error" class="mt-0.5 size-5 shrink-0 accent-ink" />
+            <span>
+              {consentBefore}<a href={ka.legal.datenschutzUrl} target="_blank" rel="noopener" class="font-semibold text-ink underline underline-offset-2">{optin.consentLinkText}</a>{consentAfter}
+            </span>
+          </label>
+          <p id="kg-consent-error" class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for="consent" />
+        </div>
+      </div>
+
+      <div class="hidden rounded-lg border border-danger bg-white p-3.5 text-sm font-medium text-danger" role="alert" data-submit-error>
+        {optin.errorText} {phoneHref ? <a href={phoneHref} class="underline">{ka.thankYou.phone}</a> : ka.thankYou.phone}
+      </div>
+
+      <button type="submit" class="btn-cta" data-submit>
+        <span data-submit-label>{f.submitText}</span>
+        <span class="hidden items-center gap-2" data-submit-loading>
+          <svg class="size-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-opacity=".25" stroke-width="3" />
+            <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+          </svg>
+          {f.submittingText}
+        </span>
+      </button>
+    </form>
+  </div>
+
+  <div class="hidden text-center" role="status" tabindex="-1" data-gespraech-success>
+    <span class="mx-auto grid size-14 place-items-center rounded-full bg-accent-soft text-ink" aria-hidden="true">
+      <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+    </span>
+    <h2 class="mt-4 text-2xl font-extrabold tracking-tight text-ink">{f.successHeadline}</h2>
+    <p class="mt-2">{f.successText}</p>
+  </div>
+</section>
+
+<script>
+  import { form as optin, thankYou } from '../../config/kanzlei-anleitung.json';
+  import { submitToHubspot, type HubspotField } from '../../neukundensystem/lib/hubspot';
+  import { getAttribution } from '../../neukundensystem/lib/utm';
+  import { getContact } from '../lib/contact';
+
+  const f = thankYou.form;
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const PHONE_CHARS = /^\+?[\d\s()/.-]+$/;
+  const phoneValid = (v: string) => {
+    const d = v.replace(/\D/g, '');
+    return PHONE_CHARS.test(v) && d.length >= 6 && d.length <= 15;
+  };
+  const toE164 = (raw: string): string => {
+    const c = raw.replace(/[^\d+]/g, '');
+    if (c.startsWith('+')) return c;
+    if (c.startsWith('00')) return `+${c.slice(2)}`;
+    if (c.startsWith('0')) return `+49${c.slice(1)}`;
+    if (c.startsWith('49')) return `+${c}`;
+    return `+49${c}`;
+  };
+
+  const section = document.querySelector<HTMLElement>('[data-gespraech]');
+  const formEl = document.querySelector<HTMLFormElement>('[data-gespraech-form]');
+
+  if (section && formEl) {
+    const stored = getContact();
+    const contactBox = formEl.querySelector<HTMLElement>('[data-contact-fields]')!;
+    contactBox.hidden = !!stored;
+
+    const submitBtn = formEl.querySelector<HTMLButtonElement>('[data-submit]')!;
+    const submitError = formEl.querySelector<HTMLElement>('[data-submit-error]')!;
+
+    const showError = (name: string, message: string) => {
+      const t = formEl.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
+      if (t) {
+        t.textContent = message;
+        t.classList.toggle('hidden', message === '');
+      }
+      formEl.querySelectorAll(`[name="${name}"]`).forEach((el) => el.setAttribute('aria-invalid', message ? 'true' : 'false'));
+    };
+    const value = (name: string) => String((formEl.elements.namedItem(name) as HTMLInputElement | null)?.value ?? '').trim();
+
+    const validate = (): string | null => {
+      const invalid: string[] = [];
+      f.fields.forEach((field) => {
+        const ok = value(field.name) !== '';
+        showError(field.name, ok ? '' : field.error);
+        if (!ok) invalid.push(field.name);
+      });
+      f.questions.forEach((q) => {
+        const ok = !!formEl.querySelector(`[name="${q.name}"]:checked`);
+        showError(q.name, ok ? '' : f.choiceError);
+        if (!ok) invalid.push(q.name);
+      });
+      if (!stored) {
+        optin.fields.forEach((field) => {
+          const v = value(field.name);
+          let msg = '';
+          if (!v) msg = field.error;
+          else if (field.type === 'email' && !EMAIL.test(v)) msg = field.errorFormat ?? field.error;
+          else if (field.type === 'tel' && !phoneValid(v)) msg = field.errorFormat ?? field.error;
+          showError(field.name, msg);
+          if (msg) invalid.push(field.name);
+        });
+        const consent = (formEl.elements.namedItem('consent') as HTMLInputElement).checked;
+        showError('consent', consent ? '' : optin.consentError);
+        if (!consent) invalid.push('consent');
+      }
+      return invalid[0] ?? null;
+    };
+
+    formEl.addEventListener('change', (event) => {
+      const input = event.target as HTMLInputElement;
+      if (input.type === 'radio') showError(input.name, '');
+    });
+
+    const setLoading = (loading: boolean) => {
+      submitBtn.disabled = loading;
+      submitBtn.setAttribute('aria-busy', String(loading));
+      formEl.querySelector('[data-submit-label]')!.classList.toggle('hidden', loading);
+      const spinner = formEl.querySelector<HTMLElement>('[data-submit-loading]')!;
+      spinner.classList.toggle('hidden', !loading);
+      spinner.classList.toggle('inline-flex', loading);
+    };
+
+    let sending = false;
+    formEl.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (sending) return;
+      submitError.classList.add('hidden');
+      const invalid = validate();
+      if (invalid) {
+        formEl.querySelector<HTMLInputElement>(`[name="${invalid}"]`)?.focus();
+        return;
+      }
+      if ((document.getElementById('kg-hp') as HTMLInputElement | null)?.value) return;
+
+      sending = true;
+      setLoading(true);
+
+      let contact = stored;
+      if (!contact) {
+        const [firstname, ...rest] = value('fullname').replace(/\s+/g, ' ').split(' ');
+        contact = { firstname, lastname: rest.join(' '), email: value('email'), phone: toE164(value('phone')) };
+      }
+      const fields: HubspotField[] = [
+        { name: 'firstname', value: contact.firstname },
+        { name: 'lastname', value: contact.lastname },
+        { name: 'email', value: contact.email },
+        { name: 'phone', value: contact.phone },
+        ...f.fields.map((field) => ({ name: field.name, value: value(field.name) })),
+        ...Object.entries(f.hiddenFields).map(([name, v]) => ({ name, value: v })),
+      ];
+      f.questions.forEach((q) => {
+        const answer = (formEl.querySelector<HTMLInputElement>(`[name="${q.name}"]:checked`)?.value ?? '').trim();
+        const mapped = (q as { hubspotValues?: Record<string, string> }).hubspotValues?.[answer] ?? answer;
+        if (mapped) fields.push({ name: q.name, value: mapped });
+      });
+      Object.entries(getAttribution()).forEach(([name, v]) => v && fields.push({ name, value: v }));
+
+      const consentText = optin.consentText.replace('{{datenschutz}}', optin.consentLinkText);
+      const ok = await submitToHubspot(optin.hubspot, fields, consentText);
+
+      if (ok) {
+        section.querySelector<HTMLElement>('[data-gespraech-form-wrap]')!.hidden = true;
+        const success = section.querySelector<HTMLElement>('[data-gespraech-success]')!;
+        success.classList.remove('hidden');
+        success.focus();
+        return;
+      }
+      sending = false;
+      setLoading(false);
+      submitError.classList.remove('hidden');
+    });
+  }
+</script>

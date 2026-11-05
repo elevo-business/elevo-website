@@ -2,8 +2,8 @@
 
 Lead-Magnet-Funnel für die eigenen Meta Ads an Kanzleien (alle Rechtsgebiete): kostenlose Video-Anleitung gegen Kontaktdaten. Aufbau und Technik wie /familienrecht: Astro (statisch) + Tailwind, eigenes Layout ohne den seitenweiten elevo.solutions-Pixel/Google-Tag, Formular an die HubSpot Forms API, Meta Pixel (nach Einwilligung) auf allen Seiten, Lead-Event nur auf der Danke-Seite.
 
-- `https://elevo.solutions/kanzlei-anleitung/`: Headline → Video-Vorschau → CTA → „Das erfahren Sie in der Anleitung“ → Ergebnisse → Über mich → Abschluss-CTA. Jeder CTA öffnet das Opt-in als Dialog (Name, E-Mail, Mobilnummer, Einwilligung).
-- `https://elevo.solutions/kanzlei-anleitung/danke/`: „Zugang freigeschaltet“ + das Video. Nur hier feuert das Conversion-Event `Lead`.
+- `https://elevo.solutions/kanzlei-anleitung/`: Headline → Vorschaubild der Anleitung (`hero.thumbnail`) → CTA → „Das erfahren Sie in der Anleitung“ → Über mich → Abschluss-CTA. Jeder CTA öffnet das Opt-in als Dialog (Name, E-Mail, Mobilnummer, Einwilligung).
+- `https://elevo.solutions/kanzlei-anleitung/danke/`: „Zugang freigeschaltet“ + das Video + kurzes Formular „Strategiegespräch anfragen“ (siehe unten). Nur hier feuert das Conversion-Event `Lead` (für das Opt-in, nicht für das Gesprächsformular).
 - Beide Seiten sind `noindex` und stehen nicht in der Sitemap (nur Ads-Traffic).
 
 **Alle Texte, IDs und Links stehen in `src/config/kanzlei-anleitung.json`.** Fett im Text: `**so**` (in `benefits.items`).
@@ -14,10 +14,17 @@ Lead-Magnet-Funnel für die eigenen Meta Ads an Kanzleien (alle Rechtsgebiete): 
 | --- | --- |
 | Video-Anleitung | Eingebettet aus Miro (`thankYou.video`, `provider: "miro"`, `embedUrl` = `src` aus dem Miro-Einbettungscode). Lädt erst nach Klick mit Hinweis „Beim Abspielen wird das Video von Miro geladen“. Das Board muss für „Jeder mit dem Link kann ansehen“ freigegeben sein. Alternativ: eigene MP4 (`provider: "self"`, `src`) oder Bunny Stream (`provider: "bunny"`, `bunnyLibraryId`, `videoId`). |
 | Inhalt der Anleitung | `benefits.items` – die vier Punkte müssen zu dem passen, was im Video tatsächlich vorkommt. |
-| Nächster Schritt nach dem Video | `thankYou.cta`: `enabled` auf `true` setzen und Überschrift, Text, Button-Text und Link eintragen (z. B. Link zu `/familienrecht/` oder zu einem Buchungskalender). Solange `enabled` `false` ist, erscheint nichts. |
+| Vorschaubild | `public/kanzlei-anleitung/thumbnail.webp` (1280 × 720, aus dem Porträtfoto erstellt). Wird auf der Opt-in-Seite und vor dem Abspielen auf der Danke-Seite gezeigt. Beim Austausch neuen Dateinamen verwenden (nginx cacht Bilder) und `hero.thumbnail.src` + `thankYou.video.poster` anpassen. |
 | Eigenes OG-Bild (optional) | `public/og-kanzlei-anleitung.jpg`, sonst wird das Standardbild genutzt. |
 
 Beim `bun run build` listet die Konsole alle noch offenen `[…]`-Platzhalter und die fehlende Videodatei auf.
+
+## Formular unter dem Video (Strategiegespräch)
+
+- Texte und Fragen: `thankYou.form`. Gefragt werden Kanzleiname (`company`), woher Mandate kommen (`lead_akquise`), Honorar pro Mandat (`lead_mandatswert`) und Startzeitpunkt (`lead_startzeitpunkt`, interne Werte über `hubspotValues`) – dieselben Properties wie im Quiz von /familienrecht.
+- Name, E-Mail und Telefon kommen aus dem Opt-in (für die Sitzung gemerkt). Wird die Danke-Seite direkt geöffnet, fragt das Formular sie zusätzlich ab, inklusive Einwilligung.
+- Gesendet wird an dasselbe HubSpot-Formular mit `lp_variante = kanzlei-anleitung-gespraech`. Da HubSpot Kontakte über die E-Mail zusammenführt, wird der bestehende Kontakt aktualisiert – `lp_variante` zeigt dann „Gespräch gewünscht“.
+- Kein zusätzliches Meta-Event (der Lead wurde schon beim Opt-in gezählt).
 
 ## HubSpot
 
