@@ -1,0 +1,14 @@
+---
+import kb from '../../config/kanzlei-berlin.json';
+import CtaButton from './CtaButton.astro';
+
+const { headline, text, button } = kb.finalCta;
+---
+
+<section class="mt-16 rounded-2xl bg-ink px-5 py-10 text-center sm:px-10" aria-labelledby="abschluss-titel">
+  <h2 id="abschluss-titel" class="text-2xl font-extrabold tracking-tight text-balance text-white sm:text-3xl">{headline}</h2>
+  <p class="mx-auto mt-3 max-w-md text-white/85">{text}</p>
+  <div class="mx-auto mt-6 max-w-sm">
+    <CtaButton label={button} />
+  </div>
+</section>

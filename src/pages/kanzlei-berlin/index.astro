@@ -1,0 +1,37 @@
+---
+// Landingpage für die lokalen Meta Ads an Kanzleien im Familien- und Erbrecht in Berlin.
+// Texte: src/config/kanzlei-berlin.json, Doku: KANZLEI-BERLIN.md
+import KbLayout from '../../kanzlei-berlin/layouts/KbLayout.astro';
+import kb from '../../config/kanzlei-berlin.json';
+import Logo from '../../kanzlei-berlin/components/Logo.astro';
+import Hero from '../../kanzlei-berlin/components/Hero.astro';
+import QuizForm from '../../kanzlei-berlin/components/QuizForm.astro';
+import Results from '../../kanzlei-berlin/components/Results.astro';
+import HowItWorks from '../../kanzlei-berlin/components/HowItWorks.astro';
+import Guarantee from '../../kanzlei-berlin/components/Guarantee.astro';
+import About from '../../kanzlei-berlin/components/About.astro';
+import Faq from '../../kanzlei-berlin/components/Faq.astro';
+import FinalCta from '../../kanzlei-berlin/components/FinalCta.astro';
+import StickyCta from '../../kanzlei-berlin/components/StickyCta.astro';
+import CtaButton from '../../kanzlei-berlin/components/CtaButton.astro';
+---
+
+<KbLayout title={kb.seo.title} description={kb.seo.description} stickyCta>
+  <main id="inhalt" class="px-4">
+    <div class="mx-auto max-w-[720px]">
+      <div class="flex justify-center pt-4"><Logo /></div>
+      <Hero />
+      <QuizForm />
+
+      <Results />
+      <div class="mx-auto mt-8 max-w-sm"><CtaButton /></div>
+
+      <HowItWorks />
+      <Guarantee />
+      <About />
+      <Faq />
+      <FinalCta />
+    </div>
+  </main>
+  <StickyCta />
+</KbLayout>
