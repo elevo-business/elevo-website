@@ -7,11 +7,11 @@ import placeholderReport from './src/neukundensystem/integrations/placeholder-re
 export default defineConfig({
   site: 'https://elevo.solutions',
   integrations: [
-    // noindex-Seiten gehören nicht in die Sitemap: /neukundensystem/danke + /absage, /familienrecht (nur Ads-Traffic)
-    sitemap({ filter: (page) => !/\/neukundensystem\/(danke|absage)|\/familienrecht\//.test(page) }),
+    // noindex-Seiten gehören nicht in die Sitemap: /neukundensystem/danke + /absage, /familienrecht und /kanzlei-anleitung (nur Ads-Traffic)
+    sitemap({ filter: (page) => !/\/neukundensystem\/(danke|absage)|\/familienrecht\/|\/kanzlei-anleitung\//.test(page) }),
     placeholderReport(),
   ],
   output: 'static',
-  // Tailwind wird nur von den Landingpages /neukundensystem und /familienrecht genutzt (je eigene CSS-Datei mit source(none))
+  // Tailwind wird nur von den Landingpages /neukundensystem, /familienrecht und /kanzlei-anleitung genutzt (je eigene CSS-Datei mit source(none))
   vite: { plugins: [tailwindcss()] },
 });

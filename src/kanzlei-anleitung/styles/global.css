@@ -1,0 +1,68 @@
+@import "tailwindcss" source(none);
+@source "../";
+@source "../../pages/kanzlei-anleitung";
+/* Video-Player aus /neukundensystem wird auf der Danke-Seite mitgenutzt */
+@source "../../neukundensystem/components/VslFacade.astro";
+
+/* Farben: Standardwerte. primary/accent werden im KaLayout aus kanzlei-anleitung.json (brand) überschrieben. */
+@theme {
+  --color-ink: #0D1B2A;
+  --color-ink-deep: #08111B;
+  --color-body: #2F3F52;
+  --color-muted: #52627A;
+  --color-line: #DCE3EA;
+  --color-field: #6F8197;
+  --color-surface: #F5F7FA;
+  --color-accent: #F2A33A;
+  --color-accent-hover: #E08E1F;
+  --color-accent-soft: #FFF6E8;
+  --color-brand: #3DD6C0;
+  --color-danger: #B42318;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  body {
+    @apply bg-white font-sans text-[17px] leading-[1.6] text-body antialiased;
+  }
+  h1, h2, h3 {
+    overflow-wrap: break-word;
+    hyphens: manual;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+  [id] { scroll-margin-top: 1rem; }
+  summary::-webkit-details-marker { display: none; }
+}
+
+@layer components {
+  .btn-cta {
+    @apply inline-flex min-h-14 w-full items-center justify-center rounded-xl bg-accent px-6 py-3 text-center text-lg font-bold text-ink-deep shadow-sm transition-colors duration-300 hover:bg-accent-hover disabled:cursor-wait disabled:opacity-70;
+  }
+  .btn-secondary {
+    @apply inline-flex min-h-12 items-center justify-center rounded-xl border-2 border-ink px-6 py-2.5 font-semibold text-ink transition-colors duration-300 hover:bg-ink hover:text-white;
+  }
+  .field-input {
+    @apply block w-full rounded-lg border border-field bg-white px-3.5 py-3 text-base text-ink aria-invalid:border-danger;
+  }
+}
+
+/* Opt-in-Dialog */
+dialog[data-optin]::backdrop { background: rgb(8 17 27 / 0.6); }
+dialog[data-optin][open] { animation: optin-in 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+@keyframes optin-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  dialog[data-optin][open] { animation: none; }
+}
