@@ -1,0 +1,113 @@
+@import "tailwindcss" source(none);
+@source "../";
+@source "../../pages/index.astro";
+@source "../../pages/danke.astro";
+
+/* Inter (variabel 100–900), lokal eingebunden – keine Google-Server */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/Inter-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/Inter-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Farben aus dem Briefing (navy, offwhite, gold). Werden im SsLayout aus startseite.json (brand) überschrieben. */
+@theme {
+  --color-navy: #0E1A30;
+  --color-navy-soft: #1A2942;
+  --color-offwhite: #F7F6F2;
+  --color-paper: #FFFFFF;
+  --color-gold: #D6B062;
+  --color-gold-hover: #C99F4C;
+  --color-gold-text: #8A6A22;
+  --color-body: #2E3A4E;
+  --color-muted: #5B6578;
+  --color-faint: #8A93A3;
+  --color-line: #E3E0D6;
+  --color-field: #747E8F;
+  --color-grey-card: #ECEAE3;
+  --color-on-navy: #D5DCE8;
+  --color-on-navy-muted: #9AA7BD;
+  --color-danger: #B42318;
+  --color-brand: #3DD6C0;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  body {
+    @apply bg-offwhite font-sans text-[17px] leading-[1.6] text-body antialiased sm:text-[18px];
+    font-feature-settings: "cv11", "ss01";
+  }
+  h1, h2, h3 {
+    overflow-wrap: break-word;
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-navy);
+    outline-offset: 2px;
+  }
+  .on-navy :focus-visible { outline-color: var(--color-gold); }
+  [id] { scroll-margin-top: 5rem; }
+  summary::-webkit-details-marker { display: none; }
+}
+
+@layer components {
+  .btn-cta {
+    @apply inline-flex min-h-14 w-full items-center justify-center rounded-xl bg-gold px-6 py-3 text-center text-lg font-semibold text-navy shadow-sm transition-colors duration-300 hover:bg-gold-hover disabled:cursor-wait disabled:opacity-70;
+  }
+  .btn-secondary {
+    @apply inline-flex min-h-12 items-center justify-center rounded-xl border-2 border-navy px-6 py-2.5 font-semibold text-navy transition-colors duration-300 hover:bg-navy hover:text-white;
+  }
+  .field-input {
+    @apply block w-full rounded-lg border border-field bg-white px-3.5 py-3 text-base text-navy aria-invalid:border-danger;
+  }
+  .section-title {
+    @apply text-[1.625rem] leading-[1.2] font-bold tracking-[-0.02em] text-navy sm:text-[2rem];
+  }
+}
+
+/* Quiz: Ohne JavaScript stehen alle Fragen untereinander. Mit JavaScript (html.js) eine Frage pro Bildschirm. */
+.js-only { display: none; }
+.js .js-only { display: revert; }
+.js [data-quiz] [data-step]:not([data-active]) { display: none; }
+.js [data-quiz] [data-step][data-active] { animation: quiz-in 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+@keyframes quiz-in {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: none; }
+}
+.quiz-step + .quiz-step { margin-top: 2.5rem; }
+.js .quiz-step + .quiz-step { margin-top: 0; }
+
+/* Prozess-Grafik: einziges animiertes Element. Nummern erscheinen nacheinander, die Linie füllt sich. */
+.process-line-fill { transform-origin: top; transform: scaleY(0); transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1); }
+.process-step { opacity: 0; transform: translateY(10px); transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); transition-delay: calc(var(--i) * 0.22s); }
+.process.is-visible .process-line-fill { transform: scaleY(1); }
+.process.is-visible .process-step { opacity: 1; transform: none; }
+@media (min-width: 1024px) {
+  .process-line-fill { transform-origin: left; transform: scaleX(0); }
+  .process.is-visible .process-line-fill { transform: scaleX(1); }
+}
+/* Ohne JavaScript oder mit reduzierter Bewegung: alles sofort sichtbar */
+html:not(.js) .process-step { opacity: 1; transform: none; }
+html:not(.js) .process-line-fill { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js [data-quiz] [data-step][data-active] { animation: none; }
+  .process-step, .process-line-fill { transition: none; opacity: 1; transform: none; }
+}

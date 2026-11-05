@@ -1,0 +1,73 @@
+---
+import SsLayout from '../startseite/layouts/SsLayout.astro';
+import ss from '../config/startseite.json';
+import Header from '../startseite/components/Header.astro';
+import { telHref } from '../neukundensystem/lib/text';
+
+const { thankYou, paths } = ss;
+const [before, after] = thankYou.headline.split('{{vorname}}');
+const phoneHref = telHref(thankYou.phoneInternational || thankYou.phone);
+---
+
+<SsLayout title={ss.seo.thankYouTitle} description={thankYou.headlineNoName} noindex consentOnPendingLead>
+  <main id="inhalt" class="mx-auto max-w-[720px] px-4">
+    <div class="flex justify-center pt-5">
+      <a href="/" aria-label={`${ss.brand.name}, ${thankYou.backLink}`} class="rounded-md">
+        <span class="inline-flex items-center gap-2 text-navy">
+          <svg width="24" height="24" viewBox="0 0 64 64" aria-hidden="true"><path d="M13 32 L32 14 L51 32" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" /><path d="M21 39 L32 28 L43 39" fill="none" stroke="var(--color-gold)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" /><line x1="24" y1="47" x2="40" y2="47" stroke="var(--color-gold)" stroke-width="7" stroke-linecap="round" /></svg>
+          <span class="text-lg font-bold tracking-tight">{ss.brand.name}</span>
+        </span>
+      </a>
+    </div>
+
+    <h1 class="mt-12 text-center text-[1.875rem] leading-[1.2] font-bold tracking-[-0.02em] text-navy sm:text-[2.5rem]" data-thanks-headline>
+      {thankYou.headlineNoName}
+    </h1>
+    <template data-thanks-template data-before={before} data-after={after}></template>
+
+    <section class="mt-10" aria-labelledby="schritte-titel">
+      <h2 id="schritte-titel" class="text-xl font-bold text-navy sm:text-2xl">{thankYou.stepsHeadline}</h2>
+      <ol class="mt-5 space-y-4">
+        {
+          thankYou.steps.map((step, i) => (
+            <li class="flex gap-4 rounded-2xl border border-line bg-paper p-4">
+              <span class="grid size-9 shrink-0 place-items-center rounded-full bg-gold font-bold text-navy" aria-hidden="true">{i + 1}</span>
+              <span class="pt-1">{step}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="mt-8 rounded-2xl bg-navy p-6 text-center text-on-navy" aria-labelledby="nummer-titel">
+      <p id="nummer-titel">{thankYou.phoneLine}</p>
+      <p class="mt-2 text-2xl font-bold text-white">
+        {phoneHref ? <a href={phoneHref} class="underline-offset-4 hover:underline">{thankYou.phone}</a> : thankYou.phone}
+      </p>
+      <div class="mx-auto mt-5 max-w-xs">
+        <a href={paths.vcard} download="mert-efe-celik.vcf" class="btn-cta min-h-12 text-base">{thankYou.saveButton}</a>
+      </div>
+    </section>
+  </main>
+</SsLayout>
+
+<script>
+  import { tracking } from '../config/startseite.json';
+  import { getLeadVorname } from '../neukundensystem/lib/lead';
+  import { trackLeadIfAllowed } from '../neukundensystem/lib/pixel';
+  import { CONSENT_EVENT } from '../neukundensystem/lib/consent';
+
+  // Vorname aus sessionStorage – als Text gesetzt, nie als HTML
+  const headline = document.querySelector<HTMLElement>('[data-thanks-headline]');
+  const template = document.querySelector<HTMLElement>('[data-thanks-template]');
+  const vorname = getLeadVorname().slice(0, 60);
+  if (headline && template && vorname) {
+    headline.textContent = `${template.dataset.before ?? ''}${vorname}${template.dataset.after ?? ''}`;
+  }
+
+  // Pixel nur hier: genau ein Lead nach frischem Absenden (≤ 30 Min.) und mit Einwilligung
+  trackLeadIfAllowed(tracking.metaPixelId);
+  window.addEventListener(CONSENT_EVENT, (event) => {
+    if ((event as CustomEvent<boolean>).detail === true) trackLeadIfAllowed(tracking.metaPixelId);
+  });
+</script>

@@ -1,0 +1,60 @@
+---
+// Baustein 5: Mechanismus – erst der Prozess, dann die Anzeigen.
+// Die Prozess-Grafik ist das einzige animierte Element (Nummern nacheinander, Linie füllt sich).
+import ss from '../../config/startseite.json';
+const { headline, intro, steps, then } = ss.mechanism;
+---
+
+<section class="mt-20 sm:mt-28" aria-labelledby="mechanismus-titel">
+  <div class="mx-auto max-w-[720px] px-4">
+    <h2 id="mechanismus-titel" class="section-title">{headline}</h2>
+    <p class="mt-4 text-pretty">{intro}</p>
+  </div>
+
+  <div class="process relative mx-auto mt-10 max-w-[720px] px-4 lg:max-w-[1080px]" data-process>
+    <!-- Verbindungslinie: Handy senkrecht, Desktop waagerecht -->
+    <div class="absolute top-5 bottom-5 left-[2.25rem] w-0.5 bg-line lg:top-5 lg:right-[10%] lg:bottom-auto lg:left-[10%] lg:h-0.5 lg:w-auto" aria-hidden="true">
+      <div class="process-line-fill h-full w-full bg-gold"></div>
+    </div>
+    <ol class="relative grid gap-7 lg:grid-cols-5 lg:gap-6">
+      {
+        steps.map((step, i) => (
+          <li class="process-step flex gap-4 lg:flex-col lg:items-center lg:text-center" style={`--i:${i}`}>
+            <span class="relative z-10 grid size-10 shrink-0 place-items-center rounded-full bg-gold text-[17px] font-bold text-navy ring-4 ring-offwhite" aria-hidden="true">{i + 1}</span>
+            <div class="pt-1.5 lg:pt-0">
+              <h3 class="font-semibold text-navy">{step.title}</h3>
+              <p class="mt-1 text-[16px] leading-[1.55] text-muted">{step.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+
+  <div class="mx-auto mt-12 max-w-[720px] px-4">
+    <div class="border-t-2 border-navy pt-6">
+      <h3 class="text-xl font-bold text-navy sm:text-2xl">{then.title}</h3>
+      <p class="mt-2 text-pretty">{then.text}</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Startet die Animation, sobald die Grafik ins Bild kommt (einmalig)
+  const process = document.querySelector<HTMLElement>('[data-process]');
+  if (process) {
+    if (!('IntersectionObserver' in window)) process.classList.add('is-visible');
+    else {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            process.classList.add('is-visible');
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 },
+      );
+      observer.observe(process);
+    }
+  }
+</script>

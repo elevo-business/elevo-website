@@ -1,0 +1,10 @@
+---
+import ss from '../../config/startseite.json';
+interface Props {
+  label?: string;
+  class?: string;
+}
+const { label = ss.problem.ctaText, class: className } = Astro.props;
+---
+
+<a href="#formular" class:list={['btn-cta', className]} data-to-quiz>{label}</a>
