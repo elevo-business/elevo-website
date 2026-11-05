@@ -12,8 +12,7 @@ Lead-Magnet-Funnel für die eigenen Meta Ads an Kanzleien (alle Rechtsgebiete): 
 
 | Was | Wo |
 | --- | --- |
-| Video-Anleitung | `public/kanzlei-anleitung/anleitung.mp4` (+ Vorschaubild `anleitung-poster.jpg`). Hochformat ist eingestellt (`thankYou.video.aspect: "9:16"`), bei Querformat `"16:9"`. |
-| Dauer des Videos | `hero.videoCardMeta` |
+| Video-Anleitung | Eingebettet aus Miro (`thankYou.video`, `provider: "miro"`, `embedUrl` = `src` aus dem Miro-Einbettungscode). Lädt erst nach Klick mit Hinweis „Beim Abspielen wird das Video von Miro geladen“. Das Board muss für „Jeder mit dem Link kann ansehen“ freigegeben sein. Alternativ: eigene MP4 (`provider: "self"`, `src`) oder Bunny Stream (`provider: "bunny"`, `bunnyLibraryId`, `videoId`). |
 | Inhalt der Anleitung | `benefits.items` – die vier Punkte müssen zu dem passen, was im Video tatsächlich vorkommt. |
 | Nächster Schritt nach dem Video | `thankYou.cta`: `enabled` auf `true` setzen und Überschrift, Text, Button-Text und Link eintragen (z. B. Link zu `/familienrecht/` oder zu einem Buchungskalender). Solange `enabled` `false` ist, erscheint nichts. |
 | Eigenes OG-Bild (optional) | `public/og-kanzlei-anleitung.jpg`, sonst wird das Standardbild genutzt. |

@@ -21,7 +21,7 @@
     "headline": "So gewinnt Ihre Kanzlei planbar neue Mandate – ohne auf Empfehlungen und Zufall angewiesen zu sein",
     "subline": "In der kostenlosen Video-Anleitung zeige ich Ihnen Schritt für Schritt, wie Kanzleien aus Online-Anzeigen vorqualifizierte Anfragen machen – und aus Anfragen Mandate.",
     "videoCardTitle": "Video-Anleitung",
-    "videoCardMeta": "[Dauer eintragen, z. B. ca. 12 Minuten] · kostenlos · sofort ansehen",
+    "videoCardMeta": "ca. 36 Minuten · kostenlos · sofort ansehen",
     "ctaText": "Ja, Video-Anleitung kostenlos ansehen",
     "ctaNote": "Sofortiger Zugang nach dem Eintragen."
   },
@@ -134,12 +134,11 @@
     "badge": "Zugang freigeschaltet",
     "headline": "Danke, {{vorname}}! Hier ist Ihre Video-Anleitung.",
     "headlineNoName": "Danke! Hier ist Ihre Video-Anleitung.",
-    "subline": "Nehmen Sie sich ein paar Minuten Zeit und schauen Sie das Video am besten mit Ton.",
+    "subline": "Nehmen Sie sich in Ruhe Zeit – die Anleitung dauert ca. 36 Minuten. Am besten mit Ton ansehen.",
     "video": {
-      "provider": "self",
-      "src": "/kanzlei-anleitung/anleitung.mp4",
-      "poster": "/kanzlei-anleitung/anleitung-poster.jpg",
-      "aspect": "9:16",
+      "provider": "miro",
+      "embedUrl": "https://miro.com/app/live-embed/uXjVERDafpc=/?embedMode=view_only_without_ui&moveToViewport=19814,2895,1925,936&embedId=388209181448",
+      "aspect": "16:9",
       "title": "Video-Anleitung: Planbar neue Mandate für Ihre Kanzlei"
     },
     "cta": {

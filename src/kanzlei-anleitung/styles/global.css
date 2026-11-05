@@ -1,6 +1,8 @@
 @import "tailwindcss" source(none);
 @source "../";
 @source "../../pages/kanzlei-anleitung";
+/* Video-Player aus /neukundensystem wird auf der Danke-Seite mitgenutzt */
+@source "../../neukundensystem/components/VslFacade.astro";
 
 /* Farben: Standardwerte. primary/accent werden im KaLayout aus kanzlei-anleitung.json (brand) überschrieben. */
 @theme {
