@@ -1,7 +1,7 @@
 ---
 // Kurzes Formular unter dem Video: 4 Fragen → Anfrage Strategiegespräch.
 // Kontaktdaten kommen aus dem Opt-in (sessionStorage). Fehlen sie (z. B. Seite direkt geöffnet),
-// werden Name, E-Mail, Telefon und Einwilligung zusätzlich abgefragt.
+// werden Name, E-Mail und Telefon zusätzlich abgefragt (mit Datenschutzhinweis, ohne Checkbox).
 import ka from '../../config/kanzlei-anleitung.json';
 import { telHref } from '../../neukundensystem/lib/text';
 
@@ -64,15 +64,9 @@ const inputClass = 'field-input';
             </div>
           ))
         }
-        <div>
-          <label class="flex cursor-pointer items-start gap-3 text-sm leading-relaxed">
-            <input type="checkbox" name="consent" aria-describedby="kg-consent-error" class="mt-0.5 size-5 shrink-0 accent-ink" />
-            <span>
-              {consentBefore}<a href={ka.legal.datenschutzUrl} target="_blank" rel="noopener" class="font-semibold text-ink underline underline-offset-2">{optin.consentLinkText}</a>{consentAfter}
-            </span>
-          </label>
-          <p id="kg-consent-error" class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for="consent" />
-        </div>
+        <p class="text-xs leading-relaxed text-muted">
+          {consentBefore}<a href={ka.legal.datenschutzUrl} target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-ink">{optin.consentLinkText}</a>{consentAfter}
+        </p>
       </div>
 
       <div class="hidden rounded-lg border border-danger bg-white p-3.5 text-sm font-medium text-danger" role="alert" data-submit-error>
@@ -166,9 +160,6 @@ const inputClass = 'field-input';
           showError(field.name, msg);
           if (msg) invalid.push(field.name);
         });
-        const consent = (formEl.elements.namedItem('consent') as HTMLInputElement).checked;
-        showError('consent', consent ? '' : optin.consentError);
-        if (!consent) invalid.push('consent');
       }
       return invalid[0] ?? null;
     };
