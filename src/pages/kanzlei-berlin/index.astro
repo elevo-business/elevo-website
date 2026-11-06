@@ -6,12 +6,9 @@ import kb from '../../config/kanzlei-berlin.json';
 import Logo from '../../kanzlei-berlin/components/Logo.astro';
 import Hero from '../../kanzlei-berlin/components/Hero.astro';
 import QuizForm from '../../kanzlei-berlin/components/QuizForm.astro';
+import Trust from '../../kanzlei-berlin/components/Trust.astro';
 import Results from '../../kanzlei-berlin/components/Results.astro';
-import HowItWorks from '../../kanzlei-berlin/components/HowItWorks.astro';
-import Guarantee from '../../kanzlei-berlin/components/Guarantee.astro';
-import About from '../../kanzlei-berlin/components/About.astro';
 import Faq from '../../kanzlei-berlin/components/Faq.astro';
-import FinalCta from '../../kanzlei-berlin/components/FinalCta.astro';
 import StickyCta from '../../kanzlei-berlin/components/StickyCta.astro';
 import CtaButton from '../../kanzlei-berlin/components/CtaButton.astro';
 ---
@@ -22,15 +19,13 @@ import CtaButton from '../../kanzlei-berlin/components/CtaButton.astro';
       <div class="flex justify-center pt-4"><Logo /></div>
       <Hero />
       <QuizForm />
+      <Trust />
 
       <Results />
       <div class="mx-auto mt-8 max-w-sm"><CtaButton /></div>
 
-      <HowItWorks />
-      <Guarantee />
-      <About />
       <Faq />
-      <FinalCta />
+      <div class="mx-auto mt-8 max-w-sm"><CtaButton /></div>
     </div>
   </main>
   <StickyCta />

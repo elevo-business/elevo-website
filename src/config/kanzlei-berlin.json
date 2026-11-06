@@ -13,7 +13,7 @@
   },
   "seo": {
     "title": "Neue Mandate für Berliner Kanzleien im Familien- und Erbrecht",
-    "description": "Anzeigen nur für Menschen in Berlin und Umgebung, vorgeprüfte Anfragen und schneller Rückruf. Erste Anfragen in 7 Werktagen, 30 Tage Geld-zurück-Garantie.",
+    "description": "Für Kanzleien im Familien- und Erbrecht in Berlin: vorgeprüfte Anfragen von Menschen, die gerade einen Anwalt suchen. Erste Anfragen in 7 Werktagen, 30 Tage Geld-zurück-Garantie.",
     "thankYouTitle": "Danke | Kanzleien Berlin",
     "ogImage": "/og-kanzlei-berlin.jpg",
     "noindex": true
@@ -23,27 +23,21 @@
     "eyebrow": "Für Kanzleien im Familien- und Erbrecht in Berlin",
     "defaultVariant": "a",
     "headlines": {
-      "a": "Neue Mandate für Ihre Kanzlei. Planbar, nicht nur über Empfehlungen.",
-      "b": "Seriöse Anzeigen, die Mandanten aus Berlin direkt zu Ihnen bringen.",
-      "c": "Nur noch Erstgespräche, die sich für Ihre Kanzlei lohnen."
+      "a": "Planbar neue Mandate für Ihre Kanzlei, statt jeden Monat zu hoffen, dass wieder eine Empfehlung kommt.",
+      "b": "Mandanten aus Berlin gewinnen, die gerade einen Anwalt suchen, mit Anzeigen, die so seriös wirken wie Ihre Kanzlei.",
+      "c": "Nur noch Erstgespräche führen, aus denen auch ein Mandat wird, weil jede Anfrage vorher geprüft ist."
     },
-    "subline": "Anzeigen nur für Menschen in Berlin und Umgebung, die gerade vor einer Trennung oder einem Erbfall stehen. Jede Anfrage ist vorgeprüft.",
-    "trust": [
-      "**Erste Anfragen in 7 Werktagen**, oft schon früher",
-      "**30 Tage Geld-zurück-Garantie**",
-      "**Nur Anfragen aus Berlin und Umgebung**"
-    ],
-    "ctaText": "Jetzt prüfen, ob es passt"
+    "ctaText": "Jetzt in 60 Sekunden prüfen"
   },
   "form": {
-    "headline": "Passt das zu Ihrer Kanzlei?",
-    "subline": "4 Fragen per Klick, unter 1 Minute.",
+    "headline": "",
+    "subline": "4 kurze Fragen zu Ihrer Kanzlei, alles per Klick. Dauert keine Minute.",
     "progressText": "Frage {{n}} von {{total}}",
     "nextText": "Weiter",
     "backText": "Zurück",
-    "submitText": "Gespräch anfragen",
+    "submitText": "Kostenloses Gespräch anfragen",
     "submittingText": "Wird gesendet …",
-    "belowSubmit": "Kostenlos und unverbindlich · 30 Tage Geld-zurück-Garantie",
+    "belowSubmit": "Unverbindlich. Ich melde mich meist noch am selben Werktag.",
     "optionalText": "optional",
     "choiceError": "Bitte wählen Sie eine Antwort aus.",
     "consentText": "Ich bin einverstanden, dass ELEVO Solutions mich zu meiner Anfrage per Telefon und E-Mail kontaktiert. Hinweise in der {{datenschutz}}.",
@@ -63,80 +57,102 @@
       {
         "id": "akquise",
         "type": "choice",
-        "question": "Woher kommen Ihre neuen Mandate heute vor allem?",
+        "question": "Wie kommen neue Mandanten heute zu Ihnen?",
         "hubspotProperty": "lead_akquise",
         "options": [
-          "Empfehlungen",
-          "Website und Google",
-          "Anwaltsportale wie anwalt.de",
-          "Bezahlte Werbung"
+          "Fast nur über Empfehlungen",
+          "Über Google und unsere Website",
+          "Über Portale wie anwalt.de",
+          "Wir schalten schon Anzeigen"
         ],
         "red": [],
-        "green": ["Empfehlungen"]
+        "green": [
+          "Fast nur über Empfehlungen"
+        ],
+        "hubspotValues": {
+          "Fast nur über Empfehlungen": "Empfehlungen",
+          "Über Google und unsere Website": "Website und Google",
+          "Über Portale wie anwalt.de": "Anwaltsportale wie anwalt.de",
+          "Wir schalten schon Anzeigen": "Bezahlte Werbung"
+        }
       },
       {
         "id": "kapazitaet",
         "type": "choice",
-        "question": "Wie viele neue Mandate könnten Sie zusätzlich pro Monat übernehmen?",
+        "question": "Wie viele Mandate könnten Sie im Monat zusätzlich gut betreuen?",
         "hubspotProperty": "lead_kapazitaet",
         "options": [
           "Mehr als 5",
           "2 bis 5",
-          "Gerade keine"
+          "Gerade keine, wir sind voll"
         ],
-        "red": ["Gerade keine"],
-        "green": ["Mehr als 5"]
+        "red": [
+          "Gerade keine, wir sind voll"
+        ],
+        "green": [
+          "Mehr als 5"
+        ],
+        "hubspotValues": {
+          "Mehr als 5": "Mehr als 5",
+          "2 bis 5": "2 bis 5",
+          "Gerade keine, wir sind voll": "Gerade keine"
+        }
       },
       {
         "id": "rueckruf",
         "type": "choice",
-        "question": "Wer ruft neue Anfragen bei Ihnen zurück?",
+        "question": "Wenn morgen eine neue Anfrage reinkommt: Wer ruft zurück?",
         "hubspotProperty": "lead_rueckruf",
         "options": [
-          "Ich selbst, am selben Tag",
+          "Ich selbst, noch am selben Tag",
           "Sekretariat oder ReFa, am selben Tag",
-          "Meist erst nach 1 bis 2 Tagen",
-          "Niemand fest zuständig"
+          "Meist erst nach ein, zwei Tagen",
+          "Das ist bei uns nicht fest geregelt"
         ],
         "red": [
-          "Meist erst nach 1 bis 2 Tagen",
-          "Niemand fest zuständig"
+          "Meist erst nach ein, zwei Tagen",
+          "Das ist bei uns nicht fest geregelt"
         ],
         "green": [
-          "Ich selbst, am selben Tag",
+          "Ich selbst, noch am selben Tag",
           "Sekretariat oder ReFa, am selben Tag"
         ],
         "detailProperty": "fr_rueckruf",
         "hubspotValues": {
-          "Ich selbst, am selben Tag": "ich_selbst",
+          "Ich selbst, noch am selben Tag": "ich_selbst",
           "Sekretariat oder ReFa, am selben Tag": "sekretariat",
-          "Niemand fest zuständig": "niemand"
+          "Das ist bei uns nicht fest geregelt": "niemand"
         },
-        "hint": "Das ist kein Ausschluss. Es hilft mir nur bei der Planung."
+        "hint": "Keine Sorge, das ist kein Ausschluss. Wer schnell zurückruft, gewinnt nur deutlich mehr Mandate."
       },
       {
         "id": "werbebudget",
         "type": "choice",
-        "question": "Wie viel könnten Sie monatlich in Anzeigen investieren?",
+        "question": "Was könnten Sie monatlich in Anzeigen investieren, wenn dafür planbar Mandate kommen?",
         "hubspotProperty": "lead_werbebudget",
         "options": [
           "Unter 1.000 €",
           "1.000–3.000 €",
           "Über 3.000 €"
         ],
-        "red": ["Unter 1.000 €"],
-        "green": ["1.000–3.000 €", "Über 3.000 €"],
+        "red": [
+          "Unter 1.000 €"
+        ],
+        "green": [
+          "1.000–3.000 €",
+          "Über 3.000 €"
+        ],
         "hubspotValues": {
           "Unter 1.000 €": "unter_1000",
           "1.000–3.000 €": "1000_3000",
           "Über 3.000 €": "ueber_3000"
         },
-        "hint": "Eine grobe Einschätzung reicht. Das Budget geht direkt an Meta, nicht an mich."
+        "hint": "Eine grobe Einschätzung reicht. Das Werbebudget zahlen Sie direkt an Meta, nicht an mich."
       },
       {
         "id": "kontakt",
         "type": "fields",
-        "question": "Wohin darf ich mich melden?",
+        "question": "Wo erreiche ich Sie für ein kurzes Gespräch?",
         "consent": true,
         "fields": [
           {
@@ -185,26 +201,16 @@
       }
     }
   },
-  "howItWorks": {
-    "headline": "So kommen die Mandate zu Ihnen",
-    "steps": [
-      {
-        "title": "Anzeigen nur für Ihr Einzugsgebiet.",
-        "text": "Ruhige, sachliche Anzeigen, die nur Menschen in Berlin und Umgebung sehen, die sich gerade trennen oder einen Erbfall haben. Keine Anzeige geht ohne Ihre Freigabe online."
-      },
-      {
-        "title": "Vorprüfung vor dem ersten Gespräch.",
-        "text": "Bevor jemand anfragt, beantwortet er ein paar kurze Fragen: Worum geht es, wo wohnen Sie, wie dringend ist es? Sie sehen vor dem Rückruf, ob der Fall zu Ihnen passt."
-      },
-      {
-        "title": "Rückruf, bevor die Anfrage weiterzieht.",
-        "text": "Jede passende Anfrage landet sofort bei Ihnen oder Ihrem Sekretariat. Dazu bekommen Sie einen Leitfaden für Rückruf und Erstgespräch."
-      }
-    ],
-    "footnote": "An Ihrer Website und Ihrer Kanzleisoftware ändert sich nichts."
+  "trust": {
+    "items": [
+      "**Erste Anfragen innerhalb von 7 Werktagen**, oft schon früher.",
+      "**30 Tage Geld-zurück-Garantie:** Kommen keine passenden Anfragen, bekommen Sie Ihr Geld zurück.",
+      "**Nur Menschen aus Berlin und Umgebung**, die gerade vor einer Trennung oder einem Erbfall stehen.",
+      "**Sachlich und berufsrechtlich sauber:** Jede Anzeige geben Sie vorher frei."
+    ]
   },
   "results": {
-    "headline": "Ergebnisse mit demselben System",
+    "headline": "Was dieses System bei anderen gebracht hat",
     "items": [
       {
         "name": "Greenchild",
@@ -225,7 +231,7 @@
         "name": "BrandsMarketingLab, Aachen",
         "value": "10.000 €",
         "result": "Mehrumsatz im ersten Monat",
-        "text": "Gleiches Prinzip: Anzeigen, vorqualifizierte Anfragen, Rückruf mit Leitfaden.",
+        "text": "Gleiches Prinzip: Anzeigen, vorgeprüfte Anfragen, schneller Rückruf.",
         "image": "/kanzlei-berlin/logo-bml.webp",
         "imageWidth": 192,
         "imageHeight": 185,
@@ -233,100 +239,52 @@
         "quote": ""
       }
     ],
-    "honestyNote": "Beide Ergebnisse stammen aus anderen Branchen. Das System dahinter ist dasselbe: Anzeigen im richtigen Umkreis, Vorprüfung, schneller Rückruf."
-  },
-  "guarantee": {
-    "headline": "Ihr Risiko liegt bei mir",
-    "items": [
-      {
-        "title": "Erste Anfragen in 7 Werktagen",
-        "text": "Nach dem Start Ihrer Anzeigen kommen die ersten Anfragen innerhalb von 7 Werktagen bei Ihnen an, oft schon früher."
-      },
-      {
-        "title": "30 Tage Geld-zurück-Garantie",
-        "text": "Kommen in den ersten 30 Tagen keine passenden Anfragen bei Ihnen an, bekommen Sie Ihr Geld zurück. Was als passende Anfrage zählt, halten wir vor dem Start gemeinsam schriftlich fest."
-      }
-    ],
-    "processHeadline": "So läuft es ab",
-    "process": [
-      "Sie beantworten oben 4 kurze Fragen. Dauert unter einer Minute.",
-      "Ich rufe Sie an und schaue mir Ihre aktuelle Mandatsgewinnung an (ca. 15 Minuten).",
-      "Passt es, baue ich Anzeigen und Vorprüfung auf. Sie geben alles frei.",
-      "Die Anzeigen starten. Erste Anfragen kommen innerhalb von 7 Werktagen."
-    ],
-    "button": "Jetzt prüfen, ob es passt"
-  },
-  "about": {
-    "headline": "Wer hinter den Anzeigen steht",
-    "name": "Mert Efe Celik",
-    "role": "ELEVO Solutions",
-    "image": "/team/mert-800.webp",
-    "imageWidth": 800,
-    "imageHeight": 1000,
-    "imageAlt": "Porträt von Mert Efe Celik, ELEVO Solutions",
-    "text": "Ich bin seit 5 Jahren im Vertrieb und Marketing tätig und habe bereits über 100.000 € in Werbeanzeigen investiert. Anzeigen allein bringen keine Mandate. Entscheidend ist, was nach der Anfrage passiert. Deshalb richte ich jedes System selbst ein und bin Ihr direkter Ansprechpartner.",
-    "facts": [
-      { "value": "5 Jahre", "label": "Vertrieb und Marketing" },
-      { "value": "100.000 €+", "label": "in Werbung investiert" }
-    ]
+    "honestyNote": "Beide Unternehmen sind keine Kanzleien. Das Prinzip ist aber dasselbe: die richtigen Menschen im richtigen Umkreis erreichen, Anfragen vorab prüfen und schnell zurückrufen."
   },
   "faqHeadline": "Häufige Fragen",
   "faq": [
     {
-      "q": "Dürfen Anwälte auf Facebook und Instagram werben?",
-      "a": "Ja. § 43b BRAO erlaubt Werbung, die sachlich über Ihre Kanzlei und Ihre Schwerpunkte informiert. Die Anzeigen sind genau so aufgebaut, und jede Anzeige geben Sie vor dem Start frei."
+      "q": "Dürfen Anwälte überhaupt auf Facebook und Instagram werben?",
+      "a": "Ja. § 43b BRAO erlaubt Werbung, die sachlich über Ihre Kanzlei und Ihre Schwerpunkte informiert. Genau so sind die Anzeigen aufgebaut: ruhig, sachlich, ohne Versprechen zum Ausgang eines Verfahrens. Und keine Anzeige geht online, bevor Sie sie freigegeben haben."
     },
     {
-      "q": "Wirkt Werbung für eine Kanzlei nicht unseriös?",
-      "a": "Unseriös wirkt schlechte Werbung. Eine ruhige, sachliche Anzeige, in der Sie zeigen, wie Sie arbeiten, wirkt eher wie eine Empfehlung. Wer sich gerade trennt oder einen Erbfall hat und niemanden kennt, sucht auf dem Handy. Dort sollte er Ihre Kanzlei finden."
+      "q": "Wirkt Werbung nicht unseriös für eine Kanzlei?",
+      "a": "Unseriös wirkt schlechte Werbung. Denken Sie an jemanden in Spandau oder Pankow, der sich gerade trennt und niemanden kennt, der ihm einen Anwalt empfehlen kann. Er sucht auf dem Handy und landet bei der Kanzlei, die er dort zuerst sieht und die vertrauenswürdig wirkt. Eine sachliche Anzeige, in der Sie zeigen, wie Sie arbeiten, wirkt auf ihn eher wie eine Empfehlung."
     },
     {
-      "q": "Ich bekomme genug Empfehlungen. Brauche ich das?",
-      "a": "Empfehlungen sind ein gutes Zeichen. Sie lassen sich aber nicht planen. Die Anzeigen sind eine zweite Quelle, die Sie selbst steuern: mehr Anfragen, wenn der Kalender leer ist, und Pause, wenn er voll ist."
+      "q": "Ich bekomme genug Empfehlungen. Warum sollte ich das brauchen?",
+      "a": "Empfehlungen zeigen, dass Sie gute Arbeit machen. Planen lassen sie sich aber nicht: Mal ist der Kalender voll, mal ist es ruhig. Die Anzeigen sind eine zweite Quelle, die Sie selbst steuern. Wenn es ruhig wird, drehen wir auf. Wenn Sie voll sind, pausieren wir."
     },
     {
-      "q": "Bekomme ich auch Anfragen von außerhalb Berlins?",
-      "a": "Die Anzeigen sehen nur Menschen in Berlin und Umgebung. Zusätzlich fragt die Vorprüfung nach dem Wohnort. So sehen Sie vor dem Rückruf, ob die Anfrage in Ihr Einzugsgebiet passt."
+      "q": "Landen dann bei mir Anfragen, die gar nicht zu mir passen?",
+      "a": "Genau das soll die Vorprüfung verhindern. Bevor jemand anfragt, beantwortet er ein paar kurze Fragen: Worum geht es, wo wohnen Sie, wie dringend ist es? Sie sehen das vor dem Rückruf und entscheiden selbst, welche Anfrage Sie zuerst anrufen."
     },
     {
       "q": "Wie schnell kommen die ersten Anfragen?",
-      "a": "Innerhalb von 7 Werktagen nach dem Start der Anzeigen, oft schon früher."
-    },
-    {
-      "q": "Wie funktioniert die Geld-zurück-Garantie?",
-      "a": "Kommen in den ersten 30 Tagen keine passenden Anfragen bei Ihnen an, bekommen Sie Ihr Geld zurück. Was als passende Anfrage zählt, legen wir vor dem Start gemeinsam schriftlich fest."
+      "a": "Innerhalb von 7 Werktagen nach dem Start der Anzeigen, oft schon früher. Kommen in den ersten 30 Tagen keine passenden Anfragen bei Ihnen an, bekommen Sie Ihr Geld zurück. Was als passende Anfrage zählt, halten wir vor dem Start gemeinsam schriftlich fest."
     },
     {
       "q": "Was kostet das?",
-      "a": "Das hängt von Ihrem Einzugsgebiet und davon ab, wie viele Mandate Sie zusätzlich übernehmen können. Die genauen Zahlen nenne ich Ihnen im Gespräch. Das Werbebudget zahlen Sie direkt an Meta."
+      "a": "Das hängt davon ab, wie viele Mandate Sie zusätzlich betreuen können und wie groß Ihr Einzugsgebiet ist. Die genauen Zahlen nenne ich Ihnen im Gespräch. Das Werbebudget zahlen Sie direkt an Meta."
     },
     {
-      "q": "Wie viel Zeit kostet mich das?",
-      "a": "Ein kurzes Gespräch zum Start und die Freigabe der Anzeigen. Den Rest übernehme ich. Danach rufen Sie nur noch die passenden Anfragen zurück."
+      "q": "Wie viel Arbeit habe ich damit?",
+      "a": "Ein Gespräch zum Start und die Freigabe der Anzeigen. Anzeigen, Vorprüfung und Einrichtung übernehme ich. An Ihrer Website und Ihrer Kanzleisoftware ändert sich nichts. Sie rufen nur noch die passenden Anfragen zurück."
     },
     {
-      "q": "Muss ich an meiner Website etwas ändern?",
-      "a": "Nein. Anzeigen und Vorprüfung laufen separat. An Website und Kanzleisoftware ändert sich nichts."
-    },
-    {
-      "q": "Was passiert nach dem Formular?",
-      "a": "Ich rufe Sie an, meist noch am selben Werktag. Im Gespräch (ca. 15 Minuten) schaue ich mir Ihre aktuelle Mandatsgewinnung an und zeige Ihnen, wie eine Anzeige für Ihre Kanzlei konkret aussehen würde. Unverbindlich."
+      "q": "Was passiert, nachdem ich das Formular abgeschickt habe?",
+      "a": "Ich rufe Sie an, meist noch am selben Werktag. In etwa 15 Minuten schaue ich mir an, wie Ihre Kanzlei heute an Mandate kommt, und zeige Ihnen, wie eine Anzeige für Ihre Kanzlei in Berlin konkret aussehen würde. Unverbindlich."
     }
   ],
-  "finalCta": {
-    "headline": "Wissen Sie, wie viele Mandate nächsten Monat reinkommen?",
-    "text": "Beantworten Sie 4 kurze Fragen. Ich zeige Ihnen im Gespräch, wie eine zweite, planbare Quelle für Ihre Kanzlei aussehen würde.",
-    "button": "Jetzt prüfen, ob es passt"
-  },
-  "stickyCta": "Jetzt prüfen, ob es passt",
+  "stickyCta": "Jetzt in 60 Sekunden prüfen",
   "thankYou": {
     "headline": "Danke, {{vorname}}. Ich melde mich in Kürze bei Ihnen.",
     "headlineNoName": "Danke. Ich melde mich in Kürze bei Ihnen.",
     "stepsHeadline": "So geht es weiter",
     "steps": [
-      "Ich rufe Sie an, meist noch am selben Werktag (ca. 15 Minuten).",
-      "Ich schaue mir Ihre aktuelle Mandatsgewinnung an und zeige Ihnen, wie eine Anzeige für Ihre Kanzlei aussehen würde.",
-      "Passt es, starten die Anzeigen. Erste Anfragen kommen innerhalb von 7 Werktagen."
+      "Ich rufe Sie an, meist noch am selben Werktag. Das Gespräch dauert etwa 15 Minuten.",
+      "Ich schaue mir an, wie Ihre Kanzlei heute an Mandate kommt, und zeige Ihnen, wie eine Anzeige für Sie konkret aussehen würde.",
+      "Passt es für beide Seiten, starten die Anzeigen. Die ersten Anfragen kommen innerhalb von 7 Werktagen."
     ],
     "phoneLine": "Speichern Sie meine Nummer, damit Sie den Anruf erkennen:",
     "phone": "02451 9949695",
