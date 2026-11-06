@@ -4,8 +4,7 @@
 import ka from '../../config/kanzlei-anleitung.json';
 import { telHref } from '../../neukundensystem/lib/text';
 
-const { form, legal, thankYou } = ka;
-const [consentBefore, consentAfter] = form.consentText.split('{{datenschutz}}');
+const { form, thankYou } = ka;
 const phoneHref = telHref(thankYou.phoneInternational || thankYou.phone);
 type InputType = 'text' | 'email' | 'tel';
 ---
@@ -77,9 +76,6 @@ type InputType = 'text' | 'email' | 'tel';
       <p class="flex items-center justify-center gap-1.5 text-center text-sm text-muted">
         <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
         {form.belowSubmit}
-      </p>
-      <p class="text-center text-xs leading-relaxed text-muted">
-        {consentBefore}<a href={legal.datenschutzUrl} target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-ink">{form.consentLinkText}</a>{consentAfter}
       </p>
     </form>
   </div>
