@@ -59,15 +59,6 @@ type InputType = 'text' | 'email' | 'tel';
         ))
       }
 
-      <div>
-        <label class="flex cursor-pointer items-start gap-3 text-sm leading-relaxed">
-          <input type="checkbox" name="consent" required aria-describedby="ka-consent-error" class="mt-0.5 size-5 shrink-0 accent-ink" />
-          <span>
-            {consentBefore}<a href={legal.datenschutzUrl} target="_blank" rel="noopener" class="font-semibold text-ink underline underline-offset-2">{form.consentLinkText}</a>{consentAfter}
-          </span>
-        </label>
-        <p id="ka-consent-error" class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for="consent" />
-      </div>
 
       <div class="hidden rounded-lg border border-danger bg-white p-3.5 text-sm font-medium text-danger" role="alert" data-submit-error>
         {form.errorText} {phoneHref ? <a href={phoneHref} class="underline">{thankYou.phone}</a> : thankYou.phone}
@@ -86,6 +77,9 @@ type InputType = 'text' | 'email' | 'tel';
       <p class="flex items-center justify-center gap-1.5 text-center text-sm text-muted">
         <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
         {form.belowSubmit}
+      </p>
+      <p class="text-center text-xs leading-relaxed text-muted">
+        {consentBefore}<a href={legal.datenschutzUrl} target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-ink">{form.consentLinkText}</a>{consentAfter}
       </p>
     </form>
   </div>
@@ -148,11 +142,6 @@ type InputType = 'text' | 'email' | 'tel';
     };
 
     const validate = (name: string): boolean => {
-      if (name === 'consent') {
-        const ok = (formEl.elements.namedItem('consent') as HTMLInputElement).checked;
-        showError('consent', ok ? '' : config.consentError);
-        return ok;
-      }
       const field = config.fields.find((f) => f.name === name);
       if (!field) return true;
       const value = (formEl.elements.namedItem(name) as HTMLInputElement).value.trim();
@@ -164,17 +153,17 @@ type InputType = 'text' | 'email' | 'tel';
       return message === '';
     };
 
-    const names = [...config.fields.map((f) => f.name), 'consent'];
+    const names = config.fields.map((f) => f.name);
 
     formEl.addEventListener('focusout', (event) => {
       const input = event.target as HTMLInputElement;
-      if (input.type === 'checkbox' || !names.includes(input.name)) return;
+      if (!names.includes(input.name)) return;
       touched.add(input.name);
       validate(input.name);
     });
     formEl.addEventListener('input', (event) => {
       const input = event.target as HTMLInputElement;
-      if (input.type === 'checkbox' || touched.has(input.name)) validate(input.name);
+      if (touched.has(input.name)) validate(input.name);
     });
 
     const setLoading = (loading: boolean) => {

@@ -97,9 +97,8 @@
         "errorFormat": "Bitte gib eine gültige Telefonnummer an (z. B. 0151 1234567)."
       }
     ],
-    "consentText": "Ich bin einverstanden, dass ELEVO Solutions mich zur Anleitung per Telefon und E-Mail kontaktiert. Hinweise in der {{datenschutz}}.",
+    "consentText": "Mit dem Absenden stimmst du zu, dass ELEVO Solutions dich zur Anleitung per Telefon und E-Mail kontaktiert. Hinweise in der {{datenschutz}}.",
     "consentLinkText": "Datenschutzerklärung",
-    "consentError": "Bitte stimme zu, damit ich dir den Zugang freischalten kann.",
     "errorText": "Das hat nicht geklappt. Bitte versuch es erneut oder ruf mich an:",
     "hubspot": {
       "portalId": "149380660",

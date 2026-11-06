@@ -22,7 +22,7 @@ Beim `bun run build` listet die Konsole alle noch offenen `[…]`-Platzhalter un
 ## Formular unter dem Video (Strategiegespräch)
 
 - Texte und Fragen: `thankYou.form`. Gefragt werden Kanzleiname (`company`), woher Mandate kommen (`lead_akquise`), Honorar pro Mandat (`lead_mandatswert`) und Startzeitpunkt (`lead_startzeitpunkt`, interne Werte über `hubspotValues`) – dieselben Properties wie im Quiz von /familienrecht.
-- Name, E-Mail und Telefon kommen aus dem Opt-in (für die Sitzung gemerkt). Wird die Danke-Seite direkt geöffnet, fragt das Formular sie zusätzlich ab, inklusive Einwilligung.
+- Name, E-Mail und Telefon kommen aus dem Opt-in (für die Sitzung gemerkt). Wird die Danke-Seite direkt geöffnet, fragt das Formular sie zusätzlich ab, mit Datenschutzhinweis.
 - Gesendet wird an dasselbe HubSpot-Formular mit `lp_variante = kanzlei-anleitung-gespraech`. Da HubSpot Kontakte über die E-Mail zusammenführt, wird der bestehende Kontakt aktualisiert – `lp_variante` zeigt dann „Gespräch gewünscht“.
 - Kein zusätzliches Meta-Event (der Lead wurde schon beim Opt-in gezählt).
 
