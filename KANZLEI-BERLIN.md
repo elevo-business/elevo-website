@@ -2,7 +2,7 @@
 
 Landingpage für die lokalen Evergreen-Meta-Ads (persönliches Profil) an Kanzleien im Familien- und Erbrecht in Berlin. Technik wie /familienrecht: Astro (statisch) + Tailwind, eigenes Layout ohne den seitenweiten Pixel/Google-Tag, Versand an die HubSpot Forms API, Meta Pixel nach Einwilligung, `Lead` nur auf der Danke-Seite.
 
-- `https://elevo.solutions/kanzlei-berlin/`: Headline + Garantie-Box → Quiz (direkt im ersten Bildschirm) → Ergebnisse (Greenchild mit Zitat, BML) → So kommen die Mandate zu Ihnen → Garantie + Ablauf → Über mich → FAQ → Abschluss-CTA
+- `https://elevo.solutions/kanzlei-berlin/`: bewusst minimal: Headline → Quiz → 4 Versprechen (`trust.items`) → Ergebnisse (Greenchild mit Zitat, BML) → FAQ. Keine weiteren Abschnitte, damit nichts vom Formular ablenkt.
 - `https://elevo.solutions/kanzlei-berlin/danke/`: Danke-Seite mit „Nummer speichern“ (`.vcf`)
 - Beide Seiten `noindex`, nicht in der Sitemap.
 
@@ -12,9 +12,9 @@ Landingpage für die lokalen Evergreen-Meta-Ads (persönliches Profil) an Kanzle
 
 | Anzeige | Ziel-URL | Headline |
 | --- | --- | --- |
-| Skript 1: Empfehlungen | `https://elevo.solutions/kanzlei-berlin/?h=a` | Neue Mandate für Ihre Kanzlei. Planbar, nicht nur über Empfehlungen. |
-| Skript 2: „Werbung ist unseriös“ | `https://elevo.solutions/kanzlei-berlin/?h=b` | Seriöse Anzeigen, die Mandanten aus Berlin direkt zu Ihnen bringen. |
-| Skript 3: Erstgespräche | `https://elevo.solutions/kanzlei-berlin/?h=c` | Nur noch Erstgespräche, die sich für Ihre Kanzlei lohnen. |
+| Skript 1: Empfehlungen | `https://elevo.solutions/kanzlei-berlin/?h=a` | Planbar neue Mandate für Ihre Kanzlei, statt jeden Monat zu hoffen, dass wieder eine Empfehlung kommt. |
+| Skript 2: „Werbung ist unseriös“ | `https://elevo.solutions/kanzlei-berlin/?h=b` | Mandanten aus Berlin gewinnen, die gerade einen Anwalt suchen, mit Anzeigen, die so seriös wirken wie Ihre Kanzlei. |
+| Skript 3: Erstgespräche | `https://elevo.solutions/kanzlei-berlin/?h=c` | Nur noch Erstgespräche führen, aus denen auch ein Mandat wird, weil jede Anfrage vorher geprüft ist. |
 
 Die Variante geht als `lp_headline` an HubSpot, so sieht man, welche Anzeige welche Leads bringt.
 
@@ -28,11 +28,11 @@ Die Variante geht als `lp_headline` an HubSpot, so sieht man, welche Anzeige wel
 | 4 | Monatliches Werbebudget | `lead_werbebudget` |
 | 5 | Vorname*, Kanzlei, Telefon*, E-Mail*, Einwilligung* | `firstname`, `company`, `phone`, `email` |
 
-Gleiches HubSpot-Formular wie /familienrecht. Alle Properties gibt es dort schon, es ist keine Einrichtung nötig. Leads erkennbar an `lp_variante = kanzlei-berlin`. Priorität A/B/C wie bei /familienrecht (`lp_prioritaet`, A ab 3 grünen Antworten, C bei einer roten).
+Die Antworttexte sind in der Sprache der Zielgruppe formuliert; über `hubspotValues` gehen weiterhin dieselben Werte wie bei /familienrecht an HubSpot (Auswertungen bleiben vergleichbar). Gleiches HubSpot-Formular wie /familienrecht. Alle Properties gibt es dort schon, es ist keine Einrichtung nötig. Leads erkennbar an `lp_variante = kanzlei-berlin`. Priorität A/B/C wie bei /familienrecht (`lp_prioritaet`, A ab 3 grünen Antworten, C bei einer roten).
 
 ## Offen / prüfen
 
-- Garantie-Bedingungen (`guarantee.items`, FAQ): aktuell „keine passenden Anfragen in 30 Tagen → Geld zurück, Kriterien vor dem Start schriftlich“.
+- Garantie-Bedingungen (`trust.items`, FAQ): aktuell „keine passenden Anfragen in 30 Tagen → Geld zurück, Kriterien vor dem Start schriftlich“.
 - 7 Werktage gelten „nach dem Start der Anzeigen“.
 - Optional eigenes OG-Bild: `public/og-kanzlei-berlin.jpg`.
 

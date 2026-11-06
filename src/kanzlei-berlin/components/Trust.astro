@@ -1,0 +1,17 @@
+---
+// Garantien und Versprechen direkt unter dem Formular
+import kb from '../../config/kanzlei-berlin.json';
+import Bold from './Bold.astro';
+import CheckIcon from './CheckIcon.astro';
+---
+
+<ul class="mt-5 space-y-2.5 px-1" aria-label="Was Sie erwarten können">
+  {
+    kb.trust.items.map((line) => (
+      <li class="flex gap-2.5 text-[15px] leading-snug sm:text-base">
+        <CheckIcon class="mt-0.5 size-5 text-ink" />
+        <span><Bold text={line} /></span>
+      </li>
+    ))
+  }
+</ul>

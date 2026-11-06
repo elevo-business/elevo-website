@@ -33,11 +33,15 @@ const hsContext = JSON.stringify({
 });
 ---
 
-<section id="formular" class="mt-5 rounded-2xl border border-line bg-surface px-4 py-5 sm:p-8" aria-labelledby="formular-titel">
-  <h2 id="formular-titel" class="text-center text-xl font-extrabold tracking-tight text-ink sm:text-3xl">{form.headline}</h2>
-  {form.subline && <p class="mt-1 text-center text-[15px] leading-snug text-pretty text-muted">{form.subline}</p>}
+<section id="formular" class="mt-4 rounded-2xl border border-line bg-surface px-4 py-5 sm:p-8" aria-labelledby="formular-titel">
+  {form.headline ? (
+    <h2 id="formular-titel" class="text-center text-xl font-extrabold tracking-tight text-ink sm:text-3xl">{form.headline}</h2>
+  ) : (
+    <h2 id="formular-titel" class="sr-only">Kurzer Check für Ihre Kanzlei</h2>
+  )}
+  {form.subline && <p class:list={['text-center text-[15px] leading-snug text-pretty text-muted', form.headline && 'mt-1']}>{form.subline}</p>}
 
-  <form class="mt-4" method="post" action={noJsAction} data-quiz>
+  <form class="mt-3" method="post" action={noJsAction} data-quiz>
     <input type="hidden" name="hs_context" value={hsContext} data-nojs-only />
     {Object.entries(form.hiddenFields).map(([name, value]) => <input type="hidden" name={name} value={value} />)}
     <input type="hidden" name="lp_headline" value={hero.defaultVariant} data-variant-field />
