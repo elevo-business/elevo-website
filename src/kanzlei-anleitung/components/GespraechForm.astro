@@ -1,13 +1,12 @@
 ---
 // Kurzes Formular unter dem Video: 4 Fragen → Anfrage Strategiegespräch.
 // Kontaktdaten kommen aus dem Opt-in (sessionStorage). Fehlen sie (z. B. Seite direkt geöffnet),
-// werden Name, E-Mail und Telefon zusätzlich abgefragt (mit Datenschutzhinweis, ohne Checkbox).
+// werden Name, E-Mail und Telefon zusätzlich abgefragt (ohne Checkbox und Hinweis).
 import ka from '../../config/kanzlei-anleitung.json';
 import { telHref } from '../../neukundensystem/lib/text';
 
 const f = ka.thankYou.form;
 const optin = ka.form;
-const [consentBefore, consentAfter] = optin.consentText.split('{{datenschutz}}');
 const phoneHref = telHref(ka.thankYou.phoneInternational || ka.thankYou.phone);
 type InputType = 'text' | 'email' | 'tel';
 const inputClass = 'field-input';
@@ -64,9 +63,6 @@ const inputClass = 'field-input';
             </div>
           ))
         }
-        <p class="text-xs leading-relaxed text-muted">
-          {consentBefore}<a href={ka.legal.datenschutzUrl} target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-ink">{optin.consentLinkText}</a>{consentAfter}
-        </p>
       </div>
 
       <div class="hidden rounded-lg border border-danger bg-white p-3.5 text-sm font-medium text-danger" role="alert" data-submit-error>
