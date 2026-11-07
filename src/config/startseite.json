@@ -151,10 +151,6 @@
     "then": {
       "title": "Dann die Anzeigen.",
       "text": "Anzeigen auf Facebook und Instagram bringen gezielt neue Anfragen in diesen Ablauf. Ich entwickle das Konzept, schreibe die Skripte, schneide die Videos und gestalte die Bildanzeigen. Die Anzeigen informieren sachlich über Ihre Kanzlei und Ihre Schwerpunkte. Keine Anzeige geht ohne Ihre Freigabe online."
-    },
-    "image": {
-      "caption": "Abb. 3 · Jede Anfrage kommt sofort aufs Handy der zuständigen Person.",
-      "alt": "Hand hält ein Smartphone, auf dem eine neue Anfrage eingeht"
     }
   },
   "ergebnisse": {
@@ -169,14 +165,16 @@
         "points": [
           "Abschlussquote um 70 % gesteigert",
           "5 qualifizierte Anfragen über Anzeigen in Woche 1"
-        ]
+        ],
+        "logo": "logo-greenchild"
       },
       {
         "value": "10.000 €",
         "label": "Mehrumsatz im ersten Monat",
         "name": "BrandsMarketingLab, Aachen",
         "branche": "Marketing",
-        "points": []
+        "points": [],
+        "logo": "logo-bml"
       }
     ],
     "note": "Beide Ergebnisse stammen aus anderen Branchen. Eine Kanzlei-Referenz habe ich noch nicht. Genau deshalb gibt es fünf Pilotplätze für Kanzleien zum halben Preis.",
@@ -371,11 +369,7 @@
         ]
       }
     ],
-    "label": "Ihre Anfrage",
-    "image": {
-      "caption": "Abb. 5 · Der Rückruf folgt einem festen Leitfaden.",
-      "alt": "Mitarbeiterin im Sekretariat ruft eine neue Anfrage zurück"
-    }
+    "label": "Ihre Anfrage"
   },
   "faqLabel": "Fragen",
   "faqHeadline": "Häufige Fragen",
@@ -457,5 +451,21 @@
   },
   "footer": {
     "claim": "Mandantengewinnung für Kanzleien mit 2 bis 10 Mitarbeitenden. Erst der Ablauf, dann die Anzeigen."
+  },
+  "logos": {
+    "label": "Dieses System habe ich bereits umgesetzt für",
+    "items": [
+      {
+        "name": "Greenchild",
+        "file": "logo-greenchild",
+        "alt": "Logo von Greenchild"
+      },
+      {
+        "name": "BrandsMarketingLab",
+        "file": "logo-bml",
+        "alt": "Logo von BrandsMarketingLab",
+        "showName": true
+      }
+    ]
   }
 }

@@ -1,35 +1,29 @@
 ---
-// Rahmen jeder Sektion: feine Linie oben, Rubrik „01 — Titel“ am Rand (Desktop) bzw. darüber (Handy).
+// Symmetrischer Rahmen jeder Sektion: Rubrik, Überschrift und Einleitung zentriert, darunter der Inhalt.
+import Rich from './Rich.astro';
 interface Props {
   id: string;
   num?: string;
   label: string;
+  title?: string;
+  intro?: string;
   dark?: boolean;
-  /** Inhalt darf die volle Breite neben der Rubrik nutzen (z. B. Text + Bild) */
-  wide?: boolean;
-  anchor?: string;
 }
-const { id, num, label, dark = false, wide = false, anchor } = Astro.props;
+const { id, num, label, title, intro, dark = false } = Astro.props;
 const rubric = num ? `${num} — ${label}` : label;
-const content = wide ? 'min-w-0' : 'min-w-0 max-w-[720px]';
 ---
 
-{
-  dark ? (
-    <section id={anchor} class="on-ink mt-16 bg-ink py-12 text-on-ink sm:mt-28 sm:py-24" aria-labelledby={id}>
-      <div class="mx-auto max-w-[1160px] px-4">
-        <div class="border-t border-white/20 pt-6 lg:grid lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-12">
-          <p class="rubric mb-6 self-start lg:sticky lg:top-8 lg:mb-0">{rubric}</p>
-          <div class={content}><slot /></div>
-        </div>
-      </div>
-    </section>
-  ) : (
-    <section id={anchor} class="mx-auto mt-16 max-w-[1160px] px-4 sm:mt-28" aria-labelledby={id}>
-      <div class="border-t border-rule pt-6 lg:grid lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-12">
-        <p class="rubric mb-6 self-start lg:sticky lg:top-8 lg:mb-0">{rubric}</p>
-        <div class={content}><slot /></div>
-      </div>
-    </section>
-  )
-}
+<section class:list={[dark ? 'on-ink mt-16 bg-ink py-16 text-on-ink sm:mt-28 sm:py-24' : 'mt-16 sm:mt-28']} aria-labelledby={id}>
+  <div class="mx-auto max-w-[1080px] px-4">
+    <header class="mx-auto max-w-[760px] text-center">
+      <p class="rubric">{rubric}</p>
+      {title && (
+        <h2 id={id} class:list={['mt-4', dark ? 'text-[1.875rem] leading-[1.12] font-semibold tracking-[-0.03em] text-white sm:text-[2.5rem]' : 'section-title']}>
+          <Rich text={title} />
+        </h2>
+      )}
+      {intro && <p class:list={['mx-auto mt-5 max-w-[640px] text-pretty', dark ? '' : 'text-muted']}>{intro}</p>}
+    </header>
+    <div class="mt-10 sm:mt-12"><slot /></div>
+  </div>
+</section>
