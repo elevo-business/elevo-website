@@ -1,10 +1,15 @@
 ---
-// Nur Logo und „Platz anfragen“, keine weitere Navigation (Briefing, Abschnitt 5)
+// Logo, Telefon (Desktop) und ein Button, keine weitere Navigation
 import ss from '../../config/startseite.json';
+import { telHref } from '../../neukundensystem/lib/text';
 import Logo from './Logo.astro';
+const phoneHref = telHref(ss.contact.phoneInternational);
 ---
 
-<header class="mx-auto flex max-w-[1080px] items-center justify-between gap-4 px-4 pt-4 sm:pt-6">
+<header class="mx-auto flex max-w-[1160px] items-center justify-between gap-4 px-4 pt-4 sm:pt-6">
   <a href="/" aria-label={`${ss.brand.name}, Startseite`} class="rounded-sm"><Logo /></a>
-  <a href="#formular" class="inline-flex min-h-11 items-center border-b-2 border-gold px-1 text-[15px] font-semibold text-navy transition-colors duration-300 hover:border-navy">{ss.header.ctaText}</a>
+  <div class="flex items-center gap-6">
+    {phoneHref && <a href={phoneHref} class="hidden text-[15px] font-medium text-navy underline-offset-4 hover:underline md:inline">{ss.contact.phone}</a>}
+    <a href="#formular" class="inline-flex min-h-11 items-center rounded-[4px] bg-navy px-4 text-[15px] font-semibold text-white transition-colors duration-300 hover:bg-navy-soft">{ss.header.ctaText}</a>
+  </div>
 </header>

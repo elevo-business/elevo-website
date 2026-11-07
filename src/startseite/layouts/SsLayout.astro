@@ -15,9 +15,11 @@ interface Props {
   consentOnPendingLead?: boolean;
   /** Seite hat einen schwebenden CTA (nur Startseite) */
   stickyCta?: boolean;
+  /** Startseite: Consent-Banner nicht automatisch öffnen (dort lädt kein Tracking) */
+  consentAutoOpen?: boolean;
 }
 
-const { title, description, noindex = false, consentOnPendingLead = false, stickyCta = false } = Astro.props;
+const { title, description, noindex = false, consentOnPendingLead = false, stickyCta = false, consentAutoOpen = true } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogPath = existsSync(join(process.cwd(), 'public', ss.seo.ogImage)) ? ss.seo.ogImage : ss.seo.ogImageFallback;
 const ogImage = new URL(ogPath, Astro.site).href;
@@ -26,13 +28,62 @@ const isColor = (c: string) => /^#[0-9a-fA-F]{3,8}$/.test(c);
 const brandVars = [isColor(navy) && `--color-navy:${navy}`, isColor(offwhite) && `--color-offwhite:${offwhite}`, isColor(gold) && `--color-gold:${gold}`]
   .filter(Boolean)
   .join(';');
-const organization = {
+const site = new URL('/', Astro.site).href;
+const { contact, seo, brand } = ss;
+// Strukturierte Daten (SEO-Konzept): Dienstleister, Person, Leistung, Website, Seite, FAQ – nur Fakten aus der Config
+const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: ss.brand.legalName,
-  url: new URL('/', Astro.site).href,
-  logo: new URL(ss.brand.logo, Astro.site).href,
-  email: ss.legal.email,
+  '@graph': [
+    {
+      '@type': 'ProfessionalService',
+      '@id': `${site}#organisation`,
+      name: brand.name,
+      legalName: brand.legalName,
+      url: site,
+      logo: new URL(brand.logo, Astro.site).href,
+      image: ogImage,
+      description: seo.description,
+      email: contact.email,
+      telephone: contact.phoneInternational,
+      address: { '@type': 'PostalAddress', ...seo.address },
+      areaServed: { '@type': 'Country', name: 'Deutschland' },
+      founder: { '@id': `${site}#mert` },
+      knowsLanguage: 'de',
+    },
+    {
+      '@type': 'Person',
+      '@id': `${site}#mert`,
+      name: contact.person,
+      jobTitle: 'Inhaber',
+      worksFor: { '@id': `${site}#organisation` },
+      image: new URL('/team/mert-800.webp', Astro.site).href,
+      knowsAbout: ['Mandantengewinnung', 'Vertrieb', 'Facebook-Werbung', 'Instagram-Werbung'],
+    },
+    {
+      '@type': 'Service',
+      '@id': `${site}#service`,
+      name: 'System zur Mandantengewinnung für Kanzleien',
+      serviceType: 'Mandantengewinnung',
+      provider: { '@id': `${site}#organisation` },
+      areaServed: { '@type': 'Country', name: 'Deutschland' },
+      audience: { '@type': 'BusinessAudience', audienceType: 'Rechtsanwälte und Kanzleien mit 2 bis 10 Mitarbeitenden' },
+    },
+    { '@type': 'WebSite', '@id': `${site}#website`, url: site, name: brand.name, inLanguage: 'de-DE', publisher: { '@id': `${site}#organisation` } },
+    {
+      '@type': 'WebPage',
+      '@id': `${site}#webseite`,
+      url: canonical,
+      name: title,
+      isPartOf: { '@id': `${site}#website` },
+      about: { '@id': `${site}#service` },
+      inLanguage: 'de-DE',
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${site}#faq`,
+      mainEntity: ss.faq.map((item) => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } })),
+    },
+  ],
 };
 ---
 
@@ -47,16 +98,18 @@ const organization = {
     {!noindex && <link rel="canonical" href={canonical} />}
     <meta name="theme-color" content={offwhite} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/Newsreader-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/Inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="alternate" hreflang="de" href={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="de_DE" />
-    <meta property="og:site_name" content={ss.brand.legalName} />
+    <meta property="og:site_name" content={ss.brand.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
-    {!noindex && <script type="application/ld+json" set:html={JSON.stringify(organization)} />}
+    {!noindex && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
     <script is:inline>document.documentElement.classList.add('js');</script>
     {brandVars && <style is:inline set:html={`:root{${brandVars}}`} />}
   </head>
@@ -66,6 +119,6 @@ const organization = {
     </a>
     <slot />
     <Footer stickySpace={stickyCta} />
-    <ConsentBanner showOnPendingLead={consentOnPendingLead} />
+    <ConsentBanner showOnPendingLead={consentOnPendingLead} autoOpen={consentAutoOpen} />
   </body>
 </html>

@@ -1,37 +1,34 @@
 ---
-// Startseite elevo.solutions: die Marketing-Thesis für Familienrecht-Kanzleien als Seite erzählt.
-// Reihenfolge = Thesis: Problem → Hypothese → Antithese → Diagnose → Mechanismus → Beweise → Angebot → Formular.
+// Startseite elevo.solutions: Mandantengewinnung für Kanzleien mit 2 bis 10 Mitarbeitenden.
+// Ganz oben das Angebot in einem Satz, danach Alltag → Ursache → Methode → Ergebnisse → Angebot → Anfrage → Fragen.
 // Texte: src/config/startseite.json, Doku: STARTSEITE.md
 import SsLayout from '../startseite/layouts/SsLayout.astro';
 import ss from '../config/startseite.json';
 import Header from '../startseite/components/Header.astro';
 import Hero from '../startseite/components/Hero.astro';
-import Hypothesis from '../startseite/components/Hypothesis.astro';
-import Antithesis from '../startseite/components/Antithesis.astro';
-import Diagnosis from '../startseite/components/Diagnosis.astro';
-import Mechanism from '../startseite/components/Mechanism.astro';
-import Proof from '../startseite/components/Proof.astro';
+import Alltag from '../startseite/components/Alltag.astro';
+import Ursache from '../startseite/components/Ursache.astro';
+import Methode from '../startseite/components/Methode.astro';
+import Ergebnisse from '../startseite/components/Ergebnisse.astro';
 import Offer from '../startseite/components/Offer.astro';
-import QuizForm from '../startseite/components/QuizForm.astro';
-import Fit from '../startseite/components/Fit.astro';
+import Anfrage from '../startseite/components/Anfrage.astro';
 import Faq from '../startseite/components/Faq.astro';
+import FinalCta from '../startseite/components/FinalCta.astro';
 import StickyCta from '../startseite/components/StickyCta.astro';
-import Section from '../startseite/components/Section.astro';
 ---
 
-<SsLayout title={ss.seo.title} description={ss.seo.description} stickyCta>
+<SsLayout title={ss.seo.title} description={ss.seo.description} stickyCta consentAutoOpen={false}>
   <Header />
   <main id="inhalt">
     <Hero />
-    <Hypothesis />
-    <Antithesis />
-    <Diagnosis />
-    <Mechanism />
-    <Proof />
+    <Alltag />
+    <Ursache />
+    <Methode />
+    <Ergebnisse />
     <Offer />
-    <Section id="formular-titel" label={ss.form.label}><QuizForm /></Section>
-    <Fit />
+    <Anfrage />
     <Faq />
+    <FinalCta />
   </main>
   <StickyCta />
 </SsLayout>

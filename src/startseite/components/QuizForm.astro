@@ -33,7 +33,7 @@ const hsContext = JSON.stringify({
 });
 ---
 
-<div id="formular" class="rounded-[4px] border border-navy bg-paper px-4 py-7 sm:px-10 sm:py-10">
+<div id="formular" class="scroll-mt-6 rounded-[4px] border border-navy bg-paper px-4 py-7 sm:px-10 sm:py-10">
   <h2 id="formular-titel" class="section-title">{form.headline}</h2>
   {form.subline && <p class="mt-3 text-pretty text-muted">{form.subline}</p>}
 
@@ -66,7 +66,7 @@ const hsContext = JSON.stringify({
                 {step.question}
               </span>
             </legend>
-            {step.hint && <p class="mt-2 text-center text-sm text-muted">{step.hint}</p>}
+            {step.hint && <p class="mt-2 text-sm text-muted">{step.hint}</p>}
 
             {step.type === 'choice' ? (
               <>

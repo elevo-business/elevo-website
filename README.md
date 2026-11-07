@@ -1,4 +1,4 @@
-> **Startseite `/`** (Marketing-Thesis für Familienrecht-Kanzleien, Formular an HubSpot): Anleitung in [STARTSEITE.md](STARTSEITE.md).
+> **Startseite `/`** (Mandantengewinnung für Kanzleien, Formular an HubSpot): Anleitung in [STARTSEITE.md](STARTSEITE.md).
 > **Landingpage /neukundensystem** (Meta Ads, HubSpot, Pixel nach Einwilligung, Lead nur auf der Danke-Seite): Anleitung in [NEUKUNDENSYSTEM.md](NEUKUNDENSYSTEM.md).
 > **Landingpage /familienrecht** (Pilotkanzleien, Quiz mit Lead-Priorität): Anleitung in [FAMILIENRECHT.md](FAMILIENRECHT.md).
 > **Landingpage /kanzlei-anleitung** (Lead-Magnet: Video-Anleitung für Kanzleien): Anleitung in [KANZLEI-ANLEITUNG.md](KANZLEI-ANLEITUNG.md).

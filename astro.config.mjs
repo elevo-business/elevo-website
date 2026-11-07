@@ -7,8 +7,12 @@ import placeholderReport from './src/neukundensystem/integrations/placeholder-re
 export default defineConfig({
   site: 'https://elevo.solutions',
   integrations: [
-    // noindex-Seiten gehören nicht in die Sitemap: /danke, /neukundensystem/danke + /absage, /familienrecht, /kanzlei-anleitung und /kanzlei-berlin (nur Ads-Traffic)
-    sitemap({ filter: (page) => !/\/neukundensystem\/(danke|absage)|\/familienrecht\/|\/kanzlei-anleitung\/|\/kanzlei-berlin\/|^https:\/\/elevo\.solutions\/danke\//.test(page) }),
+    // noindex-Seiten gehören nicht in die Sitemap: Danke-/Absage-Seiten, Ads-Landingpages, Kunden-Previews und
+    // weitere Seiten mit robots noindex (funnel-check, vertriebssystem, webseite-aachen)
+    sitemap({
+      filter: (page) =>
+        !/\/(danke|absage)\/|\/(familienrecht|kanzlei-anleitung|kanzlei-berlin|previews|funnel-check|vertriebssystem|webseite-aachen)\//.test(page),
+    }),
     placeholderReport(),
   ],
   output: 'static',

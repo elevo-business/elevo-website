@@ -1,0 +1,16 @@
+---
+// Formular-Sektion: Quiz links, auf dem Desktop daneben das Bild „Rückruf“
+import ss from '../../config/startseite.json';
+import Section from './Section.astro';
+import QuizForm from './QuizForm.astro';
+import Figure from './Figure.astro';
+import img from '../images/sekretariat-rueckruf-telefon.jpg';
+const { label, image } = ss.form;
+---
+
+<Section id="formular-titel" label={label} wide>
+  <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-12">
+    <QuizForm />
+    <Figure src={img} alt={image.alt} caption={image.caption} imgClass="aspect-[4/5] object-[45%_30%]" class="hidden lg:block lg:sticky lg:top-8 lg:self-start" widths={[480, 800]} sizes="320px" />
+  </div>
+</Section>

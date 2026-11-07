@@ -78,7 +78,7 @@
 
 @layer components {
   .btn-cta {
-    @apply inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-[4px] bg-gold px-6 py-3 text-center text-[17px] font-semibold tracking-[0.01em] text-navy transition-colors duration-300 hover:bg-gold-hover disabled:cursor-wait disabled:opacity-70;
+    @apply inline-flex min-h-14 w-full items-center justify-center gap-3 whitespace-nowrap rounded-[4px] bg-gold px-6 py-3 text-center text-[17px] font-semibold tracking-[0.01em] text-navy transition-colors duration-300 hover:bg-gold-hover disabled:cursor-wait disabled:opacity-70;
   }
   .btn-cta .arrow { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
   .btn-cta:hover .arrow { transform: translateX(4px); }
@@ -98,6 +98,11 @@
   .rubric { @apply text-[12px] font-semibold tracking-[0.16em] uppercase; color: var(--color-gold-text); font-variant-numeric: tabular-nums; }
   .on-navy .rubric { color: var(--color-gold); }
 }
+
+/* Bilder: ein ruhiger, warmer Farbton für Personen, Schwarz-Weiß mit Navy-Ton für Details */
+.photo-warm { filter: saturate(0.82) contrast(1.03) sepia(0.06); }
+.photo-mono img { filter: grayscale(1) contrast(1.05); mix-blend-mode: multiply; opacity: 0.92; }
+.photo-mono { background-color: #C9CFD9; }
 
 /* Quiz: Ohne JavaScript stehen alle Fragen untereinander. Mit JavaScript (html.js) eine Frage pro Bildschirm. */
 .js-only { display: none; }

@@ -1,30 +1,34 @@
 ---
-// Rahmen jeder Thesis-Sektion: feine Linie oben, Rubrik „01 — Titel“ am Rand (Desktop) bzw. darüber (Handy).
+// Rahmen jeder Sektion: feine Linie oben, Rubrik „01 — Titel“ am Rand (Desktop) bzw. darüber (Handy).
 interface Props {
   id: string;
   num?: string;
   label: string;
   dark?: boolean;
+  /** Inhalt darf die volle Breite neben der Rubrik nutzen (z. B. Text + Bild) */
+  wide?: boolean;
+  anchor?: string;
 }
-const { id, num, label, dark = false } = Astro.props;
+const { id, num, label, dark = false, wide = false, anchor } = Astro.props;
 const rubric = num ? `${num} — ${label}` : label;
+const content = wide ? 'min-w-0' : 'min-w-0 max-w-[720px]';
 ---
 
 {
   dark ? (
-    <section class="on-navy mt-20 bg-navy py-16 text-on-navy sm:mt-28 sm:py-24" aria-labelledby={id}>
-      <div class="mx-auto max-w-[1080px] px-4">
+    <section id={anchor} class="on-navy mt-16 bg-navy py-12 text-on-navy sm:mt-28 sm:py-24" aria-labelledby={id}>
+      <div class="mx-auto max-w-[1160px] px-4">
         <div class="border-t border-white/20 pt-6 lg:grid lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-12">
           <p class="rubric mb-6 self-start lg:sticky lg:top-8 lg:mb-0">{rubric}</p>
-          <div class="max-w-[720px]"><slot /></div>
+          <div class={content}><slot /></div>
         </div>
       </div>
     </section>
   ) : (
-    <section class="mx-auto mt-20 max-w-[1080px] px-4 sm:mt-28" aria-labelledby={id}>
+    <section id={anchor} class="mx-auto mt-16 max-w-[1160px] px-4 sm:mt-28" aria-labelledby={id}>
       <div class="border-t border-rule pt-6 lg:grid lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-12">
         <p class="rubric mb-6 self-start lg:sticky lg:top-8 lg:mb-0">{rubric}</p>
-        <div class="max-w-[720px]"><slot /></div>
+        <div class={content}><slot /></div>
       </div>
     </section>
   )
