@@ -5,7 +5,7 @@ interface Props {
   class?: string;
   hero?: boolean;
 }
-const { label = ss.problem.ctaText, class: className, hero = false } = Astro.props;
+const { label = ss.hero.ctaText, class: className, hero = false } = Astro.props;
 ---
 
 <a href="#formular" class:list={['btn-cta', className]} data-to-quiz data-hero-cta={hero ? '' : undefined}>

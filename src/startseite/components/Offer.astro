@@ -1,53 +1,60 @@
 ---
-// Baustein 7, Teil 1: Angebot. Freie Plätze ändern sich nur über pilot.free in der Config.
+// 05 Das Angebot: Pilotplätze (nur von Hand in der Config), Konditionen, Garantie mit Bedingung, für wen es passt
 import ss from '../../config/startseite.json';
-import { fill, isFilled } from '../../neukundensystem/lib/text';
+import { fill } from '../../neukundensystem/lib/text';
 import Section from './Section.astro';
 import CtaButton from './CtaButton.astro';
+import Figure from './Figure.astro';
+import CheckIcon from './CheckIcon.astro';
+import img from '../images/unterschrift-mandatsvereinbarung.jpg';
 
-const { total, free, headline, bullets, budgetNote, freeText, soldOut, guaranteeNote, ctaText, label, person } = ss.pilot;
+const { label, total, free, headline, intro, bullets, budgetNote, freeText, soldOut, ctaText, image } = ss.pilot;
+const { headline: fitHeadline, yesTitle, yes, noTitle, no } = ss.fit;
 const places = Math.max(0, Math.min(free, total));
 const values = { total: String(total), free: String(places) };
 ---
 
-<Section id="angebot-titel" num="07" label={label}>
-  <div class="border-y-4 border-double border-navy bg-paper px-5 py-8 sm:px-10 sm:py-10">
-    <h2 id="angebot-titel" class="section-title">{fill(headline, values)}</h2>
-
-    <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
-      <div class="flex gap-1.5" aria-hidden="true">
-        {Array.from({ length: total }, (_, i) => <span class:list={['h-2 w-7', i < total - places ? 'bg-navy' : 'border border-navy']} />)}
+<Section id="angebot-titel" num="05" label={label} wide>
+  <div class="border-y-4 border-double border-navy bg-paper lg:grid lg:grid-cols-[minmax(0,1fr)_320px]">
+    <Figure src={img} alt={image.alt} caption={image.caption} imgClass="aspect-[3/4] object-[62%_55%]" class="hidden lg:order-2 lg:block lg:p-6 lg:pl-0" widths={[480, 800, 1000]} sizes="300px" />
+    <div class="px-5 py-8 sm:px-10 sm:py-10">
+      <h2 id="angebot-titel" class="section-title">{fill(headline, values)}</h2>
+      <p class="mt-4 text-pretty text-muted">{intro}</p>
+      <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
+        <div class="flex gap-1.5" aria-hidden="true">
+          {Array.from({ length: total }, (_, i) => <span class:list={['h-2 w-7', i < total - places ? 'bg-navy' : 'border border-navy']} />)}
+        </div>
+        <p class="font-semibold text-navy">{places === 0 ? soldOut : fill(freeText, values)}</p>
       </div>
-      <p class="font-semibold text-navy">{places === 0 ? soldOut : fill(freeText, values)}</p>
-    </div>
-
-    <ol class="mt-8 border-t border-rule">
-      {
-        bullets.map((b, i) => (
+      <ol class="mt-7 border-t border-rule">
+        {bullets.map((b, i) => (
           <li class="flex gap-4 border-b border-rule py-4">
             <span class="font-serif text-xl text-gold-text">{i + 1}.</span>
-            <span><strong class="font-semibold text-navy">{b.bold}</strong> {b.text}</span>
+            <span><strong class="font-semibold text-navy">{b.bold}</strong>{b.text && ` ${b.text}`}</span>
           </li>
-        ))
-      }
-    </ol>
+        ))}
+      </ol>
+      <p class="mt-4 text-sm text-muted">{budgetNote}</p>
+      <div class="mt-7"><CtaButton label={ctaText} class="sm:w-auto sm:px-8" /></div>
+    </div>
+  </div>
 
-    {budgetNote && <p class="mt-4 text-sm text-muted">{budgetNote}</p>}
-    {isFilled(guaranteeNote) && <p class="mt-2 text-sm text-muted">{guaranteeNote}</p>}
-
-    <div class="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-      {
-        person && isFilled(person.image) && (
-          <figure class="flex items-center gap-4">
-            <img src={person.image} alt={person.imageAlt} width="64" height="64" loading="lazy" decoding="async" class="size-16 rounded-full object-cover object-[50%_18%] grayscale-[15%]" />
-            <figcaption class="leading-snug">
-              <span class="block font-serif text-lg text-navy italic">{person.line}</span>
-              <span class="block text-sm text-muted">{person.name} · {person.role}</span>
-            </figcaption>
-          </figure>
-        )
-      }
-      <CtaButton label={ctaText} class="sm:w-auto sm:px-8" />
+  <div class="mt-10 sm:mt-14">
+    <h3 class="font-serif text-[1.75rem] leading-tight font-medium text-navy">{fitHeadline}</h3>
+    <div class="mt-6 grid gap-8 sm:grid-cols-2">
+      <div>
+        <h4 class="border-b-2 border-navy pb-2 font-semibold text-navy">{yesTitle}</h4>
+        <ul>{yes.map((item) => <li class="flex gap-3 border-b border-rule py-3 text-[16px]"><CheckIcon class="mt-1 size-4 text-gold-text" /><span>{item}</span></li>)}</ul>
+      </div>
+      <div>
+        <h4 class="border-b-2 border-rule pb-2 font-semibold text-muted">{noTitle}</h4>
+        <ul>{no.map((item) => (
+          <li class="flex gap-3 border-b border-rule py-3.5 text-muted">
+            <svg class="mt-1 size-4 shrink-0 text-faint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12" /></svg>
+            <span>{item}</span>
+          </li>
+        ))}</ul>
+      </div>
     </div>
   </div>
 </Section>

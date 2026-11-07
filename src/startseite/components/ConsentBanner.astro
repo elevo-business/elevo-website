@@ -6,8 +6,10 @@ import ss from '../../config/startseite.json';
 interface Props {
   /** Auf /danke: Banner auch nach „Nur notwendige“ erneut zeigen, solange ein Lead im 30-Minuten-Fenster offen ist */
   showOnPendingLead?: boolean;
+  /** Startseite: kein Tracking, deshalb Banner nicht automatisch öffnen (nur über „Cookie-Einstellungen“) */
+  autoOpen?: boolean;
 }
-const { showOnPendingLead = false } = Astro.props;
+const { showOnPendingLead = false, autoOpen = true } = Astro.props;
 const { consent, legal } = ss;
 ---
 
@@ -19,6 +21,7 @@ const { consent, legal } = ss;
   aria-describedby="consent-text"
   data-consent-banner
   data-pending-lead={showOnPendingLead ? 'true' : undefined}
+  data-auto-open={autoOpen ? 'true' : 'false'}
   hidden
 >
   <h2 id="consent-titel" class="sr-only sm:not-sr-only sm:font-bold sm:text-navy">{consent.headline}</h2>
@@ -45,7 +48,7 @@ const { consent, legal } = ss;
 
     const current = getMarketingConsent();
     const reaskForLead = banner.dataset.pendingLead === 'true' && current !== true && getPendingLead() !== null;
-    if (current === null || reaskForLead) setOpen(true);
+    if ((current === null && banner.dataset.autoOpen !== 'false') || reaskForLead) setOpen(true);
 
     banner.querySelectorAll<HTMLButtonElement>('[data-consent-choice]').forEach((button) => {
       button.addEventListener('click', () => {

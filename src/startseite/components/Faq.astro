@@ -2,14 +2,9 @@
 import ss from '../../config/startseite.json';
 import Section from './Section.astro';
 const items = ss.faq.filter((item) => item.q.trim() !== '');
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: items.map((item) => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } })),
-};
 ---
 
-<Section id="faq-titel" label={ss.faqLabel}>
+<Section id="faq-titel" num="06" label={ss.faqLabel}>
   <h2 id="faq-titel" class="section-title">{ss.faqHeadline}</h2>
   <div class="mt-8 border-t border-navy">
     {
@@ -26,5 +21,4 @@ const faqSchema = {
       ))
     }
   </div>
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </Section>

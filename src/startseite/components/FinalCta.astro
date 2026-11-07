@@ -1,0 +1,21 @@
+---
+import ss from '../../config/startseite.json';
+import { telHref } from '../../neukundensystem/lib/text';
+import Rich from './Rich.astro';
+import CtaButton from './CtaButton.astro';
+const { headline, text, button, phoneLine } = ss.finalCta;
+const phoneHref = telHref(ss.contact.phoneInternational);
+---
+
+<section class="on-navy mx-auto mt-16 max-w-[1160px] px-4 sm:mt-28" aria-labelledby="abschluss-titel">
+  <div class="bg-navy px-6 py-12 text-on-navy sm:px-12 sm:py-14 lg:flex lg:items-end lg:justify-between lg:gap-12">
+    <div class="max-w-[620px]">
+      <h2 id="abschluss-titel" class="font-serif text-[2rem] leading-[1.1] font-medium text-white sm:text-[2.75rem]"><Rich text={headline} /></h2>
+      <p class="mt-4 text-pretty">{text}</p>
+    </div>
+    <div class="mt-8 shrink-0 lg:mt-0">
+      <CtaButton label={button} class="sm:w-auto sm:px-8" />
+      {phoneHref && <p class="mt-3 text-sm">{phoneLine} <a href={phoneHref} class="font-semibold text-white underline underline-offset-2">{ss.contact.phone}</a></p>}
+    </div>
+  </div>
+</section>

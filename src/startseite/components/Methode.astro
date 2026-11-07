@@ -1,0 +1,35 @@
+---
+// 03 Die Methode: fünf Schritte als ruhige, immer sichtbare Liste, daneben das Bild
+import ss from '../../config/startseite.json';
+import Section from './Section.astro';
+import Rich from './Rich.astro';
+import Figure from './Figure.astro';
+import img from '../images/smartphone-benachrichtigung-hand.jpg';
+const { label, headline, intro, steps, then, image } = ss.methode;
+---
+
+<Section id="methode-titel" num="03" label={label} wide>
+  <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-12">
+    <div>
+      <h2 id="methode-titel" class="section-title"><Rich text={headline} /></h2>
+      <p class="mt-5 max-w-[640px] text-pretty">{intro}</p>
+      <ol class="relative mt-8 sm:mt-10">
+        <span class="absolute top-6 bottom-6 left-6 w-px bg-gold/60" aria-hidden="true"></span>
+        {steps.map((step, i) => (
+          <li class="relative flex gap-5 pb-6 last:pb-0 sm:pb-8">
+            <span class="relative z-10 grid size-12 shrink-0 place-items-center rounded-full bg-navy font-serif text-[1.375rem] text-gold ring-8 ring-offwhite" aria-hidden="true">{i + 1}</span>
+            <div class="pt-2">
+              <h3 class="font-serif text-[1.375rem] leading-tight font-medium text-navy">{step.title}</h3>
+              <p class="mt-1.5 text-[16px] leading-[1.6] text-muted">{step.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <div class="mt-10 border-l-2 border-gold pl-6">
+        <h3 class="font-serif text-[1.625rem] leading-tight font-medium text-navy">{then.title}</h3>
+        <p class="mt-2 text-pretty">{then.text}</p>
+      </div>
+    </div>
+    <Figure src={img} alt={image.alt} caption={image.caption} tone="mono" imgClass="aspect-[16/9] object-[62%_50%] lg:aspect-[4/5]" class="hidden lg:sticky lg:top-8 lg:mt-2 lg:block lg:self-start" sizes="340px" />
+  </div>
+</Section>
