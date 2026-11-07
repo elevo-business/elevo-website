@@ -34,8 +34,8 @@ const hsContext = JSON.stringify({
 ---
 
 <div id="formular" class="scroll-mt-6 rounded-2xl border border-line bg-white px-4 py-7 shadow-[0_1px_2px_rgba(11,19,36,.04),0_20px_50px_-30px_rgba(11,19,36,.35)] sm:px-10 sm:py-10">
-  <h2 id="formular-titel" class="section-title">{form.headline}</h2>
-  {form.subline && <p class="mt-3 text-pretty text-muted">{form.subline}</p>}
+  <h2 id="formular-titel" class="section-title text-center">{form.headline}</h2>
+  {form.subline && <p class="mt-3 text-center text-pretty text-muted">{form.subline}</p>}
 
   <form class="mt-4" method="post" action={noJsAction} data-quiz>
     <input type="hidden" name="hs_context" value={hsContext} data-nojs-only />
@@ -49,7 +49,7 @@ const hsContext = JSON.stringify({
     </div>
 
     <div class="js-only mb-5">
-      <p class="rubric mb-2" aria-live="polite" data-progress-text>{progress(1)}</p>
+      <p class="rubric mb-2 text-center" aria-live="polite" data-progress-text>{progress(1)}</p>
       <div class="h-2 overflow-hidden rounded-none bg-line" aria-hidden="true">
         <div class="h-full bg-accent transition-[width] duration-300" style={`width:${100 / total}%`} data-progress-bar></div>
       </div>
@@ -62,11 +62,11 @@ const hsContext = JSON.stringify({
         return (
           <fieldset class="quiz-step" data-step={index} data-active={index === 0 ? '' : undefined}>
             <legend class="contents">
-              <span tabindex="-1" class="block text-[1.5rem] leading-snug font-semibold text-ink outline-none sm:text-[1.75rem]" data-step-title>
+              <span tabindex="-1" class="block text-center text-[1.5rem] leading-snug font-semibold text-ink outline-none sm:text-[1.75rem]" data-step-title>
                 {step.question}
               </span>
             </legend>
-            {step.hint && <p class="mt-2 text-sm text-muted">{step.hint}</p>}
+            {step.hint && <p class="mt-2 text-center text-sm text-muted">{step.hint}</p>}
 
             {step.type === 'choice' ? (
               <>

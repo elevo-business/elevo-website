@@ -1,23 +1,23 @@
 ---
-// Hero: ganz oben der Offer-Satz (was, für wen, Methode, Ergebnis), darunter Button, Porträt und Vertrauen. Kein Bild.
+// Hero: zentriert und symmetrisch. Offer-Satz mit unterstrichenem Ergebnis, Button, Porträt, Vertrauen, Referenz-Logos.
 import { Image } from 'astro:assets';
 import ss from '../../config/startseite.json';
 import Rich from './Rich.astro';
 import CtaButton from './CtaButton.astro';
 import CheckIcon from './CheckIcon.astro';
 import portrait from '../images/mert-efe-celik.jpg';
+import { logos } from '../lib/logos';
 
 const { eyebrow, h1, subheadline, subheadlineMobile, ctaText, microcopy, trust, trustFootnote, personLine } = ss.hero;
 ---
 
 <section class="relative overflow-hidden" aria-labelledby="hero-titel">
-  <!-- ruhiger Hintergrund: feines Raster, nach unten ausgeblendet -->
   <div class="hero-grid pointer-events-none absolute inset-0 -z-10" aria-hidden="true"></div>
   <div class="mx-auto max-w-[920px] px-4 pt-12 pb-4 text-center sm:pt-20">
-    <p class="inline-flex items-center gap-2 rounded-xl border border-line bg-white px-3.5 py-1.5 text-[12.5px] font-medium text-ink shadow-sm sm:rounded-full sm:text-[14px]">
-      <span class="size-1.5 shrink-0 rounded-full bg-brand-blue" aria-hidden="true"></span>{eyebrow}
+    <p class="inline-flex items-center justify-center gap-2 rounded-xl border border-line bg-white px-4 py-1.5 text-center text-[12.5px] font-medium text-ink shadow-sm sm:rounded-full sm:text-[14px]">
+      <span class="hidden size-1.5 shrink-0 rounded-full bg-brand-blue sm:block" aria-hidden="true"></span>{eyebrow}
     </p>
-    <h1 id="hero-titel" class="mt-6 text-[clamp(1.5rem,6.9vw,2rem)] leading-[1.12] font-semibold tracking-[-0.035em] text-balance text-ink sm:text-[3rem] lg:text-[3.5rem]">
+    <h1 id="hero-titel" class="hero-h1 mt-6 text-[clamp(1.5rem,6.9vw,2rem)] leading-[1.16] font-semibold tracking-[-0.035em] text-balance text-ink sm:text-[3rem] lg:text-[3.5rem]">
       <Rich text={h1} />
     </h1>
     {subheadlineMobile && <p class="mx-auto mt-5 max-w-[40rem] text-pretty text-muted sm:hidden">{subheadlineMobile}</p>}
@@ -25,17 +25,32 @@ const { eyebrow, h1, subheadline, subheadlineMobile, ctaText, microcopy, trust, 
 
     <div class="mx-auto mt-8 flex max-w-md flex-col items-center gap-4 sm:mt-10">
       <CtaButton label={ctaText} hero class="sm:w-auto sm:px-10" />
-      <div class="flex items-center gap-3 text-left">
+      <div class="flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-3">
         <Image src={portrait} alt="" width={96} height={96} class="size-10 shrink-0 rounded-full object-cover object-[50%_15%] ring-2 ring-white" loading="eager" />
-        <p class="text-sm leading-snug text-muted"><span class="font-semibold text-ink">{personLine}</span> {microcopy}</p>
+        <p class="text-center text-sm leading-snug text-muted sm:text-left"><span class="font-semibold text-ink">{personLine}</span><br class="sm:hidden" /> {microcopy}</p>
       </div>
     </div>
 
-    <ul class="mx-auto mt-10 grid max-w-[860px] gap-3 text-left text-[15px] text-ink sm:grid-cols-3 sm:gap-4">
+    <ul class="mx-auto mt-10 grid max-w-[860px] gap-3 text-[15px] text-ink sm:grid-cols-3 sm:gap-4">
       {trust.map((item) => (
-        <li class="flex gap-2.5 rounded-xl border border-line bg-white/80 px-4 py-3 shadow-sm backdrop-blur"><CheckIcon class="mt-1 size-4 text-accent" /><span>{item}</span></li>
+        <li class="flex flex-col items-center gap-1.5 rounded-xl border border-line bg-white/80 px-4 py-3 text-center shadow-sm backdrop-blur sm:gap-2 sm:py-4">
+          <span class="grid size-7 shrink-0 place-items-center rounded-full bg-accent-soft"><CheckIcon class="size-4 text-accent" /></span>
+          <span>{item}</span>
+        </li>
       ))}
     </ul>
     {trustFootnote && <p class="mt-3 text-[12px] leading-snug text-muted">{trustFootnote}</p>}
+
+    <div class="mt-12">
+      <p class="text-[11px] font-semibold tracking-[0.12em] text-muted uppercase sm:text-[12px] sm:tracking-[0.14em]">{ss.logos.label}</p>
+      <ul class="mt-5 flex flex-wrap items-center justify-center gap-x-12 gap-y-5">
+        {ss.logos.items.map((logo) => (
+          <li class="flex items-center gap-3 opacity-70 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0">
+            <Image src={logos[logo.file]} alt={logo.alt} height={logo.showName ? 72 : 64} class:list={['w-auto', logo.showName ? 'h-9' : 'h-8']} />
+            {logo.showName && <span class="text-[17px] font-semibold tracking-[-0.01em] text-ink">{logo.name}</span>}
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
 </section>

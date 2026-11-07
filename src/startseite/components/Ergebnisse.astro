@@ -1,44 +1,44 @@
 ---
-// 04 Die Ergebnisse: nur belegte Zahlen, ehrlicher Hinweis, dazu Über mich mit echtem Porträt
+// 04 Die Ergebnisse: zwei gleich große Karten mit Logo, ehrlicher Hinweis, Über mich zentriert
 import { Image } from 'astro:assets';
 import ss from '../../config/startseite.json';
 import Section from './Section.astro';
-import Rich from './Rich.astro';
 import CheckIcon from './CheckIcon.astro';
 import portrait from '../images/mert-efe-celik.jpg';
+import { logos } from '../lib/logos';
 const { label, headline, items, note, about } = ss.ergebnisse;
 ---
 
-<Section id="ergebnisse-titel" num="04" label={label} wide>
-  <h2 id="ergebnisse-titel" class="section-title max-w-[760px]"><Rich text={headline} /></h2>
-  <div class="mt-10 grid gap-6 md:grid-cols-2">
+<Section id="ergebnisse-titel" num="04" label={label} title={headline}>
+  <div class="mx-auto grid max-w-[900px] gap-6 md:grid-cols-2">
     {items.map((item) => (
-      <article class="rounded-2xl border border-line bg-white p-6 shadow-sm lg:p-8">
-        <p class="text-[2.75rem] leading-none font-semibold tracking-[-0.025em] text-ink lg:text-[3.5rem]">{item.value}</p>
-        <p class="mt-3 font-medium text-accent-strong">{item.label}</p>
+      <article class="flex flex-col items-center rounded-2xl border border-line bg-white p-8 text-center shadow-sm">
+        <div class="flex h-12 items-center gap-3">
+          <Image src={logos[item.logo]} alt={`Logo von ${item.name}`} height={80} class="h-10 w-auto" />
+          {item.logo === 'logo-bml' && <span class="text-[17px] font-semibold text-ink">BrandsMarketingLab</span>}
+        </div>
+        <p class="mt-6 text-[2.75rem] leading-none font-semibold tracking-[-0.04em] text-ink lg:text-[3.25rem]">{item.value}</p>
+        <p class="mt-3 font-medium text-accent">{item.label}</p>
         {item.points.length > 0 && (
           <ul class="mt-4 space-y-1.5 text-[15px] text-ink">
-            {item.points.map((point) => <li class="flex gap-2"><CheckIcon class="mt-1 size-4 text-accent-strong" /><span>{point}</span></li>)}
+            {item.points.map((point) => <li class="flex justify-center gap-2"><CheckIcon class="mt-1 size-4 text-accent" /><span>{point}</span></li>)}
           </ul>
         )}
-        <h3 class="mt-6 text-[12px] font-semibold tracking-[0.16em] text-ink uppercase">{item.name}</h3>
-        <p class="text-[14px] text-muted">{item.branche}</p>
+        <p class="mt-auto pt-6 text-[13px] text-muted">{item.name} · {item.branche}</p>
       </article>
     ))}
   </div>
-  <p class="mt-6 max-w-[720px] border-l-2 border-accent pl-5 text-pretty text-ink">{note}</p>
+  <p class="mx-auto mt-8 max-w-[680px] text-center text-pretty text-ink">{note}</p>
 
-  <div class="mt-10 grid gap-6 border-t border-rule pt-8 sm:mt-14 sm:grid-cols-[160px_minmax(0,1fr)] sm:gap-8">
-    <Image src={portrait} alt={about.imageAlt} width={320} height={400} class="aspect-[4/5] w-32 rounded-xl object-cover object-[50%_18%] sm:w-40" />
-    <div>
-      <h3 class="text-[1.5rem] leading-tight font-semibold text-ink">{about.name}</h3>
-      <p class="text-sm text-muted">{about.role}</p>
-      <p class="mt-3 max-w-[640px] text-pretty">{about.text}</p>
-      <dl class="mt-5 flex flex-wrap gap-x-10 gap-y-3">
-        {about.facts.map((f) => (
-          <div><dt class="sr-only">{f.label}</dt><dd><span class="font-semibold block text-[1.75rem] leading-none text-ink">{f.value}</span><span class="mt-1 block text-sm text-muted">{f.label}</span></dd></div>
-        ))}
-      </dl>
-    </div>
+  <div class="mx-auto mt-14 max-w-[680px] rounded-2xl border border-line bg-surface p-8 text-center">
+    <Image src={portrait} alt={about.imageAlt} width={240} height={240} class="mx-auto size-24 rounded-full object-cover object-[50%_15%] ring-4 ring-white" />
+    <h3 class="mt-4 text-[1.375rem] font-semibold tracking-[-0.02em] text-ink">{about.name}</h3>
+    <p class="text-sm text-muted">{about.role}</p>
+    <p class="mt-4 text-pretty">{about.text}</p>
+    <dl class="mt-6 grid grid-cols-2 gap-4">
+      {about.facts.map((f) => (
+        <div class="rounded-xl bg-white p-4"><dt class="sr-only">{f.label}</dt><dd><span class="block text-[1.5rem] leading-none font-semibold text-ink">{f.value}</span><span class="mt-1 block text-sm text-muted">{f.label}</span></dd></div>
+      ))}
+    </dl>
   </div>
 </Section>

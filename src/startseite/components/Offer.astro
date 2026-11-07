@@ -1,5 +1,5 @@
 ---
-// 05 Das Angebot: Pilotplätze (nur von Hand in der Config), Konditionen, Garantie mit Bedingung, für wen es passt
+// 05 Das Angebot: zentrierte Karte, Pilotplätze (nur von Hand in der Config), Konditionen, Passt/passt nicht in zwei gleichen Spalten
 import ss from '../../config/startseite.json';
 import { fill } from '../../neukundensystem/lib/text';
 import Section from './Section.astro';
@@ -14,47 +14,43 @@ const places = Math.max(0, Math.min(free, total));
 const values = { total: String(total), free: String(places) };
 ---
 
-<Section id="angebot-titel" num="05" label={label} wide>
-  <div class="overflow-hidden rounded-2xl border border-line bg-white shadow-[0_1px_2px_rgba(11,19,36,.04),0_20px_50px_-30px_rgba(11,19,36,.35)] lg:grid lg:grid-cols-[minmax(0,1fr)_320px]">
-    <Figure src={img} alt={image.alt} caption={image.caption} imgClass="aspect-[3/4] object-[62%_55%]" class="hidden lg:order-2 lg:block lg:p-6 lg:pl-0" widths={[480, 800, 1000]} sizes="300px" />
-    <div class="px-5 py-8 sm:px-10 sm:py-10">
-      <h2 id="angebot-titel" class="section-title">{fill(headline, values)}</h2>
-      <p class="mt-4 text-pretty text-muted">{intro}</p>
-      <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
+<Section id="angebot-titel" num="05" label={label} title={fill(headline, values)} intro={intro}>
+  <div class="mx-auto max-w-[860px] overflow-hidden rounded-2xl border border-line bg-white shadow-[0_1px_2px_rgba(11,19,36,.04),0_20px_50px_-30px_rgba(11,19,36,.35)]">
+    <Figure src={img} alt={image.alt} imgClass="aspect-[21/8] object-[62%_55%] !rounded-none" class="hidden lg:block [&_.rounded-xl]:rounded-none" sizes="860px" widths={[860]} />
+    <div class="px-5 py-8 text-center sm:px-12 sm:py-10">
+      <div class="flex flex-col items-center gap-2">
         <div class="flex gap-1.5" aria-hidden="true">
-          {Array.from({ length: total }, (_, i) => <span class:list={['h-2 w-7 rounded-full', i < total - places ? 'bg-accent' : 'border border-accent/50']} />)}
+          {Array.from({ length: total }, (_, i) => <span class:list={['h-2 w-8 rounded-full', i < total - places ? 'bg-accent' : 'border border-accent/50']} />)}
         </div>
         <p class="font-semibold text-ink">{places === 0 ? soldOut : fill(freeText, values)}</p>
       </div>
-      <ol class="mt-7 border-t border-rule">
-        {bullets.map((b, i) => (
-          <li class="flex gap-4 border-b border-rule py-4">
-            <span class="w-5 shrink-0 font-semibold text-xl text-accent-strong">{i + 1}.</span>
+      <ul class="mx-auto mt-8 grid max-w-[720px] gap-4 text-left sm:grid-cols-2">
+        {bullets.map((b) => (
+          <li class="flex gap-3 rounded-xl bg-surface p-4">
+            <CheckIcon class="mt-1 size-4 text-accent" />
             <span><strong class="font-semibold text-ink">{b.bold}</strong>{b.text && ` ${b.text}`}</span>
           </li>
         ))}
-      </ol>
-      <p class="mt-4 text-sm text-muted">{budgetNote}</p>
-      <div class="mt-7"><CtaButton label={ctaText} class="sm:w-auto sm:px-8" /></div>
+      </ul>
+      <p class="mt-5 text-sm text-muted">{budgetNote}</p>
+      <div class="mt-7 flex justify-center"><CtaButton label={ctaText} class="sm:w-auto sm:px-10" /></div>
     </div>
   </div>
 
-  <div class="mt-10 sm:mt-14">
-    <h3 class="text-[1.75rem] leading-tight font-semibold text-ink">{fitHeadline}</h3>
-    <div class="mt-6 grid gap-8 sm:grid-cols-2">
-      <div>
-        <h4 class="border-b-2 border-ink pb-2 font-semibold text-ink">{yesTitle}</h4>
-        <ul>{yes.map((item) => <li class="flex gap-3 border-b border-rule py-3 text-[16px]"><CheckIcon class="mt-1 size-4 text-accent-strong" /><span>{item}</span></li>)}</ul>
-      </div>
-      <div>
-        <h4 class="border-b-2 border-rule pb-2 font-semibold text-muted">{noTitle}</h4>
-        <ul>{no.map((item) => (
-          <li class="flex gap-3 border-b border-rule py-3.5 text-muted">
-            <svg class="mt-1 size-4 shrink-0 text-faint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12" /></svg>
-            <span>{item}</span>
-          </li>
-        ))}</ul>
-      </div>
+  <h3 class="mt-16 text-center text-[1.625rem] font-semibold tracking-[-0.025em] text-ink sm:text-[2rem]">{fitHeadline}</h3>
+  <div class="mx-auto mt-8 grid max-w-[900px] gap-6 sm:grid-cols-2">
+    <div class="rounded-2xl border border-line bg-white p-6">
+      <h4 class="text-center font-semibold text-ink">{yesTitle}</h4>
+      <ul class="mt-4 space-y-3">{yes.map((item) => <li class="flex gap-3"><CheckIcon class="mt-1 size-4 text-accent" /><span>{item}</span></li>)}</ul>
+    </div>
+    <div class="rounded-2xl border border-line bg-surface p-6">
+      <h4 class="text-center font-semibold text-muted">{noTitle}</h4>
+      <ul class="mt-4 space-y-3">{no.map((item) => (
+        <li class="flex gap-3 text-muted">
+          <svg class="mt-1 size-4 shrink-0 text-faint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12" /></svg>
+          <span>{item}</span>
+        </li>
+      ))}</ul>
     </div>
   </div>
 </Section>

@@ -36,10 +36,8 @@ In `src/startseite/images/` (Astro erzeugt AVIF/WebP in mehreren Breiten mit Has
 
 | Datei | Unsplash-ID | Fotograf | Sektion |
 |---|---|---|---|
-| anwaeltin-telefon-schreibtisch-ordner | 3IdYKyLEjXo | Vitaly Gariev | Ihr Alltag (Desktop) |
-| smartphone-benachrichtigung-hand | 9_SaFlgwFdA | Jae Park | Methode (Desktop) |
+| anwaeltin-telefon-schreibtisch-ordner | 3IdYKyLEjXo | Vitaly Gariev | Ihr Alltag (Desktop, Breitbild) |
 | unterschrift-mandatsvereinbarung | HJckKnwCXxQ | Gabrielle Henderson | Angebot (Desktop) |
-| sekretariat-rueckruf-telefon | wIrTa_D3uNU | Lynn Van den Broeck | Formular (Desktop) |
 | mert-efe-celik | eigenes Foto | | Hero, Über mich |
 
 ## Vor dem Livegang / offen
@@ -66,6 +64,8 @@ Weiß als Hintergrund, Elevo-Blau als Akzent, eine Schrift.
 
 - Farben (in `src/startseite/styles/global.css`, `@theme`): Fläche Weiß `#FFFFFF`, Flächen-Grau `#F6F8FB`, Text `#0B1324`, Linien `#E5E9F0`. Elevo-Blau `#3B82F6` (aus Logo/Favicon) für Logo und Dekor; für Buttons, Links und hervorgehobene Wörter das dunklere Blau `#2563EB` (AA-Kontrast auf Weiß), auf dunklen Flächen `#7FB0FF`.
 - Schrift: Geist (variabel, lokal in `public/fonts/Geist-*.woff2`) für Überschriften und Text.
-- Hero ohne Bild: zentriert, feines Raster mit blauem Schimmer im Hintergrund, Angebotssatz als H1, Button, Porträt, drei Vertrauenspunkte.
+- Symmetrisch: alle Sektionen zentriert (Rubrik, Überschrift, Einleitung), Inhalte in gleich breiten Spalten.
+- Hero ohne Bild: zentriert, feines Raster mit blauem Schimmer, Angebotssatz als H1 mit unterstrichenem Ergebnis (`*…*` in `hero.h1`), Button, Porträt, drei Vertrauenspunkte, Logoleiste der Referenzen (`logos`).
+- Referenz-Logos in `src/startseite/images/logo-*.png` (Greenchild, BrandsMarketingLab), Zuordnung in `src/startseite/lib/logos.ts`.
 - `*Wort*` in Config-Texten wird in Blau hervorgehoben.
 - Bilder (Desktop) mit Bildunterschrift „Abb. n · …“, abgerundete Ecken.

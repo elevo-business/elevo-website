@@ -7,15 +7,11 @@ const { headline, text, button, phoneLine } = ss.finalCta;
 const phoneHref = telHref(ss.contact.phoneInternational);
 ---
 
-<section class="on-ink mx-auto mt-16 max-w-[1160px] px-4 sm:mt-28" aria-labelledby="abschluss-titel">
-  <div class="rounded-2xl bg-ink px-6 py-12 text-on-ink sm:px-12 sm:py-14 lg:flex lg:items-end lg:justify-between lg:gap-12">
-    <div class="max-w-[620px]">
-      <h2 id="abschluss-titel" class="text-[2rem] leading-[1.1] font-semibold text-white sm:text-[2.75rem]"><Rich text={headline} /></h2>
-      <p class="mt-4 text-pretty">{text}</p>
-    </div>
-    <div class="mt-8 shrink-0 lg:mt-0">
-      <CtaButton label={button} class="sm:w-auto sm:px-8" />
-      {phoneHref && <p class="mt-3 text-sm">{phoneLine} <a href={phoneHref} class="font-semibold text-white underline underline-offset-2">{ss.contact.phone}</a></p>}
-    </div>
+<section class="on-ink mx-auto mt-16 max-w-[1080px] px-4 sm:mt-28" aria-labelledby="abschluss-titel">
+  <div class="rounded-2xl bg-ink px-6 py-14 text-center text-on-ink sm:px-12 sm:py-16">
+    <h2 id="abschluss-titel" class="text-[1.875rem] leading-[1.12] font-semibold tracking-[-0.03em] text-white sm:text-[2.5rem]"><Rich text={headline} /></h2>
+    <p class="mx-auto mt-4 max-w-[560px] text-pretty">{text}</p>
+    <div class="mt-8 flex justify-center"><CtaButton label={button} class="sm:w-auto sm:px-10" /></div>
+    {phoneHref && <p class="mt-4 text-sm">{phoneLine} <a href={phoneHref} class="font-semibold text-white underline underline-offset-2">{ss.contact.phone}</a></p>}
   </div>
 </section>
