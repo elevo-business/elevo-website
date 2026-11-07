@@ -23,8 +23,8 @@ const { src, alt, caption, imgClass = '', class: className, widths = [480, 800, 
 
 <figure class:list={[className]}>
   <div class:list={['relative', frame && 'lg:pr-4 lg:pb-4']}>
-    {frame && <div class="absolute inset-0 top-4 left-4 hidden border border-gold lg:block" aria-hidden="true"></div>}
-    <div class:list={['relative overflow-hidden bg-navy', tone === 'mono' && 'photo-mono']}>
+    {frame && <div class="absolute inset-0 top-4 left-4 hidden border border-accent lg:block" aria-hidden="true"></div>}
+    <div class:list={['relative overflow-hidden rounded-xl bg-surface', tone === 'mono' && 'photo-mono']}>
       <Picture
         src={src}
         alt={alt}

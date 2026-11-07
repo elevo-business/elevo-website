@@ -33,7 +33,7 @@ const hsContext = JSON.stringify({
 });
 ---
 
-<div id="formular" class="scroll-mt-6 rounded-[4px] border border-navy bg-paper px-4 py-7 sm:px-10 sm:py-10">
+<div id="formular" class="scroll-mt-6 rounded-2xl border border-line bg-white px-4 py-7 shadow-[0_1px_2px_rgba(11,19,36,.04),0_20px_50px_-30px_rgba(11,19,36,.35)] sm:px-10 sm:py-10">
   <h2 id="formular-titel" class="section-title">{form.headline}</h2>
   {form.subline && <p class="mt-3 text-pretty text-muted">{form.subline}</p>}
 
@@ -51,7 +51,7 @@ const hsContext = JSON.stringify({
     <div class="js-only mb-5">
       <p class="rubric mb-2" aria-live="polite" data-progress-text>{progress(1)}</p>
       <div class="h-2 overflow-hidden rounded-none bg-line" aria-hidden="true">
-        <div class="h-full bg-gold transition-[width] duration-300" style={`width:${100 / total}%`} data-progress-bar></div>
+        <div class="h-full bg-accent transition-[width] duration-300" style={`width:${100 / total}%`} data-progress-bar></div>
       </div>
     </div>
 
@@ -62,7 +62,7 @@ const hsContext = JSON.stringify({
         return (
           <fieldset class="quiz-step" data-step={index} data-active={index === 0 ? '' : undefined}>
             <legend class="contents">
-              <span tabindex="-1" class="block font-serif text-[1.5rem] leading-snug font-medium text-navy outline-none sm:text-[1.75rem]" data-step-title>
+              <span tabindex="-1" class="block text-[1.5rem] leading-snug font-semibold text-ink outline-none sm:text-[1.75rem]" data-step-title>
                 {step.question}
               </span>
             </legend>
@@ -72,7 +72,7 @@ const hsContext = JSON.stringify({
               <>
                 <div class="mt-5 grid gap-3" role="radiogroup" aria-describedby={`ss-${step.id}-error`}>
                   {step.options!.map((option, i) => (
-                    <label class="group flex min-h-14 cursor-pointer items-center gap-3 rounded-[4px] border border-field bg-white px-4 py-3 text-lg font-semibold text-navy transition-colors duration-300 hover:border-navy has-checked:border-navy has-checked:bg-navy has-checked:text-white has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-navy">
+                    <label class="group flex min-h-14 cursor-pointer items-center gap-3 rounded-lg border border-line bg-white px-4 py-3 text-lg font-semibold text-ink transition-colors duration-300 hover:border-accent has-checked:border-accent has-checked:bg-accent-soft has-checked:text-ink has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-accent">
                       <input type="radio" name={step.hubspotProperty} value={option} required={i === 0} class="sr-only" />
                       <span class="grid size-6 shrink-0 place-items-center rounded-full border-2 border-current" aria-hidden="true">
                         <span class="size-2.5 rounded-full bg-current opacity-0 group-has-checked:opacity-100" />
@@ -87,7 +87,7 @@ const hsContext = JSON.stringify({
               <div class="mt-5 grid gap-5">
                 {fields.map((field) => (
                   <div>
-                    <label for={`ss-${field.name}`} class="mb-1.5 block text-sm font-semibold text-navy">
+                    <label for={`ss-${field.name}`} class="mb-1.5 block text-sm font-semibold text-ink">
                       {field.label}
                       {field.required ? <span aria-hidden="true"> *</span> : <span class="font-normal text-muted"> ({form.optionalText})</span>}
                     </label>
@@ -110,9 +110,9 @@ const hsContext = JSON.stringify({
                 {step.consent && (
                   <div>
                     <label class="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-body">
-                      <input type="checkbox" required aria-describedby="ss-consent-error" class="mt-0.5 size-5 shrink-0 accent-navy" data-consent />
+                      <input type="checkbox" required aria-describedby="ss-consent-error" class="mt-0.5 size-5 shrink-0 accent-ink" data-consent />
                       <span>
-                        {consentBefore}<a href={legal.datenschutzUrl} target="_blank" rel="noopener" class="font-semibold text-navy underline underline-offset-2">{form.consentLinkText}</a>{consentAfter}
+                        {consentBefore}<a href={legal.datenschutzUrl} target="_blank" rel="noopener" class="font-semibold text-ink underline underline-offset-2">{form.consentLinkText}</a>{consentAfter}
                       </span>
                     </label>
                     <p id="ss-consent-error" class="mt-1.5 hidden text-sm font-medium text-danger" data-error-for="consent" />
@@ -151,7 +151,7 @@ const hsContext = JSON.stringify({
               )}
             </div>
             {last && form.belowSubmit && (
-              <p class="mt-3 flex items-center justify-center gap-1.5 text-center text-sm font-semibold text-navy">
+              <p class="mt-3 flex items-center justify-center gap-1.5 text-center text-sm font-semibold text-ink">
                 <CheckIcon class="size-4" />
                 {form.belowSubmit}
               </p>

@@ -12,7 +12,7 @@ Entstanden mit einem Team aus Spezialisten (Copywriting, Conversion, SEO, Webdes
 
 ## Aufbau
 
-1. **Hero:** ganz oben der Angebotssatz als H1 (was, für wen, Methode, Ergebnis), darunter Button „Rückruf anfordern“, Porträt „Ich rufe Sie persönlich an“, drei Vertrauenspunkte, Bild (Abb. 1)
+1. **Hero:** ganz oben der Angebotssatz als H1 (was, für wen, Methode, Ergebnis), darunter Button „Rückruf anfordern“, Porträt „Ich rufe Sie persönlich an“, drei Vertrauenspunkte (ohne Bild)
 2. **01 Ihr Alltag:** sechs Szenen aus dem Kanzleialltag zum Wiedererkennen
 3. **02 Die Ursache** (dunkel): Mandate gehen nach der Anfrage verloren, zwei Studien mit Quellen
 4. **03 Die Methode:** fünf Schritte, dann die Anzeigen
@@ -36,7 +36,6 @@ In `src/startseite/images/` (Astro erzeugt AVIF/WebP in mehreren Breiten mit Has
 
 | Datei | Unsplash-ID | Fotograf | Sektion |
 |---|---|---|---|
-| kanzlei-erstgespraech-anwaeltin-hero / -hochformat | M5k978V3qBc | Vitaly Gariev | Hero |
 | anwaeltin-telefon-schreibtisch-ordner | 3IdYKyLEjXo | Vitaly Gariev | Ihr Alltag (Desktop) |
 | smartphone-benachrichtigung-hand | 9_SaFlgwFdA | Jae Park | Methode (Desktop) |
 | unterschrift-mandatsvereinbarung | HJckKnwCXxQ | Gabrielle Henderson | Angebot (Desktop) |
@@ -63,4 +62,10 @@ Nur von Hand: `pilot.free` senken, committen, pushen. Bei `0` erscheint `pilot.s
 
 ## Design
 
-„Kanzlei-Dossier“: Off-White, Navy, Gold; Überschriften Newsreader, Text Inter (lokal); nummerierte Rubriken am Rand, feine Linien; Bilder mit Bildunterschrift „Abb. n · …“ und ruhigem, warmem Farbton (`.photo-warm`), Detailbild schwarz-weiß (`.photo-mono`). `*Wort*` in Config-Texten wird kursiv in Gold gesetzt.
+Weiß als Hintergrund, Elevo-Blau als Akzent, eine Schrift.
+
+- Farben (in `src/startseite/styles/global.css`, `@theme`): Fläche Weiß `#FFFFFF`, Flächen-Grau `#F6F8FB`, Text `#0B1324`, Linien `#E5E9F0`. Elevo-Blau `#3B82F6` (aus Logo/Favicon) für Logo und Dekor; für Buttons, Links und hervorgehobene Wörter das dunklere Blau `#2563EB` (AA-Kontrast auf Weiß), auf dunklen Flächen `#7FB0FF`.
+- Schrift: Geist (variabel, lokal in `public/fonts/Geist-*.woff2`) für Überschriften und Text.
+- Hero ohne Bild: zentriert, feines Raster mit blauem Schimmer im Hintergrund, Angebotssatz als H1, Button, Porträt, drei Vertrauenspunkte.
+- `*Wort*` in Config-Texten wird in Blau hervorgehoben.
+- Bilder (Desktop) mit Bildunterschrift „Abb. n · …“, abgerundete Ecken.
