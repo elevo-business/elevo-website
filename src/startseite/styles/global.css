@@ -3,52 +3,39 @@
 @source "../../pages/index.astro";
 @source "../../pages/danke.astro";
 
-/* Inter (variabel 100–900), lokal eingebunden – keine Google-Server */
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/fonts/Inter-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/fonts/Inter-latin-ext.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
+/* Geist (variabel 100–900), lokal eingebunden – keine Google-Server */
+@font-face { font-family: "Geist"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/fonts/Geist-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Geist"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/fonts/Geist-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0, U+A720-A7FF; }
 
-/* Newsreader (Serife für Überschriften, variabel 200–800, normal + kursiv), lokal eingebunden */
-@font-face { font-family: "Newsreader"; font-style: normal; font-weight: 200 800; font-display: swap; src: url("/fonts/Newsreader-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-@font-face { font-family: "Newsreader"; font-style: normal; font-weight: 200 800; font-display: swap; src: url("/fonts/Newsreader-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0, U+A720-A7FF; }
-@font-face { font-family: "Newsreader"; font-style: italic; font-weight: 200 800; font-display: swap; src: url("/fonts/Newsreader-latin-italic.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-@font-face { font-family: "Newsreader"; font-style: italic; font-weight: 200 800; font-display: swap; src: url("/fonts/Newsreader-latin-ext-italic.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0, U+A720-A7FF; }
 
-/* Farben aus dem Briefing (navy, offwhite, gold). Werden im SsLayout aus startseite.json (brand) überschrieben. */
+
+/* Farben aus dem Briefing (ink, canvas, accent). Werden im SsLayout aus startseite.json (brand) überschrieben. */
 @theme {
-  --color-navy: #0E1A30;
-  --color-navy-soft: #1A2942;
-  --color-offwhite: #F7F6F2;
+  /* Weiß als Fläche, Elevo-Blau (#3B82F6) als Akzent; für Buttons und Text ein dunkleres Blau mit AA-Kontrast */
+  --color-canvas: #FFFFFF;
   --color-paper: #FFFFFF;
-  --color-gold: #D6B062;
-  --color-gold-hover: #C99F4C;
-  --color-gold-text: #8A6A22;
-  --color-body: #2E3A4E;
-  --color-muted: #5B6578;
-  --color-faint: #8A93A3;
-  --color-line: #E3E0D6;
-  --color-field: #747E8F;
-  --color-grey-card: #ECEAE3;
-  --color-on-navy: #D5DCE8;
-  --color-on-navy-muted: #9AA7BD;
+  --color-surface: #F6F8FB;
+  --color-ink: #0B1324;
+  --color-ink-soft: #1B2638;
+  --color-body: #334155;
+  --color-muted: #5B6676;
+  --color-faint: #8B95A5;
+  --color-line: #E5E9F0;
+  --color-rule: #E5E9F0;
+  --color-field: #9AA4B2;
+  --color-grey-card: #F3F5F9;
+  --color-accent: #2563EB;
+  --color-accent-hover: #1D4ED8;
+  --color-accent-strong: #1D4ED8;
+  --color-accent-soft: #EEF4FF;
+  --color-brand-blue: #3B82F6;
+  --color-accent-light: #7FB0FF;
+  --color-on-ink: #D6DEEA;
+  --color-on-ink-muted: #9AA8BC;
   --color-danger: #B42318;
-  --color-brand: #3DD6C0;
-  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --font-serif: "Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
-  --color-rule: #CFCBBE;
+  --color-brand: #3B82F6;
+  --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-serif: "Geist", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 @layer base {
@@ -60,49 +47,59 @@
     html { scroll-behavior: auto; }
   }
   body {
-    @apply bg-offwhite font-sans text-[17px] leading-[1.6] text-body antialiased sm:text-[18px];
-    font-feature-settings: "cv11", "ss01";
+    @apply bg-canvas font-sans text-[17px] leading-[1.6] text-body antialiased sm:text-[18px];
+    font-feature-settings: "ss01";
   }
   h1, h2, h3 {
     overflow-wrap: break-word;
     text-wrap: balance;
   }
   :focus-visible {
-    outline: 3px solid var(--color-navy);
+    outline: 3px solid var(--color-ink);
     outline-offset: 2px;
   }
-  .on-navy :focus-visible { outline-color: var(--color-gold); }
+  .on-ink :focus-visible { outline-color: #7FB0FF; }
   [id] { scroll-margin-top: 5rem; }
   summary::-webkit-details-marker { display: none; }
 }
 
 @layer components {
   .btn-cta {
-    @apply inline-flex min-h-14 w-full items-center justify-center gap-3 whitespace-nowrap rounded-[4px] bg-gold px-6 py-3 text-center text-[17px] font-semibold tracking-[0.01em] text-navy transition-colors duration-300 hover:bg-gold-hover disabled:cursor-wait disabled:opacity-70;
+    @apply inline-flex min-h-14 w-full items-center justify-center gap-3 whitespace-nowrap rounded-lg bg-accent px-6 py-3 text-center text-[17px] font-semibold tracking-[-0.005em] text-white shadow-[0_1px_2px_rgba(11,19,36,.08),0_8px_24px_-12px_rgba(37,99,235,.55)] transition-colors duration-300 hover:bg-accent-hover disabled:cursor-wait disabled:opacity-70;
   }
   .btn-cta .arrow { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
   .btn-cta:hover .arrow { transform: translateX(4px); }
   .btn-secondary {
-    @apply inline-flex min-h-12 items-center justify-center rounded-[4px] border-2 border-navy px-6 py-2.5 font-semibold text-navy transition-colors duration-300 hover:bg-navy hover:text-white;
+    @apply inline-flex min-h-12 items-center justify-center rounded-lg border border-ink px-6 py-2.5 font-semibold text-ink transition-colors duration-300 hover:bg-ink hover:text-white;
   }
   .field-input {
-    @apply block w-full rounded-[4px] border border-field bg-white px-3.5 py-3 text-base text-navy aria-invalid:border-danger;
+    @apply block w-full rounded-lg border border-field bg-white px-3.5 py-3 text-base text-ink aria-invalid:border-danger;
   }
   .section-title {
-    @apply font-serif text-[2rem] leading-[1.1] font-medium tracking-[-0.015em] text-navy sm:text-[2.75rem];
+    @apply text-[1.875rem] leading-[1.12] font-semibold tracking-[-0.03em] text-ink sm:text-[2.5rem];
   }
   /* Kursive Hervorhebung aus der Config (*Wort*): Serife kursiv, Gold */
-  .emph { @apply font-serif font-medium italic; color: var(--color-gold-text); }
-  .on-navy .emph { color: var(--color-gold); }
+  .emph { font-style: normal; color: var(--color-accent); }
+  .on-ink .emph { color: #7FB0FF; }
   /* Rubrik am Rand: „01 — Das Problem“ */
-  .rubric { @apply text-[12px] font-semibold tracking-[0.16em] uppercase; color: var(--color-gold-text); font-variant-numeric: tabular-nums; }
-  .on-navy .rubric { color: var(--color-gold); }
+  .rubric { @apply text-[12px] font-semibold tracking-[0.14em] uppercase; color: var(--color-accent); font-variant-numeric: tabular-nums; }
+  .on-ink .rubric { color: #7FB0FF; }
+}
+
+/* Hero-Hintergrund: feines Raster in Elevo-Blau, oben sichtbar, nach unten ausgeblendet */
+.hero-grid {
+  background-image:
+    radial-gradient(60% 50% at 50% 0%, rgba(59, 130, 246, 0.10), transparent 70%),
+    linear-gradient(to right, rgba(11, 19, 36, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11, 19, 36, 0.045) 1px, transparent 1px);
+  background-size: 100% 100%, 56px 56px, 56px 56px;
+  mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 95%);
 }
 
 /* Bilder: ein ruhiger, warmer Farbton für Personen, Schwarz-Weiß mit Navy-Ton für Details */
-.photo-warm { filter: saturate(0.82) contrast(1.03) sepia(0.06); }
+.photo-warm { filter: saturate(0.9) contrast(1.02); }
 .photo-mono img { filter: grayscale(1) contrast(1.05); mix-blend-mode: multiply; opacity: 0.92; }
-.photo-mono { background-color: #C9CFD9; }
+.photo-mono { background-color: #D7E3F7; }
 
 /* Quiz: Ohne JavaScript stehen alle Fragen untereinander. Mit JavaScript (html.js) eine Frage pro Bildschirm. */
 .js-only { display: none; }

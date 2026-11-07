@@ -13,14 +13,14 @@ const phoneHref = telHref(thankYou.phoneInternational || thankYou.phone);
   <main id="inhalt" class="mx-auto max-w-[720px] px-4">
     <div class="flex justify-center pt-5">
       <a href="/" aria-label={`${ss.brand.name}, ${thankYou.backLink}`} class="rounded-md">
-        <span class="inline-flex items-center gap-2 text-navy">
-          <svg width="24" height="24" viewBox="0 0 64 64" aria-hidden="true"><path d="M13 32 L32 14 L51 32" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" /><path d="M21 39 L32 28 L43 39" fill="none" stroke="var(--color-gold)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" /><line x1="24" y1="47" x2="40" y2="47" stroke="var(--color-gold)" stroke-width="7" stroke-linecap="round" /></svg>
+        <span class="inline-flex items-center gap-2 text-ink">
+          <svg width="24" height="24" viewBox="0 0 64 64" aria-hidden="true"><path d="M13 32 L32 14 L51 32" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" /><path d="M21 39 L32 28 L43 39" fill="none" stroke="var(--color-accent)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" /><line x1="24" y1="47" x2="40" y2="47" stroke="var(--color-accent)" stroke-width="7" stroke-linecap="round" /></svg>
           <span class="text-lg font-bold tracking-tight">{ss.brand.name}</span>
         </span>
       </a>
     </div>
 
-    <h1 class="mt-12 text-center font-serif text-[2.25rem] leading-[1.1] font-medium tracking-[-0.015em] text-navy sm:text-[3rem]" data-thanks-headline>
+    <h1 class="mt-12 text-center text-[2.25rem] leading-[1.1] font-semibold tracking-[-0.025em] text-ink sm:text-[3rem]" data-thanks-headline>
       {thankYou.headlineNoName}
     </h1>
     <template data-thanks-template data-before={before} data-after={after}></template>
@@ -31,7 +31,7 @@ const phoneHref = telHref(thankYou.phoneInternational || thankYou.phone);
         {
           thankYou.steps.map((step, i) => (
             <li class="flex gap-4 border-b border-rule py-4">
-              <span class="grid size-9 shrink-0 place-items-center rounded-full bg-navy font-serif text-lg text-gold" aria-hidden="true">{i + 1}</span>
+              <span class="font-semibold grid size-9 shrink-0 place-items-center rounded-full bg-ink text-lg text-accent" aria-hidden="true">{i + 1}</span>
               <span class="pt-1">{step}</span>
             </li>
           ))
@@ -39,7 +39,7 @@ const phoneHref = telHref(thankYou.phoneInternational || thankYou.phone);
       </ol>
     </section>
 
-    <section class="on-navy mt-10 rounded-[4px] bg-navy p-6 text-center text-on-navy" aria-labelledby="nummer-titel">
+    <section class="on-ink mt-10 rounded-[4px] bg-ink p-6 text-center text-on-ink" aria-labelledby="nummer-titel">
       <p id="nummer-titel">{thankYou.phoneLine}</p>
       <p class="mt-2 text-2xl font-bold text-white">
         {phoneHref ? <a href={phoneHref} class="underline-offset-4 hover:underline">{thankYou.phone}</a> : thankYou.phone}

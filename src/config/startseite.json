@@ -8,9 +8,10 @@
     "name": "Elevo",
     "legalName": "ELEVO Solutions",
     "logo": "/elevo-logo.png",
-    "navy": "#0E1A30",
-    "offwhite": "#F7F6F2",
-    "gold": "#D6B062"
+    "ink": "#0B1324",
+    "canvas": "#FFFFFF",
+    "accent": "#2563EB",
+    "brandBlue": "#3B82F6"
   },
   "contact": {
     "person": "Mert Efe Celik",
@@ -41,18 +42,14 @@
     "subheadline": "Die meisten Kanzleien leben von Empfehlungen und verlieren Mandate, weil Anfragen zu spät zurückgerufen werden. Ich baue zuerst den Ablauf, der jede Anfrage auffängt, und bringe dann gezielt neue Anfragen hinein.",
     "subheadlineMobile": "Erst der Ablauf, der jede Anfrage auffängt. Dann die Anzeigen, die neue Anfragen bringen.",
     "ctaText": "Rückruf anfordern",
-    "microcopy": "4 kurze Fragen. Ich rufe Sie danach persönlich an, meist am selben Werktag.",
+    "microcopy": "4 kurze Fragen. Rückruf meist am selben Werktag.",
     "trust": [
       "Jede Anzeige geben Sie vor dem Start frei",
       "Setup kostenlos, live in 14 Tagen",
       "Geld zurück, wenn sich das Investment in 30 Tagen nicht trägt*"
     ],
     "trustFootnote": "*Voraussetzung: Neue Anfragen werden während Ihrer Bürozeiten innerhalb von 15 Minuten zurückgerufen.",
-    "personLine": "Ich rufe Sie persönlich an.",
-    "image": {
-      "caption": "Abb. 1 · Das Erstgespräch. Hier soll jede passende Anfrage ankommen.",
-      "alt": "Anwältin im Erstgespräch mit einem Mandanten an einem Besprechungstisch"
-    }
+    "personLine": "Ich rufe Sie persönlich an."
   },
   "alltag": {
     "label": "Ihr Alltag",

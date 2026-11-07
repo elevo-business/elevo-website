@@ -15,22 +15,22 @@ const values = { total: String(total), free: String(places) };
 ---
 
 <Section id="angebot-titel" num="05" label={label} wide>
-  <div class="border-y-4 border-double border-navy bg-paper lg:grid lg:grid-cols-[minmax(0,1fr)_320px]">
+  <div class="overflow-hidden rounded-2xl border border-line bg-white shadow-[0_1px_2px_rgba(11,19,36,.04),0_20px_50px_-30px_rgba(11,19,36,.35)] lg:grid lg:grid-cols-[minmax(0,1fr)_320px]">
     <Figure src={img} alt={image.alt} caption={image.caption} imgClass="aspect-[3/4] object-[62%_55%]" class="hidden lg:order-2 lg:block lg:p-6 lg:pl-0" widths={[480, 800, 1000]} sizes="300px" />
     <div class="px-5 py-8 sm:px-10 sm:py-10">
       <h2 id="angebot-titel" class="section-title">{fill(headline, values)}</h2>
       <p class="mt-4 text-pretty text-muted">{intro}</p>
       <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
         <div class="flex gap-1.5" aria-hidden="true">
-          {Array.from({ length: total }, (_, i) => <span class:list={['h-2 w-7', i < total - places ? 'bg-navy' : 'border border-navy']} />)}
+          {Array.from({ length: total }, (_, i) => <span class:list={['h-2 w-7 rounded-full', i < total - places ? 'bg-accent' : 'border border-accent/50']} />)}
         </div>
-        <p class="font-semibold text-navy">{places === 0 ? soldOut : fill(freeText, values)}</p>
+        <p class="font-semibold text-ink">{places === 0 ? soldOut : fill(freeText, values)}</p>
       </div>
       <ol class="mt-7 border-t border-rule">
         {bullets.map((b, i) => (
           <li class="flex gap-4 border-b border-rule py-4">
-            <span class="font-serif text-xl text-gold-text">{i + 1}.</span>
-            <span><strong class="font-semibold text-navy">{b.bold}</strong>{b.text && ` ${b.text}`}</span>
+            <span class="w-5 shrink-0 font-semibold text-xl text-accent-strong">{i + 1}.</span>
+            <span><strong class="font-semibold text-ink">{b.bold}</strong>{b.text && ` ${b.text}`}</span>
           </li>
         ))}
       </ol>
@@ -40,11 +40,11 @@ const values = { total: String(total), free: String(places) };
   </div>
 
   <div class="mt-10 sm:mt-14">
-    <h3 class="font-serif text-[1.75rem] leading-tight font-medium text-navy">{fitHeadline}</h3>
+    <h3 class="text-[1.75rem] leading-tight font-semibold text-ink">{fitHeadline}</h3>
     <div class="mt-6 grid gap-8 sm:grid-cols-2">
       <div>
-        <h4 class="border-b-2 border-navy pb-2 font-semibold text-navy">{yesTitle}</h4>
-        <ul>{yes.map((item) => <li class="flex gap-3 border-b border-rule py-3 text-[16px]"><CheckIcon class="mt-1 size-4 text-gold-text" /><span>{item}</span></li>)}</ul>
+        <h4 class="border-b-2 border-ink pb-2 font-semibold text-ink">{yesTitle}</h4>
+        <ul>{yes.map((item) => <li class="flex gap-3 border-b border-rule py-3 text-[16px]"><CheckIcon class="mt-1 size-4 text-accent-strong" /><span>{item}</span></li>)}</ul>
       </div>
       <div>
         <h4 class="border-b-2 border-rule pb-2 font-semibold text-muted">{noTitle}</h4>

@@ -24,10 +24,10 @@ const { consent, legal } = ss;
   data-auto-open={autoOpen ? 'true' : 'false'}
   hidden
 >
-  <h2 id="consent-titel" class="sr-only sm:not-sr-only sm:font-bold sm:text-navy">{consent.headline}</h2>
+  <h2 id="consent-titel" class="sr-only sm:not-sr-only sm:font-bold sm:text-ink">{consent.headline}</h2>
   <p id="consent-text" class="text-xs leading-snug sm:mt-1.5 sm:text-sm sm:leading-relaxed">
     {consent.text}
-    <a href={legal.datenschutzUrl} target="_blank" rel="noopener" class="font-semibold text-navy underline underline-offset-2">{consent.privacyLinkText}</a>
+    <a href={legal.datenschutzUrl} target="_blank" rel="noopener" class="font-semibold text-ink underline underline-offset-2">{consent.privacyLinkText}</a>
   </p>
   <div class="mt-2.5 grid grid-cols-2 gap-3 sm:mt-4">
     <button type="button" class="btn-secondary min-h-11 px-3 text-sm" data-consent-choice="false">{consent.necessaryOnly}</button>

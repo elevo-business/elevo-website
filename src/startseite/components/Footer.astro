@@ -10,18 +10,18 @@ const { legal, brand, consent, contact, footer } = ss;
 const phoneHref = telHref(contact.phoneInternational);
 ---
 
-<footer class:list={['on-navy mt-20 bg-navy text-on-navy', stickySpace && 'pb-20 md:pb-0']}>
+<footer class:list={['on-ink mt-20 bg-ink text-on-ink', stickySpace && 'pb-20 md:pb-0']}>
   <div class="mx-auto grid max-w-[1160px] gap-8 px-4 py-12 text-[15px] sm:grid-cols-3">
     <div>
-      <p class="font-serif text-2xl text-white">{brand.name}</p>
-      <p class="mt-2 text-on-navy-muted">{footer.claim}</p>
+      <p class="font-semibold text-2xl text-white">{brand.name}</p>
+      <p class="mt-2 text-on-ink-muted">{footer.claim}</p>
     </div>
     <div>
       <p class="rubric">Kontakt</p>
       <p class="mt-3 text-white">{contact.person}</p>
       {phoneHref && <p><a href={phoneHref} class="underline-offset-2 hover:text-white hover:underline">{contact.phone}</a></p>}
       <p><a href={`mailto:${contact.email}`} class="underline-offset-2 hover:text-white hover:underline">{contact.email}</a></p>
-      <p class="text-on-navy-muted">{contact.region}</p>
+      <p class="text-on-ink-muted">{contact.region}</p>
     </div>
     <nav aria-label="Weitere Links">
       <p class="rubric">Weiteres</p>
@@ -33,5 +33,5 @@ const phoneHref = telHref(contact.phoneInternational);
       </ul>
     </nav>
   </div>
-  <p class="mx-auto max-w-[1160px] border-t border-white/15 px-4 py-5 text-[13px] text-on-navy-muted">© {new Date().getFullYear()} {brand.legalName}</p>
+  <p class="mx-auto max-w-[1160px] border-t border-white/15 px-4 py-5 text-[13px] text-on-ink-muted">© {new Date().getFullYear()} {brand.legalName}</p>
 </footer>
