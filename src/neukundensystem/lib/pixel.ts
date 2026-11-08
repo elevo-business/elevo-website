@@ -70,15 +70,19 @@ export function startPixel(pixelId: string): void {
  *  2. Marketing-Einwilligung vorliegt und
  *  3. ein erfolgreicher Formularversand höchstens 30 Minuten zurückliegt.
  * Danach wird der Versand-Marker gelöscht, damit Neuladen keinen zweiten Lead zählt.
+ *
+ * `contentName` kennzeichnet die Landingpage (z. B. "kanzlei-berlin"), damit im
+ * Events Manager sichtbar ist, von welcher Seite ein Lead kam – unabhängig davon,
+ * welcher Anzeige Meta ihn zuordnet.
  */
-export function trackLeadIfAllowed(pixelId: string): boolean {
+export function trackLeadIfAllowed(pixelId: string, contentName?: string): boolean {
   if (tracked || !isValidPixelId(pixelId)) return false;
   if (getMarketingConsent() !== true) return false;
   const lead = getPendingLead();
   if (!lead) return false;
 
   initPixel(pixelId);
-  window.fbq!('track', 'Lead', {}, { eventID: lead.eventId });
+  window.fbq!('track', 'Lead', contentName ? { content_name: contentName } : {}, { eventID: lead.eventId });
   clearPendingLead();
   tracked = true;
   return true;

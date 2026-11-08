@@ -60,8 +60,8 @@ const phoneHref = telHref(thankYou.phoneInternational || thankYou.phone);
   }
 
   // Lead nur nach erfolgreichem Versand (≤ 30 Min.) + Einwilligung – ohne Pixel-ID lädt nichts
-  trackLeadIfAllowed(tracking.metaPixelId);
+  trackLeadIfAllowed(tracking.metaPixelId, 'familienrecht');
   window.addEventListener(CONSENT_EVENT, (event) => {
-    if ((event as CustomEvent<boolean>).detail === true) trackLeadIfAllowed(tracking.metaPixelId);
+    if ((event as CustomEvent<boolean>).detail === true) trackLeadIfAllowed(tracking.metaPixelId, 'familienrecht');
   });
 </script>
