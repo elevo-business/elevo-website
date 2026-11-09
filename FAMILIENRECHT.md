@@ -110,7 +110,7 @@ src/familienrecht/
   components/  Hero, PilotBox, QuizForm, Results, HowItWorks, About, Fit, Offer, Faq, FinalCta, StickyCta, ConsentBanner, Footer
   lib/         variant.ts (A/B/C), vcard.ts, answers.ts (Quiz-Zwischenstand)
   layouts/FrLayout.astro, styles/global.css (Tailwind nur für diese Seiten)
-public/familienrecht/                Referenz-Logos (Greenchild, BrandsMarketingLab)
+public/familienrecht/                Referenz-Logos (JusLegal, Greenchild, BrandsMarketingLab)
 scripts/check-placeholders.mjs       Prüfung offener Platzhalter
 ```
 

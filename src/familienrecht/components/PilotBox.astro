@@ -5,7 +5,7 @@ import { fill } from '../../neukundensystem/lib/text';
 import Bold from './Bold.astro';
 import CheckIcon from './CheckIcon.astro';
 
-const { totalPlaces, freePlaces, placesLine, soldOutLine, bullets } = fr.pilot;
+const { totalPlaces, freePlaces, placesLine, soldOutLine, bullets, proof } = fr.pilot;
 const free = Math.max(0, Math.min(freePlaces, totalPlaces));
 const values = { free: String(free), total: String(totalPlaces) };
 const headline = fill(free === 0 ? soldOutLine : placesLine, values);
@@ -32,4 +32,9 @@ const lines = bullets.map((b) => fill(b, values));
       ))
     }
   </ul>
+  {proof && (
+    <p class="border-t border-accent/40 bg-white px-3.5 py-2.5 text-[15px] leading-snug text-ink sm:px-5 sm:text-base">
+      <Bold text={proof} />
+    </p>
+  )}
 </div>
