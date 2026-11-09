@@ -2,7 +2,7 @@
 
 Landingpage für die lokalen Evergreen-Meta-Ads (persönliches Profil) an Kanzleien im Familien- und Erbrecht in Berlin. Technik wie /familienrecht: Astro (statisch) + Tailwind, eigenes Layout ohne den seitenweiten Pixel/Google-Tag, Versand an die HubSpot Forms API, Meta Pixel nach Einwilligung, `Lead` nur auf der Danke-Seite.
 
-- `https://elevo.solutions/kanzlei-berlin/`: bewusst minimal: Headline → Quiz → 4 Versprechen (`trust.items`) → Ergebnisse (Greenchild mit Zitat, BML) → FAQ. Keine weiteren Abschnitte, damit nichts vom Formular ablenkt.
+- `https://elevo.solutions/kanzlei-berlin/`: bewusst minimal: Headline → Quiz → 4 Versprechen (`trust.items`) → Ergebnisse (JusLegal, Greenchild mit Zitat, BML) → FAQ. Keine weiteren Abschnitte, damit nichts vom Formular ablenkt.
 - `https://elevo.solutions/kanzlei-berlin/danke/`: Danke-Seite mit „Nummer speichern“ (`.vcf`)
 - Beide Seiten `noindex`, nicht in der Sitemap.
 

@@ -213,6 +213,18 @@
     "headline": "Was dieses System bei anderen gebracht hat",
     "items": [
       {
+        "name": "JusLegal Rechtsanwaltsgesellschaft, Hamburg",
+        "value": "3 Anfragen",
+        "result": "in der ersten Woche",
+        "text": "Kanzlei für Familienrecht. Meta-Anzeigen, vorgeprüfte Anfragen zur Scheidung und jede neue Anfrage sofort per Push und E-Mail in der Kanzlei.",
+        "image": "/kanzlei-berlin/logo-juslegal.svg",
+        "imageWidth": 1640,
+        "imageHeight": 300,
+        "imageAlt": "Logo der JusLegal Rechtsanwaltsgesellschaft",
+        "quote": "",
+        "featured": true
+      },
+      {
         "name": "Greenchild",
         "value": "Über 30.000 €",
         "result": "zusätzlicher Umsatz in 3 Monaten",
@@ -224,8 +236,7 @@
         "quote": "Früher lief bei uns vieles über Handarbeit. Heute kommt ein Lead rein und der Rest passiert von allein. Elevo hat genau das gebaut, was sie versprochen haben.",
         "quoteAuthor": "Nazim Azemi",
         "quoteRole": "Gründer und Geschäftsführer, Greenchild",
-        "quoteImage": "/testimonials/nazim-azemi.webp",
-        "featured": true
+        "quoteImage": "/testimonials/nazim-azemi.webp"
       },
       {
         "name": "BrandsMarketingLab, Aachen",
@@ -239,7 +250,7 @@
         "quote": ""
       }
     ],
-    "honestyNote": "Beide Unternehmen sind keine Kanzleien. Das Prinzip ist aber dasselbe: die richtigen Menschen im richtigen Umkreis erreichen, Anfragen vorab prüfen und schnell zurückrufen."
+    "honestyNote": "Greenchild und BrandsMarketingLab sind keine Kanzleien. Das Prinzip ist aber dasselbe: die richtigen Menschen im richtigen Umkreis erreichen, Anfragen vorab prüfen und schnell zurückrufen."
   },
   "faqHeadline": "Häufige Fragen",
   "faq": [
