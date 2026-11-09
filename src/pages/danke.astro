@@ -66,8 +66,8 @@ const phoneHref = telHref(thankYou.phoneInternational || thankYou.phone);
   }
 
   // Pixel nur hier: genau ein Lead nach frischem Absenden (≤ 30 Min.) und mit Einwilligung
-  trackLeadIfAllowed(tracking.metaPixelId);
+  trackLeadIfAllowed(tracking.metaPixelId, 'startseite');
   window.addEventListener(CONSENT_EVENT, (event) => {
-    if ((event as CustomEvent<boolean>).detail === true) trackLeadIfAllowed(tracking.metaPixelId);
+    if ((event as CustomEvent<boolean>).detail === true) trackLeadIfAllowed(tracking.metaPixelId, 'startseite');
   });
 </script>
