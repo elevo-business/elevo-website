@@ -37,7 +37,7 @@
     ],
     "placesLine": "Noch **{{free}} von {{total}}** Pilotplätzen frei",
     "soldOutLine": "Alle {{total}} Pilotplätze vergeben",
-    "proof": "**Pilotkanzlei JusLegal:** 3 Anfragen in der ersten Woche"
+    "proof": "**Pilotkanzlei JusLegal:** 4 Anfragen in der ersten Woche"
   },
   "form": {
     "headline": "Pilotplatz anfragen",
@@ -331,7 +331,7 @@
       {
         "name": "JusLegal Rechtsanwaltsgesellschaft, Hamburg",
         "badge": "Pilotkanzlei Familienrecht",
-        "value": "3 Anfragen",
+        "value": "4 Anfragen",
         "result": "in der ersten Woche",
         "text": "Kanzlei für Familienrecht und eine der Pilotkanzleien. In 7 Tagen live: Meta-Anzeigen, vorgeprüfte Anfragen zur Scheidung und jede neue Anfrage sofort per Push und E-Mail in der Kanzlei.",
         "image": "/familienrecht/logo-juslegal.svg",
