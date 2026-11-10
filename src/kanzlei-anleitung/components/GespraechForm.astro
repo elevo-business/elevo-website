@@ -17,7 +17,7 @@ const inputClass = 'field-input';
     <h2 id="gespraech-titel" class="text-center text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">{f.headline}</h2>
     <p class="mt-2 text-center text-pretty">{f.text}</p>
 
-    <form class="mt-6 space-y-6" novalidate data-gespraech-form>
+    <form class="mt-6 space-y-6" novalidate data-gespraech-form data-no-form-start>
       {Object.entries(f.hiddenFields).map(([name, value]) => <input type="hidden" name={name} value={value} />)}
       <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
         <label for="kg-hp">Bitte leer lassen</label>
@@ -96,6 +96,7 @@ const inputClass = 'field-input';
   import { submitToHubspot, type HubspotField } from '../../neukundensystem/lib/hubspot';
   import { getAttribution } from '../../neukundensystem/lib/utm';
   import { getContact } from '../lib/contact';
+  import { trackEvent } from '../../neukundensystem/lib/pixel';
 
   const f = thankYou.form;
   const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -213,6 +214,8 @@ const inputClass = 'field-input';
       const ok = await submitToHubspot(optin.hubspot, fields, consentText);
 
       if (ok) {
+        // Gespräch angefragt → Meta-Event „Schedule“ (nur mit Einwilligung, nie ein zweiter Lead)
+        trackEvent('Schedule', { content_name: 'kanzlei-anleitung-gespraech' });
         section.querySelector<HTMLElement>('[data-gespraech-form-wrap]')!.hidden = true;
         const success = section.querySelector<HTMLElement>('[data-gespraech-success]')!;
         success.classList.remove('hidden');
