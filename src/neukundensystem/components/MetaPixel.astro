@@ -1,5 +1,9 @@
 ---
-// Meta-Pixel-Basiscode für alle Seiten einer Ads-Landingpage. Lädt erst nach Marketing-Einwilligung.
+// Meta-Pixel für alle Seiten einer Ads-Landingpage. Lädt erst nach Marketing-Einwilligung.
+//  - PageView auf jeder Seite
+//  - ViewContent: Video gestartet (Klick auf Play / „Mit Ton ansehen“)
+//  - FormStart (eigenes Event): erste Eingabe oder Auswahl in einem Formular bzw. Öffnen des Opt-in-Fensters
+//  - Lead feuert NUR die Danke-Seite (trackLeadIfAllowed), Schedule das Gesprächsformular
 interface Props {
   pixelId: string;
 }
@@ -9,8 +13,32 @@ const { pixelId } = Astro.props;
 <span hidden data-meta-pixel={pixelId}></span>
 
 <script>
-  import { startPixel } from '../lib/pixel';
+  import { startPixel, trackEvent } from '../lib/pixel';
+  import { captureAttribution } from '../lib/utm';
+
+  // fbclid/UTM schon beim ersten Aufruf merken (nur sessionStorage, kein Tracking)
+  captureAttribution();
 
   const id = document.querySelector<HTMLElement>('[data-meta-pixel]')?.dataset.metaPixel ?? '';
   startPixel(id);
+
+  const outsideBanner = (el: Element | null) => !!el && !el.closest('[data-consent-banner]');
+
+  // Video gestartet
+  document.addEventListener('click', (event) => {
+    const target = event.target as Element | null;
+    if (target?.closest('[data-video-start]') && outsideBanner(target)) trackEvent('ViewContent', { content_type: 'video' });
+  });
+
+  // Formular angefangen (nicht im Consent-Banner, nicht in Formularen mit data-no-form-start)
+  const formStart = (event: Event) => {
+    const target = event.target as Element | null;
+    if (!target || !outsideBanner(target)) return;
+    if (target.closest('[data-optin-open]') || (target.closest('form') && !target.closest('[data-no-form-start]'))) {
+      trackEvent('FormStart', {}, true);
+    }
+  };
+  document.addEventListener('change', formStart);
+  document.addEventListener('focusin', formStart);
+  document.addEventListener('click', formStart);
 </script>

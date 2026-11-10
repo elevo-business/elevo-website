@@ -1,6 +1,6 @@
 ---
-// Schlanker Consent-Banner (Briefing, Abschnitt 8). Auf dem Handy eine schmale Leiste unten (max. 30 % der Höhe),
-// damit der Hero-Button sichtbar bleibt. Einwilligung wird mit dem Rest von elevo.solutions geteilt.
+// Schlanker Consent-Banner (Briefing, Abschnitt 8). Pflicht-Auswahl als Fenster in der Mitte
+// (beide Buttons gleichwertig). Einwilligung wird mit dem Rest von elevo.solutions geteilt.
 import fr from '../../config/familienrecht.json';
 
 interface Props {
@@ -11,26 +11,32 @@ const { showOnPendingLead = false } = Astro.props;
 const { consent, legal } = fr;
 ---
 
-<section
-  class="fixed inset-x-0 bottom-0 z-40 max-h-[30dvh] overflow-y-auto border-t border-line bg-white px-4 py-3 shadow-[0_-8px_30px_rgba(13,27,42,.12)] sm:inset-x-auto sm:right-4 sm:bottom-4 sm:max-h-none sm:max-w-md sm:rounded-2xl sm:border sm:p-4"
-  role="dialog"
-  aria-modal="false"
-  aria-labelledby="consent-titel"
-  aria-describedby="consent-text"
+<!-- Pflicht-Auswahl: Fenster in der Mitte, die Seite ist bis zur Entscheidung abgedunkelt.
+     Beide Buttons sind gleich gestaltet (keine Bevorzugung von „Alle akzeptieren“). -->
+<div
+  class="fixed inset-0 z-50 flex items-end justify-center bg-ink-deep/60 p-4 sm:items-center"
   data-consent-banner
   data-pending-lead={showOnPendingLead ? 'true' : undefined}
   hidden
 >
-  <h2 id="consent-titel" class="sr-only sm:not-sr-only sm:font-bold sm:text-ink">{consent.headline}</h2>
-  <p id="consent-text" class="text-xs leading-snug sm:mt-1.5 sm:text-sm sm:leading-relaxed">
+<section
+  class="w-full max-w-md rounded-2xl bg-white p-5 shadow-2xl sm:p-6"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="consent-titel"
+  aria-describedby="consent-text"
+>
+  <h2 id="consent-titel" class="text-lg font-bold text-ink">{consent.headline}</h2>
+  <p id="consent-text" class="mt-2 text-sm leading-relaxed">
     {consent.text}
     <a href={legal.datenschutzUrl} target="_blank" rel="noopener" class="font-semibold text-ink underline underline-offset-2">{consent.privacyLinkText}</a>
   </p>
-  <div class="mt-2.5 grid grid-cols-2 gap-3 sm:mt-4">
+  <div class="mt-5 grid grid-cols-2 gap-3">
     <button type="button" class="btn-secondary min-h-11 px-3 text-sm" data-consent-choice="false">{consent.necessaryOnly}</button>
     <button type="button" class="btn-secondary min-h-11 px-3 text-sm" data-consent-choice="true">{consent.acceptAll}</button>
   </div>
 </section>
+</div>
 
 <script>
   import { CONSENT_OPEN_EVENT, getMarketingConsent, setMarketingConsent } from '../../neukundensystem/lib/consent';
@@ -40,6 +46,9 @@ const { consent, legal } = fr;
   if (banner) {
     const setOpen = (open: boolean) => {
       banner.hidden = !open;
+      // Seite hinter dem Fenster nicht scrollbar, Fokus direkt im Fenster
+      document.documentElement.style.overflow = open ? 'hidden' : '';
+      if (open) banner.querySelector<HTMLButtonElement>('[data-consent-choice]')?.focus({ preventScroll: true });
       window.dispatchEvent(new Event('consent:visibility'));
     };
 

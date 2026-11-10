@@ -164,3 +164,17 @@ public/neukundensystem/               VSL-Video + Vorschaubild
 ```
 
 Impressum und Datenschutz verlinken auf die bestehenden Seiten `/impressum` und `/datenschutz` (`legal` in `site.json`).
+
+## Tracking-Ergänzungen (10.11.2026, gilt für /neukundensystem, /familienrecht, /kanzlei-anleitung, /kanzlei-berlin)
+
+- **Cookie-Banner als Pflicht-Auswahl:** Fenster über der abgedunkelten Seite, bis „Alle akzeptieren“ oder „Nur notwendige“ gewählt ist. Beide Buttons sind gleich gestaltet. Über „Cookie-Einstellungen“ im Footer lässt sich die Wahl ändern.
+- **Events (alle nur nach Einwilligung, jedes höchstens 1x pro Seitenaufruf):**
+  - `PageView` – jede Seite
+  - `ViewContent` – Video gestartet (Play / „Mit Ton ansehen“)
+  - `FormStart` (eigenes Event) – erste Auswahl/Eingabe im Formular oder Öffnen des Opt-in-Fensters
+  - `Lead` – nur Danke-Seite, nur nach erfolgreichem Versand (≤ 30 Min.)
+  - `Schedule` – /kanzlei-anleitung: Gespräch unter dem Video angefragt
+  - Vor der Zustimmung passierte Events (z. B. FormStart) werden nach der Zustimmung nachgereicht – ohne Zustimmung nie.
+- **Meta-Klick-ID:** `fbclid` aus der Anzeigen-URL wird beim ersten Aufruf gemerkt. Stimmt jemand erst später zu (z. B. auf der Danke-Seite), wird das `_fbc`-Cookie daraus gesetzt, damit Meta den Lead der richtigen Anzeige zuordnet.
+- Code: `src/neukundensystem/lib/pixel.ts` (`initPixel`, `trackEvent`, `trackLeadIfAllowed`) und `src/neukundensystem/components/MetaPixel.astro`.
+- In Meta: pro Landingpage eine selbstdefinierte Conversion anlegen (Event `Lead`, URL enthält `<pfad>/danke`) und in der Anzeigengruppe als Conversion-Event wählen.
