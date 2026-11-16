@@ -11,11 +11,11 @@ export default defineConfig({
     // weitere Seiten mit robots noindex (funnel-check, vertriebssystem, webseite-aachen)
     sitemap({
       filter: (page) =>
-        !/\/(danke|absage)\/|\/(familienrecht|kanzlei-anleitung|kanzlei-berlin|previews|funnel-check|vertriebssystem|webseite-aachen)\//.test(page),
+        !/\/(danke|absage)\/|\/(familienrecht|kanzlei-anleitung|kanzlei-berlin|mehrmandanten|previews|funnel-check|vertriebssystem|webseite-aachen)\//.test(page),
     }),
     placeholderReport(),
   ],
   output: 'static',
-  // Tailwind wird nur von der Startseite und den Landingpages /neukundensystem, /familienrecht, /kanzlei-anleitung und /kanzlei-berlin genutzt (je eigene CSS-Datei mit source(none))
+  // Tailwind wird nur von der Startseite und den Landingpages /neukundensystem, /familienrecht, /kanzlei-anleitung, /kanzlei-berlin und /mehrmandanten genutzt (je eigene CSS-Datei mit source(none))
   vite: { plugins: [tailwindcss()] },
 });

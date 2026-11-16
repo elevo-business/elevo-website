@@ -1,0 +1,75 @@
+---
+// Weitere Fallstudie: Zahl, Ausgangslage, Maßnahmen, Ergebnis, optional Belege und Zitat
+import { Image } from 'astro:assets';
+import adsGreenchildMobil from '../images/ads-greenchild-mobil.png';
+import pipedrive from '../images/pipedrive-greenchild.png';
+
+interface Shot { key: string; alt: string; caption: string }
+interface Props {
+  item: {
+    name: string; meta: string; logo: string; logoW: number; logoH: number;
+    value: string; valueLabel: string; goal: string; done: string[]; result: string;
+    shots: Shot[]; quote?: string; quoteAuthor?: string; quoteRole?: string; quoteImage?: string;
+  };
+  labels: { goal: string; done: string; result: string };
+}
+const { item, labels } = Astro.props;
+const hasShots = item.shots.length > 0;
+const label = 'text-[13px] font-semibold tracking-[0.16em] text-teal uppercase';
+---
+
+<article class="grid gap-10 border-b border-line py-12 lg:grid-cols-12 lg:gap-12 lg:py-16">
+  <div class:list={[hasShots ? 'lg:col-span-6' : 'lg:col-span-5']}>
+    <div class="flex items-center gap-3">
+      <img src={item.logo} alt={`Logo ${item.name}`} width={item.logoW} height={item.logoH} class="h-8 w-auto" loading="lazy" />
+      <p class="text-[15px] text-muted"><span class="font-semibold text-ink">{item.name}</span> · {item.meta}</p>
+    </div>
+    <p class="mt-7 font-serif text-6xl leading-[0.95] text-ink sm:text-7xl">{item.value}</p>
+    <p class="mt-2 font-serif text-2xl text-teal italic">{item.valueLabel}</p>
+
+    {hasShots && (
+      <dl class="mt-9 space-y-6">
+        <div><dt class={label}>{labels.goal}</dt><dd class="mt-2">{item.goal}</dd></div>
+        <div>
+          <dt class={label}>{labels.done}</dt>
+          <dd class="mt-2"><ul class="space-y-2">{item.done.map((d) => <li class="flex gap-3"><span class="mt-[0.75em] h-px w-4 shrink-0 bg-teal" aria-hidden="true" />{d}</li>)}</ul></dd>
+        </div>
+        <div><dt class={label}>{labels.result}</dt><dd class="mt-2 font-medium text-ink">{item.result}</dd></div>
+      </dl>
+    )}
+  </div>
+
+  {hasShots ? (
+    <div class="space-y-6 lg:col-span-6">
+      {item.shots.map((shot) => (
+        <figure>
+          {shot.key === 'adsGreenchild' ? (
+            <div class="beleg">
+              <Image src={adsGreenchildMobil} alt={shot.alt} widths={[420, 840, 1400]} sizes="(min-width: 1024px) 540px, 92vw" />
+            </div>
+          ) : (
+            <div class="beleg max-w-[17rem]"><Image src={pipedrive} alt={shot.alt} widths={[272, 392, 784]} sizes="272px" /></div>
+          )}
+          <figcaption class="mt-2.5 text-sm text-muted">{shot.caption}</figcaption>
+        </figure>
+      ))}
+      {item.quote && (
+        <figure class="border-l-2 border-teal pl-5">
+          <blockquote class="font-serif text-2xl leading-[1.2] text-ink italic">„{item.quote}“</blockquote>
+          <figcaption class="mt-4 flex items-center gap-3 text-[15px]">
+            {item.quoteImage && <img src={item.quoteImage} alt="" width="44" height="44" class="size-11 rounded-full object-cover" loading="lazy" />}
+            <span><span class="font-semibold text-ink">{item.quoteAuthor}</span><br /><span class="text-muted">{item.quoteRole}</span></span>
+          </figcaption>
+        </figure>
+      )}
+    </div>
+  ) : (
+    <dl class="grid gap-6 sm:grid-cols-2 lg:col-span-7">
+      <div><dt class={label}>{labels.goal}</dt><dd class="mt-2">{item.goal}</dd><dt class:list={[label, 'mt-6']}>{labels.result}</dt><dd class="mt-2 font-medium text-ink">{item.result}</dd></div>
+      <div>
+        <dt class={label}>{labels.done}</dt>
+        <dd class="mt-2"><ul class="space-y-2">{item.done.map((d) => <li class="flex gap-3"><span class="mt-[0.75em] h-px w-4 shrink-0 bg-teal" aria-hidden="true" />{d}</li>)}</ul></dd>
+      </div>
+    </dl>
+  )}
+</article>

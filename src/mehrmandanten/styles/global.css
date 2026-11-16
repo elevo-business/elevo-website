@@ -1,0 +1,78 @@
+@import "tailwindcss" source(none);
+@source "../";
+@source "../../pages/mehrmandanten";
+
+/* Schriften lokal (DSGVO): Instrument Serif für Überschriften, Geist für Fließtext */
+@font-face { font-family: "Instrument Serif"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/InstrumentSerif-normal-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212; }
+@font-face { font-family: "Instrument Serif"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/InstrumentSerif-normal-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0; }
+@font-face { font-family: "Instrument Serif"; font-style: italic; font-weight: 400; font-display: swap; src: url("/fonts/InstrumentSerif-italic-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212; }
+@font-face { font-family: "Instrument Serif"; font-style: italic; font-weight: 400; font-display: swap; src: url("/fonts/InstrumentSerif-italic-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0; }
+@font-face { font-family: "Geist"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/fonts/Geist-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212; }
+@font-face { font-family: "Geist"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/fonts/Geist-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0; }
+
+/* Papier, Tinte und ein Akzent: bewusst redaktionell statt Agentur-Blau */
+@theme {
+  --color-paper: #F4F1EA;
+  --color-surface: #FBF9F4;
+  --color-ink: #101A17;
+  --color-ink-deep: #0A120F;
+  --color-ink-soft: #1B2925;
+  --color-body: #36433F;
+  --color-muted: #5B6863;
+  --color-line: #D8D2C4;
+  --color-field: #8B9089;
+  --color-teal: #0F766E;
+  --color-mint: #3DD6C0;
+  --color-brand: #0F766E;
+  --color-accent: #101A17;
+  --color-accent-hover: #0F766E;
+  --color-danger: #B42318;
+  --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-serif: "Instrument Serif", "Iowan Old Style", Georgia, "Times New Roman", serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { @apply bg-paper font-sans text-[17px] leading-[1.65] text-body antialiased; }
+  h1, h2, h3 { overflow-wrap: break-word; hyphens: manual; }
+  :focus-visible { outline: 3px solid var(--color-teal); outline-offset: 3px; }
+  [id] { scroll-margin-top: 5rem; }
+  summary::-webkit-details-marker { display: none; }
+  ::selection { background: var(--color-mint); color: var(--color-ink-deep); }
+}
+
+@layer components {
+  /* Überschriften: große Serife, kursiv gesetzte Wörter tragen den Akzent */
+  .display { @apply font-serif font-normal tracking-[-0.015em] text-balance text-ink; line-height: 1.04; }
+  .display em { @apply italic text-teal; }
+  .on-dark .display, .on-dark.display { @apply text-paper; }
+  .on-dark .display em { @apply text-mint; }
+  .kicker { @apply flex items-center gap-3 text-[13px] font-semibold tracking-[0.16em] text-teal uppercase; }
+  .kicker::before { content: ""; @apply h-px w-8 bg-current; }
+  .on-dark .kicker { @apply text-mint; }
+
+  .btn-cta {
+    @apply inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-full bg-ink px-7 py-3 text-center text-[17px] font-semibold text-paper transition-colors duration-300 hover:bg-teal disabled:cursor-wait disabled:opacity-70;
+  }
+  .btn-cta-dark { @apply bg-mint text-ink-deep hover:bg-paper; }
+  .btn-secondary {
+    @apply inline-flex min-h-12 items-center justify-center rounded-full border border-ink px-6 py-2.5 font-semibold text-ink transition-colors duration-300 hover:bg-ink hover:text-paper;
+  }
+  .field-input { @apply block w-full rounded-lg border border-field bg-white px-3.5 py-3 text-base text-ink aria-invalid:border-danger; }
+
+  /* Beleg-Rahmen für Screenshots aus Werbekonto und CRM */
+  .beleg { @apply overflow-hidden rounded-xl border border-line bg-white p-2 shadow-[0_24px_50px_-36px_rgb(16_26_23/0.55)]; }
+  .beleg img { @apply block h-auto w-full rounded-md; }
+}
+
+/* Quiz: Ohne JavaScript stehen alle Fragen untereinander. Mit JavaScript (html.js) eine Frage pro Bildschirm. */
+.js-only { display: none; }
+.js .js-only { display: revert; }
+.js [data-quiz] .js-hide { display: none; }
+.js [data-quiz] [data-step]:not([data-active]) { display: none; }
+.js [data-quiz] [data-step][data-active] { animation: quiz-in 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+@keyframes quiz-in { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .js [data-quiz] [data-step][data-active] { animation: none; } }
+.quiz-step + .quiz-step { margin-top: 2.5rem; }
+.js .quiz-step + .quiz-step { margin-top: 0; }
