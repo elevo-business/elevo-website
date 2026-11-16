@@ -1,0 +1,475 @@
+{
+  "paths": {
+    "landing": "/mehrmandanten/",
+    "form": "/mehrmandanten/anfrage/",
+    "thankYou": "/mehrmandanten/danke/",
+    "vcard": "/mehrmandanten/mert-efe-celik.vcf"
+  },
+  "brand": {
+    "name": "Elevo",
+    "legalName": "ELEVO Solutions"
+  },
+  "seo": {
+    "title": "Mehr Mandanten für deine Kanzlei — Elevo",
+    "description": "Planbar mehr Anfragen für deine Wunschmandate: Anzeigen auf Facebook und Instagram, vorgeprüfte Anfragen, sofort in deiner Kanzlei. 11 qualifizierte Anfragen in 2 Wochen bei JusLegal.",
+    "formTitle": "Erstgespräch anfragen — Elevo",
+    "formDescription": "Ein paar kurze Fragen zu deiner Kanzlei. Danach melde ich mich persönlich bei dir.",
+    "thankYouTitle": "Danke — Elevo",
+    "ogImage": "/og-mehrmandanten.jpg",
+    "noindex": true
+  },
+  "cta": {
+    "text": "Kostenloses Erstgespräch anfragen",
+    "short": "Erstgespräch anfragen",
+    "note": "Ein paar kurze Fragen, dauert keine Minute. Unverbindlich."
+  },
+  "hero": {
+    "defaultVariant": "a",
+    "eyebrow": "Mandantengewinnung für Anwaltskanzleien",
+    "headline": "Planbar mehr Anfragen für die Mandate, die du *wirklich* haben willst.",
+    "sub": "Ich baue dir ein Anzeigen-System auf Facebook und Instagram, das Menschen mit einem akuten Rechtsproblem erreicht, ihre Anfrage vorab prüft und sie dir sofort in die Kanzlei schickt. Du rufst nur noch die zurück, die zu dir passen.",
+    "proof": {
+      "value": "11",
+      "label": "qualifizierte Anfragen in den ersten 2 Wochen",
+      "who": "JusLegal Rechtsanwaltsgesellschaft, Hamburg",
+      "caption": "Auszug aus dem Meta-Werbeanzeigenmanager der Kampagne"
+    },
+    "logosLabel": "Ergebnisse unter anderem für"
+  },
+  "problem": {
+    "kicker": "Das Problem",
+    "headline": "Gute Arbeit füllt deinen Kalender. Nur nicht *planbar*.",
+    "intro": "Du kennst das wahrscheinlich aus deinem eigenen Alltag:",
+    "items": [
+      {
+        "t": "Empfehlungen kommen, wann sie wollen.",
+        "d": "In einem Monat drei neue Mandate, im nächsten keins. Steuern kannst du das nicht, du kannst nur abwarten."
+      },
+      {
+        "t": "Dein Sekretariat filtert, statt zu arbeiten.",
+        "d": "Anrufe von Leuten, die „nur kurz eine Frage“ haben, deren Fall nicht in dein Rechtsgebiet fällt oder die drei Orte weiter wohnen."
+      },
+      {
+        "t": "Auf Portalen bist du einer von vielen.",
+        "d": "Dein Profil steht neben Dutzenden Kollegen. Verglichen wird nach Sternen und Preis, nicht nach dem, was du wirklich kannst."
+      },
+      {
+        "t": "Die Mandate, die du willst, sind Zufall.",
+        "d": "Du nimmst, was hereinkommt. Die Fälle, für die du bekannt sein willst, landen genauso oft bei der Kanzlei zwei Straßen weiter."
+      }
+    ]
+  },
+  "verhalten": {
+    "kicker": "Wie Mandanten heute suchen",
+    "headline": "Wer einen Anwalt braucht, wartet nicht auf eine Empfehlung.",
+    "paras": [
+      "Die Kündigung liegt auf dem Küchentisch. Der Brief vom Anwalt der Gegenseite ist gekommen. Die Trennung ist ausgesprochen. In diesem Moment greifen die meisten zum Handy, und zwar abends, wenn deine Kanzlei längst geschlossen hat.",
+      "Sie schreiben zwei oder drei Kanzleien an. Das Mandat bekommt in der Regel die, die sich zuerst meldet und schon vor dem ersten Gespräch zeigt, dass sie genau dieses Problem kennt.",
+      "Genau an dieser Stelle setzt mein System an: Du bist sichtbar, bevor jemand anfängt zu vergleichen, und die Anfrage liegt bei dir, bevor ein Kollege überhaupt davon weiß."
+    ],
+    "pull": "Die Frage ist nicht, ob Mandanten online suchen. Die Frage ist, bei wem sie landen."
+  },
+  "cases": {
+    "kicker": "Ergebnisse",
+    "headline": "Was ich gebaut habe und was dabei *herauskam*.",
+    "labels": {
+      "goal": "Ausgangslage",
+      "done": "Was ich gemacht habe",
+      "result": "Ergebnis"
+    },
+    "featured": {
+      "name": "JusLegal Rechtsanwaltsgesellschaft",
+      "meta": "Kanzlei für Familienrecht, Hamburg",
+      "logo": "/kanzlei-berlin/logo-juslegal.svg",
+      "logoW": 1640,
+      "logoH": 300,
+      "value": "11",
+      "valueLabel": "qualifizierte Anfragen in den ersten 2 Wochen",
+      "goal": "Die Kanzlei wollte mehr Anfragen für Scheidungsmandate, ohne darauf zu warten, dass jemand sie weiterempfiehlt.",
+      "done": [
+        "Anzeigen auf Facebook und Instagram, sachlich formuliert und von der Kanzlei freigegeben",
+        "Eine eigene Seite mit kurzer Vorprüfung: Worum geht es, wie ist die Situation, wie dringend ist es",
+        "Jede neue Anfrage landet sofort per Push und E-Mail in der Kanzlei"
+      ],
+      "result": "11 qualifizierte Anfragen in den ersten zwei Wochen, also Menschen, die wirklich einen Anwalt für ihre Scheidung suchen. Die Kosten pro Anfrage über die Website: 42,63 €.",
+      "shotAlt": "Auszug aus dem Meta-Werbeanzeigenmanager: 10 Website-Leads zu 42,63 Euro pro Lead, beide Werte hervorgehoben",
+      "shotCaption": "Meta-Werbeanzeigenmanager, Kampagne JusLegal. Hervorgehoben: Website-Leads und Kosten pro Lead."
+    },
+    "others": [
+      {
+        "name": "Greenchild",
+        "meta": "Sachwert-Investment",
+        "logo": "/kanzlei-berlin/logo-greenchild.webp",
+        "logoW": 398,
+        "logoH": 100,
+        "value": "Über 30.000 €",
+        "valueLabel": "Umsatz in 2 Monaten",
+        "goal": "Anfragen kamen unregelmäßig, und vieles lief von Hand: nachtelefonieren, Daten übertragen, hinterherlaufen.",
+        "done": [
+          "Anzeigen auf Facebook und Instagram mit mehreren Landingpages im Test",
+          "Ein Formular zum Durchklicken, Telefonnummer per SMS bestätigt",
+          "Rückruf innerhalb weniger Minuten und ein fester Ablauf bis zum Abschluss, direkt im CRM"
+        ],
+        "result": "145 Anfragen über die Anzeigen, über 30.000 € Umsatz in zwei Monaten und eine um 70 % höhere Abschlussquote.",
+        "shots": [
+          {
+            "key": "adsGreenchild",
+            "alt": "Auszug aus dem Meta-Werbeanzeigenmanager: Spalte Website-Leads hervorgehoben, 145 Leads gesamt",
+            "caption": "Meta-Werbeanzeigenmanager. Hervorgehoben: 145 Website-Leads gesamt."
+          },
+          {
+            "key": "pipedrive",
+            "alt": "CRM-Auswertung: Umsatz gewonnener Deals 32.406 Euro",
+            "caption": "CRM-Auswertung: Umsatz gewonnener Deals."
+          }
+        ],
+        "quote": "Früher lief bei uns vieles über Handarbeit. Heute kommt ein Lead rein und der Rest passiert von allein. Elevo hat genau das gebaut, was sie versprochen haben.",
+        "quoteAuthor": "Nazim Azemi",
+        "quoteRole": "Gründer und Geschäftsführer, Greenchild",
+        "quoteImage": "/testimonials/nazim-azemi.webp"
+      },
+      {
+        "name": "BrandsMarketingLab",
+        "meta": "Marketing-Agentur, Aachen",
+        "logo": "/kanzlei-berlin/logo-bml.webp",
+        "logoW": 192,
+        "logoH": 185,
+        "value": "10.000 €",
+        "valueLabel": "Mehrumsatz im ersten Monat",
+        "goal": "Die Agentur wollte neue Kunden gewinnen, ohne sich allein auf ihr Netzwerk zu verlassen.",
+        "done": [
+          "Kompletter Anzeigen-Funnel auf Facebook und Instagram",
+          "Eine Seite, die Besucher Schritt für Schritt zur Anfrage führt",
+          "Vorgeprüfte Anfragen und schneller Rückruf"
+        ],
+        "result": "10.000 € Mehrumsatz im ersten Monat.",
+        "shots": []
+      }
+    ],
+    "note": "Greenchild und BrandsMarketingLab sind keine Kanzleien. Das Prinzip ist dasselbe: die richtigen Menschen erreichen, Anfragen vorab prüfen und schnell zurückrufen."
+  },
+  "leistungen": {
+    "kicker": "Was du bekommst",
+    "headline": "Drei Bausteine, ein System.",
+    "items": [
+      {
+        "t": "Anzeigen, die zu deiner Kanzlei passen",
+        "d": "Sachlich, ruhig und berufsrechtlich sauber. Ich schreibe und gestalte sie für genau die Mandate, die du haben willst. Keine Anzeige geht online, bevor du sie freigegeben hast."
+      },
+      {
+        "t": "Vorprüfung statt Telefonlotterie",
+        "d": "Wer anfragt, beantwortet vorher ein paar kurze Fragen: Worum geht es, wo wohnt die Person, wie dringend ist es. Du siehst das vor dem Rückruf und entscheidest, wen du zuerst anrufst."
+      },
+      {
+        "t": "Anfragen sofort in der Kanzlei",
+        "d": "Jede neue Anfrage kommt per Push und E-Mail bei dir oder deinem Sekretariat an. An deiner Website und deiner Kanzleisoftware ändert sich nichts."
+      }
+    ]
+  },
+  "ablauf": {
+    "kicker": "So läuft es ab",
+    "headline": "Vom ersten Gespräch bis zur ersten Anfrage.",
+    "steps": [
+      {
+        "t": "Erstgespräch",
+        "d": "Etwa 15 Minuten am Telefon. Ich schaue mir an, wie deine Kanzlei heute an Mandate kommt und welche Mandate du mehr haben willst. Danach weißt du, ob das für dich funktioniert."
+      },
+      {
+        "t": "Aufbau",
+        "d": "Ich baue Anzeigen, Seite und Vorprüfung für dein Rechtsgebiet und deine Region. Dein Aufwand: ein Gespräch zum Start und die Freigabe der Anzeigen."
+      },
+      {
+        "t": "Start und Betrieb",
+        "d": "Die Anzeigen laufen, die Anfragen kommen bei dir an. Ich werte aus, was funktioniert, und steuere nach. Ist dein Kalender voll, pausieren wir."
+      }
+    ]
+  },
+  "about": {
+    "kicker": "Wer dahintersteht",
+    "headline": "Du arbeitest mit mir, nicht mit einer Agentur.",
+    "name": "Mert Efe Celik",
+    "role": "Gründer von Elevo",
+    "text": [
+      "Ich arbeite seit 5 Jahren in Vertrieb und Marketing. In dieser Zeit habe ich über 100.000 € in Werbung investiert und gesehen, wo das Geld verloren geht: selten bei der Anzeige, fast immer danach. Die Anfrage kommt, und niemand ruft rechtzeitig zurück.",
+      "Deshalb baue ich nicht nur Anzeigen, sondern den ganzen Weg bis zum Rückruf. Ich bin dein direkter Ansprechpartner, vom ersten Telefonat bis zum laufenden Betrieb."
+    ],
+    "facts": [
+      {
+        "value": "5 Jahre",
+        "label": "Vertrieb und Marketing"
+      },
+      {
+        "value": "100.000 €+",
+        "label": "in Werbung investiert"
+      }
+    ],
+    "imageAlt": "Porträt von Mert Efe Celik, Gründer von Elevo"
+  },
+  "faqHeadline": "Fragen, die mir Anwältinnen und Anwälte stellen",
+  "faq": [
+    {
+      "q": "Darf ich als Anwalt überhaupt auf Facebook und Instagram werben?",
+      "a": "Ja. § 43b BRAO erlaubt Werbung, die sachlich über deine Kanzlei und deine Schwerpunkte informiert. Genau so sind die Anzeigen aufgebaut: ruhig, sachlich, ohne Versprechen zum Ausgang eines Verfahrens. Und keine Anzeige geht online, bevor du sie freigegeben hast."
+    },
+    {
+      "q": "Wirkt Werbung nicht unseriös für eine Kanzlei?",
+      "a": "Unseriös wirkt schlechte Werbung. Eine sachliche Anzeige, in der du zeigst, wobei du hilfst und wie ein erstes Gespräch abläuft, wirkt wie das, was sie ist: eine Information für jemanden, der gerade einen Anwalt sucht und niemanden kennt, den er fragen kann."
+    },
+    {
+      "q": "Funktioniert das auch für mein Rechtsgebiet?",
+      "a": "Es funktioniert überall dort, wo Privatpersonen oder Unternehmer ein akutes Problem haben und selbst nach einem Anwalt suchen: Familienrecht, Arbeitsrecht, Erbrecht, Verkehrsrecht, Mietrecht und viele mehr. Ob es bei dir passt, kläre ich im Erstgespräch und sage es dir ehrlich, wenn nicht."
+    },
+    {
+      "q": "Ich hatte schon mal eine Agentur und bin vorsichtig.",
+      "a": "Verständlich. Deshalb siehst du auf dieser Seite Auszüge aus den echten Werbekonten und keine Hochglanzversprechen. Im Erstgespräch zeige ich dir, wie eine Anzeige für deine Kanzlei aussehen würde. Danach entscheidest du."
+    },
+    {
+      "q": "Landen dann Anfragen bei mir, die gar nicht passen?",
+      "a": "Genau das soll die Vorprüfung verhindern. Bevor jemand anfragt, beantwortet er ein paar kurze Fragen zu seinem Fall. Du siehst die Antworten vor dem Rückruf und entscheidest selbst, wen du anrufst."
+    },
+    {
+      "q": "Wie viel Arbeit habe ich damit?",
+      "a": "Ein Gespräch zum Start und die Freigabe der Anzeigen. Anzeigen, Seite, Vorprüfung und Einrichtung übernehme ich. Du rufst nur noch die passenden Anfragen zurück."
+    },
+    {
+      "q": "Was kostet das?",
+      "a": "Das hängt davon ab, wie viele Mandate du zusätzlich betreuen kannst und wie groß dein Einzugsgebiet ist. Die genauen Zahlen nenne ich dir im Erstgespräch. Das Werbebudget zahlst du direkt an Meta, nicht an mich."
+    },
+    {
+      "q": "Was passiert, nachdem ich die Anfrage abgeschickt habe?",
+      "a": "Ich rufe dich an, meist noch am selben Werktag. In etwa 15 Minuten schaue ich mir an, wie deine Kanzlei heute an Mandate kommt, und zeige dir, wie eine Anzeige für dich konkret aussehen würde. Unverbindlich."
+    }
+  ],
+  "final": {
+    "headline": "Finde heraus, ob das für deine Kanzlei *funktioniert*.",
+    "text": "Ein paar kurze Fragen zu deiner Kanzlei. Danach rufe ich dich an und sage dir ehrlich, ob und wie ich dir helfen kann."
+  },
+  "formPage": {
+    "eyebrow": "Erstgespräch anfragen",
+    "headline": "Ein paar kurze Fragen, dann melde ich mich *persönlich* bei dir.",
+    "points": [
+      "Dauert keine Minute, alles per Klick",
+      "Unverbindlich und kostenlos",
+      "Ich rufe meist noch am selben Werktag an"
+    ],
+    "proof": "11 qualifizierte Anfragen in 2 Wochen für JusLegal, Hamburg"
+  },
+  "form": {
+    "headline": "",
+    "subline": "",
+    "progressText": "Frage {{n}} von {{total}}",
+    "nextText": "Weiter",
+    "backText": "Zurück",
+    "submitText": "Erstgespräch anfragen",
+    "submittingText": "Wird gesendet …",
+    "belowSubmit": "Unverbindlich. Ich melde mich meist noch am selben Werktag.",
+    "optionalText": "optional",
+    "choiceError": "Bitte wähle eine Antwort aus.",
+    "consentText": "Ich bin einverstanden, dass ELEVO Solutions mich zu meiner Anfrage per Telefon und E-Mail kontaktiert. Hinweise in der {{datenschutz}}.",
+    "consentLinkText": "Datenschutzerklärung",
+    "consentError": "Bitte bestätige die Einwilligung.",
+    "errorText": "Das hat nicht geklappt. Bitte versuche es noch einmal oder ruf mich an:",
+    "hubspot": {
+      "_info": "Gleiches HubSpot-Formular wie /kanzlei-berlin. Leads erkennbar an lp_variante = mehrmandanten.",
+      "portalId": "149380660",
+      "formGuid": "723cfd30-9dea-46e2-9073-32b09db15b22",
+      "communications": []
+    },
+    "hiddenFields": {
+      "lp_variante": "mehrmandanten"
+    },
+    "steps": [
+      {
+        "id": "rechtsgebiet",
+        "type": "choice",
+        "question": "Für welches Rechtsgebiet willst du mehr Mandate?",
+        "hubspotProperty": "lead_rechtsgebiet",
+        "options": [
+          "Familienrecht",
+          "Arbeitsrecht",
+          "Erbrecht",
+          "Verkehrsrecht",
+          "Mietrecht",
+          "Ein anderes Rechtsgebiet"
+        ],
+        "red": [],
+        "green": [],
+        "hubspotValues": {
+          "Familienrecht": "familienrecht",
+          "Arbeitsrecht": "arbeitsrecht",
+          "Erbrecht": "erbrecht",
+          "Verkehrsrecht": "verkehrsrecht",
+          "Mietrecht": "mietrecht",
+          "Ein anderes Rechtsgebiet": "anderes"
+        }
+      },
+      {
+        "id": "groesse",
+        "type": "choice",
+        "question": "Wie viele Anwältinnen und Anwälte arbeiten in deiner Kanzlei?",
+        "hubspotProperty": "lead_kanzlei_groesse",
+        "options": [
+          "Ich arbeite allein",
+          "2 bis 3",
+          "4 oder mehr"
+        ],
+        "red": [],
+        "green": [],
+        "hubspotValues": {
+          "Ich arbeite allein": "1",
+          "2 bis 3": "2_3",
+          "4 oder mehr": "4_plus"
+        }
+      },
+      {
+        "id": "akquise",
+        "type": "choice",
+        "question": "Wie kommen neue Mandanten heute zu dir?",
+        "hubspotProperty": "lead_akquise",
+        "options": [
+          "Fast nur über Empfehlungen",
+          "Über Google und unsere Website",
+          "Über Portale wie anwalt.de",
+          "Wir schalten schon Anzeigen"
+        ],
+        "red": [],
+        "green": [
+          "Fast nur über Empfehlungen"
+        ],
+        "hubspotValues": {
+          "Fast nur über Empfehlungen": "Empfehlungen",
+          "Über Google und unsere Website": "Website und Google",
+          "Über Portale wie anwalt.de": "Anwaltsportale wie anwalt.de",
+          "Wir schalten schon Anzeigen": "Bezahlte Werbung"
+        }
+      },
+      {
+        "id": "kapazitaet",
+        "type": "choice",
+        "question": "Wie viele Mandate könntest du im Monat zusätzlich gut betreuen?",
+        "hubspotProperty": "lead_kapazitaet",
+        "options": [
+          "Mehr als 5",
+          "2 bis 5",
+          "Gerade keine, wir sind voll"
+        ],
+        "red": [
+          "Gerade keine, wir sind voll"
+        ],
+        "green": [
+          "Mehr als 5"
+        ],
+        "hubspotValues": {
+          "Mehr als 5": "Mehr als 5",
+          "2 bis 5": "2 bis 5",
+          "Gerade keine, wir sind voll": "Gerade keine"
+        }
+      },
+      {
+        "id": "werbebudget",
+        "type": "choice",
+        "question": "Was könntest du monatlich in Anzeigen investieren, wenn dafür planbar Mandate kommen?",
+        "hubspotProperty": "lead_werbebudget",
+        "options": [
+          "Unter 1.000 €",
+          "1.000–3.000 €",
+          "Über 3.000 €"
+        ],
+        "red": [
+          "Unter 1.000 €"
+        ],
+        "green": [
+          "1.000–3.000 €",
+          "Über 3.000 €"
+        ],
+        "hubspotValues": {
+          "Unter 1.000 €": "unter_1000",
+          "1.000–3.000 €": "1000_3000",
+          "Über 3.000 €": "ueber_3000"
+        },
+        "hint": "Eine grobe Einschätzung reicht. Das Werbebudget zahlst du direkt an Meta, nicht an mich."
+      },
+      {
+        "id": "kontakt",
+        "type": "fields",
+        "question": "Wo erreiche ich dich für ein kurzes Gespräch?",
+        "consent": true,
+        "fields": [
+          {
+            "name": "firstname",
+            "label": "Vorname",
+            "type": "text",
+            "autocomplete": "given-name",
+            "required": true,
+            "error": "Bitte gib deinen Vornamen an."
+          },
+          {
+            "name": "company",
+            "label": "Name der Kanzlei",
+            "type": "text",
+            "autocomplete": "organization",
+            "required": false
+          },
+          {
+            "name": "phone",
+            "label": "Telefon",
+            "type": "tel",
+            "autocomplete": "tel",
+            "required": true,
+            "help": "Ich rufe meist noch am selben Werktag an.",
+            "error": "Bitte gib eine Telefonnummer an, unter der ich dich erreiche."
+          },
+          {
+            "name": "email",
+            "label": "E-Mail",
+            "type": "email",
+            "autocomplete": "email",
+            "required": true,
+            "error": "Bitte prüfe deine E-Mail-Adresse."
+          }
+        ]
+      }
+    ],
+    "priority": {
+      "_info": "Wird automatisch berechnet und als lp_prioritaet an HubSpot gesendet. Eine Antwort aus 'red' → C. Keine 'red' und mind. aMinGreen Antworten aus 'green' → A. Sonst B.",
+      "property": "lp_prioritaet",
+      "aMinGreen": 2,
+      "labels": {
+        "a": "A – sehr gut qualifiziert",
+        "b": "B – prüfen",
+        "c": "C – passt eher nicht"
+      }
+    }
+  },
+  "thankYou": {
+    "headline": "Danke, {{vorname}}. Ich melde mich in Kürze bei dir.",
+    "headlineNoName": "Danke. Ich melde mich in Kürze bei dir.",
+    "stepsHeadline": "So geht es weiter",
+    "steps": [
+      "Ich rufe dich an, meist noch am selben Werktag. Das Gespräch dauert etwa 15 Minuten.",
+      "Ich schaue mir an, wie deine Kanzlei heute an Mandate kommt, und zeige dir, wie eine Anzeige für dich konkret aussehen würde.",
+      "Passt es für beide Seiten, baue ich dein System auf und die Anzeigen gehen nach deiner Freigabe online."
+    ],
+    "phoneLine": "Speichere meine Nummer, damit du den Anruf erkennst:",
+    "phone": "02451 9949695",
+    "phoneInternational": "+49 2451 9949695",
+    "saveButton": "Nummer speichern",
+    "vcardName": "Mert Efe Celik",
+    "vcardOrg": "ELEVO Solutions"
+  },
+  "tracking": {
+    "metaPixelId": "1150135684404237"
+  },
+  "consent": {
+    "headline": "Datenschutz-Einstellungen",
+    "text": "Notwendige Funktionen brauche ich, damit Seite und Formular funktionieren. Mit deiner Zustimmung lade ich den Meta Pixel, um zu messen, welche Anzeigen Besucher und Anfragen bringen.",
+    "acceptAll": "Alle akzeptieren",
+    "necessaryOnly": "Nur notwendige",
+    "privacyLinkText": "Datenschutzerklärung",
+    "settingsLink": "Cookie-Einstellungen"
+  },
+  "legal": {
+    "impressumUrl": "https://elevo.solutions/impressum",
+    "datenschutzUrl": "https://elevo.solutions/datenschutz"
+  }
+}
