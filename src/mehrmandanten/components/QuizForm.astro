@@ -33,7 +33,7 @@ const hsContext = JSON.stringify({
 });
 ---
 
-<section id="formular" class="rounded-[1.25rem] border border-line bg-white px-4 py-6 shadow-[0_30px_60px_-40px_rgb(16_26_23/0.45)] sm:p-9" aria-labelledby="formular-titel">
+<section id="formular" class="rounded-2xl bg-white px-4 py-6 shadow-[0_40px_90px_-30px_rgb(0_0_0/0.7)] sm:p-9" aria-labelledby="formular-titel">
   {form.headline ? (
     <h2 id="formular-titel" class="text-center text-xl font-extrabold tracking-tight text-ink sm:text-3xl">{form.headline}</h2>
   ) : (
@@ -67,7 +67,7 @@ const hsContext = JSON.stringify({
         return (
           <fieldset class="quiz-step" data-step={index} data-active={index === 0 ? '' : undefined}>
             <legend class="contents">
-              <span tabindex="-1" class="block text-center font-serif text-[1.7rem] leading-[1.15] text-ink outline-none sm:text-4xl" data-step-title>
+              <span tabindex="-1" class="block text-center font-head text-[1.4rem] leading-[1.2] font-semibold tracking-[-0.01em] text-ink outline-none sm:text-[1.75rem]" data-step-title>
                 {step.question}
               </span>
             </legend>

@@ -2,68 +2,82 @@
 @source "../";
 @source "../../pages/mehrmandanten";
 
-/* Schriften lokal (DSGVO): Instrument Serif für Überschriften, Geist für Fließtext */
-@font-face { font-family: "Instrument Serif"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/InstrumentSerif-normal-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212; }
-@font-face { font-family: "Instrument Serif"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/InstrumentSerif-normal-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0; }
-@font-face { font-family: "Instrument Serif"; font-style: italic; font-weight: 400; font-display: swap; src: url("/fonts/InstrumentSerif-italic-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212; }
-@font-face { font-family: "Instrument Serif"; font-style: italic; font-weight: 400; font-display: swap; src: url("/fonts/InstrumentSerif-italic-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0; }
-@font-face { font-family: "Geist"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/fonts/Geist-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212; }
-@font-face { font-family: "Geist"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/fonts/Geist-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0; }
+/* Schriften lokal (DSGVO): Bebas Neue für die Hero-Headline, Sora für Überschriften, Outfit für Fließtext */
+@font-face { font-family: "Bebas Neue"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/BebasNeue-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212; }
+@font-face { font-family: "Bebas Neue"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/BebasNeue-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0; }
+@font-face { font-family: "Sora"; font-style: normal; font-weight: 100 800; font-display: swap; src: url("/fonts/Sora-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212; }
+@font-face { font-family: "Sora"; font-style: normal; font-weight: 100 800; font-display: swap; src: url("/fonts/Sora-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0; }
+@font-face { font-family: "Outfit"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/fonts/Outfit-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212; }
+@font-face { font-family: "Outfit"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/fonts/Outfit-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0; }
 
-/* Papier, Tinte und ein Akzent: bewusst redaktionell statt Agentur-Blau */
+/* Elevo Ink und Teal: dunkle Bühne, helle Zwischenabschnitte */
 @theme {
-  --color-paper: #F4F1EA;
-  --color-surface: #FBF9F4;
-  --color-ink: #101A17;
-  --color-ink-deep: #0A120F;
-  --color-ink-soft: #1B2925;
-  --color-body: #36433F;
-  --color-muted: #5B6863;
-  --color-line: #D8D2C4;
-  --color-field: #8B9089;
-  --color-teal: #0F766E;
+  --color-ink: #0D1B2A;
+  --color-ink-deep: #060D15;
+  --color-ink-soft: #14253A;
+  --color-paper: #F3F5F7;
+  --color-surface: #FFFFFF;
+  --color-body: #33445A;
+  --color-muted: #5B6B80;
+  --color-line: #D9E0E8;
+  --color-field: #7C8CA0;
+  --color-teal: #0B7D6E;
   --color-mint: #3DD6C0;
-  --color-brand: #0F766E;
-  --color-accent: #101A17;
-  --color-accent-hover: #0F766E;
+  --color-mint-hover: #2EBFAB;
+  --color-brand: #3DD6C0;
   --color-danger: #B42318;
-  --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --font-serif: "Instrument Serif", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-sans: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-head: "Sora", "Outfit", system-ui, sans-serif;
+  --font-display: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
 }
 
 @layer base {
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  body { @apply bg-paper font-sans text-[17px] leading-[1.65] text-body antialiased; }
+  body { @apply bg-ink-deep font-sans text-[17px] leading-[1.6] text-body antialiased; }
   h1, h2, h3 { overflow-wrap: break-word; hyphens: manual; }
-  :focus-visible { outline: 3px solid var(--color-teal); outline-offset: 3px; }
+  strong { @apply font-semibold; }
+  :focus-visible { outline: 3px solid var(--color-mint); outline-offset: 3px; }
   [id] { scroll-margin-top: 5rem; }
   summary::-webkit-details-marker { display: none; }
   ::selection { background: var(--color-mint); color: var(--color-ink-deep); }
 }
 
 @layer components {
-  /* Überschriften: große Serife, kursiv gesetzte Wörter tragen den Akzent */
-  .display { @apply font-serif font-normal tracking-[-0.015em] text-balance text-ink; line-height: 1.04; }
-  .display em { @apply italic text-teal; }
-  .on-dark .display, .on-dark.display { @apply text-paper; }
-  .on-dark .display em { @apply text-mint; }
-  .kicker { @apply flex items-center gap-3 text-[13px] font-semibold tracking-[0.16em] text-teal uppercase; }
-  .kicker::before { content: ""; @apply h-px w-8 bg-current; }
-  .on-dark .kicker { @apply text-mint; }
+  /* Zweifarbige Überschriften: <em> trägt den Akzent */
+  .h2 { @apply font-head text-[2rem] leading-[1.12] font-semibold tracking-[-0.02em] text-ink sm:text-[2.75rem]; }
+  .h2 em { @apply text-teal not-italic; }
+  .on-dark .h2, .on-dark.h2 { @apply text-white; }
+  .on-dark .h2 em { @apply text-mint; }
+  .light strong { @apply text-ink; }
+  .on-dark strong { @apply text-white; }
 
   .btn-cta {
-    @apply inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-full bg-ink px-7 py-3 text-center text-[17px] font-semibold text-paper transition-colors duration-300 hover:bg-teal disabled:cursor-wait disabled:opacity-70;
+    @apply inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-xl bg-linear-to-r from-[#7BEAD9] to-mint px-7 py-3 text-center font-head text-base font-semibold text-ink-deep shadow-[0_14px_34px_-14px_rgb(61_214_192/0.75)] transition duration-300 hover:brightness-110 disabled:cursor-wait disabled:opacity-70;
   }
-  .btn-cta-dark { @apply bg-mint text-ink-deep hover:bg-paper; }
   .btn-secondary {
-    @apply inline-flex min-h-12 items-center justify-center rounded-full border border-ink px-6 py-2.5 font-semibold text-ink transition-colors duration-300 hover:bg-ink hover:text-paper;
+    @apply inline-flex min-h-12 items-center justify-center rounded-xl border border-ink px-6 py-2.5 font-semibold text-ink transition-colors duration-300 hover:bg-ink hover:text-white;
   }
   .field-input { @apply block w-full rounded-lg border border-field bg-white px-3.5 py-3 text-base text-ink aria-invalid:border-danger; }
 
-  /* Beleg-Rahmen für Screenshots aus Werbekonto und CRM */
-  .beleg { @apply overflow-hidden rounded-xl border border-line bg-white p-2 shadow-[0_24px_50px_-36px_rgb(16_26_23/0.55)]; }
-  .beleg img { @apply block h-auto w-full rounded-md; }
+  /* Häkchen-Listen */
+  .checks > li { @apply relative pl-9; }
+  .checks > li::before {
+    content: ""; @apply absolute top-[0.2em] left-0 size-[1.35rem] rounded-full bg-mint;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M12 1a11 11 0 1 0 0 22 11 11 0 0 0 0-22Zm5.2 8.3-6 6.2a1 1 0 0 1-1.4 0l-3-3a1 1 0 1 1 1.4-1.4l2.3 2.3 5.3-5.5a1 1 0 0 1 1.4 1.4Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+  .light .checks > li::before { @apply bg-teal; }
+
+  /* Geräterahmen für Screenshots der gebauten Seiten */
+  .browser { @apply overflow-hidden rounded-xl bg-[#1B2A3D] shadow-[0_40px_80px_-30px_rgb(0_0_0/0.8)] ring-1 ring-white/10; }
+  .browser::before {
+    content: ""; @apply block h-7;
+    background: radial-gradient(circle at 16px 50%, #FF5F57 4px, transparent 5px), radial-gradient(circle at 32px 50%, #FEBC2E 4px, transparent 5px), radial-gradient(circle at 48px 50%, #28C840 4px, transparent 5px);
+  }
+  .phone { @apply overflow-hidden rounded-[1.6rem] border-[6px] border-[#0A0F16] bg-[#0A0F16] shadow-[0_30px_60px_-20px_rgb(0_0_0/0.85)] ring-1 ring-white/15; }
+  .phone img { @apply rounded-[1.15rem]; }
+  .beleg { @apply overflow-hidden rounded-lg bg-white p-1.5 ring-1 ring-white/10; }
+  .beleg img, .browser img, .phone img { @apply block h-auto w-full; }
 }
 
 /* Quiz: Ohne JavaScript stehen alle Fragen untereinander. Mit JavaScript (html.js) eine Frage pro Bildschirm. */

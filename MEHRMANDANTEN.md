@@ -2,12 +2,12 @@
 
 Landingpage für Kanzleien aller Rechtsgebiete, die planbar mehr Anfragen für ihre Wunschmandate wollen. Technik wie /kanzlei-berlin: Astro (statisch) + Tailwind, eigenes Layout ohne seitenweiten Pixel/Google-Tag, Versand an die HubSpot Forms API, Meta Pixel nach Einwilligung, `Lead` nur auf der Danke-Seite.
 
-- `/mehrmandanten/`: Hero mit JusLegal-Beleg → Problem → Verhalten der Mandanten → Fallstudien (JusLegal, Greenchild, BrandsMarketingLab) → Leistungen → Ablauf → Über mich → FAQ → Abschluss. Alle CTAs führen zum Formular.
+- `/mehrmandanten/`: dunkler Hero mit Foto und drei Versprechen → Verhalten der Mandanten → Fallstudien als dunkle Karten (Vorher, Ergebnis, Maßnahmen, Mockup der gebauten Seite, Belege) → Leistungen mit Illustration und Checkliste → Ablauf → Über mich → FAQ → Abschluss. Alle CTAs führen zum Formular.
 - `/mehrmandanten/anfrage/`: Qualifizierungsformular (eine Frage pro Bildschirm).
 - `/mehrmandanten/danke/`: Danke-Seite mit „Nummer speichern“ (`.vcf`).
 - Alle drei Seiten `noindex` (`seo.noindex`), nicht in der Sitemap.
 
-**Alle Texte, Fragen und IDs stehen in `src/config/mehrmandanten.json`.** Ansprache: Du. Kursiv-Akzent in Überschriften: `*so*`.
+**Alle Texte, Fragen und IDs stehen in `src/config/mehrmandanten.json`.** Ansprache: Du, bewusst im Gesprächston. Auszeichnung in den Texten: `**fett**`, Akzentfarbe in Überschriften: `*so*`.
 
 ## Formular (6 Schritte)
 
@@ -22,19 +22,24 @@ Landingpage für Kanzleien aller Rechtsgebiete, die planbar mehr Anfragen für i
 
 Gleiches HubSpot-Formular wie /kanzlei-berlin. Leads erkennbar an `lp_variante = mehrmandanten`. Priorität (`lp_prioritaet`): C bei „Gerade keine, wir sind voll“ oder „Unter 1.000 €“, A ab 2 grünen Antworten, sonst B.
 
-## Screenshots (Belege)
+## Bilder
 
-Liegen in `src/mehrmandanten/images/`. Die Leads sind direkt im Bild hervorgehoben (Rest aufgehellt, Rahmen in Teal). Für neue Screenshots: Originale im selben Stil bearbeiten und die Dateien ersetzen.
+Liegen in `src/mehrmandanten/images/`.
 
-- `ads-juslegal*.png`: Meta-Werbeanzeigenmanager JusLegal (10 Website-Leads, 42,63 € pro Lead)
-- `ads-greenchild-mobil.png`: Meta-Werbeanzeigenmanager Greenchild (145 Website-Leads)
-- `pipedrive-greenchild.png`: CRM, Umsatz gewonnener Deals (32.406 €)
+- `hero-mert.jpg`: Hero-Foto
+- `site-<kunde>-desktop.png` / `-mobil.png`: Screenshots der gebauten Seiten (JusLegal: online.juslegal.de, Greenchild: lp/sachwert-d, BML), werden in Browser- und Handy-Rahmen gezeigt
+- `ads-juslegal*.png`, `ads-greenchild-mobil.png`: Meta-Werbeanzeigenmanager, Leads im Bild hervorgehoben
+- `pipedrive-greenchild.png`: CRM, Umsatz gewonnener Deals
+
+Die Illustrationen bei „Leistungen“ (Beispielanzeige, Vorprüfung, Benachrichtigung) sind HTML, Texte in `leistungen.mock`.
 
 ## Offen / prüfen
 
-- Zuordnung der Screenshots zu den Kunden bestätigen (siehe oben).
+- Zuordnung der Werbekonto-Screenshots zu den Kunden bestätigen.
 - JusLegal: Text nennt 11 qualifizierte Anfragen, der Screenshot zeigt 10 Website-Leads.
-- „Ausgangslage“ bei JusLegal, Greenchild und BML ist aus dem Kontext formuliert, bitte gegenlesen.
+- Freigabe von Dr. Hauke Scheffler für die namentliche Nennung und die „Vorher“-Beschreibung einholen.
+- „Vorher“ bei Greenchild ist aus dem Kundenzitat abgeleitet; BML hat bewusst kein „Vorher“.
+- Kundenstimmen von JusLegal und BML fehlen noch.
 - Optional eigenes OG-Bild: `public/og-mehrmandanten.jpg`.
 
 ## Dateien
@@ -43,5 +48,5 @@ Liegen in `src/mehrmandanten/images/`. Die Leads sind direkt im Bild hervorgehob
 src/config/mehrmandanten.json     Texte, Fragen, IDs
 src/pages/mehrmandanten/          index.astro, anfrage.astro, danke.astro, mert-efe-celik.vcf.ts
 src/mehrmandanten/                Layout, Komponenten, Styles, Bilder
-public/fonts/InstrumentSerif-*    Überschriften-Schrift (lokal, OFL)
+public/fonts/BebasNeue-*          Hero-Schrift (lokal, OFL)
 ```

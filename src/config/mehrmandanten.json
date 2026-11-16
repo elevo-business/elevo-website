@@ -9,251 +9,6 @@
     "name": "Elevo",
     "legalName": "ELEVO Solutions"
   },
-  "seo": {
-    "title": "Mehr Mandanten für deine Kanzlei — Elevo",
-    "description": "Planbar mehr Anfragen für deine Wunschmandate: Anzeigen auf Facebook und Instagram, vorgeprüfte Anfragen, sofort in deiner Kanzlei. 11 qualifizierte Anfragen in 2 Wochen bei JusLegal.",
-    "formTitle": "Erstgespräch anfragen — Elevo",
-    "formDescription": "Ein paar kurze Fragen zu deiner Kanzlei. Danach melde ich mich persönlich bei dir.",
-    "thankYouTitle": "Danke — Elevo",
-    "ogImage": "/og-mehrmandanten.jpg",
-    "noindex": true
-  },
-  "cta": {
-    "text": "Kostenloses Erstgespräch anfragen",
-    "short": "Erstgespräch anfragen",
-    "note": "Ein paar kurze Fragen, dauert keine Minute. Unverbindlich."
-  },
-  "hero": {
-    "defaultVariant": "a",
-    "eyebrow": "Mandantengewinnung für Anwaltskanzleien",
-    "headline": "Planbar mehr Anfragen für die Mandate, die du *wirklich* haben willst.",
-    "sub": "Ich baue dir ein Anzeigen-System auf Facebook und Instagram, das Menschen mit einem akuten Rechtsproblem erreicht, ihre Anfrage vorab prüft und sie dir sofort in die Kanzlei schickt. Du rufst nur noch die zurück, die zu dir passen.",
-    "proof": {
-      "value": "11",
-      "label": "qualifizierte Anfragen in den ersten 2 Wochen",
-      "who": "JusLegal Rechtsanwaltsgesellschaft, Hamburg",
-      "caption": "Auszug aus dem Meta-Werbeanzeigenmanager der Kampagne"
-    },
-    "logosLabel": "Ergebnisse unter anderem für"
-  },
-  "problem": {
-    "kicker": "Das Problem",
-    "headline": "Gute Arbeit füllt deinen Kalender. Nur nicht *planbar*.",
-    "intro": "Du kennst das wahrscheinlich aus deinem eigenen Alltag:",
-    "items": [
-      {
-        "t": "Empfehlungen kommen, wann sie wollen.",
-        "d": "In einem Monat drei neue Mandate, im nächsten keins. Steuern kannst du das nicht, du kannst nur abwarten."
-      },
-      {
-        "t": "Dein Sekretariat filtert, statt zu arbeiten.",
-        "d": "Anrufe von Leuten, die „nur kurz eine Frage“ haben, deren Fall nicht in dein Rechtsgebiet fällt oder die drei Orte weiter wohnen."
-      },
-      {
-        "t": "Auf Portalen bist du einer von vielen.",
-        "d": "Dein Profil steht neben Dutzenden Kollegen. Verglichen wird nach Sternen und Preis, nicht nach dem, was du wirklich kannst."
-      },
-      {
-        "t": "Die Mandate, die du willst, sind Zufall.",
-        "d": "Du nimmst, was hereinkommt. Die Fälle, für die du bekannt sein willst, landen genauso oft bei der Kanzlei zwei Straßen weiter."
-      }
-    ]
-  },
-  "verhalten": {
-    "kicker": "Wie Mandanten heute suchen",
-    "headline": "Wer einen Anwalt braucht, wartet nicht auf eine Empfehlung.",
-    "paras": [
-      "Die Kündigung liegt auf dem Küchentisch. Der Brief vom Anwalt der Gegenseite ist gekommen. Die Trennung ist ausgesprochen. In diesem Moment greifen die meisten zum Handy, und zwar abends, wenn deine Kanzlei längst geschlossen hat.",
-      "Sie schreiben zwei oder drei Kanzleien an. Das Mandat bekommt in der Regel die, die sich zuerst meldet und schon vor dem ersten Gespräch zeigt, dass sie genau dieses Problem kennt.",
-      "Genau an dieser Stelle setzt mein System an: Du bist sichtbar, bevor jemand anfängt zu vergleichen, und die Anfrage liegt bei dir, bevor ein Kollege überhaupt davon weiß."
-    ],
-    "pull": "Die Frage ist nicht, ob Mandanten online suchen. Die Frage ist, bei wem sie landen."
-  },
-  "cases": {
-    "kicker": "Ergebnisse",
-    "headline": "Was ich gebaut habe und was dabei *herauskam*.",
-    "labels": {
-      "goal": "Ausgangslage",
-      "done": "Was ich gemacht habe",
-      "result": "Ergebnis"
-    },
-    "featured": {
-      "name": "JusLegal Rechtsanwaltsgesellschaft",
-      "meta": "Kanzlei für Familienrecht, Hamburg",
-      "logo": "/kanzlei-berlin/logo-juslegal.svg",
-      "logoW": 1640,
-      "logoH": 300,
-      "value": "11",
-      "valueLabel": "qualifizierte Anfragen in den ersten 2 Wochen",
-      "goal": "Die Kanzlei wollte mehr Anfragen für Scheidungsmandate, ohne darauf zu warten, dass jemand sie weiterempfiehlt.",
-      "done": [
-        "Anzeigen auf Facebook und Instagram, sachlich formuliert und von der Kanzlei freigegeben",
-        "Eine eigene Seite mit kurzer Vorprüfung: Worum geht es, wie ist die Situation, wie dringend ist es",
-        "Jede neue Anfrage landet sofort per Push und E-Mail in der Kanzlei"
-      ],
-      "result": "11 qualifizierte Anfragen in den ersten zwei Wochen, also Menschen, die wirklich einen Anwalt für ihre Scheidung suchen. Die Kosten pro Anfrage über die Website: 42,63 €.",
-      "shotAlt": "Auszug aus dem Meta-Werbeanzeigenmanager: 10 Website-Leads zu 42,63 Euro pro Lead, beide Werte hervorgehoben",
-      "shotCaption": "Meta-Werbeanzeigenmanager, Kampagne JusLegal. Hervorgehoben: Website-Leads und Kosten pro Lead."
-    },
-    "others": [
-      {
-        "name": "Greenchild",
-        "meta": "Sachwert-Investment",
-        "logo": "/kanzlei-berlin/logo-greenchild.webp",
-        "logoW": 398,
-        "logoH": 100,
-        "value": "Über 30.000 €",
-        "valueLabel": "Umsatz in 2 Monaten",
-        "goal": "Anfragen kamen unregelmäßig, und vieles lief von Hand: nachtelefonieren, Daten übertragen, hinterherlaufen.",
-        "done": [
-          "Anzeigen auf Facebook und Instagram mit mehreren Landingpages im Test",
-          "Ein Formular zum Durchklicken, Telefonnummer per SMS bestätigt",
-          "Rückruf innerhalb weniger Minuten und ein fester Ablauf bis zum Abschluss, direkt im CRM"
-        ],
-        "result": "145 Anfragen über die Anzeigen, über 30.000 € Umsatz in zwei Monaten und eine um 70 % höhere Abschlussquote.",
-        "shots": [
-          {
-            "key": "adsGreenchild",
-            "alt": "Auszug aus dem Meta-Werbeanzeigenmanager: Spalte Website-Leads hervorgehoben, 145 Leads gesamt",
-            "caption": "Meta-Werbeanzeigenmanager. Hervorgehoben: 145 Website-Leads gesamt."
-          },
-          {
-            "key": "pipedrive",
-            "alt": "CRM-Auswertung: Umsatz gewonnener Deals 32.406 Euro",
-            "caption": "CRM-Auswertung: Umsatz gewonnener Deals."
-          }
-        ],
-        "quote": "Früher lief bei uns vieles über Handarbeit. Heute kommt ein Lead rein und der Rest passiert von allein. Elevo hat genau das gebaut, was sie versprochen haben.",
-        "quoteAuthor": "Nazim Azemi",
-        "quoteRole": "Gründer und Geschäftsführer, Greenchild",
-        "quoteImage": "/testimonials/nazim-azemi.webp"
-      },
-      {
-        "name": "BrandsMarketingLab",
-        "meta": "Marketing-Agentur, Aachen",
-        "logo": "/kanzlei-berlin/logo-bml.webp",
-        "logoW": 192,
-        "logoH": 185,
-        "value": "10.000 €",
-        "valueLabel": "Mehrumsatz im ersten Monat",
-        "goal": "Die Agentur wollte neue Kunden gewinnen, ohne sich allein auf ihr Netzwerk zu verlassen.",
-        "done": [
-          "Kompletter Anzeigen-Funnel auf Facebook und Instagram",
-          "Eine Seite, die Besucher Schritt für Schritt zur Anfrage führt",
-          "Vorgeprüfte Anfragen und schneller Rückruf"
-        ],
-        "result": "10.000 € Mehrumsatz im ersten Monat.",
-        "shots": []
-      }
-    ],
-    "note": "Greenchild und BrandsMarketingLab sind keine Kanzleien. Das Prinzip ist dasselbe: die richtigen Menschen erreichen, Anfragen vorab prüfen und schnell zurückrufen."
-  },
-  "leistungen": {
-    "kicker": "Was du bekommst",
-    "headline": "Drei Bausteine, ein System.",
-    "items": [
-      {
-        "t": "Anzeigen, die zu deiner Kanzlei passen",
-        "d": "Sachlich, ruhig und berufsrechtlich sauber. Ich schreibe und gestalte sie für genau die Mandate, die du haben willst. Keine Anzeige geht online, bevor du sie freigegeben hast."
-      },
-      {
-        "t": "Vorprüfung statt Telefonlotterie",
-        "d": "Wer anfragt, beantwortet vorher ein paar kurze Fragen: Worum geht es, wo wohnt die Person, wie dringend ist es. Du siehst das vor dem Rückruf und entscheidest, wen du zuerst anrufst."
-      },
-      {
-        "t": "Anfragen sofort in der Kanzlei",
-        "d": "Jede neue Anfrage kommt per Push und E-Mail bei dir oder deinem Sekretariat an. An deiner Website und deiner Kanzleisoftware ändert sich nichts."
-      }
-    ]
-  },
-  "ablauf": {
-    "kicker": "So läuft es ab",
-    "headline": "Vom ersten Gespräch bis zur ersten Anfrage.",
-    "steps": [
-      {
-        "t": "Erstgespräch",
-        "d": "Etwa 15 Minuten am Telefon. Ich schaue mir an, wie deine Kanzlei heute an Mandate kommt und welche Mandate du mehr haben willst. Danach weißt du, ob das für dich funktioniert."
-      },
-      {
-        "t": "Aufbau",
-        "d": "Ich baue Anzeigen, Seite und Vorprüfung für dein Rechtsgebiet und deine Region. Dein Aufwand: ein Gespräch zum Start und die Freigabe der Anzeigen."
-      },
-      {
-        "t": "Start und Betrieb",
-        "d": "Die Anzeigen laufen, die Anfragen kommen bei dir an. Ich werte aus, was funktioniert, und steuere nach. Ist dein Kalender voll, pausieren wir."
-      }
-    ]
-  },
-  "about": {
-    "kicker": "Wer dahintersteht",
-    "headline": "Du arbeitest mit mir, nicht mit einer Agentur.",
-    "name": "Mert Efe Celik",
-    "role": "Gründer von Elevo",
-    "text": [
-      "Ich arbeite seit 5 Jahren in Vertrieb und Marketing. In dieser Zeit habe ich über 100.000 € in Werbung investiert und gesehen, wo das Geld verloren geht: selten bei der Anzeige, fast immer danach. Die Anfrage kommt, und niemand ruft rechtzeitig zurück.",
-      "Deshalb baue ich nicht nur Anzeigen, sondern den ganzen Weg bis zum Rückruf. Ich bin dein direkter Ansprechpartner, vom ersten Telefonat bis zum laufenden Betrieb."
-    ],
-    "facts": [
-      {
-        "value": "5 Jahre",
-        "label": "Vertrieb und Marketing"
-      },
-      {
-        "value": "100.000 €+",
-        "label": "in Werbung investiert"
-      }
-    ],
-    "imageAlt": "Porträt von Mert Efe Celik, Gründer von Elevo"
-  },
-  "faqHeadline": "Fragen, die mir Anwältinnen und Anwälte stellen",
-  "faq": [
-    {
-      "q": "Darf ich als Anwalt überhaupt auf Facebook und Instagram werben?",
-      "a": "Ja. § 43b BRAO erlaubt Werbung, die sachlich über deine Kanzlei und deine Schwerpunkte informiert. Genau so sind die Anzeigen aufgebaut: ruhig, sachlich, ohne Versprechen zum Ausgang eines Verfahrens. Und keine Anzeige geht online, bevor du sie freigegeben hast."
-    },
-    {
-      "q": "Wirkt Werbung nicht unseriös für eine Kanzlei?",
-      "a": "Unseriös wirkt schlechte Werbung. Eine sachliche Anzeige, in der du zeigst, wobei du hilfst und wie ein erstes Gespräch abläuft, wirkt wie das, was sie ist: eine Information für jemanden, der gerade einen Anwalt sucht und niemanden kennt, den er fragen kann."
-    },
-    {
-      "q": "Funktioniert das auch für mein Rechtsgebiet?",
-      "a": "Es funktioniert überall dort, wo Privatpersonen oder Unternehmer ein akutes Problem haben und selbst nach einem Anwalt suchen: Familienrecht, Arbeitsrecht, Erbrecht, Verkehrsrecht, Mietrecht und viele mehr. Ob es bei dir passt, kläre ich im Erstgespräch und sage es dir ehrlich, wenn nicht."
-    },
-    {
-      "q": "Ich hatte schon mal eine Agentur und bin vorsichtig.",
-      "a": "Verständlich. Deshalb siehst du auf dieser Seite Auszüge aus den echten Werbekonten und keine Hochglanzversprechen. Im Erstgespräch zeige ich dir, wie eine Anzeige für deine Kanzlei aussehen würde. Danach entscheidest du."
-    },
-    {
-      "q": "Landen dann Anfragen bei mir, die gar nicht passen?",
-      "a": "Genau das soll die Vorprüfung verhindern. Bevor jemand anfragt, beantwortet er ein paar kurze Fragen zu seinem Fall. Du siehst die Antworten vor dem Rückruf und entscheidest selbst, wen du anrufst."
-    },
-    {
-      "q": "Wie viel Arbeit habe ich damit?",
-      "a": "Ein Gespräch zum Start und die Freigabe der Anzeigen. Anzeigen, Seite, Vorprüfung und Einrichtung übernehme ich. Du rufst nur noch die passenden Anfragen zurück."
-    },
-    {
-      "q": "Was kostet das?",
-      "a": "Das hängt davon ab, wie viele Mandate du zusätzlich betreuen kannst und wie groß dein Einzugsgebiet ist. Die genauen Zahlen nenne ich dir im Erstgespräch. Das Werbebudget zahlst du direkt an Meta, nicht an mich."
-    },
-    {
-      "q": "Was passiert, nachdem ich die Anfrage abgeschickt habe?",
-      "a": "Ich rufe dich an, meist noch am selben Werktag. In etwa 15 Minuten schaue ich mir an, wie deine Kanzlei heute an Mandate kommt, und zeige dir, wie eine Anzeige für dich konkret aussehen würde. Unverbindlich."
-    }
-  ],
-  "final": {
-    "headline": "Finde heraus, ob das für deine Kanzlei *funktioniert*.",
-    "text": "Ein paar kurze Fragen zu deiner Kanzlei. Danach rufe ich dich an und sage dir ehrlich, ob und wie ich dir helfen kann."
-  },
-  "formPage": {
-    "eyebrow": "Erstgespräch anfragen",
-    "headline": "Ein paar kurze Fragen, dann melde ich mich *persönlich* bei dir.",
-    "points": [
-      "Dauert keine Minute, alles per Klick",
-      "Unverbindlich und kostenlos",
-      "Ich rufe meist noch am selben Werktag an"
-    ],
-    "proof": "11 qualifizierte Anfragen in 2 Wochen für JusLegal, Hamburg"
-  },
   "form": {
     "headline": "",
     "subline": "",
@@ -471,5 +226,367 @@
   "legal": {
     "impressumUrl": "https://elevo.solutions/impressum",
     "datenschutzUrl": "https://elevo.solutions/datenschutz"
+  },
+  "seo": {
+    "title": "Mehr Mandanten für deine Kanzlei — Elevo",
+    "description": "Planbar mehr Anfragen für deine Wunschmandate. Anzeigen, Vorprüfung und sofortige Benachrichtigung für Anwaltskanzleien. 11 qualifizierte Anfragen in 2 Wochen bei JusLegal.",
+    "formTitle": "Erstgespräch anfragen — Elevo",
+    "formDescription": "Ein paar kurze Fragen zu deiner Kanzlei. Danach melde ich mich persönlich bei dir.",
+    "thankYouTitle": "Danke — Elevo",
+    "ogImage": "/og-mehrmandanten.jpg",
+    "noindex": true
+  },
+  "cta": {
+    "text": "Kostenfreies Erstgespräch anfragen",
+    "short": "Erstgespräch anfragen"
+  },
+  "nav": [
+    [
+      "Ergebnisse",
+      "#ergebnisse"
+    ],
+    [
+      "Leistungen",
+      "#leistungen"
+    ],
+    [
+      "Ablauf",
+      "#ablauf"
+    ],
+    [
+      "Über mich",
+      "#ueber-mich"
+    ],
+    [
+      "FAQ",
+      "#faq"
+    ]
+  ],
+  "hero": {
+    "defaultVariant": "a",
+    "eyebrow": "Für Anwaltskanzleien, die planbar mehr Anfragen für ihre Wunschmandate wollen.",
+    "headline": "Mandate, die du dir aussuchst – statt Anfragen, die zufällig kommen.",
+    "paras": [
+      "Du machst gute Arbeit. Aber was bringt das, wenn die Menschen, die genau dich brauchen, bei einer anderen Kanzlei landen?",
+      "**Fakt ist:** Wer heute einen Anwalt sucht, fragt nicht mehr zuerst im Bekanntenkreis. Er greift zum Handy, schreibt zwei, drei Kanzleien an und mandatiert die, die sich zuerst meldet. Wenn du in dem Moment nicht sichtbar bist, ist das Mandat weg – bei dem Kollegen, der es ist.",
+      "Wenn du nicht länger auf die nächste Empfehlung warten willst, trag dich jetzt für ein kostenfreies Erstgespräch ein. Ich schaue mir an, wie deine Kanzlei heute an Mandate kommt, und sage dir ehrlich, ob und wie sich mein System für dich lohnt."
+    ],
+    "imageAlt": "Mert Efe Celik, Gründer von Elevo",
+    "benefits": [
+      "**Du bekommst Anfragen, die wirklich passen.** Kein Telefonieren mehr mit Leuten, die „nur kurz eine Frage“ haben – jede Anfrage ist vorab geprüft.",
+      "**Du wirst planbar.** Statt zu hoffen, dass der nächste Monat wieder gut läuft, steuerst du selbst, wie viele Anfragen reinkommen.",
+      "**Du bist zuerst da.** Die Anfrage liegt Sekunden später in deiner Kanzlei – bevor ein Kollege überhaupt davon weiß."
+    ]
+  },
+  "verhalten": {
+    "headline": "*Wie Mandanten suchen,* hat sich komplett geändert",
+    "paras": [
+      "Vergiss, wie’s früher mal war. Früher hat man den Anwalt genommen, den der Schwager kannte. Heute liegt die Kündigung auf dem Küchentisch – und abends um halb zehn wird gegoogelt, verglichen und angeschrieben. **Dann, wenn deine Kanzlei längst zu ist.**",
+      "**Und mal ehrlich:** Je dringender das Problem, desto weniger Geduld hat dein Mandant. Wer sich gerade trennt, gekündigt wurde oder einen Brief vom gegnerischen Anwalt in der Hand hält, wartet nicht zwei Tage auf einen Rückruf.",
+      "Egal ob über Google, Instagram oder ein Portal – **am Ende gewinnt die Kanzlei, die zuerst da ist und zuerst zurückruft.**"
+    ],
+    "problemLabel": "Das Problem?",
+    "problem": "Wenn deine Mandate nur über Empfehlungen und Bestand kommen, **entscheidet der Zufall, wie dein nächster Monat aussieht.** Und die Fälle, die du eigentlich willst, landen bei jemand anderem.",
+    "cta": "Wenn du wissen willst, wie viele Anfragen in deinem Rechtsgebiet möglich sind, trag dich für ein kostenfreies Erstgespräch ein.",
+    "race": {
+      "title": "Anfrage von heute, 21:34 Uhr",
+      "sub": "Drei Kanzleien angeschrieben",
+      "rows": [
+        [
+          "Kanzlei A",
+          "Antwort nach 2 Tagen",
+          false
+        ],
+        [
+          "Kanzlei B",
+          "Anrufbeantworter",
+          false
+        ],
+        [
+          "Deine Kanzlei",
+          "Rückruf am nächsten Morgen, 8:05 Uhr",
+          true
+        ]
+      ],
+      "foot": "Wer bekommt das Mandat?"
+    }
+  },
+  "cases": {
+    "headline": "*Ergebnisse* im Fokus",
+    "side": "Was Kanzleien und Unternehmen *mit meinem System erreicht haben*",
+    "labels": {
+      "before": "Vorher:",
+      "result": "Ergebnis:"
+    },
+    "items": [
+      {
+        "key": "juslegal",
+        "name": "JusLegal Rechtsanwaltsgesellschaft",
+        "person": "Dr. Hauke Scheffler",
+        "role": "Rechtsanwalt, JusLegal · Hamburg",
+        "logo": "/kanzlei-berlin/logo-juslegal.svg",
+        "logoW": 1640,
+        "logoH": 300,
+        "headline": "11 qualifizierte Anfragen in den ersten 2 Wochen – für eine Kanzlei, die bisher vom Netzwerk lebte.",
+        "before": [
+          "Dr. Hauke Scheffler hatte keinen Mangel an Arbeit: Viele Anfragen kamen aus dem Bestand und über sein Netzwerk.",
+          "Nur: **Systematisch erfasst wurde davon nichts.**",
+          "→ Es fehlte ein Weg, neue Mandanten unabhängig vom Netzwerk zu gewinnen, und ein System, das jede Anfrage festhält."
+        ],
+        "result": [
+          "**11 qualifizierte Anfragen in den ersten zwei Wochen** – Menschen, die wirklich einen Anwalt für ihre Scheidung suchen.",
+          "→ Kosten pro Anfrage über die Website: 42,63 €.",
+          "Jede Anfrage ist erfasst und liegt sofort in der Kanzlei."
+        ],
+        "done": [
+          [
+            "Eigene Seite „Scheidung online“ gebaut",
+            "mit kurzer Vorprüfung statt Kontaktformular"
+          ],
+          [
+            "Anzeigen auf Facebook und Instagram",
+            "sachlich formuliert und von der Kanzlei freigegeben"
+          ],
+          [
+            "Jede Anfrage sofort per Push und E-Mail",
+            "niemand muss mehr nachhalten, was reingekommen ist"
+          ]
+        ],
+        "shots": [
+          {
+            "key": "adsJuslegal",
+            "alt": "Meta-Werbeanzeigenmanager: 10 Website-Leads zu 42,63 Euro pro Lead, beide Werte hervorgehoben",
+            "caption": "Meta-Werbeanzeigenmanager. Hervorgehoben: Website-Leads und Kosten pro Lead."
+          }
+        ]
+      },
+      {
+        "key": "greenchild",
+        "name": "Greenchild",
+        "person": "Nazim Azemi",
+        "role": "Gründer und Geschäftsführer, Greenchild",
+        "personImage": "/testimonials/nazim-azemi.webp",
+        "logo": "/kanzlei-berlin/logo-greenchild.webp",
+        "logoW": 398,
+        "logoH": 100,
+        "headline": "Über 30.000 € Umsatz in 2 Monaten – weil kein Lead mehr liegen bleibt.",
+        "before": [
+          "Bei Greenchild lief vieles über Handarbeit: Anfragen nachtelefonieren, Daten übertragen, hinterherlaufen.",
+          "→ Je mehr Anfragen kamen, desto mehr blieb liegen."
+        ],
+        "result": [
+          "**Über 30.000 € Umsatz in zwei Monaten.**",
+          "→ 145 Anfragen über die Anzeigen.",
+          "→ Abschlussquote um 70 % gesteigert."
+        ],
+        "done": [
+          [
+            "Anzeigen mit mehreren Landingpages im Test",
+            "die beste Variante bekommt das Budget"
+          ],
+          [
+            "Formular zum Durchklicken",
+            "Telefonnummer per SMS bestätigt, keine Fake-Anfragen"
+          ],
+          [
+            "Rückruf in Minuten, fester Ablauf bis zum Abschluss",
+            "alles automatisch im CRM"
+          ]
+        ],
+        "quote": "Früher lief bei uns vieles über Handarbeit. Heute kommt ein Lead rein und der Rest passiert von allein. Elevo hat genau das gebaut, was sie versprochen haben.",
+        "shots": [
+          {
+            "key": "adsGreenchild",
+            "alt": "Meta-Werbeanzeigenmanager: Spalte Website-Leads hervorgehoben, 145 Leads gesamt",
+            "caption": "Meta-Werbeanzeigenmanager. Hervorgehoben: 145 Website-Leads."
+          },
+          {
+            "key": "pipedrive",
+            "alt": "CRM-Auswertung: Umsatz gewonnener Deals 32.406 Euro",
+            "caption": "CRM: Umsatz gewonnener Deals."
+          }
+        ]
+      },
+      {
+        "key": "bml",
+        "name": "BrandsMarketingLab",
+        "person": "BrandsMarketingLab",
+        "role": "Marketing-Agentur, Aachen",
+        "logo": "/kanzlei-berlin/logo-bml.webp",
+        "logoW": 192,
+        "logoH": 185,
+        "headline": "10.000 € Mehrumsatz im ersten Monat.",
+        "before": [],
+        "result": [
+          "**10.000 € Mehrumsatz im ersten Monat** über einen kompletten Anzeigen-Funnel."
+        ],
+        "done": [
+          [
+            "Anzeigen-Funnel auf Facebook und Instagram",
+            "von der Anzeige bis zur Anfrage aus einer Hand"
+          ],
+          [
+            "Seite, die Schritt für Schritt zur Anfrage führt",
+            "statt Besucher allein zu lassen"
+          ],
+          [
+            "Vorgeprüfte Anfragen und schneller Rückruf",
+            "dasselbe Prinzip wie bei den Kanzleien"
+          ]
+        ],
+        "shots": []
+      }
+    ],
+    "note": "Greenchild und BrandsMarketingLab sind keine Kanzleien. Das Prinzip ist dasselbe: die richtigen Menschen erreichen, Anfragen vorab prüfen, schnell zurückrufen."
+  },
+  "leistungen": {
+    "headline": "*Meine* Leistungen",
+    "lead": "Wenn du gute Arbeit machst, brauchst du ein System, das dir die passenden Mandanten bringt.",
+    "intro": [
+      "Ich baue dir den kompletten Weg: von der Anzeige bis zur Anfrage auf deinem Schreibtisch.",
+      "Du gibst frei, ich setze um."
+    ],
+    "items": [
+      {
+        "key": "ad",
+        "title": "Anzeigen, *die zu deiner Kanzlei passen*",
+        "text": "Keine reißerische Werbung, sondern sachliche Anzeigen, die genau die Menschen erreichen, deren Fälle du haben willst.",
+        "points": [
+          "Sachlich und berufsrechtlich sauber (§ 43b BRAO)",
+          "Zugeschnitten auf dein Rechtsgebiet und deine Region",
+          "Nichts geht online, bevor du es freigegeben hast"
+        ]
+      },
+      {
+        "key": "quiz",
+        "title": "*Vorprüfung* statt Telefonlotterie",
+        "text": "Wer anfragt, beantwortet vorher ein paar kurze Fragen. Du siehst vor dem Rückruf, worum es geht – und entscheidest, wen du anrufst.",
+        "points": [
+          "Worum geht es, wo wohnt die Person, wie dringend ist es",
+          "Unpassende Anfragen erkennst du auf einen Blick",
+          "Dein Sekretariat filtert nicht mehr am Telefon"
+        ]
+      },
+      {
+        "key": "push",
+        "title": "Anfragen *sofort in der Kanzlei*",
+        "text": "Jede neue Anfrage kommt per Push und E-Mail bei dir an und ist sauber erfasst. Nichts geht mehr unter.",
+        "points": [
+          "Benachrichtigung in Sekunden statt Zettelwirtschaft",
+          "Jede Anfrage systematisch festgehalten",
+          "An deiner Website und Kanzleisoftware ändert sich nichts"
+        ]
+      }
+    ],
+    "mock": {
+      "adLabel": "Beispielanzeige",
+      "adFirm": "Deine Kanzlei",
+      "adSponsored": "Gesponsert",
+      "adHead": "Kündigung erhalten?",
+      "adText": "Für die Klage bleiben dir nur 3 Wochen. Wir prüfen deinen Fall und sagen dir, was jetzt sinnvoll ist.",
+      "adBtn": "Fall prüfen lassen",
+      "quizQ": "Worum geht es bei dir?",
+      "quizOpts": [
+        "Kündigung erhalten",
+        "Aufhebungsvertrag",
+        "Abmahnung",
+        "Etwas anderes"
+      ],
+      "quizStep": "Frage 1 von 4",
+      "pushApp": "Neue Anfrage",
+      "pushTime": "gerade eben",
+      "pushTitle": "Arbeitsrecht · Kündigung erhalten",
+      "pushText": "Köln · Kündigung vor 4 Tagen · wünscht Rückruf heute",
+      "pushOld": [
+        "Familienrecht · Scheidung",
+        "Arbeitsrecht · Aufhebungsvertrag"
+      ]
+    }
+  },
+  "ablauf": {
+    "headline": "So läuft die *Zusammenarbeit* ab",
+    "steps": [
+      {
+        "t": "Kostenfreies Erstgespräch",
+        "d": "Du willst wissen, ob das für deine Kanzlei funktioniert? In etwa 15 Minuten schauen wir uns an, wie du heute an Mandate kommst – und wo mehr möglich ist.",
+        "points": [
+          "Blick auf deine aktuelle Mandatsgewinnung",
+          "Klarheit, welche Mandate du mehr haben willst",
+          "Ehrliche Einschätzung, ob und wie ich dir helfen kann"
+        ]
+      },
+      {
+        "t": "Aufbau deines Systems",
+        "d": "Ich baue Anzeigen, Seite und Vorprüfung für dein Rechtsgebiet. Dein Aufwand: ein Gespräch zum Start und die Freigabe.",
+        "points": [
+          "Anzeigen und Seite passend zu deiner Kanzlei",
+          "Vorprüfung mit den Fragen, die für dich zählen",
+          "Einrichtung der Benachrichtigungen, technisch komplett"
+        ]
+      },
+      {
+        "t": "Start und laufende Optimierung",
+        "d": "Die Anzeigen laufen, die Anfragen kommen bei dir an. Ich werte aus, was funktioniert, und steuere nach. Ist dein Kalender voll, pausieren wir.",
+        "points": [
+          "Auswertung, welche Anzeigen die besten Anfragen bringen",
+          "Laufende Anpassung von Anzeigen und Vorprüfung",
+          "Mehr oder weniger Anfragen, je nach deiner Kapazität"
+        ]
+      }
+    ]
+  },
+  "about": {
+    "headline": "Über *Mert Efe Celik*",
+    "imageAlt": "Porträt von Mert Efe Celik",
+    "text": [
+      "Ich arbeite seit 5 Jahren in Vertrieb und Marketing und habe in dieser Zeit über 100.000 € in Werbung investiert. Dabei habe ich gesehen, wo das Geld verloren geht: **selten bei der Anzeige, fast immer danach.** Die Anfrage kommt – und niemand ruft rechtzeitig zurück.",
+      "Deshalb baue ich nicht nur Anzeigen, sondern den ganzen Weg bis zum Rückruf. Du arbeitest direkt mit mir, nicht mit einer Agentur und wechselnden Ansprechpartnern.",
+      "Mein Ziel ist, dass du dich auf deine Mandate konzentrierst – und im Hintergrund ein System läuft, das dir die nächsten bringt."
+    ]
+  },
+  "faqHeadline": "Häufig gestellte Fragen",
+  "faq": [
+    {
+      "q": "Darf ich als Anwalt überhaupt so werben?",
+      "a": "Ja. § 43b BRAO erlaubt Werbung, die sachlich über deine Kanzlei und deine Schwerpunkte informiert. Genau so baue ich die Anzeigen: ruhig, sachlich, ohne Versprechen zum Ausgang eines Verfahrens. Und nichts geht online, bevor du es freigegeben hast."
+    },
+    {
+      "q": "Wirkt Werbung nicht unseriös?",
+      "a": "Schlechte Werbung schon. Eine sachliche Anzeige, die zeigt, wobei du hilfst, wirkt wie das, was sie ist: eine Information für jemanden, der gerade einen Anwalt sucht und niemanden kennt, den er fragen kann."
+    },
+    {
+      "q": "Funktioniert das auch in meinem Rechtsgebiet?",
+      "a": "Überall dort, wo Menschen ein akutes Problem haben und selbst nach einem Anwalt suchen: Familienrecht, Arbeitsrecht, Erbrecht, Verkehrsrecht, Mietrecht und mehr. Ob’s bei dir passt, klären wir im Erstgespräch. Wenn nicht, sag ich dir das auch."
+    },
+    {
+      "q": "Wie viel Zeit muss ich einplanen?",
+      "a": "Weniger, als du denkst. Ein Gespräch zum Start, dann die Freigabe der Anzeigen – danach läuft das Ding. Du rufst nur noch die passenden Anfragen zurück."
+    },
+    {
+      "q": "Was kostet das?",
+      "a": "Hängt davon ab, wie viele Mandate du zusätzlich betreuen kannst und wie groß dein Einzugsgebiet ist. Wenn’s passt, bekommst du im Gespräch ein klares Angebot. Das Werbebudget zahlst du direkt an Meta, nicht an mich."
+    },
+    {
+      "q": "Ich hatte schon mal ’ne Agentur – bin etwas vorsichtig …",
+      "a": "Versteh ich. Deshalb siehst du auf dieser Seite Auszüge aus den echten Werbekonten statt Hochglanzversprechen. Ich erklär dir, was ich tue und warum. Und wenn du etwas nicht brauchst, sag ich dir das auch."
+    },
+    {
+      "q": "Was passiert nach meiner Anfrage?",
+      "a": "Ich rufe dich an, meist noch am selben Werktag. In etwa 15 Minuten schauen wir, wie deine Kanzlei heute an Mandate kommt und wie eine Anzeige für dich konkret aussehen würde. Unverbindlich."
+    }
+  ],
+  "final": {
+    "headline": "Du willst mehr wissen oder direkt loslegen?",
+    "text": "Dann trag dich jetzt für ein kostenfreies Erstgespräch ein – und wir finden raus, ob’s passt."
+  },
+  "formPage": {
+    "eyebrow": "Kostenfreies Erstgespräch",
+    "headline": "Ein paar kurze Fragen – dann melde ich mich *persönlich* bei dir.",
+    "points": [
+      "Dauert keine Minute, alles per Klick",
+      "Unverbindlich und kostenfrei",
+      "Ich rufe meist noch am selben Werktag an"
+    ],
+    "proof": "11 qualifizierte Anfragen in den ersten 2 Wochen für JusLegal, Hamburg"
   }
 }

@@ -1,75 +1,88 @@
 ---
-// Weitere Fallstudie: Zahl, Ausgangslage, Maßnahmen, Ergebnis, optional Belege und Zitat
+// Fallstudie als dunkle Karte: Ergebnis-Headline, Vorher, Ergebnis, Maßnahmen, Mockup der gebauten Seite, Belege
 import { Image } from 'astro:assets';
-import adsGreenchildMobil from '../images/ads-greenchild-mobil.png';
+import { rich } from '../lib/rich';
+import adsJuslegal from '../images/ads-juslegal.png';
+import adsJuslegalMobil from '../images/ads-juslegal-mobil.png';
+import adsGreenchild from '../images/ads-greenchild-mobil.png';
 import pipedrive from '../images/pipedrive-greenchild.png';
+import jD from '../images/site-juslegal-desktop.png';
+import jM from '../images/site-juslegal-mobil.png';
+import gD from '../images/site-greenchild-desktop.png';
+import gM from '../images/site-greenchild-mobil.png';
+import bD from '../images/site-bml-desktop.png';
+import bM from '../images/site-bml-mobil.png';
 
+const sites = { juslegal: [jD, jM], greenchild: [gD, gM], bml: [bD, bM] } as const;
 interface Shot { key: string; alt: string; caption: string }
 interface Props {
   item: {
-    name: string; meta: string; logo: string; logoW: number; logoH: number;
-    value: string; valueLabel: string; goal: string; done: string[]; result: string;
-    shots: Shot[]; quote?: string; quoteAuthor?: string; quoteRole?: string; quoteImage?: string;
+    key: string; name: string; person: string; role: string; personImage?: string; logo: string; logoW: number; logoH: number;
+    headline: string; before: string[]; result: string[]; done: string[][]; quote?: string; shots: Shot[];
   };
-  labels: { goal: string; done: string; result: string };
+  labels: { before: string; result: string };
 }
 const { item, labels } = Astro.props;
-const hasShots = item.shots.length > 0;
-const label = 'text-[13px] font-semibold tracking-[0.16em] text-teal uppercase';
+const [desktop, mobil] = sites[item.key as keyof typeof sites];
+const wide = item.shots.find((s) => s.key === 'adsJuslegal');
+const side = item.shots.filter((s) => s.key !== 'adsJuslegal');
 ---
 
-<article class="grid gap-10 border-b border-line py-12 lg:grid-cols-12 lg:gap-12 lg:py-16">
-  <div class:list={[hasShots ? 'lg:col-span-6' : 'lg:col-span-5']}>
-    <div class="flex items-center gap-3">
-      <img src={item.logo} alt={`Logo ${item.name}`} width={item.logoW} height={item.logoH} class="h-8 w-auto" loading="lazy" />
-      <p class="text-[15px] text-muted"><span class="font-semibold text-ink">{item.name}</span> · {item.meta}</p>
+<article class="on-dark overflow-hidden rounded-[1.4rem] bg-linear-to-br from-ink-deep via-ink-deep to-ink px-5 py-9 text-white/80 shadow-[0_40px_80px_-40px_rgb(6_13_21/0.9)] sm:p-10 lg:p-14">
+  <div class="grid gap-10 lg:grid-cols-2 lg:gap-14">
+    <div>
+      <h3 class="font-head text-[1.6rem] leading-[1.2] font-semibold tracking-[-0.01em] text-white sm:text-[2rem]">{item.headline}</h3>
+
+      {item.before.length > 0 && (
+        <>
+          <p class="mt-7 font-head text-lg font-semibold text-white">{labels.before}</p>
+          <div class="mt-2 space-y-1.5 text-[16px]">{item.before.map((p) => <p set:html={rich(p)} />)}</div>
+        </>
+      )}
+      <p class="mt-7 font-head text-lg font-semibold text-white">{labels.result}</p>
+      <div class="mt-2 space-y-1.5 text-[16px]">{item.result.map((p) => <p set:html={rich(p)} />)}</div>
+
+      <ul class="checks mt-8 space-y-4">
+        {item.done.map(([t, d]) => (
+          <li><span class="font-semibold text-white">{t}</span><span class="block text-[15px] text-white/60">{d}</span></li>
+        ))}
+      </ul>
     </div>
-    <p class="mt-7 font-serif text-6xl leading-[0.95] text-ink sm:text-7xl">{item.value}</p>
-    <p class="mt-2 font-serif text-2xl text-teal italic">{item.valueLabel}</p>
 
-    {hasShots && (
-      <dl class="mt-9 space-y-6">
-        <div><dt class={label}>{labels.goal}</dt><dd class="mt-2">{item.goal}</dd></div>
-        <div>
-          <dt class={label}>{labels.done}</dt>
-          <dd class="mt-2"><ul class="space-y-2">{item.done.map((d) => <li class="flex gap-3"><span class="mt-[0.75em] h-px w-4 shrink-0 bg-teal" aria-hidden="true" />{d}</li>)}</ul></dd>
+    <div>
+      <div class="relative pr-[14%] pb-[10%]">
+        <div class="browser"><Image src={desktop} alt={`Von Elevo gebaute Seite für ${item.name}, Desktop-Ansicht`} widths={[600, 1000, 1500]} sizes="(min-width: 1024px) 460px, 80vw" /></div>
+        <div class="phone absolute right-0 bottom-0 w-[27%]"><Image src={mobil} alt={`Von Elevo gebaute Seite für ${item.name}, Handy-Ansicht`} widths={[160, 320, 480]} sizes="140px" /></div>
+      </div>
+
+      <div class="mt-8 flex items-center gap-4">
+        {item.personImage
+          ? <img src={item.personImage} alt="" width="56" height="56" class="size-14 rounded-full object-cover" loading="lazy" />
+          : <span class="grid h-14 shrink-0 place-items-center rounded-lg bg-white px-3"><img src={item.logo} alt={`Logo ${item.name}`} width={item.logoW} height={item.logoH} class="h-6 w-auto" loading="lazy" /></span>}
+        <p class="leading-snug"><span class="font-head font-semibold text-white">{item.person}</span><br /><span class="text-[15px] text-white/60">{item.role}</span></p>
+      </div>
+      {item.quote && <blockquote class="mt-5 border-l border-white/25 pl-5 text-[15px] leading-relaxed text-white/80 italic">„{item.quote}“</blockquote>}
+
+      {side.length > 0 && (
+        <div class="mt-8 grid grid-cols-5 items-start gap-4">
+          {side.map((shot) => (
+            <figure class:list={[shot.key === 'pipedrive' ? 'col-span-2' : 'col-span-3']}>
+              <div class="beleg"><Image src={shot.key === 'pipedrive' ? pipedrive : adsGreenchild} alt={shot.alt} widths={[300, 600, 900]} sizes="(min-width: 1024px) 280px, 55vw" /></div>
+              <figcaption class="mt-2 text-[13px] leading-snug text-white/50">{shot.caption}</figcaption>
+            </figure>
+          ))}
         </div>
-        <div><dt class={label}>{labels.result}</dt><dd class="mt-2 font-medium text-ink">{item.result}</dd></div>
-      </dl>
-    )}
-  </div>
-
-  {hasShots ? (
-    <div class="space-y-6 lg:col-span-6">
-      {item.shots.map((shot) => (
-        <figure>
-          {shot.key === 'adsGreenchild' ? (
-            <div class="beleg">
-              <Image src={adsGreenchildMobil} alt={shot.alt} widths={[420, 840, 1400]} sizes="(min-width: 1024px) 540px, 92vw" />
-            </div>
-          ) : (
-            <div class="beleg max-w-[17rem]"><Image src={pipedrive} alt={shot.alt} widths={[272, 392, 784]} sizes="272px" /></div>
-          )}
-          <figcaption class="mt-2.5 text-sm text-muted">{shot.caption}</figcaption>
-        </figure>
-      ))}
-      {item.quote && (
-        <figure class="border-l-2 border-teal pl-5">
-          <blockquote class="font-serif text-2xl leading-[1.2] text-ink italic">„{item.quote}“</blockquote>
-          <figcaption class="mt-4 flex items-center gap-3 text-[15px]">
-            {item.quoteImage && <img src={item.quoteImage} alt="" width="44" height="44" class="size-11 rounded-full object-cover" loading="lazy" />}
-            <span><span class="font-semibold text-ink">{item.quoteAuthor}</span><br /><span class="text-muted">{item.quoteRole}</span></span>
-          </figcaption>
-        </figure>
       )}
     </div>
-  ) : (
-    <dl class="grid gap-6 sm:grid-cols-2 lg:col-span-7">
-      <div><dt class={label}>{labels.goal}</dt><dd class="mt-2">{item.goal}</dd><dt class:list={[label, 'mt-6']}>{labels.result}</dt><dd class="mt-2 font-medium text-ink">{item.result}</dd></div>
-      <div>
-        <dt class={label}>{labels.done}</dt>
-        <dd class="mt-2"><ul class="space-y-2">{item.done.map((d) => <li class="flex gap-3"><span class="mt-[0.75em] h-px w-4 shrink-0 bg-teal" aria-hidden="true" />{d}</li>)}</ul></dd>
+  </div>
+
+  {wide && (
+    <figure class="mt-10">
+      <div class="beleg">
+        <Image src={adsJuslegalMobil} alt={wide.alt} widths={[420, 840]} sizes="92vw" class="sm:hidden" />
+        <Image src={adsJuslegal} alt={wide.alt} widths={[900, 1462, 2200]} sizes="(min-width: 1152px) 1040px, 92vw" class="hidden sm:block" />
       </div>
-    </dl>
+      <figcaption class="mt-2 text-[13px] text-white/50">{wide.caption}</figcaption>
+    </figure>
   )}
 </article>
