@@ -7,265 +7,170 @@ import mm from '../../config/mehrmandanten.json';
 import Logo from '../../mehrmandanten/components/Logo.astro';
 import CtaButton from '../../mehrmandanten/components/CtaButton.astro';
 import Case from '../../mehrmandanten/components/Case.astro';
-import adsJuslegal from '../../mehrmandanten/images/ads-juslegal.png';
-import adsJuslegalMobil from '../../mehrmandanten/images/ads-juslegal-mobil.png';
-import adsJuslegalHero from '../../mehrmandanten/images/ads-juslegal-hero.png';
+import Mock from '../../mehrmandanten/components/Mock.astro';
+import heroImg from '../../mehrmandanten/images/hero-mert.jpg';
 import portrait from '../../startseite/images/mert-efe-celik.jpg';
+import { rich } from '../../mehrmandanten/lib/rich';
 
-const { hero, problem, verhalten, cases, leistungen, ablauf, about, faq, final, cta } = mm;
-const em = (s: string) => s.replace(/\*(.+?)\*/g, '<em>$1</em>');
-const nr = (i: number) => String(i + 1).padStart(2, '0');
-const f = cases.featured;
+const { hero, verhalten, cases, leistungen, ablauf, about, faq, final } = mm;
 ---
 
 <MmLayout title={mm.seo.title} description={mm.seo.description} stickyCta>
-  <header class="sticky top-0 z-40 border-b border-line/70 bg-paper/90 backdrop-blur">
-    <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
-      <a href={mm.paths.landing} class="text-ink" aria-label="Elevo, zum Seitenanfang"><Logo /></a>
-      <a href={mm.paths.form} class="hidden min-h-11 items-center rounded-full border border-ink px-5 text-[15px] font-semibold text-ink transition-colors duration-300 hover:bg-ink hover:text-paper sm:inline-flex">
-        {cta.short}
-      </a>
+  <!-- Hero -->
+  <div class="on-dark relative isolate overflow-hidden bg-ink-deep text-white/85">
+    <div class="absolute inset-y-0 right-0 -z-10 hidden w-[56%] lg:block" aria-hidden="true">
+      <Image src={heroImg} alt="" widths={[900, 1333]} sizes="56vw" loading="eager" class="size-full object-cover object-[50%_18%]" />
+      <div class="absolute inset-0 bg-linear-to-r from-ink-deep via-ink-deep/55 to-transparent"></div>
+      <div class="absolute inset-0 bg-linear-to-t from-ink-deep via-transparent to-ink-deep/35"></div>
     </div>
-  </header>
 
-  <main id="inhalt">
-    <!-- Hero -->
-    <section class="mx-auto max-w-6xl px-5 pt-10 pb-14 sm:pt-16 lg:pb-20">
-      <div class="grid items-end gap-10 lg:grid-cols-12 lg:gap-12">
-        <div class="lg:col-span-7">
-          <p class="kicker">{hero.eyebrow}</p>
-          <h1 class="display mt-6 text-[2.7rem] sm:text-6xl lg:text-[4.5rem]" set:html={em(hero.headline)} />
-          <p class="mt-6 max-w-xl text-lg text-pretty">{hero.sub}</p>
-          <div class="mt-8 max-w-md">
-            <CtaButton />
-            <p class="mt-3 text-center text-sm text-muted">{cta.note}</p>
+    <header class="mx-auto flex h-20 max-w-6xl items-center justify-between px-5">
+      <a href={mm.paths.landing} class="text-white" aria-label="Elevo, zum Seitenanfang"><Logo /></a>
+      <nav aria-label="Abschnitte" class="hidden gap-9 font-head text-[13px] font-semibold tracking-[0.08em] text-white uppercase md:flex">
+        {mm.nav.map(([label, href]) => <a href={href} class="transition-colors duration-300 hover:text-mint">{label}</a>)}
+      </nav>
+    </header>
+
+    <main id="inhalt" class="contents">
+      <section class="mx-auto max-w-6xl px-5 pt-6 pb-14 lg:pt-14 lg:pb-20">
+        <div class="max-w-[39rem]">
+          <p><span class="box-decoration-clone bg-mint/90 px-2 py-0.5 text-[15px] leading-[1.9] font-medium text-ink-deep">{hero.eyebrow}</span></p>
+          <h1 class="mt-4 font-display text-[3.1rem] leading-[0.95] tracking-[0.005em] text-white uppercase sm:text-[4.4rem]">{hero.headline}</h1>
+
+          <div class="relative mt-6 -mx-5 lg:hidden" aria-hidden="true">
+            <Image src={heroImg} alt="" widths={[640, 960]} sizes="100vw" loading="eager" class="aspect-[4/3] w-full object-cover object-[50%_22%]" />
+            <div class="absolute inset-0 bg-linear-to-t from-ink-deep via-transparent to-ink-deep/60"></div>
           </div>
+
+          <div class="mt-6 max-w-[34rem] space-y-5">
+            {hero.paras.map((p) => <p set:html={rich(p)} />)}
+          </div>
+          <div class="mt-8 max-w-sm"><CtaButton /></div>
         </div>
 
-        <aside class="on-dark relative rounded-[1.25rem] bg-ink p-6 text-paper sm:p-8 lg:col-span-5" aria-label="Ergebnis JusLegal">
-          <p class="text-[13px] font-semibold tracking-[0.16em] text-mint uppercase">{hero.proof.who}</p>
-          <p class="mt-5 flex items-end gap-4">
-            <span class="font-serif text-[7rem] leading-[0.8] text-mint sm:text-[8.5rem]">{hero.proof.value}</span>
-            <span class="max-w-[11rem] pb-1 text-lg leading-snug font-medium">{hero.proof.label}</span>
-          </p>
-          <figure class="mt-7">
-            <div class="beleg border-0">
-              <Image src={adsJuslegalHero} alt={f.shotAlt} widths={[450, 900]} sizes="(min-width: 1024px) 400px, 90vw" loading="eager" />
-            </div>
-            <figcaption class="mt-3 text-sm text-paper/60">{hero.proof.caption}</figcaption>
-          </figure>
-        </aside>
-      </div>
-
-      <div class="mt-14 flex flex-col gap-5 border-t border-line pt-7 sm:flex-row sm:items-center sm:gap-10">
-        <p class="shrink-0 text-sm font-medium text-muted">{hero.logosLabel}</p>
-        <ul class="flex flex-wrap items-center gap-x-10 gap-y-5">
-          {[f, ...cases.others].map((c) => (
-            <li class="flex items-center gap-2.5">
-              <img src={c.logo} alt={`Logo ${c.name}`} width={c.logoW} height={c.logoH} class="h-7 w-auto opacity-80 grayscale" loading="eager" />
-              {c.name === 'BrandsMarketingLab' && <span class="text-[15px] font-semibold text-ink/80">{c.name}</span>}
-            </li>
-          ))}
+        <ul class="mt-14 grid gap-7 border-t border-white/15 pt-8 md:grid-cols-3 md:gap-10 [&_strong]:text-mint">
+          {hero.benefits.map((b) => <li set:html={rich(b)} />)}
         </ul>
-      </div>
-    </section>
+      </section>
+    </main>
+  </div>
 
-    <!-- Problem -->
-    <section class="border-t border-line" aria-labelledby="problem-titel">
-      <div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 lg:grid-cols-12 lg:gap-12 lg:py-24">
-        <div class="lg:col-span-5">
-          <div class="lg:sticky lg:top-28">
-            <p class="kicker">{problem.kicker}</p>
-            <h2 id="problem-titel" class="display mt-5 text-4xl sm:text-5xl" set:html={em(problem.headline)} />
-            <p class="mt-5 text-lg">{problem.intro}</p>
-          </div>
-        </div>
-        <ol class="lg:col-span-7">
-          {problem.items.map((item, i) => (
-            <li class="grid grid-cols-[3.25rem_1fr] gap-x-3 border-t border-line py-7 first:border-t-0 first:pt-0 sm:grid-cols-[5rem_1fr]">
-              <span class="font-serif text-4xl leading-none text-teal italic sm:text-5xl" aria-hidden="true">{nr(i)}</span>
-              <div>
-                <h3 class="text-xl leading-snug font-semibold text-ink">{item.t}</h3>
-                <p class="mt-2">{item.d}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
+  <!-- Verhalten der Mandanten -->
+  <section class="light bg-linear-to-b from-paper to-white" aria-labelledby="verhalten-titel">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 lg:grid-cols-12 lg:py-24">
+      <div class="order-2 lg:order-1 lg:col-span-5"><Mock kind="race" /></div>
+      <div class="order-1 lg:order-2 lg:col-span-7">
+        <h2 id="verhalten-titel" class="h2" set:html={rich(verhalten.headline)} />
+        <div class="mt-6 space-y-4">{verhalten.paras.map((p) => <p set:html={rich(p)} />)}</div>
+        <p class="mt-6 font-head text-lg font-semibold text-ink">{verhalten.problemLabel}</p>
+        <p class="mt-2" set:html={rich(verhalten.problem)} />
+        <p class="mt-4">{verhalten.cta}</p>
+        <div class="mt-7 max-w-sm"><CtaButton /></div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Verhalten der Mandanten -->
-    <section class="border-y border-line bg-surface" aria-labelledby="verhalten-titel">
-      <div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 lg:grid-cols-12 lg:gap-12 lg:py-24">
-        <div class="lg:col-span-7">
-          <p class="kicker">{verhalten.kicker}</p>
-          <h2 id="verhalten-titel" class="display mt-5 text-4xl sm:text-5xl">{verhalten.headline}</h2>
-          <div class="mt-7 max-w-2xl space-y-5 text-lg">
-            {verhalten.paras.map((p) => <p>{p}</p>)}
-          </div>
-        </div>
-        <blockquote class="self-center border-l-2 border-teal pl-6 lg:col-span-5">
-          <p class="font-serif text-3xl leading-[1.15] text-ink italic sm:text-4xl">{verhalten.pull}</p>
-        </blockquote>
+  <!-- Fallstudien -->
+  <section id="ergebnisse" class="light bg-white" aria-labelledby="cases-titel">
+    <div class="mx-auto max-w-6xl px-5 pt-10 pb-16 lg:pb-24">
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <h2 id="cases-titel" class="h2 text-[2.5rem] sm:text-6xl [&_em]:block" set:html={rich(cases.headline)} />
+        <p class="max-w-[17rem] font-head text-xl leading-snug font-medium text-ink [&_em]:text-teal [&_em]:not-italic" set:html={rich(cases.side)} />
       </div>
-    </section>
-
-    <!-- Fallstudien -->
-    <section id="ergebnisse" aria-labelledby="cases-titel">
-      <div class="mx-auto max-w-6xl px-5 pt-16 lg:pt-24">
-        <p class="kicker">{cases.kicker}</p>
-        <h2 id="cases-titel" class="display mt-5 max-w-3xl text-4xl sm:text-5xl" set:html={em(cases.headline)} />
+      <div class="mt-12 space-y-10 lg:space-y-14">
+        {cases.items.map((item) => <Case item={item} labels={cases.labels} />)}
       </div>
+      <p class="mt-8 max-w-2xl text-[15px] text-muted">{cases.note}</p>
+    </div>
+  </section>
 
-      <div class="mx-auto mt-10 max-w-6xl sm:px-5">
-        <article class="on-dark bg-ink px-5 py-10 text-paper sm:rounded-[1.5rem] sm:p-10 lg:p-14">
-          <div class="grid gap-10 lg:grid-cols-12 lg:gap-12">
-            <div class="lg:col-span-5">
-              <span class="inline-flex rounded-lg bg-paper px-4 py-3">
-                <img src={f.logo} alt={`Logo ${f.name}`} width={f.logoW} height={f.logoH} class="h-6 w-auto" loading="lazy" />
-              </span>
-              <p class="mt-4 text-paper/70">{f.meta}</p>
-              <p class="mt-8 font-serif text-[8rem] leading-[0.8] text-mint sm:text-[11rem]">{f.value}</p>
-              <p class="mt-5 max-w-xs font-serif text-3xl leading-[1.1]">{f.valueLabel}</p>
+  <!-- Leistungen -->
+  <section id="leistungen" class="light bg-paper" aria-labelledby="leistungen-titel">
+    <div class="mx-auto max-w-5xl px-5 py-16 lg:py-24">
+      <h2 id="leistungen-titel" class="h2 text-[2.5rem] sm:text-5xl [&_em]:block" set:html={rich(leistungen.headline)} />
+      <p class="mt-6 font-semibold text-ink">{leistungen.lead}</p>
+      {leistungen.intro.map((p) => <p>{p}</p>)}
+
+      <div class="mt-12 space-y-8">
+        {leistungen.items.map((item, i) => (
+          <article class="grid items-center gap-8 rounded-2xl bg-white p-6 shadow-[0_30px_70px_-40px_rgb(13_27_42/0.35)] sm:p-10 md:grid-cols-2 md:gap-12">
+            <div class:list={[i % 2 === 1 && 'md:order-2']}>
+              <h3 class="font-head text-2xl leading-tight font-semibold tracking-[-0.01em] text-ink sm:text-[1.7rem] [&_em]:text-teal [&_em]:not-italic" set:html={rich(item.title)} />
+              <p class="mt-4">{item.text}</p>
+              <ul class="checks mt-5 space-y-2.5 text-[16px]">{item.points.map((p) => <li>{p}</li>)}</ul>
+              <div class="mt-7 max-w-xs"><CtaButton /></div>
             </div>
-            <dl class="space-y-7 lg:col-span-7">
-              <div>
-                <dt class="text-[13px] font-semibold tracking-[0.16em] text-mint uppercase">{cases.labels.goal}</dt>
-                <dd class="mt-2 text-lg text-paper/85">{f.goal}</dd>
-              </div>
-              <div class="border-t border-paper/15 pt-7">
-                <dt class="text-[13px] font-semibold tracking-[0.16em] text-mint uppercase">{cases.labels.done}</dt>
-                <dd class="mt-3">
-                  <ul class="space-y-2.5 text-lg text-paper/85">
-                    {f.done.map((d) => <li class="flex gap-3"><span class="mt-[0.7em] h-px w-4 shrink-0 bg-mint" aria-hidden="true" />{d}</li>)}
-                  </ul>
-                </dd>
-              </div>
-              <div class="border-t border-paper/15 pt-7">
-                <dt class="text-[13px] font-semibold tracking-[0.16em] text-mint uppercase">{cases.labels.result}</dt>
-                <dd class="mt-2 text-lg font-medium text-paper">{f.result}</dd>
-              </div>
-            </dl>
-          </div>
-          <figure class="mt-10">
-            <div class="beleg border-0">
-              <Image src={adsJuslegalMobil} alt={f.shotAlt} widths={[420, 840]} sizes="92vw" class="sm:hidden" />
-              <Image src={adsJuslegal} alt={f.shotAlt} widths={[900, 1462, 2200]} sizes="(min-width: 1152px) 1040px, 92vw" class="hidden sm:block" />
+            <div class:list={['rounded-xl bg-linear-to-br from-ink to-ink-deep p-6 sm:p-9', i % 2 === 1 && 'md:order-1']}>
+              <Mock kind={item.key} />
             </div>
-            <figcaption class="mt-3 text-sm text-paper/60">{f.shotCaption}</figcaption>
-          </figure>
-        </article>
+          </article>
+        ))}
       </div>
+    </div>
+  </section>
 
-      <div class="mx-auto max-w-6xl px-5 pb-16 lg:pb-24">
-        {cases.others.map((c) => <Case item={c} labels={cases.labels} />)}
-        <p class="mt-8 max-w-2xl text-[15px] text-muted">{cases.note}</p>
-        <div class="mt-10 max-w-md"><CtaButton /></div>
-      </div>
-    </section>
+  <!-- Ablauf -->
+  <section id="ablauf" class="light bg-white" aria-labelledby="ablauf-titel">
+    <div class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+      <h2 id="ablauf-titel" class="h2 max-w-xl text-[2.5rem] sm:text-5xl" set:html={rich(ablauf.headline)} />
+      <ol class="mt-14">
+        {ablauf.steps.map((s, i) => (
+          <li class="relative pb-12 pl-12 last:pb-0 sm:pl-16">
+            <span class="absolute top-2 left-0 size-3.5 rounded-[3px] bg-ink" aria-hidden="true" />
+            {i < ablauf.steps.length - 1 && <span class="absolute top-8 bottom-0 left-[6px] w-px bg-ink/40" aria-hidden="true" />}
+            <p class="font-head text-4xl leading-none font-medium text-ink" aria-hidden="true">{String(i + 1).padStart(2, '0')}</p>
+            <h3 class="mt-2 font-head text-xl font-medium text-ink">{s.t}</h3>
+            <p class="mt-4 max-w-xl">{s.d}</p>
+            <ul class="checks mt-5 space-y-2.5">{s.points.map((p) => <li>{p}</li>)}</ul>
+          </li>
+        ))}
+      </ol>
+      <div class="mt-12 max-w-sm pl-12 sm:pl-16"><CtaButton /></div>
+    </div>
+  </section>
 
-    <!-- Leistungen -->
-    <section class="border-t border-line bg-surface" aria-labelledby="leistungen-titel">
-      <div class="mx-auto max-w-6xl px-5 py-16 lg:py-24">
-        <p class="kicker">{leistungen.kicker}</p>
-        <h2 id="leistungen-titel" class="display mt-5 text-4xl sm:text-5xl">{leistungen.headline}</h2>
-        <ul class="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
-          {leistungen.items.map((item, i) => (
-            <li class="border-t-2 border-ink pt-6">
-              <span class="font-serif text-2xl text-teal italic" aria-hidden="true">{nr(i)}</span>
-              <h3 class="mt-3 font-serif text-[1.75rem] leading-[1.1] text-ink">{item.t}</h3>
-              <p class="mt-3">{item.d}</p>
-            </li>
-          ))}
-        </ul>
+  <!-- Über mich -->
+  <section id="ueber-mich" class="on-dark bg-ink text-white/80" aria-labelledby="about-titel">
+    <div class="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 lg:grid-cols-12 lg:gap-16 lg:py-24">
+      <div class="lg:col-span-5">
+        <Image src={portrait} alt={about.imageAlt} width={800} height={1000} class="aspect-[4/5] w-full max-w-sm rounded-2xl object-cover object-[50%_15%] lg:max-w-none" />
       </div>
-    </section>
+      <div class="lg:col-span-7">
+        <h2 id="about-titel" class="h2" set:html={rich(about.headline)} />
+        <div class="mt-6 space-y-4">{about.text.map((p) => <p set:html={rich(p)} />)}</div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Ablauf -->
-    <section class="border-t border-line" aria-labelledby="ablauf-titel">
-      <div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 lg:grid-cols-12 lg:gap-12 lg:py-24">
-        <div class="lg:col-span-5">
-          <p class="kicker">{ablauf.kicker}</p>
-          <h2 id="ablauf-titel" class="display mt-5 text-4xl sm:text-5xl">{ablauf.headline}</h2>
-          <div class="mt-8 hidden max-w-sm lg:block"><CtaButton /></div>
-        </div>
-        <ol class="relative lg:col-span-7">
-          {ablauf.steps.map((s, i) => (
-            <li class="relative grid grid-cols-[3.5rem_1fr] gap-x-4 pb-10 last:pb-0">
-              {i < ablauf.steps.length - 1 && <span class="absolute top-14 bottom-0 left-6 w-px bg-line" aria-hidden="true" />}
-              <span class="grid size-12 place-items-center rounded-full border border-ink font-serif text-xl text-ink" aria-hidden="true">{i + 1}</span>
-              <div class="pt-1.5">
-                <h3 class="font-serif text-[1.75rem] leading-[1.1] text-ink">{s.t}</h3>
-                <p class="mt-2">{s.d}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
+  <!-- FAQ -->
+  <section id="faq" class="light bg-paper" aria-labelledby="faq-titel">
+    <div class="mx-auto max-w-3xl px-5 py-16 lg:py-24">
+      <h2 id="faq-titel" class="h2 text-center">{mm.faqHeadline}</h2>
+      <div class="mt-10 space-y-3">
+        {faq.map((item) => (
+          <details class="group rounded-xl bg-white shadow-[0_10px_30px_-22px_rgb(13_27_42/0.5)]">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 px-5 py-4 font-head text-[17px] font-semibold text-ink sm:px-7">
+              <span>{item.q}</span>
+              <svg class="size-5 shrink-0 text-teal transition-transform duration-300 group-open:rotate-45" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+            </summary>
+            <p class="px-5 pb-5 sm:px-7">{item.a}</p>
+          </details>
+        ))}
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Über mich -->
-    <section class="border-t border-line bg-surface" aria-labelledby="about-titel">
-      <div class="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 lg:grid-cols-12 lg:gap-14 lg:py-24">
-        <div class="lg:col-span-4">
-          <Image src={portrait} alt={about.imageAlt} width={720} height={900} class="aspect-[4/5] w-full max-w-xs rounded-[1.25rem] object-cover object-[50%_15%] lg:max-w-none" />
-        </div>
-        <div class="lg:col-span-8">
-          <p class="kicker">{about.kicker}</p>
-          <h2 id="about-titel" class="display mt-5 text-4xl sm:text-5xl">{about.headline}</h2>
-          <div class="mt-6 max-w-2xl space-y-4 text-lg">{about.text.map((p) => <p>{p}</p>)}</div>
-          <p class="mt-6 font-semibold text-ink">{about.name} <span class="font-normal text-muted">· {about.role}</span></p>
-          <dl class="mt-8 flex flex-wrap gap-x-12 gap-y-6 border-t border-line pt-7">
-            {about.facts.map((fact) => (
-              <div>
-                <dd class="font-serif text-5xl leading-none text-ink">{fact.value}</dd>
-                <dt class="mt-2 text-[15px] text-muted">{fact.label}</dt>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="border-t border-line" aria-labelledby="faq-titel">
-      <div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 lg:grid-cols-12 lg:gap-12 lg:py-24">
-        <div class="lg:col-span-4">
-          <p class="kicker">FAQ</p>
-          <h2 id="faq-titel" class="display mt-5 text-4xl sm:text-5xl">{mm.faqHeadline}</h2>
-        </div>
-        <div class="border-b border-line lg:col-span-8">
-          {faq.map((item) => (
-            <details class="group border-t border-line">
-              <summary class="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-lg font-semibold text-ink">
-                <span>{item.q}</span>
-                <span class="relative mt-1.5 size-4 shrink-0" aria-hidden="true">
-                  <span class="absolute inset-x-0 top-1/2 h-px bg-ink" />
-                  <span class="absolute inset-y-0 left-1/2 w-px bg-ink transition-transform duration-300 group-open:rotate-90" />
-                </span>
-              </summary>
-              <p class="max-w-2xl pb-6">{item.a}</p>
-            </details>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Abschluss -->
-    <section class="on-dark bg-ink text-paper" aria-labelledby="final-titel">
-      <div class="mx-auto max-w-4xl px-5 py-20 text-center lg:py-28">
-        <h2 id="final-titel" class="display text-[2.6rem] sm:text-6xl" set:html={em(final.headline)} />
-        <p class="mx-auto mt-6 max-w-xl text-lg text-paper/80">{final.text}</p>
-        <div class="mx-auto mt-9 max-w-md">
-          <CtaButton onDark />
-          <p class="mt-3 text-sm text-paper/60">{cta.note}</p>
-        </div>
-      </div>
-    </section>
-  </main>
+  <!-- Abschluss -->
+  <section class="on-dark bg-ink-deep text-white/80" aria-labelledby="final-titel">
+    <div class="mx-auto max-w-3xl px-5 py-20 text-center lg:py-28">
+      <h2 id="final-titel" class="font-display text-5xl leading-[0.95] text-white uppercase sm:text-7xl">{final.headline}</h2>
+      <p class="mx-auto mt-6 max-w-xl text-lg">{final.text}</p>
+      <div class="mx-auto mt-9 max-w-sm"><CtaButton /></div>
+    </div>
+  </section>
 
   <!-- Schwebender CTA auf dem Handy -->
-  <div class="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-paper/95 px-4 py-3 backdrop-blur md:hidden">
-    <CtaButton label={cta.short} class="min-h-12" />
+  <div class="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-ink-deep/95 px-4 py-3 backdrop-blur md:hidden">
+    <CtaButton label={mm.cta.short} class="min-h-12" />
   </div>
 </MmLayout>

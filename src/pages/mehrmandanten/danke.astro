@@ -10,17 +10,17 @@ const phoneHref = telHref(thankYou.phoneInternational || thankYou.phone);
 ---
 
 <MmLayout title={kb.seo.thankYouTitle} description={thankYou.headlineNoName} consentOnPendingLead>
-  <main id="inhalt" class="mx-auto max-w-2xl px-5 pb-20">
-    <div class="flex justify-center pt-6 text-ink"><Logo /></div>
+  <main id="inhalt" class="light bg-paper px-5 pb-20 *:mx-auto *:max-w-2xl">
+    <div class="flex justify-center pt-8 text-ink"><Logo /></div>
 
-    <h1 class="mt-10 display text-center text-4xl sm:text-5xl" data-thanks-headline>
+    <h1 class="mt-10 h2 text-center" data-thanks-headline>
       {thankYou.headlineNoName}
     </h1>
     <template data-thanks-template data-before={before} data-after={after}></template>
 
 
     <section class="mt-10" aria-labelledby="schritte-titel">
-      <h2 id="schritte-titel" class="font-serif text-3xl text-ink">{thankYou.stepsHeadline}</h2>
+      <h2 id="schritte-titel" class="font-head text-2xl font-semibold text-ink">{thankYou.stepsHeadline}</h2>
       <ol class="mt-5 space-y-4">
         {
           thankYou.steps.map((step, i) => (
